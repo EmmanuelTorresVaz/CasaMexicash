@@ -4,7 +4,7 @@ require_once('../../base/Conexion.php');
 require_once('../../servicios/Errores.php');
 require_once('../UsuarioDAO.php');
 
-class sqlUsuarioDAO implements UsuarioDAO
+class sqlUsuarioDAO
 {
 
     protected $error;

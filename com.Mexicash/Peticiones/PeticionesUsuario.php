@@ -1,7 +1,7 @@
 <?
 
 session_start();
-require_once('../Dao/sql/sqlUsuario.php');
+require_once('../Dao/sql/sqlUsuarioDAO.php');
 
 if ($_POST['botonAcceder'] == "Entrar") {
     $userText = $_POST['usuario'];

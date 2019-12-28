@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if ($_SESSION['sautentificado'] == "1") {
     header("Location:Explorer.php");
@@ -16,12 +16,12 @@ header("Content-Type: text/html;charset=utf-8");
     <h3>Mexicash </h3>
     <div id="login">
         <form id="log" name="form1" method="post" action="Peticiones/PeticionesUsuario.php" autocomplete="off">
-            <?
+            <?php
                     if ($_GET["errorusuario"] != null && $_GET["errorusuario"] == "1") {
                         echo("<h3 id='error'>Datos incorrectos</h3>");
-            } else {
-            echo("<h3>Introduce tus datos de acceso</h3>");
-            }
+                    } else {
+                        echo("<h3>Introduce tus datos de acceso</h3>");
+                    }
             ?>
             <table width="410" border="0">
                 <tr>
