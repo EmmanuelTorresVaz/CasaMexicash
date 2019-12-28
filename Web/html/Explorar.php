@@ -12,7 +12,7 @@ if ($_SESSION['autentificado'] == "0") {
     <title>Mexicash</title>
 </head>
 <body>
-    <div class="menuContainer" style="position: absolute; top: 0;"></div>
+    <div class="menuContainer" ></div>
 </body>
     <script>
         $(document).ready(function () {
