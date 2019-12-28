@@ -12,8 +12,7 @@ header("Content-Type: text/html;charset=utf-8");
     <title>Acceder</title>
 </head>
 <body>
-
-    <h3>Mexicash </h3>
+    <div class="menuContainer" style="position: absolute; top: 0;"></div>
     <div id="login">
         <form id="log" name="form1" method="post" action="Peticiones/PeticionesUsuario.php" autocomplete="off">
             <?php
