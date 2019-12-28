@@ -6,8 +6,10 @@ class Conexion
 {
     var $server = "localhost";
     var $user = "root";
-    var $password = "volcanes";
-    var $db = "prueba";
+   // var $password = "volcanes";
+    var $password = "";
+    var $db = "Mexicash";
+   // var $db = "prueba";
     var $link;
     var $error;
 
@@ -31,6 +33,13 @@ class Conexion
             $this->error->setError(1, $e->getMessage(), 1);
             $this->error->imprimirError();
         }
+    }
+
+    function getArray($resultado) {
+        return mysqli_fetch_array($resultado);
+    }
+    function getRows($resultado) {
+        return mysqli_num_rows($resultado);
     }
 
 }

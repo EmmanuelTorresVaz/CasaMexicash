@@ -7,5 +7,5 @@ interface UsuarioDAO
 
     public function borrarUsuario($usuario);
 
-    public function login($usuario);
+    public function login($usuario,$pass);
 }
