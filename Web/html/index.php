@@ -1,8 +1,8 @@
 <?php
-    require_once('../../com.prueba1/dao/sql/sqlUsuarioDAO.php');
-    require_once ('../../com.prueba1/dao/UsuarioDAO.php');
-    require_once ('../../com.prueba1/modelo/Usuario.php');
-    require_once ('../../com.prueba1/servicios/Errores.php');
+    require_once('../../com.Mexicash/dao/sql/sqlUsuarioDAO.php');
+    require_once('../../com.Mexicash/dao/UsuarioDAO.php');
+    require_once('../../com.Mexicash/modelo/Usuario.php');
+    require_once('../../com.Mexicash/servicios/Errores.php');
 ?>
 
 <!DOCTYPE html>
