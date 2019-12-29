@@ -1,4 +1,4 @@
-<?
+<?php
 
 session_start();
 require_once('../Dao/sql/sqlUsuarioDAO.php');
@@ -6,8 +6,9 @@ require_once('../Dao/sql/sqlUsuarioDAO.php');
 if ($_POST['botonAcceder'] == "Entrar") {
     $userText = $_POST['usuario'];
     $passText = $_POST['password'];
+    $usuDAO = new sqlUsuarioDAO();
     if ($userText != null || $passText != null) {
-        $id = loginAutentificion($userText, $passText);
+        $id = $usuDAO->loginAutentificion($userText, $passText);
         if ($id > 0) {
             $_SESSION['sautentificado'] = 1;
             $_SESSION['userName'] = $id;
@@ -20,4 +21,3 @@ if ($_POST['botonAcceder'] == "Entrar") {
         header("Location:../index.php?errorusuario=1");
     }
 }
-?>

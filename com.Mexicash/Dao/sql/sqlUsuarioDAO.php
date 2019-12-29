@@ -1,7 +1,7 @@
 <?php
-require_once('../../modelo/Usuario.php');
-require_once('../../base/Conexion.php');
-require_once('../../servicios/Errores.php');
+require_once('../../Modelo/Usuario.php');
+require_once('../../Base/Conexion.php');
+require_once('../../Servicios/Errores.php');
 require_once('../UsuarioDAO.php');
 
 class sqlUsuarioDAO
@@ -14,7 +14,7 @@ class sqlUsuarioDAO
     function __construct()
     {
         $this->db = new Conexion();
-        $this->conexion = $this->db->connectDB($this->db->server, $this->db->user, $this->db->password, $this->db->db);
+        $this->conexion = $this->db->connectDB();
     }
 
     public function guardaUsuario(Usuario $usuario)
@@ -37,14 +37,14 @@ class sqlUsuarioDAO
                     values ('" . $nombreUsuario . "', '" . $password . "', 'b', '" . $nombre . "', '" . $apellidoP . "', '" . $apellidoM . "'," . $estatus . ") ";
 
             $this->conexion->query($insertar);
-
+            echo "Se logro registrar";
             $verdad = true;
 
         } catch (Exception $exc) {
-            $this->db->closeDB();
-            $this->error = new Errores();
+            echo $exc->getMessage();
+            /*$this->error = new Errores();
             $this->error->setError("1", $exc->getMessage(), 1);
-            $this->error->imprimirError();
+            $this->error->imprimirError();*/
         } finally {
             $this->db->closeDB();
         }
@@ -65,7 +65,7 @@ class sqlUsuarioDAO
             $array = array();
             $sql = "select nombre, apellidoPat , apellidoMat from usuariostbl where usuario = '$usuario' and password = '$pass'";
             $ejecutarConsulta = $this->conexion->query($sql);
-            $fila = getArray($ejecutarConsulta);
+            $fila = $this->db->getArray($ejecutarConsulta);
             $id = $fila[0];
             $this->db->closeDB();
             return $id;

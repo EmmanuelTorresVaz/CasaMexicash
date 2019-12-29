@@ -16,7 +16,7 @@ if ($_SESSION['autentificado'] == "0") {
 </body>
     <script>
         $(document).ready(function () {
-            $('.menuContainer').load('./menu.php');
+            $('.menuContainer').load('menu.php');
         });
     </script>
 </html>

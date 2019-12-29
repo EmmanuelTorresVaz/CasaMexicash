@@ -1,26 +1,27 @@
 <?php
 
-require_once ('../servicios/Errores.php');
+require_once ('../Servicios/Errores.php');
 
 class Conexion
 {
-    var $server = "localhost";
-    var $user = "root";
-   // var $password = "volcanes";
-    var $password = "";
-    var $db = "Mexicash";
-   // var $db = "prueba";
-    var $link;
-    var $error;
+    protected $server = "localhost";
+    protected $user = "root";
+    //protected $password = "volcanes";
+    protected $password = "";
+    protected $db = "Mexicash";
+    //protected $db = "prueba";
+    protected $link;
+    protected $error;
 
-    public function connectDB($server, $user, $password, $db){
+    public function connectDB(){
         try {
-            $this->link = mysqli_connect($server, $user, $password, $db);
+            $this->link = mysqli_connect($this->server, $this->user, $this->password, $this->db);
             return $this->link;
-        }catch (\mysql_xdevapi\Exception $error){
-            $this->error = new Errores();
+        }catch (\Exception $error){
+            echo $error->getMessage();
+            /*$this->error = new Errores();
             $this->error->setError(1, $error->getMessage(), 1);
-            $this->error->imprimirError();
+            $this->error->imprimirError();*/
             return 0;
         }
     }
