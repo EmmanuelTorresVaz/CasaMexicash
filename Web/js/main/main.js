@@ -317,17 +317,51 @@ $( function() {
         "Xochimilco",
     ];
 
-    $( "#paises" ).autocomplete({
+    $( "#inPaises" ).autocomplete({
         source: paises
     });
-    $( "#estados" ).autocomplete({
+    $( "#inEstados" ).autocomplete({
         source: estados
     });
 
-    $( "#alcaldia" ).autocomplete({
+    $( "#inAlcaldia" ).autocomplete({
         source: alcaldias
     });
-    $( "#estadoActual" ).autocomplete({
+    $( "#inEstadoActual" ).autocomplete({
         source: estados
     });
 } );
+
+/************************************Obtención de los campos RegistroCliente**************************************/
+
+function obtenDatosCliente() {
+
+    var boxPersona = document.getElementsByName('boxPersona');
+    var boxSexo = document.getElementsByName('boxSexo');
+    var inFechaNac = document.getElementsByName('inFechaNac');
+    var inPaises = document.getElementsByName('inPaises');
+    var inEstados = document.getElementsByName('inEstados');
+    var inCurp = document.getElementsByName('inCurp');
+    var inNombre = document.getElementsByName('inNombre');
+    var inApPat = document.getElementsByName('inApPat');
+    var inApMat = document.getElementsByName('inApMat');
+    var boxOcupacion = document.getElementsByName('boxOcupacion');
+    var boxIdentificacion = document.getElementsByName('boxIdentificacion');
+    var inNoIdentificacion = document.getElementsByName('inNoIdentificacion');
+    var inRfc = document.getElementsByName('inRfc');
+    var inCalle = document.getElementsByName('inCalle');
+    var inNoExt = document.getElementsByName('inNoExt');
+    var inNoInt = document.getElementsByName('inNoInt');
+    var inColonia = document.getElementsByName('inColonia');
+    var inAlcaldia = document.getElementsByName('inAlcaldia');
+    var inEstadoActual = document.getElementsByName('inEstadoActual');
+    var inCP = document.getElementsByName('inCP');
+    var inMsjInt = document.getElementsByName('inMsjInt');
+    var inInstFin = document.getElementsByName('inInstFin');
+    var inCelular = document.getElementsByName('inCelular');
+    var inTelefono = document.getElementsByName('inTelefono');
+    var inCorreo = document.getElementsByName('inCorreo');
+
+
+
+}

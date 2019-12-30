@@ -3,7 +3,7 @@ require ('../../Modelo/Cliente.php');
 require ('../ClienteDAO.php');
 require_once ('../../Base/Conexion.php');
 
-class sqlCilenteDAO implements ClienteDAO
+class sqlClienteDAO implements ClienteDAO
 {
 
     protected $conexion;
