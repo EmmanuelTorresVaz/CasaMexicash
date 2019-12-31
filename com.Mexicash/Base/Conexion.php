@@ -1,6 +1,6 @@
 <?php
 
-require_once ('../Servicios/Errores.php');
+include ('../Servicios/Errores.php');
 
 class Conexion
 {

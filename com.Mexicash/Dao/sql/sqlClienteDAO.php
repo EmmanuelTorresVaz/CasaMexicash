@@ -1,9 +1,8 @@
 <?php
-require ('../../Modelo/Cliente.php');
-require ('../ClienteDAO.php');
-require_once ('../../Base/Conexion.php');
+include ('../../Modelo/Cliente.php');
+include ('../../Base/Conexion.php');
 
-class sqlClienteDAO implements ClienteDAO
+class sqlClienteDAO
 {
 
     protected $conexion;

@@ -332,6 +332,41 @@ $( function() {
     });
 } );
 
+/************************************************Pagina Principal*************************************************/
+
+$(function () {
+    $('.contenidoInicio .contChild').hide();
+    $('.navInicio a').on('click', function () {
+
+        $('.contenidoInicio .contChild:first').show();
+
+        var link = $(this).attr('id');
+        $(link).fadeIn(1000);
+        switch (link) {
+            case 'home':
+                $('.contenidoInicio .contChild').hide();
+                $('.contenidoInicio .contChild:nth-child(1)').show();
+                break;
+            case 'nosotros':
+                $('.contenidoInicio .contChild').hide();
+                $('.contenidoInicio .contChild:nth-child(2)').show();
+                break;
+            case 'comoEmpeño':
+                $('.contenidoInicio .contChild').hide();
+                $('.contenidoInicio .contChild:nth-child(3)').show();
+                break;
+            case 'contacto':
+                $('.contenidoInicio .contChild').hide();
+                $('.contenidoInicio .contChild:nth-child(4)').show();
+                break;
+            case 'login':
+                $('.contenidoInicio .contChild').hide();
+                $('.contenidoInicio .contChild:nth-child(5)').show();
+                break;
+        }
+    })
+})
+
 /************************************Obtención de los campos RegistroCliente**************************************/
 
 function obtenDatosCliente() {

@@ -1,10 +1,12 @@
 html {
   overflow-x: hidden!important;
+  z-index: 3;
 }
 body {
   width: 100%;
   height: 100vh;
   margin-top: 0!important;
+  z-index: 3;
 }
 .wh {
   width: 100%;
@@ -25,44 +27,6 @@ body {
 .fijador {
   position: fixed!important;
   z-index: 1;
-}
-nav.navegador {
-  margin-left: 0!important;
-  margin-right: 0!important;
-  z-index: 1;
-  background-color: transparent!important;
-  width: inherit;
-  height: inherit;
-}
-div.div-Navegador {
-  position: fixed!important;
-  z-index: 1;
-  width: 100%;
-  height: 60px;
-  margin: 0!important;
-  padding: 0!important;
-}
-.ZBNav {
-  margin-left: 20px!important;
-  margin-right: 20% !important;
-}
-div.navbar-nav a {
-  margin-right: 50px;
-}
-.menu-Opcion-Login {
-  margin-left: 40px;
-}
-.buscador {
-  height: 30px;
-  width: 130px;
-}
-input.caja {
-  background-color: transparent!important;
-  color: black !important;
-}
-.navCambioColor {
-  background-color: #161616 !important;
-  color: white!important;
 }
 .agrupar {
   width: 100%;
@@ -581,5 +545,20 @@ div.bar3 {
 .change div.bar3 {
   -webkit-transform: rotate(45deg) translate(-8px, -8px);
   transform: rotate(45deg) translate(-8px, -8px);
+}
+.bodyLogin {
+  background-color: rgba(255, 240, 251, 0.55);
+}
+div.divLogin {
+  position: absolute;
+  width: 20%;
+  height: 45%;
+  top: 25%;
+  left: 40%;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+div.divLogin h6 {
+  position: relative;
 }
 /*# sourceMappingURL=main.css.map */

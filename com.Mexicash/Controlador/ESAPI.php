@@ -1,5 +1,5 @@
 <?php
-require_once ('Encoder.php');
+include ('Encoder.php');
 
 class ESAPI implements Encoder
 {

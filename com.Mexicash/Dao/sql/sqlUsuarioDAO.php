@@ -1,8 +1,8 @@
 <?php
-require_once('../../Modelo/Usuario.php');
-require_once('../../Base/Conexion.php');
-require_once('../../Servicios/Errores.php');
-require_once('../UsuarioDAO.php');
+include('../../Modelo/Usuario.php');
+include('../../Base/Conexion.php');
+include('../../Servicios/Errores.php');
+include('../UsuarioDAO.php');
 
 class sqlUsuarioDAO
 {
