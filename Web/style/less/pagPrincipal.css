@@ -1,0 +1,291 @@
+html {
+  overflow-x: hidden!important;
+  overflow-y: hidden!important;
+}
+body {
+  width: 100%;
+  height: 100vh;
+  margin-top: 0!important;
+}
+.wh {
+  width: 100%;
+  height: 100vh;
+}
+.fondo-negro {
+  background-color: #161616;
+}
+.p100 {
+  width: 100%;
+  height: 100%;
+}
+.v100 {
+  width: 100vw!important;
+  height: 100vh!important;
+}
+/*************************************Pagina Principal**********************************************/
+nav.navegador a {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+div.navbar-nav a {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+.fijador {
+  position: fixed!important;
+  z-index: 1;
+}
+div.div-Inicio {
+  width: 100%;
+  height: 100vh;
+}
+div.animation-area {
+  width: 100%;
+  height: 100vh;
+}
+ul.circle-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+ul.circle-area li {
+  position: absolute;
+  display: block;
+  list-style: none;
+  width: 25px;
+  height: 25px;
+  background: rgba(255, 255, 255, 0.2);
+  animation: animate 20s linear infinite;
+  bottom: -150px;
+  border-radius: 100px;
+}
+ul.circle-area li:hover {
+  background: violet;
+}
+ul.circle-area li:nth-child(1) {
+  left: 58%;
+  width: 45px;
+  height: 45px;
+  animation-delay: 1s;
+  animation-duration: 9s;
+}
+ul.circle-area li:nth-child(2) {
+  left: 15%;
+  width: 120px;
+  height: 120px;
+  animation-delay: 2s;
+  animation-duration: 14s;
+}
+ul.circle-area li:nth-child(3) {
+  left: 37%;
+  width: 25px;
+  height: 25px;
+  animation-delay: 3s;
+  animation-duration: 6.5s;
+}
+ul.circle-area li:nth-child(4) {
+  left: 73%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 0s;
+  animation-duration: 16s;
+}
+ul.circle-area li:nth-child(5) {
+  left: 8%;
+  width: 70px;
+  height: 70px;
+  animation-delay: 0s;
+  animation-duration: 9s;
+}
+ul.circle-area li:nth-child(6) {
+  left: 60%;
+  width: 80px;
+  height: 80px;
+  animation-delay: 0s;
+  animation-duration: 10s;
+}
+@keyframes animate {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-800px) rotate(360deg);
+    opacity: 0;
+  }
+}
+nav.navegador {
+  margin-left: 0!important;
+  margin-right: 0!important;
+  z-index: 1;
+  background-color: transparent!important;
+  width: inherit;
+  height: inherit;
+}
+div.div-Navegador {
+  position: fixed!important;
+  z-index: 1;
+  width: 100%;
+  height: 60px;
+  margin: 0!important;
+  padding: 0!important;
+  background-color: linear-gradient(to left, #8942a8, #ba382f);
+}
+.ZBNav {
+  margin-left: 0px!important;
+  margin-right: 20% !important;
+}
+div.navbar-nav a {
+  margin-right: 50px;
+}
+.menu-Opcion-Login {
+  margin-left: 40px;
+}
+div.navbar-nav a:hover {
+  color: white;
+}
+.buscador {
+  height: 30px;
+  width: 130px;
+}
+input.caja {
+  background-color: transparent!important;
+  color: #ffffff !important;
+}
+.navCambioColor {
+  background-color: #161616 !important;
+  color: white!important;
+}
+div.slogan {
+  color: white;
+  font-size: 45px;
+  font-family: Roboto;
+  height: 200px;
+}
+div.slogan span {
+  position: relative;
+  top: 18%;
+  left: 5%;
+}
+div.slogan p {
+  margin: 3.5% 0 0 5%;
+  width: 70%;
+  font-size: 1.2rem;
+  text-align: justify;
+}
+div.Inicio-Sec1 {
+  background: linear-gradient(to left, #8942a8, #ba382f);
+  height: 100vh;
+}
+div.capa-Negra {
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 100vw;
+  margin-left: -15px !important;
+}
+.btn-Home {
+  color: violet;
+  border-color: violet;
+  alignment: center;
+}
+.btn-Home2:hover {
+  color: white;
+  background-color: #ba382f;
+  border-color: #8942a8;
+}
+.btn-Home:hover {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.btn-Home:focus,
+.btn-Home.focus {
+  box-shadow: 0 0 0 0.2rem #ba382f;
+}
+.btn-Home.disabled,
+.btn-Home:disabled {
+  color: #ba382f;
+  background-color: transparent;
+}
+.btn-Home:not(:disabled):not(.disabled):active,
+.btn-Home:not(:disabled):not(.disabled).active,
+.show > .btn-Home.dropdown-toggle {
+  color: white;
+  background-color: #ba382f;
+  border-color: #ba382f;
+}
+.btn-Home:not(:disabled):not(.disabled):active:focus,
+.btn-Home:not(:disabled):not(.disabled).active:focus,
+.show > .btn-Home.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem #ba382f;
+}
+nav.navegador {
+  margin-left: 0!important;
+  margin-right: 0!important;
+  z-index: 1;
+  background-color: transparent!important;
+  width: inherit;
+  height: inherit;
+}
+div.div-Navegador {
+  position: fixed!important;
+  z-index: 1;
+  width: 100%;
+  height: 60px;
+  margin: 0!important;
+  padding: 0!important;
+}
+.ZBNav {
+  margin-left: 20px!important;
+  margin-right: 20% !important;
+}
+div.navbar-nav a {
+  margin-right: 50px;
+}
+.menu-Opcion-Login {
+  margin-left: 40px;
+}
+.buscador {
+  height: 30px;
+  width: 130px;
+}
+input.caja {
+  background-color: transparent!important;
+  color: black !important;
+}
+.navCambioColor {
+  background-color: #161616 !important;
+  color: white!important;
+}
+/********************************************Pagina Principal****************************************************************/
+.contenidoInicio {
+  position: absolute;
+  width: 50vw;
+  height: 70%;
+  top: 18vh;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+.login {
+  position: relative;
+  width: 40%;
+  height: 85%;
+  top: 5%;
+  left: 0;
+  right: 0;
+  margin-right: auto;
+  margin-left: auto;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+}
+.login form h3 {
+  width: 100%;
+  text-align: center;
+}
+.login form input.sub {
+  position: absolute;
+  left: 35%;
+}
+/*# sourceMappingURL=pagPrincipal.css.map */
