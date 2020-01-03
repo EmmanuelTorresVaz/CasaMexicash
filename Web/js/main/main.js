@@ -336,6 +336,7 @@ $( function() {
 
 $(function () {
     $('.contenidoInicio .contChild').hide();
+    $('.home').show();
     $('.navInicio a').on('click', function () {
 
         $('.contenidoInicio .contChild:first').show();
@@ -362,6 +363,7 @@ $(function () {
             case 'login':
                 $('.contenidoInicio .contChild').hide();
                 $('.contenidoInicio .contChild:nth-child(5)').show();
+                $('#htmlLogin').style.overflowY = "hidden";
                 break;
         }
     })
@@ -400,3 +402,67 @@ function obtenDatosCliente() {
 
 
 }
+
+/*****************************************************Canvas******************************************************************/
+
+$(function () {
+    const ALTURA_CANVAS = 500,
+        ANCHURA_CANVAS = 1536;
+
+// Obtener el elemento del DOM
+    const canvas = document.querySelector("#canvas");
+    canvas.width = ANCHURA_CANVAS;
+    canvas.height = ALTURA_CANVAS;
+// Del canvas, obtener el contexto para poder dibujar
+    const contexto = canvas.getContext("2d");
+
+// Mover a donde comienza la curva
+    let inicioX = 1200, inicioY = -5;
+    contexto.moveTo(inicioX, inicioY);
+// Coordenadas del primer punto
+    let puntoX1 = 1600,
+        puntoY1 = 250;
+// Coordenadas del segundo punto
+    let puntoX2 = 1250,
+        puntoY2 = 400;
+// Coordenadas en donde termina la curva
+    let x = 1540, y = 450;
+
+    var my_gradient = contexto.createLinearGradient(0, 0, 170, 0);
+    my_gradient.addColorStop(0, "#8942a8");
+    my_gradient.addColorStop(1, "#ba382f");
+
+    contexto.lineWidth = 20;
+    contexto.bezierCurveTo(puntoX1, puntoY1, puntoX2, puntoY2, x, y);
+    contexto.strokeStyle = my_gradient;
+    contexto.stroke();
+/**************************************************************************************************/
+    // Obtener el elemento del DOM
+    const canvas2 = document.querySelector("#canvas2");
+    canvas2.width = ANCHURA_CANVAS;
+    canvas2.height = ALTURA_CANVAS;
+// Del canvas, obtener el contexto para poder dibujar
+    const contexto2 = canvas2.getContext("2d");
+
+// Mover a donde comienza la curva
+    let inicioXX = 336, inicioYY = -5;
+    contexto2.moveTo(inicioXX, inicioYY);
+// Coordenadas del primer punto
+    let puntoX11 = -64,
+        puntoY11 = 250;
+// Coordenadas del segundo punto
+    let puntoX22 = 286,
+        puntoY22 = 400;
+// Coordenadas en donde termina la curva
+    let xx = -4, yy = 450;
+
+    var my_gradient2 = contexto2.createLinearGradient(0, 0, 170, 0);
+    my_gradient2.addColorStop(0, "#8942a8");
+    my_gradient2.addColorStop(1, "#ba382f");
+
+    contexto2.lineWidth = 20;
+    contexto2.bezierCurveTo(puntoX11, puntoY11, puntoX22, puntoY22, xx, yy);
+    contexto2.strokeStyle = my_gradient2;
+    contexto2.stroke();
+
+});
