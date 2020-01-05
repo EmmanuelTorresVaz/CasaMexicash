@@ -5,12 +5,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <link rel="stylesheet" href="../style/css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="../style/less/main.css" type="text/css">
+    <link rel="stylesheet" href="../style/less/pagPrincipal.css" type="text/css">
     <title>Acceder</title>
 </head>
 <body>
 
     <div id="login">
-        <div class="container-fluid Inicio-Sec1">
+        <div class="container-fluid Inicio-Sec1" style="margin-left: -1vw">
             <div class="div-Navegador container-fluid" >
                 <nav class="navbar navbar-expand-lg navbar-light bg-light navegador fijador">
                     <a class="navbar-brand ZBNav" href="#">MexiCash</a>
@@ -51,7 +52,7 @@
         <nav>
             <ul class="menu" >
                 <li>
-                    <a href="#">
+                    <a href="Empeño.php">
                         <i class="fa fa-home"></i>
                         <strong>Empeño</strong>
                         <small>Bienvenido</small>
@@ -260,7 +261,7 @@
                         <small>+m&aacute;s</small>
                     </a>
                     <ul>
-                        <li><a href="#"><i class="fa fa-plus-square"></i>Clientes</a></li>
+                        <li><a href="RegistrarCliente.php"><i class="fa fa-plus-square"></i>Clientes</a></li>
                         <li><a href="#"><i class="fa fa-user-plus" ></i>Identificaciones</a></li>
                         <li><a href="#"><i class="fa fa-user-plus" ></i>Plazos de inter&eacute;s</a></li>
                         <li><a href="#"><i class="fa fa-user-plus" ></i>Tipos de prenda</a></li>

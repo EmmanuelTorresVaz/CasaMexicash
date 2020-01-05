@@ -20,6 +20,12 @@ body{
 
 }
 
+.centrar{
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .rem-px(@size: 16){
   @rem: @size / 16;
@@ -82,6 +88,7 @@ body{
 }
 .menu-home strong{
   cursor: pointer;
+  z-index: 3;
 }
 
 .container2 {
@@ -95,6 +102,7 @@ body{
   height: 80%;
   display: none;
   cursor: pointer;
+  z-index: 3;
 }
 @media only screen and (min-width: 1200px) {
   .container {
@@ -139,6 +147,8 @@ body{
   width: 220px;
   background-color: rgba(0,0,0,.05);
   border-radius: 5px;
+  z-index: 3;
+
 }
 .menu li {
   position: relative;
@@ -646,3 +656,12 @@ div.divLogin h6{
 //*******************************************Registrar Usuarios************************************//
 
 
+//******************************************Registrar Empeños**************************************//
+
+div.infoClienteEmpeño{
+  position: absolute;
+  top: 9%;
+  width: 95vw;
+  height: 70vh;
+  .centrar;
+}

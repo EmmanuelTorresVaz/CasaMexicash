@@ -1,11 +1,30 @@
 html {
   overflow-x: hidden!important;
+  font-family: 'Raleway', sans-serif !important;
 }
 body {
   width: 100%;
   height: 100vh;
   margin-top: 0!important;
   background-color: rgba(246, 246, 246, 0.55);
+  font-family: 'Raleway', sans-serif;
+}
+p {
+  font-family: 'Raleway', sans-serif;
+}
+span {
+  font-family: 'Raleway', sans-serif !important;
+}
+li {
+  font-family: 'Raleway', sans-serif;
+}
+.clearfix {
+  overflow: hidden;
+}
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 li {
   list-style: none;
@@ -16,6 +35,12 @@ li {
 }
 .fondo-negro {
   background-color: #161616;
+}
+.centrar {
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 .p100 {
   width: 100%;
@@ -162,7 +187,6 @@ input.caja {
 div.slogan {
   color: white;
   font-size: 45px;
-  font-family: Roboto;
   height: 200px;
 }
 div.slogan span {
@@ -236,6 +260,7 @@ div.div-Navegador {
   height: 60px;
   margin: 0!important;
   padding: 0!important;
+  z-index: 3;
 }
 .ZBNav {
   margin-left: 20px!important;
@@ -330,6 +355,7 @@ div.lblHome1 {
   top: 7.5vh;
   left: 10vw;
   color: white;
+  z-index: 2;
 }
 div.lblHome1 p {
   font-size: 45px;
@@ -361,7 +387,7 @@ div.infoHome {
   top: 0;
   left: 0;
   right: 0;
-  margin: 50px auto 50px auto;
+  margin: 70px auto 50px auto;
   width: 70vw;
   height: 60vh;
   border-left: 5px solid #ba382f;
@@ -374,6 +400,73 @@ div.infoHome p {
 div.infoHome h2 {
   width: 100%;
   text-align: center;
+  color: #ba382f;
+}
+ul.infoParallaxJunta {
+  position: relative;
+  padding: 5% 0;
+}
+.contenido {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+ul.infoParallaxJunta li {
+  width: 33%;
+  float: left;
+  text-align: center;
+}
+div.divHomeIcons {
+  position: relative;
+  margin-top: 50px;
+  margin-bottom: 40px;
+  width: 95vw;
+  height: 80vh;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.contIconsHome {
+  position: relative;
+  width: 23%;
+  height: 90%;
+  margin-top: 2%;
+  margin-left: 1%;
+  margin-right: 1%;
+  float: left;
+  content: "";
+}
+div.iconHomecontent {
+  position: relative;
+  width: 60%;
+  height: 40%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border: 3px solid rgba(0, 0, 0, 0.7);
+  border-radius: 100px;
+  text-align: center;
+}
+.iconHome {
+  margin-top: 30%;
+}
+.infoIconsHome {
+  position: relative;
+  width: 95%;
+  height: 50%;
+  margin-top: 10%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+.infoIconsHome p:nth-child(1) {
+  text-align: center;
+  text-anchor: middle;
+  color: #fe4918;
+  font-size: 1.3em;
+  font-family: 'Raleway', sans-serif;
 }
 .parallax::before {
   width: 100%;
@@ -403,8 +496,12 @@ div.contentParallaxDinero::before {
   content: '';
 }
 .contentParallaxJunta div ul li {
+  font-size: 1.3em;
+  color: #fe4918;
+}
+.contentParallaxJunta div ul li p {
   font-size: 3em;
-  margin-bottom: 10px;
+  color: #fe4918;
 }
 .menuNosotros {
   position: fixed;
@@ -423,14 +520,15 @@ div.contentParallaxDinero::before {
 .menuNosotros nav {
   width: 100%;
   padding: 10px 30px;
+  z-index: 3;
 }
 .menuNosotros ul li {
   display: inline-flex;
-  margin-right: 7.5%;
+  margin-right: 7%;
   cursor: pointer;
   padding: 2px;
   list-style: none;
-  color: black;
+  color: #ba382f;
 }
 .menuNosotros ul li a {
   color: black;
@@ -443,6 +541,9 @@ div.contentParallaxDinero::before {
   height: auto;
   top: 9vh;
   left: 5vw;
+}
+div.lblNosotros h2 {
+  color: #ba382f;
 }
 .linea {
   position: absolute;
@@ -469,5 +570,20 @@ div.lblNosotros p {
   left: 0;
   right: 0;
   background-color: #f1b0b7;
+}
+ul.listIniciativas {
+  position: relative;
+  padding: 10px 0;
+}
+ul.listIniciativas li {
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+.capNeg {
+  width: 100%;
+  height: inherit;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 3;
 }
 /*# sourceMappingURL=pagPrincipal.css.map */

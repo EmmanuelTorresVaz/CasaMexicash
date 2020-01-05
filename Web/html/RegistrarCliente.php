@@ -29,7 +29,7 @@
     <body>
         <div class="menuContainer" ></div>
 
-        <h4 style="position: absolute; width: 95%; text-align: center; top: 8%">Registro de Cliente</h4>
+        <h4 style="position: absolute; width: 95%; text-align: center; top: 9.5%">Registro de Cliente</h4>
 
         <form method="post" name="formCliente" action="../../com.Mexicash/Controlador/RegistroCliente.php">
 

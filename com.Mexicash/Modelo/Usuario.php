@@ -30,7 +30,6 @@ class Usuario
         $this->estatus = $estatus;
     }
 
-
     /**
      * @return mixed
      */

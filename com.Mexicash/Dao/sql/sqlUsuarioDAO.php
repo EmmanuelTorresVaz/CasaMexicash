@@ -59,6 +59,7 @@ class sqlUsuarioDAO
 
     function loginAutentificion($usuario, $pass)
     {
+        $id = -1;
         try {
             $this->__construct();
 
@@ -67,16 +68,14 @@ class sqlUsuarioDAO
             $ejecutarConsulta = $this->conexion->query($sql);
             $fila = $this->db->getArray($ejecutarConsulta);
             $id = $fila[0];
-            $this->db->closeDB();
-            return $id;
-
         } catch (Exception $exc) {
-            $this->db->closeDB();
             $this->error = new Errores();
             $this->error->setError("1", $exc->getMessage(), 1);
             $this->error->imprimirError();
         } finally {
             $this->db->closeDB();
         }
+
+        return $id;
     }
 }

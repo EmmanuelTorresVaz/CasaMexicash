@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="../style/css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="../style/less/pagPrincipal.css" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title class="">ZB Developer</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 
 </head>
     <body id="bodyHome">
@@ -100,16 +102,80 @@
                 <div class="capaNegra"></div>
 
                 <div class="infoHome">
-
+                    <h2 id="hIniciativa">Realiza una cotizaci&oacute;n</h2>
+                    <br/>
+                    <p>En MexiCash, nos preocupamos por el uso de materiales biodegradables, as&iacute; como el
+                        dejar de utilizar bolsas pl&aacute;sticas. A su vez, creemos que es de suma importancia
+                        el reciclaje y separaci&oacute;n de desechos. Por eso y m&aacute;s, nos comprometemos
+                        a regir las normativas de nuestros establecimientos bajo la Norma ISO 14001.</p>
+                    <br/><br/>
+                    <ul class="listIniciativas">
+                        <li>
+                            <i class="fa fa-tree" aria-hidden="true" style="font-size: 120px;"></i>
+                            <p>Cuidamos el medio ambiente</p>
+                        </li>
+                        <li>
+                            <i class="fa fa-street-view" aria-hidden="true" style="font-size: 120px;"></i>
+                            <p>Comprometidos con nuestros valores</p>
+                        </li><!--
+                        <li>
+                            <i class="fa fa-thermometer-full" aria-hidden="true" style="font-size: 120px;"></i>
+                            <p>Preocupados por reducir las emisiones de gas</p>
+                        </li>-->
+                    </ul>
                 </div>
 
+                <div class="divHomeIcons clearfix">
+                    <div class="contIconsHome">
+                        <div class="iconHomecontent">
+                            <i class="fa fa-refresh iconHome" aria-hidden="true" style="font-size: 5em"></i>
+                        </div>
+                        <div class="infoIconsHome">
+                            <p><b>Renueva tus art&iacute;culos</b></p>
+                            <p>Cambia tus articulos viejos por unos nuevos o mejores o un precio menor del que podr&iacute;as encontrar
+                                en el mercado.</p>
+                            <p>Visita las sucursales f&iacute;sicas o en la virtual para encontrar el art&iacute;culo que quieras.</p>
+                        </div>
+                    </div>
+                    <div class="contIconsHome">
+                        <div class="iconHomecontent">
+                            <i class="fa fa-handshake-o iconHome" aria-hidden="true" style="font-size: 5em"></i>
+                        </div>
+                        <div class="infoIconsHome">
+                            <p><b>Empeña-Desempeña</b></p>
+                            <p>Realiza empeños cuando necesites dinero r&aacute;pido, y recupera tus productos cuando quieras.</p>
+                            <p>Encuentra una cotizaci&oacute;n para los productos que desees empeñar desde la p&aacute;gina oficial.</p>
+                        </div>
+                    </div>
+                    <div class="contIconsHome">
+                        <div class="iconHomecontent">
+                            <i class="fa fa-money iconHome" aria-hidden="true" style="font-size: 5em"></i>
+                        </div>
+                        <div class="infoIconsHome">
+                            <p><b>Compra Productos</b></p>
+                            <p>Compra productos semi nuevos - nuevos a un precio bajo y accesible, con plazos de pagos acordes
+                            a tus necesidades.</p>
+                            <p>Recuerda que puedes pagar con tarjeta de d&eacute;bito o efectivo.</p>
+                        </div>
+                    </div>
+                    <div class="contIconsHome">
+                        <div class="iconHomecontent">
+                            <i class="fa fa-credit-card iconHome" style="font-size: 5em" aria-hidden="true"></i>
+                        </div>
+                        <div class="infoIconsHome">
+                            <p><b>Forma de pago</b></p>
+                            <p>Paga por medio de efectivo o tarjetas de d&eacute;bito en cualquiera de nuestras sucursales
+                            a lo largo de la CDMX o en l&iacute;nea en nuestra p&aacute;gina oficial</p>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="contentParallax contentParallaxJunta parallax">
-                    <div class="contenido">
-                        <ul>
-                            <li>5</li><p>Sucursales</p>
-                            <li>3000</li><p>Clientes</p>
-                            <li>130</li><p>Empleados</p>
+                <div class="contentParallax contentParallaxJunta parallax ">
+                    <div class="contenido clearfix">
+                        <ul class="infoParallaxJunta ">
+                            <li><p>5</p><b>Sucursales</b></li>
+                            <li><p>3000</p><b>Clientes</b></li>
+                            <li><p>130</p><b>Empleados</b></li>
                         </ul>
                     </div>
                 </div>
@@ -131,7 +197,7 @@
                     </nav>
                 </div>
                 <div class="lblNosotros">
-                    <h2 id="hNosotros">Nosotros</h2>
+                    <h2 id="hNosotros"><b>Nosotros</b></h2>
                     <br/>
                     <p>Los años en el camino del empeño nos ha permitido decir que m&aacute;s que una empresa,
                     somos una familia que se preocupa por todos los clientes y trabajadores.
@@ -143,7 +209,7 @@
                     a futuras generaciones.
                     </p>
                     <br/>
-                    <h2 id="hHistoria">Nuestra Historia</h2>
+                    <h2 id="hHistoria"><b>Nuestra Historia</b></h2>
                     <br/>
                     <p>Mexicash, comenz&oacute; siendo un negocio pequeño en un austero local
                     en el centro de la ciudad, aunque pronto recibi&oacute; gran clientela que nos permiti&oacute;
@@ -152,19 +218,34 @@
                 </div>
                 <br/><br/>
                 <div class="infoHome">
-                    <h2 id="hIniciativa">Iniciativas Verdes</h2>
+                    <h2 id="hIniciativa"><b>Iniciativas Verdes</b></h2>
                     <br/>
                     <p>En MexiCash, nos preocupamos por el uso de materiales biodegradables, as&iacute; como el
                         dejar de utilizar bolsas pl&aacute;sticas. A su vez, creemos que es de suma importancia
                         el reciclaje y separaci&oacute;n de desechos. Por eso y m&aacute;s, nos comprometemos
-                        a regir las normativas de nuestros establecimientos bajo la Norma ISO 140001.</p>
+                        a regir las normativas de nuestros establecimientos bajo la Norma ISO 14001.</p>
+                    <br/><br/>
+                    <ul class="listIniciativas">
+                        <li>
+                            <i class="fa fa-tree" aria-hidden="true" style="font-size: 120px;"></i>
+                            <p>Cuidamos el medio ambiente</p>
+                        </li>
+                        <li>
+                            <i class="fa fa-street-view" aria-hidden="true" style="font-size: 120px;"></i>
+                            <p>Comprometidos con nuestros valores</p>
+                        </li><!--
+                        <li>
+                            <i class="fa fa-thermometer-full" aria-hidden="true" style="font-size: 120px;"></i>
+                            <p>Preocupados por reducir las emisiones de gas</p>
+                        </li>-->
+                    </ul>
                 </div>
                 <div class="contentParallax contentParallaxDinero parallax">
-                    <div class="contenido">
+                    <div class="contenido clearfix">
                         <ul>
-                            <li>5</li><p>Sucursales</p>
-                            <li>3000</li><p>Clientes</p>
-                            <li>130</li><p>Empleados</p>
+                            <li><p>5</p>Sucursales</li>
+                            <li><p>3000</p>Clientes</li>
+                            <li><p>130</p>Empleados</li>
                         </ul>
                     </div>
                 </div>
@@ -193,10 +274,10 @@
                     <h3>Iniciar Sesion</h3>
                     <br/><br/>
                     <h5>Usuario:</h5>
-                    <input type="text" name="usuario" id="usuario" class="form-control" style="background-color: transparent; width: 80%; margin-left: 5%" placeholder="Correo Electr&oacute;nico o usuario:"/>
+                    <input type="email" name="usuario" id="usuario" class="form-control" style="background-color: transparent; width: 80%; margin-left: 5%" placeholder="Correo Electr&oacute;nico o usuario:" required/>
                     <br/>
                     <h5>Contraseña:</h5>
-                    <input type="password" name="password" id="password" class="form-control" style="background-color: transparent; width: 80%; margin-left: 5%" placeholder="*****************"/>
+                    <input type="password" name="password" id="password" class="form-control" style="background-color: transparent; width: 80%; margin-left: 5%" placeholder="*****************" required/>
                     <br/><br/>
                     <input type="submit" class="sub btn btn-outline-secondary" value="Entrar">
                 </form>

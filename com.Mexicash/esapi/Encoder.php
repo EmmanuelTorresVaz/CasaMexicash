@@ -4,7 +4,7 @@
  *
  * This file is part of the Open Web Application Security Project (OWASP)
  * Enterprise Security API (ESAPI) project.
- *
+ * 
  * PHP version 5.2
  *
  * LICENSE: This source file is subject to the New BSD license.  You should read
@@ -22,14 +22,16 @@
  * @version   SVN: $Id$
  * @link      http://www.owasp.org/index.php/ESAPI
  */
+
 /**
  * Implementations will require Codec.
  */
 require_once dirname(__FILE__) . '/codecs/Codec.php';
+
 /**
  * Use this ESAPI security control to wrap your codecs.
- *
- * The idea behind this interface is to make output safe so that it
+ * 
+ * The idea behind this interface is to make output safe so that it 
  * will be safe for the intended interpreter.
  *
  * @category  OWASP
@@ -52,10 +54,11 @@ interface Encoder
     const CHAR_UPPERS        = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const CHAR_DIGITS        = '0123456789';
     const CHAR_SPECIALS      = '.-_!@$^*=~|+?';
-    const CHAR_LETTERS
+    const CHAR_LETTERS       
         = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const CHAR_ALPHANUMERICS
+    const CHAR_ALPHANUMERICS 
         = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
     /*
      * Password character sets.
      */
@@ -63,24 +66,30 @@ interface Encoder
      * Lower case alphabet, for passwords, which excludes 'l', 'i' and 'o'.
      */
     const CHAR_PASSWORD_LOWERS = 'abcdefghjkmnpqrstuvwxyz';
+
     /**
      * Upper case alphabet, for passwords, which excludes 'I' and 'O'.
      */
     const CHAR_PASSWORD_UPPERS = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+
     /**
      * Numerical digits, for passwords, which excludes '0'.
      */
     const CHAR_PASSWORD_DIGITS = '123456789';
+
     /**
      * Special characters, for passwords, excluding '|' which resembles
      * alphanumeric characters 'i' and '1' and excluding '+' used in URL
      * encoding.
      */
     const CHAR_PASSWORD_SPECIALS = '.-_!@$*=?';
+
     /**
      * Union of Encoder::CHAR_PASSWORD_LOWERS and Encoder::CHAR_PASSWORD_UPPERS.
      */
     const CHAR_PASSWORD_LETTERS = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
+
+
     /**
      * Data canonicalization.
      *
@@ -133,20 +142,24 @@ interface Encoder
      * @return the canonicalized input string.
      * @throws IntrusionException if, in strict mode, canonicalization detects
      *         multiple or mixed encoding.
-     *
+     *         
      * @see <a href="http://www.w3.org/TR/html4/interact/forms.html#h-17.13.4">W3C specifications</a>
      */
     function canonicalize($input, $strict = true);
+
+
     /**
      * Encode data for use in Cascading Style Sheets (CSS) content.
      *
      * @param string $input string to encode for CSS.
      *
      * @return the input string encoded for CSS.
-     *
+     * 
      * @see <a href="http://www.w3.org/TR/CSS21/syndata.html#escaped-characters">CSS Syntax [w3.org]</a>
      */
     function encodeForCSS($input);
+
+
     /**
      * Encode data for use in HTML using HTML entity encoding
      *
@@ -156,12 +169,14 @@ interface Encoder
      * @param string $input string to encode for HTML.
      *
      * @return the input string encoded for HTML.
-     *
+     * 
      * @see <a href="http://en.wikipedia.org/wiki/Character_encodings_in_HTML">HTML Encodings [wikipedia.org]</a>
      * @see <a href="http://www.w3.org/TR/html4/sgml/sgmldecl.html">SGML Specification [w3.org]</a>
      * @see <a href="http://www.w3.org/TR/REC-xml/#charsets">XML Specification [w3.org]</a>
      */
     function encodeForHTML($input);
+
+
     /**
      * Encode data for use in HTML attributes.
      *
@@ -170,6 +185,8 @@ interface Encoder
      * @return the input string encoded for use as an HTML attribute.
      */
     function encodeForHTMLAttribute($input);
+
+
     /**
      * Encode data for insertion inside a data value in JavaScript. Putting user
      * data directly inside a script is quite dangerous. Great care must be
@@ -181,6 +198,8 @@ interface Encoder
      * @return the input string encoded for use in JavaScript.
      */
     function encodeForJavaScript($input);
+
+
     /**
      * Encode data for insertion inside a data value in a Visual Basic script.
      * Putting user data directly inside a script is quite dangerous. Great care
@@ -195,6 +214,8 @@ interface Encoder
      * @return the input string encoded for use in VBScript.
      */
     function encodeForVBScript($input);
+
+
     /**
      * Encode input for use in a SQL query, according to the selected codec
      * (appropriate codecs include the MySQLCodec and OracleCodec).
@@ -203,7 +224,7 @@ interface Encoder
      * interface is the preferred approach. However, if for some reason this is
      * impossible, then this method is provided as a weaker alternative.
      *
-     * @param Codec  $codec an instance of a Codec which will encode the input
+     * @param Codec  $codec an instance of a Codec which will encode the input 
      *                      string for the desired SQL database (e.g. MySQL, Oracle,
      *                      etc.).
      * @param string $input string to encode for use in a SQL query.
@@ -211,11 +232,13 @@ interface Encoder
      * @return the input string encoded for use in a SQL query.
      */
     function encodeForSQL($codec, $input);
+
+
     /**
      * Encode for an operating system command shell according to the selected
      * codec (appropriate codecs include the WindowsCodec and UnixCodec).
      *
-     * @param Codec  $codec an instance of a Codec which will encode the input
+     * @param Codec  $codec an instance of a Codec which will encode the input 
      *                      string for the desired operating system (e.g. Windows,
      *                      Unix, etc.).
      * @param string $input string to encode for use in a command shell.
@@ -223,6 +246,8 @@ interface Encoder
      * @return the input string encoded for use in a command shell.
      */
     function encodeForOS($codec, $input);
+
+
     /**
      * Encode data for use in an XPath query.
      *
@@ -242,6 +267,8 @@ interface Encoder
      * @return the input string encoded for use in an XPath query.
      */
     function encodeForXPath($input);
+
+
     /**
      * Encode data for use in an XML element. The implementation should follow
      * the <a href="http://www.w3schools.com/xml/xml_encoding.asp">XML Encoding
@@ -257,6 +284,8 @@ interface Encoder
      * @return the input string encoded for use in an XML element.
      */
     function encodeForXML($input);
+
+
     /**
      * Encode data for use in an XML attribute. The implementation should follow
      * the <a href="http://www.w3schools.com/xml/xml_encoding.asp">XML Encoding
@@ -272,6 +301,8 @@ interface Encoder
      * @return the input string encoded for use in an XML attribute.
      */
     function encodeForXMLAttribute($input);
+
+
     /**
      * Encode for use in a URL. This method performs <a
      * href="http://en.wikipedia.org/wiki/Percent-encoding">URL encoding</a>
@@ -282,6 +313,8 @@ interface Encoder
      * @return the input string encoded for use in a URL.
      */
     function encodeForURL($input);
+
+
     /**
      * Decode from URL. Implementations should first canonicalize and detect any
      * double-encoding. If this check passes, then the data is decoded using URL
@@ -292,16 +325,20 @@ interface Encoder
      * @return the input string decoded from URL.
      */
     function decodeFromURL($input);
+
+
     /**
      * Encode data with Base64 encoding.
      *
      * @param string $input string to encode for Base64.
-     * @param bool   $wrap  boolean the encoder will wrap lines every 64 characters
+     * @param bool   $wrap  boolean the encoder will wrap lines every 64 characters 
      *                      of output if true.
      *
      * @return the input string encoded for Base64.
      */
     function encodeForBase64($input, $wrap = false);
+
+
     /**
      * Decode data encoded with Base64 encoding.
      *
@@ -310,4 +347,5 @@ interface Encoder
      * @return the input string decoded from Base64.
      */
     function decodeFromBase64($input);
+
 }
