@@ -52,32 +52,32 @@
         <nav>
             <ul class="menu" >
                 <li>
-                    <a href="Empeño.php">
+                    <a href="vEmpeño.php">
                         <i class="fa fa-home"></i>
                         <strong>Empeño</strong>
                         <small>Bienvenido</small>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="vDesempeño.php">
                         <i class="fa fa-dollar"></i>
                         <strong>Desempeño</strong>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="vAuto.php">
                         <i class="fa fa-dollar"></i>
                         <strong>Autos</strong>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="vRefrendo.php">
                         <i class="fa fa-gift"></i>
                         <strong>Refrendo</strong>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="vConsulta.php">
                         <i class="fa fa-gear"></i>
                         <strong>Consultas</strong>
                         <small>+m&aacute;s</small>
@@ -360,7 +360,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="index.php">
                         <i class="fa fa-gift"></i>
                         <strong>Cerrar Sesi&oacute;n</strong>
                     </a>

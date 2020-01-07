@@ -12,7 +12,7 @@ include ('../Dao/sql/sqlClienteDAO.php');
     $inNombre = $_POST['inNombre'];
     $inApPat = $_POST['inApPat'];
     $inApMat = $_POST['inApMat'];
-   /* $boxOcupacion = $_POST['boxOcupacion'];
+    $boxOcupacion = $_POST['boxOcupacion'];
     $boxIdentificacion = $_POST['boxIdentificacion'];
     $inNoIdentificacion = $_POST['inNoIdentificacion'];
     $inRfc = $_POST['$inRfc'];
@@ -59,7 +59,7 @@ include ('../Dao/sql/sqlClienteDAO.php');
         $esapi->encodeForHTML(strval($inInstFin)),
         $esapi->encodeForHTML(strval($inCuentaBanc))
     );*/
-/*
+
     $cliente = new Cliente(
 
         $inNombre,
@@ -91,5 +91,5 @@ include ('../Dao/sql/sqlClienteDAO.php');
     }else{
         echo "Ocurrio un error";
     }
-*/
+
 echo $inNombre;

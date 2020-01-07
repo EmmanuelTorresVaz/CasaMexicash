@@ -28,4 +28,3 @@ if($usuario == null || $password == null){
         }
     }
 }
-

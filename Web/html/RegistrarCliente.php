@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -188,15 +187,15 @@
                 <h4>Contacto</h4>
                 <br/>
                 <h6>Celular:</h6>
-                <input type="text" name="inCelular" placeholder="N&uacute;mero con lada" required/>
+                <input type="text" name="inCelular" id="inCelular" placeholder="N&uacute;mero con lada" required/>
                 <br><br>
 
                 <h6>Tel&eacute;fono:</h6>
-                <input type="text" name="inTelefono" placeholder="N&uacute;mero con lada" required/>
+                <input type="text" name="inTelefono" id="inTelefono" placeholder="N&uacute;mero con lada" required/>
                 <br><br>
 
                 <h6>Correo Electr&oacute;nico:</h6>
-                <input type="text" name="inCorreo" placeholder="" required/>
+                <input type="text" name="inCorreo" id="inCorreo" placeholder="" required/>
                 <br/><br/><br/><br/><br/><br/>
 
                 <input type="submit" id="btnRegCliente" name="btnRegCliente" class="btn btn-outline-primary btn-lg" style="margin-left: 30px"/>

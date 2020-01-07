@@ -316,6 +316,17 @@ $( function() {
         "Venustiano Carranza",
         "Xochimilco",
     ];
+    var tasaInteres = [
+        'tasa 1',
+        'tasa 2',
+        'tasa 3',
+        'tasa 4'
+    ];
+    var tipoInteres = [
+      'tipo 1',
+      'tipo 2',
+      'tipo 3'
+    ];
 
     $( "#inPaises" ).autocomplete({
         source: paises
@@ -329,6 +340,12 @@ $( function() {
     });
     $( "#inEstadoActual" ).autocomplete({
         source: estados
+    });
+    $( "#boxTasaInteres" ).autocomplete({
+        source: tasaInteres
+    });
+    $( "#boxTipoInteres" ).autocomplete({
+        source: tipoInteres
     });
 } );
 

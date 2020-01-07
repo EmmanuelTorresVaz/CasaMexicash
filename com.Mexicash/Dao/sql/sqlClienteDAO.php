@@ -20,7 +20,7 @@ class sqlClienteDAO
 
             $verdad = false;
 
-            $idCliente = $cliente->getIdCliente();
+            //$idCliente = $cliente->getIdCliente();
             $nombreCliente = $cliente->getNombreCliente();
             $apellidoPCliente = $cliente->getApellidoPCliente();
             $apellidoMCliente = $cliente->getApellidoMCliente();
@@ -66,4 +66,22 @@ class sqlClienteDAO
     {
         // TODO: Implement borraCliente() method.
     }
+
+    public function buscarIdCliente($celular, $correoCliente){
+        try{
+            $id = -1;
+
+            $buscar = "select idUsuario where $celular = " . $celular . " and correoCliente = '" . $correoCliente . "'";
+
+            $id = $this->conexion->query($buscar);
+            echo "Todo correcto";
+        }catch (Exception $exc){
+            echo $exc->getMessage();
+        }finally{
+            $this->db->closeDB();
+        }
+
+        return $id;
+    }
+
 }

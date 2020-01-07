@@ -274,10 +274,10 @@
                     <h3>Iniciar Sesion</h3>
                     <br/><br/>
                     <h5>Usuario:</h5>
-                    <input type="email" name="usuario" id="usuario" class="form-control" style="background-color: transparent; width: 80%; margin-left: 5%" placeholder="Correo Electr&oacute;nico o usuario:" required/>
+                    <input type="email" name="usuario" id="usuario" class="form-control" style="color: white; background-color: transparent; width: 80%; margin-left: 5%" placeholder="Correo Electr&oacute;nico o usuario:" required/>
                     <br/>
                     <h5>Contraseña:</h5>
-                    <input type="password" name="password" id="password" class="form-control" style="background-color: transparent; width: 80%; margin-left: 5%" placeholder="*****************" required/>
+                    <input type="password" name="password" id="password" class="form-control" style="color: white; background-color: transparent; width: 80%; margin-left: 5%" placeholder="*****************" required/>
                     <br/><br/>
                     <input type="submit" class="sub btn btn-outline-secondary" value="Entrar">
                 </form>
