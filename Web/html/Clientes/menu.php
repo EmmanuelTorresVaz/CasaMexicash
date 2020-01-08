@@ -50,25 +50,25 @@
         <nav>
             <ul class="menu" >
                 <li>
-                    <a href="Empeno/vEmpeno.php">
+                    <a href="../Empeno/vEmpeno.php">
                         <i class="fa fa-home"></i>
                         <strong>Empeños</strong>
                     </a>
                 </li>
                 <li>
-                    <a href="Empeno/vDesempeño.php">
+                    <a href="../Empeno/vDesempeño.php">
                         <i class="fa fa-dollar"></i>
                         <strong>Desempeños</strong>
                     </a>
                 </li>
                 <li>
-                    <a href="Empeno/vRefrendo.php">
+                    <a href="../Empeno/vRefrendo.php">
                         <i class="fa fa-gift"></i>
                         <strong>Refrendo</strong>
                     </a>
                 </li>
                 <li>
-                    <a href="Empeno/vConsulta.php">
+                    <a href="../Empeno/vConsulta.php">
                         <i class="fa fa-gear"></i>
                         <strong>Consultas</strong>
                         <small>+m&aacute;s</small>
@@ -79,7 +79,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="Empeno/vAuto.php">
+                    <a href="../Empeno/vAuto.php">
                         <i class="fa fa-dollar"></i>
                         <strong>Autos</strong>
                     </a>
@@ -358,7 +358,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index.php">
+                    <a href="../index.php">
                         <i class="fa fa-gift"></i>
                         <strong>Cerrar Sesi&oacute;n</strong>
                     </a>
@@ -368,6 +368,6 @@
         </nav>
     </div><!--container2-->
 
-<script src="../js/main/main.js"></script>
+<script src="../../js/main/main.js"></script>
 </body>
 </html>
