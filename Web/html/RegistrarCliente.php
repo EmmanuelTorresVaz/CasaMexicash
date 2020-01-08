@@ -33,14 +33,6 @@
         <form method="post" name="formCliente" action="../../com.Mexicash/Controlador/RegistroCliente.php">
 
             <div class="col-2" style="position: absolute; top: 15vh; padding-left: 4vw; height: 80vh;">
-                <h6>Tipo de persona:</h6>
-                <select class="boxPersona" name="boxPersona" id="boxPersona" required>
-                    <option value="">Selecciona uno</option>
-                    <option value="1">Virtual</option>
-                    <option value="2">F&iacute;sica</option>
-                </select>
-                <br><br>
-
                 <h6>Sexo:</h6>
                 <select class="boxSexo" name="boxSexo" id="boxSexo" required>
                     <option value="">Selecciona uno</option>
@@ -53,18 +45,6 @@
                 <h6>Fecha Nacimiento:</h6>
                 <input type="text" id="datepicker" name="inFechaNac" placeholder="Fecha [dd/mm/aa]" required/>
                 <br><br>
-
-                <h6>Pa&iacute;s Nacimiento:</h6>
-                <div class="ui-widget">
-                    <input id="inPaises" name="inPaises" placeholder="Escribe un pa&iacute;s" required/>
-                </div>
-                <br>
-
-                <h6>Estado Nacimiento:</h6>
-                <div class="ui-widget">
-                    <input id="inEstados" name="inEstados" placeholder="Escribe un estado" required/>
-                </div>
-                <br>
 
                 <h6>CURP:</h6>
                 <input type="text" id="inCurp" name="inCurp" placeholder="" required/>
@@ -176,10 +156,6 @@
                     <input type="text" name="inInstFin" placeholder="" id="inInstFin" style="width: 40%" required/>
                 </div>
 
-                <div style="position: relative; top: -62.9%; left: 55%">
-                    <h6 style="width: 40%; text-align: center">Cuenta Bancaria consumidor:</h6>
-                    <input type="text" name="inCuentaBanc" placeholder="" id="inCuentaBanc" style="width: 40%" required/>
-                </div>
 
             </div>
 
