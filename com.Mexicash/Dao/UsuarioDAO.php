@@ -1,5 +1,5 @@
 <?php
-include ('../Modelo/Usuario.php');
+include_once ('../Modelo/Usuario.php');
 
 interface UsuarioDAO
 {

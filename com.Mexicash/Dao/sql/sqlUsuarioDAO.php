@@ -1,8 +1,15 @@
 <?php
-include('../../Modelo/Usuario.php');
-include('../../Base/Conexion.php');
-include('../../Servicios/Errores.php');
-include('../UsuarioDAO.php');
+
+//include "../../Modelo/Usuario.php";
+//include '../../Base/Conexion.php';
+//include '../../Servicios/Errores.php';
+//include '../UsuarioDAO.php';
+
+include_once  "C:\\xampp\htdocs\Mexicash\com.Mexicash\Modelo\Usuario.php";
+include_once  "C:\\xampp\htdocs\Mexicash\com.Mexicash\Base\Conexion.php";
+include_once  "C:\\xampp\htdocs\Mexicash\com.Mexicash\Servicios\Errores.php";
+include_once  "C:\\xampp\htdocs\Mexicash\com.Mexicash\Dao\UsuarioDAO.php";
+
 
 class sqlUsuarioDAO
 {
@@ -42,7 +49,7 @@ class sqlUsuarioDAO
 
         } catch (Exception $exc) {
             echo $exc->getMessage();
-            /*$this->error = new Errores();
+            /*$this->error = new ErroresInfo();
             $this->error->setError("1", $exc->getMessage(), 1);
             $this->error->imprimirError();*/
         } finally {
@@ -62,14 +69,13 @@ class sqlUsuarioDAO
         $id = -1;
         try {
             $this->__construct();
-
             $array = array();
-            $sql = "select nombre, apellidoPat , apellidoMat from usuariostbl where usuario = '$usuario' and password = '$pass'";
+            $sql = "select COUNT(*) as contar from usuarios_tbl where usuario = '$usuario' and password = '$pass'";
             $ejecutarConsulta = $this->conexion->query($sql);
             $fila = $this->db->getArray($ejecutarConsulta);
             $id = $fila[0];
         } catch (Exception $exc) {
-            $this->error = new Errores();
+            $this->error = new ErroresInfo();
             $this->error->setError("1", $exc->getMessage(), 1);
             $this->error->imprimirError();
         } finally {

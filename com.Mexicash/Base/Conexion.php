@@ -1,6 +1,6 @@
 <?php
 
-include ('../Servicios/Errores.php');
+include_once ('../Servicios/Errores.php');
 
 class Conexion
 {
@@ -19,7 +19,7 @@ class Conexion
             return $this->link;
         }catch (\Exception $error){
             echo $error->getMessage();
-            /*$this->error = new Errores();
+            /*$this->error = new ErroresInfo();
             $this->error->setError(1, $error->getMessage(), 1);
             $this->error->imprimirError();*/
             return 0;
@@ -30,7 +30,7 @@ class Conexion
         try{
             mysqli_close($this->link);
         }catch (Exception $e){
-            $this->error = new Errores();
+            $this->error = new ErroresInfo();
             $this->error->setError(1, $e->getMessage(), 1);
             $this->error->imprimirError();
         }

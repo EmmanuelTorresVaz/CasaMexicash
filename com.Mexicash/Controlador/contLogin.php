@@ -2,7 +2,7 @@
 //include ('../esapi/ESAPI.php');
 //include ('../esapi/reference/DefaultEncoder.php');
 //include ('../esapi/reference/');
-include ('../Dao/sql/sqlUsuarioDAO.php');
+include_once ('../Dao/sql/sqlUsuarioDAO.php');
 
 
 $usuario = $_POST['usuario'];
@@ -14,20 +14,18 @@ if($usuario == null || $password == null){
     header('Location: ../../Web/html/index.php');
     exit();
 }else{
-   if($usuario == $password){
+    if($usuario == $password){
         header('Status: 301 Moved Permanently', false, 301);
         header('Location: ../../Web/html/index.php');
         exit();
     }else{
-       $usu = new sqlUsuarioDAO();
-       echo 'el user es1 ' ;
+        $usu = new sqlUsuarioDAO();
         if($usu->loginAutentificion($usuario, $password) > 0){
-            echo 'el user es2 ' ;
-            header('Location: ../../Web/html/index.php');
+            header('Location: ../../Web/html/RegistrarCliente.php');
+
             exit();
         }else{
-            echo 'el user es13' ;
-            header('Location: ../../Web/html/RegistrarCliente.php');
+            header('Location: ../../Web/html/index.php');
             exit();
         }
     }
