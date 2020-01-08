@@ -15,7 +15,7 @@
 
     <script>
         $(document).ready(function () {
-            $('.menuContainer').load('../html/menu.php');
+            $('.menuContainer').load('menu.php');
         });
     </script>
     <script>
