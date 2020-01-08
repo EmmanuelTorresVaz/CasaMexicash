@@ -6,12 +6,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Registro Clientes</title>
 
-    <link rel="stylesheet" href="../style/less/main.css"/>
-    <link rel="stylesheet" href="../style/css/bootstrap/bootstrap.css"/>
+    <link rel="stylesheet" href="../../style/less/main.css"/>
+    <link rel="stylesheet" href="../../style/css/bootstrap/bootstrap.css"/>
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link href="../style/css/magicsuggest/magicsuggest-min.css" rel="stylesheet">
+    <link href="../../style/css/magicsuggest/magicsuggest-min.css" rel="stylesheet">
 
     <script>
         $(document).ready(function () {
@@ -30,7 +30,7 @@
 
         <h4 style="position: absolute; width: 95%; text-align: center; top: 9.5%">Registro de Cliente</h4>
 
-        <form method="post" name="formCliente" action="../../com.Mexicash/Controlador/RegistroCliente.php">
+        <form method="post" name="formCliente" action="../../../com.Mexicash/Controlador/RegistroCliente.php">
 
             <div class="col-2" style="position: absolute; top: 15vh; padding-left: 4vw; height: 80vh;">
                 <h6>Sexo:</h6>
@@ -48,6 +48,9 @@
 
                 <h6>CURP:</h6>
                 <input type="text" id="inCurp" name="inCurp" placeholder="" required/>
+                <br/><br/>
+                <h6>Promoci&oacute;n:</h6>
+                <input type="text" name="inInstFin" placeholder="" id="inInstFin" required/>
 
             </div>
 
@@ -151,12 +154,6 @@
                     <input type="text" name="inMsjInt" placeholder="" id="inMsjInt" style="width: 90%" required/>
                 </div>
 
-                <div style="position: relative; top: -53%; left: 5%">
-                    <h6 style="width: 40%; text-align: center">Promoci&oacute;n:</h6>
-                    <input type="text" name="inInstFin" placeholder="" id="inInstFin" style="width: 40%" required/>
-                </div>
-
-
             </div>
 
             <div class="col-2" style="position: absolute; top: 15vh; right: 3vw; height: 80vh;">
@@ -182,7 +179,7 @@
 
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="../style/css/magicsuggest/magicsuggest-min.js"></script>
+        <script src="../../style/css/magicsuggest/magicsuggest-min.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     </body>

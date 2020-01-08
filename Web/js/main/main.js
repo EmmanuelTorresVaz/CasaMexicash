@@ -483,3 +483,51 @@ $(function () {
     contexto2.stroke();
 
 });
+
+function __ajax(url, data) {
+
+    var ajax = $.ajax({
+        "method": "POST",
+        "url": url,
+        "data": data
+    })
+    return ajax;
+
+}
+
+function datos() {
+    var data = [];
+    /*data.push(
+
+       "nombre": $('#inNombre'),
+        "apellido_Pat" :  $('#inApPat'),
+        "apellido_Mat" :  $('#inApMat'),
+        "sexo" :  $('#boxSexo'),
+        "fecha_Nacimiento" :  $('#inFechaNac'),
+        "curp" :  $('#inCurp'),
+        "ocupacion" :  $('#boxOcupacion'),
+        "tipo_Identificacion" :  $('#boxIdentificacion'),
+        "num_Identificacion" :  $('#inNoIdentificacion'),
+        "celular" :  $('#$inCelular'),
+        "rfc" :  $('#$inRfc'),
+
+        "telefono" : $('#$inTelefono'),
+        "correo" : $('#$inCorreo'),
+        "estado" : $('#$inEstadoActual'),
+        "codigo_Postal" : $('#inNombre'),
+
+        "municipio" : $('#inNombre'),
+        "colonia" : $('#inNombre'),
+        "calle" : $('#inNombre'),
+        "num_exterior" : $('#inNombre'),
+        "num_interior" : $('#inNombre'),
+
+        "mensaje" :  $('#inNombre'),
+        "promocion" : $('#inNombre')
+
+    );*/
+}
+
+function guardar() {
+    var json = JSON.stringify(datos());
+}

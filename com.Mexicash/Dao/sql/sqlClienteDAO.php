@@ -1,6 +1,6 @@
 <?php
-include ('../../Modelo/Cliente.php');
-include ('../../Base/Conexion.php');
+include_once (MODELO_PATH."Cliente.php");
+include_once (BASE_PATH."Conexion.php");
 
 class sqlClienteDAO
 {
@@ -20,7 +20,7 @@ class sqlClienteDAO
 
             $verdad = false;
 
-            $id_Cliente =  $cliente->getIdCliente();
+            //$id_Cliente =  $cliente->getIdCliente();
             $nombre =  $cliente->getNombre();
             $apellido_Pat =  $cliente->getApellidoPat();
             $apellido_Mat =  $cliente->getApellidoMat();
@@ -48,15 +48,27 @@ class sqlClienteDAO
             $promocion =  $cliente->getPromocion();
 
 
+            $ins = "insert into cliente_tbl() values()";
+
             $insertar = "insert into cliente_tbl (nombre, apellido_Pat, apellido_Mat, sexo, fecha_Nacimiento, curp, ocupacion, tipo_Identificacion, num_Identificacion, celular,
                     rfc, telefono, correo, estado, codigo_Postal, municipio, colonia, calle, num_exterior, num_interior, mensaje, promocion) 
-            values ('". $nombre ."', '". $apellido_Pat ."', '". $apellido_Mat ."', ". $sexo .", ". $fecha_Nacimiento .", '". $curp ."', '". $ocupacion ."', 
-            ". $tipo_Identificacion .", '". $num_Identificacion ."', '". $celular ."', '". $rfc ."', '". $telefono ."', '". $correo ."', '". $estado ."', '". $codigo_Postal ."', 
-            ". $municipio .", '". $colonia ."', '". $calle ."', '". $num_exterior ."', ". $num_interior .", '". $mensaje ."', ". $promocion .")";
+            values ('". $nombre ."', '". $apellido_Pat ."', '". $apellido_Mat ."', ". 1 .", ". $fecha_Nacimiento .", '". $curp ."', '". $ocupacion ."', 
+            ". 2 .", '". $num_Identificacion ."', ". $celular .", '". $rfc ."', ". $telefono .", '". $correo ."', '". $estado ."', ". $codigo_Postal .", 
+            '". $municipio ."', '". $colonia ."', '". $calle ."', ". $num_exterior .", ". $num_interior .", '". $mensaje ."', ". 3 .")";
 
-            $this->conexion->query($insertar);
-            echo "Se registro correctamente";
-            $verdad = true;
+            echo $insertar . "     ";
+
+            if($ps = $this->conexion->prepare($insertar)){
+                echo " Se preparó correctamente ";
+                if($ps->execute()){
+                    echo " Se ejecutó bien";
+                    $verdad = true;
+                }else{
+                    echo " No se ejecutó bien";
+                }
+            }else{
+                echo " No se preparó";
+            }
         }catch (Exception $exc){
             echo $exc->getMessage();
         } finally {
@@ -76,8 +88,13 @@ class sqlClienteDAO
 
             $buscar = "select idUsuario where $celular = " . $celular . " and correoCliente = '" . $correoCliente . "'";
 
-            $id = $this->conexion->query($buscar);
-            echo "Todo correcto";
+            $statement = $this->conexion->prepare( $buscar );
+
+            if($statement->execute()){
+                $id = $statement->fetch();
+                echo "Todo correcto";
+                $statement->close();
+            }
         }catch (Exception $exc){
             echo $exc->getMessage();
         }finally{

@@ -259,7 +259,7 @@
                         <small>+m&aacute;s</small>
                     </a>
                     <ul>
-                        <li><a href="Clientes/RegistrarCliente.php"><i class="fa fa-plus-square"></i>Clientes</a></li>
+                        <li><a href="RegistrarCliente.php"><i class="fa fa-plus-square"></i>Clientes</a></li>
                         <li><a href="#"><i class="fa fa-user-plus" ></i>Identificaciones</a></li>
                         <li><a href="#"><i class="fa fa-user-plus" ></i>Plazos de inter&eacute;s</a></li>
                         <li><a href="#"><i class="fa fa-user-plus" ></i>Tipos de prenda</a></li>
