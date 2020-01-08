@@ -1,0 +1,25 @@
+<?php
+//RAIZ DIR
+define('ROOT_PATH', $_SERVER['DOCUMENT_ROOT'].'/');
+//COM DIR
+define('COM_PATH', ROOT_PATH.'com.Mexicash/');
+define('BASE_PATH', COM_PATH.'Base/');
+define('CONTROLADOR_PATH', COM_PATH.'Controlador/');
+define('DAO_PATH', COM_PATH.'Dao/');
+define('SQL_PATH', DAO_PATH.'sql/');
+define('ESAPI_PATH', COM_PATH.'esapi/');
+define('MODELO_PATH', COM_PATH.'Modelo/');
+define('PETICIONES_PATH', COM_PATH.'Peticiones/');
+define('SERVICIOS_PATH', COM_PATH.'Servicios/');
+//WEB DIR
+define('WEB_PATH', ROOT_PATH.'Web/');
+define('HtML', WEB_PATH.'html/');
+define('IMG', WEB_PATH.'img/');
+define('JS', WEB_PATH.'js/');
+define('STYLE', WEB_PATH.'style/');
+
+?>
+
+
+
+

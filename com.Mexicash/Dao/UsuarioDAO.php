@@ -1,5 +1,7 @@
 <?php
-include_once ('../Modelo/Usuario.php');
+include_once ($_SERVER['DOCUMENT_ROOT'].'/dirs.php');
+include_once (MODELO_PATH."Usuario.php");
+
 
 interface UsuarioDAO
 {

@@ -1,14 +1,15 @@
 <?php
 
-//include "../../Modelo/Usuario.php";
-//include '../../Base/Conexion.php';
-//include '../../Servicios/Errores.php';
-//include '../UsuarioDAO.php';
+//include_once  "C:\\xampp\htdocs\Mexicash\com.Mexicash\Modelo\Usuario.php";
+//include_once  "C:\\xampp\htdocs\Mexicash\com.Mexicash\Base\Conexion.php";
+//include_once  "C:\\xampp\htdocs\Mexicash\com.Mexicash\Servicios\Errores.php";
+//include_once  "C:\\xampp\htdocs\Mexicash\com.Mexicash\Dao\UsuarioDAO.php";
 
-include_once  "C:\\xampp\htdocs\Mexicash\com.Mexicash\Modelo\Usuario.php";
-include_once  "C:\\xampp\htdocs\Mexicash\com.Mexicash\Base\Conexion.php";
-include_once  "C:\\xampp\htdocs\Mexicash\com.Mexicash\Servicios\Errores.php";
-include_once  "C:\\xampp\htdocs\Mexicash\com.Mexicash\Dao\UsuarioDAO.php";
+include_once ($_SERVER['DOCUMENT_ROOT'].'/dirs.php');
+include_once (MODELO_PATH."Usuario.php");
+include_once (BASE_PATH."Conexion.php");
+include_once (SERVICIOS_PATH."Errores.php");
+include_once (DAO_PATH."UsuarioDAO.php");
 
 
 class sqlUsuarioDAO
