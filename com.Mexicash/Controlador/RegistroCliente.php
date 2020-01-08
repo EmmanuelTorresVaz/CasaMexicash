@@ -3,32 +3,6 @@ include ('../Modelo/Cliente.php');
 include ('../Dao/sql/sqlClienteDAO.php');
 //require_once ('ESAPI.php');
 
-$nombre =  $cliente->getNombre();
-$apellido_Pat =  $cliente->getApellidoPat();
-$apellido_Mat =  $cliente->getApellidoMat();
-$sexo =  $cliente->getSexo();
-$fecha_Nacimiento =  $cliente->getFechaNacimiento();
-$curp =  $cliente->getCurp();
-$ocupacion =  $cliente->getOcupacion();
-$tipo_Identificacion =  $cliente->getTipoIdentificacion();
-$num_Identificacion =  $cliente->getNumIdentificacion();
-$celular =  $cliente->getCelular();
-$rfc =  $cliente->getRfc();
-
-$telefono =  $cliente->getTelefono();
-$correo =  $cliente->getCorreo();
-$estado =  $cliente->getEstado();
-$codigo_Postal =  $cliente->getCodigoPostal();
-
-$municipio =  $cliente->getMunicipio();
-$colonia =  $cliente->getColonia();
-$calle =  $cliente->getCalle();
-$num_exterior =  $cliente->getNumExterior();
-$num_interior =  $cliente->getNumInterior();
-
-$mensaje =  $cliente->getMensaje();
-$promocion =  $cliente->getPromocion();
-
     $inNombre = $_POST['inNombre'];
     $inApPat = $_POST['inApPat'];
     $inApMat = $_POST['inApMat'];
