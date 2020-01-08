@@ -93,8 +93,6 @@
                         <br><br>
                         <span>Comienza ahora y descubre una valoraci&oacute;n est&aacute;ndar de tu producto</span>
                         <br><br><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-outline-secondary">Empezar</button>
                     </div>
                     <div class="lblHome2"></div>
                 </div>
@@ -274,12 +272,13 @@
                     <h3>Iniciar Sesion</h3>
                     <br/><br/>
                     <h5>Usuario:</h5>
-                    <input type="email" name="usuario" id="usuario" class="form-control" style="color: white; background-color: transparent; width: 80%; margin-left: 5%" placeholder="Correo Electr&oacute;nico o usuario:" required/>
+                    <input type="text" name="usuario" id="usuario" class="form-control" style="color: white; background-color: transparent; width: 80%; margin-left: 5%" placeholder="Correo Electr&oacute;nico o usuario:" required/>
                     <br/>
                     <h5>Contraseña:</h5>
                     <input type="password" name="password" id="password" class="form-control" style="color: white; background-color: transparent; width: 80%; margin-left: 5%" placeholder="*****************" required/>
-                    <br/><br/>
-                    <input type="submit" class="sub btn btn-outline-secondary" value="Entrar">
+                    <br/>
+                    <input type="submit" class="sub btn btn-outline-primary" value="Entrar">
+                    <br/>
                 </form>
             </div>
         </div>

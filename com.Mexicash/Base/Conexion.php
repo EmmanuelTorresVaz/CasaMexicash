@@ -8,7 +8,7 @@ class Conexion
     protected $user = "root";
     //protected $password = "volcanes";
     protected $password = "";
-    protected $db = "Mexicash";
+    protected $db = "mexicash";
     //protected $db = "prueba";
     protected $link;
     protected $error;
