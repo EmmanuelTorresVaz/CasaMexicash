@@ -13,10 +13,10 @@ define('PETICIONES_PATH', COM_PATH.'Peticiones/');
 define('SERVICIOS_PATH', COM_PATH.'Servicios/');
 //WEB DIR
 define('WEB_PATH', ROOT_PATH.'Web/');
-define('HtML', WEB_PATH.'html/');
-define('IMG', WEB_PATH.'img/');
-define('JS', WEB_PATH.'js/');
-define('STYLE', WEB_PATH.'style/');
+define('HTML_PATH', WEB_PATH.'html/');
+define('IMG_PATH', WEB_PATH.'img/');
+define('JS_PATH', WEB_PATH.'js/');
+define('STYLE_PATH', WEB_PATH.'style/');
 
 ?>
 

@@ -21,7 +21,7 @@ class Empeño
     private $prestamo;
 
     /**
-     * Empeño constructor.
+     * Empeno constructor.
      * @param $nombreCot
      * @param $apellPCot
      * @param $apellMCot

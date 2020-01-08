@@ -22,7 +22,7 @@ if($usuario == null || $password == null){
     }else{
         $usu = new sqlUsuarioDAO();
         if($usu->loginAutentificion($usuario, $password) > 0){
-            header('Location: ../../Web/html/RegistrarCliente.php');
+            header('Location: ../../Web/html/vEmpeno.php');
             exit();
         }else{
             header('Location: ../../Web/html/index.php');

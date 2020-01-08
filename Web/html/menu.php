@@ -22,14 +22,12 @@
                         <div class="navbar-nav nav-Home-collapsed">
 
                             <a class="nav-item nav-link active" href="#" onclick="menu(this, 1)">Empeño<span class="sr-only">(current)</span></a>
-
                             <a class="nav-item nav-link" href="#" onclick="menu(this, 2)">Cierre</a>
                             <a class="nav-item nav-link" href="#" onclick="menu(this, 3)">Ventas</a>
                             <a class="nav-item nav-link" href="#" onclick="menu(this, 4)">Inventario</a>
                             <a class="nav-item nav-link" href="#" onclick="menu(this, 5)">Reportes</a>
                             <a class="nav-item nav-link" href="#" onclick="menu(this, 6)">Movimientos</a>
-                            <a class="nav-item nav-link" href="#" onclick="menu(this, 7)">Anti Lavado</a>
-                            <a class="nav-item nav-link" href="#" tabindex="-1" aria-disabled="true" onclick="menu(this, 8)">Utilerias</a>
+                            <a class="nav-item nav-link" href="#" tabindex="-1" aria-disabled="true" onclick="menu(this, 7)">Utilerias</a>
                             <a class="nav-item nav-link menu-Opcion-Login" href="#" onclick="menu(this, 9)">Cuenta</a>
                             <!--
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,32 +50,25 @@
         <nav>
             <ul class="menu" >
                 <li>
-                    <a href="vEmpeño.php">
+                    <a href="Empeno/vEmpeno.php">
                         <i class="fa fa-home"></i>
-                        <strong>Empeño</strong>
-                        <small>Bienvenido</small>
+                        <strong>Empeños</strong>
                     </a>
                 </li>
                 <li>
-                    <a href="vDesempeño.php">
+                    <a href="Empeno/vDesempeño.php">
                         <i class="fa fa-dollar"></i>
-                        <strong>Desempeño</strong>
+                        <strong>Desempeños</strong>
                     </a>
                 </li>
                 <li>
-                    <a href="vAuto.php">
-                        <i class="fa fa-dollar"></i>
-                        <strong>Autos</strong>
-                    </a>
-                </li>
-                <li>
-                    <a href="vRefrendo.php">
+                    <a href="Empeno/vRefrendo.php">
                         <i class="fa fa-gift"></i>
                         <strong>Refrendo</strong>
                     </a>
                 </li>
                 <li>
-                    <a href="vConsulta.php">
+                    <a href="Empeno/vConsulta.php">
                         <i class="fa fa-gear"></i>
                         <strong>Consultas</strong>
                         <small>+m&aacute;s</small>
@@ -87,6 +78,13 @@
                         <li><a href="#"><i class="fa fa-user-plus" ></i>Por Contrato</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="Empeno/vAuto.php">
+                        <i class="fa fa-dollar"></i>
+                        <strong>Autos</strong>
+                    </a>
+                </li>
+
             </ul>
         </nav>
     </div><!--container2-->

@@ -46,7 +46,7 @@
 
     if(!$e->empeñar($emp, $idCliente->buscarIdCliente($celular, $correoCliente))){
         header('Status: 301 Moved Permanently', false, 301);
-        header('Location: ../../Web/html/vEmpeño.php');
+        header('Location: ../../Web/html/vEmpeno.php');
         exit();
     }else{
         header('Status: 301 Moved Permanently', false, 301);
