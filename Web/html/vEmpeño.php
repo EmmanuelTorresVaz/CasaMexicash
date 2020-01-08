@@ -29,11 +29,9 @@
     <body>
         <div class="menuContainer" ></div>
 
-        <input type="text" id="" name="" placeholder="" required/>
-
         <form method="post" action="" id="formEmpeño">
 
-            <div class="col-2" style="position: absolute; top: 15vh; padding-left: 4vw; height: 80vh;">
+            <div class="col-2" style="position: absolute; top: 10vh; padding-left: 4vw; height: 80vh;">
                 <h5>Datos del cliente:</h5>
                 <br>
 
@@ -56,10 +54,14 @@
 
                 <h6>N&uacute;mero celular:</h6>
                 <input type="text" class="txtCelularEmpeño" id="txtCelularEmpeño" name="txtCelularEmpeño" placeholder="Celular registrado:" disabled required/>
+                <br/><br/>
+
+                <h6>Beneficiario:</h6>
+                <input type="text" name="txtApMCot" id="txtApMCot" placeholder="Nombre completo:" required/>
 
             </div>
 
-            <div class="col-7" style="position: absolute; top: 15vh; left: 20vw; height: 83vh; border-left: 1px solid black; border-right: 1px solid black">
+            <div class="col-7" style="position: absolute; top: 10vh; left: 20vw; height: 83vh; border-left: 1px solid black; border-right: 1px solid black">
                 <h5>Datos del Cotitular:</h5>
                 <h6>Nombre(s):</h6>
                 <input type="text" name="txtNombreCot" id="txtNombreCot" placeholder="Nombres" style="width: 240px" required/>
@@ -74,13 +76,39 @@
                     <input type="text" name="txtApMCot" id="txtApMCot" placeholder="Apellido Materno" style="width: 240px" required/>
                 </div>
 
-                <div style="position: relative; top: -14%; left: 30%">
-                    <h6>Beneficiario:</h6>
-                    <input type="text" name="txtApMCot" id="txtApMCot" placeholder="Nombre completo del beneficiario:" style="width: 40%" required/>
+                <div style="position: relative; top: -15.8%; left: 0">
+                    <nav>
+                        <ul class="opcEmpeño">
+                            <li>Metales</li>
+                            <li>Electr&oacute;nico</li>
+                        </ul>
+                    </nav>
                 </div>
+
+                <div style="position: relative; top: -5%; left: 0; width: 240px">
+                    <div class="ui-widget">
+                        <input id="boxComoSeEntero" name="boxComoSeEntero" placeholder="¿C&oacute;mo se enter&oacute;?" required/>
+                    </div>
+                </div>
+
+                <div class="opcInfoEmpeño">
+
+                </div>
+
+                <div class="resumenEmpeño">
+                    <table>
+                        <td>C&oacute;digo</td>
+                        <td>Producto</td>
+                        <td>Tipo</td>
+                        <td>Aval&uacute;o</td>
+                        <td>Pr&eacute;stamo</td>
+                        <td>Observaciones</td>
+                    </table>
+                </div>
+
             </div>
 
-            <div class="col-2" style="position: absolute; top: 15vh; right: 3vw; height: 80vh;">
+            <div class="col-2" style="position: absolute; top: 10vh; right: 3vw; height: 80vh;">
                 <h5>Contrato</h5>
                 <br/>
                 <h6>Fecha de Vencimiento:</h6>
@@ -99,44 +127,82 @@
                 </div>
                 <br/>
 
-                <h6>Periodo:</h6>
-                <div class="ui-widget">
-                    <input id="boxTipoInteres" name="boxTipoInteres" style="width: 60px" placeholder="Tipo Interes:" required/>
+                <div class="clearfix" style="width: 100%">
+                    <div style="float: left; margin-right: 3%">
+                        <h6>Periodo:</h6>
+                        <div class="ui-widget">
+                            <input id="boxPeriodo" name="boxPeriodo" style="width: 60px" placeholder="" required/>
+                        </div>
+                        <br/>
+                    </div>
+                    <div style="float: left; margin-right: 3%">
+                        <h6>Plazo:</h6>
+                        <div class="ui-widget">
+                            <input id="boxPlazo" name="boxPlazo" style="width: 60px" placeholder="" required/>
+                        </div>
+                        <br/>
+                    </div>
+                    <div style="float: left;">
+                        <h6>%Tasa:</h6>
+                        <div class="ui-widget">
+                            <input id="boxTasa" name="boxTasa" style="width: 60px" placeholder="" required/>
+                        </div>
+                        <br/>
+                    </div>
                 </div>
-                <br/>
 
-                <h6>Plazo:</h6>
-                <div class="ui-widget">
-                    <input id="boxTipoInteres" name="boxTipoInteres" style="width: 60px" placeholder="Tipo Interes:" required/>
+                <div class="clearfix" style="width: 100%">
+                    <div style="float: left; margin-right: 3%">
+                        <h6>%Tasa:</h6>
+                        <div class="ui-widget">
+                            <input id="boxTasa" name="boxTasa" style="width: 60px" placeholder="" required/>
+                        </div>
+                        <br/>
+                    </div>
+
+                    <div style="float: left;  margin-right: 3%">
+                        <h6>%Alm:</h6>
+                        <div class="ui-widget">
+                            <input id="boxAlm" name="boxAlm" style="width: 60px" placeholder="" required/>
+                        </div>
+                        <br/>
+                    </div>
+
+                    <div style="float: left;">
+                        <h6>%Seguro:</h6>
+                        <div class="ui-widget">
+                            <input id="boxSeguro" name="boxSeguro" style="width: 60px" placeholder="" required/>
+                        </div>
+                        <br/>
+                    </div>
+
                 </div>
-                <br/>
 
-                <h6>%Tasa:</h6>
-                <div class="ui-widget">
-                    <input id="boxTipoInteres" name="boxTipoInteres" placeholder="Tipo Interes:" required/>
+                <div class="clearfix" style="width: 100%">
+
+                    <div style="float: left; margin-right: 3%">
+                        <h6>%IVA:</h6>
+                        <div class="ui-widget">
+                            <input id="boxIva" name="boxIva" style="width: 60px"  placeholder="" required/>
+                        </div>
+                        <br/>
+                    </div>
+
+                    <div style="float: left;">
+                        <h6>Total Eval&uacute;o:</h6>
+                        <input type="text" id="txtTotalEvaluo" name="txtTotalEvaluo" style="width: 125px" placeholder="0.00"/>
+                        <br/>
+                    </div>
+
                 </div>
-                <br/>
 
-                <h6>%Alm:</h6>
-                <div class="ui-widget">
-                    <input id="boxTipoInteres" name="boxTipoInteres" placeholder="Tipo Interes:" required/>
+                <div class="clearfix" style="width: 100%">
+                    <h6>Total Pr&eacute;stamo:</h6>
+                    <input type="text" id="txtTotalPrestamo" name="txtTotalPrestamo" style="width: 198px" placeholder="0.00"/>
                 </div>
-                <br/>
 
-                <h6>%Seguro:</h6>
-                <div class="ui-widget">
-                    <input id="boxTipoInteres" name="boxTipoInteres" placeholder="Tipo Interes:" required/>
-                </div>
-                <br/>
-
-                <h6>%IVA:</h6>
-                <div class="ui-widget">
-                    <input id="boxTipoInteres" name="boxTipoInteres" placeholder="16%" required/>
-                </div>
-                <br/>
-
-                <input type="submit" id="btnRegEmpeño" name="btnRegEmpeño" class="btn btn-outline-primary btn-lg" style="margin-left: 30px"/>
-
+                <!--<input type="submit" id="btnRegEmpeño" name="btnRegEmpeño" class="btn btn-outline-primary btn-lg" style="margin-left: 30px"/>
+-->
             </div>
 
         </form>
