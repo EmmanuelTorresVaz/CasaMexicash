@@ -26,6 +26,7 @@ include_once (SQL_PATH."sqlClienteDAO.php");
     $inMsjInt = $_POST['inMsjInt'];
     $inPromocion = $_POST['inInstFin'];
 
+    $sexo = 0;
 
     $cliente = new Cliente(
 
