@@ -172,7 +172,7 @@
                 </div>
 
                 <div style="position: relative; top: -53%; left: 5%">
-                    <h6 style="width: 40%; text-align: center">Instituci&oacute;n financiera:</h6>
+                    <h6 style="width: 40%; text-align: center">Promoci&oacute;n:</h6>
                     <input type="text" name="inInstFin" placeholder="" id="inInstFin" style="width: 40%" required/>
                 </div>
 

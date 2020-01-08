@@ -20,36 +20,39 @@ class sqlClienteDAO
 
             $verdad = false;
 
-            //$idCliente = $cliente->getIdCliente();
-            $nombreCliente = $cliente->getNombreCliente();
-            $apellidoPCliente = $cliente->getApellidoPCliente();
-            $apellidoMCliente = $cliente->getApellidoMCliente();
-            $celular = $cliente->getCelular();
-            $telefono = $cliente->getTelefono();
-            $correoCliente = $cliente->getCorreoCliente();
-            $direccion = $cliente->getDireccion();
+            $id_Cliente =  $cliente->getIdCliente();
+            $nombre =  $cliente->getNombre();
+            $apellido_Pat =  $cliente->getApellidoPat();
+            $apellido_Mat =  $cliente->getApellidoMat();
+            $sexo =  $cliente->getSexo();
+            $fecha_Nacimiento =  $cliente->getFechaNacimiento();
+            $curp =  $cliente->getCurp();
+            $ocupacion =  $cliente->getOcupacion();
+            $tipo_Identificacion =  $cliente->getTipoIdentificacion();
+            $num_Identificacion =  $cliente->getNumIdentificacion();
+            $celular =  $cliente->getCelular();
+            $rfc =  $cliente->getRfc();
 
-            $tipoPersona = $cliente->getTipoPersona();
-            $sexo = $cliente->getSexo();
-            $fechaNac = $cliente->getFechaNac();
-            $paisNac = $cliente->getPaisNac();
-            $edoNac = $cliente->getEdoNac();
-            $curp = $cliente->getCurp();
-            $ocupacion = $cliente->getOcupacion();
-            $identificacion = $cliente->getIdentificacion();
-            $numIdentificacion = $cliente->getNumIdentificacion();
+            $telefono =  $cliente->getTelefono();
+            $correo =  $cliente->getCorreo();
+            $estado =  $cliente->getEstado();
+            $codigo_Postal =  $cliente->getCodigoPostal();
 
-            $rfc = $cliente->getRfc();
+            $municipio =  $cliente->getMunicipio();
+            $colonia =  $cliente->getColonia();
+            $calle =  $cliente->getCalle();
+            $num_exterior =  $cliente->getNumExterior();
+            $num_interior =  $cliente->getNumInterior();
 
-            $msjUsoInterno = $cliente->getMsjUsoInterno();
-            $instFinanciera = $cliente->getInstFinanciera();
-            $cuentaBancaria = $cliente->getCuentaBancaria();
+            $mensaje =  $cliente->getMensaje();
+            $promocion =  $cliente->getPromocion();
 
-            $insertar = "insert into clientes (nombreCliente, apellidoPCliente, apellidoMCliente, celular, telefono, correoCliente, direccion, tipoPersona, sexo, fechaNac,
-                    paisNac, edoNac, curp, ocupacion, identificacion, numIdentificacion) 
-            values ('". $nombreCliente ."', '". $apellidoPCliente ."', '". $apellidoMCliente ."', ". $celular .", ". $telefono .", '". $correoCliente ."', '". $direccion ."', 
-            ". $tipoPersona .", '". $sexo ."', '". $fechaNac ."', '". $paisNac ."', '". $edoNac ."', '". $curp ."', '". $ocupacion ."', '". $identificacion ."', ". $numIdentificacion .", 
-            '". $rfc ."', '". $msjUsoInterno ."', '". $instFinanciera ."', ". $cuentaBancaria .")";
+
+            $insertar = "insert into cliente_tbl (nombre, apellido_Pat, apellido_Mat, sexo, fecha_Nacimiento, curp, ocupacion, tipo_Identificacion, num_Identificacion, celular,
+                    rfc, telefono, correo, estado, codigo_Postal, municipio, colonia, calle, num_exterior, num_interior, mensaje, promocion) 
+            values ('". $nombre ."', '". $apellido_Pat ."', '". $apellido_Mat ."', ". $sexo .", ". $fecha_Nacimiento .", '". $curp ."', '". $ocupacion ."', 
+            ". $tipo_Identificacion .", '". $num_Identificacion ."', '". $celular ."', '". $rfc ."', '". $telefono ."', '". $correo ."', '". $estado ."', '". $codigo_Postal ."', 
+            ". $municipio .", '". $colonia ."', '". $calle ."', '". $num_exterior ."', ". $num_interior .", '". $mensaje ."', ". $promocion .")";
 
             $this->conexion->query($insertar);
             echo "Se registro correctamente";

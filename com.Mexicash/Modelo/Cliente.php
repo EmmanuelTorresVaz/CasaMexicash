@@ -3,74 +3,79 @@
 
 class Cliente
 {
-    // TODO: Client Model
-    private $idCliente;
-    private $nombreCliente;
-    private $apellidoPCliente;
-    private $apellidoMCliente;
-    private $tipoPersona;
+    private $id_Cliente;
+    private $nombre;
+    private $apellido_Pat;
+    private $apellido_Mat;
     private $sexo;
-    private $fechaNac;
-    private $paisNac;
-    private $edoNac;
+    private $fecha_Nacimiento;
     private $curp;
     private $ocupacion;
-    private $identificacion;
-    private $numIdentificacion;
+    private $tipo_Identificacion;
+    private $num_Identificacion;
     private $celular;
     private $rfc;
     private $telefono;
-    private $correoCliente;
-    private $direccion;
-    private $msjUsoInterno;
-    private $instFinanciera;
-    private $cuentaBancaria;
+    private $correo;
+    private $estado;
+    private $codigo_Postal;
+    private $municipio;
+    private $colonia;
+    private $calle;
+    private $num_exterior;
+    private $num_interior;
+    private $mensaje;
+    private $promocion;
 
     /**
      * Cliente constructor.
-     * @param $nombreCliente
-     * @param $apellidoPCliente
-     * @param $apellidoMCliente
-     * @param $tipoPersona
+     * @param $nombre
+     * @param $apellido_Pat
+     * @param $apellido_Mat
      * @param $sexo
-     * @param $fechaNac
-     * @param $paisNac
-     * @param $edoNac
+     * @param $fecha_Nacimiento
      * @param $curp
      * @param $ocupacion
-     * @param $identificacion
-     * @param $numIdentificacion
+     * @param $tipo_Identificacion
+     * @param $num_Identificacion
      * @param $celular
      * @param $rfc
      * @param $telefono
-     * @param $correoCliente
-     * @param $direccion
-     * @param $msjUsoInterno
-     * @param $instFinanciera
-     * @param $cuentaBancaria
+     * @param $correo
+     * @param $estado
+     * @param $codigo_Postal
+     * @param $municipio
+     * @param $colonia
+     * @param $calle
+     * @param $num_exterior
+     * @param $num_interior
+     * @param $mensaje
+     * @param $promocion
      */
-    public function __construct($nombreCliente, $apellidoPCliente, $apellidoMCliente, $tipoPersona, $sexo, $fechaNac, $paisNac, $edoNac, $curp, $ocupacion, $identificacion, $numIdentificacion, $celular, $rfc, $telefono, $correoCliente, $direccion, $msjUsoInterno, $instFinanciera, $cuentaBancaria)
+    public function __construct($nombre, $apellido_Pat, $apellido_Mat, $sexo, $fecha_Nacimiento, $curp, $ocupacion, $tipo_Identificacion, $num_Identificacion, $celular, $rfc, $telefono, $correo, $estado, $codigo_Postal, $municipio, $colonia, $calle, $num_exterior, $num_interior, $mensaje, $promocion)
     {
-        $this->nombreCliente = $nombreCliente;
-        $this->apellidoPCliente = $apellidoPCliente;
-        $this->apellidoMCliente = $apellidoMCliente;
-        $this->tipoPersona = $tipoPersona;
+        $this->nombre = $nombre;
+        $this->apellido_Pat = $apellido_Pat;
+        $this->apellido_Mat = $apellido_Mat;
         $this->sexo = $sexo;
-        $this->fechaNac = $fechaNac;
-        $this->paisNac = $paisNac;
-        $this->edoNac = $edoNac;
+        $this->fecha_Nacimiento = $fecha_Nacimiento;
         $this->curp = $curp;
         $this->ocupacion = $ocupacion;
-        $this->identificacion = $identificacion;
-        $this->numIdentificacion = $numIdentificacion;
+        $this->tipo_Identificacion = $tipo_Identificacion;
+        $this->num_Identificacion = $num_Identificacion;
         $this->celular = $celular;
         $this->rfc = $rfc;
         $this->telefono = $telefono;
-        $this->correoCliente = $correoCliente;
-        $this->direccion = $direccion;
-        $this->msjUsoInterno = $msjUsoInterno;
-        $this->instFinanciera = $instFinanciera;
-        $this->cuentaBancaria = $cuentaBancaria;
+        $this->correo = $correo;
+        $this->estado = $estado;
+        $this->codigo_Postal = $codigo_Postal;
+        $this->municipio = $municipio;
+        $this->colonia = $colonia;
+        $this->calle = $calle;
+        $this->num_exterior = $num_exterior;
+        $this->num_interior = $num_interior;
+        $this->mensaje = $mensaje;
+        $this->promocion = $promocion;
     }
 
     /**
@@ -78,39 +83,63 @@ class Cliente
      */
     public function getIdCliente()
     {
-        return $this->idCliente;
+        return $this->id_Cliente;
+    }
+
+    /**
+     * @param mixed $id_Cliente
+     */
+    public function setIdCliente($id_Cliente): void
+    {
+        $this->id_Cliente = $id_Cliente;
     }
 
     /**
      * @return mixed
      */
-    public function getNombreCliente()
+    public function getNombre()
     {
-        return $this->nombreCliente;
+        return $this->nombre;
+    }
+
+    /**
+     * @param mixed $nombre
+     */
+    public function setNombre($nombre): void
+    {
+        $this->nombre = $nombre;
     }
 
     /**
      * @return mixed
      */
-    public function getApellidoPCliente()
+    public function getApellidoPat()
     {
-        return $this->apellidoPCliente;
+        return $this->apellido_Pat;
+    }
+
+    /**
+     * @param mixed $apellido_Pat
+     */
+    public function setApellidoPat($apellido_Pat): void
+    {
+        $this->apellido_Pat = $apellido_Pat;
     }
 
     /**
      * @return mixed
      */
-    public function getApellidoMCliente()
+    public function getApellidoMat()
     {
-        return $this->apellidoMCliente;
+        return $this->apellido_Mat;
     }
 
     /**
-     * @return mixed
+     * @param mixed $apellido_Mat
      */
-    public function getTipoPersona()
+    public function setApellidoMat($apellido_Mat): void
     {
-        return $this->tipoPersona;
+        $this->apellido_Mat = $apellido_Mat;
     }
 
     /**
@@ -122,27 +151,27 @@ class Cliente
     }
 
     /**
-     * @return mixed
+     * @param mixed $sexo
      */
-    public function getFechaNac()
+    public function setSexo($sexo): void
     {
-        return $this->fechaNac;
+        $this->sexo = $sexo;
     }
 
     /**
      * @return mixed
      */
-    public function getPaisNac()
+    public function getFechaNacimiento()
     {
-        return $this->paisNac;
+        return $this->fecha_Nacimiento;
     }
 
     /**
-     * @return mixed
+     * @param mixed $fecha_Nacimiento
      */
-    public function getEdoNac()
+    public function setFechaNacimiento($fecha_Nacimiento): void
     {
-        return $this->edoNac;
+        $this->fecha_Nacimiento = $fecha_Nacimiento;
     }
 
     /**
@@ -154,6 +183,14 @@ class Cliente
     }
 
     /**
+     * @param mixed $curp
+     */
+    public function setCurp($curp): void
+    {
+        $this->curp = $curp;
+    }
+
+    /**
      * @return mixed
      */
     public function getOcupacion()
@@ -162,11 +199,27 @@ class Cliente
     }
 
     /**
+     * @param mixed $ocupacion
+     */
+    public function setOcupacion($ocupacion): void
+    {
+        $this->ocupacion = $ocupacion;
+    }
+
+    /**
      * @return mixed
      */
-    public function getIdentificacion()
+    public function getTipoIdentificacion()
     {
-        return $this->identificacion;
+        return $this->tipo_Identificacion;
+    }
+
+    /**
+     * @param mixed $tipo_Identificacion
+     */
+    public function setTipoIdentificacion($tipo_Identificacion): void
+    {
+        $this->tipo_Identificacion = $tipo_Identificacion;
     }
 
     /**
@@ -174,7 +227,15 @@ class Cliente
      */
     public function getNumIdentificacion()
     {
-        return $this->numIdentificacion;
+        return $this->num_Identificacion;
+    }
+
+    /**
+     * @param mixed $num_Identificacion
+     */
+    public function setNumIdentificacion($num_Identificacion): void
+    {
+        $this->num_Identificacion = $num_Identificacion;
     }
 
     /**
@@ -186,11 +247,27 @@ class Cliente
     }
 
     /**
+     * @param mixed $celular
+     */
+    public function setCelular($celular): void
+    {
+        $this->celular = $celular;
+    }
+
+    /**
      * @return mixed
      */
     public function getRfc()
     {
         return $this->rfc;
+    }
+
+    /**
+     * @param mixed $rfc
+     */
+    public function setRfc($rfc): void
+    {
+        $this->rfc = $rfc;
     }
 
     /**
@@ -202,45 +279,172 @@ class Cliente
     }
 
     /**
-     * @return mixed
+     * @param mixed $telefono
      */
-    public function getCorreoCliente()
+    public function setTelefono($telefono): void
     {
-        return $this->correoCliente;
+        $this->telefono = $telefono;
     }
 
     /**
      * @return mixed
      */
-    public function getDireccion()
+    public function getCorreo()
     {
-        return $this->direccion;
+        return $this->correo;
+    }
+
+    /**
+     * @param mixed $correo
+     */
+    public function setCorreo($correo): void
+    {
+        $this->correo = $correo;
     }
 
     /**
      * @return mixed
      */
-    public function getMsjUsoInterno()
+    public function getEstado()
     {
-        return $this->msjUsoInterno;
+        return $this->estado;
+    }
+
+    /**
+     * @param mixed $estado
+     */
+    public function setEstado($estado): void
+    {
+        $this->estado = $estado;
     }
 
     /**
      * @return mixed
      */
-    public function getInstFinanciera()
+    public function getCodigoPostal()
     {
-        return $this->instFinanciera;
+        return $this->codigo_Postal;
+    }
+
+    /**
+     * @param mixed $codigo_Postal
+     */
+    public function setCodigoPostal($codigo_Postal): void
+    {
+        $this->codigo_Postal = $codigo_Postal;
     }
 
     /**
      * @return mixed
      */
-    public function getCuentaBancaria()
+    public function getMunicipio()
     {
-        return $this->cuentaBancaria;
+        return $this->municipio;
     }
 
+    /**
+     * @param mixed $municipio
+     */
+    public function setMunicipio($municipio): void
+    {
+        $this->municipio = $municipio;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getColonia()
+    {
+        return $this->colonia;
+    }
+
+    /**
+     * @param mixed $colonia
+     */
+    public function setColonia($colonia): void
+    {
+        $this->colonia = $colonia;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCalle()
+    {
+        return $this->calle;
+    }
+
+    /**
+     * @param mixed $calle
+     */
+    public function setCalle($calle): void
+    {
+        $this->calle = $calle;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNumExterior()
+    {
+        return $this->num_exterior;
+    }
+
+    /**
+     * @param mixed $num_exterior
+     */
+    public function setNumExterior($num_exterior): void
+    {
+        $this->num_exterior = $num_exterior;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNumInterior()
+    {
+        return $this->num_interior;
+    }
+
+    /**
+     * @param mixed $num_interior
+     */
+    public function setNumInterior($num_interior): void
+    {
+        $this->num_interior = $num_interior;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMensaje()
+    {
+        return $this->mensaje;
+    }
+
+    /**
+     * @param mixed $mensaje
+     */
+    public function setMensaje($mensaje): void
+    {
+        $this->mensaje = $mensaje;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPromocion()
+    {
+        return $this->promocion;
+    }
+
+    /**
+     * @param mixed $promocion
+     */
+    public function setPromocion($promocion): void
+    {
+        $this->promocion = $promocion;
+    }
 
 
 
