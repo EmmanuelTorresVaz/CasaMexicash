@@ -91,6 +91,57 @@ class sqlClienteDAO
      * @return mixed
      */
 
+    public function traerTodos(){
+        $clientes = array();
+        try {
+            $buscar = "select * from cliente_tbl";
+
+            $rs = $this->conexion->query($buscar);
+
+            if($rs->num_rows > 0){
+                while($row = $rs->fetch_assoc()){
+
+                    /*
+                        $cliente = new Cliente($row["nombre"], $row["apellido_Pat"], $row["apellido_Mat"], 0, $row["fecha_Nacimiento"], $row["curp"], 0, 0,0,
+                        $row["celular"], $row["rfc"], $row["telefono"], $row["correo"], $row["estado"], $row["codigo_Postal"], $row["municipio"], $row["colonia"], $row["calle"], $row["num_exterior"],
+                        $row["num_interior"], 0, 0);
+                    */
+
+                    $cliente = [
+                        "nombre" => $row["nombre"],
+                        "apellidoPat" => $row["apellido_Pat"],
+                        "apellidoMat" => $row["apellido_Mat"],
+                        "fechaNac" => $row["fecha_Nacimiento"],
+                        "curp" => $row["curp"],
+                        "celular" => $row["celular"],
+                        "rfc" => $row["rfc"],
+                        "telefono" => $row["telefono"],
+                        "correo" => $row["correo"],
+                        "estado" => $row["estado"],
+                        "codigoPostal" => $row["codigo_Postal"],
+                        "municipio" => $row["municipio"],
+                        "colonia" => $row["colonia"],
+                        "calle" => $row["calle"],
+                        "numExt" => $row["num_exterior"],
+                        "numInt" => $row["num_interior"]
+                    ];
+
+                    array_push($clientes, $cliente);
+                }
+
+            }else{
+                echo " No se ejecutó TraerTodos SqlClienteDAO";
+            }
+
+        }catch (Exception $exc){
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        return $clientes;
+    }
+
     public function consultaClienteEmpeño($nombre, $opc){
 
         $clien = array();
@@ -105,6 +156,12 @@ class sqlClienteDAO
                     $buscar = "select nombre, apellido_Pat, apellido_Mat, fecha_Nacimiento, curp, celular, rfc, telefono, correo, 
                     estado, codigo_Postal, municipio, colonia, calle, num_exterior, num_interior from cliente_tbl 
                     where concat(nombre, ' ', apellido_Pat, ' ', apellido_Mat) like concat('%', '". $nombre . "', '%');";
+                }else{
+                    if($opc == 3){
+                        $buscar = "select nombre, apellido_Pat, apellido_Mat, fecha_Nacimiento, curp, celular, rfc, telefono, correo, 
+                    estado, codigo_Postal, municipio, colonia, calle, num_exterior, num_interior from cliente_tbl 
+                    where concat(nombre, ' ', apellido_Pat, ' ', apellido_Mat) = '".$nombre."';";
+                    }
                 }
             }
 

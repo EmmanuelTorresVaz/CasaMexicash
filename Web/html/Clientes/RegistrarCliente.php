@@ -132,9 +132,9 @@
 
                 <div style="position: relative; top: -44%; left: 4%">
                     <h6>Alcald&iacute;a:</h6>
-                    <div class="ui-widget">
-                        <input id="inAlcaldia" name="inAlcaldia" placeholder="Escribe una alcald&iacute;a" required>
-                    </div>
+
+                    <input id="inAlcaldia" name="inAlcaldia" placeholder="Escribe una alcald&iacute;a" required>
+
                 </div>
 
                 <div style="position: relative; top: -53.9%; left: 33%">
@@ -151,7 +151,7 @@
 
                 <div style="position: relative; top: -58%; left: 5%">
                     <h6 style="width: 90%; text-align: center">Mensaje de uso Interno</h6>
-                    <input type="text" name="inMsjInt" placeholder="" id="inMsjInt" style="width: 90%" required/>
+                    <textarea type="text" name="inMsjInt" placeholder="" id="inMsjInt" style="width: 90%" required></textarea>
                 </div>
 
             </div>
