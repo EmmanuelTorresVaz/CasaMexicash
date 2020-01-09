@@ -1,19 +1,13 @@
 <?php
-include_once ($_SERVER['DOCUMENT_ROOT'].'/dirs.php');
-include_once (MODELO_PATH."Intereses.php");
-include_once (SQL_PATH."sqlInteresesDAO.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
+include_once(MODELO_PATH . "Intereses.php");
+include_once(SQL_PATH . "sqlInteresesDAO.php");
 
-    $inTasaInteres = $_POST['boxTasaInteres'];
+$resultado = $_POST['tipoInteresValue'];
 
-    $interes = new Interes(
-        $inTasaInteres,
-    );
+$interes = new sqlInteresesDAO();
+$interes->llenarFormIntereses($resultado) ;
 
-    $sqlIntereses = new sqlInteresesDAO();
-    if($sqlIntereses->buscarTasaInteres($interes)){
-        echo "\nTodo bien";
-    }else{
-        echo "Ocurrio un error";
-    }
 
+?>
 

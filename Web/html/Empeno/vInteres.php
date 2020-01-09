@@ -15,11 +15,44 @@ include_once(SQL_PATH . "sqlInteresesDAO.php");
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="../../style/css/magicsuggest/magicsuggest-min.css" rel="stylesheet">
     <script language="JavaScript" type="text/JavaScript">
-        function Seleccionar() {
-            var a = document.form1.liderLista.value;
-            if (a != "null") {
-                document.form1.action = "";
-                document.form1.submit();
+        function Seleccionar(tipoInteresValue) {
+           // alert("1");
+            //var tipoInteres = document.formInteres.cmbTipoInteres.value;
+            if (tipoInteresValue != "null" || tipoInteresValue != 0) {
+                //alert("2");
+                var dataEnviar = {
+                    "tipoInteresValue" : tipoInteresValue
+                };
+                //alert("3");
+
+                $.ajax({
+                    data: dataEnviar,
+                    url: '../../../com.Mexicash/Controlador/Intereses.php',
+                    type:'post',
+                    dataType: "json",
+                    beforeSend:function () {
+                        $("#pperiodo").html("Procesando");
+                    },
+                    success:function (response) {
+
+                        //alert(response.result.tipoInteres)
+                        if(response.status == 'ok') {
+
+
+
+//para asignar a input
+                            $("#idTipoInteres").val(response.result.tipoInteres);
+                            $("#idPeriodo").val(response.result.periodo);
+                            $("#idPlazo").val(response.result.plazo);
+                            $('#idTasaPorcen').val(response.result.tasa);
+                            $('#idAlmPorcen').val(response.result.alm);
+                            $('#idSeguroPorcen').val(response.result.seguro);
+                            $('#idIvaPorcen').val(response.result.iva + " %");
+                            $('#idTipoPromocion').val(response.result.tipo_Promocion);
+                            $('#idAgrupamiento').val(response.result.tipo_Agrupamiento);
+                        }
+                    },
+                })
             }
         }
     </script>
@@ -27,8 +60,8 @@ include_once(SQL_PATH . "sqlInteresesDAO.php");
 <body>
 
 
-<form method="post" name="formCliente" action="../../../com.Mexicash/Controlador/RegistroCliente.php">
-    <div class="col-2">
+<form name="formInteres">
+    <div class="col-4">
         <table class="table table-bordered border border-dark ">
             <thead class="thead-light">
             <tr>
@@ -40,20 +73,21 @@ include_once(SQL_PATH . "sqlInteresesDAO.php");
             <tr>
                 <td colspan="6" class="table-info border-dark">Tasa Interés</td>
                 <td colspan="6" class="border border-dark">
-                    <select>
+                    <select id="tipoInteres" name="cmbTipoInteres" onChange="javascript:Seleccionar($('#tipoInteres').val());">
                         <option value="0">Seleccione:</option>
                         <?php
 
                         $data = array();
 
                         $sql = new sqlInteresesDAO();
-                        $data = $sql->llenarCombo();
-
-                        for($i = 0; $i < count($data); $i++) {
+                        $data = $sql->llenarCmbTipoInteres();
+                        for ($i = 0; $i < count($data); $i++) {
                             echo "<option value=" . $data[$i]['id_interes'] . ">" . $data[$i]['tasa_interes'] . "</option>";
                         }
                         ?>
                     </select>
+
+
                 </td>
 
             </tr>
@@ -63,14 +97,14 @@ include_once(SQL_PATH . "sqlInteresesDAO.php");
                 <td colspan="4" class="table-info border border-dark">Plazo</td>
             </tr>
             <tr>
-                <td colspan="4" class="border border-dark">
-                    <input type="text" id="idTipoInteres" name="tipoInteres" size="14" disabled/>
+                <td colspan="4" class="border border-dark ">
+                    <input type="text" id="idTipoInteres" name="tipoInteres" size="20" style="text-align:center" disabled/>
                 </td>
                 <td colspan="4" class="border border-dark">
-                    <input type="text" id="idPeriodo" name="periodo" size="10" disabled/>
+                    <input type="text" id="idPeriodo" name="periodo" size="20" style="text-align:center" disabled/>
                 </td>
                 <td colspan="4" class="border border-dark">
-                    <input type="text" id="idPlazo" name="plazo" size="4" disabled/>
+                    <input type="text" id="idPlazo" name="plazo" size="6"  style="text-align:center" disabled/>
                 </td>
             </tr>
             <tr>
@@ -81,16 +115,20 @@ include_once(SQL_PATH . "sqlInteresesDAO.php");
             </tr>
             <tr>
                 <td colspan="3" class="border border-dark">
-                    <input type="text" id="idTasaPorcen" name="tasaPorcen" size="6" disabled/>
+                    <input type="text" id="idTasaPorcen" name="tasaPorcen" size="6"  style="text-align:center" disabled/>
+
                 </td>
                 <td colspan="3" class="border border-dark">
-                    <input type="text" id="idAlmPorcen" name="almPorcen" size="6" disabled/>
+                    <input type="text" id="idAlmPorcen" name="almPorcen" size="6"  style="text-align:center" disabled/>
+
                 </td>
                 <td colspan="3" class="border border-dark">
-                    <input type="text" id="idSeguroPorcen" name="seguroPorcen" size="6" disabled/>
+                    <input type="text" id="idSeguroPorcen" name="seguroPorcen" size="6"  style="text-align:center" disabled/>
+
                 </td>
                 <td colspan="3" class="border border-dark">
-                    <input type="text" id="idIvaPorcen" name="ivaPorcen" size="6" disabled/>
+                    <input type="text" id="idIvaPorcen" name="ivaPorcen" size="6"  style="text-align:center" disabled/>
+
                 </td>
             </tr>
             <tr>
@@ -99,23 +137,24 @@ include_once(SQL_PATH . "sqlInteresesDAO.php");
             </tr>
             <tr>
                 <td colspan="6" class="border border-dark">
-                    <input type="text" id="idTotalAvaluo" name="totalAvaluo" size="9" disabled/>
+                    <input type="text" id="idTotalAvaluo" name="totalAvaluo" size="9" value="0.00" style="text-align:center" disabled/>
                 </td>
                 <td colspan="6" class="border border-dark">
-                    <input type="text" id="idTotalPrestamo" name="totalPrestamo" size="9" disabled/>
+                    <input type="text" id="idTotalPrestamo" name="totalPrestamo" size="9" value="0.00" style="text-align:center" disabled/>
                 </td>
             </tr>
             <tr>
                 <td colspan="6" class="table-info border border-dark">Tipo Promoción:</td>
                 <td colspan="6" class="border border-dark">
-                    <input type="text" id="idTipoPromocion" name="tipoPromocion" size="14" disabled/>
+                    <input type="text" id="idTipoPromocion" name="tipoPromocion" size="14"  style="text-align:center" disabled/>
+
                 </td>
             </tr>
             <tr>
                 <td colspan="6" class="table-info border border-dark">Tipo Agrupamiento:</td>
-
                 <td colspan="6" class="border border-dark">
-                    <input type="text" id="idAgrupamiento" name="agrupamiento" size="14" disabled/>
+                    <input type="text" id="idAgrupamiento" name="agrupamiento" size="14"  style="text-align:center" disabled/>
+
                 </td>
             </tr>
             </tbody>

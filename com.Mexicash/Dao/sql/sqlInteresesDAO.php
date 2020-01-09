@@ -1,6 +1,6 @@
 <?php
-include_once (MODELO_PATH."Intereses.php");
-include_once (BASE_PATH."Conexion.php");
+include_once(MODELO_PATH . "Intereses.php");
+include_once(BASE_PATH . "Conexion.php");
 
 class sqlInteresesDAO
 {
@@ -9,43 +9,46 @@ class sqlInteresesDAO
     protected $db;
 
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->db = new Conexion();
         $this->conexion = $this->db->connectDB();
     }
 
-    public function buscarTasaInteres($inTasaInteres){
-        try{
+    public function buscarTasaInteres($inTasaInteres)
+    {
+        try {
             $id = -1;
 
             $buscar = "select * where  = " . $inTasaInteres;
 
-            $statement = $this->conexion->prepare( $buscar );
+            $statement = $this->conexion->prepare($buscar);
 
-            if($statement->execute()){
+            if ($statement->execute()) {
                 $id = $statement->fetch();
                 echo "Todo correcto";
                 $statement->close();
             }
-        }catch (Exception $exc){
+        } catch (Exception $exc) {
             echo $exc->getMessage();
-        }finally{
+        } finally {
             $this->db->closeDB();
         }
 
         return $id;
     }
 
-    function llenarCombo(){
+    function llenarCmbTipoInteres()
+    {
 
         $datos = array();
 
-        try{
+        try {
             $buscar = "SELECT id_interes, tasa_interes FROM cat_interes";
-            $rs = $this->conexion->query( $buscar );
+            $rs = $this->conexion->query($buscar);
 
-            if($rs->num_rows > 0){
-                while($row = $rs->fetch_assoc()) {
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
                     $data = [
                         "id_interes" => $row["id_interes"],
                         "tasa_interes" => $row["tasa_interes"]
@@ -55,47 +58,58 @@ class sqlInteresesDAO
                 }
             }
 
-        }catch (Exception $exc){
+        } catch (Exception $exc) {
             echo $exc->getMessage();
-        }finally{
+        } finally {
             $this->db->closeDB();
         }
 
         return $datos;
     }
 
-    public function cmbTipoInteres(){
+    function llenarFormIntereses($idInteres)
+    {
 
-        $cmbTipoInteres = array();
-        try{
-            $rs = null;
-            $buscar = "SELECT id_interes, tasa_interes FROM cat_interes";
+        $datos = array();
 
+        try {
+            $buscar = "SELECT id_interes, tasa_interes, tipo_interes as tipoInteres, periodo, plazo, tasa, alm, seguro, iva, tipo_Promocion, 
+                        tipo_Agrupamiento FROM cat_interes WHERE id_interes = " . $idInteres;
             $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+                $consulta = $rs->fetch_assoc();
+                $data['status'] = 'ok';
+                $data['result'] = $consulta;
+            }
 
-            if($rs->num_rows > 0){
-                while($row = $rs->fetch_assoc()){
-
-                    $cat_Interes = [
+            /*if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
                         "id_interes" => $row["id_interes"],
                         "tasa_interes" => $row["tasa_interes"],
-
+                        "tipo_interes" => $row["tipo_interes"],
+                        "periodo" => $row["periodo"],
+                        "plazo" => $row["plazo"],
+                        "taza" => $row["tasa"],
+                        "alm" => $row["alm"],
+                        "seguro" => $row["seguro"],
+                        "iva" => $row["iva"],
+                        "tipo_promocion" => $row["tipo_Promocion"],
+                        "tipo_Agrupamiento" => $row["tipo_Agrupamiento"]
                     ];
 
-                    array_push($cmbTipoInteres, $cat_Interes);
+                    array_push($datos, $data);
                 }
+            }*/
 
-            }else{
-                echo " No se ejecutó TraerTodos SqlClienteDAO";
-            }
-        }catch (Exception $exc){
+        } catch (Exception $exc) {
             echo $exc->getMessage();
         } finally {
             $this->db->closeDB();
         }
 
-        return $cmbTipoInteres;
-    }
+        //return  json_encode($data);
+        echo json_encode($data);    }
 
 
 }
