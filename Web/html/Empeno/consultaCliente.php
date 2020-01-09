@@ -123,19 +123,21 @@ $x = json_encode($nombres);
     }
 </script>
 -->
-<form method="post" name="formCliente" action="../../../com.Mexicash/Controlador/cConsultas.php">
 
     <div class="col-7 clearfix" style="position: absolute; top: 0; padding-left: 4vw; height: 60vh; border: 1px solid black" >
         <h5>Datos</h5>
-        <div style="float: left; padding-right: 30px">
-            <h6>Nombre Completo:</h6>
-            <input id="Nombres" style="width: 500px"/>
-        </div>
+        <form action="../../../com.Mexicash/Controlador/cConsultas.php" method="post">
+            <div style="float: left; padding-right: 30px">
+                <h6>Nombre Completo:</h6>
+                    <input id="Nombres" name="Nombres" type="text" style="width: 500px"/>
 
-        <div style="float: left; padding-right: 30px">
-            <br/>
-            <input type="button" class="btn btn-outline-primary" onclick="onk()" value="Ver todos" disabled>
-        </div>
+            </div>
+
+            <div style="float: left; padding-right: 30px">
+                <br/>
+                <input type="submit" class="btn btn-outline-primary" value="Ver todos">
+            </div>
+        </form>
 
         <!--<div style="float: left; padding-right: 30px; padding-top: 20px;">
             <h6>CURP:</h6>
@@ -175,7 +177,6 @@ $x = json_encode($nombres);
 
     </div>
 
-</form>
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
