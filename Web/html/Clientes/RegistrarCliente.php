@@ -32,7 +32,7 @@
 
         <form method="post" name="formCliente" action="../../../com.Mexicash/Controlador/RegistroCliente.php">
 
-            <div class="col-2" style="position: absolute; top: 15vh; padding-left: 4vw; height: 80vh;">
+            <div class="col-2" style="position: absolute; top: 16vh; padding-left: 4vw; height: 80vh;">
                 <h6>Sexo:</h6>
                 <select class="boxSexo" name="boxSexo" id="boxSexo" required>
                     <option value="">Selecciona uno</option>
@@ -54,23 +54,25 @@
 
             </div>
 
-            <div class="col-7" style="position: absolute; top: 15vh; left: 20vw; height: 83vh; border-left: 1px solid black; border-right: 1px solid black">
-                <h6>Nombre(s):</h6>
-                <input type="text" name="inNombre" id="inNombre" placeholder="Nombres" style="width: 240px" required/>
+            <div class="col-7 clearfix" style="position: absolute; top: 16vh; left: 20vw; height: 83vh; border-left: 1px solid black; border-right: 1px solid black">
+                <div style="float: left; padding-right: 40px">
+                    <h6>Nombre(s):</h6>
+                    <input type="text" name="inNombre" id="inNombre" placeholder="Nombres" style="width: 240px" required/>
+                </div>
 
-                <div style="position: relative; top: -9.9%; left: 35%">
+                <div style="float: left; padding-right: 40px">
                     <h6>Apellido Paterno:</h6>
                     <input type="text" name="inApPat" id="inApPat" placeholder="Apellido Paterno" style="width: 240px" required/>
                 </div>
 
-                <div style="position: relative; top: -19.8%; left: 70%">
+                <div style="float: left; padding-right: 40px">
                     <h6>Apellido Materno:</h6>
                     <input type="text" name="inApMat" id="inApMat" placeholder="Apellido Materno" style="width: 240px" required/>
                 </div>
 
-                <div style="position: relative; top: -14%; left: 5%">
-                    <h6 style="width: 90%; text-align: center">Ocupacion o actividad del cliente:</h6>
-                    <select type="text" name="boxOcupacion" placeholder="Selecciona uno" id="boxOcupacion" style="width: 90%; " required>
+                <div style="float: left; padding-right: 40px; padding-top: 30px">
+                    <h6>Ocupacion o actividad del cliente:</h6>
+                    <select type="text" name="boxOcupacion" placeholder="Selecciona uno" id="boxOcupacion" style="width: 25.5vw; " required>
                         <option value="">Selecciona Uno</option>
                         <option value="1">Estudiante</option>
                         <option value="2">Youtuber</option>
@@ -80,9 +82,9 @@
                     </select>
                 </div>
 
-                <div style="position: relative; top: -8.5%; left: 4%">
+                <div style="float: left; padding-right: 40px; padding-top: 30px">
                     <h6>Tipo de Identificaci&oacute;n:</h6>
-                    <select type="text" name="boxIdentificacion" placeholder="Selecciona uno" id="boxIdentificacion" style="width: 21%" required>
+                    <select type="text" name="boxIdentificacion" placeholder="Selecciona uno" id="boxIdentificacion" style="width: 25vw" required>
                         <option value="">Selecciona Uno</option>
                         <option value="1">Cartilla de Servicio Militar</option>
                         <option value="2">C&eacute;dula Profesional</option>
@@ -100,63 +102,63 @@
                     </select>
                 </div>
 
-                <div style="position: relative; top: -18.4%; left: 33%">
+                <div style="float: left; padding-right: 40px; padding-top: 30px">
                     <h6>No. Identificaci&oacute;n:</h6>
                     <input type="text" name="inNoIdentificacion" placeholder="" id="inNoIdentificacion" style="width: 240px" required/>
                 </div>
 
-                <div style="position: relative; top: -28.3%; left: 69%">
+                <div style="float: left; padding-right: 40px; padding-top: 30px>
                     <h6>RFC:</h6>
                     <input type="text" name="inRfc" id="inRfc" placeholder="" style="width: 240px" required/>
                 </div>
 
-                <div style="position: relative; top: -21%; left: 4%">
+                <div style="float: left; padding-right: 40px; padding-top: 30px">
                     <h6>Calle:</h6>
                     <input type="text" name="inCalle" placeholder="" id="inCalle" style="width: 200px" required/>
                 </div>
 
-                <div style="position: relative; top: -30.9%; left: 33%">
+                <div style="float: left; padding-right: 40px; padding-top: 30px">
                     <h6>No. Exterior:</h6>
                     <input type="text" name="inNoExt" placeholder="" id="inNoExt" style="width: 100px" required/>
                 </div>
 
-                <div style="position: relative; top: -40.8%; left: 49.5%">
+                <div style="float: left; padding-right: 40px; padding-top: 30px">
                     <h6>No. Interior</h6>
                     <input type="text" name="inNoInt" placeholder="" id="inNoInt" style="width: 100px" required/>
                 </div>
 
-                <div style="position: relative; top: -50.7%; left: 69%">
+                <div style="float: left; padding-right: 40px; padding-top: 30px">
                     <h6>Colonia:</h6>
                     <input type="text" name="inColonia" placeholder="" id="inColonia" style="width: 240px" required/>
                 </div>
 
-                <div style="position: relative; top: -44%; left: 4%">
+                <div style="float: left; padding-right: 40px; padding-top: 30px">
                     <h6>Alcald&iacute;a:</h6>
 
                     <input id="inAlcaldia" name="inAlcaldia" placeholder="Escribe una alcald&iacute;a" required>
 
                 </div>
 
-                <div style="position: relative; top: -53.9%; left: 33%">
+                <div style="float: left; padding-right: 40px; padding-top: 30px">
                     <h6>Estado de Residencia:</h6>
                     <div class="ui-widget">
                         <input id="inEstadoActual" name="inEstadoActual" placeholder="Escribe un estado" style="width: 240px" required>
                     </div>
                 </div>
 
-                <div style="position: relative; top: -63.8%; left: 69%">
+                <div style="float: left; padding-right: 40px; padding-top: 30px">
                     <h6>CP:</h6>
                     <input type="text" name="inCP" placeholder="" id="inCP" style="width: 240px" required/>
                 </div>
 
-                <div style="position: relative; top: -58%; left: 5%">
-                    <h6 style="width: 90%; text-align: center">Mensaje de uso Interno</h6>
-                    <textarea type="text" name="inMsjInt" placeholder="" id="inMsjInt" style="width: 90%" required></textarea>
+                <div style="float: left; padding-right: 40px; padding-top: 30px">
+                    <h6>Mensaje de uso Interno</h6>
+                    <textarea type="text" name="inMsjInt" placeholder="" id="inMsjInt" style="width: 35vw" required></textarea>
                 </div>
 
             </div>
 
-            <div class="col-2" style="position: absolute; top: 15vh; right: 3vw; height: 80vh;">
+            <div class="col-2" style="position: absolute; top: 16vh; right: 3vw; height: 80vh;">
                 <h4>Contacto</h4>
                 <br/>
                 <h6>Celular:</h6>
