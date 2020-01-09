@@ -1,7 +1,7 @@
 <?php
 
 
-class Cliente
+class Interes
 {
     private $id_Cliente;
 

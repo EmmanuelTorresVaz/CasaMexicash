@@ -16,15 +16,10 @@ include_once(SQL_PATH . "sqlInteresesDAO.php");
     <link href="../../style/css/magicsuggest/magicsuggest-min.css" rel="stylesheet">
     <script language="JavaScript" type="text/JavaScript">
         function Seleccionar(tipoInteresValue) {
-           // alert("1");
-            //var tipoInteres = document.formInteres.cmbTipoInteres.value;
             if (tipoInteresValue != "null" || tipoInteresValue != 0) {
-                //alert("2");
                 var dataEnviar = {
                     "tipoInteresValue" : tipoInteresValue
                 };
-                //alert("3");
-
                 $.ajax({
                     data: dataEnviar,
                     url: '../../../com.Mexicash/Controlador/Intereses.php',
@@ -34,12 +29,7 @@ include_once(SQL_PATH . "sqlInteresesDAO.php");
                         $("#pperiodo").html("Procesando");
                     },
                     success:function (response) {
-
-                        //alert(response.result.tipoInteres)
                         if(response.status == 'ok') {
-
-
-
 //para asignar a input
                             $("#idTipoInteres").val(response.result.tipoInteres);
                             $("#idPeriodo").val(response.result.periodo);
@@ -58,8 +48,6 @@ include_once(SQL_PATH . "sqlInteresesDAO.php");
     </script>
 </head>
 <body>
-
-
 <form name="formInteres">
     <div class="col-4">
         <table class="table table-bordered border border-dark ">
