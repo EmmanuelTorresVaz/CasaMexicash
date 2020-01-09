@@ -50,7 +50,7 @@ include_once(SQL_PATH . "sqlInteresesDAO.php");
                         $data = $sql->llenarCombo();
 
                         for($i = 0; $i < count($data); $i++) {
-                            echo '<option value="' . $data[$i]['id_interes'] . '">' . $data[$i]['tasa_interes'] . '</option>';
+                            echo "<option value=" . $data[$i]['id_interes'] . ">" . $data[$i]['tasa_interes'] . "</option>";
                         }
                         ?>
                     </select>
