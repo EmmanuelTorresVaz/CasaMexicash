@@ -164,15 +164,13 @@ class sqlClienteDAO
 
             $buscar = "select id_Cliente from cliente_tbl where celular = " . $celular . " and correo = '" . $correoCliente . "';";
 
-            $statement = $this->conexion->prepare( $buscar );
+            $statement = $this->conexion->query( $buscar );
 
-            if($statement->execute()){
-                $id = $statement->fetch();
-                echo "Todo correcto";
-                $statement->close();
-            }else{
-                echo "Error";
+            if($statement->num_rows > 0){
+                $fila = $statement->fetch_object();
+                $id = $fila->id_Cliente;
             }
+
         }catch (Exception $exc){
             echo $exc->getMessage();
         }finally{

@@ -52,13 +52,15 @@
         $ciudad  = $arr[0]['estado'];
         $celular = $arr[0]['celular'];
 
+        $id = $sq->buscarIdCliente(42322, "prueba@gmail.com");
+
         ?>
 
         document.getElementById('inCelular').value = "<?php echo $celular; ?>"
         document.getElementById('inDireccion').value = "<?php echo $direccion; ?>"
         document.getElementById('inCiudad').value = "<?php echo $ciudad; ?>"
 
-
+        alert("<?php echo $id; ?>");
 
     }
 </script>
