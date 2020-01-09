@@ -1,7 +1,6 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
 include_once(SQL_PATH . "sqlInteresesDAO.php");
-$mysqli = new mysqli('localhost', 'root', '', 'mexicash');
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -44,9 +43,14 @@ $mysqli = new mysqli('localhost', 'root', '', 'mexicash');
                     <select>
                         <option value="0">Seleccione:</option>
                         <?php
-                        $query = $mysqli->query("SELECT id_interes, tasa_interes FROM cat_interes");
-                        while ($valores = mysqli_fetch_array($query)) {
-                            echo '<option value="' . $valores[id_interes] . '">' . $valores[tasa_interes] . '</option>';
+
+                        $data = array();
+
+                        $sql = new sqlInteresesDAO();
+                        $data = $sql->llenarCombo();
+
+                        for($i = 0; $i < count($data); $i++) {
+                            echo '<option value="' . $data[$i]['id_interes'] . '">' . $data[$i]['tasa_interes'] . '</option>';
                         }
                         ?>
                     </select>

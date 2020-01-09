@@ -37,24 +37,31 @@ class sqlInteresesDAO
     }
 
     function llenarCombo(){
+
+        $datos = array();
+
         try{
-            $id = -1;
-
             $buscar = "SELECT id_interes, tasa_interes FROM cat_interes";
-            $statement = $this->conexion->prepare( $buscar );
+            $rs = $this->conexion->query( $buscar );
 
-            if($statement->execute()){
-                $id = $statement->fetch();
-                echo "Todo correcto";
-                $statement->close();
+            if($rs->num_rows > 0){
+                while($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_interes" => $row["id_interes"],
+                        "tasa_interes" => $row["tasa_interes"]
+                    ];
+
+                    array_push($datos, $data);
+                }
             }
+
         }catch (Exception $exc){
             echo $exc->getMessage();
         }finally{
             $this->db->closeDB();
         }
 
-        return $id;
+        return $datos;
     }
 
     public function cmbTipoInteres(){

@@ -500,3 +500,32 @@ function datos() {
 function guardar() {
     var json = JSON.stringify(datos());
 }
+
+function tablaClientes(x) {
+
+    var valores = "";
+
+    $(x).parents("tr").find("td").each(function(){
+        valores += $(this).html()+"\n";
+    });
+
+    var params = {
+        datos: valores
+    }
+
+    $.get("../../Empeño/consultaCliente", params, function (response) {
+        var json = JSON.parse(response);
+
+        var direccion = json[0]['calle'] + " " + json[0]['numExt'] + " numInt: " + json[0]['numInt'] + " " + json[0]['colonia'] + " " + json[0]['municipio'] + " " + json[0]['codigoPostal'];
+        var celular = json[0]['celular'];
+        var estado = json[0]['estado'];
+
+        document.getElementById("inDireccion").value = direccion;
+        document.getElementById("inCiudad").value = estado;
+        document.getElementById("inCelular").value = celular;
+
+
+
+        console.log(direccion + "    " + celular + "    " + estado);
+    });
+}
