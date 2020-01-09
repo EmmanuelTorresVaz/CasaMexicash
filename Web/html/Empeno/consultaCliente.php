@@ -2,8 +2,6 @@
 include_once ($_SERVER['DOCUMENT_ROOT'].'/dirs.php');
 include_once (SQL_PATH."sqlClienteDAO.php");
 
-$datos = $_GET['datos'];
-
 $sql = new sqlClienteDAO();
 
 $arr = array();
@@ -40,9 +38,6 @@ $x = json_encode($nombres);
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="../../style/css/magicsuggest/magicsuggest-min.css" rel="stylesheet">
 
-
-
-
     <script>
         $( function() {
             $( "#datepicker" ).datepicker();
@@ -57,6 +52,7 @@ $x = json_encode($nombres);
                     var params = {
                         cliente: item.item.value
                     };
+
                     $.get("../../../com.Mexicash/Controlador/cConsultaTiempoReal.php", params, function (response) {
                         var json = JSON.parse(response);
 
@@ -68,67 +64,68 @@ $x = json_encode($nombres);
                         document.getElementById("inCiudad").value = estado;
                         document.getElementById("inCelular").value = celular;
 
-
-
                         console.log(direccion + "    " + celular + "    " + estado);
-                    });
+                    })
                 }
             });
         } );
     </script>
 
+    <script type="text/javascript">
+        function onk(){
+
+            var texto = document.getElementById('inNombre').value;
+
+            var parametros = {
+                "texto" : texto
+            };
+
+            $.ajax({
+                data: parametros,
+                url: "../../js/ajax/busqueda.php",
+                type: "POST",
+                success: function (response) {
+                    $('.datosTiempoReal').html(response);
+                }
+            });
+
+            <?php
+
+            $sql = new sqlClienteDAO();
+            $sq = new sqlClienteDAO();
+            $nombre = "Alejandro";
+
+            $arr = array();
+
+            $arr = $sql->consultaClienteEmpeño($nombre, 1);
+
+            $direccion = $arr[0]['calle'] . " " . $arr[0]['numExt'] . " Num interior " . $arr[0]['numInt'] . " " . $arr[0]['colonia'] . " " . $arr[0]['municipio'] . " " . $arr[0]['codigoPostal'];
+            $ciudad  = $arr[0]['estado'];
+            $celular = $arr[0]['celular'];
+
+            $id = $sq->buscarIdCliente(42322, "prueba@gmail.com");
+
+            ?>
+
+            document.getElementById('inCelular').value = "<?php echo $celular; ?>"
+            document.getElementById('inDireccion').value = "<?php echo $direccion; ?>"
+            document.getElementById('inCiudad').value = "<?php echo $ciudad; ?>"
+
+            alert("<?php echo $id; ?>");
+
+        }
+    </script>
+
 </head>
 <body>
-<!--
-<script type="text/javascript">
-    function onk(){
 
-        /*var texto = document.getElementById('inNombre').value;
+<div class="container-fluid" id="tablaExtras" style="position: absolute; display: none; top: 10%; left: 0%; padding-left: 4vw; height: 70vh; border: 1px solid black; background-color: white; z-index: 3"></div>
 
-        var parametros = {
-            "texto" : texto
-        };
-
-        $.ajax({
-            data: parametros,
-            url: "../../js/ajax/busqueda.php"
-            type: "POST",
-            success: function (response) {
-                $('.datosTiempoReal').html(response);
-            }
-        });
-
-        <?php
-
-        $sql = new sqlClienteDAO();
-        $sq = new sqlClienteDAO();
-        $nombre = "Alejandro";
-
-        $arr = array();
-
-        $arr = $sql->consultaClienteEmpeño($nombre, 1);
-
-        $direccion = $arr[0]['calle'] . " " . $arr[0]['numExt'] . " Num interior " . $arr[0]['numInt'] . " " . $arr[0]['colonia'] . " " . $arr[0]['municipio'] . " " . $arr[0]['codigoPostal'];
-        $ciudad  = $arr[0]['estado'];
-        $celular = $arr[0]['celular'];
-
-        $id = $sq->buscarIdCliente(42322, "prueba@gmail.com");
-
-        ?>
-
-        document.getElementById('inCelular').value = "<?php echo $celular; ?>"
-        document.getElementById('inDireccion').value = "<?php echo $direccion; ?>"
-        document.getElementById('inCiudad').value = "<?php echo $ciudad; ?>"
-
-        alert("<?php echo $id; ?>");
-    */
-    }
-</script>
--->
-
-    <div class="col-7 clearfix" style="position: absolute; top: 0; padding-left: 4vw; height: 60vh; border: 1px solid black" >
+    <div class="col-7 clearfix" style="position: absolute; top: 0; padding-left: 4vw; height: 60vh; " >
+        <br/>
         <h5>Datos</h5>
-        <form action="../../../com.Mexicash/Controlador/cConsultas.php" method="post">
+        <br/>
+        <!--<form action="../../../com.Mexicash/Controlador/cConsultas.php" method="post">-->
             <div style="float: left; padding-right: 30px">
                 <h6>Nombre Completo:</h6>
                     <input id="Nombres" name="Nombres" type="text" style="width: 500px"/>
@@ -137,15 +134,9 @@ $x = json_encode($nombres);
 
             <div style="float: left; padding-right: 30px">
                 <br/>
-                <input type="submit" class="btn btn-outline-primary" value="Ver todos">
+                <input type="button" class="btn btn-outline-primary" onclick="mostrarTablaExtras()" value="Ver todos">
             </div>
-        </form>
-
-        <!--<div style="float: left; padding-right: 30px; padding-top: 20px;">
-            <h6>CURP:</h6>
-            <input type="text" name="inDireccion" placeholder="" id="inDireccion" style="width: 300px" required/>
-            <input type="button" class="btn btn-outline-primary" value="Buscar" disabled/>
-        </div>-->
+        <!--</form>-->
 
         <div style="float: left; padding-right: 30px; padding-top: 20px;">
             <h6>Direcci&oacute;n:</h6>
@@ -179,7 +170,7 @@ $x = json_encode($nombres);
 
     </div>
 
-
+<script src="../../js/main/main.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="../../style/css/magicsuggest/magicsuggest-min.js"></script>

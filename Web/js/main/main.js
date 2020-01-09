@@ -503,29 +503,37 @@ function guardar() {
 
 function tablaClientes(x) {
 
-    var valores = "";
+    var valores = [];
 
     $(x).parents("tr").find("td").each(function(){
-        valores += $(this).html()+"\n";
+        valores.push($(this).html());
     });
 
-    var params = {
-        datos: valores
-    }
+    console.log(valores);
 
-    $.get("../../Empeño/consultaCliente", params, function (response) {
-        var json = JSON.parse(response);
+    document.getElementById('inDireccion').value =valores[9];
+    document.getElementById('inCelular').value =valores[5];
+    document.getElementById('inCiudad').value =valores[10];
 
-        var direccion = json[0]['calle'] + " " + json[0]['numExt'] + " numInt: " + json[0]['numInt'] + " " + json[0]['colonia'] + " " + json[0]['municipio'] + " " + json[0]['codigoPostal'];
-        var celular = json[0]['celular'];
-        var estado = json[0]['estado'];
+    document.getElementById('tablaExtras').style.display="none";
 
-        document.getElementById("inDireccion").value = direccion;
-        document.getElementById("inCiudad").value = estado;
-        document.getElementById("inCelular").value = celular;
+}
 
+function mostrarTablaExtras() {
+    document.getElementById('tablaExtras').style.display="block";
 
+    var txtNombre = document.getElementById('Nombres').value;
 
-        console.log(direccion + "    " + celular + "    " + estado);
+    var param = {
+        "Nombres" : txtNombre
+    };
+
+    $.ajax({
+        data: param,
+        url: "../../../com.Mexicash/Controlador/cConsultas.php",
+        type: "POST",
+        success: function (response) {
+            $("#tablaExtras").html(response);
+        }
     });
 }
