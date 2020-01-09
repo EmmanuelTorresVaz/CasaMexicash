@@ -83,27 +83,43 @@ class sqlClienteDAO
         // TODO: Implement borraCliente() method.
     }
 
-    public function traerTodos($nombre){
+    /**
+     *
+     * @param $nombre => Nombre del Usuario
+     * @param $opc => Opción para autocompletar datos o para ver todos los usuarios
+     *
+     * @return mixed
+     */
+
+    public function consultaClienteEmpeño($nombre, $opc){
 
         $clien = array();
         try{
             $rs = null;
-            $buscar = "select nombre, apellido_Pat, apellido_Mat, fecha_Nacimiento, curp, celular, rfc, telefono, correo, 
-            estado, codigo_Postal, municipio, colonia, calle, num_exterior, num_interior from cliente_tbl 
-            where concat(nombre, ' ', apellido_Pat, ' ', apellido_Mat) like concat('%', '". $nombre . "', '%');";
+            $buscar = "";
+
+            if($opc == 1){
+                $buscar = "select * from cliente_tbl where concat(nombre, ' ', apellido_Pat, ' ', apellido_Mat) like concat('%', '". $nombre . "', '%');";
+            }else{
+                if($opc == 2){
+                    $buscar = "select nombre, apellido_Pat, apellido_Mat, fecha_Nacimiento, curp, celular, rfc, telefono, correo, 
+                    estado, codigo_Postal, municipio, colonia, calle, num_exterior, num_interior from cliente_tbl 
+                    where concat(nombre, ' ', apellido_Pat, ' ', apellido_Mat) like concat('%', '". $nombre . "', '%');";
+                }
+            }
 
             $rs = $this->conexion->query($buscar);
+
             if($rs->num_rows > 0){
                 while($row = $rs->fetch_assoc()){
 
+                /*
                     $cliente = new Cliente($row["nombre"], $row["apellido_Pat"], $row["apellido_Mat"], 0, $row["fecha_Nacimiento"], $row["curp"], 0, 0,0,
-                        $row["celular"], $row["rfc"], $row["telefono"], $row["correo"], $row["estado"], $row["codigo_Postal"], $row["municipio"], $row["colonia"], $row["calle"], $row["num_exterior"],
-                        $row["num_interior"], 0, 0);
+                    $row["celular"], $row["rfc"], $row["telefono"], $row["correo"], $row["estado"], $row["codigo_Postal"], $row["municipio"], $row["colonia"], $row["calle"], $row["num_exterior"],
+                    $row["num_interior"], 0, 0);
+                */
 
-                    array_push($clien, $cliente);
-
-                    /*
-                    $data = [
+                    $cliente = [
                         "nombre" => $row["nombre"],
                         "apellidoPat" => $row["apellido_Pat"],
                         "apellidoMat" => $row["apellido_Mat"],
@@ -121,12 +137,14 @@ class sqlClienteDAO
                         "numExt" => $row["num_exterior"],
                         "numInt" => $row["num_interior"]
                     ];
-                    */
+
+                    array_push($clien, $cliente);
                 }
 
             }else{
-                echo " No se ejectó TraerTodos SqlClienteDAO";
+                echo " No se ejecutó TraerTodos SqlClienteDAO";
             }
+
 
         }catch (Exception $exc){
             echo $exc->getMessage();

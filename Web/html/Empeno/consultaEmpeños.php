@@ -1,3 +1,7 @@
+<?php
+    include_once ($_SERVER['DOCUMENT_ROOT'].'/dirs.php');
+    include_once (SQL_PATH."sqlClienteDAO.php");
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -28,6 +32,36 @@
 <body>
 <div class="menuContainer" ></div>
 
+<script type="text/javascript">
+    function onk(){
+
+        var x = document.getElementById('inNombre').value;
+
+        <?php
+        $texto = "<script> document.getElementById('inNombre').value; </script>";
+
+        $sql = new sqlClienteDAO();
+
+        $nombre = "Alejandro";
+
+        $arr = array();
+
+        $arr = $sql->consultaClienteEmpeño($nombre, 1);
+
+        $direccion = $arr[0]['calle'] . " " . $arr[0]['numExt'] . " Num interior " . $arr[0]['numInt'] . " " . $arr[0]['colonia'] . " " . $arr[0]['municipio'] . " " . $arr[0]['codigoPostal'];
+        $ciudad  = $arr[0]['estado'];
+        $celular = $arr[0]['celular'];
+
+
+        ?>
+
+        document.getElementById('inCelular').value = "<?php echo $celular; ?>"
+        document.getElementById('inDireccion').value = "<?php echo $direccion; ?>"
+        document.getElementById('inCiudad').value = "<?php echo $ciudad; ?>"
+
+    }
+</script>
+
 <form method="post" name="formCliente" action="../../../com.Mexicash/Controlador/cConsultas.php">
 
     <div class="col-7 clearfix" style="position: absolute; top: 10vh; padding-left: 4vw; height: 60vh; border: 1px solid black" >
@@ -39,9 +73,9 @@
 
         <div style="float: left; padding-right: 30px">
             <br/>
+            <input type="button" class="btn btn-outline-primary" onclick="onk()" value="Buscar">
             <input type="button" class="btn btn-outline-primary" value="Editar">
-            <input type="button" class="btn btn-outline-primary" value="Historial">
-            <input type="button" class="btn btn-outline-primary" value="Ver todos" disabled>
+            <input type="button" class="btn btn-outline-primary" onclick="cambiar(1)" value="Ver todos" disabled>
         </div>
 
         <!--<div style="float: left; padding-right: 30px; padding-top: 20px;">
