@@ -1,3 +1,7 @@
+<?php
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
+    include_once (SQL_PATH."sqlCatalogoDAO.php");
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -50,7 +54,22 @@
                 <input type="text" id="inCurp" name="inCurp" placeholder="" required/>
                 <br/><br/>
                 <h6>Promoci&oacute;n:</h6>
-                <input type="text" name="inInstFin" placeholder="" id="inInstFin" required/>
+                <select type="text" name="inInstFin" placeholder="Selecciona uno" id="inInstFin" style="width: 200px" required>
+                    <option value="">Selecciona Uno</option>
+                    <?php
+
+                    $dataPromo = array();
+
+                    $sql = new sqlCatalogoDAO();
+
+                    $dataPromo = $sql->traePromociones();
+
+                    for($i = 0; $i < count($dataPromo); $i++){
+                        echo "<option value=" . $dataPromo[$i]['id_Cat_Cliente'] . ">" . $dataPromo[$i]['descripcion'] . "</option>";
+                    }
+
+                    ?>
+                </select>
 
             </div>
 
@@ -86,19 +105,18 @@
                     <h6>Tipo de Identificaci&oacute;n:</h6>
                     <select type="text" name="boxIdentificacion" placeholder="Selecciona uno" id="boxIdentificacion" style="width: 25vw" required>
                         <option value="">Selecciona Uno</option>
-                        <option value="1">Cartilla de Servicio Militar</option>
-                        <option value="2">C&eacute;dula Profesional</option>
-                        <option value="3">Certificado de matr&iacute;cula consular</option>
-                        <option value="4">Credenciales y Carnets expedidos por el IMSS</option>
-                        <option value="5">Documentaci&oacute;n expedida por el INE</option>
-                        <option value="6">INE</option>
-                        <option value="7">Pasaporte</option>
-                        <option value="8">Licencia para conducir</option>
-                        <option value="9">Credencial emitida por autoridades estatales</option>
-                        <option value="10">Credencial emitida por autoridades federales</option>
-                        <option value="11">Credencial emitida por autoridades municipales</option>
-                        <option value="12">Tarjeta de afiliaci&oacute; al INP</option>
-                        <option value="13">Tarjeta &uacute;nica de identificaci&oacute;n militar</option>
+                        <?php
+
+                            $dataIdent = array();
+
+                            $sq = new sqlCatalogoDAO();
+                            $dataIdent = $sq->traeIdentificaciones();
+
+                            for($i = 0; $i < count($dataIdent); $i++){
+                                echo "<option value=" . $dataIdent[$i]['id_Cat_Cliente'] . ">" . $dataIdent[$i]['descripcion'] . "</option>";
+                            }
+
+                        ?>
                     </select>
                 </div>
 
@@ -153,7 +171,7 @@
 
                 <div style="float: left; padding-right: 40px; padding-top: 30px">
                     <h6>Mensaje de uso Interno</h6>
-                    <textarea type="text" name="inMsjInt" placeholder="" id="inMsjInt" style="width: 35vw" required></textarea>
+                    <textarea type="text" name="inMsjInt" placeholder="" id="inMsjInt" style="width: 35vw; height: 25vh" required></textarea>
                 </div>
 
             </div>
