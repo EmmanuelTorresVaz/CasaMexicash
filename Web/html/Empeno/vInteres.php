@@ -1,3 +1,9 @@
+<?php
+include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
+include_once(SQL_PATH . "sqlInteresesDAO.php");
+$mysqli = new mysqli('localhost', 'root', '', 'mexicash');
+
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,11 +15,21 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="../../style/css/magicsuggest/magicsuggest-min.css" rel="stylesheet">
+    <script language="JavaScript" type="text/JavaScript">
+        function Seleccionar() {
+            var a = document.form1.liderLista.value;
+            if (a != "null") {
+                document.form1.action = "";
+                document.form1.submit();
+            }
+        }
+    </script>
 </head>
 <body>
 
+
 <form method="post" name="formCliente" action="../../../com.Mexicash/Controlador/RegistroCliente.php">
-    <div class="col-2" >
+    <div class="col-2">
         <table class="table table-bordered border border-dark ">
             <thead class="thead-light">
             <tr>
@@ -25,12 +41,17 @@
             <tr>
                 <td colspan="6" class="table-info border-dark">Tasa Interés</td>
                 <td colspan="6" class="border border-dark">
-                    <select class="boxSexo" name="boxSexo" id="boxSexo" required>
-                        <option value="">Selecciona uno</option>
-                        <option value="1">Hombre</option>
-                        <option value="2">Mujer</option>
+                    <select>
+                        <option value="0">Seleccione:</option>
+                        <?php
+                        $query = $mysqli->query("SELECT id_interes, tasa_interes FROM cat_interes");
+                        while ($valores = mysqli_fetch_array($query)) {
+                            echo '<option value="' . $valores[id_interes] . '">' . $valores[tasa_interes] . '</option>';
+                        }
+                        ?>
                     </select>
                 </td>
+
             </tr>
             <tr>
                 <td colspan="4" class="table-info border border-dark">Tipo Interés</td>
@@ -39,7 +60,7 @@
             </tr>
             <tr>
                 <td colspan="4" class="border border-dark">
-                    <input type="text" id="idTipoInteres" name="tipoInteres" size="14"  disabled/>
+                    <input type="text" id="idTipoInteres" name="tipoInteres" size="14" disabled/>
                 </td>
                 <td colspan="4" class="border border-dark">
                     <input type="text" id="idPeriodo" name="periodo" size="10" disabled/>
@@ -56,16 +77,16 @@
             </tr>
             <tr>
                 <td colspan="3" class="border border-dark">
-                    <input type="text" id="idTasaPorcen" name="tasaPorcen" size="6"   disabled/>
+                    <input type="text" id="idTasaPorcen" name="tasaPorcen" size="6" disabled/>
                 </td>
                 <td colspan="3" class="border border-dark">
-                    <input type="text" id="idAlmPorcen" name="almPorcen" size="6"  disabled/>
+                    <input type="text" id="idAlmPorcen" name="almPorcen" size="6" disabled/>
                 </td>
                 <td colspan="3" class="border border-dark">
-                    <input type="text" id="idSeguroPorcen" name="seguroPorcen" size="6"  disabled/>
+                    <input type="text" id="idSeguroPorcen" name="seguroPorcen" size="6" disabled/>
                 </td>
                 <td colspan="3" class="border border-dark">
-                        <input type="text" id="idIvaPorcen" name="ivaPorcen" size="6" disabled/>
+                    <input type="text" id="idIvaPorcen" name="ivaPorcen" size="6" disabled/>
                 </td>
             </tr>
             <tr>
@@ -77,7 +98,7 @@
                     <input type="text" id="idTotalAvaluo" name="totalAvaluo" size="9" disabled/>
                 </td>
                 <td colspan="6" class="border border-dark">
-                    <input type="text" id="idTotalPrestamo" name="totalPrestamo"size="9" disabled/>
+                    <input type="text" id="idTotalPrestamo" name="totalPrestamo" size="9" disabled/>
                 </td>
             </tr>
             <tr>
