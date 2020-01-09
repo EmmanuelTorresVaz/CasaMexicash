@@ -74,7 +74,7 @@ class sqlAutoDAO
 
             //Extras-------------------------------
             $msjInternoAuto = $auto->getMsjInternoAuto();
-            $comoSeEntero = $auto->getComoSeEntero();
+             $comoSeEntero = $auto->getComoSeEntero();
 
             $insertar = "";
 

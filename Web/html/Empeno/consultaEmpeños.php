@@ -41,7 +41,7 @@
         $texto = "<script> document.getElementById('inNombre').value; </script>";
 
         $sql = new sqlClienteDAO();
-
+        $sq = new sqlClienteDAO();
         $nombre = "Alejandro";
 
         $arr = array();
@@ -52,12 +52,13 @@
         $ciudad  = $arr[0]['estado'];
         $celular = $arr[0]['celular'];
 
-
         ?>
 
         document.getElementById('inCelular').value = "<?php echo $celular; ?>"
         document.getElementById('inDireccion').value = "<?php echo $direccion; ?>"
         document.getElementById('inCiudad').value = "<?php echo $ciudad; ?>"
+
+
 
     }
 </script>

@@ -144,8 +144,6 @@ class sqlClienteDAO
             }else{
                 echo " No se ejecutó TraerTodos SqlClienteDAO";
             }
-
-
         }catch (Exception $exc){
             echo $exc->getMessage();
         } finally {
@@ -164,7 +162,7 @@ class sqlClienteDAO
         try{
             $id = -1;
 
-            $buscar = "select idUsuario where $celular = " . $celular . " and correoCliente = '" . $correoCliente . "'";
+            $buscar = "select id_Cliente from cliente_tbl where celular = " . $celular . " and correo = '" . $correoCliente . "';";
 
             $statement = $this->conexion->prepare( $buscar );
 
@@ -172,6 +170,8 @@ class sqlClienteDAO
                 $id = $statement->fetch();
                 echo "Todo correcto";
                 $statement->close();
+            }else{
+                echo "Error";
             }
         }catch (Exception $exc){
             echo $exc->getMessage();
