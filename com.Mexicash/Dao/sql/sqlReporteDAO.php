@@ -72,6 +72,7 @@ class sqlReporteDAO
 
                     }else{
                         if($opc == 4){
+                            $buscar = "SELECT * FROM contrato_tbl INNER JOIN articulo_tbl ON contrato_tbl.id_Articulo = articulo_tbl.id_Contrato";
                             $buscarArticulo = "select * from contrato_tbl where not (id_Articulo = null) ;";
                             $rs = $this->conexion->query( $buscarArticulo );
 
@@ -104,6 +105,75 @@ class sqlReporteDAO
                     }
                 }
             }
+
+        }catch (Exception $exc){
+            echo  $exc->getMessage();
+        }finally{
+            $this->db->closeDB();
+        }
+
+        return $datos;
+    }
+
+
+    /**
+     *
+     * traeReportesArticulo Metod()
+     * @param $opc
+     * @comment -> $opc (1, 2, 3, 4) ... 1 -> Empeños; 2 -> Desempeños; 3 -> Refrendos; 4 -> Almoneda; 5 -> Todos;
+     * @return mixed
+     *
+     */
+
+    public function traeInventario($opc){
+        $datos = array();
+
+        try {
+            $buscar = null;
+
+
+
+            $rs = $this->conexion->query( $buscar );
+
+            if($rs->num_rows > 0){
+                while($row = $rs->fetch_assoc()) {
+                    $estatus = 0;
+                    switch ($row["id_Estatus"]){
+                        case 1:
+                            $estatus = "Empeñado";
+                            break;
+                        case 2:
+                            $estatus = "Desempeñado";
+                            break;
+                        case 3:
+                            $estatus = "Refrendo";
+                            break;
+                        case 4:
+                            $estatus = "Almoneda";
+                            break;
+                    }
+                    $data = [
+                        //Contrato
+                        "fecha_Vencimiento" => $row["fecha_Vencimiento"],
+                        "total_Prestamo" => $row["total_Prestamo"],
+                        //"fecha_Alm" => $row["fecha_Alm"],
+                        "fecha_Movimiento" => $row["fecha_Movimiento"],
+                        "id_Estatus" => $estatus,
+                        "observaciones" => $row["observaciones"],
+                        //Contrato
+
+                        //Articulo
+                        "tipo" => $row["tipo"],
+                        "prenda" => $row["prenda"],
+                        "kilataje" => $row["kilataje"],
+                        "cantidad" => $row["cantidad"],
+                        "peso" => $row["peso"]
+                    ];
+
+                    array_push($datos, $data);
+                }
+            }
+
 
         }catch (Exception $exc){
             echo  $exc->getMessage();
