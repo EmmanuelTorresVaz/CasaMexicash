@@ -50,20 +50,22 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
         }
 
         function Limpiar() {
-            alert("limpiar");
             $('#idFormArticulos').trigger("reset");
         }
 
-        function Agregar() {
+
+
+       function Agregar() {
             var formElectronico = $("#idTipoElectronico").val();
             var formMetal = $("#idTipoMetal").val();
-            if (formElectronico > 0) {
+            if (formMetal > 0) {
                 alert("Estas en el form de electronicos");
-            } else if (formMetal > 0) {
+            } else if (formElectronico > 0) {
               //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
-                    var dataEnviar = {
-                        "idTipo": 1,
-                        "idMetal": $("#idTipoMetal").val(),
+                alert("Estas en el form de electronicos");
+                   var dataEnviar = {
+                        "idTipo": 2,
+                        "idTipoElectronico": $("#idTipoElectronico").val(),
                         "idFamilia": $("#idFamilia").val(),
                         "idMarca": $("#idMarca").val(),
                         "idEstado": $("#idEstado").val(),
@@ -71,29 +73,26 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
                         "idTamaño": $("#idTamaño").val(),
                         "idColor": $("#idColor").val(),
                         "idSerie": $("#idSerie").val(),
-                        "idVitrina": $("#idVitrina").val(),
-                        "idPrestamo": $("#idPrestamo").val(),
-                        "idAvaluo": $("#idAvaluo").val(),
-                        "idPrestamoMax": $("#idPrestamoMax").val(),
-                        "idUbicacion": $("#idUbicacion").val(),
-                        "idReferencia": $("#idReferencia").val(),
-                        "idDetallePrenda": $("#idDetallePrenda").val(),
+                        "idPrestamoElectronico": $("#idPrestamoElectronico").val(),
+                        "idAvaluoElectronico": $("#idAvaluoElectronico").val(),
+                        "idPrestamoMaxElectronico": $("#idPrestamoMaxElectronico").val(),
+                        "idUbivacion": $("#idUbivacion").val(),
+                       "idDetallePrendaElectronico": $("#idDetallePrendaElectronico").val()
                     };
-                    $.ajax({
-                        data: dataEnviar,
-                        url: '../../../com.Mexicash/Controlador/Articulo.php',
-                        type: 'post',
-                        dataType: "json",
-                        beforeSend: function () {
-                            alert("se va");
-                        },
-                        success: function (response) {
-                            alert("regresa");
-                            if (response.status == 'ok') {
-                                alert("Vamosbien");
-                            }
-                        },
-                    })
+
+                alert($("#idTipoElectronico").val());//1
+                alert($("#idFamilia").val());//2
+                alert($("#idMarca").val());//3
+                alert($("#idEstado").val());//4
+                alert($("#idModelo").val());//5
+                alert($("#idTamaño").val());//6
+                alert($("#idColor").val());//7
+                alert($("#idSerie").val());//8
+                alert($("#idPrestamoElectronico").val());//9
+                alert($("#idAvaluoElectronico").val());//10
+                alert($("#idPrestamoMaxElectronico").val());//11
+                alert($("#idUbivacion").val());//12
+                alert($("#idDetallePrendaElectronico").val());//13
             }
         }
 
@@ -105,11 +104,11 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
         <div class="row">
             <div class="col">
                 <ul class="nav nav-pills">
-                    <li class="active"><a data-toggle="pill" href="#menuMetales" onclick="Limpiar();">Metales</a></li>
-                    <li><a data-toggle="pill" href="#menuElectronicos" onclick="Limpiar();">Electrónicos/Varios</a></li>
+                    <li ><a data-toggle="pill" href="#menuMetales" onclick="Limpiar();">Metales</a></li>
+                    <li class="active"><a data-toggle="pill" href="#menuElectronicos" onclick="Limpiar();">Electrónicos/Varios</a></li>
                 </ul>
                 <div class="tab-content">
-                    <div id="menuMetales" class="tab-pane fade in active">
+                    <div id="menuMetales" class="tab-pane ">
                         &nbsp;
                         <table class="table table-bordered border border-dark ">
                             <tbody class="text-body border" align="center">
@@ -212,7 +211,7 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
                             </tbody>
                         </table>
                     </div>
-                    <div id="menuElectronicos" class="tab-pane fade">
+                    <div id="menuElectronicos" class="tab-pane fade in active">
                         &nbsp;
                         <table class="table table-bordered border border-dark ">
                             <tbody class="text-body border" align="center">
@@ -220,8 +219,8 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
                                 <td colspan="6" class=" border-dark">Tipo:</td>
                                 <td colspan="6" class="border border-dark">
                                     <select id="idTipoElectronico" name="cmbTipoElectronico" required>
-                                        <option value="0">Seleccione:</option>
-                                        <option value="1">1</option>
+                                        <option value="1">1:</option>
+                                        <option value="2">1</option>
                                     </select>
                                 </td>
                             </tr>
@@ -229,37 +228,37 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
                                 <td colspan="6" class=" border-dark">Familia:</td>
                                 <td colspan="6" class="border border-dark">
                                     <input type="text" id="idFamilia" name="familia" size="6"
-                                           style="text-align:center"/>
+                                           style="text-align:center" value="2"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="6" class=" border-dark">Marca:</td>
                                 <td colspan="6" class="border border-dark">
-                                    <input type="text" id="idMarca" name="marca" size="6" style="text-align:center"/>
+                                    <input type="text" id="idMarca" name="marca" size="6" style="text-align:center" value="3"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="3" class=" border-dark">Estado:</td>
                                 <td colspan="3" class="border border-dark">
                                     <select id="idEstado" name="cmbEstado">
-                                        <option value="0">Seleccione:</option>
+                                        <option value="4">4:</option>
                                         <option value="1">1</option>
                                     </select>
                                 </td>
                                 <td colspan="3" class=" border border-dark">Modelo:</td>
                                 <td colspan="3" class=" border border-dark">
-                                    <input type="text" id="idModelo" name="modelo" size="6" style="text-align:center"/>
+                                    <input type="text" id="idModelo" name="modelo" size="6" style="text-align:center" value="5"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="3" class=" border-dark">Tamaño:</td>
                                 <td colspan="3" class=" border border-dark">
-                                    <input type="text" id="idTamaño" name="tamaño" size="6" style="text-align:center"/>
+                                    <input type="text" id="idTamaño" name="tamaño" size="6" style="text-align:center" value="6"/>
                                 </td>
                                 <td colspan="3" class=" border border-dark">Color:</td>
                                 <td colspan="3" class="border border-dark">
                                     <select id="idColor" name="cmbColor">
-                                        <option value="0">Seleccione:</option>
+                                        <option value="7">7:</option>
                                         <option value="1">1</option>
                                     </select>
                                 </td>
@@ -267,52 +266,40 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
                             <tr>
                                 <td colspan="6" class=" border border-dark">No.Serie:</td>
                                 <td colspan="6" class=" border border-dark">
-                                    <input type="text" id="idSerie" name="serie" size="6" style="text-align:center"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="6" class=" border border-dark">P.Vitrina:</td>
-                                <td colspan="6" class=" border border-dark">
-                                    <input type="text" id="idVitrina" name="vitrina" size="6"
-                                           style="text-align:center"/>
+                                    <input type="text" id="idSerie" name="serie" size="6" style="text-align:center" value="8"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="3" class=" border-dark">Préstamo:</td>
                                 <td colspan="3" class=" border border-dark">
-                                    <input type="text" id="idPrestamo" name="prestamo" size="6"
-                                           style="text-align:center"/>
+                                    <input type="text" id="idPrestamoElectronico" name="prestamoE" size="6"
+                                           style="text-align:center"/ value="9">
                                 </td>
                                 <td colspan="3" class=" border-dark">Avalúo:</td>
                                 <td colspan="3" class=" border border-dark">
-                                    <input type="text" id="idAvaluo" name="avaluo" size="6" style="text-align:center"/>
+                                    <input type="text" id="idAvaluoElectronico" name="avaluoE" size="6" style="text-align:center" value="10"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="6" class=" border border-dark">Prestamo Máximo:</td>
                                 <td colspan="6" class="border border-dark">
-                                    <input type="text" id="idPrestamoMax" name="prestamoMaximo" size="6"
-                                           style="text-align:center" value="0.00"/>
+                                    <input type="text" id="idPrestamoMaxElectronico" name="prestamoMaximoE" size="6"
+                                           style="text-align:center" value="11.00"/>
                                     <label>grs</label></td>
                             </tr>
                             <tr>
-                                <td colspan="3" class=" border border-dark">Ubicación:</td>
-                                <td colspan="3" class="border border-dark">
-                                    <input type="text" id="idUbicacion" name="ubicacion" size="6"
-                                           style="text-align:center"/>
-                                </td>
-                                <td colspan="3" class=" border border-dark">Referencia:</td>
-                                <td colspan="3" class="border border-dark">
-                                    <input type="text" id="idReferencia" name="referencia" size="6"
-                                           style="text-align:center"/>
+                                <td colspan="6" class=" border border-dark">Ubivación:</td>
+                                <td colspan="6" class="border border-dark">
+                                    <input type="text" id="idUbivacion" name="ubivacion" size="6"
+                                           style="text-align:center" value="12"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="12" class=" border border-dark" align="left">Detalle de la prenda:</td>
                             </tr>
                             <tr>
-                                <td colspan="12" class="border border-dark">
-                                    <textarea rows="4" cols="50">
+                                <td colspan="12" class="border border-dark" id="idDetallePrendaElectronico" name="detallePrenda">
+                                    <textarea rows="4" cols="50" >13
                                     </textarea>
                                 </td>
                             </tr>
