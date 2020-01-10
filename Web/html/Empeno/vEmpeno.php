@@ -13,49 +13,34 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="../../style/css/magicsuggest/magicsuggest-min.css" rel="stylesheet">
 
-    <script>
-        $(document).ready(function () {
-            $('.menuContainer').load('menu.php');
-        });
-    </script>
-    <script>
-        $( function() {
-            $( "#datepicker" ).datepicker();
-        } );
-    </script>
 
 </head>
 <body>
-<div class="menuContainer" ></div>
+<div class="menuContainer"></div>
 
 <h4 style="position: absolute; width: 95%; text-align: center; top: 9.5%">Empeño</h4>
 
-<form method="post" name="formCliente" action="../../../com.Mexicash/Controlador/RegistroCliente.php">
+<form method="post" name="formEmpeno">
 
-    <div class="row-2" style="position: absolute; top: 15vh; padding-left: 4vw; height: 80vh;">
-        <h6>Nombre(s):</h6>
-        <input type="text" name="inNombre" id="inNombre" placeholder="Nombres" style="width: 240px" required/>
-
-        <div style="position: relative; top: -9.9%; left: 35%">
-            <h6>Apellido Paterno:</h6>
-            <input type="text" name="inApPat" id="inApPat" placeholder="Apellido Paterno" style="width: 240px" required/>
+    <div id="contenedor" class="container">
+        <div class="row">
+            <div class="col-6">
+                <iframe height="300px" width="100%" src="consultaCliente.php" name="iframe_b"></iframe>
+            </div>
+            <div class="col-6">
+                <iframe height="300px" width="100%" src="vInteres.php" name="iframe_b"></iframe>
+            </div>
         </div>
-
-        <div style="position: relative; top: -19.8%; left: 70%">
-            <h6>Apellido Materno:</h6>
-            <input type="text" name="inApMat" id="inApMat" placeholder="Apellido Materno" style="width: 240px" required/>
+        <div class="row">
+            <div class="col-12">
+                <iframe height="300px" width="100%" src="vArticulos.php" name="iframe_b"></iframe>
+            </div>
         </div>
-    </div>
-
-    <div class="row-7" style="position: absolute; top: 15vh; left: 20vw; height: 83vh; border-left: 1px solid black; border-right: 1px solid black">
-
-
-    </div>
-
-    <div class="row-2" style="position: absolute; top: 15vh; right: 3vw; height: 80vh;">
-
-    </div>
-
+        <div class="row">
+            <div class="col-12">
+                <button type="button" class="btn btn-warning" onclick="Cargar();">Cargar</button>
+            </div>
+        </div>
 </form>
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>

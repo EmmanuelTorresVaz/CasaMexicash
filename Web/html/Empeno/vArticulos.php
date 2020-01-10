@@ -98,7 +98,6 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
         }
 
         function Cargar() {
-            alert($("#idFolio").val())
         }
     </script>
 </head>
@@ -318,21 +317,37 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
                 </div>
             </div>
             <div class="col">
-                <table class="table table-responsive table-striped">
+                <table class="table table-responsive table-striped" id="tblArticulos">
                     <thead>
                     <tr>
-                        <th>Cant.</th>
-                        <th>Prenda</th>
-                        <th>Peso</th>
-                        <th>Kilates</th>
-                        <th>Avalúo</th>
+                        <th>Folio</th>
+                        <th>Marca</th>
+                        <th>Estado</th>
+                        <th>Modelo</th>
                         <th>Préstamo</th>
+                        <th>Avalúo</th>
                         <th>Observaciones</th>
                     </tr>
                     </thead>
                     <tbody>
+                    <?php
+                    $sql = new sqlArticulosDAO();
+                    $data = $sql->buscarArticulo();
 
+                    for ($i = 0; $i < count($data); $i++) {
+                        ?>
+                        <tr id="<?php echo $data[$i]['id_Articulo']; ?>">
+                            <td><?php echo$data[$i]['id_Contrato']; ?></td>
+                            <td><?php echo $data[$i]['marca']; ?></td>
+                            <td><?php echo $data[$i]['estado']; ?></td>
+                            <td><?php echo $data[$i]['modelo']; ?></td>
+                            <td><?php echo $data[$i]['prestamo']; ?></td>
+                            <td><?php echo $data[$i]['avaluo']; ?></td>
+                            <td><?php echo $data[$i]['detalle']; ?></td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
+
                 </table>
             </div>
         </div>

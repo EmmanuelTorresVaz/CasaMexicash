@@ -118,6 +118,8 @@ $x = json_encode($nombres);
 </head>
 <body>
 
+
+
 <div class="container-fluid" id="tablaExtras" style="position: absolute; display: none; top: 10%; left: 0%; padding-left: 4vw; height: 70vh; border: 1px solid black; background-color: white; z-index: 3"></div>
 
     <div class="col-7 clearfix" style="position: absolute; top: 0; padding-left: 4vw; height: 60vh; " >
