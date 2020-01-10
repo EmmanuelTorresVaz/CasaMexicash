@@ -127,79 +127,56 @@ class sqlReporteDAO
      *
      */
 
-    public function traeInventario($empeño, $desempeño, $refrendo, $almoneda)
+    public function traeInventario($empe, $desempe, $refrendo, $almoneda)
     {
         $datos = array();
 
         try {
-            $buscar = null;
+            $buscar = "";
 
-            $buscar = "SELECT * FROM contrato_tbl as C " .
-                "INNER JOIN articulo_tbl as A " .
-                "ON C.id_Articulo = A.id_Contrato " .
-                "INNER JOIN cat_estatus as E " .
-                "ON A.id_Estatus = E.id_Estatus";
+            if($empe == 1||$desempe ==1||$refrendo == 1||$almoneda==1){
+                $buscar = $buscar . "where";
 
-            if($empeño== true||$desempeño ==true||$refrendo||$almoneda==true){
-                $buscar = $buscar . "Where";
-
-                if($empeño==true){
-                    $buscar = $buscar . "estatus == 'Empeño'";
-                    if($desempeño ==true||$refrendo||$almoneda==true){
-                        $buscar = $buscar . " AND ";
+                if($empe==1){
+                    $buscar = $buscar . " e.descripcion = 'Empeñado'";
+                    if($desempe == 1||$refrendo == 1||$almoneda==1){
+                        $buscar = $buscar . " or ";
                     }
                 }
-                if($desempeño==true){
-                    $buscar = $buscar . "estatus == 'Desempeño'";
-                    if($refrendo||$almoneda==true){
-                        $buscar = $buscar . " AND ";
+                if($desempe==1){
+                    $buscar = $buscar . " e.descripcion = 'Desempeñado'";
+                    if($refrendo==1||$almoneda==1){
+                        $buscar = $buscar . " or ";
                     }
                 }
-                if($almoneda==true){
-                    $buscar = $buscar . "estatus == 'almoneda'";
-                    if($almoneda==true){
-                        $buscar = $buscar . " AND ";
+                if($almoneda==1){
+                    $buscar = $buscar . " e.descripcion = 'Almoneda'";
+                    if($almoneda==1){
+                        $buscar = $buscar . " or ";
                     }
                 }
-                if($refrendo==true){
-                    $buscar = $buscar . "estatus == 'Refrendo'";
+                if($refrendo==1){
+                    $buscar = $buscar . " e.descripcion = 'Refrendo'";
                 }
             }
 
 
+        $buscarInv = "SELECT * FROM contrato_tbl as c left JOIN articulo_tbl as a ON c.id_Articulo = a.id_Contrato INNER JOIN cat_estatus as e ON a.id_Estatus = e.id_Estatus " . $buscar . ";";
 
-            $rs = $this->conexion->query($buscar);
+            $rs = $this->conexion->query($buscarInv);
 
             if ($rs->num_rows > 0) {
                 while ($row = $rs->fetch_assoc()) {
-                    $estatus = 0;
-                    switch ($row["id_Estatus"]) {
-                        case 1:
-                            $estatus = "Empeñado";
-                            break;
-                        case 2:
-                            $estatus = "Desempeñado";
-                            break;
-                        case 3:
-                            $estatus = "Refrendo";
-                            break;
-                        case 4:
-                            $estatus = "Almoneda";
-                            break;
-                    }
                     $data = [
                         //Contrato
                         "fecha_Vencimiento" => $row["fecha_Vencimiento"],
                         "total_Prestamo" => $row["total_Prestamo"],
-                        //"fecha_Alm" => $row["fecha_Alm"],
-                        "fecha_Movimiento" => $row["fecha_Movimiento"],
-                        "id_Estatus" => $estatus,
-                        "observaciones" => $row["observaciones"],
+                        "estatus" => $row["descripcion"],
                         //Contrato
 
                         //Articulo
-                        "tipo" => $row["tipo"],
-                        "prenda" => $row["prenda"],
+                        "id_Articulo" => $row["id_Articulo"],
+                        "detalle" => $row["detalle"],
                         "kilataje" => $row["kilataje"],
                         "cantidad" => $row["cantidad"],
                         "peso" => $row["peso"]
