@@ -5,7 +5,6 @@ include_once (SQL_PATH."sqlClienteDAO.php");
 $sql = new sqlClienteDAO();
 
 $arr = array();
-
 $arr = $sql->traerTodos();
 
 $nombres = array();
