@@ -62,40 +62,44 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
                 alert("Estas en el form de electronicos");
             } else if (formElectronico > 0) {
               //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
-                alert("Estas en el form de electronicos");
-                   var dataEnviar = {
-                        "idTipo": 2,
-                        "idTipoElectronico": $("#idTipoElectronico").val(),
-                        "idFamilia": $("#idFamilia").val(),
-                        "idMarca": $("#idMarca").val(),
-                        "idEstado": $("#idEstado").val(),
-                        "idModelo": $("#idModelo").val(),
-                        "idTamaño": $("#idTamaño").val(),
-                        "idColor": $("#idColor").val(),
-                        "idSerie": $("#idSerie").val(),
-                        "idPrestamoElectronico": $("#idPrestamoElectronico").val(),
-                        "idAvaluoElectronico": $("#idAvaluoElectronico").val(),
-                        "idPrestamoMaxElectronico": $("#idPrestamoMaxElectronico").val(),
-                        "idUbivacion": $("#idUbivacion").val(),
-                       "idDetallePrendaElectronico": $("#idDetallePrendaElectronico").val()
-                    };
+                
+                var dataEnviar = {
+                    "idTipo": 2,
+                    "idFolio":  $("#idFolio").val(),
+                    "idTipoElectronico": $("#idTipoElectronico").val(),
+                    "idMarca": $("#idMarca").val(),
+                    "idEstado": $("#idEstado").val(),
+                    "idModelo": $("#idModelo").val(),
+                    "idTamaño": $("#idTamaño").val(),
+                    "idColor": $("#idColor").val(),
+                    "idSerie": $("#idSerie").val(),
+                    "idPrestamoElectronico": $("#idPrestamoElectronico").val(),
+                    "idAvaluoElectronico": $("#idAvaluoElectronico").val(),
+                    "idPrestamoMaxElectronico": $("#idPrestamoMaxElectronico").val(),
+                    "idUbivacion": $("#idUbivacion").val(),
+                    "idDetallePrendaElectronico": $("#idDetallePrendaElectronico").val()
+                };
 
-                alert($("#idTipoElectronico").val());//1
-                alert($("#idFamilia").val());//2
-                alert($("#idMarca").val());//3
-                alert($("#idEstado").val());//4
-                alert($("#idModelo").val());//5
-                alert($("#idTamaño").val());//6
-                alert($("#idColor").val());//7
-                alert($("#idSerie").val());//8
-                alert($("#idPrestamoElectronico").val());//9
-                alert($("#idAvaluoElectronico").val());//10
-                alert($("#idPrestamoMaxElectronico").val());//11
-                alert($("#idUbivacion").val());//12
-                alert($("#idDetallePrendaElectronico").val());//13
+                $.ajax({
+                    data: dataEnviar,
+                    url: '../../../com.Mexicash/Controlador/Articulo.php',
+                    type:'post',
+                    beforeSend:function () {
+                    },
+                    success:function (response) {
+                        if(response=1){
+                            alert("1")
+                        }else{
+                            alert("2")
+                        }
+                    },
+                })
             }
         }
 
+        function Cargar() {
+            alert($("#idFolio").val())
+        }
     </script>
 </head>
 <body>
@@ -112,6 +116,7 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
                         &nbsp;
                         <table class="table table-bordered border border-dark ">
                             <tbody class="text-body border" align="center">
+
                             <tr>
                                 <td colspan="6" class=" border-dark">Tipo:</td>
                                 <td colspan="6" class="border border-dark">
@@ -149,6 +154,7 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
                             <tr>
                                 <td colspan="6" class=" border border-dark">Cantidad:</td>
                                 <td colspan="6" class=" border border-dark">
+
                                     <input type="text" id="idCantidad" name="cantidad" size="6"
                                            style="text-align:center"/>
                                 </td>
@@ -216,19 +222,22 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
                         <table class="table table-bordered border border-dark ">
                             <tbody class="text-body border" align="center">
                             <tr>
+                                <td colspan="12" class=" border border-dark"  style="display:none">
+                                    <?php
+                                    $sql = new sqlArticulosDAO();
+                                    $contrato = $sql->BuscarContrato();
+                                    $contrato = $contrato +1;
+                                    echo "<input type='text' id='idFolio' name='folio' value='" . $contrato . "'/>";
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td colspan="6" class=" border-dark">Tipo:</td>
                                 <td colspan="6" class="border border-dark">
                                     <select id="idTipoElectronico" name="cmbTipoElectronico" required>
                                         <option value="1">1:</option>
                                         <option value="2">1</option>
                                     </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="6" class=" border-dark">Familia:</td>
-                                <td colspan="6" class="border border-dark">
-                                    <input type="text" id="idFamilia" name="familia" size="6"
-                                           style="text-align:center" value="2"/>
                                 </td>
                             </tr>
                             <tr>
@@ -333,7 +342,7 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
                     <button type="button" class="btn btn-warning" onclick="Limpiar();">Limpiar</button>
                 </div>
                 <div class="col-sm-2">
-                    <button type="button" class="btn btn-danger">Eliminar</button>
+                    <button type="button" class="btn btn-danger" onclick="Cargar();">Eliminar</button>
                 </div>
                 <div class="col-sm-2">
                     <button type="button" class="btn btn-success" onclick="Agregar();">Agregar a la lista</button>

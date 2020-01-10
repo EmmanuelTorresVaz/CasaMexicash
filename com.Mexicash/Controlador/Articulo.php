@@ -6,40 +6,43 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
 $idTipo = $_POST['idTipo'];
 
 
+
 if ($idTipo == 1) {
+   echo $idTipo;
+} else if ($idTipo == 2) {
     $idTipo = $_POST['idTipoElectronico'];
-    $idTipo = $_POST['idFamilia'];
+    $idFolio = $_POST['idFolio'];
     $idMarca = $_POST['idMarca'];
     $idEstado = $_POST['idEstado'];
     $idModelo = $_POST['idModelo'];
     $idTamaño = $_POST['idTamaño'];
     $idColor = $_POST['idColor'];
     $idSerie = $_POST['idSerie'];
-    $idPrestamo = $_POST['idPrestamo'];
-    $idAvaluo = $_POST['idAvaluo'];
-    $idPrestamoMax = $_POST['idPrestamoMax'];
+    $idPrestamoE = $_POST['idPrestamoElectronico'];
+    $idAvaluoE = $_POST['idAvaluoElectronico'];
+    $idPrestamoMaxE = $_POST['idPrestamoMaxElectronico'];
     $idUbivacion = $_POST['idUbivacion'];
-    $idDetallePrenda = $_POST['idDetallePrenda'];
+    $idDetallePrendaE = $_POST['idDetallePrendaElectronico'];
 
 
     $articulo = new Articulo(
+        $idTipo,
+        $idFolio,
         $idMarca,
         $idEstado,
         $idModelo,
         $idTamaño,
         $idColor,
         $idSerie,
-        $idPrestamo,
-        $idAvaluo,
-        $idPrestamoMax,
+        $idPrestamoE,
+        $idAvaluoE,
+        $idPrestamoMaxE,
         $idUbivacion,
-        $idDetallePrenda
+        $idDetallePrendaE
     );
 
     $sqlArticulo = new sqlArticulosDAO();
-    $sqlArticulo->guardaCiente($articulo);
-} else if ($idTipo == 2) {
-
+    $sqlArticulo->guardarArticulo($articulo);
 }
 
 

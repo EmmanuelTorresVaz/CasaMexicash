@@ -28,39 +28,38 @@ class sqlArticulosDAO
         echo json_encode($data);
     }
 
-    public function guardaCiente(Articulo $articulo) {
+    public function guardarArticulo(Articulo $articulo) {
         // TODO: Implement guardaCiente() method.
         try {
 
-
             $idTipo =  $articulo->getTipo();
+            $idFolio =  $articulo->getFolio();
             $idMarca =  $articulo->getMarca();
             $idEstado =  $articulo->getEstado();
             $idModelo =  $articulo->getModelo();
             $idTamaño =  $articulo->getTamaño();
             $idColor =  $articulo->getColor();
             $idSerie =  $articulo->getSerie();
-            $idPrestamo =  $articulo->getPrestamo();
-            $idAvaluo =  $articulo->getAvaluo();
-            $idPrestamoMax =  $articulo->getPrestamoMax();
+            $idPrestamoE =  $articulo->getPrestamoE();
+            $idAvaluoE =  $articulo->getAvaluoE();
+            $idPrestamoMaxE =  $articulo->getPrestamoMaxE();
             $idUbivacion =  $articulo->getUbivacion();
-            $idDetallePrenda =  $articulo->getDetallePrenda();
+            $idDetallePrendaE =  $articulo->getDetallePrendaE();
 
             $insertMetal = "INSERT INTO articulo_tbl " .
-                "(tipo, marca, estado, modelo, tamaño, color, num_Serie, prestamo, avaluo, prestamoMaximo, ubivavion, detalle, id_Estatus)  VALUES ".
-                "('". $idTipo ."', '". $idMarca ."', '". $idEstado ."', '". $idModelo ."', '". $idTamaño ."', '". $idColor ."', '". $idSerie ."', '". $idPrestamo ."', '". $idAvaluo ."', '". $idPrestamoMax ."', '". $idUbivacion ."','". $idDetallePrenda ."',  '1')";
+                "(id_Contrato,tipo, marca, estado, modelo, tamaño, color, num_Serie, prestamo, avaluo, prestamoMaximo, ubivavion,".
+                " detalle, id_Estatus)  VALUES ".
+                "('". $idFolio ."','". $idTipo ."','". $idMarca ."', '". $idEstado ."', '". $idModelo ."', '". $idTamaño ."', '". $idColor
+                ."', '". $idSerie ."', '". $idPrestamoE ."', '". $idAvaluoE ."', '". $idPrestamoMaxE ."', '". $idUbivacion ."','13',  '1')";
 
-            echo $insertMetal;
             if($ps = $this->conexion->prepare($insertMetal)){
-               // echo " Se preparó correctamente ";
                 if($ps->execute()){
-                    //echo " Se ejecutó bien";
-                    $verdad = true;
+                    $verdad = 1;
                 }else{
-                 //   echo " No se ejecutó bien";
+                    $verdad = 2;
                 }
             }else{
-                //echo " No se preparó";
+                $verdad = 3;
             }
         }catch (Exception $exc){
             echo $exc->getMessage();
@@ -68,7 +67,29 @@ class sqlArticulosDAO
             $this->db->closeDB();
         }
         //return $verdad;
-        echo $verdad;
+       echo $verdad;
+    }
+
+    function BuscarContrato(){
+        try{
+            $id = -1;
+
+            $buscar = "select folio FROM contrato_tbl ";
+
+            $statement = $this->conexion->query( $buscar );
+
+            if($statement->num_rows > 0){
+                $fila = $statement->fetch_object();
+                $folio = $fila->folio;
+            }
+
+        }catch (Exception $exc){
+            echo $exc->getMessage();
+        }finally{
+            $this->db->closeDB();
+        }
+
+        return $folio;
     }
 
 

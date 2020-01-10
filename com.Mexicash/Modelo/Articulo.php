@@ -4,80 +4,98 @@
 class Articulo
 {
     private $idTipo;
+    private $idFolio;
     private $idMarca;
     private $idEstado;
     private $idModelo;
     private $idTamaño;
     private $idColor;
     private $idSerie;
-    private $idPrestamo;
-    private $idAvaluo;
-    private $idPrestamoMax;
+    private $idPrestamoE;
+    private $idAvaluoE;
+    private $idPrestamoMaxE;
     private $idUbivacion;
-    private $idDetallePrenda;
+    private $idDetallePrendaE;
 
     /**
      * Cliente constructor.
      * @param $idTipo
+     * @param $idFolio
      * @param $idMarca
      * @param $idEstado
      * @param $idModelo
      * @param $idTamaño
      * @param $idColor
      * @param $idSerie
-     * @param $idPrestamo
-     * @param $idAvaluo
-     * @param $idPrestamoMax
+     * @param $idPrestamoE
+     * @param $idAvaluoE
+     * @param $idPrestamoMaxE
      * @param $idUbivacion
-     * @param $idDetallePrenda
+     * @param $idDetallePrendaE
 
      */
-    public function __construct($idTipo, $idMarca, $idEstado, $idModelo, $idTamaño,$idColor, $idSerie, $idPrestamo, $idAvaluo, $idPrestamoMax, $idUbivacion, $idDetallePrenda)
+    public function __construct($idTipo,$idFolio, $idMarca, $idEstado, $idModelo, $idTamaño,$idColor, $idSerie, $idPrestamoE, $idAvaluoE, $idPrestamoMaxE, $idUbivacion, $idDetallePrendaE)
     {
         $this->tipo = $idTipo;
+        $this->folio = $idFolio;
         $this->marca = $idMarca;
         $this->estado = $idEstado;
         $this->modelo = $idModelo;
         $this->tamaño = $idTamaño;
         $this->color = $idColor;
         $this->serie = $idSerie;
-        $this->prestamo = $idPrestamo;
-        $this->avaluo = $idAvaluo;
-        $this->prestamoMax = $idPrestamoMax;
+        $this->prestamoE = $idPrestamoE;
+        $this->avaluoE = $idAvaluoE;
+        $this->prestamoMaxE = $idPrestamoMaxE;
         $this->ubivacion = $idUbivacion;
-        $this->detallePrenda = $idDetallePrenda;
+        $this->detallePrendaE = $idDetallePrendaE;
     }
 
     /**
      * @return mixed
      */
-    public function getAvaluo()
+    public function getFolio()
     {
-        return $this->avaluo;
+        return $this->folio;
     }
 
     /**
-     * @param mixed $avaluo
+     * @param mixed $idFolio
      */
-    public function setAvaluo($avaluo): void
+    public function setFolio($idFolio): void
     {
-        $this->avaluo = $avaluo;
+        $this->folio = $idFolio;
+    }
+    /**
+     * @return mixed
+     */
+    public function getAvaluoE()
+    {
+        return $this->avaluoE;
+    }
+
+    /**
+     * @param mixed $avaluoE
+     */
+    public function setAvaluoE($avaluoE): void
+    {
+        $this->avaluoE = $avaluoE;
     }
 
     /**
      * @return mixed
      */
-    public function getDetallePrenda()
+    public function getDetallePrendaE()
     {
-        return $this->detallePrenda;
+        return $this->detallePrendaE;
     }
 
     /**
-     * @param mixed $detallePrenda
+     * @param mixed $detallePrendaE
      */
-    public function setDetallePrenda($detallePrenda): void
+    public function setDetallePrendaE($detallePrendaE): void
     {
-        $this->detallePrenda = $detallePrenda;
+        $this->detallePrendaE = $detallePrendaE;
     }
 
     /**
@@ -147,50 +165,36 @@ class Articulo
     /**
      * @return mixed
      */
-    public function getPrestamo()
+    public function getPrestamoE()
     {
-        return $this->prestamo;
+        return $this->prestamoE;
     }
 
     /**
-     * @param mixed $prestamo
+     * @param mixed $prestamoE
      */
-    public function setPrestamo($prestamo): void
+    public function setPrestamoE($prestamoE): void
     {
-        $this->prestamo = $prestamo;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPrestamoMax()
-    {
-        return $this->prestamoMax;
-    }
-
-    /**
-     * @param mixed $prestamoMax
-     */
-    public function setPrestamoMax($prestamoMax): void
-    {
-        $this->prestamoMax = $prestamoMax;
+        $this->prestamoE = $prestamoE;
     }
 
     /**
      * @return mixed
      */
-    public function getReferencia()
+    public function getPrestamoMaxE()
     {
-        return $this->referencia;
+        return $this->prestamoMaxE;
     }
 
     /**
-     * @param mixed $referencia
+     * @param mixed $prestamoMaxE
      */
-    public function setReferencia($referencia): void
+    public function setPrestamoMaxE($prestamoMaxE): void
     {
-        $this->referencia = $referencia;
+        $this->prestamoMaxE = $prestamoMaxE;
     }
+
+
 
     /**
      * @return mixed
@@ -223,6 +227,8 @@ class Articulo
     {
         $this->tipo = $tipo;
     }
+
+    /**
 
     /**
      * @return mixed
