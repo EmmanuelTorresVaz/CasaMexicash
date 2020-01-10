@@ -298,8 +298,8 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
                                 <td colspan="12" class=" border border-dark" align="left">Detalle de la prenda:</td>
                             </tr>
                             <tr>
-                                <td colspan="12" class="border border-dark" id="idDetallePrendaElectronico" name="detallePrenda">
-                                    <textarea rows="4" cols="50" >13
+                                <td colspan="12" class="border border-dark"  name="detallePrenda">
+                                    <textarea rows="4" cols="50"  id="idDetallePrendaElectronico">13
                                     </textarea>
                                 </td>
                             </tr>
