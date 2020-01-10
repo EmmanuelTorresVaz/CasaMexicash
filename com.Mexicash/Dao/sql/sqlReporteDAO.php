@@ -1,7 +1,7 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
-include_once (MODELO_PATH."Reporte.php");
-include_once (BASE_PATH."Conexion.php");
+include_once(MODELO_PATH . "Reporte.php");
+include_once(BASE_PATH . "Conexion.php");
 
 class sqlReporteDAO
 {
@@ -10,12 +10,14 @@ class sqlReporteDAO
     protected $db;
 
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->db = new Conexion();
         $this->conexion = $this->db->connectDB();
     }
 
-    public function guardaReporte(Reporte $reporte){
+    public function guardaReporte(Reporte $reporte)
+    {
 
         try {
 
@@ -37,9 +39,9 @@ class sqlReporteDAO
             $id_Estatus = $reporte->getIdEstatus();
             $observaciones = $reporte->getObservaciones();
 
-        }catch (Exception $exc){
-            echo  $exc->getMessage();
-        }finally{
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
             $this->db->closeDB();
         }
 
@@ -55,29 +57,30 @@ class sqlReporteDAO
      *
      */
 
-    public function traeReportesArticulo($opc){
+    public function traeReportesArticulo($opc)
+    {
         $datos = array();
 
         try {
 
-            if($opc == 1){
+            if ($opc == 1) {
                 echo "opc 1";
-            }else{
-                if($opc == 2){
+            } else {
+                if ($opc == 2) {
                     echo "opc 2";
 
-                }else{
-                    if($opc == 3){
+                } else {
+                    if ($opc == 3) {
                         echo "opc 3";
 
-                    }else{
-                        if($opc == 4){
+                    } else {
+                        if ($opc == 4) {
                             $buscar = "SELECT * FROM contrato_tbl INNER JOIN articulo_tbl ON contrato_tbl.id_Articulo = articulo_tbl.id_Contrato";
                             $buscarArticulo = "select * from contrato_tbl where not (id_Articulo = null) ;";
-                            $rs = $this->conexion->query( $buscarArticulo );
+                            $rs = $this->conexion->query($buscarArticulo);
 
-                            if($rs->num_rows > 0){
-                                while($row = $rs->fetch_assoc()) {
+                            if ($rs->num_rows > 0) {
+                                while ($row = $rs->fetch_assoc()) {
                                     $data = [
                                         "id_Cliente" => $row["id_Cliente"],
                                         "id_Articulo" => $row["id_Articulo"],
@@ -99,22 +102,21 @@ class sqlReporteDAO
                                     array_push($datos, $data);
                                 }
                             }
-                        }else{
+                        } else {
                             echo "Parámetros incorrectos sqlReporteDAO - traeReportesArticulo()";
                         }
                     }
                 }
             }
 
-        }catch (Exception $exc){
-            echo  $exc->getMessage();
-        }finally{
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
             $this->db->closeDB();
         }
 
         return $datos;
     }
-
 
     /**
      *
@@ -125,20 +127,44 @@ class sqlReporteDAO
      *
      */
 
-    public function traeInventario($opc){
+    public function traeInventario($empeño, $desempeño, $refrendo, $almoneda)
+    {
         $datos = array();
 
         try {
             $buscar = null;
 
+            $buscar = "SELECT * FROM contrato_tbl as C " .
+                "INNER JOIN articulo_tbl as A " .
+                "ON C.id_Articulo = A.id_Contrato " .
+                "INNER JOIN cat_estatus as E " .
+                "ON A.id_Estatus = E.id_Estatus";
+
+            if($empeño== true||$desempeño ==true||$refrendo||$almoneda==true){
+                $buscar = $buscar . "Where";
+
+                if($empeño==true){
+                    $buscar = $buscar . "estatus == 'Empeño'";
+                }
+                if($desempeño==true){
+                    $buscar = $buscar . "estatus == 'Desempeño'";
+                }
+                if($almoneda==true){
+                    $buscar = $buscar . "estatus == 'almoneda'";
+                }
+                if($refrendo==true){
+                    $buscar = $buscar . "estatus == 'Refrendo'";
+                }
+            }
 
 
-            $rs = $this->conexion->query( $buscar );
 
-            if($rs->num_rows > 0){
-                while($row = $rs->fetch_assoc()) {
+            $rs = $this->conexion->query($buscar);
+
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
                     $estatus = 0;
-                    switch ($row["id_Estatus"]){
+                    switch ($row["id_Estatus"]) {
                         case 1:
                             $estatus = "Empeñado";
                             break;
@@ -175,9 +201,68 @@ class sqlReporteDAO
             }
 
 
-        }catch (Exception $exc){
-            echo  $exc->getMessage();
-        }finally{
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        return $datos;
+    }
+
+    public function traeInventario2($opc)
+    {
+        $datos = array();
+
+        try {
+            $buscar = null;
+
+
+            $rs = $this->conexion->query($buscar);
+
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $estatus = 0;
+                    switch ($row["id_Estatus"]) {
+                        case 1:
+                            $estatus = "Empeñado";
+                            break;
+                        case 2:
+                            $estatus = "Desempeñado";
+                            break;
+                        case 3:
+                            $estatus = "Refrendo";
+                            break;
+                        case 4:
+                            $estatus = "Almoneda";
+                            break;
+                    }
+                    $data = [
+                        //Contrato
+                        "fecha_Vencimiento" => $row["fecha_Vencimiento"],
+                        "total_Prestamo" => $row["total_Prestamo"],
+                        //"fecha_Alm" => $row["fecha_Alm"],
+                        "fecha_Movimiento" => $row["fecha_Movimiento"],
+                        "id_Estatus" => $estatus,
+                        "observaciones" => $row["observaciones"],
+                        //Contrato
+
+                        //Articulo
+                        "tipo" => $row["tipo"],
+                        "prenda" => $row["prenda"],
+                        "kilataje" => $row["kilataje"],
+                        "cantidad" => $row["cantidad"],
+                        "peso" => $row["peso"]
+                    ];
+
+                    array_push($datos, $data);
+                }
+            }
+
+
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
             $this->db->closeDB();
         }
 
@@ -194,15 +279,16 @@ class sqlReporteDAO
      *
      */
 
-    public function traeReportesAuto($opc){
+    public function traeReportesAuto($opc)
+    {
         $datos = array();
 
         try {
             $buscarAuto = "select * from contrato_tbl where not (id_Auto = null);";
-            $rs = $this->conexion->query( $buscarAuto );
+            $rs = $this->conexion->query($buscarAuto);
 
-            if($rs->num_rows > 0){
-                while($row = $rs->fetch_assoc()) {
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
                     $data = [
                         "id_Cliente" => $row["id_Cliente"],
                         "id_Auto" => $row["id_Auto"],
@@ -225,9 +311,9 @@ class sqlReporteDAO
                 }
             }
 
-        }catch (Exception $exc){
-            echo  $exc->getMessage();
-        }finally{
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
             $this->db->closeDB();
         }
 
@@ -235,7 +321,8 @@ class sqlReporteDAO
     }
 
 
-    public function borraReporte(Reporte $reporte){
+    public function borraReporte(Reporte $reporte)
+    {
         try {
 
             $id_Contrato = $reporte->getIdContrato();
@@ -256,9 +343,9 @@ class sqlReporteDAO
             $id_Estatus = $reporte->getIdEstatus();
             $observaciones = $reporte->getObservaciones();
 
-        }catch (Exception $exc){
-            echo  $exc->getMessage();
-        }finally{
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
             $this->db->closeDB();
         }
     }

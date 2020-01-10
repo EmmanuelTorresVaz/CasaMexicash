@@ -48,7 +48,7 @@ include_once(SQL_PATH . "sqlInteresesDAO.php");
     </script>
 </head>
 <body>
-<form name="formInteres">
+<form name="formInteres" id="idFormInteres">
     <div class="col-4">
         <table class="table table-bordered border border-dark ">
             <thead class="thead-light">

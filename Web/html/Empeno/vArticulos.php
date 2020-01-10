@@ -48,19 +48,69 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
                 })
             }
         }
+
+        function Limpiar() {
+            alert("limpiar");
+            $('#idFormArticulos').trigger("reset");
+        }
+
+        function Agregar() {
+            var formElectronico = $("#idTipoElectronico").val();
+            var formMetal = $("#idTipoMetal").val();
+            if (formElectronico > 0) {
+                alert("Estas en el form de electronicos");
+            } else if (formMetal > 0) {
+              //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
+                    var dataEnviar = {
+                        "idTipo": 1,
+                        "idMetal": $("#idTipoMetal").val(),
+                        "idFamilia": $("#idFamilia").val(),
+                        "idMarca": $("#idMarca").val(),
+                        "idEstado": $("#idEstado").val(),
+                        "idModelo": $("#idModelo").val(),
+                        "idTamaño": $("#idTamaño").val(),
+                        "idColor": $("#idColor").val(),
+                        "idSerie": $("#idSerie").val(),
+                        "idVitrina": $("#idVitrina").val(),
+                        "idPrestamo": $("#idPrestamo").val(),
+                        "idAvaluo": $("#idAvaluo").val(),
+                        "idPrestamoMax": $("#idPrestamoMax").val(),
+                        "idUbicacion": $("#idUbicacion").val(),
+                        "idReferencia": $("#idReferencia").val(),
+                        "idDetallePrenda": $("#idDetallePrenda").val(),
+                    };
+                    $.ajax({
+                        data: dataEnviar,
+                        url: '../../../com.Mexicash/Controlador/Articulo.php',
+                        type: 'post',
+                        dataType: "json",
+                        beforeSend: function () {
+                            alert("se va");
+                        },
+                        success: function (response) {
+                            alert("regresa");
+                            if (response.status == 'ok') {
+                                alert("Vamosbien");
+                            }
+                        },
+                    })
+            }
+        }
+
     </script>
 </head>
 <body>
-<form name="formArticulos">
-    <div class="container">
+<form name="formArticulos" id="idFormArticulos">
+    <div class="container" id="idContenedor">
         <div class="row">
             <div class="col">
                 <ul class="nav nav-pills">
-                    <li class="active"><a data-toggle="pill" href="#menuMetales">Metales</a></li>
-                    <li><a data-toggle="pill" href="#menuElectronicos">Electrónicos/Varios</a></li>
+                    <li class="active"><a data-toggle="pill" href="#menuMetales" onclick="Limpiar();">Metales</a></li>
+                    <li><a data-toggle="pill" href="#menuElectronicos" onclick="Limpiar();">Electrónicos/Varios</a></li>
                 </ul>
                 <div class="tab-content">
                     <div id="menuMetales" class="tab-pane fade in active">
+                        &nbsp;
                         <table class="table table-bordered border border-dark ">
                             <tbody class="text-body border" align="center">
                             <tr>
@@ -99,153 +149,171 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
                             </tr>
                             <tr>
                                 <td colspan="6" class=" border border-dark">Cantidad:</td>
-                                <td colspan="6" class=" border border-dark"><label>pza</label></td>
+                                <td colspan="6" class=" border border-dark">
+                                    <input type="text" id="idCantidad" name="cantidad" size="6"
+                                           style="text-align:center"/>
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="6" class=" border border-dark">Peso:</td>
-                                <td colspan="6" class="border border-dark"><label>grs</label></td>
+                                <td colspan="6" class="border border-dark">
+                                    <input type="text" id="idPeso" name="peso" size="6" style="text-align:center"/>
+                                    <label>grs</label></td>
                             </tr>
                             <tr>
                                 <td colspan="6" class=" border border-dark">Peso Piedra:</td>
-                                <td colspan="6" class="border border-dark"><label>grs</label></td>
+                                <td colspan="6" class="border border-dark">
+                                    <input type="text" id="idPesoPiedra" name="pesoPiedra" size="6"
+                                           style="text-align:center"/>
+                                    <label>grs</label></td>
                             </tr>
                             <tr>
                                 <td colspan="6" class=" border border-dark">Piedras:</td>
-                                <td colspan="6" class=" border border-dark"><label>pza</label></td>
+                                <td colspan="6" class=" border border-dark">
+                                    <input type="text" id="idPiedras" name="piedras" size="6"
+                                           style="text-align:center"/>
+                                    <label>pza</label></td>
                             </tr>
                             <tr>
                                 <td colspan="6" class=" border border-dark">Préstamo:</td>
-                                <td colspan="6" class=" border border-dark"><label></label></td>
+                                <td colspan="6" class=" border border-dark">
+                                    <input type="text" id="idPrestamo" name="prestamo" size="6"
+                                           style="text-align:center"/>
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="6" class=" border border-dark">Avalúo:</td>
-                                <td colspan="6" class=" border border-dark"><label></label></td>
+                                <td colspan="6" class=" border border-dark">
+                                    <input type="text" id="idAvaluo" name="avaluo" size="6" style="text-align:center"/>
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="6" class=" border border-dark">Préstamo Maximo:</td>
-                                <td colspan="6" class=" border border-dark"><label color="red">0.00</label></td>
+                                <td colspan="6" class=" border border-dark">
+                                    <input type="text" id="idPrestamoMax" name="prestamoMax" size="6"
+                                           style="text-align:center"/>
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="6" class="border border-dark">Ubicación:</td>
-                                <td colspan="6" class=" border border-dark"><label></label></td>
+                                <td colspan="6" class=" border border-dark">
+                                    <input type="text" id="idUbicacion" name="ubicacion" size="6"
+                                           style="text-align:center"/>
+
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="6" class=" border border-dark">Detalle de la prenda:</td>
-                                <td colspan="6" class=" border border-dark"><label></label></td>
+                                <td colspan="6" class=" border border-dark">
+                                    <input type="text" id="idDetallePrenda" name="detallePrenda" size="6"
+                                           style="text-align:center"/>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                     <div id="menuElectronicos" class="tab-pane fade">
+                        &nbsp;
                         <table class="table table-bordered border border-dark ">
-                            <thead class="thead-light">
-                            <tr>
-                                <th colspan="6" class="border border-dark">Contrato:</th>
-                                <th colspan="6" class="border border-dark">Vence:</th>
-                            </tr>
-                            </thead>
                             <tbody class="text-body border" align="center">
                             <tr>
-                                <td colspan="6" class="table-info border-dark">Tasa Interés</td>
+                                <td colspan="6" class=" border-dark">Tipo:</td>
                                 <td colspan="6" class="border border-dark">
-                                    <select id="tipoInteres" name="cmbTipoInteres"
-                                            onChange="javascript:Seleccionar($('#tipoInteres').val());">
+                                    <select id="idTipoElectronico" name="cmbTipoElectronico" required>
                                         <option value="0">Seleccione:</option>
-                                        <?php
-
-                                        $data = array();
-
-                                        $sql = new sqlInteresesDAO();
-                                        $data = $sql->llenarCmbTipoInteres();
-                                        for ($i = 0; $i < count($data); $i++) {
-                                            echo "<option value=" . $data[$i]['id_interes'] . ">" . $data[$i]['tasa_interes'] . "</option>";
-                                        }
-                                        ?>
+                                        <option value="1">1</option>
                                     </select>
-
-
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td colspan="4" class="table-info border border-dark">Tipo Interés</td>
-                                <td colspan="4" class="table-info border border-dark">Periodo</td>
-                                <td colspan="4" class="table-info border border-dark">Plazo</td>
-                            </tr>
-                            <tr>
-                                <td colspan="4" class="border border-dark ">
-                                    <input type="text" id="idTipoInteres" name="tipoInteres" size="20"
-                                           style="text-align:center"
-                                           disabled/>
-                                </td>
-                                <td colspan="4" class="border border-dark">
-                                    <input type="text" id="idPeriodo" name="periodo" size="20" style="text-align:center"
-                                           disabled/>
-                                </td>
-                                <td colspan="4" class="border border-dark">
-                                    <input type="text" id="idPlazo" name="plazo" size="6" style="text-align:center"
-                                           disabled/>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="3" class="table-info border border-dark ">% Tasa</td>
-                                <td colspan="3" class="table-info border border-dark">% Alm.</td>
-                                <td colspan="3" class="table-info border border-dark">% Seguro</td>
-                                <td colspan="3" class="table-info border border-dark">% I.V.A.</td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" class="border border-dark">
-                                    <input type="text" id="idTasaPorcen" name="tasaPorcen" size="6"
-                                           style="text-align:center"
-                                           disabled/>
-
-                                </td>
-                                <td colspan="3" class="border border-dark">
-                                    <input type="text" id="idAlmPorcen" name="almPorcen" size="6"
-                                           style="text-align:center"
-                                           disabled/>
-
-                                </td>
-                                <td colspan="3" class="border border-dark">
-                                    <input type="text" id="idSeguroPorcen" name="seguroPorcen" size="6"
-                                           style="text-align:center" disabled/>
-
-                                </td>
-                                <td colspan="3" class="border border-dark">
-                                    <input type="text" id="idIvaPorcen" name="ivaPorcen" size="6"
-                                           style="text-align:center"
-                                           disabled/>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="6" class="table-info border border-dark">Total Avalúo</td>
-                                <td colspan="6" class="table-info border border-dark">Total Préstamo</td>
-                            </tr>
-                            <tr>
+                                <td colspan="6" class=" border-dark">Familia:</td>
                                 <td colspan="6" class="border border-dark">
-                                    <input type="text" id="idTotalAvaluo" name="totalAvaluo" size="9" value="0.00"
-                                           style="text-align:center" disabled/>
-                                </td>
-                                <td colspan="6" class="border border-dark">
-                                    <input type="text" id="idTotalPrestamo" name="totalPrestamo" size="9" value="0.00"
-                                           style="text-align:center" disabled/>
+                                    <input type="text" id="idFamilia" name="familia" size="6"
+                                           style="text-align:center"/>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="6" class="table-info border border-dark">Tipo Promoción:</td>
+                                <td colspan="6" class=" border-dark">Marca:</td>
                                 <td colspan="6" class="border border-dark">
-                                    <input type="text" id="idTipoPromocion" name="tipoPromocion" size="14"
-                                           style="text-align:center" disabled/>
-
+                                    <input type="text" id="idMarca" name="marca" size="6" style="text-align:center"/>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="6" class="table-info border border-dark">Tipo Agrupamiento:</td>
+                                <td colspan="3" class=" border-dark">Estado:</td>
+                                <td colspan="3" class="border border-dark">
+                                    <select id="idEstado" name="cmbEstado">
+                                        <option value="0">Seleccione:</option>
+                                        <option value="1">1</option>
+                                    </select>
+                                </td>
+                                <td colspan="3" class=" border border-dark">Modelo:</td>
+                                <td colspan="3" class=" border border-dark">
+                                    <input type="text" id="idModelo" name="modelo" size="6" style="text-align:center"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class=" border-dark">Tamaño:</td>
+                                <td colspan="3" class=" border border-dark">
+                                    <input type="text" id="idTamaño" name="tamaño" size="6" style="text-align:center"/>
+                                </td>
+                                <td colspan="3" class=" border border-dark">Color:</td>
+                                <td colspan="3" class="border border-dark">
+                                    <select id="idColor" name="cmbColor">
+                                        <option value="0">Seleccione:</option>
+                                        <option value="1">1</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class=" border border-dark">No.Serie:</td>
+                                <td colspan="6" class=" border border-dark">
+                                    <input type="text" id="idSerie" name="serie" size="6" style="text-align:center"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class=" border border-dark">P.Vitrina:</td>
+                                <td colspan="6" class=" border border-dark">
+                                    <input type="text" id="idVitrina" name="vitrina" size="6"
+                                           style="text-align:center"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class=" border-dark">Préstamo:</td>
+                                <td colspan="3" class=" border border-dark">
+                                    <input type="text" id="idPrestamo" name="prestamo" size="6"
+                                           style="text-align:center"/>
+                                </td>
+                                <td colspan="3" class=" border-dark">Avalúo:</td>
+                                <td colspan="3" class=" border border-dark">
+                                    <input type="text" id="idAvaluo" name="avaluo" size="6" style="text-align:center"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class=" border border-dark">Prestamo Máximo:</td>
                                 <td colspan="6" class="border border-dark">
-                                    <input type="text" id="idAgrupamiento" name="agrupamiento" size="14"
-                                           style="text-align:center" disabled/>
-
+                                    <input type="text" id="idPrestamoMax" name="prestamoMaximo" size="6"
+                                           style="text-align:center" value="0.00"/>
+                                    <label>grs</label></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class=" border border-dark">Ubicación:</td>
+                                <td colspan="3" class="border border-dark">
+                                    <input type="text" id="idUbicacion" name="ubicacion" size="6"
+                                           style="text-align:center"/>
+                                </td>
+                                <td colspan="3" class=" border border-dark">Referencia:</td>
+                                <td colspan="3" class="border border-dark">
+                                    <input type="text" id="idReferencia" name="referencia" size="6"
+                                           style="text-align:center"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="12" class=" border border-dark" align="left">Detalle de la prenda:</td>
+                            </tr>
+                            <tr>
+                                <td colspan="12" class="border border-dark">
+                                    <textarea rows="4" cols="50">
+                                    </textarea>
                                 </td>
                             </tr>
                             </tbody>
@@ -267,35 +335,26 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                    </tr>
-                    <tr>
-                        <td>Smith</td>
-                        <td>Thomas</td>
-                        <td>smith@example.com</td>
-                    </tr>
-                    <tr>
-                        <td>Merry</td>
-                        <td>Jim</td>
-                        <td>merry@example.com</td>
-                    </tr>
+
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="row">
             <div class="col">
-            <div class="col-sm-2"><button type="button" class="btn btn-warning">Limpiar</button></div>
-            <div class="col-sm-2"><button type="button" class="btn btn-danger">Eliminar</button></div>
-            <div class="col-sm-2"><button type="button" class="btn btn-success">Agregar a la lista</button></div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-warning" onclick="Limpiar();">Limpiar</button>
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-danger">Eliminar</button>
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-success" onclick="Agregar();">Agregar a la lista</button>
+                </div>
             </div>
 
         </div>
     </div>
-
     </div>
 </form>
 

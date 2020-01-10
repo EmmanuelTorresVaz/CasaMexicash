@@ -1,5 +1,5 @@
 <?php
-include_once(MODELO_PATH . "Intereses.php");
+include_once(MODELO_PATH . "Interes.php");
 include_once(BASE_PATH . "Conexion.php");
 
 class sqlInteresesDAO
