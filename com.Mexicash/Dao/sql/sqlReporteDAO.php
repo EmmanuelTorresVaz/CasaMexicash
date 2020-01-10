@@ -145,12 +145,21 @@ class sqlReporteDAO
 
                 if($empeño==true){
                     $buscar = $buscar . "estatus == 'Empeño'";
+                    if($desempeño ==true||$refrendo||$almoneda==true){
+                        $buscar = $buscar . " AND ";
+                    }
                 }
                 if($desempeño==true){
                     $buscar = $buscar . "estatus == 'Desempeño'";
+                    if($refrendo||$almoneda==true){
+                        $buscar = $buscar . " AND ";
+                    }
                 }
                 if($almoneda==true){
                     $buscar = $buscar . "estatus == 'almoneda'";
+                    if($almoneda==true){
+                        $buscar = $buscar . " AND ";
+                    }
                 }
                 if($refrendo==true){
                     $buscar = $buscar . "estatus == 'Refrendo'";
