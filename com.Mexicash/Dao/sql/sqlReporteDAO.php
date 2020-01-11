@@ -127,36 +127,39 @@ class sqlReporteDAO
      *
      */
 
-    public function traeInventario($empe, $desempe, $refrendo, $almoneda)
+    public function traeInventario($empe, $desempe, $refrendo, $almoneda, $auto)
     {
         $datos = array();
 
         try {
             $buscar = "";
 
-            if($empe == 1||$desempe ==1||$refrendo == 1||$almoneda==1){
-                $buscar = $buscar . "where";
+            if($empe == 1|| $desempe ==1|| $refrendo == 1|| $almoneda == 1){
+                $buscar .= " where ";
 
                 if($empe==1){
-                    $buscar = $buscar . " e.descripcion = 'Empeñado'";
-                    if($desempe == 1||$refrendo == 1||$almoneda==1){
-                        $buscar = $buscar . " or ";
+                    $buscar .= " e.descripcion = 'Empeñado'";
+                    if($desempe == 1|| $refrendo == 1|| $almoneda == 1){
+                        $buscar .= " or ";
                     }
                 }
-                if($desempe==1){
-                    $buscar = $buscar . " e.descripcion = 'Desempeñado'";
-                    if($refrendo==1||$almoneda==1){
-                        $buscar = $buscar . " or ";
+                if($desempe == 1){
+                    $buscar .= " e.descripcion = 'Desempeñado'";
+                    if($refrendo == 1|| $almoneda == 1){
+                        $buscar .= " or ";
                     }
                 }
-                if($almoneda==1){
-                    $buscar = $buscar . " e.descripcion = 'Almoneda'";
+                if($almoneda == 1){
+                    $buscar .= " e.descripcion = 'Almoneda'";
                     if($almoneda==1){
-                        $buscar = $buscar . " or ";
+                        $buscar .= " or ";
                     }
                 }
-                if($refrendo==1){
-                    $buscar = $buscar . " e.descripcion = 'Refrendo'";
+                if($refrendo == 1){
+                    $buscar .= " e.descripcion = 'Refrendo'";
+                    if($auto == 1){
+                        $buscar .= " or ";
+                    }
                 }
             }
 

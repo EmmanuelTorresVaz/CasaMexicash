@@ -36,9 +36,9 @@
 
         <form method="post" name="formCliente" action="../../../com.Mexicash/Controlador/RegistroCliente.php">
 
-            <div class="col-2" style="position: absolute; top: 16vh; padding-left: 4vw; height: 80vh;">
+            <div class="col-3" style="position: absolute; top: 16vh; padding-left: 4vw; height: 80vh;">
                 <h6>Sexo:</h6>
-                <select class="boxSexo" name="boxSexo" id="boxSexo" required>
+                <select class="boxSexo" name="boxSexo" id="boxSexo" style="width: 50%" required>
                     <option value="">Selecciona uno</option>
                     <option value="1">Hombre</option>
                     <option value="2">Mujer</option>
@@ -47,14 +47,14 @@
                 <br><br>
 
                 <h6>Fecha Nacimiento:</h6>
-                <input type="text" id="datepicker" name="inFechaNac" placeholder="Fecha [dd/mm/aa]" required/>
+                <input type="text" id="datepicker" name="inFechaNac" style="width: 70%" placeholder="Fecha [dd/mm/aa]" required/>
                 <br><br>
 
                 <h6>CURP:</h6>
-                <input type="text" id="inCurp" name="inCurp" placeholder="" required/>
+                <input type="text" id="inCurp" name="inCurp" style="width: 70%" placeholder="" required/>
                 <br/><br/>
                 <h6>Promoci&oacute;n:</h6>
-                <select type="text" name="inInstFin" placeholder="Selecciona uno" id="inInstFin" style="width: 200px" required>
+                <select type="text" name="inInstFin" placeholder="Selecciona uno" style="width: 70%" id="inInstFin" style="width: 200px" required>
                     <option value="">Selecciona Uno</option>
                     <?php
 
@@ -74,22 +74,22 @@
             </div>
 
             <div class="col-7 clearfix" style="position: absolute; top: 16vh; left: 20vw; height: 83vh; border-left: 1px solid black; border-right: 1px solid black">
-                <div style="float: left; padding-right: 40px">
+                <div style="float: left; padding-right: 40px; width: 33%">
                     <h6>Nombre(s):</h6>
-                    <input type="text" name="inNombre" id="inNombre" placeholder="Nombres" style="width: 240px" required/>
+                    <input type="text" name="inNombre" id="inNombre" placeholder="Nombres" style="width: 100%" required/>
                 </div>
 
-                <div style="float: left; padding-right: 40px">
+                <div style="float: left; padding-right: 40px; width: 33%">
                     <h6>Apellido Paterno:</h6>
-                    <input type="text" name="inApPat" id="inApPat" placeholder="Apellido Paterno" style="width: 240px" required/>
+                    <input type="text" name="inApPat" id="inApPat" placeholder="Apellido Paterno" style="width: 100%" required/>
                 </div>
 
-                <div style="float: left; padding-right: 40px">
+                <div style="float: left; padding-right: 40px; width: 33%">
                     <h6>Apellido Materno:</h6>
-                    <input type="text" name="inApMat" id="inApMat" placeholder="Apellido Materno" style="width: 240px" required/>
+                    <input type="text" name="inApMat" id="inApMat" placeholder="Apellido Materno" style="width: 100%" required/>
                 </div>
 
-                <div style="float: left; padding-right: 40px; padding-top: 30px">
+                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 50%">
                     <h6>Ocupacion o actividad del cliente:</h6>
                     <select type="text" name="boxOcupacion" placeholder="Selecciona uno" id="boxOcupacion" style="width: 25.5vw; " required>
                         <option value="">Selecciona Uno</option>
@@ -101,7 +101,7 @@
                     </select>
                 </div>
 
-                <div style="float: left; padding-right: 40px; padding-top: 30px">
+                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 50%">
                     <h6>Tipo de Identificaci&oacute;n:</h6>
                     <select type="text" name="boxIdentificacion" placeholder="Selecciona uno" id="boxIdentificacion" style="width: 25vw" required>
                         <option value="">Selecciona Uno</option>
@@ -120,75 +120,76 @@
                     </select>
                 </div>
 
-                <div style="float: left; padding-right: 40px; padding-top: 30px">
+                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 30%">
                     <h6>No. Identificaci&oacute;n:</h6>
-                    <input type="text" name="inNoIdentificacion" placeholder="" id="inNoIdentificacion" style="width: 240px" required/>
+                    <input type="text" name="inNoIdentificacion" placeholder="" id="inNoIdentificacion" style="width: 100%" required/>
                 </div>
 
-                <div style="float: left; padding-right: 40px; padding-top: 30px>
-                    <h6>RFC:</h6>
-                    <input type="text" name="inRfc" id="inRfc" placeholder="" style="width: 240px" required/>
-                </div>
 
-                <div style="float: left; padding-right: 40px; padding-top: 30px">
+                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 28%">
                     <h6>Calle:</h6>
-                    <input type="text" name="inCalle" placeholder="" id="inCalle" style="width: 200px" required/>
+                    <input type="text" name="inCalle" placeholder="" id="inCalle" style="width: 100%" required/>
                 </div>
 
-                <div style="float: left; padding-right: 40px; padding-top: 30px">
+                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 16%">
                     <h6>No. Exterior:</h6>
-                    <input type="text" name="inNoExt" placeholder="" id="inNoExt" style="width: 100px" required/>
+                    <input type="text" name="inNoExt" placeholder="" id="inNoExt" style="width: 100%" required/>
                 </div>
 
-                <div style="float: left; padding-right: 40px; padding-top: 30px">
+                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 16%">
                     <h6>No. Interior</h6>
-                    <input type="text" name="inNoInt" placeholder="" id="inNoInt" style="width: 100px" required/>
+                    <input type="text" name="inNoInt" placeholder="" id="inNoInt" style="width: 100%" required/>
                 </div>
 
-                <div style="float: left; padding-right: 40px; padding-top: 30px">
+                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 33%">
                     <h6>Colonia:</h6>
-                    <input type="text" name="inColonia" placeholder="" id="inColonia" style="width: 240px" required/>
+                    <input type="text" name="inColonia" placeholder="" id="inColonia" style="width: 100%" required/>
                 </div>
 
-                <div style="float: left; padding-right: 40px; padding-top: 30px">
+                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 33%">
                     <h6>Alcald&iacute;a:</h6>
 
-                    <input id="inAlcaldia" name="inAlcaldia" placeholder="Escribe una alcald&iacute;a" required>
+                    <input id="inAlcaldia" name="inAlcaldia" placeholder="Escribe una alcald&iacute;a" style="width: 100%" required>
 
                 </div>
 
-                <div style="float: left; padding-right: 40px; padding-top: 30px">
+                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 33%">
                     <h6>Estado de Residencia:</h6>
                     <div class="ui-widget">
-                        <input id="inEstadoActual" name="inEstadoActual" placeholder="Escribe un estado" style="width: 240px" required>
+                        <input id="inEstadoActual" name="inEstadoActual" placeholder="Escribe un estado" style="width: 100%" required>
                     </div>
                 </div>
 
-                <div style="float: left; padding-right: 40px; padding-top: 30px">
+                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 12%">
                     <h6>CP:</h6>
-                    <input type="text" name="inCP" placeholder="" id="inCP" style="width: 240px" required/>
+                    <input type="text" name="inCP" placeholder="" id="inCP" style="width: 100%" required/>
                 </div>
 
-                <div style="float: left; padding-right: 40px; padding-top: 30px">
+                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 22%">
+                    <h6>RFC:</h6>
+                    <input type="text" name="inRfc" id="inRfc" placeholder="" style="width: 100%" required/>
+                </div>
+
+                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 65%">
                     <h6>Mensaje de uso Interno</h6>
                     <textarea type="text" name="inMsjInt" placeholder="" id="inMsjInt" style="width: 35vw; height: 25vh" required></textarea>
                 </div>
 
             </div>
 
-            <div class="col-2" style="position: absolute; top: 16vh; right: 3vw; height: 80vh;">
+            <div class="col-3" style="position: absolute; top: 16vh; right: -5%; height: 80vh;">
                 <h4>Contacto</h4>
                 <br/>
                 <h6>Celular:</h6>
-                <input type="text" name="inCelular" id="inCelular" placeholder="N&uacute;mero con lada" required/>
+                <input type="text" name="inCelular" id="inCelular" style="width: 60%" placeholder="N&uacute;mero con lada" required/>
                 <br><br>
 
                 <h6>Tel&eacute;fono:</h6>
-                <input type="text" name="inTelefono" id="inTelefono" placeholder="N&uacute;mero con lada" required/>
+                <input type="text" name="inTelefono" id="inTelefono" style="width: 60%" placeholder="N&uacute;mero con lada" required/>
                 <br><br>
 
                 <h6>Correo Electr&oacute;nico:</h6>
-                <input type="text" name="inCorreo" id="inCorreo" placeholder="" required/>
+                <input type="text" name="inCorreo" id="inCorreo" style="width: 60%" placeholder="" required/>
                 <br/><br/><br/><br/><br/><br/>
 
                 <input type="submit" id="btnRegCliente" name="btnRegCliente" class="btn btn-outline-primary btn-lg" style="margin-left: 30px"/>

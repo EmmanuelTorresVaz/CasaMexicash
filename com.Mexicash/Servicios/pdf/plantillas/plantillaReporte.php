@@ -4,11 +4,60 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
 include_once (SQL_PATH."sqlReporteDAO.php");
 
 
-function getInventario($opc){
+function getInventarioFisico($empe, $desempe, $refrendo, $almoneda, $auto){
+
+    $sql = new sqlReporteDAO();
+    $datos = array();
+
+    $datos = $sql ->traeInventario($empe, $desempe, $refrendo, $almoneda);
+
+    $plantilla2 = '';
+
+    for($i =0; $i < count($datos); $i++){
+        $plantilla2 .= '<tr>
+              <td>'. $datos[$i]["id_Articulo"] .'</td>
+              <td>'. $datos[$i]["detalle"] .'</td>
+              <td>'. $datos[$i]["kilataje"] .'</td>
+              <td>'. $datos[$i]["peso"] .'</td>
+              <td>'. $datos[$i]["total_Prestamo"] .'</td>
+              <td>'. $datos[$i]["cantidad"] .'</td>
+              <td>'. $datos[$i]["fecha_Vencimiento"] .'</td>
+              <td>'. $datos[$i]["estatus"] .'</td>
+              </tr>';
+    };
 
 
-    $plantilla = null;
-
+    $plantilla = '<body>
+    <header class="clearfix">
+      <div id="logo">
+        <img src="../../style/Img/LogoCH.jpeg">
+      </div>
+      <h1>Inventario Fisico</h1>
+    </header>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th class="service">C&Oacute;DIGO</th>
+            <th class="desc">DESCRIPCI&Oacute;N</th>
+            <th>Kilataje</th>
+            <th>Peso</th>
+            <th>PR&Eacute;STAMO</th>
+            <th>Cantidad</th>
+            <th>Vencimiento</th>
+            <th>Estatus</th>
+          </tr>
+        </thead>
+        <tbody> '
+        . $plantilla2 . '
+          
+        </tbody>
+      </table>
+    </main>
+    <footer>
+      Mexicash, una franquicia 100% Mexicana.
+    </footer>
+  </body>';
 
     return $plantilla;
 }
@@ -58,7 +107,7 @@ function getPlantilla($empe, $desempe, $refrendo, $almoneda){
           </tr>
         </thead>
         <tbody> '
-            . $plantilla2 . '
+        . $plantilla2 . '
           
         </tbody>
       </table>
@@ -74,7 +123,7 @@ function getPlantilla($empe, $desempe, $refrendo, $almoneda){
 
 function getReporteCliente($nombre, $curp){
 
-$plantilla = '<body>
+    $plantilla = '<body>
 <header class="clearfix">
   <div id="logo">
     <img src="../../style/Img/LogoCH.jpeg">
@@ -159,7 +208,7 @@ $plantilla = '<body>
 </footer>
 </body>';
 
-return $plantilla;
+    return $plantilla;
 
 }
 

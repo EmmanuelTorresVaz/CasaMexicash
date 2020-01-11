@@ -164,7 +164,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../Reportes/vReporte.php">
+                    <a href="../Reportes/vInventarioFisico.php">
                         <i class="fa fa-gift"></i>
                         <strong>Inventario F&iacute;sico</strong>
                     </a>
