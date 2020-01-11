@@ -34,12 +34,13 @@ include_once (SQL_PATH."sqlCatalogoDAO.php");
 
         <h4 style="position: absolute; width: 95%; text-align: center; top: 9.5%">Reportes</h4>
 
-        <form action="reporteEmpeno.php" method="post" style="position: absolute; top: 14.5%">
+        <form action="reporteInventFisico.php" id="formReporteInventario" target="_blank" method="post" style="position: absolute; top: 14.5%">
             <div>
                 <label><input type="checkbox" id="Empe" name="Empe" value="1"/>Empeños</label>
                 <label><input type="checkbox" id="Desemp" name="Desemp" value="1"/>Desempeños</label>
                 <label><input type="checkbox" id="Refrendo" name="Refrendo" value="1"/>Refrendo</label>
                 <label><input type="checkbox" id="Almoneda" name="Almoneda" value="1"/>Almoneda</label>
+                <label><input type="checkbox" id="Autos" name="Auto" value="1"/>Solo Autos</label>
 
                 <input type="submit" value="Imprimir"/>
             </div>
