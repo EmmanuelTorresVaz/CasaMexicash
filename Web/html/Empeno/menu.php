@@ -29,22 +29,11 @@
                             <a class="nav-item nav-link" href="#" onclick="menu(this, 6)">Movimientos</a>
                             <a class="nav-item nav-link" href="#" tabindex="-1" aria-disabled="true" onclick="menu(this, 7)">Utilerias</a>
                             <a class="nav-item nav-link menu-Opcion-Login" href="#" onclick="menu(this, 9)">Cuenta</a>
-                            <!--
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-
-                            <form class="navbar-form navbar-left buscador" role="search">
-                                <div class="form-group">
-                                    <input type="text" class="form-control caja" placeholder="Buscar">
-                                </div>
-                            </form>-->
                         </div>
                     </div>
                 </nav>
             </div><!--Barra Navegación Home-->
         </div>
-
     </div>
     <div class="container2" style="left: 19.25vw;" id="empeño">
         <nav>

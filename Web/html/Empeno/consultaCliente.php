@@ -6,15 +6,12 @@ $sql = new sqlClienteDAO();
 
 $arr = array();
 $arr = $sql->traerTodos();
-
 $nombres = array();
-
 
 for($i = 0; $i < count($arr); $i++){
     $name = utf8_encode($arr[$i]['nombre'] . " " . $arr[$i]['apellidoPat'] . " " . $arr[$i]['apellidoMat']);
     array_push($nombres, $name);
 }
-
 $x = json_encode($nombres);
 
 ?>
@@ -24,12 +21,9 @@ $x = json_encode($nombres);
     <script type="text/javascript" src="../../js/jquery-1.12.1.min.js"></script>
     <link rel="stylesheet" href="../../style/jquery-ui.css"/>
     <script type="text/javascript" src="../../js/jquery-ui.js"></script>
-
-
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Registro Clientes</title>
-
     <link rel="stylesheet" href="../../style/less/main.css"/>
     <link rel="stylesheet" href="../../style/css/bootstrap/bootstrap.css"/>
 
@@ -121,34 +115,23 @@ $x = json_encode($nombres);
 
 
 <div class="container-fluid" id="tablaExtras" style="position: absolute; display: none; top: 10%; left: 0%; padding-left: 4vw; height: 70vh; border: 1px solid black; background-color: white; z-index: 3"></div>
-
-    <div class="col-7 clearfix" style="position: absolute; top: 0; padding-left: 4vw; height: 60vh; " >
-        <br/>
-        <h5>Datos</h5>
-        <br/>
-        <!--<form action="../../../com.Mexicash/Controlador/cConsultas.php" method="post">-->
+<div class="col-12 clearfix" style="position: absolute; top: 0; padding-left: 4vw; height: 60vh; " >
+        <br>
             <div style="float: left; padding-right: 30px">
                 <h6>Nombre Completo:</h6>
-                    <input id="Nombres" name="Nombres" type="text" style="width: 500px"/>
-
+                    <input id="Nombres" name="Nombres" type="text" style="width: 250px"/>
             </div>
-
             <div style="float: left; padding-right: 30px">
-                <br/>
                 <input type="button" class="btn btn-outline-primary" onclick="mostrarTablaExtras()" value="Ver todos">
             </div>
-        <!--</form>-->
-
         <div style="float: left; padding-right: 30px; padding-top: 20px;">
             <h6>Direcci&oacute;n:</h6>
-            <input type="text" name="inDireccion" placeholder="" id="inDireccion" style="width: 500px" required disabled/>
+            <input type="text" name="inDireccion" placeholder="" id="inDireccion" style="width: 250px" required disabled/>
         </div>
-
         <div style="float: left; padding-right: 30px; padding-top: 20px;">
             <h6>Ciudad:</h6>
             <input type="text" name="inCiudad" placeholder="" id="inCiudad" required disabled/>
         </div>
-
         <div style="float: left; padding-right: 30px; padding-top: 20px;">
             <h6>Celular:</h6>
             <input type="text" name="inCelular" placeholder="" id="inCelular" required disabled/>
@@ -156,19 +139,13 @@ $x = json_encode($nombres);
 
         <div style="float: left; padding-right: 30px; padding-top: 20px;">
             <h6>Nombre Completo Cotitular:</h6>
-            <input type="text" id="inNombreCot" name="inNombreCot" placeholder="" style="width: 375px" required disabled/>
+            <input type="text" id="inNombreCot" name="inNombreCot" placeholder="" style="width: 250px" required disabled/>
         </div>
 
         <div style="float: left; padding-right: 30px; padding-top: 20px;">
             <h6>Nombre Completo Beneficiario:</h6>
-            <input type="text" id="inBeneficiario" name="inBeneficiario" placeholder="" style="width: 375px" required disabled/>
+            <input type="text" id="inBeneficiario" name="inBeneficiario" placeholder="" style="width: 250px" required disabled/>
         </div>
-
-        <!--
-        <div style="float: left; padding-right: 30px"></div>
-        <div style="position: relative; top: %; left: %"></div>
-        -->
-
     </div>
 
 <script src="../../js/main/main.js"></script>

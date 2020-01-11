@@ -100,13 +100,6 @@ class sqlClienteDAO
 
             if($rs->num_rows > 0){
                 while($row = $rs->fetch_assoc()){
-
-                    /*
-                        $cliente = new Cliente($row["nombre"], $row["apellido_Pat"], $row["apellido_Mat"], 0, $row["fecha_Nacimiento"], $row["curp"], 0, 0,0,
-                        $row["celular"], $row["rfc"], $row["telefono"], $row["correo"], $row["estado"], $row["codigo_Postal"], $row["municipio"], $row["colonia"], $row["calle"], $row["num_exterior"],
-                        $row["num_interior"], 0, 0);
-                    */
-
                     $cliente = [
                         "nombre" => $row["nombre"],
                         "apellidoPat" => $row["apellido_Pat"],
