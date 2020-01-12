@@ -87,14 +87,14 @@ class sqlArticulosDAO
         $datos = array();
         try {
 
-            $buscar = "SELECT id_Articulo,id_Contrato,tipo, marca, estado, modelo, prestamo,avaluo, detalle FROM articulo_tbl";
+            $buscar = "SELECT id_Articulo,id_Cliente,tipo, marca, estado, modelo, prestamo,avaluo, detalle FROM articulo_tbl";
             $rs = $this->conexion->query($buscar);
 
             if ($rs->num_rows > 0) {
                 while ($row = $rs->fetch_assoc()) {
                     $data = [
                         "id_Articulo" => $row["id_Articulo"],
-                        "id_Contrato" => $row["id_Contrato"],
+                        "id_Cliente" => $row["id_Cliente"],
                         "marca" => $row["marca"],
                         "estado" => $row["estado"],
                         "modelo" => $row["modelo"],
