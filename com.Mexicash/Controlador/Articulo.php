@@ -3,15 +3,56 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
 include_once(MODELO_PATH . "Articulo.php");
 include_once(SQL_PATH . "sqlArticulosDAO.php");
 
-$idTipo = $_POST['idTipo'];
+$idTipoEnviar = $_POST['$idTipoEnviar'];
 
+if($idTipoEnviar ==1){
 
+    $idTipoM = $_POST['idTipoMetal'];
+    $idClienteInteres = $_POST['idClienteInteres'];
+    $idPrenda = $_POST['idPrenda'];
+    $idKilataje = $_POST['idKilataje'];
+    $idCalidad = $_POST['idCalidad'];
+    $idCantidad = $_POST['idCantidad'];
+    $idPeso = $_POST['idPeso'];
+    $idPesoPiedra = $_POST['idPesoPiedra'];
+    $idPiedras = $_POST['idPiedras'];
+    $idPrestamo = $_POST['idPrestamo'];
+    $idAvaluo = $_POST['idAvaluo'];
+    $idPrestamoMax = $_POST['idPrestamoMax'];
+    $idUbicacion = $_POST['idUbicacion'];
+    $idDetallePrenda = $_POST['idDetallePrenda'];
 
-if ($idTipo == 1) {
-   echo $idTipo;
-} else if ($idTipo == 2) {
-    $idTipo = $_POST['idTipoElectronico'];
-    $idFolio = $_POST['idFolio'];
+    $idTipoE = null;
+    $idMarca = null;
+    $idEstado = null;
+    $idModelo = null;
+    $idTamaño = null;
+    $idColor = null;
+    $idSerie = null;
+    $idPrestamoE = null;
+    $idAvaluoE = null;
+    $idPrestamoMaxE = null;
+    $idUbicacionE = null;
+    $idDetallePrendaE = null;
+
+}else if ($idTipoEnviar ==2){
+
+    $idTipoM = null;
+    $idPrenda = null;
+    $idKilataje = null;
+    $idCalidad = null;
+    $idCantidad = null;
+    $idPeso = null;
+    $idPesoPiedra = null;
+    $idPiedras = null;
+    $idPrestamo = null;
+    $idAvaluo = null;
+    $idPrestamoMax = null;
+    $idUbicacion = null;
+    $idDetallePrenda = null;
+
+    $idTipoE = $_POST['idTipoElectronico'];
+    $idClienteInteres = $_POST['idClienteInteres'];
     $idMarca = $_POST['idMarca'];
     $idEstado = $_POST['idEstado'];
     $idModelo = $_POST['idModelo'];
@@ -21,13 +62,26 @@ if ($idTipo == 1) {
     $idPrestamoE = $_POST['idPrestamoElectronico'];
     $idAvaluoE = $_POST['idAvaluoElectronico'];
     $idPrestamoMaxE = $_POST['idPrestamoMaxElectronico'];
-    $idUbivacion = $_POST['idUbivacion'];
+    $idUbicacionE = $_POST['idUbicacionElectronico'];
     $idDetallePrendaE = $_POST['idDetallePrendaElectronico'];
-
+}
 
     $articulo = new Articulo(
-        $idTipo,
-        $idFolio,
+        $idTipoM,
+        $idClienteInteres,
+        $idPrenda,
+        $idKilataje,
+        $idCalidad,
+        $idCantidad,
+        $idPeso,
+        $idPesoPiedra,
+        $idPiedras,
+        $idPrestamo,
+        $idAvaluo,
+        $idPrestamoMax,
+        $idUbicacion,
+        $idDetallePrenda,
+        $idTipoE,
         $idMarca,
         $idEstado,
         $idModelo,
@@ -37,14 +91,12 @@ if ($idTipo == 1) {
         $idPrestamoE,
         $idAvaluoE,
         $idPrestamoMaxE,
-        $idUbivacion,
+        $idUbicacionE,
         $idDetallePrendaE
     );
 
-    $sqlArticulo = new sqlArticulosDAO();
-    $sqlArticulo->guardarArticulo($articulo);
-}
-
+$sqlArticulo = new sqlArticulosDAO();
+$sqlArticulo->guardarArticulo($idTipoEnviar, $articulo);
 
 ?>
 

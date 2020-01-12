@@ -3,8 +3,23 @@
 
 class Articulo
 {
-    private $idTipo;
-    private $idFolio;
+    //Metal
+    private $idTipoM;
+    private $idClienteInteres;
+    private $idPrenda;
+    private $idKilataje;
+    private $idCalidad;
+    private $idCantidad;
+    private $idPeso;
+    private $idPesoPiedra;
+    private $idPiedras;
+    private $idPrestamo;
+    private $idAvaluo;
+    private $idPrestamoMax;
+    private $idUbicacion;
+    private $idDetallePrenda;
+    //Electronico
+    private $idTipoE;
     private $idMarca;
     private $idEstado;
     private $idModelo;
@@ -14,13 +29,29 @@ class Articulo
     private $idPrestamoE;
     private $idAvaluoE;
     private $idPrestamoMaxE;
-    private $idUbivacion;
+    private $idUbicacionE;
     private $idDetallePrendaE;
 
+
     /**
-     * Cliente constructor.
-     * @param $idTipo
-     * @param $idFolio
+     * Articulo constructor.
+     * Metal
+     * @param $idTipoM
+     * @param $idClienteInteres
+     * @param $idPrenda
+     * @param $idKilataje
+     * @param $idCalidad
+     * @param $idCantidad
+     * @param $idPeso
+     * @param $idPesoPiedra
+     * @param $idPiedras
+     * @param $idPrestamo
+     * @param $idAvaluo
+     * @param $idPrestamoMax
+     * @param $idUbicacion
+     * @param $idDetallePrenda
+     * Electronico
+     * @param $idTipoE
      * @param $idMarca
      * @param $idEstado
      * @param $idModelo
@@ -30,14 +61,54 @@ class Articulo
      * @param $idPrestamoE
      * @param $idAvaluoE
      * @param $idPrestamoMaxE
-     * @param $idUbivacion
+     * @param $idUbicacionE
      * @param $idDetallePrendaE
-
      */
-    public function __construct($idTipo,$idFolio, $idMarca, $idEstado, $idModelo, $idTamaño,$idColor, $idSerie, $idPrestamoE, $idAvaluoE, $idPrestamoMaxE, $idUbivacion, $idDetallePrendaE)
+    public function __construct(
+        $idTipoM,
+        $idClienteInteres,
+        $idPrenda,
+        $idKilataje,
+        $idCalidad,
+        $idCantidad,
+        $idPeso,
+        $idPesoPiedra,
+        $idPiedras,
+        $idPrestamo,
+        $idAvaluo,
+        $idPrestamoMax,
+        $idUbicacion,
+        $idDetallePrenda,
+        $idTipoE,
+        $idMarca,
+        $idEstado,
+        $idModelo,
+        $idTamaño,
+        $idColor,
+        $idSerie,
+        $idPrestamoE,
+        $idAvaluoE,
+        $idPrestamoMaxE,
+        $idUbicacionE,
+        $idDetallePrendaE)
     {
-        $this->tipo = $idTipo;
-        $this->folio = $idFolio;
+        //Metales
+        $this->tipoM = $idTipoM;
+        $this->cliente = $idClienteInteres;
+        $this->prenda = $idPrenda;
+        $this->kilataje = $idKilataje;
+        $this->calidad = $idCalidad;
+        $this->cantidad = $idCantidad;
+        $this->peso = $idPeso;
+        $this->pesoPiedra = $idPesoPiedra;
+        $this->piedras = $idPiedras;
+        $this->prestamo = $idPrestamo;
+        $this->avaluo = $idAvaluo;
+        $this->prestamoMax = $idPrestamoMax;
+        $this->ubicacion = $idUbicacion;
+        $this->detallePrenda = $idDetallePrenda;
+        //ELECTRONICOS
+        $this->tipoE = $idTipoE;
         $this->marca = $idMarca;
         $this->estado = $idEstado;
         $this->modelo = $idModelo;
@@ -47,25 +118,41 @@ class Articulo
         $this->prestamoE = $idPrestamoE;
         $this->avaluoE = $idAvaluoE;
         $this->prestamoMaxE = $idPrestamoMaxE;
-        $this->ubivacion = $idUbivacion;
+        $this->ubicacionE = $idUbicacionE;
         $this->detallePrendaE = $idDetallePrendaE;
+    }
+    /**
+     * @return mixed
+     */
+    public function getPiedras()
+    {
+        return $this->piedras;
+    }
+
+    /**
+     * @param mixed $piedras
+     */
+    public function setPiedras($piedras): void
+    {
+        $this->piedras = $piedras;
     }
 
     /**
      * @return mixed
      */
-    public function getFolio()
+    public function getAvaluo()
     {
-        return $this->folio;
+        return $this->avaluo;
     }
 
     /**
-     * @param mixed $idFolio
+     * @param mixed $avaluo
      */
-    public function setFolio($idFolio): void
+    public function setAvaluo($avaluo): void
     {
-        $this->folio = $idFolio;
+        $this->avaluo = $avaluo;
     }
+
     /**
      * @return mixed
      */
@@ -80,6 +167,86 @@ class Articulo
     public function setAvaluoE($avaluoE): void
     {
         $this->avaluoE = $avaluoE;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCalidad()
+    {
+        return $this->calidad;
+    }
+
+    /**
+     * @param mixed $calidad
+     */
+    public function setCalidad($calidad): void
+    {
+        $this->calidad = $calidad;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCantidad()
+    {
+        return $this->cantidad;
+    }
+
+    /**
+     * @param mixed $cantidad
+     */
+    public function setCantidad($cantidad): void
+    {
+        $this->cantidad = $cantidad;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCliente()
+    {
+        return $this->cliente;
+    }
+
+    /**
+     * @param mixed $cliente
+     */
+    public function setCliente($cliente): void
+    {
+        $this->cliente = $cliente;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param mixed $color
+     */
+    public function setColor($color): void
+    {
+        $this->color = $color;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDetallePrenda()
+    {
+        return $this->detallePrenda;
+    }
+
+    /**
+     * @param mixed $detallePrenda
+     */
+    public function setDetallePrenda($detallePrenda): void
+    {
+        $this->detallePrenda = $detallePrenda;
     }
 
     /**
@@ -117,6 +284,22 @@ class Articulo
     /**
      * @return mixed
      */
+    public function getKilataje()
+    {
+        return $this->kilataje;
+    }
+
+    /**
+     * @param mixed $kilataje
+     */
+    public function setKilataje($kilataje): void
+    {
+        $this->kilataje = $kilataje;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getMarca()
     {
         return $this->marca;
@@ -149,17 +332,65 @@ class Articulo
     /**
      * @return mixed
      */
-    public function getTamaño()
+    public function getPeso()
     {
-        return $this->tamaño;
+        return $this->peso;
     }
 
     /**
-     * @param mixed idTamaño
+     * @param mixed $peso
      */
-    public function setTamaño($tamaño): void
+    public function setPeso($peso): void
     {
-        $this->tamaño = $tamaño;
+        $this->peso = $peso;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPesoPiedra()
+    {
+        return $this->pesoPiedra;
+    }
+
+    /**
+     * @param mixed $pesoPiedra
+     */
+    public function setPesoPiedra($pesoPiedra): void
+    {
+        $this->pesoPiedra = $pesoPiedra;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrenda()
+    {
+        return $this->prenda;
+    }
+
+    /**
+     * @param mixed $prenda
+     */
+    public function setPrenda($prenda): void
+    {
+        $this->prenda = $prenda;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrestamo()
+    {
+        return $this->prestamo;
+    }
+
+    /**
+     * @param mixed $prestamo
+     */
+    public function setPrestamo($prestamo): void
+    {
+        $this->prestamo = $prestamo;
     }
 
     /**
@@ -181,6 +412,22 @@ class Articulo
     /**
      * @return mixed
      */
+    public function getPrestamoMax()
+    {
+        return $this->prestamoMax;
+    }
+
+    /**
+     * @param mixed $prestamoMax
+     */
+    public function setPrestamoMax($prestamoMax): void
+    {
+        $this->prestamoMax = $prestamoMax;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getPrestamoMaxE()
     {
         return $this->prestamoMaxE;
@@ -193,8 +440,6 @@ class Articulo
     {
         $this->prestamoMaxE = $prestamoMaxE;
     }
-
-
 
     /**
      * @return mixed
@@ -215,52 +460,84 @@ class Articulo
     /**
      * @return mixed
      */
-    public function getTipo()
+    public function getTamaño()
     {
-        return $this->tipo;
+        return $this->tamaño;
     }
 
     /**
-     * @param mixed $tipo
+     * @param mixed $tamaño
      */
-    public function setTipo($tipo): void
+    public function setTamaño($tamaño): void
     {
-        $this->tipo = $tipo;
-    }
-
-    /**
-
-    /**
-     * @return mixed
-     */
-    public function getUbivacion()
-    {
-        return $this->ubivacion;
-    }
-
-    /**
-     * @param mixed $ubivacion
-     */
-    public function setUbivacion($ubivacion): void
-    {
-        $this->ubivacion = $ubivacion;
+        $this->tamaño = $tamaño;
     }
 
     /**
      * @return mixed
      */
-    public function getColor()
+    public function getTipoM()
     {
-        return $this->color;
+        return $this->tipoM;
     }
 
     /**
-     * @param mixed $color
+     * @param mixed $tipoM
      */
-    public function setColor($color): void
+    public function setTipoM($tipoM): void
     {
-        $this->color = $color;
+        $this->tipoM = $tipoM;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTipoE()
+    {
+        return $this->tipoE;
+    }
+
+    /**
+     * @param mixed $tipoE
+     */
+    public function setTipoE($tipoE): void
+    {
+        $this->tipoE = $tipoE;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getUbicacion()
+    {
+        return $this->ubicacion;
+    }
+
+    /**
+     * @param mixed $ubicacion
+     */
+    public function setUbicacion($ubicacion): void
+    {
+        $this->ubicacion = $ubicacion;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUbicacionE()
+    {
+        return $this->ubicacionE;
+    }
+
+    /**
+     * @param mixed $ubicacionE
+     */
+    public function setUbicacionE($ubicacionE): void
+    {
+        $this->ubicacionE = $ubicacionE;
+    }
+
 
 
 

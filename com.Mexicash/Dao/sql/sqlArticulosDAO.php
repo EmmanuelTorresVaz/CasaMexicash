@@ -16,30 +16,58 @@ class sqlArticulosDAO
         $this->conexion = $this->db->connectDB();
     }
 
-    public function guardarArticulo(Articulo $articulo)
+    public function guardarArticulo($tipoPost,Articulo $articulo)
     {
         // TODO: Implement guardaCiente() method.
         try {
 
-            $idTipo = $articulo->getTipo();
-            $idFolio = $articulo->getFolio();
-            $idMarca = $articulo->getMarca();
-            $idEstado = $articulo->getEstado();
-            $idModelo = $articulo->getModelo();
-            $idTamaño = $articulo->getTamaño();
-            $idColor = $articulo->getColor();
-            $idSerie = $articulo->getSerie();
-            $idPrestamoE = $articulo->getPrestamoE();
-            $idAvaluoE = $articulo->getAvaluoE();
-            $idPrestamoMaxE = $articulo->getPrestamoMaxE();
-            $idUbivacion = $articulo->getUbivacion();
-            $idDetallePrendaE = $articulo->getDetallePrendaE();
+            $idCliente = $articulo->getCliente();
+            $status = 1;
+            $fechaCreacion = date('d-m-Y');
+            $fechaModificacion = date('d-m-Y');
+            if($tipoPost=="1"){
+                $idTipoM = $articulo->getTipoM();
+                $idPrenda = $articulo->getPrenda();
+                $idKilataje = $articulo->getKilataje();
+                $idCalidad = $articulo->getCalidad();
+                $idCantidad = $articulo->getCantidad();
+                $idPeso = $articulo->getPeso();
+                $idPesoPiedra = $articulo->getPesoPiedra();
+                $idPiedras = $articulo->getPiedras();
+                $idPrestamo = $articulo->getPrestamoMax();
+                $idAvaluo = $articulo->getAvaluo();
+                $idPrestamoMax = $articulo->getPrestamoMax();
+                $idUbicacion = $articulo->getUbicacion();
+                $idDetallePrenda = $articulo->getDetallePrenda();
 
-            $insertMetal = "INSERT INTO articulo_tbl " .
-                "(id_Contrato,tipo, marca, estado, modelo, tamaño, color, num_Serie, prestamo, avaluo, prestamoMaximo, ubivavion," .
-                " detalle, id_Estatus)  VALUES " .
-                "('" . $idFolio . "','" . $idTipo . "','" . $idMarca . "', '" . $idEstado . "', '" . $idModelo . "', '" . $idTamaño . "', '" . $idColor
-                . "', '" . $idSerie . "', '" . $idPrestamoE . "', '" . $idAvaluoE . "', '" . $idPrestamoMaxE . "', '" . $idUbivacion . "','13',  '1')";
+                $insertMetal = "INSERT INTO articulo_tbl " .
+                    "(id_Cliente,tipo, prenda, kilataje, calidad, cantidad, peso, peso_Piedra, piedras, prestamo, avaluo, prestamoMaximo, ubicacion," .
+                    " detalle, id_Estatus, fecha_creacion, fecha_modificacion)  VALUES " .
+                    "('" . $idCliente . "','" . $idTipoM . "','" . $idPrenda . "', '" . $idKilataje . "', '" . $idCalidad . "', '" . $idCantidad . "', '" . $idPeso
+                    . "', '" . $idPesoPiedra . "', '" . $idPiedras . "', '" . $idPrestamo . "', '" . $idAvaluo . "', '" . $idPrestamoMax . "','" . $idUbicacion . "','"
+                    . $idDetallePrenda . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "')";
+
+            }else if($tipoPost=="2"){
+                $idTipoE = $articulo->getTipoE();
+                $idMarca = $articulo->getMarca();
+                $idEstado = $articulo->getEstado();
+                $idModelo = $articulo->getModelo();
+                $idTamaño = $articulo->getTamaño();
+                $idColor = $articulo->getColor();
+                $idSerie = $articulo->getSerie();
+                $idPrestamoE = $articulo->getPrestamoE();
+                $idAvaluoE = $articulo->getAvaluoE();
+                $idPrestamoMaxE = $articulo->getPrestamoMaxE();
+                $idUbicacionE = $articulo->getUbicacionE();
+                $idDetallePrendaE = $articulo->getDetallePrendaE();
+
+                $insertMetal = "INSERT INTO articulo_tbl " .
+                    "(id_Cliente,tipo, marca, estado, modelo, tamaño, color, num_Serie, prestamo, avaluo, prestamoMaximo, ubicacion," .
+                    " detalle, id_Estatus, fecha_creacion, fecha_modificacion)  VALUES " .
+                    "('" . $idCliente . "','" . $idTipoE . "','" . $idMarca . "', '" . $idEstado . "', '" . $idModelo . "', '" . $idTamaño . "', '" . $idColor
+                    . "', '" . $idSerie . "','" . $idPrestamoE . "', '" . $idAvaluoE . "', '" . $idPrestamoMaxE . "', '" . $idUbicacionE . "','"
+                    . $idDetallePrendaE . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "')";
+            }
 
             if ($ps = $this->conexion->prepare($insertMetal)) {
                 if ($ps->execute()) {
@@ -51,8 +79,10 @@ class sqlArticulosDAO
                 $verdad = 3;
             }
         } catch (Exception $exc) {
+            $verdad = 4;
             echo $exc->getMessage();
         } finally {
+            $verdad = 5;
             $this->db->closeDB();
         }
         //return $verdad;
