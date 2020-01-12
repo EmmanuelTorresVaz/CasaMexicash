@@ -32,15 +32,19 @@ $x = json_encode($nombres);
     <link rel="stylesheet" type="text/css" href="../../alertifyjs/css/themes/default.css"/>
 
     <script src="../../alertifyjs/alertify.js"></script>
-    <script src="../../JavaScript/funciones.js"></script>
-
+    <script src="../../JavaScript/funcionesArticulos.js"></script>
+    <script src="../../JavaScript/funcionesIntereses.js"></script>
     <!--    Script inicial-->
     <script type="application/javascript">
         $(document).ready(function () {
+            $('.menuContainer').load('menu.php');
             $("#divElectronicos").hide();
             $("#divMetales").show();
             $("#idFormEmpeno").trigger("reset");
             $("#divTablaArticulos").load('tablaArticulos.php');
+            $( "#tipoInteres" ).change(function() {
+                SeleccionarInteres($("#tipoInteres").val());
+            });
         });
     </script>
     <!--    Script Consultar Cliente-->
@@ -119,165 +123,33 @@ $x = json_encode($nombres);
 
         }
     </script>
-    <!--    Script intereses-->
+
     <script>
-        function SeleccionarInteres(tipoInteresValue) {
-            if (tipoInteresValue != "null" || tipoInteresValue != 0) {
-                var dataEnviar = {
-                    "tipoInteresValue": tipoInteresValue
-                };
-                $.ajax({
-                    data: dataEnviar,
-                    url: '../../../com.Mexicash/Controlador/Intereses.php',
-                    type: 'post',
-                    dataType: "json",
-                    beforeSend: function () {
-                        $("#pperiodo").html("Procesando");
-                    },
-                    success: function (response) {
-                        if (response.status == 'ok') {
-//para asignar a input
-                            $("#idTipoInteres").val(response.result.tipoInteres);
-                            $("#idPeriodo").val(response.result.periodo);
-                            $("#idPlazo").val(response.result.plazo);
-                            $('#idTasaPorcen').val(response.result.tasa);
-                            $('#idAlmPorcen').val(response.result.alm);
-                            $('#idSeguroPorcen').val(response.result.seguro);
-                            $('#idIvaPorcen').val(response.result.iva + " %");
-                            $('#idTipoPromocion').val(response.result.tipo_Promocion);
-                            $('#idAgrupamiento').val(response.result.tipo_Agrupamiento);
-                        }
-                    },
-                })
-            }
-        }
-    </script>
-    <!--    Script articulos-->
-    <script language="JavaScript" type="text/JavaScript">
-
-        function Limpiar() {
-            <!--   Limpiar Metales-->
-            $("#idTipoMetal").val(0);
-            $("#idPrenda").val(0);
-            $("#idKilataje").val(0);
-            $("#idCalidad").val(0);
-            $("#idCantidad").val("");
-            $("#idPeso").val("");
-            $("#idPesoPiedra").val("");
-            $("#idPiedras").val("");
-            $("#idPrestamo").val("");
-            $("#idAvaluo").val("");
-            $("#idPrestamoMax").val("");
-            $("#idUbicacion").val("");
-            $("#idDetallePrenda").val("");
-            <!--   Limpiar Electronicos-->
-            $("#idTipoElectronico").val(0);
-            $("#idMarca").val("");
-            $("#idEstado").val(0);
-            $("#idModelo").val("");
-            $("#idTamaño").val("");
-            $("#idColor").val(0);
-            $("#idSerie").val("");
-            $("#idPrestamoElectronico").val("");
-            $("#idAvaluoElectronico").val("");
-            $("#idPrestamoMaxElectronico").val("");
-            $("#idUbicacionElectronico").val("");
-            $("#idDetallePrendaElectronico").val("");
-        }
-
-        function Agregar() {
-            var formElectronico = $("#idTipoElectronico").val();
-            var formMetal = $("#idTipoMetal").val();
-            if (formMetal > 0) {
-                //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
-                var dataEnviar = {
-                    "$idTipoEnviar": 1,
-                    "idClienteInteres": $("#idClienteInteres").val(),
-                    "idTipoMetal": $("#idTipoMetal").val(),
-                    "idPrenda": $("#idPrenda").val(),
-                    "idKilataje": $("#idKilataje").val(),
-                    "idCalidad": $("#idCalidad").val(),
-                    "idCantidad": $("#idCantidad").val(),
-                    "idPeso": $("#idPeso").val(),
-                    "idPesoPiedra": $("#idPesoPiedra").val(),
-                    "idPiedras": $("#idPiedras").val(),
-                    "idPrestamo": $("#idPrestamo").val(),
-                    "idAvaluo": $("#idAvaluo").val(),
-                    "idPrestamoMax": $("#idPrestamoMax").val(),
-                    "idUbicacion": $("#idUbicacion").val(),
-                    "idDetallePrenda": $("#idDetallePrenda").val()
-                };
-            } else if (formElectronico > 0) {
-                //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
-                var dataEnviar = {
-                    "$idTipoEnviar": 2,
-                    "idClienteInteres": $("#idClienteInteres").val(),
-                    "idTipoElectronico": $("#idTipoElectronico").val(),
-                    "idMarca": $("#idMarca").val(),
-                    "idEstado": $("#idEstado").val(),
-                    "idModelo": $("#idModelo").val(),
-                    "idTamaño": $("#idTamaño").val(),
-                    "idColor": $("#idColor").val(),
-                    "idSerie": $("#idSerie").val(),
-                    "idPrestamoElectronico": $("#idPrestamoElectronico").val(),
-                    "idAvaluoElectronico": $("#idAvaluoElectronico").val(),
-                    "idPrestamoMaxElectronico": $("#idPrestamoMaxElectronico").val(),
-                    "idUbicacionElectronico": $("#idUbicacionElectronico").val(),
-                    "idDetallePrendaElectronico": $("#idDetallePrendaElectronico").val()
-                };
-            }
-            $.ajax({
-                data: dataEnviar,
-                url: '../../../com.Mexicash/Controlador/Articulo.php',
-                type: 'post',
-                beforeSend: function () {
-                },
-                success: function (response) {
-                    if (response == 5) {
-                        alertify.success("Articulo agregado exitosamente.");
-                        $("#divTablaArticulos").load('tablaArticulos.php');
-                    } else {
-                        alertify.error("Error al agregar articulo.");
-                    }
-                },
-            })
-        }
-
-        function Metales() {
-            $(document).ready(function () {
-                $("#divElectronicos").hide();
-                $("#divMetales").show();
-            });
-        }
-
-        function Electronicos() {
-            $(document).ready(function () {
-                $("#divMetales").hide();
-                $("#divElectronicos").show();
-            });
-        }
-
-        function Recargar() {
-            <?php
-            $sql = new sqlArticulosDAO();
-            $data = $sql->buscarArticulo();
-            ?>
-        }
-
+        $( function() {
+            $( "#datepicker" ).datepicker();
+        } );
     </script>
 </head>
 <body>
-<div class="menuContainer"></div>
+<div class="menuContainer" ></div>
+
 <div class="container-fluid" id="tablaExtras"
      style="position: absolute; display: none; top: 10%; left: 0%; padding-left: 4vw; height: 70vh; border: 1px solid black; background-color: white; z-index: 3"></div>
 <form name="formEmpeno" id="idFormEmpeno" class="form-control input-sm">
+    <br>
     <div id="contenedor" class="container">
         <div class="row">
             <div class="col col-lg-12">
                 <table border="0" width="100%">
                     <tbody>
                     <tr>
-                        <td colspan="24">
+                        <br>
+                    </tr>
+                    <tr>
+                        <br>
+                    </tr>
+                    <tr>
+                        <td colspan="24" align="center">
                             <label>Empeno</label>
                         </td>
                     </tr>
@@ -314,8 +186,7 @@ $x = json_encode($nombres);
                         </td>
                         <td colspan="6" class="border border-dark">Tasa Interés</td>
                         <td colspan="6" class="border border-dark">
-                            <select id="tipoInteres" name="cmbTipoInteres"
-                                    onChange="javascript:SeleccionarInteres($('#tipoInteres').val());">
+                            <select id="tipoInteres" name="cmbTipoInteres">
                                 <option value="0">Seleccione:</option>
                                 <?php
                                 $data = array();
@@ -454,7 +325,7 @@ $x = json_encode($nombres);
                     <tr>
                         <td>
                             <input type="text" id="idClienteInteres" name="clienteInteres" size="6"
-                                   style="text-align:center" value="1"/>
+                                   style="text-align:center" class="invisible" value="2"/>
                         </td>
                     </tr>
                     <tr>
@@ -676,7 +547,16 @@ $x = json_encode($nombres);
                     </tr>
                 </table>
             </div>
-            <div id="divTablaArticulos" class="col col-lg-8"></div>
+            <div class="col col-lg-8 " >
+                <table width="100%">
+                    <tr>
+                        <td align="right">
+                            <div id="divTablaArticulos" class="col col-lg-12 " ></div>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
         </div>
         <div class="row">
             <div class="col col-lg-6">

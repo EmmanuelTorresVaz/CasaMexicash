@@ -4,8 +4,14 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
 ?>
 <div class="row">
     <div class="col col-lg-12">
-        <table class="table table-responsive table-hover table-condensed table-bordered">
+        <table class="table table-responsive table-hover table-condensed table-bordered" >
             <thead>
+            <tr>
+                <br>
+            </tr>
+            <tr>
+                <br>
+            </tr>
             <tr>
                 <th>Marca</th>
                 <th>Estado</th>
