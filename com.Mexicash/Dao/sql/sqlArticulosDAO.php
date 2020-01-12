@@ -89,29 +89,6 @@ class sqlArticulosDAO
         echo $verdad;
     }
 
-    public function BuscarContrato()
-    {
-        try {
-            $id = -1;
-
-            $buscar = "select folio FROM contrato_tbl ";
-
-            $statement = $this->conexion->query($buscar);
-
-            if ($statement->num_rows > 0) {
-                $fila = $statement->fetch_object();
-                $folio = $fila->folio;
-            }
-
-        } catch (Exception $exc) {
-            echo $exc->getMessage();
-        } finally {
-            $this->db->closeDB();
-        }
-
-        return $folio;
-    }
-
     public function buscarArticulo()
     {
         $datos = array();
@@ -144,6 +121,27 @@ class sqlArticulosDAO
         }
 
         return $datos;
+    }
+
+    public function eliminarArticulo($idArticulo)
+    {
+        // TODO: Implement guardaCiente() method.
+        try {
+            $eliminarArticulo = "DELETE FROM articulo_tbl WHERE id_Articulo='$idArticulo'";
+
+            if ($this->conexion->query($eliminarArticulo) === TRUE) {
+                $verdad = 1;
+            } else {
+                $verdad = 2;
+            }
+        } catch (Exception $exc) {
+            $verdad = 4;
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+        //return $verdad;
+        echo $verdad;
     }
 
 

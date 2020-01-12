@@ -18,7 +18,7 @@ $x = json_encode($nombres);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Empeno</title>
+    <title>Empe&ntilde;o</title>
     <script type="text/javascript" src="../../js/jquery-1.12.1.min.js"></script>
     <link rel="stylesheet" href="../../style/jquery-ui.css"/>
     <script type="text/javascript" src="../../js/jquery-ui.js"></script>
@@ -28,6 +28,10 @@ $x = json_encode($nombres);
     <link rel="stylesheet" href="../../style/css/bootstrap/bootstrap.css"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="../../style/css/magicsuggest/magicsuggest-min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../alertifyjs/css/alertify.css"/>
+    <link rel="stylesheet" type="text/css" href="../../alertifyjs/css/themes/default.css"/>
+
+    <script src="../../alertifyjs/alertify.js"></script>
     <script src="../../JavaScript/funciones.js"></script>
 
     <!--    Script inicial-->
@@ -71,6 +75,7 @@ $x = json_encode($nombres);
                 }
             });
         });
+
         function onk() {
 
             var texto = document.getElementById('inNombre').value;
@@ -228,12 +233,11 @@ $x = json_encode($nombres);
                 beforeSend: function () {
                 },
                 success: function (response) {
-                    alert(response);
                     if (response == 5) {
+                        alertify.success("Articulo agregado exitosamente.");
                         $("#divTablaArticulos").load('tablaArticulos.php');
-                        
                     } else {
-
+                        alertify.error("Error al agregar articulo.");
                     }
                 },
             })
@@ -266,7 +270,7 @@ $x = json_encode($nombres);
 <div class="menuContainer"></div>
 <div class="container-fluid" id="tablaExtras"
      style="position: absolute; display: none; top: 10%; left: 0%; padding-left: 4vw; height: 70vh; border: 1px solid black; background-color: white; z-index: 3"></div>
-<form method="post" name="formEmpeno" id="idFormEmpeno" class="form-control input-sm">
+<form name="formEmpeno" id="idFormEmpeno" class="form-control input-sm">
     <div id="contenedor" class="container">
         <div class="row">
             <div class="col col-lg-12">
@@ -446,7 +450,7 @@ $x = json_encode($nombres);
         </div>
         <div class="row">
             <div class="col col-lg-4">
-                <table >
+                <table>
                     <tr>
                         <td>
                             <input type="text" id="idClienteInteres" name="clienteInteres" size="6"
@@ -455,7 +459,8 @@ $x = json_encode($nombres);
                     </tr>
                     <tr>
                         <td>
-                            <button type="button" class="btn btn-primary" onclick="Limpiar();Metales();">Metales</button>
+                            <button type="button" class="btn btn-primary" onclick="Limpiar();Metales();">Metales
+                            </button>
                             &nbsp;
                             <button type="button" class="btn btn-primary" onclick="Limpiar();Electronicos();">
                                 Electronicos/Varios
@@ -681,10 +686,6 @@ $x = json_encode($nombres);
                     </div>
                     <div class="col-sm-4">
                         <button type="button" class="btn btn-success" onclick="Agregar();">Agregar a la lista
-                        </button>
-                    </div>
-                    <div class="col-sm-4">
-                        <button type="button" class="btn btn-success" onclick="Recargar();">Regargaar
                         </button>
                     </div>
                 </div>
