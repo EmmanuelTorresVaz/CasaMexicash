@@ -16,7 +16,28 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="../../style/css/magicsuggest/magicsuggest-min.css" rel="stylesheet">
+    <script src="../../JavaScript/funcionesCatalogos.js"></script>
 
+    <style type="text/css">
+        <style type="text/css">
+                              #suggestions {
+                                  box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
+                                  height: auto;
+                                  position: absolute;
+                                  top: 45px;
+                                  z-index: 9999;
+                                  width: 206px;
+                              }
+
+        #suggestions .suggest-element {
+            background-color: #EEEEEE;
+            border-top: 1px solid #d6d4d4;
+            cursor: pointer;
+            padding: 8px;
+            width: 100%;
+            float: left;
+        }
+    </style>
     <script>
         $(document).ready(function () {
             $('.menuContainer').load('menu.php');
@@ -91,13 +112,16 @@
 
                 <div style="float: left; padding-right: 40px; padding-top: 30px; width: 50%">
                     <h6>Ocupacion o actividad del cliente:</h6>
-                    <select type="text" name="boxOcupacion" placeholder="Selecciona uno" id="boxOcupacion" style="width: 25.5vw; " required>
-                        <option value="">Selecciona Uno</option>
-                        <option value="1">Estudiante</option>
-                        <option value="2">Youtuber</option>
-                        <option value="3">Agente de la URSS</option>
-                        <option value="4">Catador de alitas buffalo</option>
-                        <option value="5">Doble de peliculas bajo alto riesgo</option>
+                    <select type="text" name="boxOcupacion" placeholder="Selecciona uno" id="boxOcupacion" style="width: 200px" required>
+                        <option value="0">Selecciona Uno</option>
+                        <?php
+                        $dataOcupaciones = array();
+                        $sq = new sqlCatalogoDAO();
+                        $dataOcupaciones = $sq->catOcupacionesLlenar();
+                        for($i = 0; $i < count($dataOcupaciones); $i++){
+                            echo "<option value=" . $dataOcupaciones[$i]['id_Ocupacion'] . ">" . $dataOcupaciones[$i]['descripcion'] . "</option>";
+                        }
+                        ?>
                     </select>
                 </div>
 
@@ -106,12 +130,9 @@
                     <select type="text" name="boxIdentificacion" placeholder="Selecciona uno" id="boxIdentificacion" style="width: 25vw" required>
                         <option value="">Selecciona Uno</option>
                         <?php
-
                             $dataIdent = array();
-
                             $sq = new sqlCatalogoDAO();
                             $dataIdent = $sq->traeIdentificaciones();
-
                             for($i = 0; $i < count($dataIdent); $i++){
                                 echo "<option value=" . $dataIdent[$i]['id_Cat_Cliente'] . ">" . $dataIdent[$i]['descripcion'] . "</option>";
                             }
@@ -125,6 +146,33 @@
                     <input type="text" name="inNoIdentificacion" placeholder="" id="inNoIdentificacion" style="width: 100%" required/>
                 </div>
 
+                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 33%">
+                    <h6>Estado de Residencia: M&eacute;xico</h6>
+                    <!--<div class="ui-widget">
+                        <input id="inEstadoActual" name="inEstadoActual" placeholder="Escribe un estado" style="width: 100%" required>
+                    </div>-->
+
+                    <div>
+                        <input id="idEstado" name="Estado" type="text" style="width: 300px"
+                               onkeypress="estadoAutocompletar()" placeholder="Buscar Estado..."/>
+                        <span class="input-group-btn"></span>
+                    </div>
+                    <div id="suggestions"></div>
+                </div>
+
+                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 33%">
+                    <h6>Municipio</h6>
+                    <!--<div class="ui-widget">
+                        <input id="inEstadoActual" name="inEstadoActual" placeholder="Escribe un estado" style="width: 100%" required>
+                    </div>-->
+
+                    <div>
+                        <input id="idMunicipio" name="Municipio" type="text" style="width: 300px"
+                               onkeypress="municipioAutocompletar()" placeholder="Buscar Estado..."/>
+                        <span class="input-group-btn"></span>
+                    </div>
+                    <div id="suggestions"></div>
+                </div>
 
                 <div style="float: left; padding-right: 40px; padding-top: 30px; width: 28%">
                     <h6>Calle:</h6>
@@ -153,12 +201,7 @@
 
                 </div>
 
-                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 33%">
-                    <h6>Estado de Residencia:</h6>
-                    <div class="ui-widget">
-                        <input id="inEstadoActual" name="inEstadoActual" placeholder="Escribe un estado" style="width: 100%" required>
-                    </div>
-                </div>
+
 
                 <div style="float: left; padding-right: 40px; padding-top: 30px; width: 12%">
                     <h6>CP:</h6>
