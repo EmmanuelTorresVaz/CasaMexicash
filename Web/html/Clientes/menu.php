@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="../../style/less/pagPrincipal.css" type="text/css">
     <title>Acceder</title>
 </head>
+
+<script>
+    function ventanaInvFisico() {
+        window.open("../Reportes/vInventarioFisico.php" , "Inventario Fisico" , "width=500,height=210,scrollbars=NO");
+    }
+
+</script>
+
 <body>
 
     <div id="login">
@@ -164,7 +172,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../Reportes/vInventarioFisico.php">
+                    <a href="#" onclick="ventanaInvFisico()">
                         <i class="fa fa-gift"></i>
                         <strong>Inventario F&iacute;sico</strong>
                     </a>

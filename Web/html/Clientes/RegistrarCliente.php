@@ -120,23 +120,23 @@
                     </select>
                 </div>
 
-                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 30%">
+                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 31%">
                     <h6>No. Identificaci&oacute;n:</h6>
                     <input type="text" name="inNoIdentificacion" placeholder="" id="inNoIdentificacion" style="width: 100%" required/>
                 </div>
 
 
-                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 28%">
+                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 32%">
                     <h6>Calle:</h6>
                     <input type="text" name="inCalle" placeholder="" id="inCalle" style="width: 100%" required/>
                 </div>
 
-                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 16%">
+                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 18%">
                     <h6>No. Exterior:</h6>
                     <input type="text" name="inNoExt" placeholder="" id="inNoExt" style="width: 100%" required/>
                 </div>
 
-                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 16%">
+                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 18%">
                     <h6>No. Interior</h6>
                     <input type="text" name="inNoInt" placeholder="" id="inNoInt" style="width: 100%" required/>
                 </div>

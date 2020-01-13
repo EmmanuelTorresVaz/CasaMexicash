@@ -3,13 +3,19 @@
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
 include_once (SQL_PATH."sqlReporteDAO.php");
 
-
-function getInventarioFisico($empe, $desempe, $refrendo, $almoneda, $auto){
+function getInventarioFisicoExcel($empe, $desempe, $refrendo, $almoneda, $auto, $fechaInicial, $fechaFinal){
+header("Pragma: public");
+header("Expires: 0");
+$filename = "inventarioFisico.xls";
+header("Content-type: application/x-msdownload");
+header("Content-Disposition: attachment; filename=$filename");
+header("Pragma: no-cache");
+header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 
     $sql = new sqlReporteDAO();
     $datos = array();
 
-    $datos = $sql ->traeInventario($empe, $desempe, $refrendo, $almoneda);
+    $datos = $sql ->traeInventario($empe, $desempe, $refrendo, $almoneda, $auto, $fechaInicial, $fechaFinal);
 
     $plantilla2 = '';
 
@@ -19,9 +25,56 @@ function getInventarioFisico($empe, $desempe, $refrendo, $almoneda, $auto){
               <td>'. $datos[$i]["detalle"] .'</td>
               <td>'. $datos[$i]["kilataje"] .'</td>
               <td>'. $datos[$i]["peso"] .'</td>
-              <td>'. $datos[$i]["total_Prestamo"] .'</td>
               <td>'. $datos[$i]["cantidad"] .'</td>
-              <td>'. $datos[$i]["fecha_Vencimiento"] .'</td>
+              <td>'. $datos[$i]["fecha_creacion"] .'</td>
+              <td>'. $datos[$i]["fecha_modificacion"] .'</td>
+              <td>'. $datos[$i]["estatus"] .'</td>
+              </tr>';
+    };
+
+echo '
+    <h2>Inventario Fisico</h2>
+    <h5>Fecha inicio: '. $fechaInicial .' </h5>
+    <h5>Fecha final: '. $fechaFinal .' </h5>
+    <table>
+        <thead>
+          <tr>
+            <th class="service">C&Oacute;DIGO</th>
+            <th class="desc">DESCRIPCI&Oacute;N</th>
+            <th>Kilataje</th>
+            <th>Peso</th>
+            <th>Cantidad</th>
+            <th>Creacion</th>
+            <th>Modificacion</th>
+            <th>Estatus</th>
+          </tr>
+        </thead>
+        <tbody> '
+        . $plantilla2 . '
+
+        </tbody>
+    </table>';
+
+}
+
+function getInventarioFisicoPDF($empe, $desempe, $refrendo, $almoneda, $auto, $fechaInicial, $fechaFinal){
+
+    $sql = new sqlReporteDAO();
+    $datos = array();
+
+    $datos = $sql ->traeInventario($empe, $desempe, $refrendo, $almoneda, $auto, $fechaInicial, $fechaFinal);
+
+    $plantilla2 = '';
+
+    for($i =0; $i < count($datos); $i++){
+        $plantilla2 .= '<tr>
+              <td>'. $datos[$i]["id_Articulo"] .'</td>
+              <td>'. $datos[$i]["detalle"] .'</td>
+              <td>'. $datos[$i]["kilataje"] .'</td>
+              <td>'. $datos[$i]["peso"] .'</td>
+              <td>'. $datos[$i]["cantidad"] .'</td>
+              <td>'. $datos[$i]["fecha_creacion"] .'</td>
+              <td>'. $datos[$i]["fecha_modificacion"] .'</td>
               <td>'. $datos[$i]["estatus"] .'</td>
               </tr>';
     };
@@ -35,6 +88,8 @@ function getInventarioFisico($empe, $desempe, $refrendo, $almoneda, $auto){
       <h1>Inventario Fisico</h1>
     </header>
     <main>
+    <h5>Fecha inicio: '. $fechaInicial .' </h5>
+    <h5>Fecha final: '. $fechaFinal .' </h5>
       <table>
         <thead>
           <tr>
@@ -42,9 +97,9 @@ function getInventarioFisico($empe, $desempe, $refrendo, $almoneda, $auto){
             <th class="desc">DESCRIPCI&Oacute;N</th>
             <th>Kilataje</th>
             <th>Peso</th>
-            <th>PR&Eacute;STAMO</th>
             <th>Cantidad</th>
-            <th>Vencimiento</th>
+            <th>Creacion</th>
+            <th>Modificacion</th>
             <th>Estatus</th>
           </tr>
         </thead>
@@ -61,7 +116,6 @@ function getInventarioFisico($empe, $desempe, $refrendo, $almoneda, $auto){
 
     return $plantilla;
 }
-
 
 function getPlantilla($empe, $desempe, $refrendo, $almoneda){
     $sql = new sqlReporteDAO();

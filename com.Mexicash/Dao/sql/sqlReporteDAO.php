@@ -121,13 +121,16 @@ class sqlReporteDAO
     /**
      *
      * traeReportesArticulo Metod()
-     * @param $opc
-     * @comment -> $opc (1, 2, 3, 4) ... 1 -> Empeños; 2 -> Desempeños; 3 -> Refrendos; 4 -> Almoneda; 5 -> Todos;
+     * @param $empe
+     * @param $desempe
+     * @param $refrendo
+     * @param $almoneda
+     * @param $auto
      * @return mixed
-     *
+     * @comment -> $opc (1, 2, 3, 4) ... 1 -> Empeños; 2 -> Desempeños; 3 -> Refrendos; 4 -> Almoneda; 5 -> Todos;
      */
 
-    public function traeInventario($empe, $desempe, $refrendo, $almoneda, $auto)
+    public function traeInventario($empe, $desempe, $refrendo, $almoneda, $auto, $fechaInicial, $fechaFinal)
     {
         $datos = array();
 
@@ -135,9 +138,9 @@ class sqlReporteDAO
             $buscar = "";
 
             if($empe == 1|| $desempe ==1|| $refrendo == 1|| $almoneda == 1){
-                $buscar .= " where ";
+                $buscar .= " and ";
 
-                if($empe==1){
+                if($empe == 1){
                     $buscar .= " e.descripcion = 'Empeñado'";
                     if($desempe == 1|| $refrendo == 1|| $almoneda == 1){
                         $buscar .= " or ";
@@ -164,16 +167,15 @@ class sqlReporteDAO
             }
 
 
-        $buscarInv = "SELECT * FROM contrato_tbl as c left JOIN articulo_tbl as a ON c.id_Articulo = a.id_Contrato INNER JOIN cat_estatus as e ON a.id_Estatus = e.id_Estatus " . $buscar . ";";
-
+            $buscarInv = "SELECT * FROM articulo_tbl as a INNER JOIN cat_estatus as e ON a.id_Estatus = e.id_Estatus where a.fecha_creacion between CAST((STR_TO_DATE(REPLACE('". $fechaInicial ."','/','.') ,GET_FORMAT(date,'EUR'))) AS DATE) AND CAST((STR_TO_DATE(REPLACE('". $fechaFinal ."','/','.') ,GET_FORMAT(date,'EUR'))) AS DATE);";
             $rs = $this->conexion->query($buscarInv);
 
             if ($rs->num_rows > 0) {
                 while ($row = $rs->fetch_assoc()) {
                     $data = [
-                        //Contrato
-                        "fecha_Vencimiento" => $row["fecha_Vencimiento"],
-                        "total_Prestamo" => $row["total_Prestamo"],
+                        //Fechas
+                        "fecha_creacion" => $row["fecha_creacion"],
+                        "fecha_modificacion" => $row["fecha_modificacion"],
                         "estatus" => $row["descripcion"],
                         //Contrato
 
@@ -198,66 +200,6 @@ class sqlReporteDAO
 
         return $datos;
     }
-
-    public function traeInventario2($opc)
-    {
-        $datos = array();
-
-        try {
-            $buscar = null;
-
-
-            $rs = $this->conexion->query($buscar);
-
-            if ($rs->num_rows > 0) {
-                while ($row = $rs->fetch_assoc()) {
-                    $estatus = 0;
-                    switch ($row["id_Estatus"]) {
-                        case 1:
-                            $estatus = "Empeñado";
-                            break;
-                        case 2:
-                            $estatus = "Desempeñado";
-                            break;
-                        case 3:
-                            $estatus = "Refrendo";
-                            break;
-                        case 4:
-                            $estatus = "Almoneda";
-                            break;
-                    }
-                    $data = [
-                        //Contrato
-                        "fecha_Vencimiento" => $row["fecha_Vencimiento"],
-                        "total_Prestamo" => $row["total_Prestamo"],
-                        //"fecha_Alm" => $row["fecha_Alm"],
-                        "fecha_Movimiento" => $row["fecha_Movimiento"],
-                        "id_Estatus" => $estatus,
-                        "observaciones" => $row["observaciones"],
-                        //Contrato
-
-                        //Articulo
-                        "tipo" => $row["tipo"],
-                        "prenda" => $row["prenda"],
-                        "kilataje" => $row["kilataje"],
-                        "cantidad" => $row["cantidad"],
-                        "peso" => $row["peso"]
-                    ];
-
-                    array_push($datos, $data);
-                }
-            }
-
-
-        } catch (Exception $exc) {
-            echo $exc->getMessage();
-        } finally {
-            $this->db->closeDB();
-        }
-
-        return $datos;
-    }
-
 
     /**
      *

@@ -537,3 +537,9 @@ function mostrarTablaExtras() {
         }
     });
 }
+
+
+function cerrarVentana() {
+    window.close();
+}
+
