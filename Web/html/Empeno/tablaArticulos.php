@@ -36,7 +36,9 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
                 <td><?php echo $data[$i]['prestamo']; ?></td>
                 <td><?php echo $data[$i]['avaluo']; ?></td>
                 <td><?php echo $data[$i]['detalle']; ?></td>
-                <td><button class="btn btn-danger" onclick="confirmarEliminar('<?php echo $data[$i]['id_Articulo']?>')"; >Eliminar</td>
+                <td>
+                    <input type="button" class="btn btn-danger" value="Eliminar" onclick="confirmarEliminar('<?php echo $data[$i]['id_Articulo']?>')">
+                    </td>
             </tr>
             <?php } ?>
 

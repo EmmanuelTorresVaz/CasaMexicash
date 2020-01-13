@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../style/less/pagPrincipal.css" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title class="">ZB Developer</title>
+    <title class="">Mexicash</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 
 </head>
@@ -24,7 +24,7 @@
 
                 <div class="col div-Navegador container-fluid" >
                     <nav class="navbar navbar-expand-lg navbar-light bg-light navegador fijador">
-                        <a class="navbar-brand ZBNav" href="#">ZB Developer</a>
+                        <a class="navbar-brand ZBNav" href="#">Mexicash</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>

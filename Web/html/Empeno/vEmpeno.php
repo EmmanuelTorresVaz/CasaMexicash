@@ -34,6 +34,8 @@ $x = json_encode($nombres);
     <script src="../../alertifyjs/alertify.js"></script>
     <script src="../../JavaScript/funcionesArticulos.js"></script>
     <script src="../../JavaScript/funcionesIntereses.js"></script>
+    <script src="../../JavaScript/funcionesCliente.js"></script>
+
     <!--    Script inicial-->
     <script type="application/javascript">
         $(document).ready(function () {
@@ -47,88 +49,8 @@ $x = json_encode($nombres);
             });
         });
     </script>
-    <!--    Script Consultar Cliente-->
-    <script>
-        $(function () {
-            $("#datepicker").datepicker();
 
-            var nombres = <?= json_encode($nombres) ?>;
 
-            console.log(nombres);
-
-            $('#Nombres').autocomplete({
-                source: nombres,
-                select: function (event, item) {
-                    var params = {
-                        cliente: item.item.value
-                    };
-
-                    $.get("../../../com.Mexicash/Controlador/cConsultaTiempoReal.php", params, function (response) {
-                        var json = JSON.parse(response);
-
-                        var direccion = json[0]['calle'] + " " + json[0]['numExt'] + " numInt: " + json[0]['numInt'] + " " + json[0]['colonia'] + " " + json[0]['municipio'] + " " + json[0]['codigoPostal'];
-                        var celular = json[0]['celular'];
-                        var estado = json[0]['estado'];
-
-                        document.getElementById("inDireccion").value = direccion;
-                        document.getElementById("inCiudad").value = estado;
-                        document.getElementById("inCelular").value = celular;
-
-                        console.log(direccion + "    " + celular + "    " + estado);
-                    })
-                }
-            });
-        });
-
-        function onk() {
-
-            var texto = document.getElementById('inNombre').value;
-
-            var parametros = {
-                "texto": texto
-            };
-
-            $.ajax({
-                data: parametros,
-                url: "../../js/ajax/busqueda.php",
-                type: "POST",
-                success: function (response) {
-                    $('.datosTiempoReal').html(response);
-                }
-            });
-
-            <?php
-
-            $sql = new sqlClienteDAO();
-            $sq = new sqlClienteDAO();
-            $nombre = "Alejandro";
-
-            $arr = array();
-
-            $arr = $sql->consultaClienteEmpeño($nombre, 1);
-
-            $direccion = $arr[0]['calle'] . " " . $arr[0]['numExt'] . " Num interior " . $arr[0]['numInt'] . " " . $arr[0]['colonia'] . " " . $arr[0]['municipio'] . " " . $arr[0]['codigoPostal'];
-            $ciudad = $arr[0]['estado'];
-            $celular = $arr[0]['celular'];
-
-            $id = $sq->buscarIdCliente(42322, "prueba@gmail.com");
-
-            ?>
-
-            document.getElementById('inCelular').value = "<?php echo $celular; ?>"
-            document.getElementById('inDireccion').value = "<?php echo $direccion; ?>"
-            document.getElementById('inCiudad').value = "<?php echo $ciudad; ?>"
-
-            alert("<?php echo $id; ?>");
-
-        }
-    </script>
-
-    <script>
-        $( function() {
-            $( "#datepicker" ).datepicker();
-        } );
-    </script>
 </head>
 <body>
 <div class="menuContainer" ></div>
@@ -150,7 +72,7 @@ $x = json_encode($nombres);
                     </tr>
                     <tr>
                         <td colspan="24" align="center">
-                            <label>Empeno</label>
+                            <h1>Empe&ntilde;o</h1>
                         </td>
                     </tr>
                     <tr>
@@ -163,8 +85,7 @@ $x = json_encode($nombres);
                                    value="Ver todos">
                         </td>
                         <td colspan="3">
-                            <input type="button" class="btn btn-success"
-                                   value="Historial">
+                            <input type="button" class="btn btn-success" value="Historial" onclick="historial();">
                     </tr>
                     <tr>
                         <td colspan="12">
@@ -181,7 +102,7 @@ $x = json_encode($nombres);
                     <tr>
                         <td colspan="12">
                             <div>
-                                <input id="Nombres" name="Nombres" type="text" style="width: 300px"/>
+                                <input id="Nombres" name="Nombres" type="text" style="width: 300px" on/>
                             </div>
                         </td>
                         <td colspan="6" class="border border-dark">Tasa Interés</td>
@@ -330,22 +251,20 @@ $x = json_encode($nombres);
                     </tr>
                     <tr>
                         <td>
-                            <button type="button" class="btn btn-primary" onclick="Limpiar();Metales();">Metales
-                            </button>
-                            &nbsp;
-                            <button type="button" class="btn btn-primary" onclick="Limpiar();Electronicos();">
-                                Electronicos/Varios
-                            </button>
+                            <input type="button" class="btn btn-primary" value="Metales" onclick="Limpiar(), Metales()">
+
+                            <input type="button" class="btn btn-primary" value=" Electronicos/Varios" onclick="Limpiar(), Electronicos();">
+
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <div id="divMetales">
-                                <table class=" table-bordered border border-dark ">
-                                    <tbody class="text-body border" align="center">
+                                <table>
+                                    <tbody class="text-body" align="center">
                                     <tr>
-                                        <td colspan="6" class=" border-dark">Tipo:</td>
-                                        <td colspan="6" class="border border-dark">
+                                        <td colspan="6" >Tipo:</td>
+                                        <td colspan="6" >
                                             <select id="idTipoMetal" name="cmbTipoMetal" class="classArticulos">
                                                 <option value="0">Seleccione:</option>
                                                 <option value="1">1</option>
@@ -353,8 +272,8 @@ $x = json_encode($nombres);
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6" class=" border-dark">Prenda:</td>
-                                        <td colspan="6" class="border border-dark">
+                                        <td colspan="6" >Prenda:</td>
+                                        <td colspan="6" >
                                             <select id="idPrenda" name="cmbPrenda">
                                                 <option value="0">Seleccione:</option>
                                                 <option value="1">1</option>
@@ -362,15 +281,15 @@ $x = json_encode($nombres);
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3" class=" border-dark">Kilataje:</td>
-                                        <td colspan="3" class="border border-dark">
+                                        <td colspan="3">Kilataje:</td>
+                                        <td colspan="3">
                                             <select id="idKilataje" name="cmbKilataje">
                                                 <option value="0">Seleccione:</option>
                                                 <option value="1">1</option>
                                             </select>
                                         </td>
-                                        <td colspan="3" class=" border-dark">Calidad:</td>
-                                        <td colspan="3" class="border border-dark">
+                                        <td colspan="3" >Calidad:</td>
+                                        <td colspan="3">
                                             <select id="idCalidad" name="cmbCalidad">
                                                 <option value="0">Seleccione:</option>
                                                 <option value="1">1</option>
@@ -378,69 +297,69 @@ $x = json_encode($nombres);
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6" class=" border border-dark">Cantidad:</td>
-                                        <td colspan="6" class=" border border-dark">
+                                        <td colspan="6" >Cantidad:</td>
+                                        <td colspan="6" >
 
                                             <input type="text" id="idCantidad" name="cantidad" size="6"
                                                    style="text-align:center"/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6" class=" border border-dark">Peso:</td>
-                                        <td colspan="6" class="border border-dark">
+                                        <td colspan="6" >Peso:</td>
+                                        <td colspan="6" >
                                             <input type="text" id="idPeso" name="peso" size="6"
                                                    style="text-align:center"/>
                                             <label>grs</label></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6" class=" border border-dark">Peso Piedra:</td>
-                                        <td colspan="6" class="border border-dark">
+                                        <td colspan="6" >Peso Piedra:</td>
+                                        <td colspan="6">
                                             <input type="text" id="idPesoPiedra" name="pesoPiedra" size="6"
                                                    style="text-align:center"/>
                                             <label>grs</label></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6" class=" border border-dark">Piedras:</td>
-                                        <td colspan="6" class=" border border-dark">
+                                        <td colspan="6" >Piedras:</td>
+                                        <td colspan="6" >
                                             <input type="text" id="idPiedras" name="piedras" size="6"
                                                    style="text-align:center"/>
                                             <label>pza</label></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6" class=" border border-dark">Préstamo:</td>
-                                        <td colspan="6" class=" border border-dark">
+                                        <td colspan="6" >Préstamo:</td>
+                                        <td colspan="6" >
                                             <input type="text" id="idPrestamo" name="prestamo" size="6"
                                                    style="text-align:center"/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6" class=" border border-dark">Avalúo:</td>
-                                        <td colspan="6" class=" border border-dark">
+                                        <td colspan="6" >Avalúo:</td>
+                                        <td colspan="6">
                                             <input type="text" id="idAvaluo" name="avaluo" size="6"
                                                    style="text-align:center"/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6" class=" border border-dark">Préstamo Maximo:</td>
-                                        <td colspan="6" class=" border border-dark">
+                                        <td colspan="6" >Préstamo Maximo:</td>
+                                        <td colspan="6" >
                                             <input type="text" id="idPrestamoMax" name="prestamoMax" size="6"
                                                    style="text-align:center"/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6" class="border border-dark">Ubicación:</td>
-                                        <td colspan="6" class=" border border-dark">
+                                        <td colspan="6" >Ubicación:</td>
+                                        <td colspan="6" >
                                             <input type="text" id="idUbicacion" name="ubicacion" size="6"
                                                    style="text-align:center"/>
 
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="12" class=" border border-dark" align="left">Detalle de la
+                                        <td colspan="12"  align="left">Detalle de la
                                             prenda:
                                         </td>
                                     <tr>
-                                        <td colspan="12" class="border border-dark" name="detallePrenda">
+                                        <td colspan="12" name="detallePrenda">
                                     <textarea rows="4" cols="35" id="idDetallePrenda">
                                     </textarea>
                                         </td>
@@ -452,8 +371,8 @@ $x = json_encode($nombres);
                                 <table class="table-bordered border border-dark ">
                                     <tbody class="text-body border" align="center">
                                     <tr>
-                                        <td colspan="6" class=" border-dark">Tipo:</td>
-                                        <td colspan="6" class="border border-dark">
+                                        <td colspan="6" >Tipo:</td>
+                                        <td colspan="6" >
                                             <select id="idTipoElectronico" name="cmbTipoElectronico" required>
                                                 <option value="0">Seleccione:</option>
                                                 <option value="1">1</option>
@@ -461,34 +380,34 @@ $x = json_encode($nombres);
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6" class=" border-dark">Marca:</td>
-                                        <td colspan="6" class="border border-dark">
+                                        <td colspan="6" >Marca:</td>
+                                        <td colspan="6" >
                                             <input type="text" id="idMarca" name="marca" size="6"
                                                    style="text-align:center" value=""/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3" class=" border-dark">Estado:</td>
-                                        <td colspan="3" class="border border-dark">
+                                        <td colspan="3" >Estado:</td>
+                                        <td colspan="3">
                                             <select id="idEstado" name="cmbEstado">
                                                 <option value="0">Seleccione:</option>
                                                 <option value="1">1</option>
                                             </select>
                                         </td>
-                                        <td colspan="3" class=" border border-dark">Modelo:</td>
-                                        <td colspan="3" class=" border border-dark">
+                                        <td colspan="3" >Modelo:</td>
+                                        <td colspan="3">
                                             <input type="text" id="idModelo" name="modelo" size="6"
                                                    style="text-align:center" value=""/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3" class=" border-dark">Tamaño:</td>
-                                        <td colspan="3" class=" border border-dark">
+                                        <td colspan="3" >Tamaño:</td>
+                                        <td colspan="3" >
                                             <input type="text" id="idTamaño" name="tamaño" size="6"
                                                    style="text-align:center" value=""/>
                                         </td>
-                                        <td colspan="3" class=" border border-dark">Color:</td>
-                                        <td colspan="3" class="border border-dark">
+                                        <td colspan="3" >Color:</td>
+                                        <td colspan="3">
                                             <select id="idColor" name="cmbColor">
                                                 <option value="0">Seleccione:</option>
                                                 <option value="1">1</option>
@@ -496,46 +415,46 @@ $x = json_encode($nombres);
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6" class=" border border-dark">No.Serie:</td>
-                                        <td colspan="6" class=" border border-dark">
+                                        <td colspan="6" >No.Serie:</td>
+                                        <td colspan="6" >
                                             <input type="text" id="idSerie" name="serie" size="6"
                                                    style="text-align:center" value=""/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3" class=" border-dark">Préstamo:</td>
-                                        <td colspan="3" class=" border border-dark">
+                                        <td colspan="3" >Préstamo:</td>
+                                        <td colspan="3" >
                                             <input type="text" id="idPrestamoElectronico" name="prestamoE" size="6"
                                                    style="text-align:center"/ value="">
                                         </td>
-                                        <td colspan="3" class=" border-dark">Avalúo:</td>
-                                        <td colspan="3" class=" border border-dark">
+                                        <td colspan="3" >Avalúo:</td>
+                                        <td colspan="3" >
                                             <input type="text" id="idAvaluoElectronico" name="avaluoE" size="6"
                                                    style="text-align:center" value=""/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6" class=" border border-dark">Prestamo Máximo:</td>
-                                        <td colspan="6" class="border border-dark">
+                                        <td colspan="6" >Prestamo Máximo:</td>
+                                        <td colspan="6" >
                                             <input type="text" id="idPrestamoMaxElectronico" name="prestamoMaximoE"
                                                    size="6"
                                                    style="text-align:center" value=""/>
                                             <label>grs</label></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6" class=" border border-dark">Ubicación:</td>
-                                        <td colspan="6" class="border border-dark">
+                                        <td colspan="6" >Ubicación:</td>
+                                        <td colspan="6" >
                                             <input type="text" id="idUbicacionElectronico" name="ubicacionE" size="6"
                                                    style="text-align:center" value=""/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="12" class=" border border-dark" align="left">Detalle de la
+                                        <td colspan="12"  align="left">Detalle de la
                                             prenda:
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="12" class="border border-dark" name="detallePrendaE">
+                                        <td colspan="12"  name="detallePrendaE">
                                     <textarea rows="4" cols="35" id="idDetallePrendaElectronico">
                                     </textarea>
                                         </td>
@@ -562,11 +481,10 @@ $x = json_encode($nombres);
             <div class="col col-lg-6">
                 <div class="row">
                     <div class="col-sm-2">
-                        <button type="button" class="btn btn-warning" onclick="Limpiar();">Limpiar</button>
+                        <input type="button" class="btn btn-warning" value="Limpiar" onclick="Limpiar()">
                     </div>
                     <div class="col-sm-4">
-                        <button type="button" class="btn btn-success" onclick="Agregar();">Agregar a la lista
-                        </button>
+                        <input type="button" class="btn btn-success" value="Agregar a la lista" onclick="Agregar()">
                     </div>
                 </div>
             </div>

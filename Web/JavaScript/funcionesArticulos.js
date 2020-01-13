@@ -80,6 +80,7 @@ function Agregar() {
             if (response == 5) {
                 alertify.success("Articulo agregado exitosamente.");
                 $("#divTablaArticulos").load('tablaArticulos.php');
+                Limpiar();
             } else {
                 alertify.error("Error al agregar articulo.");
             }
@@ -88,17 +89,13 @@ function Agregar() {
 }
 //Menu Mentales
 function Metales() {
-    $(document).ready(function () {
         $("#divElectronicos").hide();
         $("#divMetales").show();
-    });
 }
 //Menu Electronicos
 function Electronicos() {
-    $(document).ready(function () {
         $("#divMetales").hide();
         $("#divElectronicos").show();
-    });
 }
 //Alerta para confirmar la Eliminacion
 function confirmarEliminar($idArticulo) {
@@ -109,7 +106,6 @@ function confirmarEliminar($idArticulo) {
 }
 //Elimina articulos
 function eliminarArticulo($idArticulo) {
-
     var dataEnviar = {
         "$idArticulo": $idArticulo
     };
