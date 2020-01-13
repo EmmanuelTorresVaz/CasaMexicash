@@ -230,4 +230,27 @@ class sqlClienteDAO
         return $id;
     }
 
+
+    public function autocompleteCliente($idCliente){
+        try{
+            $html = '';
+
+            $buscar = "SELECT id_Cliente, CONCAT (nombre, ' ',apellido_Pat,' ', apellido_Mat) as NombreCompleto FROM cliente_tbl WHERE nombre LIKE '%".strip_tags($idCliente)."%' ";
+
+            $statement = $this->conexion->query( $buscar );
+
+            if ($statement->num_rows > 0) {
+                while ($row = $statement->fetch_assoc()) {
+                    $html .= '<div><a class="suggest-element" data="'.utf8_encode($row['NombreCompleto']).'" id="'.$row['id_Cliente'].'">'.utf8_encode($row['NombreCompleto']).'</a></div>';
+                }
+            }
+        }catch (Exception $exc){
+            echo $exc->getMessage();
+        }finally{
+            $this->db->closeDB();
+        }
+        echo $html;
+
+    }
+
 }

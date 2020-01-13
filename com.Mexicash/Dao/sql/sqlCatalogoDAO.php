@@ -115,4 +115,57 @@ class sqlCatalogoDAO
         return $datos;
     }
 
+
+    public function catOcupacionesLlenar(){
+
+        $datos = array();
+
+        try {
+            $buscar = "select id_Ocupacion, descripcion from cat_ocupaciones";
+            $rs = $this->conexion->query( $buscar );
+
+            if($rs->num_rows > 0){
+                while($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_Ocupacion" => $row["id_Ocupacion"],
+                        "descripcion" => $row["descripcion"]
+                    ];
+
+                    array_push($datos, $data);
+                }
+            }
+
+        }catch (Exception $exc){
+            echo  $exc->getMessage();
+        }finally{
+            $this->db->closeDB();
+        }
+
+        return $datos;
+    }
+
+    public function completaEstado($idEstado){
+        try{
+            $html = '';
+
+            $buscar = "SELECT id_Estado, descripcion FROM cat_estado WHERE descripcion LIKE '%".strip_tags($idEstado)."%' ";
+
+            $statement = $this->conexion->query( $buscar );
+
+            if ($statement->num_rows > 0) {
+                while ($row = $statement->fetch_assoc()) {
+                    $html .= '<div><a class="suggest-element" data="'.utf8_encode($row['descripcion']).'" id="'.$row['id_Estado'].'">'.utf8_encode($row['descripcion']).'</a></div>';
+                }
+            }
+        }catch (Exception $exc){
+            echo $exc->getMessage();
+        }finally{
+            $this->db->closeDB();
+        }
+        echo $html;
+
+    }
+
+
+
 }
