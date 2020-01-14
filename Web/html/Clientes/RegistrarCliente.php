@@ -59,7 +59,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
 <div class="menuContainer"></div>
 
 
-<form id="formRetistrarCliente" autocomplete="off">
+<form id="idFormRegistro" autocomplete="off">
     <div id="conteiner" class="container">
         <div class="row">
             <br>

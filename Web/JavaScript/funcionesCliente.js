@@ -31,7 +31,7 @@ function agregarCliente() {
         success: function (response) {
             if (response == 1) {
                 alertify.success("Cliente agregado exitosamente.");
-               LimpiarRegistroCliente();
+                $("#idFormRegistro")[0].reset();
             } else {
                 alertify.error("Error al agregar cliente.");
             }
@@ -40,6 +40,7 @@ function agregarCliente() {
 }
 
 function mostrarTablaExtras() {
+
 }
 
 function nombreAutocompletar() {
