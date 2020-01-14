@@ -83,9 +83,10 @@ function Agregar() {
             },
             success: function (response) {
                 if (response == 5) {
-                    cargarTablaArticulo(clienteEmpeno);
-                    alertify.success("Articulo agregado exitosamente.");
+                    cargarTablaArticulo($("#idClienteEmpeno").val());
                     $("#divTablaArticulos").load('tablaArticulos.php');
+                    alertify.success("Articulo agregado exitosamente.");
+
                     //Limpiar();
                 } else {
                     alertify.error("Error al agregar articulo.");
@@ -190,10 +191,9 @@ function eliminarArticulo($idArticulo) {
 
 
 function prueba() {
-    alert("entra");
-    var fechaHoy;
-    fechaHoy = fechaActual();
-    alert(fechaHoy);
+    alert("entra")
+    cargarTablaArticulo(35);
+    $("#divTablaArticulos").load('tablaArticulos.php');
 }
 
 
