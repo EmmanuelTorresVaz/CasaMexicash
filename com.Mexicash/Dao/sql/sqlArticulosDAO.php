@@ -89,12 +89,12 @@ class sqlArticulosDAO
         echo $verdad;
     }
 
-    public function buscarArticulo()
+    public function buscarArticulo($cliente)
     {
         $datos = array();
         try {
 
-            $buscar = "SELECT id_Articulo,id_Cliente,tipo, marca, estado, modelo, prestamo,avaluo, detalle FROM articulo_tbl";
+            $buscar = "SELECT id_Articulo,id_Cliente,tipo, marca, estado, modelo, prestamo,avaluo, detalle FROM articulo_tbl WHERE id_Cliente='$cliente'";
             $rs = $this->conexion->query($buscar);
 
             if ($rs->num_rows > 0) {
@@ -120,7 +120,7 @@ class sqlArticulosDAO
             $this->db->closeDB();
         }
 
-        return $datos;
+        echo json_encode($datos);
     }
 
     public function eliminarArticulo($idArticulo)

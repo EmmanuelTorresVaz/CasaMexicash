@@ -126,6 +126,7 @@ $x = json_encode($nombres);
                             <select id="tipoInteres" name="cmbTipoInteres" class="selectpicker">
                                 <option value="0">Seleccione:</option>
                                 <?php
+
                                 $data = array();
                                 $sql = new sqlInteresesDAO();
                                 $data = $sql->llenarCmbTipoInteres();

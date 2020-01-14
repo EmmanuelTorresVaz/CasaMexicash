@@ -16,28 +16,7 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
                 <th>Eliminar</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <?php
-                $sql = new sqlArticulosDAO();
-                $data = $sql->buscarArticulo();
-                for ($i = 0; $i < count($data); $i++) {
-                ?>
-            <tr >
-                <td><?php echo $data[$i]['marca']; ?></td>
-                <td><?php echo $data[$i]['estado']; ?></td>
-                <td><?php echo $data[$i]['modelo']; ?></td>
-                <td><?php echo $data[$i]['prestamo']; ?></td>
-                <td><?php echo $data[$i]['avaluo']; ?></td>
-                <td><?php echo $data[$i]['detalle']; ?></td>
-                <td>
-                    <input type="button" class="btn btn-danger" value="Eliminar" onclick="confirmarEliminar('<?php echo $data[$i]['id_Articulo']?>')">
-                    </td>
-            </tr>
-            <?php } ?>
-
-
-            </tr>
+            <tbody id="idTBodyArticulos">
             </tbody>
         </table>
     </div>
