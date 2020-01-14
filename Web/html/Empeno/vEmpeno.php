@@ -30,6 +30,10 @@ $x = json_encode($nombres);
     <script src="../../JavaScript/funcionesArticulos.js"></script>
     <script src="../../JavaScript/funcionesIntereses.js"></script>
     <script src="../../JavaScript/funcionesCliente.js"></script>
+    <script src="../../JavaScript/funcionesContrato.js"></script>
+    <script src="../../JavaScript/funcionesGenerales.js"></script>
+
+
 
     <!--    Script inicial-->
     <script type="application/javascript">
@@ -110,6 +114,7 @@ $x = json_encode($nombres);
                         </td>
                         <td colspan="6" class="border border-dark">
                             <label for="vence">Vence:</label>
+                            <input id="idFecVencimiento" name="fecVencimiento" type="text" disabled/>
                         </td>
                     </tr>
                     <tr>
@@ -498,7 +503,7 @@ $x = json_encode($nombres);
                             <input type="button" class="btn btn-success" value="Agregar a la lista" onclick="Agregar()">
                         </td>
                         <td align="right">
-                            <input type="button" class="btn btn-primary" value="Generar" onclick="generar()">&nbsp;
+                            <input type="button" class="btn btn-primary" value="Generar" onclick="generarContrato()">&nbsp;
                         </td>
                     </tr>
                 </table>

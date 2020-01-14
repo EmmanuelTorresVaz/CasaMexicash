@@ -12,6 +12,10 @@ function SeleccionarInteres(tipoInteresValue) {
                 if (response.status == 'ok') {
                     $("#idTipoInteres").val(response.result.tipoInteres);
                     $("#idPeriodo").val(response.result.periodo);
+                    if(response.result.periodo=="Mensual"){
+                        var sumarMes = sumarDias(30);
+                        $("#idFecVencimiento").val(sumarMes);
+                    }
                     $("#idPlazo").val(response.result.plazo);
                     $('#idTasaPorcen').val(response.result.tasa);
                     $('#idAlmPorcen').val(response.result.alm);
