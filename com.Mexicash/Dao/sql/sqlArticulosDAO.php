@@ -23,8 +23,10 @@ class sqlArticulosDAO
 
             $idCliente = $articulo->getCliente();
             $status = 1;
-            $fechaCreacion = date('d-m-Y');
-            $fechaModificacion = date('d-m-Y');
+            date_default_timezone_set('America/Mexico_City');
+
+            $fechaCreacion = date('Y-m-d h:i:s', time());
+            $fechaModificacion = date('Y-m-d h:i:s', time());
             if($tipoPost=="1"){
                 $idTipoM = $articulo->getTipoM();
                 $idPrenda = $articulo->getPrenda();
@@ -66,7 +68,7 @@ class sqlArticulosDAO
                     " detalle, id_Estatus, fecha_creacion, fecha_modificacion)  VALUES " .
                     "('" . $idCliente . "','" . $idTipoE . "','" . $idMarca . "', '" . $idEstado . "', '" . $idModelo . "', '" . $idTamaño . "', '" . $idColor
                     . "', '" . $idSerie . "','" . $idPrestamoE . "', '" . $idAvaluoE . "', '" . $idPrestamoMaxE . "', '" . $idUbicacionE . "','"
-                    . $idDetallePrendaE . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "')";
+                    . $idDetallePrendaE . "','" . $status . "'," . $fechaCreacion . "," . $fechaModificacion . ")";
             }
 
             if ($ps = $this->conexion->prepare($insertMetal)) {

@@ -98,7 +98,8 @@ $x = json_encode($nombres);
                                    value="Ver todos">
                             &nbsp;
                             <input type="button" class="btn btn-success" value="Historial" onclick="historial();">
-                        </td>
+
+                            <input type="button" class="btn btn-success" value="prueba" onclick="prueba();">                        </td>
                         <td colspan="12">
                             <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="20"
                                    style="text-align:center" class="invisible" disabled/>
@@ -221,7 +222,7 @@ $x = json_encode($nombres);
                     </tr>
                     <tr>
                         <td colspan="12">
-                            <input type="text" id="nombreCotitular" name="idNombreCotitular" placeholder="Nombre Cotitular"
+                            <input type="text" id="nombreCotitular" name="idNombreCotitular"
                                    style="width: 400px"
                                    required/>
                         </td>
@@ -246,7 +247,7 @@ $x = json_encode($nombres);
                     </tr>
                     <tr>
                         <td colspan="12">
-                            <input type="text" id="idNombreBen" name="idNombreBen" placeholder="Nombre Beneficiario"
+                            <input type="text" id="idNombreBen" name="idNombreBen"
                                    style="width:400px" required/>
                         </td>
                         <td colspan="6" class="table-info border border-dark">Tipo Agrupamiento:</td>
@@ -269,7 +270,8 @@ $x = json_encode($nombres);
                     </tr>
                     <tr >
                         <td class="border border-primary" align="center">
-                            <input type="button" class="btn btn-primary" value="Metales" onclick="Limpiar(), Metales()">
+                            <input type="button" class="btn btn-primary" value="Metales"
+                                   onclick="Limpiar(), Metales();">
                         </td>
                         <td class="border border-primary" align="center">
                             <input type="button" class="btn btn-primary" value=" Electronicos/Varios"
@@ -508,6 +510,9 @@ $x = json_encode($nombres);
                     </tr>
                 </table>
             </div>
+        </div>
+        <div class="row">
+            <br>
         </div>
     </div>
 </form>

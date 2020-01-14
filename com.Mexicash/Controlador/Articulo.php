@@ -21,6 +21,8 @@ if($idTipoEnviar ==1){
     $idPrestamoMax = $_POST['idPrestamoMax'];
     $idUbicacion = $_POST['idUbicacion'];
     $idDetallePrenda = $_POST['idDetallePrenda'];
+    $idUbicacion = $_POST['idUbicacion'];
+    $idDetallePrenda = $_POST['idDetallePrenda'];
 
     $idTipoE = null;
     $idMarca = null;

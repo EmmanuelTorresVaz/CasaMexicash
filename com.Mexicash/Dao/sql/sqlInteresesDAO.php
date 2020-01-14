@@ -74,7 +74,7 @@ class sqlInteresesDAO
 
         try {
             $buscar = "SELECT id_interes, tasa_interes, tipo_interes as tipoInteres, periodo, plazo, tasa, alm, seguro, iva, tipo_Promocion, 
-                        tipo_Agrupamiento FROM cat_interes WHERE id_interes = " . $idInteres;
+                        tipo_Agrupamiento,dias FROM cat_interes WHERE id_interes = " . $idInteres;
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
                 $consulta = $rs->fetch_assoc();

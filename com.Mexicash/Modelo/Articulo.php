@@ -33,6 +33,7 @@ class Articulo
     private $idDetallePrendaE;
 
 
+
     /**
      * Articulo constructor.
      * Metal
@@ -120,7 +121,27 @@ class Articulo
         $this->prestamoMaxE = $idPrestamoMaxE;
         $this->ubicacionE = $idUbicacionE;
         $this->detallePrendaE = $idDetallePrendaE;
+
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function getFechaModificacion()
+    {
+        return $this->fechaModificacion;
+    }
+
+    /**
+     * @param mixed $fechaModificacion
+     */
+    public function setFechaModificacion($fechaModificacion): void
+    {
+        $this->fechaModificacion = $fechaModificacion;
+    }
+
+
     /**
      * @return mixed
      */

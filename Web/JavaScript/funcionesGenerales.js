@@ -9,7 +9,10 @@ function fechaActual() {
     if (mes < 10) {
         mes = '0' + mes;
     }
-      diaActual = dia + '/' + mes + '/' + anio;
+     // diaActual = dia + '/' + mes + '/' + anio;
+    diaActual = anio + '/' + mes + '/' + dia;
+
+    alert(diaActual);
     return diaActual;
 }
 

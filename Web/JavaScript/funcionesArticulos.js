@@ -35,6 +35,8 @@ function Agregar() {
     if (clienteEmpeno != 0) {
         var formElectronico = $("#idTipoElectronico").val();
         var formMetal = $("#idTipoMetal").val();
+
+
         if (formMetal > 0) {
             //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
             var dataEnviar = {
@@ -184,6 +186,14 @@ function eliminarArticulo($idArticulo) {
         },
     })
 
+}
+
+
+function prueba() {
+    alert("entra");
+    var fechaHoy;
+    fechaHoy = fechaActual();
+    alert(fechaHoy);
 }
 
 
