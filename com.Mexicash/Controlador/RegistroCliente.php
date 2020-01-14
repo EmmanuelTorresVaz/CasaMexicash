@@ -26,9 +26,6 @@ $idNumInt = $_POST['idNumInt'];
 $idPromocion = $_POST['idPromocion'];
 $idMensajeInterno = $_POST['idMensajeInterno'];
 
-
-$sexo = 0;
-
 $clienteData = new Cliente(
 
     $idNombre,
@@ -52,9 +49,7 @@ $clienteData = new Cliente(
     $idNumExt,
     $idNumInt,
     $idPromocion,
-    $idMensajeInterno,
-    $inInstFin
-
+    $idMensajeInterno
 );
 
 $sqlCliente = new sqlClienteDAO();

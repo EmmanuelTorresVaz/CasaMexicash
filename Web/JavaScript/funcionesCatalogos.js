@@ -23,7 +23,6 @@ function estadoAutocompletar() {
                     $('#idEstadoName').val($('#' + id).attr('data'));
                     //Hacemos desaparecer el resto de sugerencias
                     $('#sugerenciaEstado').fadeOut(1000);
-                    alert('Has seleccionado el ' + id + ' ' + $('#' + id).attr('data'));
                     return false;
                 });
             }
@@ -57,7 +56,6 @@ function municipioAutocompletar() {
                     $('#idMunicipioName').val($('#' + id).attr('data'));
                     //Hacemos desaparecer el resto de sugerencias
                     $('#sugerenciaMunicipio').fadeOut(1000);
-                    alert('Has seleccionado el ' + id + ' ' + $('#' + id).attr('data'));
                     return false;
                 });
             }
@@ -92,7 +90,6 @@ function localidadAutocompletar() {
                     $('#idLocalidadName').val($('#' + id).attr('data'));
                     //Hacemos desaparecer el resto de sugerencias
                     $('#sugerenciaLocalidad').fadeOut(1000);
-                    alert('Has seleccionado el ' + id + ' ' + $('#' + id).attr('data'));
                     return false;
                 });
             }

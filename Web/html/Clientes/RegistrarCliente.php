@@ -15,9 +15,13 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="../../style/css/magicsuggest/magicsuggest-min.css" rel="stylesheet">
     <script src="../../JavaScript/funcionesCatalogos.js"></script>
+    <script src="../../JavaScript/funcionesCliente.js"></script>
     <script src="../../js/jquery.numeric.js" type="text/javascript"></script>
     <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../alertifyjs/css/alertify.css"/>
+    <link rel="stylesheet" type="text/css" href="../../alertifyjs/css/themes/default.css"/>
+    <script src="../../alertifyjs/alertify.js"></script>
     <style type="text/css">
         .suggestions {
             box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
@@ -55,7 +59,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
 <div class="menuContainer"></div>
 
 
-<form method="post" name="formCliente" action="../../../com.Mexicash/Controlador/RegistroCliente.php">
+<form id="formRetistrarCliente" autocomplete="off">
     <div id="conteiner" class="container">
         <div class="row">
             <br>
@@ -80,19 +84,19 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                     </tr>
                     <tr>
                         <td>
-                            <input type="text" name="nombre" id="idFecNac" placeholder="Nombres" style="width: 200px"
-                                   required/>
+                            <input type="text" name="nombre" id="idNombre" placeholder="Nombres" style="width: 200px"
+                                   required />
                         </td>
                         <td>
                             <input type="text" name="apPat" id="idApPat" placeholder="Apellido Paterno" style="width: 200px"
-                                   required/>
+                                   required />
                         </td>
                         <td>
-                            <input type="text" name="apPat" id="idApMat" placeholder="Apellido Materno" style="width: 200px" required/>
+                            <input type="text" name="apMat" id="idApMat" placeholder="Apellido Materno" style="width: 200px" />
                         </td>
                         <td>
-                            <input type="text" name="fecNac" id="datepicker" style="width: 200px"
-                                   required/>
+                            <input type="text" name="fechaNac" id="idFechaNac" style="width: 200px"
+                                   required />
                         </td>
                         <td>
                             <select name="sexo" id="idSexo" style="width: 200px" required>
@@ -131,7 +135,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                         </td>
                         <td>
                             <input type="text" name="celular" id="idCelular" class="inputNumeric" style="width: 200px"
-                                   required/>
+                                    required/>
                         </td>
                         <td>
                             <input type="text" name="telefono" id="idTelefono" class="inputNumeric" style="width: 200px"
@@ -154,13 +158,12 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                     </tr>
                     <tr>
                         <td>
-                            <input type="text" name="correo" id="idCorreo" style="width: 200px" placeholder=""
-                                   />
+                            <input type="text" name="correo" id="idCorreo" style="width: 200px" placeholder=""/>
                         </td>
                         <td>
                             <select type="text" name="ocupacion" placeholder="Selecciona uno" id="idOcupacion"
                                     style="width: 200px" required>
-                                <option value="0">Selecciona Uno</option>
+                                <option value="22">Selecciona Uno</option>
                                 <?php
                                 $dataOcupaciones = array();
                                 $sq = new sqlCatalogoDAO();
@@ -175,7 +178,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                             <select type="text" name="identificacion" placeholder="Selecciona uno"
                                     id="idIdentificacion"
                                     style="width: 200px" required>
-                                <option value="">Selecciona Uno</option>
+                                <option value="44">Selecciona Uno</option>
                                 <?php
                                 $dataIdent = array();
                                 $sq = new sqlCatalogoDAO();
@@ -210,19 +213,19 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                     <tr>
                         <td>
                             <input id="idEstadoName" name="estadoName" type="text" style="width: 200px"
-                                   onkeypress="estadoAutocompletar()" placeholder="Buscar Estado..."/>
+                                   onkeypress="estadoAutocompletar()" placeholder="Buscar Estado..." required/>
                             <span class="input-group-btn"></span>
                             <div id="sugerenciaEstado" class="suggestions"></div>
                         </td>
                         <td>
                             <input id="idMunicipioName" name="municipioName" type="text" style="width: 200px"
-                                   onkeypress="municipioAutocompletar()" placeholder="Buscar Municipio..."/>
+                                   onkeypress="municipioAutocompletar()" placeholder="Buscar Municipio..." required/>
                             <span class="input-group-btn"></span>
                             <div id="sugerenciaMunicipio" class="suggestions"></div>
                         </td>
                         <td>
                             <input id="idLocalidadName" name="localidadName" type="text" style="width: 200px"
-                                   onkeypress="localidadAutocompletar()" placeholder="Buscar Localidad..."/>
+                                   onkeypress="localidadAutocompletar()" placeholder="Buscar Localidad..." required/>
                             <span class="input-group-btn"></span>
                             <div id="sugerenciaLocalidad" class="suggestions"></div>
                         </td>
@@ -247,7 +250,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                     </tr>
                     <tr>
                         <td>
-                            <input type="text" name="cp" placeholder=""  class="inputNumeric" id="idCP" style="width: 100px" required/>
+                            <input type="text" name="cp" placeholder=""  class="inputNumeric" id="idCP" style="width: 100px"  required/>
                         </td>
                         <td>
                             <input type="text" name="numExt" placeholder="" class="inputNumeric" id="idNumExt" style="width: 50px" required/>
@@ -284,12 +287,11 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                         <td colspan="3">
                             <textarea type="text" name="mensajeInterno" placeholder="" id="idMensajeInterno"
                                       rows="4" cols="80"
-                                      required></textarea>
+                                      ></textarea>
                         </td>
                         <td>
-                            <input type="submit" id="btnRegCliente" name="btnRegCliente"
-                                   class="btn btn-outline-primary btn-lg" onclick="agregarCliente()"
-                                   style="margin-left: 30px"/>
+                            <input type="button" class="btn btn-outline-primary btn-lg" onclick="agregarCliente()"
+                                   value="Guardar">
                         </td>
                     </tr>
                 </table>

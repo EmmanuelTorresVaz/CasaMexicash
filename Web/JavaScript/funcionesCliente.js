@@ -3,9 +3,9 @@ function agregarCliente() {
     var dataEnviar = {
         "idNombre": $("#idNombre").val(),
         "idApPat": $("#idApPat").val(),
-        "idApPat": $("#idApPat").val(),
+        "idApMat": $("#idApMat").val(),
         "idSexo": $("#idSexo").val(),
-        "idFecNac": $("#idFecNac").val(),
+        "idFechaNac": $("#idFechaNac").val(),
         "idRfc": $("#idRfc").val(),
         "idCurp": $("#idCurp").val(),
         "idCelular": $("#idCelular").val(),
@@ -24,17 +24,14 @@ function agregarCliente() {
         "idPromocion": $("#idPromocion").val(),
         "idMensajeInterno": $("#idMensajeInterno").val()
     };
-
     $.ajax({
         data: dataEnviar,
         url: '../../../com.Mexicash/Controlador/RegistroCliente.php',
         type: 'post',
-        beforeSend: function () {
-        },
         success: function (response) {
             if (response == 1) {
                 alertify.success("Cliente agregado exitosamente.");
-                LimpiarRegistroCliente();
+               LimpiarRegistroCliente();
             } else {
                 alertify.error("Error al agregar cliente.");
             }
@@ -79,7 +76,8 @@ function nombreAutocompletar() {
 function LimpiarRegistroCliente() {
     $("#idNombre").val("");
     $("#idApPat").val("");
-    $("#idApPat").val("");
+    $("#idApMat").val("");
+    $("#idFechaNac").val("");
     $("#idSexo").val("");
     $("#idRfc").val("");
     $("#idCurp").val("");

@@ -119,7 +119,6 @@ class sqlClienteDAO
                 "'" . $idCalle . "'," . " '" . $idNumExt . "', '" . $idNumInt . "', '" . $idMensajeInterno . "', '" . $idPromocion . "', " .
                 "'" . $fechaCreacion . "', '" . $fechaModificacion . "')";
 
-
             if ($ps = $this->conexion->prepare($insertCliente)) {
                 if ($ps->execute()) {
                     $respuesta = 1;
