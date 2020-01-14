@@ -116,6 +116,33 @@ class sqlCatalogoDAO
     }
 
 
+    public function llenarCmbSexo(){
+        $datos = array();
+        try {
+            $buscar = "select id_Cat_Cliente, descripcion from cat_cliente where tipo = 'Sexo'";
+            $rs = $this->conexion->query( $buscar );
+
+            if($rs->num_rows > 0){
+                while($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_Cat_Cliente" => $row["id_Cat_Cliente"],
+                        "descripcion" => $row["descripcion"]
+                    ];
+
+                    array_push($datos, $data);
+                }
+            }
+
+        }catch (Exception $exc){
+            echo  $exc->getMessage();
+        }finally{
+            $this->db->closeDB();
+        }
+
+        return $datos;
+    }
+
+
     public function catOcupacionesLlenar(){
 
         $datos = array();
@@ -148,7 +175,7 @@ class sqlCatalogoDAO
         try{
             $html = '';
 
-            $buscar = "SELECT id_Estado, descripcion FROM cat_estado WHERE descripcion LIKE '%".strip_tags($idEstado)."%' ";
+            $buscar = "SELECT id_Estado, descripcion FROM cat_estado WHERE descripcion LIKE '%".strip_tags($idEstado)."%' and id_Estado='9' or id_Estado='15'";
 
             $statement = $this->conexion->query( $buscar );
 
@@ -165,7 +192,53 @@ class sqlCatalogoDAO
         echo $html;
 
     }
+    public function completaMunicipio($idEstado,$idMunicipioName){
+        try{
+            $html = '';
 
+            $buscar = "SELECT id_Municipio, descripcion FROM cat_municipio WHERE id_Estado = '". $idEstado."' AND  descripcion LIKE '%".strip_tags($idMunicipioName)."%' ";
 
+            $statement = $this->conexion->query( $buscar );
+
+            if ($statement->num_rows > 0) {
+                while ($row = $statement->fetch_assoc()) {
+                    $html .= '<div><a class="suggest-element" data="'.utf8_encode($row['descripcion']).'" id="'.$row['id_Municipio'].'">'.utf8_encode($row['descripcion']).'</a></div>';
+                }
+            }else{
+                $html .= '<div><a class="suggest-element" ><h1>hola <?php echo $buscar; ?></h1></a></div>';
+
+            }
+        }catch (Exception $exc){
+            echo $exc->getMessage();
+        }finally{
+            $this->db->closeDB();
+        }
+        echo $html;
+
+    }
+
+    public function completaLocalidad($idEstado,$idMunicipio, $idLocalidadName){
+        try{
+            $html = '';
+
+            $buscar = "SELECT id_Localidad, descripcion FROM cat_Localidad WHERE id_Estado = '". $idEstado."' AND id_Municipio = '". $idMunicipio."' AND descripcion LIKE '%".strip_tags($idLocalidadName)."%' ";
+            $statement = $this->conexion->query( $buscar );
+
+            if ($statement->num_rows > 0) {
+                while ($row = $statement->fetch_assoc()) {
+                    $html .= '<div><a class="suggest-element" data="'.utf8_encode($row['descripcion']).'" id="'.$row['id_Localidad'].'">'.utf8_encode($row['descripcion']).'</a></div>';
+                }
+            }else{
+                $html .= '<div><a class="suggest-element" ><h1>hola <?php echo $buscar; ?></h1></a></div>';
+
+            }
+        }catch (Exception $exc){
+            echo $exc->getMessage();
+        }finally{
+            $this->db->closeDB();
+        }
+        echo $html;
+
+    }
 
 }

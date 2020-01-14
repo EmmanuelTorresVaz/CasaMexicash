@@ -1,6 +1,6 @@
 <?php
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
-    include_once (SQL_PATH."sqlCatalogoDAO.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
+include_once(SQL_PATH . "sqlCatalogoDAO.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,27 +9,26 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Registro Clientes</title>
-
     <link rel="stylesheet" href="../../style/less/main.css"/>
     <link rel="stylesheet" href="../../style/css/bootstrap/bootstrap.css"/>
-
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="../../style/css/magicsuggest/magicsuggest-min.css" rel="stylesheet">
     <script src="../../JavaScript/funcionesCatalogos.js"></script>
-
+    <script src="../../js/jquery.numeric.js" type="text/javascript"></script>
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
     <style type="text/css">
-        <style type="text/css">
-                              #suggestions {
-                                  box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
-                                  height: auto;
-                                  position: absolute;
-                                  top: 45px;
-                                  z-index: 9999;
-                                  width: 206px;
-                              }
+        .suggestions {
+            box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
+            height: auto;
+            position: absolute;
+            top: 45px;
+            z-index: 9999;
+            width: 206px;
+        }
 
-        #suggestions .suggest-element {
+        .suggestions .suggest-element {
             background-color: #EEEEEE;
             border-top: 1px solid #d6d4d4;
             cursor: pointer;
@@ -38,213 +37,267 @@
             float: left;
         }
     </style>
+
     <script>
         $(document).ready(function () {
-            $('.menuContainer').load('menu.php');
+            //  $('.menuContainer').load('menu.php');
+            $('.inputNumeric').numeric();
+            $("#idFecNac").datepicker({
+                changeMonth:true,
+                changeYear: true
+            });
         });
     </script>
-    <script>
-        $( function() {
-            $( "#datepicker" ).datepicker();
-        } );
-    </script>
+
 
 </head>
-    <body>
-        <div class="menuContainer" ></div>
+<body>
+<div class="menuContainer"></div>
 
-        <h4 style="position: absolute; width: 95%; text-align: center; top: 9.5%">Registro de Cliente</h4>
 
-        <form method="post" name="formCliente" action="../../../com.Mexicash/Controlador/RegistroCliente.php">
+<form method="post" name="formCliente" action="../../../com.Mexicash/Controlador/RegistroCliente.php">
+    <div id="conteiner" class="container">
+        <div class="row">
+            <br>
+            <br>
+        </div>
+        <div class="row">
+            <input id="idEstado" name="Estado" type="text" style="width: 5px" class="invisible"/>
+            <input id="idMunicipio" name="municipio" type="text" style="width: 5px" class="invisible"/>
+            <input id="idLocalidad" name="localidad" type="text" style="width: 5px" class="invisible"/>
+            <br>
+            <h2>Registrar Cliente</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table>
+                    <tr>
+                        <td>Nombre(s):</td>
+                        <td>Apellido Paterno:</td>
+                        <td>Apellido Materno:</td>
+                        <td>Fecha Nacimiento:</td>
+                        <td>Sexo:</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" name="nombre" id="idFecNac" placeholder="Nombres" style="width: 200px"
+                                   required/>
+                        </td>
+                        <td>
+                            <input type="text" name="apPat" id="idApPat" placeholder="Apellido Paterno" style="width: 200px"
+                                   required/>
+                        </td>
+                        <td>
+                            <input type="text" name="apPat" id="idApMat" placeholder="Apellido Materno" style="width: 200px" required/>
+                        </td>
+                        <td>
+                            <input type="text" name="fecNac" id="datepicker" style="width: 200px"
+                                   required/>
+                        </td>
+                        <td>
+                            <select name="sexo" id="idSexo" style="width: 200px" required>
+                                <option value="0">Selecciona:</option>
+                                <?php
+                                $dataSexo = array();
+                                $sqlCatalogo = new sqlCatalogoDAO();
+                                $dataSexo = $sqlCatalogo->llenarCmbSexo();
+                                for ($i = 0; $i < count($dataSexo); $i++) {
+                                    echo "<option value=" . $dataSexo[$i]['id_Cat_Cliente'] . ">" . $dataSexo[$i]['descripcion'] . "</option>";
+                                }
+                                ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            RFC:
+                        </td>
+                        <td>
+                            CURP:
+                        </td>
+                        <td>
+                            Celular:
+                        </td>
+                        <td>
+                            Tel&eacute;fono:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" name="rfc" id="idRfc" placeholder="" style="width: 200px" />
+                        </td>
+                        <td>
+                            <input type="text"  name="curp" id="idCurp" style="width: 200px"  placeholder="" />
+                        </td>
+                        <td>
+                            <input type="text" name="celular" id="idCelular" class="inputNumeric" style="width: 200px"
+                                   required/>
+                        </td>
+                        <td>
+                            <input type="text" name="telefono" id="idTelefono" class="inputNumeric" style="width: 200px"
+                                   placeholder="N&uacute;mero con lada" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Correo Electr&oacute;nico:
+                        </td>
+                        <td>
+                            Ocupacion:
+                        </td>
+                        <td>
+                            Tipo de Identificaci&oacute;n:
+                        </td>
+                        <td>
+                            No. Identificaci&oacute;n:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" name="correo" id="idCorreo" style="width: 200px" placeholder=""
+                                   />
+                        </td>
+                        <td>
+                            <select type="text" name="ocupacion" placeholder="Selecciona uno" id="idOcupacion"
+                                    style="width: 200px" required>
+                                <option value="0">Selecciona Uno</option>
+                                <?php
+                                $dataOcupaciones = array();
+                                $sq = new sqlCatalogoDAO();
+                                $dataOcupaciones = $sq->catOcupacionesLlenar();
+                                for ($i = 0; $i < count($dataOcupaciones); $i++) {
+                                    echo "<option value=" . $dataOcupaciones[$i]['id_Ocupacion'] . ">" . $dataOcupaciones[$i]['descripcion'] . "</option>";
+                                }
+                                ?>
+                            </select>
+                        </td>
+                        <td>
+                            <select type="text" name="identificacion" placeholder="Selecciona uno"
+                                    id="idIdentificacion"
+                                    style="width: 200px" required>
+                                <option value="">Selecciona Uno</option>
+                                <?php
+                                $dataIdent = array();
+                                $sq = new sqlCatalogoDAO();
+                                $dataIdent = $sq->traeIdentificaciones();
+                                for ($i = 0; $i < count($dataIdent); $i++) {
+                                    echo "<option value=" . $dataIdent[$i]['id_Cat_Cliente'] . ">" . $dataIdent[$i]['descripcion'] . "</option>";
+                                }
 
-            <div class="col-3" style="position: absolute; top: 16vh; padding-left: 4vw; height: 80vh;">
-                <h6>Sexo:</h6>
-                <select class="boxSexo" name="boxSexo" id="boxSexo" style="width: 50%" required>
-                    <option value="">Selecciona uno</option>
-                    <option value="1">Hombre</option>
-                    <option value="2">Mujer</option>
-                    <option value="3">No definido</option>
-                </select>
-                <br><br>
+                                ?>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" name="numIdentificacion" placeholder="" id="idNumIdentificacion"
+                                   style="width: 200px"
+                                   required/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Estado de Residencia:
+                        </td>
+                        <td>
+                            Municipio:
+                        </td>
+                        <td>
+                            Localidad:
+                        </td>
+                        <td>
+                            Calle:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="idEstadoName" name="estadoName" type="text" style="width: 200px"
+                                   onkeypress="estadoAutocompletar()" placeholder="Buscar Estado..."/>
+                            <span class="input-group-btn"></span>
+                            <div id="sugerenciaEstado" class="suggestions"></div>
+                        </td>
+                        <td>
+                            <input id="idMunicipioName" name="municipioName" type="text" style="width: 200px"
+                                   onkeypress="municipioAutocompletar()" placeholder="Buscar Municipio..."/>
+                            <span class="input-group-btn"></span>
+                            <div id="sugerenciaMunicipio" class="suggestions"></div>
+                        </td>
+                        <td>
+                            <input id="idLocalidadName" name="localidadName" type="text" style="width: 200px"
+                                   onkeypress="localidadAutocompletar()" placeholder="Buscar Localidad..."/>
+                            <span class="input-group-btn"></span>
+                            <div id="sugerenciaLocalidad" class="suggestions"></div>
+                        </td>
+                        <td>
+                            <input type="text" name="calle" placeholder="" id="idCalle" style="width: 200px"
+                                   required/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Codigo Postal:
+                        </td>
+                        <td>
+                            No. Exterior:
+                        </td>
+                        <td>
+                            No. Interior:
+                        </td>
+                        <td>
+                            ¿Como se entero?
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" name="cp" placeholder=""  class="inputNumeric" id="idCP" style="width: 100px" required/>
+                        </td>
+                        <td>
+                            <input type="text" name="numExt" placeholder="" class="inputNumeric" id="idNumExt" style="width: 50px" required/>
+                        </td>
+                        <td>
+                            <input type="text" name="numInt" placeholder="" id="idNumInt" style="width: 150px" />
+                        </td>
+                        <td>
+                            <select type="text" name="promocion" placeholder="Selecciona:"
+                                    id="idPromocion" style="width: 150px" >
+                                <option value="0">Selecciona:</option>
+                                <?php
 
-                <h6>Fecha Nacimiento:</h6>
-                <input type="text" id="datepicker" name="inFechaNac" style="width: 70%" placeholder="Fecha [dd/mm/aa]" required/>
-                <br><br>
+                                $dataPromo = array();
 
-                <h6>CURP:</h6>
-                <input type="text" id="inCurp" name="inCurp" style="width: 70%" placeholder="" required/>
-                <br/><br/>
-                <h6>Promoci&oacute;n:</h6>
-                <select type="text" name="inInstFin" placeholder="Selecciona uno" style="width: 70%" id="inInstFin" style="width: 200px" required>
-                    <option value="">Selecciona Uno</option>
-                    <?php
+                                $sql = new sqlCatalogoDAO();
 
-                    $dataPromo = array();
+                                $dataPromo = $sql->traePromociones();
 
-                    $sql = new sqlCatalogoDAO();
+                                for ($i = 0; $i < count($dataPromo); $i++) {
+                                    echo "<option value=" . $dataPromo[$i]['id_Cat_Cliente'] . ">" . $dataPromo[$i]['descripcion'] . "</option>";
+                                }
 
-                    $dataPromo = $sql->traePromociones();
-
-                    for($i = 0; $i < count($dataPromo); $i++){
-                        echo "<option value=" . $dataPromo[$i]['id_Cat_Cliente'] . ">" . $dataPromo[$i]['descripcion'] . "</option>";
-                    }
-
-                    ?>
-                </select>
-
+                                ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            Mensaje de uso interno:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <textarea type="text" name="mensajeInterno" placeholder="" id="idMensajeInterno"
+                                      rows="4" cols="80"
+                                      required></textarea>
+                        </td>
+                        <td>
+                            <input type="submit" id="btnRegCliente" name="btnRegCliente"
+                                   class="btn btn-outline-primary btn-lg" onclick="agregarCliente()"
+                                   style="margin-left: 30px"/>
+                        </td>
+                    </tr>
+                </table>
             </div>
-
-            <div class="col-7 clearfix" style="position: absolute; top: 16vh; left: 20vw; height: 83vh; border-left: 1px solid black; border-right: 1px solid black">
-                <div style="float: left; padding-right: 40px; width: 33%">
-                    <h6>Nombre(s):</h6>
-                    <input type="text" name="inNombre" id="inNombre" placeholder="Nombres" style="width: 100%" required/>
-                </div>
-
-                <div style="float: left; padding-right: 40px; width: 33%">
-                    <h6>Apellido Paterno:</h6>
-                    <input type="text" name="inApPat" id="inApPat" placeholder="Apellido Paterno" style="width: 100%" required/>
-                </div>
-
-                <div style="float: left; padding-right: 40px; width: 33%">
-                    <h6>Apellido Materno:</h6>
-                    <input type="text" name="inApMat" id="inApMat" placeholder="Apellido Materno" style="width: 100%" required/>
-                </div>
-
-                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 50%">
-                    <h6>Ocupacion o actividad del cliente:</h6>
-                    <select type="text" name="boxOcupacion" placeholder="Selecciona uno" id="boxOcupacion" style="width: 200px" required>
-                        <option value="0">Selecciona Uno</option>
-                        <?php
-                        $dataOcupaciones = array();
-                        $sq = new sqlCatalogoDAO();
-                        $dataOcupaciones = $sq->catOcupacionesLlenar();
-                        for($i = 0; $i < count($dataOcupaciones); $i++){
-                            echo "<option value=" . $dataOcupaciones[$i]['id_Ocupacion'] . ">" . $dataOcupaciones[$i]['descripcion'] . "</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-
-                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 50%">
-                    <h6>Tipo de Identificaci&oacute;n:</h6>
-                    <select type="text" name="boxIdentificacion" placeholder="Selecciona uno" id="boxIdentificacion" style="width: 25vw" required>
-                        <option value="">Selecciona Uno</option>
-                        <?php
-                            $dataIdent = array();
-                            $sq = new sqlCatalogoDAO();
-                            $dataIdent = $sq->traeIdentificaciones();
-                            for($i = 0; $i < count($dataIdent); $i++){
-                                echo "<option value=" . $dataIdent[$i]['id_Cat_Cliente'] . ">" . $dataIdent[$i]['descripcion'] . "</option>";
-                            }
-
-                        ?>
-                    </select>
-                </div>
-
-                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 30%">
-                    <h6>No. Identificaci&oacute;n:</h6>
-                    <input type="text" name="inNoIdentificacion" placeholder="" id="inNoIdentificacion" style="width: 100%" required/>
-                </div>
-
-                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 33%">
-                    <h6>Estado de Residencia: M&eacute;xico</h6>
-                    <!--<div class="ui-widget">
-                        <input id="inEstadoActual" name="inEstadoActual" placeholder="Escribe un estado" style="width: 100%" required>
-                    </div>-->
-
-                    <div>
-                        <input id="idEstado" name="Estado" type="text" style="width: 300px"
-                               onkeypress="estadoAutocompletar()" placeholder="Buscar Estado..."/>
-                        <span class="input-group-btn"></span>
-                    </div>
-                    <div id="suggestions"></div>
-                </div>
-
-                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 33%">
-                    <h6>Municipio</h6>
-                    <!--<div class="ui-widget">
-                        <input id="inEstadoActual" name="inEstadoActual" placeholder="Escribe un estado" style="width: 100%" required>
-                    </div>-->
-
-                    <div>
-                        <input id="idMunicipio" name="Municipio" type="text" style="width: 300px"
-                               onkeypress="municipioAutocompletar()" placeholder="Buscar Estado..."/>
-                        <span class="input-group-btn"></span>
-                    </div>
-                    <div id="suggestions"></div>
-                </div>
-
-                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 28%">
-                    <h6>Calle:</h6>
-                    <input type="text" name="inCalle" placeholder="" id="inCalle" style="width: 100%" required/>
-                </div>
-
-                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 16%">
-                    <h6>No. Exterior:</h6>
-                    <input type="text" name="inNoExt" placeholder="" id="inNoExt" style="width: 100%" required/>
-                </div>
-
-                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 16%">
-                    <h6>No. Interior</h6>
-                    <input type="text" name="inNoInt" placeholder="" id="inNoInt" style="width: 100%" required/>
-                </div>
-
-                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 33%">
-                    <h6>Colonia:</h6>
-                    <input type="text" name="inColonia" placeholder="" id="inColonia" style="width: 100%" required/>
-                </div>
-
-                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 33%">
-                    <h6>Alcald&iacute;a:</h6>
-
-                    <input id="inAlcaldia" name="inAlcaldia" placeholder="Escribe una alcald&iacute;a" style="width: 100%" required>
-
-                </div>
+        </div>
+    </div>
+</form>
 
 
-
-                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 12%">
-                    <h6>CP:</h6>
-                    <input type="text" name="inCP" placeholder="" id="inCP" style="width: 100%" required/>
-                </div>
-
-                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 22%">
-                    <h6>RFC:</h6>
-                    <input type="text" name="inRfc" id="inRfc" placeholder="" style="width: 100%" required/>
-                </div>
-
-                <div style="float: left; padding-right: 40px; padding-top: 30px; width: 65%">
-                    <h6>Mensaje de uso Interno</h6>
-                    <textarea type="text" name="inMsjInt" placeholder="" id="inMsjInt" style="width: 35vw; height: 25vh" required></textarea>
-                </div>
-
-            </div>
-
-            <div class="col-3" style="position: absolute; top: 16vh; right: -5%; height: 80vh;">
-                <h4>Contacto</h4>
-                <br/>
-                <h6>Celular:</h6>
-                <input type="text" name="inCelular" id="inCelular" style="width: 60%" placeholder="N&uacute;mero con lada" required/>
-                <br><br>
-
-                <h6>Tel&eacute;fono:</h6>
-                <input type="text" name="inTelefono" id="inTelefono" style="width: 60%" placeholder="N&uacute;mero con lada" required/>
-                <br><br>
-
-                <h6>Correo Electr&oacute;nico:</h6>
-                <input type="text" name="inCorreo" id="inCorreo" style="width: 60%" placeholder="" required/>
-                <br/><br/><br/><br/><br/><br/>
-
-                <input type="submit" id="btnRegCliente" name="btnRegCliente" class="btn btn-outline-primary btn-lg" style="margin-left: 30px"/>
-
-            </div>
-
-        </form>
-
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="../../style/css/magicsuggest/magicsuggest-min.js"></script>
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    </body>
+</body>
 </html>

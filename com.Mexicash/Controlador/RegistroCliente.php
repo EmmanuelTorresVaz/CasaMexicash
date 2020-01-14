@@ -1,65 +1,61 @@
 <?php
-include_once ($_SERVER['DOCUMENT_ROOT'].'/dirs.php');
-include_once (MODELO_PATH."Cliente.php");
-include_once (SQL_PATH."sqlClienteDAO.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
+include_once(MODELO_PATH . "Cliente.php");
+include_once(SQL_PATH . "sqlClienteDAO.php");
 
-    $inNombre = $_POST['inNombre'];
-    $inApPat = $_POST['inApPat'];
-    $inApMat = $_POST['inApMat'];
-    $boxSexo = $_POST['boxSexo'];
-    $inFechaNac = $_POST['inFechaNac'];
-    $inCurp = $_POST['inCurp'];
-    $boxOcupacion = $_POST['boxOcupacion'];
-    $boxIdentificacion = $_POST['boxIdentificacion'];
-    $inNoIdentificacion = $_POST['inNoIdentificacion'];
-    $inCelular = $_POST['inCelular'];
-    $inRfc = $_POST['inRfc'];
-    $inTelefono = $_POST['inTelefono'];
-    $inCorreo = $_POST['inCorreo'];
-    $inEstadoActual = $_POST['inEstadoActual'];
-    $inCP = $_POST['inCP'];
-    $inAlcaldia = $_POST['inAlcaldia'];
-    $inColonia = $_POST['inColonia'];
-    $inCalle = $_POST['inCalle'];
-    $inNoExt = $_POST['inNoExt'];
-    $inNoInt = $_POST['inNoInt'];
-    $inMsjInt = $_POST['inMsjInt'];
-    $inPromocion = $_POST['inInstFin'];
+$idNombre = $_POST['idNombre'];
+$idApPat = $_POST['idApPat'];
+$idApMat = $_POST['idApMat'];
+$idSexo = $_POST['idSexo'];
+$idFechaNac = $_POST['idFechaNac'];
+$idRfc = $_POST['idRfc'];
+$idCurp = $_POST['idCurp'];
+$idCelular = $_POST['idCelular'];
+$idTelefono = $_POST['idTelefono'];
+$idCorreo = $_POST['idCorreo'];
+$idOcupacion = $_POST['idOcupacion'];
+$idIdentificacion = $_POST['idIdentificacion'];
+$idNumIdentificacion = $_POST['idNumIdentificacion'];
+$idEstado = $_POST['idEstado'];
+$idMunicipio = $_POST['idMunicipio'];
+$idLocalidad = $_POST['idLocalidad'];
+$idCalle = $_POST['idCalle'];
+$idCP = $_POST['idCP'];
+$idNumExt = $_POST['idNumExt'];
+$idNumInt = $_POST['idNumInt'];
+$idPromocion = $_POST['idPromocion'];
+$idMensajeInterno = $_POST['idMensajeInterno'];
 
-    $sexo = 0;
 
-    $cliente = new Cliente(
+$sexo = 0;
 
-        $inNombre,
-        $inApPat,
-        $inApMat,
-        $boxSexo,
-        $inFechaNac,
-        $inCurp,
-        $boxOcupacion,
-        $boxIdentificacion,
-        $inNoIdentificacion,
-        $inCelular,
-        $inRfc,
-        $inTelefono,
-        $inCorreo,
-        $inEstadoActual,
-        $inCP,
-        $inAlcaldia,
-        $inColonia,
-        $inCalle,
-        $inNoExt,
-        $inNoInt,
-        $inMsjInt,
-        $inPromocion
+$clienteData = new Cliente(
 
-    );
+    $idNombre,
+    $idApPat,
+    $idApMat,
+    $idSexo,
+    $idFechaNac,
+    $idRfc,
+    $idCurp,
+    $idCelular,
+    $idTelefono,
+    $idCorreo,
+    $idOcupacion,
+    $idIdentificacion,
+    $idNumIdentificacion,
+    $idEstado,
+    $idMunicipio,
+    $idLocalidad,
+    $idCalle,
+    $idCP,
+    $idNumExt,
+    $idNumInt,
+    $idPromocion,
+    $idMensajeInterno,
+    $inInstFin
 
-    $sqlCliente = new sqlClienteDAO();
-    if($sqlCliente->guardaCiente($cliente)){
-        echo "\nTodo bien";
-    }else{
-        echo "Ocurrio un error";
-    }
+);
 
-echo "\nNombre : ". $inNombre;
+$sqlCliente = new sqlClienteDAO();
+$sqlCliente->guardaCiente($clienteData);

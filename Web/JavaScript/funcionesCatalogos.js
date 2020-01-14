@@ -1,10 +1,10 @@
 function estadoAutocompletar() {
-    $('#idEstado').on('keyup', function () {
+    $('#idEstadoName').on('keyup', function () {
         var key = $(this).val();
-        var dataString = 'idEstado=' + key;
+        var dataString = 'idEstadoName=' + key;
         var dataEnviar = {
             "tipoConsulta": 1,
-            "idEstado": key
+            "idEstadoName": key
         };
         $.ajax({
             type: "POST",
@@ -13,15 +13,16 @@ function estadoAutocompletar() {
             success: function (data) {
 
                 //Escribimos las sugerencias que nos manda la consulta
-                $('#suggestions').fadeIn(1000).html(data);
+                $('#sugerenciaEstado').fadeIn(1000).html(data);
                 //Al hacer click en alguna de las sugerencias
                 $('.suggest-element').on('click', function () {
                     //Obtenemos la id unica de la sugerencia pulsada
                     var id = $(this).attr('id');
                     //Editamos el valor del input con data de la sugerencia pulsada
-                    $('#idEstado').val($('#' + id).attr('data'));
+                    $('#idEstado').val(id);
+                    $('#idEstadoName').val($('#' + id).attr('data'));
                     //Hacemos desaparecer el resto de sugerencias
-                    $('#suggestions').fadeOut(1000);
+                    $('#sugerenciaEstado').fadeOut(1000);
                     alert('Has seleccionado el ' + id + ' ' + $('#' + id).attr('data'));
                     return false;
                 });
@@ -31,12 +32,12 @@ function estadoAutocompletar() {
 }
 
 function municipioAutocompletar() {
-    $('#idMunicipio').on('keyup', function () {
+    $('#idMunicipioName').on('keyup', function () {
         var key = $(this).val();
-        var dataString = 'idMunicipio=' + key;
+        var dataString = 'idMunicipioName=' + key;
         var dataEnviar = {
             "tipoConsulta": 2,
-            "idMunicipio": key,
+            "idMunicipioName": key,
             "idEstado": $("#idEstado").val()
         };
         $.ajax({
@@ -46,15 +47,16 @@ function municipioAutocompletar() {
             success: function (data) {
 
                 //Escribimos las sugerencias que nos manda la consulta
-                $('#suggestions').fadeIn(1000).html(data);
+                $('#sugerenciaMunicipio').fadeIn(1000).html(data);
                 //Al hacer click en alguna de las sugerencias
                 $('.suggest-element').on('click', function () {
                     //Obtenemos la id unica de la sugerencia pulsada
                     var id = $(this).attr('id');
                     //Editamos el valor del input con data de la sugerencia pulsada
-                    $('#idMunicipio').val($('#' + id).attr('data'));
+                    $('#idMunicipio').val(id);
+                    $('#idMunicipioName').val($('#' + id).attr('data'));
                     //Hacemos desaparecer el resto de sugerencias
-                    $('#suggestions').fadeOut(1000);
+                    $('#sugerenciaMunicipio').fadeOut(1000);
                     alert('Has seleccionado el ' + id + ' ' + $('#' + id).attr('data'));
                     return false;
                 });
@@ -64,12 +66,14 @@ function municipioAutocompletar() {
 }
 
 function localidadAutocompletar() {
-    $('#idEstado').on('keyup', function () {
+    $('#idLocalidadName').on('keyup', function () {
         var key = $(this).val();
-        var dataString = 'idEstado=' + key;
+        var dataString = 'idLocalidadName=' + key;
         var dataEnviar = {
-            "tipoConsulta": 1,
-            "idEstado": key
+            "tipoConsulta": 3,
+            "idLocalidadName": key,
+            "idEstado": $("#idEstado").val(),
+            "idMunicipio": $("#idMunicipio").val()
         };
         $.ajax({
             type: "POST",
@@ -78,15 +82,16 @@ function localidadAutocompletar() {
             success: function (data) {
 
                 //Escribimos las sugerencias que nos manda la consulta
-                $('#suggestions').fadeIn(1000).html(data);
+                $('#sugerenciaLocalidad').fadeIn(1000).html(data);
                 //Al hacer click en alguna de las sugerencias
                 $('.suggest-element').on('click', function () {
                     //Obtenemos la id unica de la sugerencia pulsada
                     var id = $(this).attr('id');
                     //Editamos el valor del input con data de la sugerencia pulsada
-                    $('#idEstado').val($('#' + id).attr('data'));
+                    $('#idLocalidad').val(id);
+                    $('#idLocalidadName').val($('#' + id).attr('data'));
                     //Hacemos desaparecer el resto de sugerencias
-                    $('#suggestions').fadeOut(1000);
+                    $('#sugerenciaLocalidad').fadeOut(1000);
                     alert('Has seleccionado el ' + id + ' ' + $('#' + id).attr('data'));
                     return false;
                 });
@@ -94,3 +99,4 @@ function localidadAutocompletar() {
         });
     });
 }
+

@@ -1,5 +1,47 @@
 function agregarCliente() {
+    //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
+    var dataEnviar = {
+        "idNombre": $("#idNombre").val(),
+        "idApPat": $("#idApPat").val(),
+        "idApPat": $("#idApPat").val(),
+        "idSexo": $("#idSexo").val(),
+        "idFecNac": $("#idFecNac").val(),
+        "idRfc": $("#idRfc").val(),
+        "idCurp": $("#idCurp").val(),
+        "idCelular": $("#idCelular").val(),
+        "idTelefono": $("#idTelefono").val(),
+        "idCorreo": $("#idCorreo").val(),
+        "idOcupacion": $("#idOcupacion").val(),
+        "idIdentificacion": $("#idIdentificacion").val(),
+        "idNumIdentificacion": $("#idNumIdentificacion").val(),
+        "idEstado": $("#idEstado").val(),
+        "idMunicipio": $("#idMunicipio").val(),
+        "idLocalidad": $("#idLocalidad").val(),
+        "idCalle": $("#idCalle").val(),
+        "idCP": $("#idCP").val(),
+        "idNumExt": $("#idNumExt").val(),
+        "idNumInt": $("#idNumInt").val(),
+        "idPromocion": $("#idPromocion").val(),
+        "idMensajeInterno": $("#idMensajeInterno").val()
+    };
+
+    $.ajax({
+        data: dataEnviar,
+        url: '../../../com.Mexicash/Controlador/RegistroCliente.php',
+        type: 'post',
+        beforeSend: function () {
+        },
+        success: function (response) {
+            if (response == 1) {
+                alertify.success("Cliente agregado exitosamente.");
+                LimpiarRegistroCliente();
+            } else {
+                alertify.error("Error al agregar cliente.");
+            }
+        },
+    })
 }
+
 function mostrarTablaExtras() {
 }
 
@@ -32,4 +74,28 @@ function nombreAutocompletar() {
             }
         });
     });
+}
+
+function LimpiarRegistroCliente() {
+    $("#idNombre").val("");
+    $("#idApPat").val("");
+    $("#idApPat").val("");
+    $("#idSexo").val("");
+    $("#idRfc").val("");
+    $("#idCurp").val("");
+    $("#idCelular").val("");
+    $("#idTelefono").val("");
+    $("#idCorreo").val("");
+    $("#idOcupacion").val("");
+    $("#idIdentificacion").val("");
+    $("#idNumIdentificacion").val("");
+    $("#idEstado").val("");
+    $("#idMunicipio").val("");
+    $("#idLocalidad").val("");
+    $("#idCalle").val("");
+    $("#idCP").val("");
+    $("#idNumExt").val("");
+    $("#idNumInt").val("");
+    $("#idPromocion").val("");
+    $("#idMensajeInterno").val("");
 }
