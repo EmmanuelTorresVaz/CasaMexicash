@@ -39,8 +39,12 @@ function agregarCliente() {
     })
 }
 
-function mostrarTablaExtras() {
+function mostrarTodos() {
+alert("Funcion mostrar todo");
+}
 
+function historial() {
+    alert("Funcion historial");
 }
 
 function nombreAutocompletar() {
@@ -59,13 +63,21 @@ function nombreAutocompletar() {
                 $('#suggestions').fadeIn(1000).html(data);
                 //Al hacer click en alguna de las sugerencias
                 $('.suggest-element').on('click', function () {
+
+
                     //Obtenemos la id unica de la sugerencia pulsada
                     var id = $(this).attr('id');
+                    var celular = $('#' + id).attr('celular');
+                    var direccionComp = $('#' + id).attr('direccionCompleta');
+                    var estado = $('#' + id).attr('estadoDesc');
                     //Editamos el valor del input con data de la sugerencia pulsada
+                    $('#idClienteEmpeno').val(id);
                     $('#idNombres').val($('#' + id).attr('data'));
+                    $("#idCelularEmpeno").val(celular);
+                    $("#idEstadoEmpeno").val(estado);
+                    $("#idDireccionEmpeno").val(direccionComp);
                     //Hacemos desaparecer el resto de sugerencias
                     $('#suggestions').fadeOut(1000);
-                    alert('Has seleccionado el ' + id + ' ' + $('#' + id).attr('data'));
                     return false;
                 });
 

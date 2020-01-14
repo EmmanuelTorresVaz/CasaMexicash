@@ -7,12 +7,6 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
         <table class="table table-responsive table-hover table-condensed table-bordered" >
             <thead>
             <tr>
-                <br>
-            </tr>
-            <tr>
-                <br>
-            </tr>
-            <tr>
                 <th>Marca</th>
                 <th>Estado</th>
                 <th>Modelo</th>

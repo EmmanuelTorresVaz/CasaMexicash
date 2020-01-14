@@ -1,8 +1,8 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
-include (MODELO_PATH."Identificacion.php");
-include (MODELO_PATH."Promocion.php");
-include (BASE_PATH."Conexion.php");
+include_once (MODELO_PATH."Identificacion.php");
+include_once (MODELO_PATH."Promocion.php");
+include_once (BASE_PATH."Conexion.php");
 
 class sqlCatalogoDAO
 {
