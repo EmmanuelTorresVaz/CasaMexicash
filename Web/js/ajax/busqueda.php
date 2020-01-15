@@ -10,11 +10,10 @@ include_once (SQL_PATH."sqlClienteDAO.php");
 
     $arr = array();
 
-    $arr = $sql->consultaClienteEmpeño($nombre, 2);
+    $arr = $sql->consultaClienteEmpeño($nombre, 3);
 
     for($i = 0; $i < count($arr); $i++){
         $nombre = $arr[$i]['nombre'];
-
     }
 
 

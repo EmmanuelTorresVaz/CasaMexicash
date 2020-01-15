@@ -508,12 +508,10 @@ function tablaClientes(x) {
     $(x).parents("tr").find("td").each(function(){
         valores.push($(this).html());
     });
-
-    console.log(valores);
-
-    document.getElementById('inDireccion').value =valores[9];
-    document.getElementById('inCelular').value =valores[5];
-    document.getElementById('inCiudad').value =valores[10];
+    document.getElementById("Nombres").value = valores[0];
+    document.getElementById("inDireccion").value = valores[7];
+    document.getElementById('inCelular').value =valores[3];
+    document.getElementById('inCiudad').value =valores[8];
 
     document.getElementById('tablaExtras').style.display="none";
 
@@ -543,3 +541,105 @@ function cerrarVentana() {
     window.close();
 }
 
+function buscarContrato() {
+    var contrato = document.getElementById('inContrato').value;
+    var nombre = 0;
+    var celular = 0;
+
+    var params = {
+        "contrato": contrato,
+        "nombre": nombre,
+        "celular": celular
+    };
+
+    document.getElementById('Nombres').value = "";
+    document.getElementById('inDireccion').value = "";
+    document.getElementById('inCiudad').value = "";
+    document.getElementById('inCelular').value = "";
+
+    $.get("../../../com.Mexicash/Controlador/cConsultaContrato.php", params, function (response) {
+        var json = JSON.parse(response);
+        var tbl = ``;
+        var tbl2 = ``;
+
+        $('#tblArticulo tbody').remove();
+        $('#tblContratos tbody').remove();
+
+
+        for(var i = 0; i < json.length; i++){
+            tbl += `<tbody>
+            <tr>
+            <td>`+ json[i]['id_Contrato'] + `</td>
+            <td>`+ json[i]['folio'] +`</td>
+            <td>`+ json[i]['total_prestamo'] +`</td>
+            <td>`+ json[i]['abono'] +`</td>
+            <td>`+ json[i]['id_Interes'] +`</td>
+            <td>`+ json[i]['pago'] +`</td>
+            <td>`+ json[i]['fecha_alm'] +`</td>
+            <td>`+ json[i]['fecha_movimiento'] +`</td>
+            <td>`+ json[i]['id_Estatus'] +`</td>
+            <td>`+ json[i]['fecha_vencimiento'] +`</td>
+            </tr></tbody>`;
+
+            tbl2 += `<tr>
+            <td>` + json[i]['cantidad'] +`</td>
+            <td>`+json[i]['detalle']+`</td>
+            <td>`+json[i]['observaciones']+`</td>
+            </tr>`;
+        }
+        $('#tblArticulo').append(tbl2);
+        $('#tblContratos').append(tbl);
+    });
+
+
+}
+
+function buscarContratoPorNombre() {
+    var nombre = document.getElementById('Nombres').value;
+    var contrato = 0;
+    var celular = document.getElementById('inCelular').value;
+    var params = {
+        "contrato": contrato,
+        "nombre": nombre,
+        "celular": celular
+    };
+
+    document.getElementById("inContrato").value = "";
+
+    $.get("../../../com.Mexicash/Controlador/cConsultaContrato.php", params, function (response) {
+        var json = JSON.parse(response);
+        var tbl = ``;
+        var tbl2 = ``;
+
+        $('#tblArticulo tbody').remove();
+        $('#tblContratos tbody').remove();
+
+        for(var i = 0; i < json.length; i++){
+            tbl += `<tbody><tr>
+            <td>`+ json[i]['id_Contrato'] + `</td>
+            <td>`+ json[i]['folio'] +`</td>
+            <td>`+ json[i]['total_prestamo'] +`</td>
+            <td>`+ json[i]['abono'] +`</td>
+            <td>`+ json[i]['id_Interes'] +`</td>
+            <td>`+ json[i]['pago'] +`</td>
+            <td>`+ json[i]['fecha_alm'] +`</td>
+            <td>`+ json[i]['fecha_movimiento'] +`</td>
+            <td>`+ json[i]['id_Estatus'] +`</td>
+            <td>`+ json[i]['fecha_vencimiento'] +`</td>
+            </tr>`;
+
+            tbl2 += `<tr>
+            <td>` + json[i]['cantidad'] +`</td>
+            <td>`+json[i]['detalle']+`</td>
+            <td>`+json[i]['observaciones']+`</td>
+            </tr></tbody>`;
+        }
+        $('#tblArticulo').append(tbl2);
+        $('#tblContratos').append(tbl);
+
+    });
+}
+
+function ventanaInvFisico() {
+    window.open("../../html/Reportes/vInventarioFisico.php" , "Inventario Fisico" , "width=500,height=210,scrollbars=NO");
+}

@@ -49,7 +49,7 @@ $x = json_encode($nombres);
                     $.get("../../../com.Mexicash/Controlador/cConsultaTiempoReal.php", params, function (response) {
                         var json = JSON.parse(response);
 
-                        var direccion = json[0]['calle'] + " " + json[0]['numExt'] + " numInt: " + json[0]['numInt'] + " " + json[0]['colonia'] + " " + json[0]['municipio'] + " " + json[0]['codigoPostal'];
+                        var direccion = json[0]['direccionCompleta'];
                         var celular = json[0]['celular'];
                         var estado = json[0]['estado'];
 
@@ -63,80 +63,32 @@ $x = json_encode($nombres);
             });
         } );
     </script>
-
-    <script type="text/javascript">
-        function onk(){
-
-            var texto = document.getElementById('inNombre').value;
-
-            var parametros = {
-                "texto" : texto
-            };
-
-            $.ajax({
-                data: parametros,
-                url: "../../js/ajax/busqueda.php",
-                type: "POST",
-                success: function (response) {
-                    $('.datosTiempoReal').html(response);
-                }
-            });
-
-            <?php
-
-            $sql = new sqlClienteDAO();
-            $sq = new sqlClienteDAO();
-            $nombre = "Alejandro";
-
-            $arr = array();
-
-            $arr = $sql->consultaClienteEmpeño($nombre, 1);
-
-            $direccion = $arr[0]['calle'] . " " . $arr[0]['numExt'] . " Num interior " . $arr[0]['numInt'] . " " . $arr[0]['colonia'] . " " . $arr[0]['municipio'] . " " . $arr[0]['codigoPostal'];
-            $ciudad  = $arr[0]['estado'];
-            $celular = $arr[0]['celular'];
-
-            $id = $sq->buscarIdCliente(42322, "prueba@gmail.com");
-
-            ?>
-
-            document.getElementById('inCelular').value = "<?php echo $celular; ?>"
-            document.getElementById('inDireccion').value = "<?php echo $direccion; ?>"
-            document.getElementById('inCiudad').value = "<?php echo $ciudad; ?>"
-
-            alert("<?php echo $id; ?>");
-
-        }
-    </script>
-
 </head>
 <body>
 
-
-
-<div class="container-fluid" id="tablaExtras" style="position: absolute; display: none; top: 10%; left: 0%; padding-left: 4vw; height: 70vh; border: 1px solid black; background-color: white; z-index: 3"></div>
-<div class="col-12 clearfix" style="position: absolute; top: 0; padding-left: 4vw; height: 60vh; " >
-        <br>
+<div class="container-fluid" id="tablaExtras" style="position: absolute; display: none; top: 10%; left: -60%; padding-left: 4vw; height: 70vh; border: 1px solid black; background-color: white; z-index: 3"></div>
+<div class="col-5 clearfix">
             <div style="float: left; padding-right: 30px">
                 <h6>Nombre Completo:</h6>
-                    <input id="Nombres" name="Nombres" type="text" style="width: 250px"/>
+                <input id="Nombres" name="Nombres" type="text" style="width: 250px" />
             </div>
-            <div style="float: left; padding-right: 30px">
-                <input type="button" class="btn btn-outline-primary" onclick="mostrarTablaExtras()" value="Ver todos">
+            <div style="float: left; padding-right: 30px; padding-top: 4%;">
+                <input type="button" id="btnTodos" class="btn btn-outline-primary" onclick="mostrarTablaExtras()" value="Ver todos" >
+                <input type="button" id="btnBuscar" class="btn btn-outline-primary" onclick="buscarContratoPorNombre()" value="Buscar" >
             </div>
-        <div style="float: left; padding-right: 30px; padding-top: 20px;">
+        <div style="float: left; width: 100%; padding-right: 30px; padding-top: 1.5%;">
             <h6>Direcci&oacute;n:</h6>
-            <input type="text" name="inDireccion" placeholder="" id="inDireccion" style="width: 250px" required disabled/>
+            <input type="text" name="inDireccion" placeholder="" id="inDireccion" style="width: 100%" required readonly disabled/>
         </div>
-        <div style="float: left; padding-right: 30px; padding-top: 20px;">
+        <div style="float: left; width: 50%; padding-right: 30px; padding-top: 1.5%;">
             <h6>Ciudad:</h6>
-            <input type="text" name="inCiudad" placeholder="" id="inCiudad" required disabled/>
+            <input type="text" name="inCiudad" placeholder="" id="inCiudad" required readonly disabled/>
         </div>
-        <div style="float: left; padding-right: 30px; padding-top: 20px;">
+        <div style="float: left; width: 50%; padding-top: 1.5%;">
             <h6>Celular:</h6>
-            <input type="text" name="inCelular" placeholder="" id="inCelular" required disabled/>
+            <input type="text" name="inCelular" placeholder="" id="inCelular" required readonly disabled/>
         </div>
-
+        <!--
         <div style="float: left; padding-right: 30px; padding-top: 20px;">
             <h6>Nombre Completo Cotitular:</h6>
             <input type="text" id="inNombreCot" name="inNombreCot" placeholder="" style="width: 250px" required disabled/>
@@ -145,7 +97,7 @@ $x = json_encode($nombres);
         <div style="float: left; padding-right: 30px; padding-top: 20px;">
             <h6>Nombre Completo Beneficiario:</h6>
             <input type="text" id="inBeneficiario" name="inBeneficiario" placeholder="" style="width: 250px" required disabled/>
-        </div>
+        </div>-->
     </div>
 
 <script src="../../js/main/main.js"></script>

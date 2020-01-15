@@ -107,21 +107,17 @@ class sqlClienteDAO
             $idNumInt = $clienteData->getNumInterior();
             $idPromocion = $clienteData->getPromocion();
             $idMensajeInterno = $clienteData->getMensajeInterno();
-            date_default_timezone_set('America/Mexico_City');
-
-            $fechaCreacion = date('Y-m-d h:i:s', time());
-            $fechaModificacion = date('Y-m-d h:i:s', time());
-            $usuario =1;
+            $fechaCreacion = date('d-m-Y');
+            $fechaModificacion = date('d-m-Y');
 
             $insertCliente = "INSERT INTO cliente_tbl (nombre, apellido_Pat, apellido_Mat, sexo, fecha_Nacimiento, curp," .
                 " ocupacion, tipo_Identificacion, num_Identificacion, celular, rfc, telefono, correo, estado, codigo_Postal," .
-                " municipio, localidad, calle, num_exterior, num_interior, mensaje,promocion, fecha_creacion, fecha_modificacion,usuario)" .
+                " municipio, localidad, calle, num_exterior, num_interior, mensaje,promocion, fecha_creacion, fecha_modificacion)" .
                 " VALUES ('" . $idNombre . "', '" . $idApPat . "', '" . $idApMat . "', '" . $idSexo . "', '" . $idFechaNac . "','" . $idCurp . "', " .
                 " '" . $idOcupacion . "', '" . $idIdentificacion . "', '" . $idNumIdentificacion . "', '" . $idCelular . "', '" . $idRfc . "', " .
                 "'" . $idTelefono . "', '" . $idCorreo . "', '" . $idEstado . "', '" . $idCP . "', '" . $idMunicipio . "', '" . $idLocalidad . "', " .
                 "'" . $idCalle . "'," . " '" . $idNumExt . "', '" . $idNumInt . "', '" . $idMensajeInterno . "', '" . $idPromocion . "', " .
-                " '" . $fechaCreacion . "', '" . $fechaModificacion . "'," . $usuario . ")";
-
+                "'" . $fechaCreacion . "', '" . $fechaModificacion . "')";
 
             if ($ps = $this->conexion->prepare($insertCliente)) {
                 if ($ps->execute()) {
@@ -211,14 +207,21 @@ class sqlClienteDAO
                 $buscar = "select * from cliente_tbl where concat(nombre, ' ', apellido_Pat, ' ', apellido_Mat) like concat('%', '" . $nombre . "', '%');";
             } else {
                 if ($opc == 2) {
-                    $buscar = "select nombre, apellido_Pat, apellido_Mat, fecha_Nacimiento, curp, celular, rfc, telefono, correo, 
+                    $buscar = "select id_Cliente, nombre, apellido_Pat, apellido_Mat, fecha_Nacimiento, curp, celular, rfc, telefono, correo, 
                     estado, codigo_Postal, municipio, colonia, calle, num_exterior, num_interior from cliente_tbl 
                     where concat(nombre, ' ', apellido_Pat, ' ', apellido_Mat) like concat('%', '" . $nombre . "', '%');";
                 } else {
                     if ($opc == 3) {
-                        $buscar = "select nombre, apellido_Pat, apellido_Mat, fecha_Nacimiento, curp, celular, rfc, telefono, correo, 
-                    estado, codigo_Postal, municipio, colonia, calle, num_exterior, num_interior from cliente_tbl 
-                    where concat(nombre, ' ', apellido_Pat, ' ', apellido_Mat) = '" . $nombre . "';";
+
+                        $buscar = "SELECT c.id_Cliente, CONCAT (c.nombre, ' ', c.apellido_Pat,' ', c.apellido_Mat) as nombreCompleto, c.fecha_Nacimiento, c.curp, c.celular, c.rfc, c.telefono, c.correo, CONCAT (c.calle, ' ', c.num_exterior, ', Interior ', c.num_interior, ', CP ', c.codigo_Postal, ', ', l.descripcion) as direccionCompleta, e.descripcion as estado  
+                                FROM cliente_tbl as c 
+                                INNER JOIN cat_estado as e
+                                on c.estado = e.id_Estado 
+                                INNER JOIN cat_municipio as m
+                                on c.municipio = m.id_Municipio and c.estado = m.id_Estado 
+                                INNER JOIN cat_localidad as l
+                                on c.localidad = l.id_Localidad and c.estado = l.id_Estado and c.municipio = l.id_Municipio 
+                                where concat(c.nombre, ' ', c.apellido_Pat, ' ', c.apellido_Mat) like concat('%', '". $nombre ."', '%');";
                     }
                 }
             }
@@ -227,30 +230,21 @@ class sqlClienteDAO
 
             if ($rs->num_rows > 0) {
                 while ($row = $rs->fetch_assoc()) {
-
-                    /*
+                    /*Array de Clientes, para recorrer por cliente
                         $cliente = new Cliente($row["nombre"], $row["apellido_Pat"], $row["apellido_Mat"], 0, $row["fecha_Nacimiento"], $row["curp"], 0, 0,0,
                         $row["celular"], $row["rfc"], $row["telefono"], $row["correo"], $row["estado"], $row["codigo_Postal"], $row["municipio"], $row["colonia"], $row["calle"], $row["num_exterior"],
                         $row["num_interior"], 0, 0);
                     */
-
                     $cliente = [
-                        "nombre" => $row["nombre"],
-                        "apellidoPat" => $row["apellido_Pat"],
-                        "apellidoMat" => $row["apellido_Mat"],
+                        "nombreCompleto" => $row["nombreCompleto"],
                         "fechaNac" => $row["fecha_Nacimiento"],
                         "curp" => $row["curp"],
                         "celular" => $row["celular"],
                         "rfc" => $row["rfc"],
                         "telefono" => $row["telefono"],
                         "correo" => $row["correo"],
-                        "estado" => $row["estado"],
-                        "codigoPostal" => $row["codigo_Postal"],
-                        "municipio" => $row["municipio"],
-                        "colonia" => $row["colonia"],
-                        "calle" => $row["calle"],
-                        "numExt" => $row["num_exterior"],
-                        "numInt" => $row["num_interior"]
+                        "direccionCompleta" => $row["direccionCompleta"],
+                        "estado" => $row["estado"]
                     ];
 
                     array_push($clien, $cliente);
@@ -304,10 +298,10 @@ class sqlClienteDAO
             $html = '';
 
             $buscar = "SELECT id_Cliente, CONCAT (nombre, ' ',apellido_Pat,' ', apellido_Mat) as NombreCompleto, celular ,cat_estado.descripcion as estadoDesc, CONCAT (cat_municipio.descripcion, ', ',cat_localidad.descripcion, ', ',calle,', ', num_exterior,', ',num_interior ) as direccionCompleta FROM cliente_tbl ".
-                      " INNER JOIN cat_estado on cliente_tbl.estado = cat_estado.id_Estado ".
-                      " INNER JOIN cat_municipio on cliente_tbl.municipio = cat_municipio.id_Municipio and cliente_tbl.estado = cat_municipio.id_Estado  ".
-                      " INNER JOIN cat_localidad on cliente_tbl.localidad = cat_localidad.id_Localidad and cliente_tbl.estado = cat_localidad.id_Estado and cliente_tbl.municipio = cat_localidad.id_Municipio".
-                      " WHERE nombre LIKE '%" . strip_tags($idCliente) . "%' ";
+                " INNER JOIN cat_estado on cliente_tbl.estado = cat_estado.id_Estado ".
+                " INNER JOIN cat_municipio on cliente_tbl.municipio = cat_municipio.id_Municipio and cliente_tbl.estado = cat_municipio.id_Estado  ".
+                " INNER JOIN cat_localidad on cliente_tbl.localidad = cat_localidad.id_Localidad and cliente_tbl.estado = cat_localidad.id_Estado and cliente_tbl.municipio = cat_localidad.id_Municipio".
+                " WHERE nombre LIKE '%" . strip_tags($idCliente) . "%' ";
             $statement = $this->conexion->query($buscar);
             if ($statement->num_rows > 0) {
                 while ($row = $statement->fetch_assoc()) {

@@ -168,6 +168,7 @@ class sqlReporteDAO
 
 
             $buscarInv = "SELECT * FROM articulo_tbl as a INNER JOIN cat_estatus as e ON a.id_Estatus = e.id_Estatus where a.fecha_creacion between CAST((STR_TO_DATE(REPLACE('". $fechaInicial ."','/','.') ,GET_FORMAT(date,'EUR'))) AS DATE) AND CAST((STR_TO_DATE(REPLACE('". $fechaFinal ."','/','.') ,GET_FORMAT(date,'EUR'))) AS DATE);";
+
             $rs = $this->conexion->query($buscarInv);
 
             if ($rs->num_rows > 0) {
