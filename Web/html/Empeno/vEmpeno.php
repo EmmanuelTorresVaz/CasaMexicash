@@ -51,7 +51,7 @@ $x = json_encode($nombres);
 
 
     <style type="text/css">
-        #suggestions {
+        #suggestionsNombreEmpeno {
             box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
             height: auto;
             position: absolute;
@@ -60,7 +60,7 @@ $x = json_encode($nombres);
             width: 206px;
         }
 
-        #suggestions .suggest-element {
+        #suggestionsNombreEmpeno .suggest-element {
             background-color: #EEEEEE;
             border-top: 1px solid #d6d4d4;
             cursor: pointer;
@@ -123,9 +123,8 @@ $x = json_encode($nombres);
                             <div>
                                 <input id="idNombres" name="Nombres" type="text" style="width: 400px"
                                        onkeypress="nombreAutocompletar()" placeholder="Buscar Cliente..."/>
-                                <span class="input-group-btn"></span>
                             </div>
-                            <div id="suggestions"></div>
+                            <div id="suggestionsNombreEmpeno" ></div>
                         </td>
                         <td colspan="6" class="border border-dark">Tasa Interés</td>
                         <td colspan="6" class="border border-dark">

@@ -18,19 +18,31 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
     <script src="../../librerias/jquery/jquery-3.4.1.min.js"></script>
     <script src="../../librerias/bootstrap/js/bootstrap.js"></script>
     <script src="../../librerias/alertifyjs/alertify.js"></script>
-    <script src="../../JavaScript/funcionesCatalogos.js"></script>
-    <script src="../../JavaScript/funcionesCliente.js"></script>
+
     <script src="../../librerias/jquery/jquery.numeric.js" type="text/javascript"></script>
     <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <script src="js/bootstrap-datetimepicker.min.js"></script>
-
-    <link rel="stylesheet" href="../../style/less/main.css"/>
-    <link rel="stylesheet" href="../../style/css/bootstrap/bootstrap.css"/>
-    <link href="../../style/css/magicsuggest/magicsuggest-min.css" rel="stylesheet">
-    <script src="../../librerias/jquery/jquery.numeric.js" type="text/javascript"></script>
+    <script src="../../JavaScript/funcionesCatalogos.js"></script>
+    <script src="../../JavaScript/funcionesCliente.js"></script>
 
     <style type="text/css">
-        .suggestions {
+        #sugerenciaEstado {
+            box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
+            height: auto;
+            position: absolute;
+            top: 45px;
+            z-index: 9999;
+            width: 206px;
+        }
+        #sugerenciaMunicipio {
+            box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
+            height: auto;
+            position: absolute;
+            top: 45px;
+            z-index: 9999;
+            width: 206px;
+        }
+        #sugerenciaLocalidad {
             box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
             height: auto;
             position: absolute;
@@ -39,7 +51,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
             width: 206px;
         }
 
-        .suggestions .suggest-element {
+        #sugerenciaEstado .suggest-element {
             background-color: #EEEEEE;
             border-top: 1px solid #d6d4d4;
             cursor: pointer;
@@ -47,6 +59,23 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
             width: 100%;
             float: left;
         }
+        #sugerenciaMunicipio .suggest-element {
+            background-color: #EEEEEE;
+            border-top: 1px solid #d6d4d4;
+            cursor: pointer;
+            padding: 8px;
+            width: 100%;
+            float: left;
+        }
+        #sugerenciaLocalidad .suggest-element {
+            background-color: #EEEEEE;
+            border-top: 1px solid #d6d4d4;
+            cursor: pointer;
+            padding: 8px;
+            width: 100%;
+            float: left;
+        }
+
     </style>
     <script>
         $(document).ready(function () {
@@ -76,11 +105,11 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                     <form id="idFormRegistro" autocomplete="off">
                         <div id="conteiner" class="container">
                             <div class="row">
-                                <input id="idEstado" name="Estado" type="text" style="width: 5px" class="invisible"/>
+                                <input id="idEstado" name="Estado" type="text" style="width: 5px" />
                                 <input id="idMunicipio" name="municipio" type="text" style="width: 5px"
-                                       class="invisible"/>
+                                   />
                                 <input id="idLocalidad" name="localidad" type="text" style="width: 5px"
-                                       class="invisible"/>
+                                      />
                             </div>
                             <div class="row">
                                 <div class="col-12">
@@ -215,26 +244,26 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                                        style="width: 200px"
                                                        onkeypress="estadoAutocompletar()" placeholder="Buscar Estado..."
                                                        required/>
-                                                <span class="input-group-btn"></span>
-                                                <div id="sugerenciaEstado" class="suggestions"></div>
+                                                <div id="sugerenciaEstado" ></div>
                                             </td>
                                             <td>
                                                 <input id="idMunicipioName" name="municipioName" type="text"
                                                        style="width: 200px"
                                                        onkeypress="municipioAutocompletar()"
                                                        placeholder="Buscar Municipio..." required/>
-                                                <span class="input-group-btn"></span>
-                                                <div id="sugerenciaMunicipio" class="suggestions"></div>
+                                                <div id="sugerenciaMunicipio" ></div>
                                             </td>
                                             <td>
                                                 <input id="idLocalidadName" name="localidadName" type="text"
                                                        style="width: 200px"
                                                        onkeypress="localidadAutocompletar()"
                                                        placeholder="Buscar Localidad..." required/>
-                                                <span class="input-group-btn"></span>
-                                                <div id="sugerenciaLocalidad" class="suggestions"></div>
+                                                <div id="sugerenciaLocalidad"></div>
                                             </td>
+
                                             <td>
+                                                <input type="button" class="btn btn-warning" value="Limpiar" onclick="pruebaModalNuevo()">
+
                                                 <input type="text" name="calle" placeholder="" id="idCalle"
                                                        style="width: 200px"
                                                        required/>

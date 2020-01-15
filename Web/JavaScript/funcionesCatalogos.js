@@ -65,7 +65,7 @@ function municipioAutocompletar() {
 
 function localidadAutocompletar() {
     $('#idLocalidadName').on('keyup', function () {
-        var key = $(this).val();
+        var key = $('#idLocalidadName').val();
         var dataString = 'idLocalidadName=' + key;
         var dataEnviar = {
             "tipoConsulta": 3,
@@ -95,5 +95,13 @@ function localidadAutocompletar() {
             }
         });
     });
+
+}
+
+function pruebaModalNuevo() {
+    alert("prueba");
+    alert($('#idEstado').val());
+    alert($('#idMunicipio').val());
+    alert($('#idLocalidad').val());
 }
 
