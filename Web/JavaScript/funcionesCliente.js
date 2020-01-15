@@ -29,7 +29,6 @@ function agregarCliente() {
         url: '../../../com.Mexicash/Controlador/RegistroCliente.php',
         type: 'post',
         success: function (response) {
-            alert(response)
             if (response == 1) {
                 alertify.success("Cliente agregado.");
                 $("#idFormRegistro")[0].reset();
@@ -46,10 +45,10 @@ alert("Funcion mostrar todo");
 
 function historial() {
     alert("Funcion historial");
-}
+}idNombres
 
 function nombreAutocompletar() {
-    $('#idNombres').on('keyup', function () {
+    $('#').on('keyup', function () {
         var key = $(this).val();
         var dataString = 'idNombres=' + key;
         var dataEnviar = {

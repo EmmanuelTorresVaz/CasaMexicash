@@ -24,7 +24,7 @@ $x = json_encode($nombres);
     <link rel="stylesheet" type="text/css" href="../../librerias/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/alertify.css"/>
     <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/themes/default.css"/>
-    <script src="../../librerias/jquery/jquery.numeric.js" type="text/javascript"></script>
+
     <script src="../../librerias/jquery/jquery-3.4.1.min.js"></script>
     <script src="../../librerias/bootstrap/js/bootstrap.js"></script>
     <script src="../../librerias/alertifyjs/alertify.js"></script>
@@ -187,7 +187,7 @@ $x = json_encode($nombres);
                                    disabled/>
                         </td>
                         <td colspan="9">
-                            <input type="text" name="celularEmpeno" placeholder="" id="idCelularEmpeno" class="nu"
+                            <input type="text" name="celularEmpeno" placeholder="" id="idCelularEmpeno"
                                    style="width: 100px"
                                    required disabled/>
                         </td>

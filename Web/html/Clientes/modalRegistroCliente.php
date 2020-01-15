@@ -51,7 +51,8 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
     <script>
         $(document).ready(function () {
             //  $('.menuContainer').load('menu.php');
-            $('.inputNumeric').numeric();
+            $('#idCelular').numeric();
+            $('#idTelefono').numeric();
             $("#idFecNac").datepicker({
                 changeMonth: true,
                 changeYear: true
@@ -184,13 +185,13 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                                        placeholder=""/>
                                             </td>
                                             <td>
-                                                <input type="text" name="celular" id="idCelular" class="inputNumeric"
-                                                       style="width: 200px"
+                                                <input type="text" name="celular" id="idCelular"  onkeypress="return soloNumeros(event)"
+                                                       style="width: 200px" maxlength="11"
                                                        required/>
                                             </td>
                                             <td>
-                                                <input type="text" name="telefono" id="idTelefono" class="inputNumeric"
-                                                       style="width: 200px"
+                                                <input type="text" name="telefono" id="idTelefono" onkeypress="return soloNumeros(event)"
+                                                       style="width: 200px" maxlength="8"
                                                        placeholder="N&uacute;mero con lada"/>
                                             </td>
                                         </tr>
@@ -257,11 +258,11 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input type="text" name="cp" placeholder="" class="inputNumeric"
+                                                <input type="text" name="cp" placeholder="" onkeypress="return soloNumeros(event)"
                                                        id="idCP" style="width: 100px" required/>
                                             </td>
                                             <td>
-                                                <input type="text" name="numExt" placeholder="" class="inputNumeric"
+                                                <input type="text" name="numExt" placeholder="" onkeypress="return soloNumeros(event)"
                                                        id="idNumExt" style="width: 50px" required/>
                                             </td>
                                             <td>
