@@ -16,7 +16,7 @@ class sqlContratoDAO
         $this->conexion = $this->db->connectDB();
     }
 
-    public function guardarArticulo($tipoPost,Articulo $articulo)
+    public function guardarArticulo($tipoPost, Articulo $articulo)
     {
         // TODO: Implement guardaCiente() method.
         try {
@@ -25,7 +25,7 @@ class sqlContratoDAO
             $status = 1;
             $fechaCreacion = date('d-m-Y');
             $fechaModificacion = date('d-m-Y');
-            if($tipoPost=="1"){
+            if ($tipoPost == "1") {
                 $idTipoM = $articulo->getTipoM();
                 $idPrenda = $articulo->getPrenda();
                 $idKilataje = $articulo->getKilataje();
@@ -47,7 +47,7 @@ class sqlContratoDAO
                     . "', '" . $idPesoPiedra . "', '" . $idPiedras . "', '" . $idPrestamo . "', '" . $idAvaluo . "', '" . $idPrestamoMax . "','" . $idUbicacion . "','"
                     . $idDetallePrenda . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "')";
 
-            }else if($tipoPost=="2"){
+            } else if ($tipoPost == "2") {
                 $idTipoE = $articulo->getTipoE();
                 $idMarca = $articulo->getMarca();
                 $idEstado = $articulo->getEstado();
@@ -146,5 +146,61 @@ class sqlContratoDAO
         echo $verdad;
     }
 
+    public function buscarContrato($contrato, $nombre, $celular){
+        $datos = array();
+        try {
+            $buscar = "";
+            if($nombre == 0){
+                $buscar = "select c.id_Contrato, c.id_Cliente, c.id_Interes, c.folio, c.fecha_creacion, c.fecha_Vencimiento, c.total_Avaluo, c.total_Prestamo, 
+                c.abono, c.pago, c.fecha_Alm, c.fecha_Movimiento, c.id_Estatus, a.detalle, c.observaciones, a.cantidad 
+                from contrato_tbl as c inner join articulo_tbl as a on c.id_Contrato = a.id_Contrato where c.id_Contrato = ". $contrato .";";
+            }
+            if($contrato == 0){
+                $buscar = "select c.id_Contrato, c.id_Cliente, c.id_Interes, c.folio, c.fecha_creacion, c.fecha_Vencimiento, c.total_Avaluo, c.total_Prestamo, 
+                c.abono, c.pago, c.fecha_Alm, c.fecha_Movimiento, c.id_Estatus, a.detalle, c.observaciones, a.cantidad 
+                from contrato_tbl as c inner join articulo_tbl as a on c.id_Contrato = a.id_Contrato inner join cliente_tbl as cl on cl.id_Cliente = c.id_Cliente 
+                where concat(cl.nombre, ' ', cl.apellido_Pat, ' ', cl.apellido_Mat) = '". $nombre ."' and cl.celular = ". $celular .";";
+
+            }
+
+            $rs = $this->conexion->query($buscar);
+            if($rs->num_rows > 0){
+                while ($row = $rs->fetch_assoc()){
+                    $data = [
+                        //Contrato
+                        "id_Contrato" => $row["id_Contrato"],
+                        "id_Cliente" => $row["id_Cliente"],
+                        "id_Interes" => $row["id_Interes"],
+                        "folio" => $row["folio"],
+                        "fecha_creacion" => $row["fecha_creacion"],
+                        "fecha_vencimiento" => $row["fecha_Vencimiento"],
+                        "total_avaluo" => $row["total_Avaluo"],
+                        "total_prestamo" => $row["total_Prestamo"],
+                        "abono" => $row["abono"],
+                        "pago" => $row["pago"],
+                        "fecha_alm" => $row["fecha_Alm"],
+                        "fecha_movimiento" => $row["fecha_Movimiento"],
+                        "id_Estatus" => $row["id_Estatus"],
+
+                        //Articulo
+                        "detalle" => $row["detalle"],
+                        "observaciones" => $row["observaciones"],
+                        "cantidad" => $row["cantidad"]
+                    ];
+
+                    array_push($datos, $data);
+                }
+            }else{
+                echo "No se ejecuto buscarContrato-sqlContratoDAO";
+            }
+
+        }catch (Exception $exc) {
+            $verdad = 4;
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+        return $datos;
+    }
 
 }
