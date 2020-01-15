@@ -43,9 +43,6 @@ $x = json_encode($nombres);
             $("#idFormEmpeno").trigger("reset");
             $("#divTablaArticulos").load('tablaArticulos.php');
             $('.inputNumeric').numeric();
-            $("#tipoInteres").change(function () {
-                SeleccionarInteres($("#tipoInteres").val());
-            });
         });
     </script>
 
@@ -128,7 +125,7 @@ $x = json_encode($nombres);
                         </td>
                         <td colspan="6" class="border border-dark">Tasa Interés</td>
                         <td colspan="6" class="border border-dark">
-                            <select id="tipoInteres" name="cmbTipoInteres" class="selectpicker">
+                            <select id="tipoInteresEmpeno" name="cmbTipoInteres" class="selectpicker" onchange="SeleccionarInteres($('#tipoInteresEmpeno').val())">
                                 <option value="0">Seleccione:</option>
                                 <?php
 

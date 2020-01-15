@@ -38,9 +38,7 @@ class sqlInteresesDAO
         return $id;
     }
 
-    function llenarCmbTipoInteres()
-    {
-
+    function llenarCmbTipoInteres(){
         $datos = array();
 
         try {
@@ -81,27 +79,6 @@ class sqlInteresesDAO
                 $data['status'] = 'ok';
                 $data['result'] = $consulta;
             }
-
-            /*if ($rs->num_rows > 0) {
-                while ($row = $rs->fetch_assoc()) {
-                    $data = [
-                        "id_interes" => $row["id_interes"],
-                        "tasa_interes" => $row["tasa_interes"],
-                        "tipo_interes" => $row["tipo_interes"],
-                        "periodo" => $row["periodo"],
-                        "plazo" => $row["plazo"],
-                        "taza" => $row["tasa"],
-                        "alm" => $row["alm"],
-                        "seguro" => $row["seguro"],
-                        "iva" => $row["iva"],
-                        "tipo_promocion" => $row["tipo_Promocion"],
-                        "tipo_Agrupamiento" => $row["tipo_Agrupamiento"]
-                    ];
-
-                    array_push($datos, $data);
-                }
-            }*/
-
         } catch (Exception $exc) {
             echo $exc->getMessage();
         } finally {

@@ -262,7 +262,6 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                             </td>
 
                                             <td>
-                                                <input type="button" class="btn btn-warning" value="Limpiar" onclick="pruebaModalNuevo()">
 
                                                 <input type="text" name="calle" placeholder="" id="idCalle"
                                                        style="width: 200px"
