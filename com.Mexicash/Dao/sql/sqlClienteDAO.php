@@ -107,17 +107,21 @@ class sqlClienteDAO
             $idNumInt = $clienteData->getNumInterior();
             $idPromocion = $clienteData->getPromocion();
             $idMensajeInterno = $clienteData->getMensajeInterno();
-            $fechaCreacion = date('d-m-Y');
-            $fechaModificacion = date('d-m-Y');
+            date_default_timezone_set('America/Mexico_City');
+
+            $fechaCreacion = date('Y-m-d h:i:s', time());
+            $fechaModificacion = date('Y-m-d h:i:s', time());
+            $usuario =1;
 
             $insertCliente = "INSERT INTO cliente_tbl (nombre, apellido_Pat, apellido_Mat, sexo, fecha_Nacimiento, curp," .
                 " ocupacion, tipo_Identificacion, num_Identificacion, celular, rfc, telefono, correo, estado, codigo_Postal," .
-                " municipio, localidad, calle, num_exterior, num_interior, mensaje,promocion, fecha_creacion, fecha_modificacion)" .
+                " municipio, localidad, calle, num_exterior, num_interior, mensaje,promocion, fecha_creacion, fecha_modificacion,usuario)" .
                 " VALUES ('" . $idNombre . "', '" . $idApPat . "', '" . $idApMat . "', '" . $idSexo . "', '" . $idFechaNac . "','" . $idCurp . "', " .
                 " '" . $idOcupacion . "', '" . $idIdentificacion . "', '" . $idNumIdentificacion . "', '" . $idCelular . "', '" . $idRfc . "', " .
                 "'" . $idTelefono . "', '" . $idCorreo . "', '" . $idEstado . "', '" . $idCP . "', '" . $idMunicipio . "', '" . $idLocalidad . "', " .
                 "'" . $idCalle . "'," . " '" . $idNumExt . "', '" . $idNumInt . "', '" . $idMensajeInterno . "', '" . $idPromocion . "', " .
-                "'" . $fechaCreacion . "', '" . $fechaModificacion . "')";
+                " '" . $fechaCreacion . "', '" . $fechaModificacion . "'," . $usuario . ")";
+
 
             if ($ps = $this->conexion->prepare($insertCliente)) {
                 if ($ps->execute()) {

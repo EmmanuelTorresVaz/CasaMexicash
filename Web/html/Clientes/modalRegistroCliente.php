@@ -20,9 +20,15 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
     <script src="../../librerias/alertifyjs/alertify.js"></script>
     <script src="../../JavaScript/funcionesCatalogos.js"></script>
     <script src="../../JavaScript/funcionesCliente.js"></script>
-    <script src="../../js/jquery.numeric.js" type="text/javascript"></script>
+    <script src="../../librerias/jquery/jquery.numeric.js" type="text/javascript"></script>
     <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <script src="js/bootstrap-datetimepicker.min.js"></script>
+
+    <link rel="stylesheet" href="../../style/less/main.css"/>
+    <link rel="stylesheet" href="../../style/css/bootstrap/bootstrap.css"/>
+    <link href="../../style/css/magicsuggest/magicsuggest-min.css" rel="stylesheet">
+    <script src="../../librerias/jquery/jquery.numeric.js" type="text/javascript"></script>
+
     <style type="text/css">
         .suggestions {
             box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);

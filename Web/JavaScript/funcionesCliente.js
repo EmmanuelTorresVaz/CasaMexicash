@@ -29,8 +29,9 @@ function agregarCliente() {
         url: '../../../com.Mexicash/Controlador/RegistroCliente.php',
         type: 'post',
         success: function (response) {
+            alert(response)
             if (response == 1) {
-                alertify.success("Cliente agregado exitosamente.");
+                alertify.success("Cliente agregado.");
                 $("#idFormRegistro")[0].reset();
             } else {
                 alertify.error("Error al agregar cliente.");

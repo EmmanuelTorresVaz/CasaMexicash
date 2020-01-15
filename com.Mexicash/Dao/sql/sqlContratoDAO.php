@@ -117,6 +117,8 @@ class sqlContratoDAO
         } catch (Exception $exc) {
             echo $exc->getMessage();
         } finally {
+
+
             $this->db->closeDB();
         }
 

@@ -27,6 +27,7 @@ class sqlArticulosDAO
 
             $fechaCreacion = date('Y-m-d h:i:s', time());
             $fechaModificacion = date('Y-m-d h:i:s', time());
+            $usuario = 1;
             if($tipoPost=="1"){
                 $idTipoM = $articulo->getTipoM();
                 $idPrenda = $articulo->getPrenda();
@@ -44,10 +45,10 @@ class sqlArticulosDAO
 
                 $insertMetal = "INSERT INTO articulo_tbl " .
                     "(id_Cliente,tipo, prenda, kilataje, calidad, cantidad, peso, peso_Piedra, piedras, prestamo, avaluo, prestamoMaximo, ubicacion," .
-                    " detalle, id_Estatus, fecha_creacion, fecha_modificacion)  VALUES " .
+                    " detalle, id_Estatus, fecha_creacion, fecha_modificacion, usuario)  VALUES " .
                     "('" . $idCliente . "','" . $idTipoM . "','" . $idPrenda . "', '" . $idKilataje . "', '" . $idCalidad . "', '" . $idCantidad . "', '" . $idPeso
                     . "', '" . $idPesoPiedra . "', '" . $idPiedras . "', '" . $idPrestamo . "', '" . $idAvaluo . "', '" . $idPrestamoMax . "','" . $idUbicacion . "','"
-                    . $idDetallePrenda . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "')";
+                    . $idDetallePrenda . "','" . $status . "'," . $fechaCreacion . "," . $fechaModificacion . ",".$usuario ." )";
 
             }else if($tipoPost=="2"){
                 $idTipoE = $articulo->getTipoE();
@@ -68,8 +69,7 @@ class sqlArticulosDAO
                     " detalle, id_Estatus, fecha_creacion, fecha_modificacion)  VALUES " .
                     "('" . $idCliente . "','" . $idTipoE . "','" . $idMarca . "', '" . $idEstado . "', '" . $idModelo . "', '" . $idTamaño . "', '" . $idColor
                     . "', '" . $idSerie . "','" . $idPrestamoE . "', '" . $idAvaluoE . "', '" . $idPrestamoMaxE . "', '" . $idUbicacionE . "','"
-                    . $idDetallePrendaE . "','" . $status . "'," . $fechaCreacion . "," . $fechaModificacion . ")";
-            }
+                    . $idDetallePrendaE . "','" . $status . "'," . $fechaCreacion . "," . $fechaModificacion . ",".$usuario ." )";            }
 
             if ($ps = $this->conexion->prepare($insertMetal)) {
                 if ($ps->execute()) {

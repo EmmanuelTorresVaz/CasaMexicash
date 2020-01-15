@@ -24,6 +24,7 @@ $x = json_encode($nombres);
     <link rel="stylesheet" type="text/css" href="../../librerias/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/alertify.css"/>
     <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/themes/default.css"/>
+    <script src="../../librerias/jquery/jquery.numeric.js" type="text/javascript"></script>
     <script src="../../librerias/jquery/jquery-3.4.1.min.js"></script>
     <script src="../../librerias/bootstrap/js/bootstrap.js"></script>
     <script src="../../librerias/alertifyjs/alertify.js"></script>
@@ -33,8 +34,6 @@ $x = json_encode($nombres);
     <script src="../../JavaScript/funcionesContrato.js"></script>
     <script src="../../JavaScript/funcionesGenerales.js"></script>
 
-
-
     <!--    Script inicial-->
     <script type="application/javascript">
         $(document).ready(function () {
@@ -43,6 +42,7 @@ $x = json_encode($nombres);
             $("#divMetales").show();
             $("#idFormEmpeno").trigger("reset");
             $("#divTablaArticulos").load('tablaArticulos.php');
+            $('.inputNumeric').numeric();
             $("#tipoInteres").change(function () {
                 SeleccionarInteres($("#tipoInteres").val());
             });
@@ -187,7 +187,7 @@ $x = json_encode($nombres);
                                    disabled/>
                         </td>
                         <td colspan="9">
-                            <input type="text" name="celularEmpeno" placeholder="" id="idCelularEmpeno"
+                            <input type="text" name="celularEmpeno" placeholder="" id="idCelularEmpeno" class="nu"
                                    style="width: 100px"
                                    required disabled/>
                         </td>
