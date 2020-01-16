@@ -3,6 +3,7 @@
 
 class Contrato
 {
+    private $idContrato;
     private $idCliente;
     private $id_Interes;
     private $folio;
@@ -20,10 +21,11 @@ class Contrato
     private $observaciones;
     private $fecha_creacion;
     private $idFecVencimiento;
-
+    private $usuario;
 
     /**
      * Contrato constructor.
+     * @param $idContrato
      * @param $idCliente
      * @param $id_Interes
      * @param $folio
@@ -41,43 +43,45 @@ class Contrato
      * @param $observaciones
      * @param $fecha_creacion
      * @param $idFecVencimiento
+     * @param $usuario
      */
-    public function __construct(
-        $idCliente,
-        $id_Interes,
-        $folio,
-        $fechaVencimiento,
-        $totalAvaluo,
-        $totalPrestamo,
-        $abono,
-        $intereses,
-        $pago,
-        $fecha_Alm,
-        $fecha_Movimiento,
-        $origen_Folio,
-        $dest_Folio,
-        $estatus,
-        $observaciones,
-        $fecha_creacion,
-        $idFecVencimiento)
+    public function __construct($idContrato, $idCliente, $id_Interes, $folio, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $abono, $intereses, $pago, $fecha_Alm, $fecha_Movimiento, $origen_Folio, $dest_Folio, $estatus, $observaciones, $fecha_creacion, $idFecVencimiento, $usuario)
     {
-        $this->idCliente= $idCliente;
-        $this->id_Interes= $id_Interes;
-        $this->folio= $folio;
-        $this->fechaVencimiento= $fechaVencimiento;
-        $this->totalAvaluo= $totalAvaluo;
-        $this->totalPrestamo= $totalPrestamo;
-        $this->abono= $abono;
-        $this->intereses= $intereses;
-        $this->pago= $pago;
-        $this->fecha_Alm= $fecha_Alm;
-        $this->fecha_Movimiento= $fecha_Movimiento;
-        $this->origen_Folio= $origen_Folio;
-        $this->dest_Folio= $dest_Folio;
-        $this->estatus= $estatus;
-        $this->observaciones= $observaciones;
-        $this->fecha_creacion= $fecha_creacion;
-        $this->idFecVencimiento= $idFecVencimiento;
+        $this->idContrato = $idContrato;
+        $this->idCliente = $idCliente;
+        $this->id_Interes = $id_Interes;
+        $this->folio = $folio;
+        $this->fechaVencimiento = $fechaVencimiento;
+        $this->totalAvaluo = $totalAvaluo;
+        $this->totalPrestamo = $totalPrestamo;
+        $this->abono = $abono;
+        $this->intereses = $intereses;
+        $this->pago = $pago;
+        $this->fecha_Alm = $fecha_Alm;
+        $this->fecha_Movimiento = $fecha_Movimiento;
+        $this->origen_Folio = $origen_Folio;
+        $this->dest_Folio = $dest_Folio;
+        $this->estatus = $estatus;
+        $this->observaciones = $observaciones;
+        $this->fecha_creacion = $fecha_creacion;
+        $this->idFecVencimiento = $idFecVencimiento;
+        $this->usuario = $usuario;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdContrato()
+    {
+        return $this->idContrato;
+    }
+
+    /**
+     * @param mixed $idContrato
+     */
+    public function setIdContrato($idContrato): void
+    {
+        $this->idContrato = $idContrato;
     }
 
     /**
@@ -351,5 +355,23 @@ class Contrato
     {
         $this->idFecVencimiento = $idFecVencimiento;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+    /**
+     * @param mixed $usuario
+     */
+    public function setUsuario($usuario): void
+    {
+        $this->usuario = $usuario;
+    }
+
+
 
 }

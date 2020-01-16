@@ -32,7 +32,6 @@ function Limpiar() {
 
 //Agrega articulos a la tabla
 function Agregar() {
-    var $loader = $('.loader');
 
     var clienteEmpeno = $("#idClienteEmpeno").val();
     if (clienteEmpeno != 0) {
@@ -82,14 +81,10 @@ function Agregar() {
             data: dataEnviar,
             url: '../../../com.Mexicash/Controlador/Articulo.php',
             type: 'post',
-            beforeSend: function () {
-                $loader.show();
-            },
             success: function (response) {
                 if (response) {
                     cargarTablaArticulo($("#idContratoTemp").val());
                     $("#divTablaArticulos").load('tablaArticulos.php');
-                    $("#cargandoEmpeno").hide();
                     alertify.success("Articulo agregado exitosamente.");
                 } else {
                     alertify.error("Error al agregar articulo.");

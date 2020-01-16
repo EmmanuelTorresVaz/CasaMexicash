@@ -83,7 +83,7 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
                         <input type="button" class="btn btn-success" value="Historial" onclick="historial();">
 
                                                     <input type="button" class="btn btn-success" value="prueba"
-                                                           onclick="consultarContratos()">
+                                                           onclick="actualizarArticulo(3)">
                     </td>
                     <td colspan="12">
                         <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="20"

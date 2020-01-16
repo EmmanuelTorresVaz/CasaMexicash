@@ -15,81 +15,84 @@ class sqlContratoDAO
         $this->db = new Conexion();
         $this->conexion = $this->db->connectDB();
     }
-
-    public function guardarArticulo($tipoPost, Articulo $articulo)
+    public function guardarContrato(Contrato $contrato)
     {
         // TODO: Implement guardaCiente() method.
         try {
-
-            $idCliente = $articulo->getCliente();
-            $status = 1;
+            $idContrato = $contrato->getIdContrato();
+            $id_Cliente = $contrato->getIdCliente();
+            $id_Interes = $contrato->getIdInteres();
+            $folio = $contrato->getFolio();
+            $fechaVencimiento = $contrato->getFechaVencimiento();
+            $totalAvaluo = $contrato->getTotalAvaluo();
+            $totalPrestamo = $contrato->getTotalPrestamo();
+            $abono = $contrato->getAbono();
+            $interes = $contrato->getIdInteres();
+            $pago = $contrato->getPago();
+            $fechaAlm = $contrato->getFechaAlm();
+            $fechaMovimiento = $contrato->getFechaMovimiento();
+            $origenFolio = $contrato->getOrigenFolio();
+            $destFolio = $contrato->getDestFolio();
+            $estatus = $contrato->getEstatus();
+            $observaciones = $contrato->getObservaciones();
+            $usuario = $contrato->getUsuario();
             $fechaCreacion = date('d-m-Y');
             $fechaModificacion = date('d-m-Y');
-            if ($tipoPost == "1") {
-                $idTipoM = $articulo->getTipoM();
-                $idPrenda = $articulo->getPrenda();
-                $idKilataje = $articulo->getKilataje();
-                $idCalidad = $articulo->getCalidad();
-                $idCantidad = $articulo->getCantidad();
-                $idPeso = $articulo->getPeso();
-                $idPesoPiedra = $articulo->getPesoPiedra();
-                $idPiedras = $articulo->getPiedras();
-                $idPrestamo = $articulo->getPrestamoMax();
-                $idAvaluo = $articulo->getAvaluo();
-                $idPrestamoMax = $articulo->getPrestamoMax();
-                $idUbicacion = $articulo->getUbicacion();
-                $idDetallePrenda = $articulo->getDetallePrenda();
 
-                $insertMetal = "INSERT INTO articulo_tbl " .
-                    "(id_Cliente,tipo, prenda, kilataje, calidad, cantidad, peso, peso_Piedra, piedras, prestamo, avaluo, prestamoMaximo, ubicacion," .
-                    " detalle, id_Estatus, fecha_creacion, fecha_modificacion)  VALUES " .
-                    "('" . $idCliente . "','" . $idTipoM . "','" . $idPrenda . "', '" . $idKilataje . "', '" . $idCalidad . "', '" . $idCantidad . "', '" . $idPeso
-                    . "', '" . $idPesoPiedra . "', '" . $idPiedras . "', '" . $idPrestamo . "', '" . $idAvaluo . "', '" . $idPrestamoMax . "','" . $idUbicacion . "','"
-                    . $idDetallePrenda . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "')";
+            $insertaContrato = "INSERT INTO contrato_tbl " .
+                "(id_Contrato, id_Cliente, id_Interes, folio, fecha_Vencimiento, total_Avaluo, total_Prestamo, abono, intereses, pago,  " .
+                "fecha_Alm, fecha_Movimiento, origen_Folio, dest_Folio, id_Estatus, observaciones, fecha_creacion, fecha_modificacion, usuario) VALUES ".
+                "('" . $idContrato . "', '" . $id_Cliente . "', '" . $id_Interes . "', '" . $folio . "', '" . $fechaVencimiento . "', '" . $totalAvaluo . "', '" . $totalPrestamo .
+                " .', '" . $abono . "', '" . $interes . "', '" . $pago . "', '" . $fechaAlm . "', '" . $fechaMovimiento . "', '" . $origenFolio .
+                "', '" . $destFolio . "', '" . $estatus . "', '" . $observaciones . "', '" . $fechaCreacion . "', ". "'" . $fechaModificacion . "', '" . $usuario . "')";
 
-            } else if ($tipoPost == "2") {
-                $idTipoE = $articulo->getTipoE();
-                $idMarca = $articulo->getMarca();
-                $idEstado = $articulo->getEstado();
-                $idModelo = $articulo->getModelo();
-                $idTamaño = $articulo->getTamaño();
-                $idColor = $articulo->getColor();
-                $idSerie = $articulo->getSerie();
-                $idPrestamoE = $articulo->getPrestamoE();
-                $idAvaluoE = $articulo->getAvaluoE();
-                $idPrestamoMaxE = $articulo->getPrestamoMaxE();
-                $idUbicacionE = $articulo->getUbicacionE();
-                $idDetallePrendaE = $articulo->getDetallePrendaE();
-
-                $insertMetal = "INSERT INTO articulo_tbl " .
-                    "(id_Cliente,tipo, marca, estado, modelo, tamaño, color, num_Serie, prestamo, avaluo, prestamoMaximo, ubicacion," .
-                    " detalle, id_Estatus, fecha_creacion, fecha_modificacion)  VALUES " .
-                    "('" . $idCliente . "','" . $idTipoE . "','" . $idMarca . "', '" . $idEstado . "', '" . $idModelo . "', '" . $idTamaño . "', '" . $idColor
-                    . "', '" . $idSerie . "','" . $idPrestamoE . "', '" . $idAvaluoE . "', '" . $idPrestamoMaxE . "', '" . $idUbicacionE . "','"
-                    . $idDetallePrendaE . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "')";
-            }
-
-            if ($ps = $this->conexion->prepare($insertMetal)) {
+            if ($ps = $this->conexion->prepare($insertaContrato)) {
                 if ($ps->execute()) {
-                    $verdad = 1;
+                    $verdad = true;
                 } else {
-                    $verdad = 2;
+                    $verdad = false;
                 }
             } else {
-                $verdad = 3;
+                $verdad = false;
             }
         } catch (Exception $exc) {
-            $verdad = 4;
+            $verdad = false;
             echo $exc->getMessage();
         } finally {
-            $verdad = 5;
+            $verdad = false;
+            $this->db->closeDB();
+        }
+        //return $verdad;
+        echo $verdad;
+    }
+    public function actualizarArticulo($contrato){
+        // TODO: Implement guardaCiente() method.
+        try {
+
+            $updateArticulo = "UPDATE articulo_tbl SET id_Contrato='$contrato'  WHERE id_ContratoTemp='$contrato'";
+
+            if ($ps = $this->conexion->prepare($updateArticulo)) {
+                if ($ps->execute()) {
+                    $verdad =  mysqli_stmt_affected_rows($ps);
+                } else {
+                    $verdad = -1;
+                }
+            } else {
+                $verdad = -1;
+            }
+
+        } catch (Exception $exc) {
+            $verdad = -1;
+            echo $exc->getMessage();
+        } finally {
             $this->db->closeDB();
         }
         //return $verdad;
         echo $verdad;
     }
 
-    function buscarContratoTemp(){
+    function buscarContratoTemp()
+    {
         try {
             $id = -1;
 
@@ -132,26 +135,27 @@ class sqlContratoDAO
         echo $verdad;
     }
 
-    public function buscarContrato($contrato, $nombre, $celular){
+    public function buscarContrato($contrato, $nombre, $celular)
+    {
         $datos = array();
         try {
             $buscar = "";
-            if($nombre == 0){
+            if ($nombre == 0) {
                 $buscar = "select c.id_Contrato, c.id_Cliente, c.id_Interes, c.folio, c.fecha_creacion, c.fecha_Vencimiento, c.total_Avaluo, c.total_Prestamo, 
                 c.abono, c.pago, c.fecha_Alm, c.fecha_Movimiento, c.id_Estatus, a.detalle, c.observaciones, a.cantidad 
-                from contrato_tbl as c inner join articulo_tbl as a on c.id_Contrato = a.id_Contrato where c.id_Contrato = ". $contrato .";";
+                from contrato_tbl as c inner join articulo_tbl as a on c.id_Contrato = a.id_Contrato where c.id_Contrato = " . $contrato . ";";
             }
-            if($contrato == 0){
+            if ($contrato == 0) {
                 $buscar = "select c.id_Contrato, c.id_Cliente, c.id_Interes, c.folio, c.fecha_creacion, c.fecha_Vencimiento, c.total_Avaluo, c.total_Prestamo, 
                 c.abono, c.pago, c.fecha_Alm, c.fecha_Movimiento, c.id_Estatus, a.detalle, c.observaciones, a.cantidad 
                 from contrato_tbl as c inner join articulo_tbl as a on c.id_Contrato = a.id_Contrato inner join cliente_tbl as cl on cl.id_Cliente = c.id_Cliente 
-                where concat(cl.nombre, ' ', cl.apellido_Pat, ' ', cl.apellido_Mat) = '". $nombre ."' and cl.celular = ". $celular .";";
+                where concat(cl.nombre, ' ', cl.apellido_Pat, ' ', cl.apellido_Mat) = '" . $nombre . "' and cl.celular = " . $celular . ";";
 
             }
 
             $rs = $this->conexion->query($buscar);
-            if($rs->num_rows > 0){
-                while ($row = $rs->fetch_assoc()){
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
                     $data = [
                         //Contrato
                         "id_Contrato" => $row["id_Contrato"],
@@ -176,11 +180,11 @@ class sqlContratoDAO
 
                     array_push($datos, $data);
                 }
-            }else{
+            } else {
                 echo "No se ejecuto buscarContrato-sqlContratoDAO";
             }
 
-        }catch (Exception $exc) {
+        } catch (Exception $exc) {
             $verdad = 4;
             echo $exc->getMessage();
         } finally {

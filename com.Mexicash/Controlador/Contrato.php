@@ -3,6 +3,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
 include_once(MODELO_PATH . "Contrato.php");
 include_once(SQL_PATH . "sqlContratoDAO.php");
 
+$idContrato = $_POST['idContrato'];
 $idCliente = $_POST['idCliente'];
 $id_Interes = $_POST['id_Interes'];
 $folio = $_POST['folio'];
@@ -19,10 +20,11 @@ $dest_Folio = $_POST['dest_Folio'];
 $estatus = $_POST['estatus'];
 $observaciones = $_POST['observaciones'];
 $fecha_creacion = $_POST['fecha_creacion'];
-$idFecVencimiento = $_POST['idFecVencimiento'];
-
+$idFecVencimiento = $_POST['fechaVencimiento'];
+$usuario = $_POST['usuario'];
 
 $contrato = new Contrato(
+    $idContrato,
     $idCliente,
     $id_Interes,
     $folio,
@@ -39,11 +41,12 @@ $contrato = new Contrato(
     $estatus,
     $observaciones,
     $fecha_creacion,
-    $idFecVencimiento
+    $idFecVencimiento,
+    $usuario
 );
 
 $sqlContrato = new sqlContratoDAO();
-$sqlContrato->guardarArticulo($contrato);
+$sqlContrato->guardarContrato($contrato);
 
 ?>
 

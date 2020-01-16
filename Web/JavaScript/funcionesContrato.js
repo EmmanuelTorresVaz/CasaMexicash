@@ -1,17 +1,18 @@
 function generarContrato() {
     var clienteEmpeno = $("#idClienteEmpeno").val();
-    var tipoInteres = $("#tipoInteres").val();
-    var contratoTemporal = cargarTablaArticulo();
+    var tipoInteres = $("#tipoInteresEmpeno").val();
+    var validarContratoTemporal = consultarContratos();
+    var contratoTemporal = $("#idContratoTemp").val();
 
 
     var validate = true;
-    if (clienteEmpeno =='' || clienteEmpeno == null) {
+    if (clienteEmpeno == '' || clienteEmpeno == null) {
         alert("Por Favor. Selecciona un cliente.");
         validate = false;
     } else if (tipoInteres == '' || tipoInteres == null) {
         alert("Por Favor. Selecciona tipo de interes.");
         validate = false;
-    } else if (contratoTemporal == 0) {
+    } else if (validarContratoTemporal == 0) {
         alert("Por Favor. Ingresa los articulos.");
         validate = false;
     }
@@ -44,9 +45,11 @@ function generarContrato() {
             url: '../../../com.Mexicash/Controlador/Contrato.php',
             type: 'post',
             success: function (response) {
+                alert(response)
                 if (response) {
-                    alertify.success("Contrato generado");
-                    //Limpiar();
+                    actualizarArticulo();
+                    alertify.success("Contrato generado.");
+
                 } else {
                     alertify.error("Error al generar contrato.");
                 }
@@ -70,11 +73,35 @@ function consultarContratos() {
             dataType: "json",
             success: function (datos) {
                 retorno = datos.length;
-
             }
         });
     } else {
         retorno = 0;
     }
     return retorno;
+}
+
+//Agrega articulos a la tabla
+function actualizarArticulo() {
+    alert($("#idContratoTemp").val());
+    var dataEnviar = {
+        "contratoTemp":  $("#idContratoTemp").val()
+    };
+    $.ajax({
+        data: dataEnviar,
+        url: '../../../com.Mexicash/Controlador/ArticuloUpdate.php',
+        type: 'post',
+        beforeSend: function () {
+        },
+        success: function (response) {
+            alert(response)
+            if (response == -1||response==0) {
+                alertify.error("Error al agregar articulos al contrato.");
+            } else {
+                alertify.success("Articulos agregados al contrato.");
+            }
+        },
+    })
+
+
 }
