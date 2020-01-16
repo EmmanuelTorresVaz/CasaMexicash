@@ -18,8 +18,6 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
     <script src="../../librerias/jquery/jquery-3.4.1.min.js"></script>
     <script src="../../librerias/bootstrap/js/bootstrap.js"></script>
     <script src="../../librerias/alertifyjs/alertify.js"></script>
-
-    <script src="../../librerias/jquery/jquery.numeric.js" type="text/javascript"></script>
     <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <script src="js/bootstrap-datetimepicker.min.js"></script>
     <script src="../../JavaScript/funcionesCatalogos.js"></script>
@@ -80,8 +78,6 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
     <script>
         $(document).ready(function () {
             //  $('.menuContainer').load('menu.php');
-            $('#idCelular').numeric();
-            $('#idTelefono').numeric();
             $("#idFecNac").datepicker({
                 changeMonth: true,
                 changeYear: true

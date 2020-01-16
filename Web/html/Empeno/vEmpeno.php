@@ -7,16 +7,6 @@ include_once(SQL_PATH . "sqlContratoDAO.php");
 include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
 
 
-$sql = new sqlClienteDAO();
-$arr = array();
-$arr = $sql->traerTodos();
-$nombres = array();
-for ($i = 0; $i < count($arr); $i++) {
-    $name = utf8_encode($arr[$i]['nombre'] . " " . $arr[$i]['apellidoPat'] . " " . $arr[$i]['apellidoMat']);
-    array_push($nombres, $name);
-}
-$x = json_encode($nombres);
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -43,11 +33,8 @@ $x = json_encode($nombres);
             $("#divMetales").show();
             $("#idFormEmpeno").trigger("reset");
             $("#divTablaArticulos").load('tablaArticulos.php');
-            $('.inputNumeric').numeric();
         });
     </script>
-
-
     <style type="text/css">
         #suggestionsNombreEmpeno {
             box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
@@ -96,17 +83,18 @@ $x = json_encode($nombres);
                                    value="Ver todos">
                             &nbsp;
                             <input type="button" class="btn btn-success" value="Historial" onclick="historial();">
-
-                            <input type="button" class="btn btn-success" value="prueba" onclick="prueba();"></td>
+<!--
+                            <input type="button" class="btn btn-success" value="prueba"
+                                   onclick=" cargarTablaArticulo(3)">-->
+                        </td>
                         <td colspan="12">
                             <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="20"
                                    style="text-align:center" class="invisible" disabled/>
-
                             <?php
                             $contrato = array();
                             $sql = new sqlContratoDAO();
                             $contrato = $sql->buscarContratoTemp();
-                            $contrato= $contrato+1;
+                            $contrato = $contrato + 1;
                             echo "<br/><input type='text' name='contratoTemp' id='idContratoTemp' value='$contrato'><br/>";
                             ?>
                         </td>

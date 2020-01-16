@@ -73,21 +73,19 @@ class sqlArticulosDAO
                     . $idDetallePrendaE . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "',".$usuario ." )";
             }
 
-            echo $insertMetal;
             if ($ps = $this->conexion->prepare($insertMetal)) {
                 if ($ps->execute()) {
-                    $verdad = 1;
+                    $verdad = true;
                 } else {
-                    $verdad = 2;
+                    $verdad = false;
                 }
             } else {
-                $verdad = 3;
+                $verdad = false;
             }
         } catch (Exception $exc) {
-            $verdad = 4;
+            $verdad = false;
             echo $exc->getMessage();
         } finally {
-            $verdad = 5;
             $this->db->closeDB();
         }
         //return $verdad;
@@ -98,11 +96,10 @@ class sqlArticulosDAO
     {
         $datos = array();
         try {
-
-            $buscar = "SELECT id_Articulo,tipo, marca, estado, modelo, prestamo,avaluo, detalle FROM articulo_tbl WHERE id_ContratoTemp='$idContratoTemp'";
+            $buscar = "SELECT id_Articulo, marca, estado, modelo, prestamo,avaluo, detalle FROM articulo_tbl WHERE id_ContratoTemp='$idContratoTemp'";
             $rs = $this->conexion->query($buscar);
-
             if ($rs->num_rows > 0) {
+
                 while ($row = $rs->fetch_assoc()) {
                     $data = [
                         "id_Articulo" => $row["id_Articulo"],
@@ -113,9 +110,44 @@ class sqlArticulosDAO
                         "avaluo" => $row["avaluo"],
                         "detalle" => $row["detalle"]
                     ];
-
                     array_push($datos, $data);
                 }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        echo json_encode($datos);
+        //echo json_encode($datos);
+    }
+
+    public function buscarArticulo2($idContratoTemp)
+    {
+        $articulos = array();
+        try {
+            $buscar = "SELECT id_Articulo, marca, estado, modelo, prestamo,avaluo, detalle FROM articulo_tbl WHERE id_ContratoTemp='$idContratoTemp'";
+
+            $rs = $this->conexion->query($buscar);
+
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $articulo = [
+                        "id_Articulo" => $row["id_Articulo"],
+                        "marca" => $row["marca"],
+                        "estado" => $row["estado"],
+                        "modelo" => $row["modelo"],
+                        "prestamo" => $row["prestamo"],
+                        "avaluo" => $row["avaluo"],
+                        "detalle" => $row["detalle"]
+                    ];
+
+                    array_push($articulos, $articulo);
+                }
+
+            } else {
+                echo " No se ejecutó TraerTodos SqlClienteDAO";
             }
 
         } catch (Exception $exc) {
@@ -124,8 +156,9 @@ class sqlArticulosDAO
             $this->db->closeDB();
         }
 
-        echo json_encode($datos);
+        return $articulos;
     }
+
 
     public function eliminarArticulo($idArticulo)
     {

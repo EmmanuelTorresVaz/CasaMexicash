@@ -1,3 +1,4 @@
+
 //Limpia la tabla de Articulos
 function Limpiar() {
     <!--   Limpiar Metales-->
@@ -31,12 +32,12 @@ function Limpiar() {
 
 //Agrega articulos a la tabla
 function Agregar() {
+    var $loader = $('.loader');
+
     var clienteEmpeno = $("#idClienteEmpeno").val();
     if (clienteEmpeno != 0) {
         var formElectronico = $("#idTipoElectronico").val();
         var formMetal = $("#idTipoMetal").val();
-
-
         if (formMetal > 0) {
             //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
             var dataEnviar = {
@@ -82,15 +83,14 @@ function Agregar() {
             url: '../../../com.Mexicash/Controlador/Articulo.php',
             type: 'post',
             beforeSend: function () {
+                $loader.show();
             },
             success: function (response) {
-                alert(response)
-                if (response == 5) {
+                if (response) {
                     cargarTablaArticulo($("#idContratoTemp").val());
                     $("#divTablaArticulos").load('tablaArticulos.php');
+                    $("#cargandoEmpeno").hide();
                     alertify.success("Articulo agregado exitosamente.");
-
-                    //Limpiar();
                 } else {
                     alertify.error("Error al agregar articulo.");
                 }
@@ -111,18 +111,19 @@ function cargarTablaArticulo($contratoTemp) {
             type: "POST",
             url: '../../../com.Mexicash/Controlador/tblArticulos.php',
             data: dataEnviar,
-            dataType: "json",
-            success: function (data) {
-                var html = '';
-                var i;
-                for (i = 0; i < data.length; i++) {
+            dataType:"json",
+            success: function (datos) {
+                alert("Refrescando tabla.");
 
-                    var marca = data[i].marca;
-                    var estado = data[i].estado;
-                    var modelo = data[i].modelo;
-                    var prestamo = data[i].prestamo;
-                    var avaluo = data[i].avaluo;
-                    var detalle = data[i].detalle;
+                var html = '';
+                var i= 0;
+                for (i ; i < datos.length; i++) {
+                    var marca = datos[i].marca;
+                    var estado = datos[i].estado;
+                    var modelo = datos[i].modelo;
+                    var prestamo = datos[i].prestamo;
+                    var avaluo = datos[i].avaluo;
+                    var detalle = datos[i].detalle;
                     if (marca === null) {marca = '';}
                     if (estado === null) {estado = '';}
                     if (modelo === null) {modelo = '';}
@@ -137,7 +138,7 @@ function cargarTablaArticulo($contratoTemp) {
                         '<td>' + avaluo + '</td>' +
                         '<td>' + detalle + '</td>' +
                         '<td><input type="button" class="btn btn-danger" value="Eliminar" ' +
-                        'onclick="confirmarEliminar(' + data[i].id_Articulo + ')"></td>' +
+                        'onclick="confirmarEliminar(' + datos[i].id_Articulo + ')"></td>' +
                         '</tr>';
                 }
                 $('#idTBodyArticulos').html(html);
@@ -182,6 +183,7 @@ function eliminarArticulo($idArticulo) {
         type: 'post',
         success: function (response) {
             if (response == 1) {
+                cargarTablaArticulo($("#idContratoTemp").val());
                 $("#divTablaArticulos").load('tablaArticulos.php');
                 alertify.success("Eliminado con éxito.");
             } else {

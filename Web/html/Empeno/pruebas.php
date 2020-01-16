@@ -1,17 +1,36 @@
+<?php
+sleep(3);
+echo ("He tardado 3 segundos en ejecutar esta p&aactute;gina...");
+?>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script >
-    $(function() {
-        $('input:radio[name="radioSexo"]').change(function() {
-            if ($(this).val() == '1') {
-                alert("Hombre");
-            } else {
-                alert("Mujer");
-            }
-        });
-    });
+<html>
+<head>
+    <title>Ajax Simple</title>
+    <script src="jquery-1.3.2.min.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function(){
+            $("#enlaceajax").click(function(evento){
+                evento.preventDefault();
+                $("#cargando").css("display", "inline");
+                $("#destino").load("pagina-lenta.php", function(){
+                    $("#cargando").css("display", "none");
+                });
+            });
+        })
     </script>
+</head>
 
-    <label><input type="radio" value="1" name="radioSexo">Hombre</label>
-    <label><input type="radio" value="2" name="radioSexo">Mujer</label>
+<body>
+Esto es un Ajax con un mensaje de cargando...
+<br>
+<br>
+
+<a href="#" id="enlaceajax">Haz clic!</a>
+<div id="cargando" style="display:none; color: green;">Cargando...</div>
+<br>
+<div id="destino"></div>
+
+</body>
+</html>

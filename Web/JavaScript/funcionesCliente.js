@@ -76,7 +76,7 @@ alert("Funcion mostrar todo");
 
 function historial() {
     alert("Funcion historial");
-}idNombres
+}
 
 function nombreAutocompletar() {
     $('#idNombres').on('keyup', function () {
