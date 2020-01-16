@@ -40,3 +40,5 @@ function soloNumeros(e) {
         te = String.fromCharCode(tecla);
         return patron.test(te);
 }
+
+

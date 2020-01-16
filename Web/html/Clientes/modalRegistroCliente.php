@@ -180,7 +180,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                                        required/>
                                             </td>
                                             <td>
-                                                <input type="text" name="fechaNac" id="idFechaNac" style="width: 200px"
+                                                <input type="text" name="fechaNac" id="idFechaNac" style="width: 200px" placeholder="dd/mm/aaaa"
                                                        required/>
                                             </td>
                                             <td>

@@ -59,8 +59,8 @@ function agregarCliente() {
             type: 'post',
             success: function (response) {
                 if (response == 1) {
-                    alertify.success("Cliente agregado.");
                     $("#idFormRegistro")[0].reset();
+                    alertify.success("Cliente agregado.");
                 } else {
                     alertify.error("Error al agregar cliente.");
                 }

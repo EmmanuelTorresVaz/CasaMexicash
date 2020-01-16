@@ -45,7 +45,6 @@ function generarContrato() {
             url: '../../../com.Mexicash/Controlador/Contrato.php',
             type: 'post',
             success: function (response) {
-                alert(response)
                 if (response) {
                     actualizarArticulo();
                     alertify.success("Contrato generado.");
@@ -83,7 +82,6 @@ function consultarContratos() {
 
 //Agrega articulos a la tabla
 function actualizarArticulo() {
-    alert($("#idContratoTemp").val());
     var dataEnviar = {
         "contratoTemp":  $("#idContratoTemp").val()
     };
@@ -94,14 +92,22 @@ function actualizarArticulo() {
         beforeSend: function () {
         },
         success: function (response) {
-            alert(response)
             if (response == -1||response==0) {
                 alertify.error("Error al agregar articulos al contrato.");
             } else {
+                $("#idFormEmpeno")[0].reset();
                 alertify.success("Articulos agregados al contrato.");
+                setTimeout(' location.reload();',700)
             }
         },
     })
+
+
+}
+
+
+function pruebaActualizar() {
+
 
 
 }

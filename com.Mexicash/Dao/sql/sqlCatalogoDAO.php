@@ -225,7 +225,6 @@ class sqlCatalogoDAO
             $html = '';
 
             $buscar = "SELECT id_Localidad, descripcion FROM cat_Localidad WHERE id_Estado = '". $idEstado."' AND id_Municipio = '". $idMunicipio."' AND descripcion LIKE '%".strip_tags($idLocalidadName)."%' ";
-            echo $buscar;
             $statement = $this->conexion->query( $buscar );
 
             if ($statement->num_rows > 0) {

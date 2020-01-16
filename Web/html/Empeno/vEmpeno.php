@@ -57,6 +57,7 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
     </style>
 </head>
 <body>
+<form id="idFormEmpeno" name="formEmpeno">
 <div class="menuContainer"></div>
 <div class="container-fluid" id="tablaExtras"
      style="position: absolute; display: none; top: 10%; left: 0%; padding-left: 4vw; height: 70vh; border: 1px solid black; background-color: white; z-index: 3"></div>
@@ -83,18 +84,12 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
                         <input type="button" class="btn btn-success" value="Historial" onclick="historial();">
 
                                                     <input type="button" class="btn btn-success" value="prueba"
-                                                           onclick="actualizarArticulo(3)">
+                                                           onclick="pruebaActualizar()">
                     </td>
                     <td colspan="12">
                         <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="20"
                                style="text-align:center" class="invisible" disabled/>
-                        <?php
-                        $contrato = array();
-                        $sql = new sqlContratoDAO();
-                        $contrato = $sql->buscarContratoTemp();
-                        $contrato = $contrato + 1;
-                        echo "<br/><input type='text' name='contratoTemp' id='idContratoTemp' value='$contrato'><br/>";
-                        ?>
+
                     </td>
                 </tr>
                 <tr>
@@ -104,6 +99,13 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
 
                     <td colspan="6" class="border border-dark">
                         <label for="contrato">Contrato:</label>
+                        <?php
+                        $contrato = array();
+                        $sql = new sqlContratoDAO();
+                        $contrato = $sql->buscarContratoTemp();
+                        $contrato = $contrato + 1;
+                        echo "<br/><input type='text' name='contratoTemp' id='idContratoTemp' disabled value='$contrato'><br/>";
+                        ?>
                     </td>
                     <td colspan="6" class="border border-dark">
                         <label for="vence">Vence:</label>
@@ -512,7 +514,7 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
         <br>
     </div>
 </div>
-
+</form>
 
 </body>
 </html>

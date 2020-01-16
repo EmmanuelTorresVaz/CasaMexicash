@@ -83,6 +83,7 @@ function Agregar() {
             type: 'post',
             success: function (response) {
                 if (response) {
+                    setTimeout('',200)
                     cargarTablaArticulo($("#idContratoTemp").val());
                     $("#divTablaArticulos").load('tablaArticulos.php');
                     alertify.success("Articulo agregado exitosamente.");
@@ -109,6 +110,7 @@ function cargarTablaArticulo($contratoTemp) {
             dataType:"json",
             success: function (datos) {
                 alert("Refrescando tabla.");
+                setTimeout('',200)
                 var html = '';
                 var i= 0;
                 for (i ; i < datos.length; i++) {
