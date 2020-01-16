@@ -21,12 +21,13 @@ class sqlArticulosDAO
         // TODO: Implement guardaCiente() method.
         try {
 
-            $idCliente = $articulo->getCliente();
+           // $idCliente = $articulo->getCliente();
             $status = 1;
             date_default_timezone_set('America/Mexico_City');
 
             $fechaCreacion = date('Y-m-d h:i:s', time());
             $fechaModificacion = date('Y-m-d h:i:s', time());
+            $contratoTemp = $articulo->getContratoTemp();
             $usuario = 1;
             if($tipoPost=="1"){
                 $idTipoM = $articulo->getTipoM();
@@ -44,11 +45,11 @@ class sqlArticulosDAO
                 $idDetallePrenda = $articulo->getDetallePrenda();
 
                 $insertMetal = "INSERT INTO articulo_tbl " .
-                    "(id_Cliente,tipo, prenda, kilataje, calidad, cantidad, peso, peso_Piedra, piedras, prestamo, avaluo, prestamoMaximo, ubicacion," .
+                    "(id_ContratoTemp,tipo, prenda, kilataje, calidad, cantidad, peso, peso_Piedra, piedras, prestamo, avaluo, prestamoMaximo, ubicacion," .
                     " detalle, id_Estatus, fecha_creacion, fecha_modificacion, usuario)  VALUES " .
-                    "('" . $idCliente . "','" . $idTipoM . "','" . $idPrenda . "', '" . $idKilataje . "', '" . $idCalidad . "', '" . $idCantidad . "', '" . $idPeso
+                    "('" . $contratoTemp . "','" . $idTipoM . "','" . $idPrenda . "', '" . $idKilataje . "', '" . $idCalidad . "', '" . $idCantidad . "', '" . $idPeso
                     . "', '" . $idPesoPiedra . "', '" . $idPiedras . "', '" . $idPrestamo . "', '" . $idAvaluo . "', '" . $idPrestamoMax . "','" . $idUbicacion . "','"
-                    . $idDetallePrenda . "','" . $status . "'," . $fechaCreacion . "," . $fechaModificacion . ",".$usuario ." )";
+                    . $idDetallePrenda . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "',".$usuario ." )";
 
             }else if($tipoPost=="2"){
                 $idTipoE = $articulo->getTipoE();
@@ -65,12 +66,14 @@ class sqlArticulosDAO
                 $idDetallePrendaE = $articulo->getDetallePrendaE();
 
                 $insertMetal = "INSERT INTO articulo_tbl " .
-                    "(id_Cliente,tipo, marca, estado, modelo, tamaño, color, num_Serie, prestamo, avaluo, prestamoMaximo, ubicacion," .
+                    "(id_ContratoTemp,tipo, marca, estado, modelo, tamaño, color, num_Serie, prestamo, avaluo, prestamoMaximo, ubicacion," .
                     " detalle, id_Estatus, fecha_creacion, fecha_modificacion)  VALUES " .
-                    "('" . $idCliente . "','" . $idTipoE . "','" . $idMarca . "', '" . $idEstado . "', '" . $idModelo . "', '" . $idTamaño . "', '" . $idColor
+                    "('" . $contratoTemp . "','" . $idTipoE . "','" . $idMarca . "', '" . $idEstado . "', '" . $idModelo . "', '" . $idTamaño . "', '" . $idColor
                     . "', '" . $idSerie . "','" . $idPrestamoE . "', '" . $idAvaluoE . "', '" . $idPrestamoMaxE . "', '" . $idUbicacionE . "','"
-                    . $idDetallePrendaE . "','" . $status . "'," . $fechaCreacion . "," . $fechaModificacion . ",".$usuario ." )";            }
+                    . $idDetallePrendaE . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "',".$usuario ." )";
+            }
 
+            echo $insertMetal;
             if ($ps = $this->conexion->prepare($insertMetal)) {
                 if ($ps->execute()) {
                     $verdad = 1;
@@ -91,19 +94,18 @@ class sqlArticulosDAO
         echo $verdad;
     }
 
-    public function buscarArticulo($cliente)
+    public function buscarArticulo($idContratoTemp)
     {
         $datos = array();
         try {
 
-            $buscar = "SELECT id_Articulo,id_Cliente,tipo, marca, estado, modelo, prestamo,avaluo, detalle FROM articulo_tbl WHERE id_Cliente='$cliente'";
+            $buscar = "SELECT id_Articulo,tipo, marca, estado, modelo, prestamo,avaluo, detalle FROM articulo_tbl WHERE id_ContratoTemp='$idContratoTemp'";
             $rs = $this->conexion->query($buscar);
 
             if ($rs->num_rows > 0) {
                 while ($row = $rs->fetch_assoc()) {
                     $data = [
                         "id_Articulo" => $row["id_Articulo"],
-                        "id_Cliente" => $row["id_Cliente"],
                         "marca" => $row["marca"],
                         "estado" => $row["estado"],
                         "modelo" => $row["modelo"],

@@ -44,3 +44,4 @@ function generarContrato() {
         alert("Por Favor. Selecciona un cliente.");
     }
 }
+

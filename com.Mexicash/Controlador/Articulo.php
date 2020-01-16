@@ -9,6 +9,7 @@ if($idTipoEnviar ==1){
 
     $idTipoM = $_POST['idTipoMetal'];
     $idClienteInteres = $_POST['idClienteInteres'];
+    $idContratoTemp = $_POST['idContratoTemp'];
     $idPrenda = $_POST['idPrenda'];
     $idKilataje = $_POST['idKilataje'];
     $idCalidad = $_POST['idCalidad'];
@@ -55,6 +56,7 @@ if($idTipoEnviar ==1){
 
     $idTipoE = $_POST['idTipoElectronico'];
     $idClienteInteres = $_POST['idClienteInteres'];
+    $idContratoTemp = $_POST['idContratoTemp'];
     $idMarca = $_POST['idMarca'];
     $idEstado = $_POST['idEstado'];
     $idModelo = $_POST['idModelo'];
@@ -71,6 +73,7 @@ if($idTipoEnviar ==1){
     $articulo = new Articulo(
         $idTipoM,
         $idClienteInteres,
+        $idContratoTemp,
         $idPrenda,
         $idKilataje,
         $idCalidad,

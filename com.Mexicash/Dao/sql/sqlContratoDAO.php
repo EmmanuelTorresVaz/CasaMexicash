@@ -89,40 +89,26 @@ class sqlContratoDAO
         echo $verdad;
     }
 
-    public function buscarArticulo($cliente)
-    {
-        $datos = array();
+    function buscarContratoTemp(){
         try {
+            $id = -1;
 
-            $buscar = "SELECT id_Articulo,id_Cliente,tipo, marca, estado, modelo, prestamo,avaluo, detalle FROM articulo_tbl WHERE id_Cliente='$cliente'";
-            $rs = $this->conexion->query($buscar);
+            $buscar = "select max(id_Contrato) as contratoTemp  from contrato_tbl ";
 
-            if ($rs->num_rows > 0) {
-                while ($row = $rs->fetch_assoc()) {
-                    $data = [
-                        "id_Articulo" => $row["id_Articulo"],
-                        "id_Cliente" => $row["id_Cliente"],
-                        "marca" => $row["marca"],
-                        "estado" => $row["estado"],
-                        "modelo" => $row["modelo"],
-                        "prestamo" => $row["prestamo"],
-                        "avaluo" => $row["avaluo"],
-                        "detalle" => $row["detalle"]
-                    ];
+            $statement = $this->conexion->query($buscar);
 
-                    array_push($datos, $data);
-                }
+            if ($statement->num_rows > 0) {
+                $fila = $statement->fetch_object();
+                $id = $fila->contratoTemp;
             }
 
         } catch (Exception $exc) {
             echo $exc->getMessage();
         } finally {
-
-
             $this->db->closeDB();
         }
 
-        echo json_encode($datos);
+        return $id;
     }
 
     public function eliminarArticulo($idArticulo)

@@ -2,9 +2,9 @@
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
 include_once(SQL_PATH . "sqlArticulosDAO.php");
 
-$idClienteInteres = $_POST['idCliente'];
+$idContratoTemp = $_POST['idContratoTemp'];
 $sqlTblArticulo= new sqlArticulosDAO();
-$sqlTblArticulo->buscarArticulo($idClienteInteres) ;
+$sqlTblArticulo->buscarArticulo($idContratoTemp) ;
 
 
 ?>

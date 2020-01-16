@@ -105,10 +105,10 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                     <form id="idFormRegistro" autocomplete="off">
                         <div id="conteiner" class="container">
                             <div class="row">
-                                <input id="idEstado" name="Estado" type="text" style="width: 5px" />
-                                <input id="idMunicipio" name="municipio" type="text" style="width: 5px"
+                                <input id="idEstado" name="Estado" type="text" style="width: 5px"  class="invisible"/>
+                                <input id="idMunicipio" name="municipio" type="text" style="width: 5px" class="invisible"
                                    />
-                                <input id="idLocalidad" name="localidad" type="text" style="width: 5px"
+                                <input id="idLocalidad" name="localidad" type="text" style="width: 5px" class="invisible"
                                       />
                             </div>
                             <div class="row">
@@ -356,7 +356,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                 <div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
             </div>
             <div class="modal-footer">
-                <input type="button" class="btn btn-primary" data-dismiss="modal" onclick="agregarCliente()"
+                <input type="button" class="btn btn-primary" onclick="agregarCliente()"
                        value="Guardar">
                 <input type="button" class="btn btn-danger" data-dismiss="modal"
                        value="Salir">

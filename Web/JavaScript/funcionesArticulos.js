@@ -42,6 +42,7 @@ function Agregar() {
             var dataEnviar = {
                 "$idTipoEnviar": 1,
                 "idClienteInteres": $("#idClienteEmpeno").val(),
+                "idContratoTemp": $("#idContratoTemp").val(),
                 "idTipoMetal": $("#idTipoMetal").val(),
                 "idPrenda": $("#idPrenda").val(),
                 "idKilataje": $("#idKilataje").val(),
@@ -61,6 +62,7 @@ function Agregar() {
             var dataEnviar = {
                 "$idTipoEnviar": 2,
                 "idClienteInteres": $("#idClienteInteres").val(),
+                "idContratoTemp": $("#idContratoTemp").val(),
                 "idTipoElectronico": $("#idTipoElectronico").val(),
                 "idMarca": $("#idMarca").val(),
                 "idEstado": $("#idEstado").val(),
@@ -82,8 +84,9 @@ function Agregar() {
             beforeSend: function () {
             },
             success: function (response) {
+                alert(response)
                 if (response == 5) {
-                    cargarTablaArticulo($("#idClienteEmpeno").val());
+                    cargarTablaArticulo($("#idContratoTemp").val());
                     $("#divTablaArticulos").load('tablaArticulos.php');
                     alertify.success("Articulo agregado exitosamente.");
 
@@ -99,10 +102,10 @@ function Agregar() {
 
 }
 
-function cargarTablaArticulo($cliente) {
-    if ($cliente != '') {
+function cargarTablaArticulo($contratoTemp) {
+    if ($contratoTemp != '') {
         var dataEnviar = {
-            "idCliente": $cliente
+            "idContratoTemp": $contratoTemp
         };
         $.ajax({
             type: "POST",
@@ -191,9 +194,7 @@ function eliminarArticulo($idArticulo) {
 
 
 function prueba() {
-    alert("entra")
-    cargarTablaArticulo(35);
-    $("#divTablaArticulos").load('tablaArticulos.php');
+    alert($("#idContratoTemp").val());
 }
 
 

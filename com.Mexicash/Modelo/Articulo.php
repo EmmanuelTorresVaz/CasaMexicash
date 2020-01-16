@@ -6,6 +6,7 @@ class Articulo
     //Metal
     private $idTipoM;
     private $idClienteInteres;
+    private $idContratoTemp;
     private $idPrenda;
     private $idKilataje;
     private $idCalidad;
@@ -39,6 +40,7 @@ class Articulo
      * Metal
      * @param $idTipoM
      * @param $idClienteInteres
+     * @param $idContratoTemp
      * @param $idPrenda
      * @param $idKilataje
      * @param $idCalidad
@@ -68,6 +70,7 @@ class Articulo
     public function __construct(
         $idTipoM,
         $idClienteInteres,
+        $idContratoTemp,
         $idPrenda,
         $idKilataje,
         $idCalidad,
@@ -96,6 +99,7 @@ class Articulo
         //Metales
         $this->tipoM = $idTipoM;
         $this->cliente = $idClienteInteres;
+        $this->contrato = $idContratoTemp;
         $this->prenda = $idPrenda;
         $this->kilataje = $idKilataje;
         $this->calidad = $idCalidad;
@@ -128,17 +132,17 @@ class Articulo
     /**
      * @return mixed
      */
-    public function getFechaModificacion()
+    public function getContratoTemp()
     {
-        return $this->fechaModificacion;
+        return $this->contrato;
     }
 
     /**
-     * @param mixed $fechaModificacion
+     * @param mixed $idContratoTemp
      */
-    public function setFechaModificacion($fechaModificacion): void
+    public function setContratoTemp($idContratoTemp): void
     {
-        $this->fechaModificacion = $fechaModificacion;
+        $this->contrato = $idContratoTemp;
     }
 
 

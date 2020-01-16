@@ -1,42 +1,73 @@
 function agregarCliente() {
     //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
-    var dataEnviar = {
-        "idNombre": $("#idNombre").val(),
-        "idApPat": $("#idApPat").val(),
-        "idApMat": $("#idApMat").val(),
-        "idSexo": $("#idSexo").val(),
-        "idFechaNac": $("#idFechaNac").val(),
-        "idRfc": $("#idRfc").val(),
-        "idCurp": $("#idCurp").val(),
-        "idCelular": $("#idCelular").val(),
-        "idTelefono": $("#idTelefono").val(),
-        "idCorreo": $("#idCorreo").val(),
-        "idOcupacion": $("#idOcupacion").val(),
-        "idIdentificacion": $("#idIdentificacion").val(),
-        "idNumIdentificacion": $("#idNumIdentificacion").val(),
-        "idEstado": $("#idEstado").val(),
-        "idMunicipio": $("#idMunicipio").val(),
-        "idLocalidad": $("#idLocalidad").val(),
-        "idCalle": $("#idCalle").val(),
-        "idCP": $("#idCP").val(),
-        "idNumExt": $("#idNumExt").val(),
-        "idNumInt": $("#idNumInt").val(),
-        "idPromocion": $("#idPromocion").val(),
-        "idMensajeInterno": $("#idMensajeInterno").val()
-    };
-    $.ajax({
-        data: dataEnviar,
-        url: '../../../com.Mexicash/Controlador/RegistroCliente.php',
-        type: 'post',
-        success: function (response) {
-            if (response == 1) {
-                alertify.success("Cliente agregado.");
-                $("#idFormRegistro")[0].reset();
-            } else {
-                alertify.error("Error al agregar cliente.");
-            }
-        },
-    })
+   var idNombre = $("#idNombre").val();
+    var idApPat = $("#idApPat").val();
+    var idSexo = $("#idSexo").val();
+    var idFechaNac = $("#idFechaNac").val();
+    var idCelular = $("#idCelular").val();
+    var idIdentificacion = $("#idIdentificacion").val();
+    var idNumIdentificacion = $("#idNumIdentificacion").val();
+    var idEstado = $("#idEstado").val();
+    var idMunicipio = $("#idMunicipio").val();
+    var idLocalidad = $("#idLocalidad").val();
+    var idCalle = $("#idCalle").val();
+    var idNumExt = $("#idNumExt").val();
+    var validacion = true;
+    if(idNombre==""||idNombre==null){alert("Por favor ingrese un nombre.");validacion =false;}
+    else if(idApPat==""||idApPat==null){alert("Por favor ingrese apellido paterno.");validacion =false;}
+    else if(idSexo==""||idSexo==null){alert("Por favor seleccione el campo sexo.");validacion =false;}
+    else if(idFechaNac==""||idFechaNac==null){alert("Por favor ingrese fecha de nacimiento.");validacion =false;}
+    else if(idCelular==""||idCelular==null){alert("Por favor ingrese numero celular.");validacion =false;}
+    else if(idIdentificacion==""||idIdentificacion==null){alert("Por favor ingrese tipo de identificacion.");validacion =false;}
+    else if(idNumIdentificacion==""||idNumIdentificacion==null){alert("Por favor ingrese número de identificación.");validacion =false;}
+    else if(idEstado==""||idEstado==null){alert("Por favor seleccione un estado.");validacion =false;}
+    else if(idMunicipio==""||idMunicipio==null){alert("Por favor seleccione un municipio.");validacion =false;}
+    else if(idLocalidad==""||idLocalidad==null){alert("Por favor seleccione una Localidad.");validacion =false;}
+    else if(idCalle==""||idCalle==null){alert("Por favor ingrese la calle.");validacion =false;}
+    else if(idNumExt==""||idNumExt==null){alert("Por favor ingrese número exterior.");validacion =false;}
+
+
+
+    if(validacion==true){
+        var dataEnviar = {
+            "idNombre": idNombre,
+            "idApPat": idApPat,
+            "idApMat": $("#idApMat").val(),
+            "idSexo":idSexo,
+            "idFechaNac": idFechaNac,
+            "idRfc": $("#idRfc").val(),
+            "idCurp": $("#idCurp").val(),
+            "idCelular": idCelular,
+            "idTelefono": $("#idTelefono").val(),
+            "idCorreo": $("#idCorreo").val(),
+            "idOcupacion": $("#idOcupacion").val(),
+            "idIdentificacion": idIdentificacion,
+            "idNumIdentificacion": idNumIdentificacion,
+            "idEstado": idEstado,
+            "idMunicipio": idMunicipio,
+            "idLocalidad":idLocalidad,
+            "idCalle": idCalle,
+            "idCP": $("#idCP").val(),
+            "idNumExt": idNumExt,
+            "idNumInt": $("#idNumInt").val(),
+            "idPromocion": $("#idPromocion").val(),
+            "idMensajeInterno": $("#idMensajeInterno").val()
+        };
+        $.ajax({
+            data: dataEnviar,
+            url: '../../../com.Mexicash/Controlador/RegistroCliente.php',
+            type: 'post',
+            success: function (response) {
+                if (response == 1) {
+                    alertify.success("Cliente agregado.");
+                    $("#idFormRegistro")[0].reset();
+                } else {
+                    alertify.error("Error al agregar cliente.");
+                }
+            },
+        })
+    }
+
 }
 
 function mostrarTodos() {

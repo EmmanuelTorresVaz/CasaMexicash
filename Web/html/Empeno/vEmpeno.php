@@ -3,6 +3,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
 include_once(SQL_PATH . "sqlClienteDAO.php");
 include_once(SQL_PATH . "sqlInteresesDAO.php");
 include_once(SQL_PATH . "sqlArticulosDAO.php");
+include_once(SQL_PATH . "sqlContratoDAO.php");
 include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
 
 
@@ -96,10 +97,18 @@ $x = json_encode($nombres);
                             &nbsp;
                             <input type="button" class="btn btn-success" value="Historial" onclick="historial();">
 
-                            <input type="button" class="btn btn-success" value="prueba" onclick="prueba();">                        </td>
+                            <input type="button" class="btn btn-success" value="prueba" onclick="prueba();"></td>
                         <td colspan="12">
                             <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="20"
                                    style="text-align:center" class="invisible" disabled/>
+
+                            <?php
+                            $contrato = array();
+                            $sql = new sqlContratoDAO();
+                            $contrato = $sql->buscarContratoTemp();
+                            $contrato= $contrato+1;
+                            echo "<br/><input type='text' name='contratoTemp' id='idContratoTemp' value='$contrato'><br/>";
+                            ?>
                         </td>
                     </tr>
                     <tr>
@@ -121,11 +130,12 @@ $x = json_encode($nombres);
                                 <input id="idNombres" name="Nombres" type="text" style="width: 400px"
                                        onkeypress="nombreAutocompletar()" placeholder="Buscar Cliente..."/>
                             </div>
-                            <div id="suggestionsNombreEmpeno" ></div>
+                            <div id="suggestionsNombreEmpeno"></div>
                         </td>
                         <td colspan="6" class="border border-dark">Tasa Interés</td>
                         <td colspan="6" class="border border-dark">
-                            <select id="tipoInteresEmpeno" name="cmbTipoInteres" class="selectpicker" onchange="SeleccionarInteres($('#tipoInteresEmpeno').val())">
+                            <select id="tipoInteresEmpeno" name="cmbTipoInteres" class="selectpicker"
+                                    onchange="SeleccionarInteres($('#tipoInteresEmpeno').val())">
                                 <option value="0">Seleccione:</option>
                                 <?php
 
@@ -257,14 +267,14 @@ $x = json_encode($nombres);
             </div>
         </div>
         <div class="row">
-            <div class="col col-lg-12" >
+            <div class="col col-lg-12">
                 <table border="0" width="90%" style="margin: 0 auto;">
                     <tr>
                         <td colspan="3">
                             <br>
                         </td>
                     </tr>
-                    <tr >
+                    <tr>
                         <td class="border border-primary" align="center">
                             <input type="button" class="btn btn-primary" value="Metales"
                                    onclick="Limpiar(), Metales();">
@@ -273,14 +283,14 @@ $x = json_encode($nombres);
                             <input type="button" class="btn btn-primary" value=" Electronicos/Varios"
                                    onclick="Limpiar(), Electronicos();">
                         </td>
-                        <td align="right" rowspan="2"  valign="top">
+                        <td align="right" rowspan="2" valign="top">
                             <div id="divTablaArticulos" class="col col-lg-12 "></div>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2" >
+                        <td colspan="2">
                             <div id="divMetales">
-                                <table >
+                                <table>
                                     <tbody class="text-body" align="left">
                                     <tr>
                                         <td colspan="6">Tipo:</td>
@@ -493,8 +503,8 @@ $x = json_encode($nombres);
                             </div>
                         </td>
                     </tr>
-                    <tr  align="center">
-                        <td >
+                    <tr align="center">
+                        <td>
                             <input type="button" class="btn btn-warning" value="Limpiar" onclick="Limpiar()">
                         </td>
                         <td>
