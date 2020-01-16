@@ -19,21 +19,19 @@ include_once (SQL_PATH."sqlCatalogoDAO.php");
 
     </head>
 
-    <script>
-        $( function() {
-            $( "#datepicker" ).datepicker();
+    <script type="text/javascript" >
+       /* $( function() {
+            $( "#inFechaIn" ).datepicker();
         } );
         $( function() {
-            $( "#dateFinal" ).datepicker();
+            $( "#inFechaFi" ).datepicker();
         } );
-
-
+*/
         function cerrarVentana() {
             window.close();
         }
 
     </script>
-
 
     <body>
 
@@ -43,11 +41,11 @@ include_once (SQL_PATH."sqlCatalogoDAO.php");
             <div class="clearfix">
                 <div style="float: left; margin-right: 15%; margin-left: 5%; width: 33%">
                     <h6>Fecha Inicial</h6>
-                    <input type="text" id="inFechaIn" name="inFechaIn" placeholder="Fecha [dd/mm/aa]" required/>
+                    <input type="text" id="inFechaIn" name="inFechaIn" placeholder="Fecha [dd/mm/aaaa]" required/>
                 </div>
                 <div style="float: left; width: 33%">
                     <h6>Fecha Final</h6>
-                    <input type="text" id="inFechaFi" name="inFechaFi" placeholder="Fecha [dd/mm/aa]" required />
+                    <input type="text" id="inFechaFi" name="inFechaFi" placeholder="Fecha [dd/mm/aaaa]" required />
                 </div>
 
             </div>

@@ -24,6 +24,16 @@
             $( "#datepicker" ).datepicker();
         } );
 
+        $(function() {
+            $('input:radio[name="rConsultaPor"]').change(function() {
+                if ($(this).val() == '1') {
+                    alert("Hombre");
+                } else {
+                    alert("Mujer");
+                }
+            });
+        });
+
     </script>
 
     <style type="text/css">
@@ -53,10 +63,10 @@
 
         <div style="position: relative; width: 25%; height: 100%; padding-top: 20px">
             <div style="width: 90%; float: left">
-                <label for=""><input type="checkbox" id="chkContrato" value="1"/>Por Contrato</label>
+                <label for=""><input type="radio" name="rConsultaPor" value="1" id="chkContrato" value="1"/>Por Contrato</label>
             </div>
             <div style="width: 90%; float: left">
-                <label for=""><input type="checkbox" id="chkNombre" value="1"/>Por Nombre</label>
+                <label for=""><input type="radio" name="rConsultaPor" value="2" id="chkNombre" value="1"/>Por Nombre</label>
             </div>
             <div style="width: 90%; float: left; padding-top: 20px">
                 <h5>Detalles del Contrato</h5>

@@ -640,6 +640,62 @@ function buscarContratoPorNombre() {
     });
 }
 
-function ventanaInvFisico() {
-    window.open("../../html/Reportes/vInventarioFisico.php" , "Inventario Fisico" , "width=500,height=210,scrollbars=NO");
+function ventanaInvFisico(opc) {
+    switch (opc) {
+        case 1:
+            window.open("../../html/Reportes/vInventarioFisico.php" , "Inventario Fisico" , "width=500,height=210,scrollbars=NO");
+            break;
+        case 2:
+            window.open("../../html/Reportes/vReporteAlmoneda.php" , "Inventario Fisico" , "width=500,height=210,scrollbars=NO");
+            break;
+    }
+
 }
+
+function validarFormatoFecha(campo) {
+    var RegExPattern = /^\d{1,2}\/\d{1,2}\/\d{2,4}$/;
+    if ((campo.match(RegExPattern)) && (campo!='')) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function existeFecha(fecha){
+    var fechaf = fecha.split("/");
+    var day = fechaf[0];
+    var month = fechaf[1];
+    var year = fechaf[2];
+    var date = new Date(year,month,'0');
+    if((day-0)>(date.getDate()-0)){
+        return false;
+    }
+    return true;
+}
+
+function fecha() {
+    if(validarFormatoFecha(document.getElementById('inFechaIn').value) && existeFecha(document.getElementById('inFechaFi').value)){
+        if(existeFecha(document.getElementById('inFechaIn').value) && existeFecha(document.getElementById('inFechaFi').value)){
+            alert("La fecha introducida es correcta.");
+            cerrarVentana();
+        }else{
+            alert("La fecha introducida no existe.");
+        }
+    }else{
+        alert("El formato de la fecha es incorrecto.");
+    }
+}
+
+
+
+
+/*
+function ambos() {
+    var pdf = document.getElementById('PDF').checked;
+    var e = document.getElementById('Excel').checked;
+    if(pdf && e){
+        alert('checkbox esta seleccionado');
+    }else {
+        $("#formInvFis").submit();
+    }
+}*/

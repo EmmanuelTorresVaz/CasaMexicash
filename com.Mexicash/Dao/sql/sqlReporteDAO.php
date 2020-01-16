@@ -154,7 +154,7 @@ class sqlReporteDAO
                 }
                 if($almoneda == 1){
                     $buscar .= " e.descripcion = 'Almoneda'";
-                    if($almoneda==1){
+                    if($refrendo==1){
                         $buscar .= " or ";
                     }
                 }
@@ -167,8 +167,8 @@ class sqlReporteDAO
             }
 
 
-            $buscarInv = "SELECT * FROM articulo_tbl as a INNER JOIN cat_estatus as e ON a.id_Estatus = e.id_Estatus where a.fecha_creacion between CAST((STR_TO_DATE(REPLACE('". $fechaInicial ."','/','.') ,GET_FORMAT(date,'EUR'))) AS DATE) AND CAST((STR_TO_DATE(REPLACE('". $fechaFinal ."','/','.') ,GET_FORMAT(date,'EUR'))) AS DATE);";
-
+            $buscarInv = "SELECT * FROM articulo_tbl as a INNER JOIN cat_estatus as e ON a.id_Estatus = e.id_Estatus where a.fecha_creacion between CAST((STR_TO_DATE(REPLACE('". $fechaInicial ."','/','.') ,GET_FORMAT(date,'EUR'))) AS DATE) AND CAST((STR_TO_DATE(REPLACE('". $fechaFinal ."','/','.') ,GET_FORMAT(date,'EUR'))) AS DATE) ".$buscar.";";
+            echo $buscarInv;
             $rs = $this->conexion->query($buscarInv);
 
             if ($rs->num_rows > 0) {

@@ -164,7 +164,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" onclick="ventanaInvFisico()">
+                    <a href="#" onclick="ventanaInvFisico(1)">
                         <i class="fa fa-gift"></i>
                         <strong>Inventario F&iacute;sico</strong>
                     </a>
@@ -185,7 +185,8 @@
                     </a>
                     <ul>
                         <li><a href="#"><i class="fa fa-plus-square"></i>Hist&oacute;rico</a></li>
-                        <li><a href="#" onclick="ventanaInvFisico()"><i class="fa fa-user-plus" ></i>Inventarios</a></li>
+                        <li><a href="#" onclick="ventanaInvFisico(1)"><i class="fa fa-user-plus" ></i>Inventarios</a></li>
+                        <li><a href="#" onclick="ventanaInvFisico(2)"><i class="fa fa-user-plus" ></i>Contratos Almoneda</a></li>
                         <li><a href="#"><i class="fa fa-user-plus" ></i>Contratos Vencidos</a></li>
                         <li><a href="#"><i class="fa fa-user-plus" ></i>Desempeños-detallado</a></li>
                         <li><a href="#"><i class="fa fa-user-plus" ></i>Refrendo-detallado</a></li>

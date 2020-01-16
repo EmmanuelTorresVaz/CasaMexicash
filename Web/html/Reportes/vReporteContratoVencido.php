@@ -43,6 +43,7 @@
 <div class="menuContainer" ></div>
 
 <div class="container-fluid" style="position: absolute; top: 8.2vh; border:1px solid black; height: 91.8vh">
+    <form method="post" action="">
     <div class="clearfix" style="position:relative; width: 60%; height: 30vh; top: 1%">
         <div style="float: left; margin-right: 5%; margin-left: 5%; width: 28%">
             <label>Desde<input type="text" id="inFechaInicial"/></label>
@@ -51,18 +52,17 @@
             <label>Hasta<input type="text" id="inFechaFinal"/></label>
         </div>
         <div style="position:absolute; left: 70%; width: 40%">
-            <form method="post" action="/Tests/Post/">
-                <fieldset>
-                    <h6>Ordenar por</h6>
-                    <input type="checkbox" name="favorite_pet" style="margin-right: 10%" value="Cats">Contrato<input type="checkbox" name="favorite_pet" value="Cats">Fecha<br>
-                    <input type="checkbox" name="favorite_pet" value="Dogs">Vencimiento<input type="checkbox" name="favorite_pet" value="Cats">Cliente<br>
-                    <input type="checkbox" name="favorite_pet" value="Birds">Comercializacion<input type="checkbox" name="favorite_pet" value="Cats">Dias Vencido<br>
-                    <br>
-                    <input type="submit" value="Submit now" />
-                </fieldset>
-            </form>
+
+            <fieldset>
+                <h5>Ordenar por</h5>
+                <label><input type="checkbox" name="favorite_pet"  value="Cats">Contrato</label><input type="checkbox" style="margin-left: 20%" name="favorite_pet" value="Cats">Fecha<br>
+                <label><input type="checkbox" name="favorite_pet" value="Dogs">Vencimiento</label><input type="checkbox" style="margin-left: 12.9%" name="favorite_pet" value="Cats">Cliente<br>
+                <label><input type="checkbox" name="favorite_pet" value="Birds">Comercializacion</label><input type="checkbox" style="margin-left: 3.25%" name="favorite_pet" value="Cats">Dias Vencido<br>
+            </fieldset>
+
         </div>
     </div>
+    </form>
 
     <div class="" style="  position: relative;width: 95%;height: 55.6vh;border: 1px solid black;top: 2%;left: 0;right: 0;margin-left: auto;margin-right: auto;">
         <table width="100%" id="tblContratosVencidos">

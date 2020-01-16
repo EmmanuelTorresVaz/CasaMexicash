@@ -20,59 +20,50 @@ include_once (SQL_PATH."sqlCatalogoDAO.php");
 </head>
 
 <script>
-    $( function() {
-        $( "#datepicker" ).datepicker();
+    /*$( function() {
+        $( "#inFechaIn" ).datepicker();
     } );
     $( function() {
-        $( "#dateFinal" ).datepicker();
+        $( "#inFechaFi" ).datepicker();
     } );
 
-
+*/
     function cerrarVentana() {
         window.close();
     }
 
 </script>
-
-<script>
-    $(document).ready(function () {
-        $('.menuContainer').load('menu.php');
-        $('#consultas').load('consultaCliente.php');
-    });
-</script>
-
-
 <body>
 <div style="width: 500px; height: 210px; position:absolute;">
-    <h5 style="width: 100%; text-align: center">Inventario Fisico</h5>
+    <h5 style="width: 100%; text-align: center">Contratos Almoneda</h5>
     <form method="post" action="reporteInventFisico.php" target="_blank">
         <div class="clearfix">
             <div style="float: left; margin-right: 15%; margin-left: 5%; width: 33%">
                 <h6>Fecha Inicial</h6>
-                <input type="text" id="inFechaIn" name="inFechaIn" placeholder="Fecha [dd/mm/aa]" required/>
+                <input type="text" id="inFechaIn" name="inFechaIn" placeholder="Fecha [dd/mm/aaaa]" required/>
             </div>
             <div style="float: left; width: 33%">
                 <h6>Fecha Final</h6>
-                <input type="text" id="inFechaFi" name="inFechaFi" placeholder="Fecha [dd/mm/aa]" required />
+                <input type="text" id="inFechaFi" name="inFechaFi" placeholder="Fecha [dd/mm/aaaa]" required />
             </div>
 
         </div>
         <br>
         <div style="width: 100%; height: 50%; margin-left: 5%">
             <div style="float: left; margin-right: 20px; ">
-                <label><input type="checkbox" id="Empe" name="Empe" value="1"/>Empeños</label>
+                <input type="hidden" id="Empe" name="Empe" value="0"/>
             </div>
             <div style="float: left; margin-right: 20px;">
-                <label><input type="checkbox" id="Desemp" name="Desemp" value="1"/>Desempeños</label>
+                <input type="hidden" id="Desemp" name="Desemp" value="0"/>
             </div>
             <div style="float: left; margin-right: 20px;">
-                <label><input type="checkbox" id="Refrendo" name="Refrendo" value="1"/>Refrendo</label>
+                <input type="hidden" id="Refrendo" name="Refrendo" value="0"/>
             </div>
             <div style="float: left; margin-right: 20px;">
-                <label><input type="checkbox" id="Almoneda" name="Almoneda" value="1"/>Almoneda</label>
+                <input type="hidden" id="Almoneda" name="Almoneda" value="1" checked/>
             </div>
             <div style="float: left; margin-right: 40px;">
-                <label><input type="checkbox" id="Auto" name="Auto" value="1"/>Solo Autos</label>
+                <input type="hidden" id="Auto" name="Auto" value="0"/>
             </div>
             <div style="float: left; margin-right: 20px;">
                 <label><input type="checkbox" id="PDF" name="PDF" value="1"/>PDF</label>

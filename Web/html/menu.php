@@ -9,8 +9,16 @@
     <title>Acceder</title>
 
     <script>
-        function ventana() {
-            window.open("../html/Reportes/vInventarioFisico.php" , "Inventario Fisico" , "width=500,height=210,scrollbars=NO");
+        function ventana(opc) {
+            switch (opc) {
+                case 1:
+                    window.open("Reportes/vInventarioFisico.php" , "Inventario Fisico" , "width=500,height=210,scrollbars=NO");
+                    break;
+                case 2:
+                    window.open("Reportes/vReporteAlmoneda.php" , "Inventario Fisico" , "width=500,height=210,scrollbars=NO");
+                    break;
+            }
+
         }
     </script>
 
@@ -171,7 +179,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" onclick="ventana()">
+                    <a href="#" onclick="ventana(1)">
                         <i class="fa fa-gift"></i>
                         <strong>Inventario F&iacute;sico</strong>
                     </a>
@@ -192,7 +200,8 @@
                     </a>
                     <ul>
                         <li><a href="#"><i class="fa fa-plus-square"></i>Hist&oacute;rico</a></li>
-                        <li><a href="#" onclick="ventana()"><i class="fa fa-user-plus" ></i>Inventarios</a></li>
+                        <li><a href="#" onclick="ventana(1)"><i class="fa fa-user-plus" ></i>Inventarios</a></li>
+                        <li><a href="#" onclick="ventana(2)"><i class="fa fa-user-plus" ></i>Contratos Almoneda</a></li>
                         <li><a href="#"><i class="fa fa-user-plus" ></i>Contratos Vencidos</a></li>
                         <li><a href="#"><i class="fa fa-user-plus" ></i>Desempeños-detallado</a></li>
                         <li><a href="#"><i class="fa fa-user-plus" ></i>Refrendo-detallado</a></li>

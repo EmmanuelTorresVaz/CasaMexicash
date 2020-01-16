@@ -29,7 +29,7 @@ $fechaInicial = $_POST['inFechaIn'];
 $fechaFinal = $_POST['inFechaFi'];
 
 
-//echo $empe . " " . $desemp . " " . $refrendo . " " . $almoneda . " " . $auto . " " . $pdf . " " . $excel;
+echo $empe . " " . $desemp . " " . $refrendo . " " . $almoneda . " " . $auto . " " . $pdf . " " . $excel;
 
 if($pdf == 1 && $excel == 1){
     ?>
