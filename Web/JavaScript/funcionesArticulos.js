@@ -42,9 +42,9 @@ function Agregar() {
             //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
             var dataEnviar = {
                 "$idTipoEnviar": 1,
-                "idClienteInteres": $("#idClienteEmpeno").val(),
+                "idClienteInteres":clienteEmpeno,
                 "idContratoTemp": $("#idContratoTemp").val(),
-                "idTipoMetal": $("#idTipoMetal").val(),
+                "idTipoMetal": formMetal,
                 "idPrenda": $("#idPrenda").val(),
                 "idKilataje": $("#idKilataje").val(),
                 "idCalidad": $("#idCalidad").val(),
@@ -62,9 +62,9 @@ function Agregar() {
             //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
             var dataEnviar = {
                 "$idTipoEnviar": 2,
-                "idClienteInteres": $("#idClienteInteres").val(),
+                "idClienteInteres": clienteEmpeno,
                 "idContratoTemp": $("#idContratoTemp").val(),
-                "idTipoElectronico": $("#idTipoElectronico").val(),
+                "idTipoElectronico": formElectronico,
                 "idMarca": $("#idMarca").val(),
                 "idEstado": $("#idEstado").val(),
                 "idModelo": $("#idModelo").val(),
@@ -114,7 +114,6 @@ function cargarTablaArticulo($contratoTemp) {
             dataType:"json",
             success: function (datos) {
                 alert("Refrescando tabla.");
-
                 var html = '';
                 var i= 0;
                 for (i ; i < datos.length; i++) {

@@ -12,7 +12,6 @@ function fechaActual() {
      // diaActual = dia + '/' + mes + '/' + anio;
     diaActual = anio + '/' + mes + '/' + dia;
 
-    alert(diaActual);
     return diaActual;
 }
 
