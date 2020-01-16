@@ -43,28 +43,39 @@
 <div class="menuContainer" ></div>
 
 <div class="container-fluid" style="position: absolute; top: 8.2vh; border:1px solid black; height: 91.8vh">
-    <form method="post" action="">
     <div class="clearfix" style="position:relative; width: 60%; height: 30vh; top: 1%">
+        <br/><br/>
         <div style="float: left; margin-right: 5%; margin-left: 5%; width: 28%">
-            <label>Desde<input type="text" id="inFechaInicial"/></label>
+            <label>Desde:<input type="text" id="inFechaInicial" placeholder = "Fecha [dd/mm/aaaa]"/></label>
         </div>
         <div style="float: left; width: 28%; margin-right: 5%">
-            <label>Hasta<input type="text" id="inFechaFinal"/></label>
+            <label>Hasta:<input type="text" id="inFechaFinal" placeholder = "Fecha [dd/mm/aaaa]"/></label>
+            <br/><br/><input type="button" class="btn btn-outline-primary" onclick="traerContratos();" value="Buscar"/>
+        </div>
+        <div style=" width: 28%; margin-right: 5%">
+
         </div>
         <div style="position:absolute; left: 70%; width: 40%">
 
             <fieldset>
                 <h5>Ordenar por</h5>
-                <label><input type="checkbox" name="favorite_pet"  value="Cats">Contrato</label><input type="checkbox" style="margin-left: 20%" name="favorite_pet" value="Cats">Fecha<br>
-                <label><input type="checkbox" name="favorite_pet" value="Dogs">Vencimiento</label><input type="checkbox" style="margin-left: 12.9%" name="favorite_pet" value="Cats">Cliente<br>
-                <label><input type="checkbox" name="favorite_pet" value="Birds">Comercializacion</label><input type="checkbox" style="margin-left: 3.25%" name="favorite_pet" value="Cats">Dias Vencido<br>
+                <label><input type="radio" name="favorite_pet"  value="Cats">Contrato</label><input type="radio" style="margin-left: 20%" name="favorite_pet" value="Cats">Fecha<br>
+                <label><input type="radio" name="favorite_pet" value="Dogs">Vencimiento</label><input type="radio" style="margin-left: 12.9%" name="favorite_pet" value="Cats">Cliente<br>
+                <label><input type="radio" name="favorite_pet" value="Birds">Comercializacion</label><input type="radio" style="margin-left: 3.25%" name="favorite_pet" value="Cats">Dias Vencido<br>
             </fieldset>
 
         </div>
     </div>
-    </form>
+    <div class="clearfix" style="position:relative; left: 70%; width: 30% height: 30vh; top: -29vh">
+        <br/><br/>
+        <fieldset>
+            <h5>Ordenar por</h5>
+            <label><input type="radio" name="favorite_pet"  value="Cats">Contrato</label><br>
+            <label><input type="radio" name="favorite_pet" value="Dogs">Tipo Tasa</label><br>
+        </fieldset>
+    </div>
 
-    <div class="" style="  position: relative;width: 95%;height: 55.6vh;border: 1px solid black;top: 2%;left: 0;right: 0;margin-left: auto;margin-right: auto;">
+    <div class="" style="  position: relative;width: 95%;height: 55.6vh;border: 1px solid black;top: -22%;left: 0;right: 0;margin-left: auto;margin-right: auto;">
         <table width="100%" id="tblContratosVencidos">
             <thead style="width: 100%">
             <tr>

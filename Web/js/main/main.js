@@ -686,7 +686,38 @@ function fecha() {
     }
 }
 
+function traerContratos() {
+    var fechaIn = document.getElementById('inFechaInicial').value;
+    var fechaFi = document.getElementById('inFechaFinal').value;
+    var params = {
+        "fechaInicial": fechaIn,
+        "fechaFinal": fechaFi
+    };
 
+    $.get("cConsultaContratoVencido.php", params, function (response) {
+        var json = JSON.parse(response);
+        var tbl = ``;
+
+        for (var i = 0; i < json.length; i++){
+            tbl += `<tbody><tr>
+                <td>`+ json[i]['id_Contrato'] + `</td>
+                <td>`+ json[i]['fecha_creacion'] + `</td>
+                <td>`+ json[i]['fecha_Vencimiento'] + `</td>
+                <td>`+ json[i]['nombreCompleto'] + `</td>
+                <td>`+ json[i]['celular'] + `</td>
+                <td>`+ json[i]['telefono'] + `</td>
+                <td>`+ json[i]['total_Avaluo'] + `</td>
+                <td>`+ json[i]['total_Prestamo'] + `</td>
+                <td>`+ 0 + `</td>
+                <td>`+ json[i]['id_Interes'] + `</td>
+            </tr></tbody>`;
+        }
+
+        $('#tblContratosVencidos').append(tbl);
+        console.log(json);
+
+    });
+}
 
 
 /*

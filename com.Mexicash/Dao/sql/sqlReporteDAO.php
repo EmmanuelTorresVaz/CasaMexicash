@@ -166,7 +166,6 @@ class sqlReporteDAO
                 }
             }
 
-
             $buscarInv = "SELECT * FROM articulo_tbl as a INNER JOIN cat_estatus as e ON a.id_Estatus = e.id_Estatus where a.fecha_creacion between CAST((STR_TO_DATE(REPLACE('". $fechaInicial ."','/','.') ,GET_FORMAT(date,'EUR'))) AS DATE) AND CAST((STR_TO_DATE(REPLACE('". $fechaFinal ."','/','.') ,GET_FORMAT(date,'EUR'))) AS DATE) ".$buscar.";";
             echo $buscarInv;
             $rs = $this->conexion->query($buscarInv);
@@ -186,6 +185,52 @@ class sqlReporteDAO
                         "kilataje" => $row["kilataje"],
                         "cantidad" => $row["cantidad"],
                         "peso" => $row["peso"]
+                    ];
+
+                    array_push($datos, $data);
+                }
+            }
+
+
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        return $datos;
+    }
+
+    public function traeContratosVencidos($fechaInicial, $fechaFinal)
+    {
+        $datos = array();
+
+        try {
+
+            $buscarInv = "SELECT c.id_Contrato, c.fecha_creacion, c.fecha_Vencimiento, concat(cl.nombre, ' ', cl.apellido_Pat, ' ', cl.apellido_Mat) as nombreCompleto, cl.celular, cl.telefono, c.total_Avaluo, c.total_Prestamo, c.id_Interes 
+FROM contrato_tbl as a INNER JOIN cat_estatus as e ON a.id_Estatus = e.id_Estatus inner join contrato_tbl as c on c.id_Contrato = a.id_Contrato 
+inner join cliente_tbl as cl on cl.id_Cliente = c.id_Cliente 
+where c.fecha_Vencimiento between 
+CAST((STR_TO_DATE(REPLACE('". $fechaInicial ."','/','.') ,GET_FORMAT(date,'EUR'))) AS DATE) AND CAST((STR_TO_DATE(REPLACE('". $fechaFinal ."','/','.') ,GET_FORMAT(date,'EUR'))) AS DATE);";
+
+            $rs = $this->conexion->query($buscarInv);
+
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        //Contrato
+                        "id_Contrato" => $row["id_Contrato"],
+                        "fecha_creacion" => $row["fecha_creacion"],
+                        "fecha_Vencimiento" => $row["fecha_Vencimiento"],
+
+                        "nombreCompleto" => $row["nombreCompleto"],
+                        "celular" => $row["celular"],
+                        "telefono" => $row["telefono"],
+
+                        "total_Avaluo" => $row["total_Avaluo"],
+                        "total_Prestamo" => $row["total_Prestamo"],
+                        "id_Interes" => $row["id_Interes"],
+
                     ];
 
                     array_push($datos, $data);
