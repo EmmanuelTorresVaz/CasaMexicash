@@ -27,9 +27,19 @@
         $(function() {
             $('input:radio[name="rConsultaPor"]').change(function() {
                 if ($(this).val() == '1') {
-                    alert("Hombre");
+                    document.getElementById('Nombres').disabled = true;
+                    document.getElementById('btnTodos').disabled = true;
+                    document.getElementById('btnBuscar').disabled = true;
+
+                    document.getElementById('inContrato').disabled = false;
+                    document.getElementById('btnContrato').disabled = false;
                 } else {
-                    alert("Mujer");
+                    document.getElementById('Nombres').disabled = false;
+                    document.getElementById('btnTodos').disabled = false;
+                    document.getElementById('btnBuscar').disabled = false;
+
+                    document.getElementById('inContrato').disabled = true;
+                    document.getElementById('btnContrato').disabled = true;
                 }
             });
         });
@@ -45,6 +55,9 @@
         }
         th{
             padding-left: 1%; padding-right: 1%; border: 1px solid black;
+        }
+        th{
+            border: 1px solid black;
         }
     </style>
 
@@ -63,7 +76,7 @@
 
         <div style="position: relative; width: 25%; height: 100%; padding-top: 20px">
             <div style="width: 90%; float: left">
-                <label for=""><input type="radio" name="rConsultaPor" value="1" id="chkContrato" value="1"/>Por Contrato</label>
+                <label for=""><input type="radio" name="rConsultaPor" value="1" id="chkContrato" value="1" />Por Contrato</label>
             </div>
             <div style="width: 90%; float: left">
                 <label for=""><input type="radio" name="rConsultaPor" value="2" id="chkNombre" value="1"/>Por Nombre</label>
@@ -72,14 +85,14 @@
                 <h5>Detalles del Contrato</h5>
                 <div style="width: 100%">
                     <h6>Contrato:</h6>
-                    <input type="text" name="inContrato" placeholder="" id="inContrato" style="width: 90%" >
-                    <input type="button" id="btnContrato" onclick="buscarContrato();" class="btn btn-outline-primary" value="Buscar" style="margin-top: 5px" />
+                    <input type="text" name="inContrato" placeholder="" id="inContrato" style="width: 90%" disabled/>
+                    <input type="button" id="btnContrato" onclick="buscarContrato();" class="btn btn-outline-primary" value="Buscar" style="margin-top: 5px" disabled/>
                 </div>
             </div>
         </div>
 
         <div style="position:relative; width: 70%; height: 100%; left: 25%; top: -100%; border: 1px solid black">
-            <table id="tblArticulo">
+            <table id="tblArticulo" style="position: relative; top: 0;">
                 <thead style="width: 100%">
                 <tr>
                     <th style="width: 20%">Cantidad</th>
@@ -92,8 +105,8 @@
 
     </div>
 
-    <div class="tblConsultaEmpeños" style="  position: relative;width: 95%;height: 55.6vh;border: 1px solid black;top: -34%;left: 0;right: 0;margin-left: auto;margin-right: auto;">
-        <table width="100%" id="tblContratos">
+    <div class="tblConsultaEmpeños" style="  position: relative;width: 95%;height: 55.6vh;top: -34%;left: 0;right: 0;margin-left: auto;margin-right: auto; border: 1px solid black">
+        <table width="100%" id="tblContratos" style="position: relative; top: 0;">
             <thead style="width: 100%">
             <tr>
                 <th>Contrato</th>

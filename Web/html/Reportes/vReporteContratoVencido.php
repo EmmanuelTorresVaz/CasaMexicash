@@ -76,7 +76,7 @@
     </div>
 
     <div class="" style="  position: relative;width: 95%;height: 55.6vh;border: 1px solid black;top: -22%;left: 0;right: 0;margin-left: auto;margin-right: auto;">
-        <table width="100%" id="tblContratosVencidos">
+        <table width="100%" id="tblContratosVencidos" style="position: relative; top: 0;">
             <thead style="width: 100%">
             <tr>
                 <th>Contrato</th>

@@ -569,22 +569,22 @@ function buscarContrato() {
         for(var i = 0; i < json.length; i++){
             tbl += `<tbody>
             <tr>
-            <td>`+ json[i]['id_Contrato'] + `</td>
-            <td>`+ json[i]['folio'] +`</td>
-            <td>`+ json[i]['total_prestamo'] +`</td>
-            <td>`+ json[i]['abono'] +`</td>
-            <td>`+ json[i]['id_Interes'] +`</td>
-            <td>`+ json[i]['pago'] +`</td>
-            <td>`+ json[i]['fecha_alm'] +`</td>
-            <td>`+ json[i]['fecha_movimiento'] +`</td>
-            <td>`+ json[i]['id_Estatus'] +`</td>
-            <td>`+ json[i]['fecha_vencimiento'] +`</td>
+            <td style="border: 1px solid black">`+ json[i]['id_Contrato'] + `</td>
+            <td style="border: 1px solid black">`+ json[i]['folio'] +`</td>
+            <td style="border: 1px solid black">`+ json[i]['total_prestamo'] +`</td>
+            <td style="border: 1px solid black">`+ json[i]['abono'] +`</td>
+            <td style="border: 1px solid black">`+ json[i]['id_Interes'] +`</td>
+            <td style="border: 1px solid black">`+ json[i]['pago'] +`</td>
+            <td style="border: 1px solid black">`+ json[i]['fecha_alm'] +`</td>
+            <td style="border: 1px solid black">`+ json[i]['fecha_movimiento'] +`</td>
+            <td style="border: 1px solid black">`+ json[i]['id_Estatus'] +`</td>
+            <td style="border: 1px solid black">`+ json[i]['fecha_vencimiento'] +`</td>
             </tr></tbody>`;
 
             tbl2 += `<tr>
-            <td>` + json[i]['cantidad'] +`</td>
-            <td>`+json[i]['detalle']+`</td>
-            <td>`+json[i]['observaciones']+`</td>
+            <td style="border: 1px solid black">` + json[i]['cantidad'] +`</td>
+            <td style="border: 1px solid black">`+json[i]['detalle']+`</td>
+            <td style="border: 1px solid black">`+json[i]['observaciones']+`</td>
             </tr>`;
         }
         $('#tblArticulo').append(tbl2);
@@ -616,22 +616,22 @@ function buscarContratoPorNombre() {
 
         for(var i = 0; i < json.length; i++){
             tbl += `<tbody><tr>
-            <td>`+ json[i]['id_Contrato'] + `</td>
-            <td>`+ json[i]['folio'] +`</td>
-            <td>`+ json[i]['total_prestamo'] +`</td>
-            <td>`+ json[i]['abono'] +`</td>
-            <td>`+ json[i]['id_Interes'] +`</td>
-            <td>`+ json[i]['pago'] +`</td>
-            <td>`+ json[i]['fecha_alm'] +`</td>
-            <td>`+ json[i]['fecha_movimiento'] +`</td>
-            <td>`+ json[i]['id_Estatus'] +`</td>
-            <td>`+ json[i]['fecha_vencimiento'] +`</td>
+            <td style="border: 1px solid black">`+ json[i]['id_Contrato'] + `</td>
+            <td style="border: 1px solid black">`+ json[i]['folio'] +`</td>
+            <td style="border: 1px solid black">`+ json[i]['total_prestamo'] +`</td>
+            <td style="border: 1px solid black">`+ json[i]['abono'] +`</td>
+            <td style="border: 1px solid black">`+ json[i]['id_Interes'] +`</td>
+            <td style="border: 1px solid black">`+ json[i]['pago'] +`</td>
+            <td style="border: 1px solid black">`+ json[i]['fecha_alm'] +`</td>
+            <td style="border: 1px solid black">`+ json[i]['fecha_movimiento'] +`</td>
+            <td style="border: 1px solid black">`+ json[i]['id_Estatus'] +`</td>
+            <td style="border: 1px solid black">`+ json[i]['fecha_vencimiento'] +`</td>
             </tr>`;
 
             tbl2 += `<tr>
-            <td>` + json[i]['cantidad'] +`</td>
-            <td>`+json[i]['detalle']+`</td>
-            <td>`+json[i]['observaciones']+`</td>
+            <td style="border: 1px solid black">` + json[i]['cantidad'] +`</td>
+            <td style="border: 1px solid black">`+json[i]['detalle']+`</td>
+            <td style="border: 1px solid black">`+json[i]['observaciones']+`</td>
             </tr></tbody>`;
         }
         $('#tblArticulo').append(tbl2);
@@ -700,16 +700,16 @@ function traerContratos() {
 
         for (var i = 0; i < json.length; i++){
             tbl += `<tbody><tr>
-                <td>`+ json[i]['id_Contrato'] + `</td>
-                <td>`+ json[i]['fecha_creacion'] + `</td>
-                <td>`+ json[i]['fecha_Vencimiento'] + `</td>
-                <td>`+ json[i]['nombreCompleto'] + `</td>
-                <td>`+ json[i]['celular'] + `</td>
-                <td>`+ json[i]['telefono'] + `</td>
-                <td>`+ json[i]['total_Avaluo'] + `</td>
-                <td>`+ json[i]['total_Prestamo'] + `</td>
-                <td>`+ 0 + `</td>
-                <td>`+ json[i]['id_Interes'] + `</td>
+                <td style="border: 1px solid black">`+ json[i]['id_Contrato'] + `</td>
+                <td style="border: 1px solid black">`+ json[i]['fecha_creacion'] + `</td>
+                <td style="border: 1px solid black">`+ json[i]['fecha_Vencimiento'] + `</td>
+                <td style="border: 1px solid black">`+ json[i]['nombreCompleto'] + `</td>
+                <td style="border: 1px solid black">`+ json[i]['celular'] + `</td>
+                <td style="border: 1px solid black">`+ json[i]['telefono'] + `</td>
+                <td style="border: 1px solid black">`+ json[i]['total_Avaluo'] + `</td>
+                <td style="border: 1px solid black">`+ json[i]['total_Prestamo'] + `</td>
+                <td style="border: 1px solid black">`+ 0 + `</td>
+                <td style="border: 1px solid black">`+ json[i]['id_Interes'] + `</td>
             </tr></tbody>`;
         }
 

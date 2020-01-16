@@ -70,11 +70,11 @@ $x = json_encode($nombres);
 <div class="col-5 clearfix">
             <div style="float: left; padding-right: 30px">
                 <h6>Nombre Completo:</h6>
-                <input id="Nombres" name="Nombres" type="text" style="width: 250px" />
+                <input id="Nombres" name="Nombres" type="text" style="width: 250px" disabled/>
             </div>
             <div style="float: left; padding-right: 30px; padding-top: 4%;">
-                <input type="button" id="btnTodos" class="btn btn-outline-primary" onclick="mostrarTablaExtras()" value="Ver todos" >
-                <input type="button" id="btnBuscar" class="btn btn-outline-primary" onclick="buscarContratoPorNombre()" value="Buscar" >
+                <input type="button" id="btnTodos" class="btn btn-outline-primary" onclick="mostrarTablaExtras()" value="Ver todos" disabled>
+                <input type="button" id="btnBuscar" class="btn btn-outline-primary" onclick="buscarContratoPorNombre()" value="Buscar" disabled>
             </div>
         <div style="float: left; width: 100%; padding-right: 30px; padding-top: 1.5%;">
             <h6>Direcci&oacute;n:</h6>
