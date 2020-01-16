@@ -91,7 +91,7 @@
             </div>
         </div>
 
-        <div style="position:relative; width: 70%; height: 100%; left: 25%; top: -100%; border: 1px solid black">
+        <div style="position:relative; width: 70%; height: 100%; left: 25%; top: -100%; ">
             <table id="tblArticulo" style="position: relative; top: 0;">
                 <thead style="width: 100%">
                 <tr>
@@ -105,8 +105,8 @@
 
     </div>
 
-    <div class="tblConsultaEmpeños" style="  position: relative;width: 95%;height: 55.6vh;top: -34%;left: 0;right: 0;margin-left: auto;margin-right: auto; border: 1px solid black">
-        <table width="100%" id="tblContratos" style="position: relative; top: 0;">
+    <div class="tblConsultaEmpeños" style="  position: relative;width: 95%;height: 55.6vh;top: -34%;left: 0;right: 0;margin-left: auto;margin-right: auto;">
+        <table width="100%" id="tblContratos" style="position: relative; top: 0; border: 1px solid black">
             <thead style="width: 100%">
             <tr>
                 <th>Contrato</th>
