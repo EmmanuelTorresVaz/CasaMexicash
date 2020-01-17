@@ -79,7 +79,7 @@ function agregarCliente() {
         };
         $.ajax({
             data: dataEnviar,
-            url: '../../../com.Mexicash/Controlador/RegistroCliente.php',
+            url: '../../../com.Mexicash/Controlador/Cliente/RegistroCliente.php',
             type: 'post',
             success: function (response) {
                 if (response == 1) {
@@ -87,6 +87,7 @@ function agregarCliente() {
                     $("#modalRegistroNuevo").modal('hide');//ocultamos el modal
                     $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
                     $('.modal-backdrop').remove();//eliminamos el backdrop del modal
+                    buscarClienteAgregado();
                     alertify.success("Cliente agregado.");
                 } else {
                     alertify.error("Error al agregar cliente.");
@@ -114,7 +115,7 @@ function nombreAutocompletar() {
         };
         $.ajax({
             type: "POST",
-            url: '../../../com.Mexicash/Controlador/AutocompleteCliente.php',
+            url: '../../../com.Mexicash/Controlador/Cliente/AutocompleteCliente.php',
             data: dataEnviar,
             success: function (data) {
                 //Escribimos las sugerencias que nos manda la consulta
@@ -178,7 +179,7 @@ function modalEditarCliente($clienteEmpeno) {
         };
         $.ajax({
             type: "POST",
-            url: '../../../com.Mexicash/Controlador/BuscarClienteDatos.php',
+            url: '../../../com.Mexicash/Controlador/Cliente/BuscarClienteDatos.php',
             data: dataEnviar,
             dataType: "json",
             success: function (datos) {
@@ -424,7 +425,7 @@ function actualizarCliente() {
         };
         $.ajax({
             data: dataEnviar,
-            url: '../../../com.Mexicash/Controlador/ActualizarCliente.php',
+            url: '../../../com.Mexicash/Controlador/Cliente/ActualizarCliente.php',
             type: 'post',
             success: function (response) {
                 if (response == 1) {
@@ -443,4 +444,20 @@ function actualizarCliente() {
 }
 
 
-
+function buscarClienteAgregado() {
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/Cliente/BuscarClienteAgregado.php',
+        success: function (response) {
+            alert(response)
+            if (response.status == 'ok') {
+                document.getElementById('idTipoInteres').innerHTML =response.result.tipoInteres;
+                $("#idClienteEmpeno").val(response.result.idCliente);
+                $("#idNombres").val(response.result.NombreCompleto);
+                $("#idCelularEmpeno").val(response.result.celular);
+                $("#idDireccionEmpeno").val(response.result.direccionCompleta);
+                $("#btnEditar").prop('disabled', false);
+            }
+        }
+    });
+}

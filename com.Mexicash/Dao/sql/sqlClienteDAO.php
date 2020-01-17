@@ -390,4 +390,31 @@ WHERE id_Cliente = '$idClienteEditar'";
         echo $verdad;
     }
 
+    public function buscarClienteAgregado(){
+        try {
+
+            $buscar = "SELECT id_Cliente, CONCAT (nombre, ' ',apellido_Pat,' ', apellido_Mat) as NombreCompleto, celular , CONCAT (calle, ', ',num_interior, ', ',num_exterior, ', ',  cat_localidad.descripcion, ', ',cat_municipio.descripcion,', ',cat_estado.descripcion ) as direccionCompleta FROM cliente_tbl " .
+                " INNER JOIN cat_estado on cliente_tbl.estado = cat_estado.id_Estado " .
+                " INNER JOIN cat_municipio on cliente_tbl.municipio = cat_municipio.id_Municipio and cliente_tbl.estado = cat_municipio.id_Estado  " .
+                " INNER JOIN cat_localidad on cliente_tbl.localidad = cat_localidad.id_Localidad and cliente_tbl.estado = cat_localidad.id_Estado and cliente_tbl.municipio = cat_localidad.id_Municipio" .
+                " WHERE  id_Cliente = (SELECT MAX(id_Cliente) FROM cliente_tbl)";
+
+
+            echo $buscar;
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+                $consulta = $rs->fetch_assoc();
+                $data['status'] = 'ok';
+                $data['result'] = $consulta;
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+echo 99;
+        //return  json_encode($data);
+       // echo json_encode($data);
+         }
+
 }

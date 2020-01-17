@@ -83,7 +83,7 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                     <tbody>
                     <tr>
                         <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="20"
-                               style="text-align:center" class="invisible"  />
+                               style="text-align:center"  />
                     </tr>
                     <tr>
                         <td colspan="3">
@@ -532,7 +532,7 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                 <br>
             </div>
             <div class="col col-lg-5">
-                <input type="button" class="btn btn-success" value="prueba" onclick="prueba()">
+                <input type="button" class="btn btn-success" value="prueba" onclick="buscarClienteAgregado()">
                 <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
                 <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
                 <input type="button" class="btn btn-primary" value="Generar" onclick="generarContrato()">&nbsp;
