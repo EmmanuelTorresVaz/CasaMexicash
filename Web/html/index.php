@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-
-<!--
-    Página creada por ZB Developers
--->
-
 <html lang="en" id="htmlLogin">
 <head>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -18,10 +13,8 @@
 
 </head>
     <body id="bodyHome">
-
         <header>
             <div class="Inicio-Sec1 " style="padding-left: 0">
-
                 <div class="col div-Navegador container-fluid" >
                     <nav class="navbar navbar-expand-lg navbar-light bg-light navegador fijador">
                         <a class="navbar-brand ZBNav" href="#">Mexicash</a>
@@ -35,11 +28,6 @@
                                 <a id="comoEmpeño" name="comoEmpeño" class="nav-item nav-link" href="#">¿C&oacute;mo empeñar?</a>
                                 <a id="contacto" name="contacto" class="nav-item nav-link" href="#" tabindex="-1" aria-disabled="true">Contacto</a>
                                 <a id="login" name="login" class="nav-item nav-link menu-Opcion-Login" href="#">Iniciar Sesión</a>
-                                <!--
-                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
-                                -->
                                 <form class="navbar-form navbar-left buscador" role="search">
                                     <div class="form-group">
                                         <input type="text" class="form-control caja" placeholder="Buscar">
@@ -54,35 +42,6 @@
 
         <div class="contenidoInicio container-fluid" style="padding: 0">
             <div class="home contChild">
-            <!--
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner car" style="">
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="../img/imgHome1.png" alt="First slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="../img/billete.jpg" alt="Second slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="../img/pig.jpg" alt="Third slide">
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            -->
-
                 <div class="divHome">
                     <div class="lblHome1">
                         <br><br><br>
@@ -96,9 +55,7 @@
                     </div>
                     <div class="lblHome2"></div>
                 </div>
-
                 <div class="capaNegra"></div>
-
                 <div class="infoHome">
                     <h2 id="hIniciativa">Realiza una cotizaci&oacute;n</h2>
                     <br/>
@@ -115,14 +72,9 @@
                         <li>
                             <i class="fa fa-street-view" aria-hidden="true" style="font-size: 120px;"></i>
                             <p>Comprometidos con nuestros valores</p>
-                        </li><!--
-                        <li>
-                            <i class="fa fa-thermometer-full" aria-hidden="true" style="font-size: 120px;"></i>
-                            <p>Preocupados por reducir las emisiones de gas</p>
-                        </li>-->
+                        </li>
                     </ul>
                 </div>
-
                 <div class="divHomeIcons clearfix">
                     <div class="contIconsHome">
                         <div class="iconHomecontent">
@@ -241,15 +193,13 @@
                 <div class="contentParallax contentParallaxDinero parallax">
                     <div class="contenido clearfix">
                         <ul>
-                            <li><p>5</p>Sucursales</li>
+                            <li><p>2</p>Sucursales</li>
                             <li><p>3000</p>Clientes</li>
                             <li><p>130</p>Empleados</li>
                         </ul>
                     </div>
                 </div>
-
                 <div class="mapa"></div>
-
             </div>
             <div class="comoEmpeño contChild">
                 <canvas class="canvas2" id="canvas2"></canvas>

@@ -14,6 +14,7 @@ define('SERVICIOS_PATH', COM_PATH.'Servicios/');
 //WEB DIR
 define('WEB_PATH', ROOT_PATH.'Web/');
 define('HTML_PATH', WEB_PATH.'html/');
+define('LIBRERIAS_PATH', WEB_PATH.'librerias/');
 define('IMG_PATH', WEB_PATH.'img/');
 define('JS_PATH', WEB_PATH.'js/');
 define('STYLE_PATH', WEB_PATH.'style/');

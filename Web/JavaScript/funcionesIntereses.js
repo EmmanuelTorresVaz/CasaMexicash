@@ -10,21 +10,21 @@ function SeleccionarInteres(tipoInteresValue) {
             dataType: "json",
             success: function (response) {
                 if (response.status == 'ok') {
-                    $("#idTipoInteres").val(response.result.tipoInteres);
-                    $("#idPeriodo").val(response.result.periodo);
+                    document.getElementById('idTipoInteres').innerHTML =response.result.tipoInteres;
+                    document.getElementById('idPeriodo').innerHTML =response.result.periodo;
                     var diasPeriodo = response.result.dias;
                     if(response.result.periodo=="Mensual"){
                         var sumarMes = sumarDias(diasPeriodo);
                         /*$("#idFecVencimiento").val(sumarMes);*/
                         document.getElementById('idFecVencimiento').innerHTML = sumarMes;
                     }
-                    $("#idPlazo").val(response.result.plazo);
-                    $('#idTasaPorcen').val(response.result.tasa);
-                    $('#idAlmPorcen').val(response.result.alm);
-                    $('#idSeguroPorcen').val(response.result.seguro);
-                    $('#idIvaPorcen').val(response.result.iva + " %");
-                    $('#idTipoPromocion').val(response.result.tipo_Promocion);
-                    $('#idAgrupamiento').val(response.result.tipo_Agrupamiento);
+                    document.getElementById('idPlazo').innerHTML =response.result.plazo;
+                    document.getElementById('idTasaPorcen').innerHTML =response.result.tasa;
+                    document.getElementById('idAlmPorcen').innerHTML =response.result.alm;
+                    document.getElementById('idSeguroPorcen').innerHTML =response.result.seguro;
+                    document.getElementById('idIvaPorcen').innerHTML =response.result.iva + " %";
+                    document.getElementById('idTipoPromocion').innerHTML =response.result.tipo_Promocion;
+                    document.getElementById('idAgrupamiento').innerHTML =response.result.tipo_Agrupamiento;
                 }
             },
         })

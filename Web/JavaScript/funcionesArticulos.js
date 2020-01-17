@@ -1,4 +1,3 @@
-
 //Limpia la tabla de Articulos
 function Limpiar() {
     <!--   Limpiar Metales-->
@@ -41,7 +40,7 @@ function Agregar() {
             var dataEnviar = {
                 "$idTipoEnviar": 1,
                 "idClienteInteres":clienteEmpeno,
-                "idContratoTemp": $("#idContratoTemp").val(),
+                "idContratoTemp": $("#idContratoTemp").text(),
                 "idTipoMetal": formMetal,
                 "idPrenda": $("#idPrenda").val(),
                 "idKilataje": $("#idKilataje").val(),
@@ -61,7 +60,7 @@ function Agregar() {
             var dataEnviar = {
                 "$idTipoEnviar": 2,
                 "idClienteInteres": clienteEmpeno,
-                "idContratoTemp": $("#idContratoTemp").val(),
+                "idContratoTemp": $("#idContratoTemp").text(),
                 "idTipoElectronico": formElectronico,
                 "idMarca": $("#idMarca").val(),
                 "idEstado": $("#idEstado").val(),
@@ -82,9 +81,9 @@ function Agregar() {
             type: 'post',
             success: function (response) {
                 if (response) {
-                    setTimeout('',200)
-                    cargarTablaArticulo($("#idContratoTemp").val());
+                    cargarTablaArticulo($("#idContratoTemp").text());
                     $("#divTablaArticulos").load('tablaArticulos.php');
+                    Limpiar();
                     alertify.success("Articulo agregado exitosamente.");
                 } else {
                     alertify.error("Error al agregar articulo.");
@@ -179,7 +178,7 @@ function eliminarArticulo($idArticulo) {
         type: 'post',
         success: function (response) {
             if (response == 1) {
-                cargarTablaArticulo($("#idContratoTemp").val());
+                cargarTablaArticulo($("#idContratoTemp").text());
                 $("#divTablaArticulos").load('tablaArticulos.php');
                 alertify.success("Eliminado con éxito.");
             } else {
@@ -192,7 +191,7 @@ function eliminarArticulo($idArticulo) {
 
 
 function prueba() {
-    alert($("#idContratoTemp").val());
+    alert($("#idContratoTemp").text());
 }
 
 

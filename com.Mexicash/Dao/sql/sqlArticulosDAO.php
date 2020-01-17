@@ -67,7 +67,7 @@ class sqlArticulosDAO
 
                 $insertMetal = "INSERT INTO articulo_tbl " .
                     "(id_ContratoTemp,tipo, marca, estado, modelo, tamaño, color, num_Serie, prestamo, avaluo, prestamoMaximo, ubicacion," .
-                    " detalle, id_Estatus, fecha_creacion, fecha_modificacion)  VALUES " .
+                    " detalle, id_Estatus, fecha_creacion, fecha_modificacion,usuario)  VALUES " .
                     "('" . $contratoTemp . "','" . $idTipoE . "','" . $idMarca . "', '" . $idEstado . "', '" . $idModelo . "', '" . $idTamaño . "', '" . $idColor
                     . "', '" . $idSerie . "','" . $idPrestamoE . "', '" . $idAvaluoE . "', '" . $idPrestamoMaxE . "', '" . $idUbicacionE . "','"
                     . $idDetallePrendaE . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "',".$usuario ." )";
@@ -157,7 +157,6 @@ class sqlArticulosDAO
 
         return $articulos;
     }
-
 
     public function eliminarArticulo($idArticulo)
     {

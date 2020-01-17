@@ -10,9 +10,8 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Registro Clientes</title>
     <link rel="stylesheet" href="../../style/less/main.css"/>
-    <link rel="stylesheet" href="../../style/css/bootstrap/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../../librerias/bootstrap/css/bootstrap.css">
     <link href="../../style/css/magicsuggest/magicsuggest-min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../../librerias/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/alertify.css"/>
     <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/themes/default.css"/>
     <script src="../../librerias/jquery/jquery-3.4.1.min.js"></script>

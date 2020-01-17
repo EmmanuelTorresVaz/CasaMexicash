@@ -3,7 +3,7 @@ function generarContrato() {
     var clienteEmpeno = $("#idClienteEmpeno").val();
     var tipoInteres = $("#tipoInteresEmpeno").val();
     var validarContratoTemporal = consultarContratos();
-    var contratoTemporal = $("#idContratoTemp").val();
+    var contratoTemporal = $("#idContratoTemp").text();
 
 
     var validate = true;
@@ -57,10 +57,9 @@ function generarContrato() {
         })
     }
 }
-
 //consultar contratos
 function consultarContratos() {
-    var contratoTemporal = $("#idContratoTemp").val();
+    var contratoTemporal = $("#idContratoTemp").text();
     var retorno;
     if (contratoTemporal != '') {
         var dataEnviar = {
@@ -83,7 +82,7 @@ function consultarContratos() {
 //Agrega articulos a la tabla
 function actualizarArticulo() {
     var dataEnviar = {
-        "contratoTemp": $("#idContratoTemp").val()
+        "contratoTemp": $("#idContratoTemp").text()
     };
     $.ajax({
         data: dataEnviar,
@@ -119,11 +118,13 @@ function articulosObsoletos() {
         },
     })
 }
-
-function pruebaActualizar() {
-alert($("#idFecVencimiento").val());
+//Reimprimir
+function reimprimir() {
+alert("Reimprimiendo..");
+}
+//Canelar
+function cancelar() {
+    $("#idFormEmpeno")[0].reset();
+    alertify.success("Contrato cancelado");
 }
 
-function paginaPrincipal() {
-    location.reload();
-}
