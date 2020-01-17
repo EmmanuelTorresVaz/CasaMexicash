@@ -11,7 +11,6 @@ function estadoAutocompletar() {
             url: '../../../com.Mexicash/Controlador/Catalogos.php',
             data: dataEnviar,
             success: function (data) {
-
                 //Escribimos las sugerencias que nos manda la consulta
                 $('#sugerenciaEstado').fadeIn(1000).html(data);
                 //Al hacer click en alguna de las sugerencias
@@ -21,6 +20,11 @@ function estadoAutocompletar() {
                     //Editamos el valor del input con data de la sugerencia pulsada
                     $('#idEstado').val(id);
                     $('#idEstadoName').val($('#' + id).attr('data'));
+                    $("#idMunicipio").val("");
+                    $("#idMunicipioName").val("");
+                    $("#idLocalidad").val("");
+                    $("#idLocalidadName").val("");
+                    $("#idMunicipioName").prop('disabled', false);
                     //Hacemos desaparecer el resto de sugerencias
                     $('#sugerenciaEstado').fadeOut(1000);
                     return false;
@@ -32,6 +36,7 @@ function estadoAutocompletar() {
 
 function municipioAutocompletar() {
     $('#idMunicipioName').on('keyup', function () {
+        $("#idLocalidad").val("");
         var key = $(this).val();
         var dataString = 'idMunicipioName=' + key;
         var dataEnviar = {
@@ -54,6 +59,9 @@ function municipioAutocompletar() {
                     //Editamos el valor del input con data de la sugerencia pulsada
                     $('#idMunicipio').val(id);
                     $('#idMunicipioName').val($('#' + id).attr('data'));
+                    $("#idLocalidad").val("");
+                    $("#idLocalidadName").val("");
+                    $("#idLocalidadName").prop('disabled', false);
                     //Hacemos desaparecer el resto de sugerencias
                     $('#sugerenciaMunicipio').fadeOut(1000);
                     return false;
@@ -62,7 +70,6 @@ function municipioAutocompletar() {
         });
     });
 }
-
 function localidadAutocompletar() {
     $('#idLocalidadName').on('keyup', function () {
         var key = $('#idLocalidadName').val();
@@ -98,10 +105,4 @@ function localidadAutocompletar() {
 
 }
 
-function pruebaModalNuevo() {
-    alert("prueba");
-    alert($('#idEstado').val());
-    alert($('#idMunicipio').val());
-    alert($('#idLocalidad').val());
-}
 

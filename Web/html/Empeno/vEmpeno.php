@@ -516,17 +516,6 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
                     </tr>
                 </table>
             </div>
-            <div class="col col-lg-1">
-                <div style="position: fixed;right: 0;z-index:9999">
-                    <input type="button" class="btn btn-success" value="prueba"
-                           onclick="prueba()">
-                    <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
-                    <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
-                    <input type="button" class="btn btn-primary" value="Generar" onclick="generarContrato()">&nbsp;
-                    <input type="button" class="btn btn-danger" value="Salir"
-                           onclick="location.href='vInicio.php'">&nbsp;
-                </div>
-            </div>
         </div>
         <div class="row">
             <div class="col col-lg-12">
@@ -535,6 +524,18 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
         </div>
         <div class="row">
             <div id="divTablaArticulos" class="col col-lg-12">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-lg-7">
+                <br>
+            </div>
+            <div class="col col-lg-5">
+                <input type="button" class="btn btn-success" value="prueba" onclick="prueba()">
+                <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
+                <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
+                <input type="button" class="btn btn-primary" value="Generar" onclick="generarContrato()">&nbsp;
+                <input type="button" class="btn btn-danger" value="Salir" onclick="location.href='vInicio.php'">&nbsp;
             </div>
         </div>
     </div>
