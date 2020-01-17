@@ -297,7 +297,7 @@ class sqlClienteDAO
         try {
             $html = '';
 
-            $buscar = "SELECT id_Cliente, CONCAT (nombre, ' ',apellido_Pat,' ', apellido_Mat) as NombreCompleto, celular ,cat_estado.descripcion as estadoDesc, CONCAT (cat_municipio.descripcion, ', ',cat_localidad.descripcion, ', ',calle,', ', num_exterior,', ',num_interior ) as direccionCompleta FROM cliente_tbl ".
+            $buscar = "SELECT id_Cliente, CONCAT (nombre, ' ',apellido_Pat,' ', apellido_Mat) as NombreCompleto, celular , CONCAT (calle, ', ',num_interior, ', ',num_exterior, ', ',  cat_localidad.descripcion, ', ',cat_municipio.descripcion,', ',cat_estado.descripcion ) as direccionCompleta FROM cliente_tbl ".
                 " INNER JOIN cat_estado on cliente_tbl.estado = cat_estado.id_Estado ".
                 " INNER JOIN cat_municipio on cliente_tbl.municipio = cat_municipio.id_Municipio and cliente_tbl.estado = cat_municipio.id_Estado  ".
                 " INNER JOIN cat_localidad on cliente_tbl.localidad = cat_localidad.id_Localidad and cliente_tbl.estado = cat_localidad.id_Estado and cliente_tbl.municipio = cat_localidad.id_Municipio".
@@ -306,7 +306,7 @@ class sqlClienteDAO
             if ($statement->num_rows > 0) {
                 while ($row = $statement->fetch_assoc()) {
                     $html .= '<div><a class="suggest-element" data="' . utf8_encode($row['NombreCompleto']) . '" celular="' . utf8_encode($row['celular'])
-                        . '" direccionCompleta="' . utf8_encode($row['direccionCompleta']). '" estadoDesc="' . utf8_encode($row['estadoDesc']). '" id="' . $row['id_Cliente'] . '">' . utf8_encode($row['NombreCompleto']) . '</a></div>';
+                        . '" direccionCompleta="' . utf8_encode($row['direccionCompleta']).  '" id="' . $row['id_Cliente'] . '">' . utf8_encode($row['NombreCompleto']) . '</a></div>';
                 }
             }
         } catch (Exception $exc) {

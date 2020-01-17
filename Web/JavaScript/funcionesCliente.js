@@ -98,12 +98,12 @@ function nombreAutocompletar() {
                     var id = $(this).attr('id');
                     var celular = $('#' + id).attr('celular');
                     var direccionComp = $('#' + id).attr('direccionCompleta');
-                    var estado = $('#' + id).attr('estadoDesc');
+                    //var estado = $('#' + id).attr('estadoDesc');
                     //Editamos el valor del input con data de la sugerencia pulsada
                     $('#idClienteEmpeno').val(id);
                     $('#idNombres').val($('#' + id).attr('data'));
                     $("#idCelularEmpeno").val(celular);
-                    $("#idEstadoEmpeno").val(estado);
+                    //$("#idEstadoEmpeno").val(estado);
                     $("#idDireccionEmpeno").val(direccionComp);
                     //Hacemos desaparecer el resto de sugerencias
                     $('#suggestionsNombreEmpeno').fadeOut(1000);
