@@ -93,12 +93,12 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
     </script>
 </head>
 <body>
-<div class="modal fade " id="modalRegistroNuevo" tabindex="-1" role="dialog"
+<div class="modal fade " id="modalEditarNuevo" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Registrar Cliente</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Actualizar Cliente</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -108,13 +108,13 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                     <form id="idFormRegistro" autocomplete="off">
                         <div id="conteiner" class="container">
                             <div class="row">
-                                <input id="idEstado" name="Estado" type="text" style="width: 5px" class="invisible"/>
-                                <input id="idMunicipio" name="municipio" type="text" style="width: 5px"
-                                       class="invisible"
-                                />
-                                <input id="idLocalidad" name="localidad" type="text" style="width: 5px"
-                                       class="invisible"
-                                />
+                                <input id="idEstadoEdit" name="Estado" type="text" style="width: 5px" class="invisible"/>
+                                <input id="idMunicipioEdit" name="municipio" type="text" style="width: 5px"
+                                       class="invisible"/>
+                                <input id="idLocalidadEdit" name="localidad" type="text" style="width: 5px"
+                                       class="invisible"/>
+                                <input id="idClienteEditar" name="clienteEditar" type="text" style="width: 5px"
+                                       class="invisible"/>
                             </div>
                             <div class="row">
                                 <div class="col-12">
@@ -127,22 +127,22 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input type="text" class="inputCliente" name="nombre" id="idNombre"
+                                                <input type="text" class="inputCliente" name="nombre" id="idNombreEdit"
                                                        placeholder="Nombres"
                                                        style="width: 200px"
                                                        required/>
                                             </td>
                                             <td>
-                                                <input type="text" class="inputCliente" name="apPat" id="idApPat"
+                                                <input type="text" class="inputCliente" name="apPat" id="idApPatEdit"
                                                        placeholder="Apellido Paterno" style="width: 200px"
                                                        required/>
                                             </td>
                                             <td>
-                                                <input type="text" class="inputCliente" name="apMat" id="idApMat"
+                                                <input type="text" class="inputCliente" name="apMat" id="idApMatEdit"
                                                        placeholder="Apellido Materno" style="width: 200px"/>
                                             </td>
                                             <td>
-                                                <select name="sexo" id="idSexo" style="width: 200px" required>
+                                                <select name="sexo" id="idSexoEdit" style="width: 200px" required>
                                                     <option value="0">Selecciona:</option>
                                                     <?php
                                                     $dataSexo = array();
@@ -170,7 +170,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                         <tr>
                                             <td>
                                                 <select type="text" name="identificacion" placeholder="Selecciona uno"
-                                                        id="idIdentificacion"
+                                                        id="idIdentificacionEdit"
                                                         style="width: 200px" required>
                                                     <option value="44">Selecciona Uno</option>
                                                     <?php
@@ -185,17 +185,17 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                             </td>
                                             <td>
                                                 <input type="text" name="numIdentificacion" placeholder=""
-                                                       id="idNumIdentificacion"
+                                                       id="idNumIdentificacionEdit"
                                                        style="width: 200px"
                                                        required/>
                                             </td>
                                             <td>
-                                                <input type="text" name="fechaNac" id="idFechaNac" style="width: 200px"
+                                                <input type="text" name="fechaNac" id="idFechaNacEdit" style="width: 200px"
                                                        placeholder="aaaa/mm/dd"
                                                        required/>
                                             </td>
                                             <td>
-                                                <input type="text" name="correo" id="idCorreo" style="width: 200px"
+                                                <input type="text" name="correo" id="idCorreoEdit" style="width: 200px"
                                                        placeholder=""/>
                                             </td>
                                         </tr>
@@ -213,23 +213,23 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input type="text" class="inputCliente" name="rfc" id="idRfc"
+                                                <input type="text" class="inputCliente" name="rfc" id="idRfcEdit"
                                                        placeholder=""
                                                        style="width: 200px"/>
                                             </td>
                                             <td>
-                                                <input type="text" class="inputCliente" name="curp" id="idCurp"
+                                                <input type="text" class="inputCliente" name="curp" id="idCurpEdit"
                                                        style="width: 200px"
                                                        placeholder=""/>
                                             </td>
                                             <td>
-                                                <input type="text" name="celular" id="idCelular"
+                                                <input type="text" name="celular" id="idCelularEdit"
                                                        onkeypress="return soloNumeros(event)"
                                                        style="width: 200px" maxlength="11"
                                                        required/>
                                             </td>
                                             <td>
-                                                <input type="text" name="telefono" id="idTelefono"
+                                                <input type="text" name="telefono" id="idTelefonoEdit"
                                                        onkeypress="return soloNumeros(event)"
                                                        style="width: 200px" maxlength="8"
                                                        placeholder="N&uacute;mero con lada"/>
@@ -251,29 +251,29 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input id="idEstadoName" name="estadoName" type="text"
+                                                <input id="idEstadoNameEdit" name="estadoName" type="text"
                                                        style="width: 200px"
                                                        onkeypress="estadoAutocompletar()" placeholder="Buscar Estado..."
                                                        required/>
-                                                <div id="sugerenciaEstado"></div>
+                                                <div id="sugerenciaEstadoEdit"></div>
                                             </td>
                                             <td>
-                                                <input id="idMunicipioName" name="municipioName" type="text"
+                                                <input id="idMunicipioNameEdit" name="municipioName" type="text"
                                                        style="width: 200px"
                                                        onkeypress="municipioAutocompletar()"
                                                        placeholder="Buscar Municipio..." required disabled/>
-                                                <div id="sugerenciaMunicipio"></div>
+                                                <div id="sugerenciaMunicipioEdit"></div>
                                             </td>
                                             <td>
-                                                <input id="idLocalidadName" name="localidadName" type="text"
+                                                <input id="idLocalidadNameEdit" name="localidadName" type="text"
                                                        style="width: 200px"
                                                        onkeypress="localidadAutocompletar()"
                                                        placeholder="Buscar Localidad..." required disabled/>
-                                                <div id="sugerenciaLocalidad"></div>
+                                                <div id="sugerenciaLocalidadEdit"></div>
                                             </td>
                                             <td>
                                                 <input type="text" class="inputCliente" name="calle" placeholder=""
-                                                       id="idCalle"
+                                                       id="idCalleEdit"
                                                        style="width: 200px"
                                                        required/>
                                             </td>
@@ -297,21 +297,21 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                             <td>
                                                 <input type="text" name="cp" placeholder=""
                                                        onkeypress="return soloNumeros(event)"
-                                                       id="idCP" style="width: 100px" required/>
+                                                       id="idCPEdit" style="width: 100px" required/>
                                             </td>
                                             <td>
                                                 <input type="text" name="numExt" placeholder=""
                                                        onkeypress="return soloNumeros(event)"
-                                                       id="idNumExt" style="width: 50px" required/>
+                                                       id="idNumExtEdit" style="width: 50px" required/>
                                             </td>
                                             <td>
-                                                <input type="text" name="numInt" placeholder="" id="idNumInt"
+                                                <input type="text" name="numInt" placeholder="" id="idNumIntEdit"
                                                        style="width: 150px"/>
                                             </td>
                                             <td>
                                                 <select type="text" name="ocupacion" placeholder="Selecciona uno"
                                                         class="selectpicker"
-                                                        id="idOcupacion"
+                                                        id="idOcupacionEdit"
                                                         style="width: 200px" required>
                                                     <option value="22">Selecciona Uno</option>
                                                     <?php
@@ -336,13 +336,13 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                         <tr>
                                             <td colspan="3">
                             <textarea type="text" class="inputCliente" name="mensajeInterno" placeholder=""
-                                      id="idMensajeInterno"
+                                      id="idMensajeInternoEdit"
                                       rows="3" cols="80"></textarea>
                                             </td>
                                             <td>
                                                 <select type="text" name="promocion" placeholder="Selecciona:"
                                                         class="selectpicker"
-                                                        id="idPromocion" style="width: 150px">
+                                                        id="idPromocionEdit" style="width: 150px">
                                                     <option value="0">Selecciona:</option>
                                                     <?php
 
@@ -370,8 +370,8 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                 <div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
             </div>
             <div class="modal-footer">
-                <input type="button" class="btn btn-primary" onclick="agregarCliente()"
-                       value="Guardar">
+                <input type="button" class="btn btn-warning" onclick="confirmarActualizacion()"
+                       value="Actualizar">
             </div>
         </div>
     </div>

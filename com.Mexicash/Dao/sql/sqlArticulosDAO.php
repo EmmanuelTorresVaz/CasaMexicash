@@ -123,41 +123,6 @@ class sqlArticulosDAO
         //echo json_encode($datos);
     }
 
-    public function buscarArticulo2($idContratoTemp)
-    {
-        $articulos = array();
-        try {
-            $buscar = "SELECT id_Articulo, marca, estado, modelo, prestamo,avaluo, detalle FROM articulo_tbl WHERE id_ContratoTemp='$idContratoTemp'";
-            $rs = $this->conexion->query($buscar);
-
-            if ($rs->num_rows > 0) {
-                while ($row = $rs->fetch_assoc()) {
-                    $articulo = [
-                        "id_Articulo" => $row["id_Articulo"],
-                        "marca" => $row["marca"],
-                        "estado" => $row["estado"],
-                        "modelo" => $row["modelo"],
-                        "prestamo" => $row["prestamo"],
-                        "avaluo" => $row["avaluo"],
-                        "detalle" => $row["detalle"]
-                    ];
-
-                    array_push($articulos, $articulo);
-                }
-
-            } else {
-                echo " No se ejecutó TraerTodos SqlClienteDAO";
-            }
-
-        } catch (Exception $exc) {
-            echo $exc->getMessage();
-        } finally {
-            $this->db->closeDB();
-        }
-
-        return $articulos;
-    }
-
     public function eliminarArticulo($idArticulo)
     {
         // TODO: Implement guardaCiente() method.

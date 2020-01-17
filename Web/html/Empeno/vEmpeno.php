@@ -5,7 +5,7 @@ include_once(SQL_PATH . "sqlInteresesDAO.php");
 include_once(SQL_PATH . "sqlArticulosDAO.php");
 include_once(SQL_PATH . "sqlContratoDAO.php");
 include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
-
+include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -34,6 +34,7 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
             $("#divMetales").show();
             $("#idFormEmpeno").trigger("reset");
             $("#divTablaArticulos").load('tablaArticulos.php');
+            $("#btnEditar").prop('disabled', true);
         });
     </script>
     <style type="text/css">
@@ -82,7 +83,7 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
                     <tbody>
                     <tr>
                         <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="20"
-                               style="text-align:center" class="invisible" disabled/>
+                               style="text-align:center" class="invisible"  />
                     </tr>
                     <tr>
                         <td colspan="3">
@@ -91,9 +92,9 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
                                    value="Agregar">
                         </td>
                         <td colspan="3">
-                            <input type="button" class="btn btn-success "
-                                   data-toggle="modal" data-target="#modalRegistroNuevo"
-                                   value="Editar">
+                            <input type="button" class="btn btn-warning "
+                                   data-toggle="modal" data-target="#modalEditarNuevo" id="btnEditar"
+                                   value="Editar" onclick="modalEditarCliente($('#idClienteEmpeno').val())" disabled>
                         </td>
                         <td colspan="3">
                             <input type="button" class="btn btn-success " onclick="mostrarTodos()"
