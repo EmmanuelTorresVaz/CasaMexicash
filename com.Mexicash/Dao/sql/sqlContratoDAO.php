@@ -90,7 +90,6 @@ class sqlContratoDAO
         //return $verdad;
         echo $verdad;
     }
-
     function buscarContratoTemp()
     {
         try {
@@ -113,12 +112,11 @@ class sqlContratoDAO
 
         return $id;
     }
-
-    public function eliminarArticulo($idArticulo)
+    public function articulosObsoletos()
     {
         // TODO: Implement guardaCiente() method.
         try {
-            $eliminarArticulo = "DELETE FROM articulo_tbl WHERE id_Articulo='$idArticulo'";
+            $eliminarArticulo = "DELETE FROM articulo_tbl WHERE id_Contrato <> id_ContratoTemp";
 
             if ($this->conexion->query($eliminarArticulo) === TRUE) {
                 $verdad = 1;
@@ -134,7 +132,6 @@ class sqlContratoDAO
         //return $verdad;
         echo $verdad;
     }
-
     public function buscarContrato($contrato, $nombre, $celular)
     {
         $datos = array();

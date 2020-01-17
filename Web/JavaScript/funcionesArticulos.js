@@ -32,7 +32,6 @@ function Limpiar() {
 
 //Agrega articulos a la tabla
 function Agregar() {
-
     var clienteEmpeno = $("#idClienteEmpeno").val();
     if (clienteEmpeno != 0) {
         var formElectronico = $("#idTipoElectronico").val();
@@ -98,6 +97,7 @@ function Agregar() {
 
 }
 
+//Cargar tabla Articulos
 function cargarTablaArticulo($contratoTemp) {
     if ($contratoTemp != '') {
         var dataEnviar = {

@@ -15,7 +15,8 @@ function SeleccionarInteres(tipoInteresValue) {
                     var diasPeriodo = response.result.dias;
                     if(response.result.periodo=="Mensual"){
                         var sumarMes = sumarDias(diasPeriodo);
-                        $("#idFecVencimiento").val(sumarMes);
+                        /*$("#idFecVencimiento").val(sumarMes);*/
+                        document.getElementById('idFecVencimiento').innerHTML = sumarMes;
                     }
                     $("#idPlazo").val(response.result.plazo);
                     $('#idTasaPorcen').val(response.result.tasa);

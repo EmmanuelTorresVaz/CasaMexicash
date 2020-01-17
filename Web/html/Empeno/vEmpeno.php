@@ -29,6 +29,7 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
     <script type="application/javascript">
         $(document).ready(function () {
             $('.menuContainer').load('menu.php');
+            articulosObsoletos();
             $("#divElectronicos").hide();
             $("#divMetales").show();
             $("#idFormEmpeno").trigger("reset");
@@ -64,10 +65,12 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
 <div id="contenedor" class="container">
     <div class="row">
         <div class="col col-lg-12">
-            <table border="0" width="90%" style="margin: 0 auto;">
+            <table border="0" width="80%" style="margin: 0 auto;">
                 <tbody>
                 <tr>
                     <br>
+                    <input type="button" class="btn btn-success" value="prueba"
+                           onclick="pruebaActualizar()">
                 </tr>
                 <tr>
                     <br>
@@ -77,14 +80,9 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
                         <input type="button" class="btn btn-success "
                                data-toggle="modal" data-target="#modalRegistroNuevo"
                                value="Agregar Cliente">
-                        &nbsp;
                         <input type="button" class="btn btn-success " onclick="mostrarTodos()"
                                value="Ver todos">
-                        &nbsp;
                         <input type="button" class="btn btn-success" value="Historial" onclick="historial();">
-
-                                                    <input type="button" class="btn btn-success" value="prueba"
-                                                           onclick="pruebaActualizar()">
                     </td>
                     <td colspan="12">
                         <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="20"
@@ -104,12 +102,12 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
                         $sql = new sqlContratoDAO();
                         $contrato = $sql->buscarContratoTemp();
                         $contrato = $contrato + 1;
-                        echo "<br/><input type='text' name='contratoTemp' id='idContratoTemp' disabled value='$contrato'><br/>";
+                        echo "<label id='idContratoTemp'>$contrato</label>";
                         ?>
                     </td>
                     <td colspan="6" class="border border-dark">
                         <label for="vence">Vence:</label>
-                        <input id="idFecVencimiento" name="fecVencimiento" type="text" disabled/>
+                        <label id="idFecVencimiento"></label>
                     </td>
                 </tr>
                 <tr>

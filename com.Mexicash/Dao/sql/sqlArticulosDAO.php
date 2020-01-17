@@ -165,13 +165,17 @@ class sqlArticulosDAO
         try {
             $eliminarArticulo = "DELETE FROM articulo_tbl WHERE id_Articulo='$idArticulo'";
 
-            if ($this->conexion->query($eliminarArticulo) === TRUE) {
-                $verdad = 1;
+            if ($ps = $this->conexion->prepare($eliminarArticulo)) {
+                if ($ps->execute()) {
+                    $verdad =  mysqli_stmt_affected_rows($ps);
+                } else {
+                    $verdad = -1;
+                }
             } else {
-                $verdad = 2;
+                $verdad = -1;
             }
         } catch (Exception $exc) {
-            $verdad = 4;
+            $verdad = -1;
             echo $exc->getMessage();
         } finally {
             $this->db->closeDB();

@@ -1,3 +1,4 @@
+//Genera contrato
 function generarContrato() {
     var clienteEmpeno = $("#idClienteEmpeno").val();
     var tipoInteres = $("#tipoInteresEmpeno").val();
@@ -79,11 +80,10 @@ function consultarContratos() {
     }
     return retorno;
 }
-
 //Agrega articulos a la tabla
 function actualizarArticulo() {
     var dataEnviar = {
-        "contratoTemp":  $("#idContratoTemp").val()
+        "contratoTemp": $("#idContratoTemp").val()
     };
     $.ajax({
         data: dataEnviar,
@@ -92,22 +92,34 @@ function actualizarArticulo() {
         beforeSend: function () {
         },
         success: function (response) {
-            if (response == -1||response==0) {
+            if (response == -1 || response == 0) {
                 alertify.error("Error al agregar articulos al contrato.");
             } else {
                 $("#idFormEmpeno")[0].reset();
                 alertify.success("Articulos agregados al contrato.");
-                setTimeout(' location.reload();',700)
+                setTimeout(' location.reload();', 700)
             }
         },
     })
 
 
 }
-
+//Agrega articulos obsololetos
+function articulosObsoletos() {
+    $.ajax({
+        url: '../../../com.Mexicash/Controlador/ArticulosObsoletos.php',
+        type: 'post',
+        success: function (response) {
+            if (response == -1 || response == 0) {
+                alertify.error("Error 0001.");
+            } else {
+                $("#idFormEmpeno")[0].reset();
+                alertify.success("Agregue articulos a la lista.");
+            }
+        },
+    })
+}
 
 function pruebaActualizar() {
-
-
-
+alert($("#idFecVencimiento").val());
 }
