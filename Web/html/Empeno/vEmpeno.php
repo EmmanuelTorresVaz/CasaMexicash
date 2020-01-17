@@ -45,7 +45,6 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
             z-index: 9999;
             width: 206px;
         }
-
         #suggestionsNombreEmpeno .suggest-element {
             background-color: #EEEEEE;
             border-top: 1px solid #d6d4d4;
@@ -54,7 +53,9 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
             width: 100%;
             float: left;
         }
-
+        .textArea{
+            resize:none;
+        }
     </style>
 </head>
 <body>
@@ -65,12 +66,13 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
     <div id="contenedor" class="container">
         <div class="row">
             <div class="col col-lg-12">
-                <table border="0" width="80%" style="margin: 0 auto;">
+                <table border="0" width="100%" style="margin: 0 auto;">
                     <tbody>
                     <tr>
-                        <br>
+                        <td colspan="3">
                         <input type="button" class="btn btn-success" value="prueba"
                                onclick="pruebaActualizar()">
+                        </td>
                     </tr>
                     <tr>
                         <br>
@@ -154,7 +156,7 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
                     <tr>
                         <td colspan="12">
                             <input type="text" name="celularEmpeno" placeholder="" id="idCelularEmpeno"
-                                   style="width: 100px"
+                                   style="width: 120px"
                                    required disabled/>
                         </td>
                         <td colspan="4" class="border border-dark ">
@@ -181,7 +183,7 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
                     </tr>
                     <tr>
                         <td colspan="12" rowspan="2" name="direccionEmpeno">
-                                    <textarea rows="2" cols="45" id="idDireccionEmpeno" disabled>
+                                    <textarea rows="3" cols="43" id="idDireccionEmpeno" class="textArea" disabled>
                                     </textarea>
                         </td>
                         <td colspan="3" class="border border-dark">
@@ -253,27 +255,24 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
         </div>
         <div class="row">
             <div class="col col-lg-12">
-                <table border="0" width="90%" style="margin: 0 auto;">
-                    <tr>
-                        <td colspan="3">
-                            <br>
-                        </td>
-                    </tr>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-lg-4" >
+                <table width="80%" class="border border-primary">
                     <tr>
                         <td class="border border-primary" align="center">
                             <input type="button" class="btn btn-primary" value="Metales"
                                    onclick="Limpiar(), Metales();">
                         </td>
                         <td class="border border-primary" align="center">
-                            <input type="button" class="btn btn-primary" value=" Electronicos/Varios"
+                            <input type="button" class="btn btn-primary" value="Electronicos/Varios"
                                    onclick="Limpiar(), Electronicos();">
-                        </td>
-                        <td align="right" rowspan="2" valign="top">
-                            <div id="divTablaArticulos" class="col col-lg-12 "></div>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">
+                        <td colspan="3" class="border border-primary">
                             <div id="divMetales">
                                 <table>
                                     <tbody class="text-body" align="left">
@@ -377,7 +376,7 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
                                         </td>
                                     <tr>
                                         <td colspan="12" name="detallePrenda">
-                                    <textarea rows="4" cols="35" id="idDetallePrenda">
+                                    <textarea rows="3" cols="30" id="idDetallePrenda" class="textArea">
                                     </textarea>
                                         </td>
                                     </tr>
@@ -479,7 +478,7 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
                                     </tr>
                                     <tr>
                                         <td colspan="12" name="detallePrendaE">
-                                    <textarea rows="4" cols="35" id="idDetallePrendaElectronico">
+                                    <textarea rows="3" cols="30" id="idDetallePrendaElectronico" class="textArea">
                                     </textarea>
                                         </td>
                                     </tr>
@@ -495,14 +494,25 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
                         <td>
                             <input type="button" class="btn btn-success" value="Agregar a la lista" onclick="Agregar()">
                         </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="divTablaArticulos" class="col col-lg-8">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-lg-12" class="border border-primary" >
+                <table width="100%" border="1">
+                    <tr>
                         <td align="right">
                             <input type="button" class="btn btn-primary" value="Generar" onclick="generarContrato()">&nbsp;
+                        </td>
+                        <td align="right">
+                            <input type="button" class="btn btn-primary" value="Salir" onclick="paginaPrincipal()">&nbsp;
                         </td>
                     </tr>
                 </table>
             </div>
-        </div>
-        <div class="row">
             <br>
             <br>
             <br>

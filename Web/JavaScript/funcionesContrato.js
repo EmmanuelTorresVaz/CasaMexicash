@@ -97,7 +97,7 @@ function actualizarArticulo() {
             } else {
                 $("#idFormEmpeno")[0].reset();
                 alertify.success("Articulos agregados al contrato.");
-                setTimeout(' location.reload();', 700)
+                setTimeout('location.reload();', 700)
             }
         },
     })
@@ -114,7 +114,7 @@ function articulosObsoletos() {
                 alertify.error("Error 0001.");
             } else {
                 $("#idFormEmpeno")[0].reset();
-                alertify.success("Agregue articulos a la lista.");
+                alertify.success("Bienvenidos");
             }
         },
     })
@@ -122,4 +122,8 @@ function articulosObsoletos() {
 
 function pruebaActualizar() {
 alert($("#idFecVencimiento").val());
+}
+
+function paginaPrincipal() {
+    location.reload();
 }
