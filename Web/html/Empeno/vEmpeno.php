@@ -102,7 +102,9 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                                    value="Editar" onclick="modalEditarCliente($('#idClienteEmpeno').val())" disabled>
                         </td>
                         <td colspan="3">
-                            <input type="button" class="btn btn-success" value="Historial" onclick="historial();">
+                            <input type="button" class="btn btn-warning "
+                                   data-toggle="modal" data-target="#modalHistorial" id="btnEditar"
+                                   value="Historial" onclick="historial($('#idClienteEmpeno').val())" >
                         </td>
                         <td colspan="3">
                             <input type="button" class="btn btn-success "

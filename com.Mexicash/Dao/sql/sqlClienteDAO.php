@@ -467,4 +467,43 @@ WHERE id_Cliente = '$idClienteEditar'";
 
         echo json_encode($datos);
     }
+
+    public function historial($clienteEmpeno)
+    {
+        $datos = array();
+        try {
+            $buscar = "SELECT Con.id_Contrato as Contrato,Con.id_Cliente as Cliente,CONCAT (Cli.nombre, ' ',Cli.apellido_Pat,' ', Cli.apellido_Mat) as NombreCompleto,
+                        Inte.tasa_interes as Interes, Con.fecha_Vencimiento as FechaVenc, Con.fecha_creacion as FechaCreac, Con.observaciones as Observ, Art.tipo as ArtTipo, Est.descripcion as EstDesc,Art.detalle as Detalle
+                        FROM contrato_tbl as Con
+                        INNER JOIN cliente_tbl as Cli on Con.id_Cliente = Cli.id_Cliente 
+                        INNER JOIN cat_interes as Inte on Con.id_Interes = Inte.id_interes 
+                        INNER JOIN articulo_tbl as Art on Con.id_Contrato = Art.id_Contrato
+                        INNER JOIN cat_estatus as Est on Art.id_Estatus = Est.id_Estatus WHERE Con.id_Cliente=$clienteEmpeno";
+
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "Contrato" => $row["Contrato"],
+                        "Cliente" => $row["Cliente"],
+                        "NombreCompleto" => $row["NombreCompleto"],
+                        "Interes" => $row["Interes"],
+                        "FechaVenc" => $row["FechaVenc"],
+                        "FechaCreac" => $row["FechaCreac"],
+                        "Observ" => $row["Observ"],
+                        "ArtTipo" => $row["ArtTipo"],
+                        "EstDesc" => $row["EstDesc"],
+                        "Detalle" => $row["Detalle"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        echo json_encode($datos);
+    }
 }

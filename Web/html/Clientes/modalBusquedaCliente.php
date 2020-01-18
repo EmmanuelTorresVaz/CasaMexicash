@@ -118,10 +118,9 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                         </tbody>
                     </table>
                 </div>
-                <div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
             </div>
             <div class="modal-footer">
-                <input type="button" class="btn btn-secondary" data-dismiss="modal"
+                <input type="button" class="btn btn-danger" data-dismiss="modal"
                        value="Salir">
             </div>
         </div>

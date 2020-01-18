@@ -157,8 +157,62 @@ function mostrarTodos($idNombres) {
 }
 
 //Funcion ver el historial de un cliente
-function historial() {
-    alert("Funcion historial");
+function historial($clienteEmpeno) {
+    $('#suggestionsNombreEmpeno').fadeOut(1000);
+    if ($clienteEmpeno == '' || $clienteEmpeno == null) {
+        alert("Por seleccione un cliente.")
+    } else {
+        var dataEnviar = {
+            "clienteEmpeno": $clienteEmpeno
+        };
+        $.ajax({
+            type: "POST",
+            url: '../../../com.Mexicash/Controlador/Cliente/Historial.php',
+            data: dataEnviar,
+            dataType: "json",
+            success: function (datos) {
+                var html = '';
+                var i = 0;
+                for (i; i < datos.length; i++) {
+                    var id_Cliente = datos[i].Cliente;
+                    var contrato = datos[i].Contrato;
+                    var NombreCompleto = datos[i].NombreCompleto;
+                    var Interes = datos[i].Interes;
+                    var FechaVenc = datos[i].FechaVenc;
+                    var FechaCreac = datos[i].FechaCreac;
+                    var Observ = datos[i].Observ;
+                    var ArtTipo = datos[i].ArtTipo;
+                    var EstDesc = datos[i].EstDesc;
+                    var Detalle = datos[i].Detalle;
+
+                    if (NombreCompleto === null) {NombreCompleto = '';}
+                    if (Interes === null) {Interes = '';}
+                    if (FechaVenc === null) {FechaVenc = '';}
+                    if (NombreCompleto === null) {NombreCompleto = '';}
+                    if (FechaVenc === null) {FechaVenc = '';}
+                    if (FechaCreac === null) {FechaCreac = '';}
+                    if (Observ === null) {Observ = '';}
+                    if (ArtTipo === null) {ArtTipo = '';}
+                    if (EstDesc === null) {EstDesc = '';}
+                    if (NombreCompleto === null) {NombreCompleto = '';}
+                    if (Detalle === null) {Detalle = '';}
+
+                    html += '<tr>' +
+                        '<td>' + contrato + '</td>' +
+                        '<td>' + NombreCompleto + '</td>' +
+                        '<td>' + Interes + '</td>' +
+                        '<td>' + FechaVenc + '</td>' +
+                        '<td>' + FechaCreac + '</td>' +
+                        '<td>' + Observ + '</td>' +
+                        '<td>' + ArtTipo + '</td>' +
+                        '<td>' + EstDesc + '</td>' +
+                        '<td>' + Detalle + '</td>' +
+                        '</tr>';
+                }
+                $('#idTBodyHistorial').html(html);
+            }
+        });
+    }
 }
 
 //Funcion autocompletar nombre de cliente
@@ -534,3 +588,4 @@ function salirModalBusquedaCliente($nameModal) {
     $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
     $('.modal-backdrop').remove();//eliminamos el backdrop del modal
 }
+
