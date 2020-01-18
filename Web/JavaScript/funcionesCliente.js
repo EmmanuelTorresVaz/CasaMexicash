@@ -1,3 +1,4 @@
+//Funcion agregar cliente
 function agregarCliente() {
     //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
     var idNombre = $("#idNombre").val();
@@ -97,15 +98,70 @@ function agregarCliente() {
     }
 
 }
-
-function mostrarTodos() {
-    alert("Funcion mostrar todo");
+//Funcion para traer datos de cliente agregado
+function buscarClienteAgregado() {
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/Cliente/BuscarClienteAgregado.php',
+        dataType: "json",
+        success: function (response) {
+            if (response.status == 'ok') {
+                $("#idClienteEmpeno").val(response.result.id_Cliente);
+                $("#idNombres").val(response.result.NombreCompleto);
+                $("#idCelularEmpeno").val(response.result.celular);
+                $("#idDireccionEmpeno").val(response.result.direccionCompleta);
+                $("#btnEditar").prop('disabled', false);
+            }
+        }
+    });
 }
 
+//Funcion mostrar todos los clientes con un mismo nombre
+function mostrarTodos($idNombres) {
+    $('#suggestionsNombreEmpeno').fadeOut(1000);
+    if ($idNombres == '' || $idNombres == null) {
+        alert("Por favor escribe un nombre.")
+    } else {
+        var dataEnviar = {
+            "$idNombres": $idNombres
+        };
+        $.ajax({
+            type: "POST",
+            url: '../../../com.Mexicash/Controlador/Cliente/VerTodos.php',
+            data: dataEnviar,
+            dataType: "json",
+            success: function (datos) {
+                    var html = '';
+                    var i = 0;
+                    for (i; i < datos.length; i++) {
+                        var id_Cliente = datos[i].id_Cliente;
+                        var NombreCompleto = datos[i].NombreCompleto;
+                        var celular = datos[i].celular;
+                        var direccionCompleta = datos[i].direccionCompleta;
+                        if (NombreCompleto === null) {NombreCompleto = '';}
+                        if (celular === null) {celular = '';}
+                        if (direccionCompleta === null) {direccionCompleta = '';}
+
+                        html += '<tr>' +
+                            '<td>' + NombreCompleto + '</td>' +
+                            '<td>' + celular + '</td>' +
+                            '<td>' + direccionCompleta + '</td>' +
+                            '<td><input type="button" class="btn btn-info" value="Seleccionar" ' +
+                            'onclick="buscarClienteEditado(' + id_Cliente + '), salirModalBusquedaCliente()"></td>' +
+                            '</tr>';
+                    }
+                    $('#idTBodyVerTodos').html(html);
+                }
+        });
+    }
+}
+
+//Funcion ver el historial de un cliente
 function historial() {
     alert("Funcion historial");
 }
 
+//Funcion autocompletar nombre de cliente
 function nombreAutocompletar() {
     $('#idNombres').on('keyup', function () {
         var key = $('#idNombres').val();
@@ -143,6 +199,7 @@ function nombreAutocompletar() {
     });
 }
 
+//funcion limpiar modal registro
 function LimpiarRegistroCliente() {
     $("#idNombre").val("");
     $("#idApPat").val("");
@@ -168,12 +225,15 @@ function LimpiarRegistroCliente() {
     $("#idMensajeInterno").val("");
 }
 
+//Funcion modal Editar cliente
 function modalEditarCliente($clienteEmpeno) {
+    alert($clienteEmpeno),
+    $("#idFormRegistro")[0].reset();
     $("#idClienteEditar").val($clienteEmpeno);
-    if($clienteEmpeno==''||$clienteEmpeno==null){
+    if ($clienteEmpeno == '' || $clienteEmpeno == null) {
         alert("Por favor selecciona un cliente.")
-    }else {
-        $("#idClienteEditar").val($clienteEmpeno);
+    } else {
+        alert($clienteEmpeno);
         var dataEnviar = {
             "idClienteEditar": $clienteEmpeno
         };
@@ -330,7 +390,7 @@ function confirmarActualizacion() {
         $('.modal-backdrop').remove();//eliminamos el backdrop del modal
         $("#btnEditar").prop('disabled', true);
 
-    }else{
+    } else {
         alertify.confirm('Actualizar',
             'Confirme actualizacion del cliente.',
             function () {
@@ -343,6 +403,7 @@ function confirmarActualizacion() {
 
 }
 
+//Actualizar el cliente
 function actualizarCliente() {
     //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
     var idNombre = $("#idNombreEdit").val();
@@ -358,7 +419,7 @@ function actualizarCliente() {
     var idCalle = $("#idCalleEdit").val();
     var idNumExt = $("#idNumExtEdit").val();
     var validacion = true;
-     if (idNombre == "" || idNombre == null) {
+    if (idNombre == "" || idNombre == null) {
         alert("Por favor ingrese un nombre.");
         validacion = false;
     } else if (idApPat == "" || idApPat == null) {
@@ -399,7 +460,7 @@ function actualizarCliente() {
 
     if (validacion == true) {
         var dataEnviar = {
-            "idClienteEditar" : $("#idClienteEditar").val(),
+            "idClienteEditar": $("#idClienteEditar").val(),
             "idNombre": idNombre,
             "idApPat": idApPat,
             "idApMat": $("#idApMatEdit").val(),
@@ -445,25 +506,10 @@ function actualizarCliente() {
 }
 
 
-function buscarClienteAgregado() {
-    $.ajax({
-        type: "POST",
-        url: '../../../com.Mexicash/Controlador/Cliente/BuscarClienteAgregado.php',
-        dataType: "json",
-        success: function (response) {
-            if (response.status == 'ok') {
-                $("#idClienteEmpeno").val(response.result.id_Cliente);
-                $("#idNombres").val(response.result.NombreCompleto);
-                $("#idCelularEmpeno").val(response.result.celular);
-                $("#idDireccionEmpeno").val(response.result.direccionCompleta);
-                $("#btnEditar").prop('disabled', false);
-            }
-        }
-    });
-}
+//Funcion traer datos de cliente Editado y seleccionado
 function buscarClienteEditado($clienteEditado) {
     var dataEnviar = {
-        "$clienteEditado" : $clienteEditado
+        "$clienteEditado": $clienteEditado
     };
     $.ajax({
         data: dataEnviar,
@@ -472,7 +518,7 @@ function buscarClienteEditado($clienteEditado) {
         dataType: "json",
         success: function (response) {
             if (response.status == 'ok') {
-                $("#idClienteEmpeno").val(response.result.id_Cliente);
+                $("#idClienteEmpeno").val($clienteEditado);
                 $("#idNombres").val(response.result.NombreCompleto);
                 $("#idCelularEmpeno").val(response.result.celular);
                 $("#idDireccionEmpeno").val(response.result.direccionCompleta);
@@ -480,4 +526,11 @@ function buscarClienteEditado($clienteEditado) {
             }
         }
     });
+}
+
+//Funcion salir
+function salirModalBusquedaCliente($nameModal) {
+    $("#modalBusquedaCliente").modal('hide');//ocultamos el modal
+    $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
+    $('.modal-backdrop').remove();//eliminamos el backdrop del modal
 }

@@ -5,6 +5,8 @@ include_once(SQL_PATH . "sqlInteresesDAO.php");
 include_once(SQL_PATH . "sqlArticulosDAO.php");
 include_once(SQL_PATH . "sqlContratoDAO.php");
 include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
+include_once(HTML_PATH . "Clientes/modalHistorial.php");
+include_once(HTML_PATH . "Clientes/modalBusquedaCliente.php");
 include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
 
 ?>
@@ -63,6 +65,9 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
         .headt td {
             height: 35px;
         }
+        .inputCliente {
+            text-transform: uppercase;
+        }
 
     </style>
 </head>
@@ -97,11 +102,12 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                                    value="Editar" onclick="modalEditarCliente($('#idClienteEmpeno').val())" disabled>
                         </td>
                         <td colspan="3">
-                            <input type="button" class="btn btn-success " onclick="mostrarTodos()"
-                                   value="Ver todos">
+                            <input type="button" class="btn btn-success" value="Historial" onclick="historial();">
                         </td>
                         <td colspan="3">
-                            <input type="button" class="btn btn-success" value="Historial" onclick="historial();">
+                            <input type="button" class="btn btn-success "
+                                   data-toggle="modal" data-target="#modalBusquedaCliente" onclick="mostrarTodos($('#idNombres').val())"
+                                   value="Ver todos">
                         </td>
                     </tr>
                     <tr>
@@ -112,7 +118,7 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                     <tr>
                         <td colspan="12">
                             <div>
-                                <input id="idNombres" name="Nombres" type="text" style="width: 350px"
+                                <input id="idNombres" name="Nombres" type="text" style="width: 350px" class="inputCliente"
                                        onkeypress="nombreAutocompletar()" placeholder="Buscar Cliente..."/>
                             </div>
                             <div id="suggestionsNombreEmpeno"></div>

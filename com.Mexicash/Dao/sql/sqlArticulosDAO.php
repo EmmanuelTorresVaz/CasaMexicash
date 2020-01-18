@@ -99,7 +99,6 @@ class sqlArticulosDAO
             $buscar = "SELECT id_Articulo, marca, estado, modelo, prestamo,avaluo, detalle FROM articulo_tbl WHERE id_ContratoTemp='$idContratoTemp'";
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
-
                 while ($row = $rs->fetch_assoc()) {
                     $data = [
                         "id_Articulo" => $row["id_Articulo"],

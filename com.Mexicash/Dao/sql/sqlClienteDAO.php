@@ -271,6 +271,7 @@ INNER JOIN cat_municipio ON cliente_tbl.municipio = cat_municipio.id_Municipio A
 INNER JOIN cat_localidad ON cliente_tbl.localidad = cat_localidad.id_Localidad AND cliente_tbl.estado = cat_localidad.id_Estado AND cliente_tbl.municipio = cat_localidad.id_Municipio
 WHERE
     id_Cliente = '$idClienteEditar'";
+
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
 
@@ -435,5 +436,35 @@ WHERE id_Cliente = '$idClienteEditar'";
         }
         echo json_encode($data);
 
+    }
+
+    public function verTodos($idNombres)
+    {
+        $datos = array();
+        try {
+            $buscar = "SELECT id_Cliente, CONCAT (nombre, ' ',apellido_Pat,' ', apellido_Mat) as NombreCompleto, celular , CONCAT (calle, ', ',num_interior, ', ',num_exterior, ', ',  cat_localidad.descripcion, ', ',cat_municipio.descripcion,', ',cat_estado.descripcion ) as direccionCompleta FROM cliente_tbl " .
+                " INNER JOIN cat_estado on cliente_tbl.estado = cat_estado.id_Estado " .
+                " INNER JOIN cat_municipio on cliente_tbl.municipio = cat_municipio.id_Municipio and cliente_tbl.estado = cat_municipio.id_Estado  " .
+                " INNER JOIN cat_localidad on cliente_tbl.localidad = cat_localidad.id_Localidad and cliente_tbl.estado = cat_localidad.id_Estado and cliente_tbl.municipio = cat_localidad.id_Municipio" .
+                " WHERE nombre LIKE '%" . strip_tags($idNombres) . "%' ";
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_Cliente" => $row["id_Cliente"],
+                        "NombreCompleto" => $row["NombreCompleto"],
+                        "celular" => $row["celular"],
+                        "direccionCompleta" => $row["direccionCompleta"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        echo json_encode($datos);
     }
 }
