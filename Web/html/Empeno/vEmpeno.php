@@ -74,9 +74,7 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
 <body>
 <form id="idFormEmpeno" name="formEmpeno">
     <div class="menuContainer"></div>
-    <div class="container-fluid" id="tablaExtras"
-         style="position: absolute; display: none; top: 10%; left: 0%; padding-left: 4vw; height: 70vh; border: 1px solid black; background-color: white; z-index: 3"></div>
-    <div id="contenedor" class="container">
+  <div id="contenedor" class="container">
         <div>
             <br>
             <br>
@@ -543,7 +541,7 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                 <br>
             </div>
             <div class="col col-lg-5">
-                <input type="button" class="btn btn-success" value="prueba" onclick="buscarClienteEditado($('#idClienteEditar'))">
+                <input type="button" class="btn btn-success" value="prueba" onclick="location.href='pruebas.php'">
                 <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
                 <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
                 <input type="button" class="btn btn-primary" value="Generar" onclick="generarContrato()">&nbsp;

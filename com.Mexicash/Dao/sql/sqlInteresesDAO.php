@@ -42,7 +42,34 @@ class sqlInteresesDAO
         $datos = array();
 
         try {
-            $buscar = "SELECT id_interes, tasa_interes FROM cat_interes";
+            $buscar = "SELECT id_interes, tasa_interes FROM cat_interes WHERE tablaInteres='PRENDA'";
+            $rs = $this->conexion->query($buscar);
+
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_interes" => $row["id_interes"],
+                        "tasa_interes" => $row["tasa_interes"]
+                    ];
+
+                    array_push($datos, $data);
+                }
+            }
+
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        return $datos;
+    }
+
+    function llenarCmbTipoInteresAutos(){
+        $datos = array();
+
+        try {
+            $buscar = "SELECT id_interes, tasa_interes FROM cat_interes WHERE tablaInteres='AUTO'";
             $rs = $this->conexion->query($buscar);
 
             if ($rs->num_rows > 0) {

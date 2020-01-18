@@ -46,7 +46,7 @@
                 <tr>
                     <td align="left" width="50%">
                         <br>
-                        <input type="button" class="btn btn-info btn-lg w-100" value="Empeño" onclick="location.href='vInicio.php'">
+                        <input type="button" class="btn btn-info btn-lg w-100" value="Empeño" onclick="location.href='vEmpeno.php'">
                         <br>
                     </td>
                     <td align="center">
@@ -57,7 +57,7 @@
                 <tr>
                     <td align="left">
                         <br>
-                        <input type="button" class="btn btn-info btn-lg w-100" value="Autos">
+                        <input type="button" class="btn btn-info btn-lg w-100" value="Autos"  onclick="location.href='vAuto.php'">
                         <br>
                     </td>
                     <td align="center">
@@ -90,7 +90,7 @@
                 <tr>
                     <td align="left">
                         <br>
-                        <input type="button" class="btn btn-info btn-lg w-100" value="Conulta">
+                        <input type="button" class="btn btn-info btn-lg w-100" value="Conulta" onclick="location.href='vConsulta.php'">
                         <br>
                     </td>
                     <td align="center">
