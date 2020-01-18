@@ -291,6 +291,9 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
             <div class="col col-lg-4 border border-primary border-left-0">
                 <table width="100%">
                     <tr>
+                        <br>
+                    </tr>
+                    <tr>
                         <td align="center">
                             <input type="button" class="btn btn-primary" value="Metales"
                                    onclick="Limpiar(), Metales();">
