@@ -433,6 +433,7 @@ function actualizarCliente() {
                     $("#modalEditarNuevo").modal('hide');//ocultamos el modal
                     $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
                     $('.modal-backdrop').remove();//eliminamos el backdrop del modal
+                    buscarClienteEditado($("#idClienteEditar").val());
                     alertify.success("Cliente actualizado.");
                 } else {
                     alertify.error("Error al actualizar cliente.");
@@ -448,11 +449,30 @@ function buscarClienteAgregado() {
     $.ajax({
         type: "POST",
         url: '../../../com.Mexicash/Controlador/Cliente/BuscarClienteAgregado.php',
+        dataType: "json",
         success: function (response) {
-            alert(response)
             if (response.status == 'ok') {
-                document.getElementById('idTipoInteres').innerHTML =response.result.tipoInteres;
-                $("#idClienteEmpeno").val(response.result.idCliente);
+                $("#idClienteEmpeno").val(response.result.id_Cliente);
+                $("#idNombres").val(response.result.NombreCompleto);
+                $("#idCelularEmpeno").val(response.result.celular);
+                $("#idDireccionEmpeno").val(response.result.direccionCompleta);
+                $("#btnEditar").prop('disabled', false);
+            }
+        }
+    });
+}
+function buscarClienteEditado($clienteEditado) {
+    var dataEnviar = {
+        "$clienteEditado" : $clienteEditado
+    };
+    $.ajax({
+        data: dataEnviar,
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/Cliente/BuscarClienteEditado.php',
+        dataType: "json",
+        success: function (response) {
+            if (response.status == 'ok') {
+                $("#idClienteEmpeno").val(response.result.id_Cliente);
                 $("#idNombres").val(response.result.NombreCompleto);
                 $("#idCelularEmpeno").val(response.result.celular);
                 $("#idDireccionEmpeno").val(response.result.direccionCompleta);
