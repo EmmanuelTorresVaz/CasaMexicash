@@ -13,7 +13,7 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Refrendo</title>
+    <title>Desempe&ntilde;o</title>
     <link rel="stylesheet" type="text/css" href="../../librerias/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/alertify.css"/>
     <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/themes/default.css"/>
@@ -192,6 +192,12 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                     <tr>
                         <td colspan="3">
                         </td>
+                    </tr>
+                    <tr>
+                        <td ><h1>Si esta en almoneda</h1></td>
+                        <td colspan="2">
+                        </td>
+
                     </tr>
                 </table>
             </div>

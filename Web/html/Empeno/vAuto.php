@@ -31,12 +31,6 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
     <script type="application/javascript">
         $(document).ready(function () {
             $('.menuContainer').load('menu.php');
-            articulosObsoletos();
-            $("#divElectronicos").hide();
-            $("#divMetales").show();
-            $("#idFormEmpeno").trigger("reset");
-            $("#divTablaArticulos").load('tablaArticulos.php');
-            $("#btnEditar").prop('disabled', true);
         });
     </script>
     <style type="text/css">

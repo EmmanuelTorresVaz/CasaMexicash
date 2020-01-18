@@ -68,7 +68,7 @@
                 <tr>
                     <td align="left">
                         <br>
-                        <input type="button" class="btn btn-info btn-lg w-100" value="Desempeño">
+                        <input type="button" class="btn btn-info btn-lg w-100" value="Desempeño" onclick="location.href='vDesempeno.php'">
                         <br>
                     </td>
                     <td align="center">
