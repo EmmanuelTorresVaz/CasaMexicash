@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
 include_once(MODELO_PATH . "Articulo.php");
 include_once(BASE_PATH . "Conexion.php");
@@ -23,12 +24,11 @@ class sqlArticulosDAO
 
            // $idCliente = $articulo->getCliente();
             $status = 1;
-            date_default_timezone_set('America/Mexico_City');
-
-            $fechaCreacion = date('Y-m-d h:i:s', time());
-            $fechaModificacion = date('Y-m-d h:i:s', time());
+            $fechaCreacion = date('Y-m-d H:i:s');
+            $fechaModificacion = date('Y-m-d H:i:s');
+            $usuario = $_SESSION["idUsuario"];
             $contratoTemp = $articulo->getContratoTemp();
-            $usuario = 1;
+
             if($tipoPost=="1"){
                 $idTipoM = $articulo->getTipoM();
                 $idPrenda = $articulo->getPrenda();
@@ -96,7 +96,8 @@ class sqlArticulosDAO
     {
         $datos = array();
         try {
-            $buscar = "SELECT id_Articulo, marca, estado, modelo, prestamo,avaluo, detalle FROM articulo_tbl WHERE id_ContratoTemp='$idContratoTemp'";
+            $usuario = $_SESSION["idUsuario"];
+            $buscar = "SELECT id_Articulo, marca, estado, modelo, prestamo,avaluo, detalle FROM articulo_tbl WHERE id_ContratoTemp='$idContratoTemp' and usuario=" .$usuario;
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
                 while ($row = $rs->fetch_assoc()) {

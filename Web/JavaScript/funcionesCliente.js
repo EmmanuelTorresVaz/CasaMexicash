@@ -83,6 +83,7 @@ function agregarCliente() {
             url: '../../../com.Mexicash/Controlador/Cliente/RegistroCliente.php',
             type: 'post',
             success: function (response) {
+                alert(response)
                 if (response == 1) {
                     $("#idFormRegistro")[0].reset();
                     $("#modalRegistroNuevo").modal('hide');//ocultamos el modal

@@ -8,7 +8,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
 
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Registro Clientes</title>
+    <title>Mexicash</title>
     <link rel="stylesheet" href="../../style/less/main.css"/>
     <link rel="stylesheet" type="text/css" href="../../librerias/bootstrap/css/bootstrap.css">
     <link href="../../style/css/magicsuggest/magicsuggest-min.css" rel="stylesheet">

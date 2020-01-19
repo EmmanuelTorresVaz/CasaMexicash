@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -7,21 +6,6 @@
     <link rel="stylesheet" href="../style/less/main.css" type="text/css">
     <link rel="stylesheet" href="../style/less/pagPrincipal.css" type="text/css">
     <title>Acceder</title>
-
-    <script>
-        function ventana(opc) {
-            switch (opc) {
-                case 1:
-                    window.open("Reportes/vInventarioFisico.php" , "Inventario Fisico" , "width=500,height=210,scrollbars=NO");
-                    break;
-                case 2:
-                    window.open("Reportes/vReporteAlmoneda.php" , "Inventario Fisico" , "width=500,height=210,scrollbars=NO");
-                    break;
-            }
-
-        }
-    </script>
-
 </head>
 <body>
 
@@ -86,12 +70,8 @@
                     <a href="Empeno/vConsulta.php">
                         <i class="fa fa-gear"></i>
                         <strong>Consultas</strong>
-                        <small>+m&aacute;s</small>
+
                     </a>
-                    <ul>
-                        <li><a href="#"><i class="fa fa-plus-square"></i>Por nombre</a></li>
-                        <li><a href="#"><i class="fa fa-user-plus" ></i>Por Contrato</a></li>
-                    </ul>
                 </li>
                 <li>
                     <a href="Empeno/vAuto.php">

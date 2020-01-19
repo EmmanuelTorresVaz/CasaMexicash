@@ -1,9 +1,5 @@
 <?php
-
-//include_once  "C:\\xampp\htdocs\Mexicash\com.Mexicash\Modelo\Usuario.php";
-//include_once  "C:\\xampp\htdocs\Mexicash\com.Mexicash\Base\Conexion.php";
-//include_once  "C:\\xampp\htdocs\Mexicash\com.Mexicash\Servicios\Errores.php";
-//include_once  "C:\\xampp\htdocs\Mexicash\com.Mexicash\Dao\UsuarioDAO.php";
+session_start();
 
 include_once ($_SERVER['DOCUMENT_ROOT'].'/dirs.php');
 include_once (MODELO_PATH."Usuario.php");
@@ -70,13 +66,16 @@ class sqlUsuarioDAO
         try {
             $id = -1;
 
-            $buscar = "select id_User  from usuarios_tbl ";
+            $buscar = "select id_User,usuario  from usuarios_tbl ";
 
             $statement = $this->conexion->query($buscar);
 
             if ($statement->num_rows > 0) {
                 $fila = $statement->fetch_object();
                 $id = $fila->id_User;
+                $idName = $fila->usuario;
+                $_SESSION['idUsuario'] = $id;
+                $_SESSION['usuario'] = $idName;
             }
 
         } catch (Exception $exc) {

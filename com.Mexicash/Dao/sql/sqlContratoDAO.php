@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
 include_once(MODELO_PATH . "Contrato.php");
 include_once(BASE_PATH . "Conexion.php");
@@ -35,9 +36,9 @@ class sqlContratoDAO
             $destFolio = $contrato->getDestFolio();
             $estatus = $contrato->getEstatus();
             $observaciones = $contrato->getObservaciones();
-            $usuario = $contrato->getUsuario();
-            $fechaCreacion = date('d-m-Y');
-            $fechaModificacion = date('d-m-Y');
+            $fechaCreacion = date('Y-m-d H:i:s');
+            $fechaModificacion = date('Y-m-d H:i:s');
+            $usuario = $_SESSION["idUsuario"];
 
             $insertaContrato = "INSERT INTO contrato_tbl " .
                 "(id_Contrato, id_Cliente, id_Interes, folio, fecha_Vencimiento, total_Avaluo, total_Prestamo, abono, intereses, pago,  " .
@@ -69,7 +70,7 @@ class sqlContratoDAO
         // TODO: Implement guardaCiente() method.
         try {
 
-            $updateArticulo = "UPDATE articulo_tbl SET id_Contrato='$contrato'  WHERE id_ContratoTemp='$contrato'";
+            $updateArticulo = "UPDATE articulo_tbl SET id_Contrato='$contrato' WHERE id_ContratoTemp='$contrato'";
 
             if ($ps = $this->conexion->prepare($updateArticulo)) {
                 if ($ps->execute()) {

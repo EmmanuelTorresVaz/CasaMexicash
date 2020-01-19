@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
 include_once(MODELO_PATH . "Cliente.php");
 include_once(MODELO_PATH . "ClienteActualizar.php");
@@ -44,9 +45,9 @@ class sqlClienteDAO
             $idNumInt = $clienteData->getNumInterior();
             $idPromocion = $clienteData->getPromocion();
             $idMensajeInterno = $clienteData->getMensajeInterno();
-            $fechaCreacion = date('d-m-Y');
-            $fechaModificacion = date('d-m-Y');
-            $usuario = 1;
+            $fechaCreacion = date('Y-m-d H:i:s');
+            $fechaModificacion = date('Y-m-d H:i:s');
+            $usuario = $_SESSION["idUsuario"];
 
             $insertCliente = "INSERT INTO cliente_tbl (nombre, apellido_Pat, apellido_Mat, sexo, fecha_Nacimiento, curp," .
                 " ocupacion, tipo_Identificacion, num_Identificacion, celular, rfc, telefono, correo, estado, codigo_Postal," .
@@ -55,7 +56,7 @@ class sqlClienteDAO
                 " '" . $idOcupacion . "', '" . $idIdentificacion . "', '" . $idNumIdentificacion . "', '" . $idCelular . "', '" . $idRfc . "', " .
                 "'" . $idTelefono . "', '" . $idCorreo . "', '" . $idEstado . "', '" . $idCP . "', '" . $idMunicipio . "', '" . $idLocalidad . "', " .
                 "'" . $idCalle . "'," . " '" . $idNumExt . "', '" . $idNumInt . "', '" . $idMensajeInterno . "', '" . $idPromocion . "', " .
-                "'" . $fechaCreacion . "', '" . $fechaModificacion . "', '". $usuario."')";
+                "'" . $fechaCreacion . "', '" . $fechaModificacion . "', '". $usuario . "')";
 
             if ($ps = $this->conexion->prepare($insertCliente)) {
                 if ($ps->execute()) {
@@ -341,8 +342,8 @@ WHERE
             $idNumInt = $clienteData->getNumInterior();
             $idPromocion = $clienteData->getPromocion();
             $idMensajeInterno = $clienteData->getMensajeInterno();
-            $fechaModificacion = date('d-m-Y');
-            $usuario = 1;
+            $fechaModificacion = date('Y-m-d H:i:s');
+            $usuario = $_SESSION["idUsuario"];
             $updateCliente = "UPDATE cliente_tbl
 SET
     nombre = '$idNombre',
