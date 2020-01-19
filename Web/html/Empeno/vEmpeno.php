@@ -264,11 +264,13 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                         <td colspan="6" class="table-info border border-dark">Total Préstamo</td>
                     </tr>
                     <tr class="headt">
-                        <td colspan="6" class="border border-dark">
-                            <label id="idTotalAvaluo"></label>
+                        <td colspan="6" class="border border-dark" align="right">
+                            <input id="idTotalAvaluo" name="totalAvaluo" type="text" style="width: 150px"
+                                   class="inputCliente"/>
                         </td>
-                        <td colspan="6" class="border border-dark">
-                            <label id="idTotalPrestamo"></label>
+                        <td colspan="6" class="border border-dark" align="right">
+                            <input id="idTotalPrestamo" name="totalPrestamo" type="text" style="width: 150px"
+                                   class="inputCliente"/>
                         </td>
                     </tr>
                     <tr class="headt">

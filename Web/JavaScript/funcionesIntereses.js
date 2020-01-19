@@ -15,7 +15,6 @@ function SeleccionarInteres(tipoInteresValue) {
                     var diasPeriodo = response.result.dias;
                     if(response.result.periodo=="Mensual"){
                         var sumarMes = sumarDias(diasPeriodo);
-                        /*$("#idFecVencimiento").val(sumarMes);*/
                         document.getElementById('idFecVencimiento').innerHTML = sumarMes;
                     }
                     document.getElementById('idPlazo').innerHTML =response.result.plazo;
@@ -25,6 +24,12 @@ function SeleccionarInteres(tipoInteresValue) {
                     document.getElementById('idIvaPorcen').innerHTML =response.result.iva + " %";
                     document.getElementById('idTipoPromocion').innerHTML =response.result.tipo_Promocion;
                     document.getElementById('idAgrupamiento').innerHTML =response.result.tipo_Agrupamiento;
+                    $("#idTotalAvaluo").val('0.00');
+                    $("#idTotalPrestamo").val('0.00');
+                    if(tipoInteresValue==3){
+                        $("#idPoliza").val('0.00');
+                        $("#idGPS").val("0.00");
+                    }
                 }
             },
         })

@@ -559,7 +559,6 @@ function actualizarCliente() {
 
 }
 
-
 //Funcion traer datos de cliente Editado y seleccionado
 function buscarClienteEditado($clienteEditado) {
     var dataEnviar = {

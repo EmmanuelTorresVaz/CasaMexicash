@@ -21,7 +21,6 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
     <script src="../../librerias/jquery/jquery-3.4.1.min.js"></script>
     <script src="../../librerias/bootstrap/js/bootstrap.js"></script>
     <script src="../../librerias/alertifyjs/alertify.js"></script>
-    <script src="../../JavaScript/funcionesArticulos.js"></script>
     <script src="../../JavaScript/funcionesIntereses.js"></script>
     <script src="../../JavaScript/funcionesCliente.js"></script>
     <script src="../../JavaScript/funcionesContrato.js"></script>
@@ -67,7 +66,7 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
     </style>
 </head>
 <body>
-<form id="idForm>uto" name="formEmpeno">
+<form id="idFormAuto" name="formAuto">
     <div class="menuContainer"></div>
     <div id="contenedor" class="container">
         <div>
@@ -180,8 +179,8 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                 </table>
             </div>
             <div class="col col-lg-6 border border-primary border-left-0">
-                <table border="0" width="100%" class="tableInteres">
-                    <tbody>
+                <table border="0" width="80%" class="tableInteres">
+                    <tbody align="left">
                     <tr>
                         <br>
                     </tr>
@@ -225,14 +224,14 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                         <td colspan="4" class="table-info border border-dark">Plazo</td>
                     </tr>
                     <tr class="headt">
-                        <td colspan="4" class="border border-dark ">
+                        <td colspan="4" class="border border-dark " align="center">
                             <label id="idTipoInteres"></label>
                             <br>
                         </td>
-                        <td colspan="4" class="border border-dark">
+                        <td colspan="4" class="border border-dark" align="center">
                             <label id="idPeriodo"></label>
                         </td>
-                        <td colspan="4" class="border border-dark">
+                        <td colspan="4" class="border border-dark" align="center">
                             <label id="idPlazo"></label>
                         </td>
                     </tr>
@@ -243,16 +242,16 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                         <td colspan="3" class="table-info border border-dark">% I.V.A.</td>
                     </tr>
                     <tr class="headt">
-                        <td colspan="3" class="border border-dark">
+                        <td colspan="3" class="border border-dark"  align="center">
                             <label id="idTasaPorcen"></label>
                         </td>
-                        <td colspan="3" class="border border-dark">
+                        <td colspan="3" class="border border-dark" align="center">
                             <label id="idAlmPorcen"></label>
                         </td>
-                        <td colspan="3" class="border border-dark">
+                        <td colspan="3" class="border border-dark" align="center">
                             <label id="idSeguroPorcen"></label>
                         </td>
-                        <td colspan="3" class="border border-dark">
+                        <td colspan="3" class="border border-dark" align="center">
                             <label id="idIvaPorcen"></label>
                         </td>
                     </tr>
@@ -261,11 +260,13 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                         <td colspan="6" class="table-info border border-dark">Total Préstamo</td>
                     </tr>
                     <tr class="headt">
-                        <td colspan="6" class="border border-dark">
-                            <label id="idTotalAvaluo"></label>
+                        <td colspan="6" class="border border-dark" align="center">
+                            <input id="idTotalAvaluo" name="totalAvaluo" type="double" style="width: 150px; text-align:right;"
+                                   class="inputCliente"/>
                         </td>
-                        <td colspan="6" class="border border-dark">
-                            <label id="idTotalPrestamo"></label>
+                        <td colspan="6" class="border border-dark" align="center">
+                            <input id="idTotalPrestamo" name="totalPrestamo" type="double" style="width: 150px; text-align:right;"
+                                   class="inputCliente"/>
                         </td>
                     </tr>
                     <tr class="headt">
@@ -282,14 +283,16 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                     </tr>
                     <tr class="headt">
                         <td colspan="6" class="table-info border border-dark">Costo Poliza Seguro:</td>
-                        <td colspan="6" class="border border-dark">
-                            <label id="idPoliza"></label>
+                        <td colspan="6" class="border border-dark" align="center" >
+                            <input id="idPoliza" name="poliza" type="text" style="width: 150px; text-align:right;"
+                                   class="inputCliente"/>
                         </td>
                     </tr>
                     <tr class="headt">
                         <td colspan="6" class="table-info border border-dark">Costo GPS:</td>
-                        <td colspan="6" class="border border-dark">
-                            <label id="idGPS"></label>
+                        <td colspan="6" class="border border-dark" align="center">
+                            <input id="idGPS" name="gps" type="text" style="width: 150px; text-align:right;"
+                                   class="inputCliente"/>
                         </td>
                     </tr>
                     </tbody>
@@ -339,8 +342,8 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                     <tr>
                         <td colspan="2">
                             <select id="idTipoVehiculo" name="cmbVehiculo" class="selectpicker">
-                                <option value="0">Seleccione:</option>
-                                <option value="1">Auto:</option>
+                                <option value="1">Seleccione:</option>
+                                <option value="1">Auto</option>
                             </select>
                         </td>
                         <td colspan="2">
@@ -523,7 +526,7 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                                    style="text-align:left"/>
                         </td>
                         <td colspan="2">
-                            <input type="text" id="idFechaVenc" name="fechaVenc" size="15"
+                            <input type="text" id="idFechaVencAuto" name="fechaVencAuto" size="15"
                                    style="text-align:left"/>
                         </td>
                         <td colspan="6">
@@ -538,7 +541,7 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
 
                     </tr>
                     <td colspan="10" name="observacionesAuto">
-                                    <textarea rows="2" cols="60" id="idObservacionesAuto" class="textArea" >
+                                    <textarea rows="2" cols="60" id="idObservacionesAuto" class="textArea">
                                     </textarea>
                     </td>
 
@@ -552,10 +555,10 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                 <br>
             </div>
             <div class="col col-lg-5">
-                <input type="button" class="btn btn-success" value="prueba" onclick="location.href='pruebas.php'">
+                <input type="button" class="btn btn-success" value="prueba" onclick="pruebasAuto()">
                 <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
                 <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
-                <input type="button" class="btn btn-primary" value="Generar" onclick="generarContrato()">&nbsp;
+                <input type="button" class="btn btn-primary" value="Generar" onclick="generarContratoAuto()">&nbsp;
                 <input type="button" class="btn btn-danger" value="Salir" onclick="location.href='vInicio.php'">&nbsp;
             </div>
         </div>

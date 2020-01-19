@@ -3,833 +3,229 @@
 
 class Auto
 {
-    private $idAuto;
-    private $nombreCot;
-    private $apellPCot;
-    private $apellMCot;
-    private $beneficiario;
-    private $tipoAuto;
-    private $modelo;
-    private $marca;
-    private $anio;
-    private $color;
-    private $placas;
-    private $factura;
-    private $kilometraje;
-    private $agencia;
-    private $numMotor;
-    private $serieChasis;
-    private $vin;
-    private $repuve;
-    private $gasolina;
-    private $tarjetaCirc;
-    private $tipoBlindaje;
-    private $aseguradora;
-    private $poliza;
-    private $fechaVencPoliza;
-    private $tipoPoliza;
-    private $observacionesAuto;
-    private $autoCirculacion;
-    //Documentos Entregados -- Todos booleanos
-    private $bTarjCirc;
-    private $bIfe;
-    private $bTenencia;
-    private $bPolizaSeguro;
-    private $bLicencia;
-    private $bFactura;
-    private $bImportacion;
-    //Sección de los datos del contrato del auto
-    private $tasaInteres;
-    private $tipoInteres;
-    private $periodo;
-    private $plazo;
-    private $tasa;
-    private $alm;
-    private $seguro;
-    //private $iva; el iva es constante
-    private $totalEvaluo;
+    //Contrato
+    private $idClienteAuto;
+    private $id_Interes;
+    private $folio;
+    private $fechaVencimiento;
+    private $totalAvaluo;
     private $totalPrestamo;
-    private $tipoPromocion;
-    private $tipoAgrupamiento;
-    private $ctoPolizaSeguro;
-    private $ctoGPS;
-    //Extras-------------------------------
-    private $msjInternoAuto;
-    private $comoSeEntero;
+    private $abono;
+    private $intereses;
+    private $pago;
+    private $fecha_Alm;
+    private $fecha_Movimiento;
+    private $origen_Folio;
+    private $dest_Folio;
+    private $estatus;
+    private $observaciones;
+    private $fecha_creacion;
+    private $idFecVencimiento;
+    private $usuario;
+    //Auto
+    private $idTipoVehiculo;
+    private $idMarca;
+    private $idModelo;
+    private $idAnio;
+    private $idColor;
+    private $idPlacas;
+    private $idFactura;
+    private $idKms;
+    private $idAgencia;
+    private $idMotor;
+    private $idSerie;
+    private $idVehiculo;
+    private $idRepuve;
+    private $idGasolina;
+    private $idAseguradora;
+    private $idTarjeta;
+    private $idPoliza;
+    private $idFecVencimientoAuto;
+    private $idTipoPoliza;
+    private $idObservacionesAuto;
+    private $idCheckTarjeta;
+    private $idCheckFactura;
+    private $idCheckINE;
+    private $idCheckImportacion;
+    private $idCheckTenecia;
+    private $idCheckPoliza;
+    private $idCheckLicencia;
 
     /**
      * Auto constructor.
-     * @param $nombreCot
-     * @param $apellPCot
-     * @param $apellMCot
-     * @param $beneficiario
-     * @param $tipoAuto
-     * @param $modelo
-     * @param $marca
-     * @param $anio
-     * @param $color
-     * @param $placas
-     * @param $factura
-     * @param $kilometraje
-     * @param $agencia
-     * @param $numMotor
-     * @param $serieChasis
-     * @param $vin
-     * @param $repuve
-     * @param $gasolina
-     * @param $tarjetaCirc
-     * @param $tipoBlindaje
-     * @param $aseguradora
-     * @param $poliza
-     * @param $fechaVencPoliza
-     * @param $tipoPoliza
-     * @param $observacionesAuto
-     * @param $autoCirculacion
-     * @param $bTarjCirc
-     * @param $bIfe
-     * @param $bTenencia
-     * @param $bPolizaSeguro
-     * @param $bLicencia
-     * @param $bFactura
-     * @param $bImportacion
-     * @param $tasaInteres
-     * @param $tipoInteres
-     * @param $periodo
-     * @param $plazo
-     * @param $tasa
-     * @param $alm
-     * @param $seguro
-     * @param $totalEvaluo
+     * @param $idClienteAuto
+     * @param $id_Interes
+     * @param $folio
+     * @param $fechaVencimiento
+     * @param $totalAvaluo
      * @param $totalPrestamo
-     * @param $tipoPromocion
-     * @param $tipoAgrupamiento
-     * @param $ctoPolizaSeguro
-     * @param $ctoGPS
-     * @param $msjInternoAuto
-     * @param $comoSeEntero
+     * @param $abono
+     * @param $intereses
+     * @param $pago
+     * @param $fecha_Alm
+     * @param $fecha_Movimiento
+     * @param $origen_Folio
+     * @param $dest_Folio
+     * @param $estatus
+     * @param $observaciones
+     * @param $fecha_creacion
+     * @param $idFecVencimiento
+     * @param $usuario
+     * @param $idTipoVehiculo
+     * @param $idMarca
+     * @param $idModelo
+     * @param $idAnio
+     * @param $idColor
+     * @param $idPlacas
+     * @param $idFactura
+     * @param $idKms
+     * @param $idAgencia
+     * @param $idMotor
+     * @param $idSerie
+     * @param $idVehiculo
+     * @param $idRepuve
+     * @param $idGasolina
+     * @param $idAseguradora
+     * @param $idTarjeta
+     * @param $idPoliza
+     * @param $idFecVencimientoAuto
+     * @param $idTipoPoliza
+     * @param $idObservacionesAuto
+     * @param $idCheckTarjeta
+     * @param $idCheckFactura
+     * @param $idCheckINE
+     * @param $idCheckImportacion
+     * @param $idCheckTenecia
+     * @param $idCheckPoliza
+     * @param $idCheckLicencia
      */
-    public function __construct($nombreCot, $apellPCot, $apellMCot, $beneficiario, $tipoAuto, $modelo, $marca, $anio, $color, $placas, $factura, $kilometraje, $agencia, $numMotor, $serieChasis, $vin, $repuve, $gasolina, $tarjetaCirc, $tipoBlindaje, $aseguradora, $poliza, $fechaVencPoliza, $tipoPoliza, $observacionesAuto, $autoCirculacion, $bTarjCirc, $bIfe, $bTenencia, $bPolizaSeguro, $bLicencia, $bFactura, $bImportacion, $tasaInteres, $tipoInteres, $periodo, $plazo, $tasa, $alm, $seguro, $totalEvaluo, $totalPrestamo, $tipoPromocion, $tipoAgrupamiento, $ctoPolizaSeguro, $ctoGPS, $msjInternoAuto, $comoSeEntero)
+    public function __construct($idClienteAuto, $id_Interes, $folio, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $abono, $intereses, $pago, $fecha_Alm, $fecha_Movimiento, $origen_Folio, $dest_Folio, $estatus, $observaciones, $fecha_creacion, $idFecVencimiento, $usuario, $idTipoVehiculo, $idMarca, $idModelo, $idAnio, $idColor, $idPlacas, $idFactura, $idKms, $idAgencia, $idMotor, $idSerie, $idVehiculo, $idRepuve, $idGasolina, $idAseguradora, $idTarjeta, $idPoliza, $idFecVencimientoAuto, $idTipoPoliza, $idObservacionesAuto, $idCheckTarjeta, $idCheckFactura, $idCheckINE, $idCheckImportacion, $idCheckTenecia, $idCheckPoliza, $idCheckLicencia)
     {
-        $this->nombreCot = $nombreCot;
-        $this->apellPCot = $apellPCot;
-        $this->apellMCot = $apellMCot;
-        $this->beneficiario = $beneficiario;
-        $this->tipoAuto = $tipoAuto;
-        $this->modelo = $modelo;
-        $this->marca = $marca;
-        $this->anio = $anio;
-        $this->color = $color;
-        $this->placas = $placas;
-        $this->factura = $factura;
-        $this->kilometraje = $kilometraje;
-        $this->agencia = $agencia;
-        $this->numMotor = $numMotor;
-        $this->serieChasis = $serieChasis;
-        $this->vin = $vin;
-        $this->repuve = $repuve;
-        $this->gasolina = $gasolina;
-        $this->tarjetaCirc = $tarjetaCirc;
-        $this->tipoBlindaje = $tipoBlindaje;
-        $this->aseguradora = $aseguradora;
-        $this->poliza = $poliza;
-        $this->fechaVencPoliza = $fechaVencPoliza;
-        $this->tipoPoliza = $tipoPoliza;
-        $this->observacionesAuto = $observacionesAuto;
-        $this->autoCirculacion = $autoCirculacion;
-        $this->bTarjCirc = $bTarjCirc;
-        $this->bIfe = $bIfe;
-        $this->bTenencia = $bTenencia;
-        $this->bPolizaSeguro = $bPolizaSeguro;
-        $this->bLicencia = $bLicencia;
-        $this->bFactura = $bFactura;
-        $this->bImportacion = $bImportacion;
-        $this->tasaInteres = $tasaInteres;
-        $this->tipoInteres = $tipoInteres;
-        $this->periodo = $periodo;
-        $this->plazo = $plazo;
-        $this->tasa = $tasa;
-        $this->alm = $alm;
-        $this->seguro = $seguro;
-        $this->totalEvaluo = $totalEvaluo;
+        $this->idClienteAuto = $idClienteAuto;
+        $this->id_Interes = $id_Interes;
+        $this->folio = $folio;
+        $this->fechaVencimiento = $fechaVencimiento;
+        $this->totalAvaluo = $totalAvaluo;
         $this->totalPrestamo = $totalPrestamo;
-        $this->tipoPromocion = $tipoPromocion;
-        $this->tipoAgrupamiento = $tipoAgrupamiento;
-        $this->ctoPolizaSeguro = $ctoPolizaSeguro;
-        $this->ctoGPS = $ctoGPS;
-        $this->msjInternoAuto = $msjInternoAuto;
-        $this->comoSeEntero = $comoSeEntero;
+        $this->abono = $abono;
+        $this->intereses = $intereses;
+        $this->pago = $pago;
+        $this->fecha_Alm = $fecha_Alm;
+        $this->fecha_Movimiento = $fecha_Movimiento;
+        $this->origen_Folio = $origen_Folio;
+        $this->dest_Folio = $dest_Folio;
+        $this->estatus = $estatus;
+        $this->observaciones = $observaciones;
+        $this->fecha_creacion = $fecha_creacion;
+        $this->idFecVencimiento = $idFecVencimiento;
+        $this->usuario = $usuario;
+        $this->idTipoVehiculo = $idTipoVehiculo;
+        $this->idMarca = $idMarca;
+        $this->idModelo = $idModelo;
+        $this->idAnio = $idAnio;
+        $this->idColor = $idColor;
+        $this->idPlacas = $idPlacas;
+        $this->idFactura = $idFactura;
+        $this->idKms = $idKms;
+        $this->idAgencia = $idAgencia;
+        $this->idMotor = $idMotor;
+        $this->idSerie = $idSerie;
+        $this->idVehiculo = $idVehiculo;
+        $this->idRepuve = $idRepuve;
+        $this->idGasolina = $idGasolina;
+        $this->idAseguradora = $idAseguradora;
+        $this->idTarjeta = $idTarjeta;
+        $this->idPoliza = $idPoliza;
+        $this->idFecVencimientoAuto = $idFecVencimientoAuto;
+        $this->idTipoPoliza = $idTipoPoliza;
+        $this->idObservacionesAuto = $idObservacionesAuto;
+        $this->idCheckTarjeta = $idCheckTarjeta;
+        $this->idCheckFactura = $idCheckFactura;
+        $this->idCheckINE = $idCheckINE;
+        $this->idCheckImportacion = $idCheckImportacion;
+        $this->idCheckTenecia = $idCheckTenecia;
+        $this->idCheckPoliza = $idCheckPoliza;
+        $this->idCheckLicencia = $idCheckLicencia;
     }
 
     /**
      * @return mixed
      */
-    public function getIdAuto()
+    public function getIdClienteAuto()
     {
-        return $this->idAuto;
+        return $this->idClienteAuto;
     }
 
     /**
-     * @param mixed $idAuto
+     * @param mixed $idClienteAuto
      */
-    public function setIdAuto($idAuto): void
+    public function setIdClienteAuto($idClienteAuto): void
     {
-        $this->idAuto = $idAuto;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNombreCot()
-    {
-        return $this->nombreCot;
-    }
-
-    /**
-     * @param mixed $nombreCot
-     */
-    public function setNombreCot($nombreCot): void
-    {
-        $this->nombreCot = $nombreCot;
+        $this->idClienteAuto = $idClienteAuto;
     }
 
     /**
      * @return mixed
      */
-    public function getApellPCot()
+    public function getIdInteres()
     {
-        return $this->apellPCot;
+        return $this->id_Interes;
     }
 
     /**
-     * @param mixed $apellPCot
+     * @param mixed $id_Interes
      */
-    public function setApellPCot($apellPCot): void
+    public function setIdInteres($id_Interes): void
     {
-        $this->apellPCot = $apellPCot;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getApellMCot()
-    {
-        return $this->apellMCot;
-    }
-
-    /**
-     * @param mixed $apellMCot
-     */
-    public function setApellMCot($apellMCot): void
-    {
-        $this->apellMCot = $apellMCot;
+        $this->id_Interes = $id_Interes;
     }
 
     /**
      * @return mixed
      */
-    public function getBeneficiario()
+    public function getFolio()
     {
-        return $this->beneficiario;
+        return $this->folio;
     }
 
     /**
-     * @param mixed $beneficiario
+     * @param mixed $folio
      */
-    public function setBeneficiario($beneficiario): void
+    public function setFolio($folio): void
     {
-        $this->beneficiario = $beneficiario;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTipoAuto()
-    {
-        return $this->tipoAuto;
-    }
-
-    /**
-     * @param mixed $tipoAuto
-     */
-    public function setTipoAuto($tipoAuto): void
-    {
-        $this->tipoAuto = $tipoAuto;
+        $this->folio = $folio;
     }
 
     /**
      * @return mixed
      */
-    public function getModelo()
+    public function getFechaVencimiento()
     {
-        return $this->modelo;
+        return $this->fechaVencimiento;
     }
 
     /**
-     * @param mixed $modelo
+     * @param mixed $fechaVencimiento
      */
-    public function setModelo($modelo): void
+    public function setFechaVencimiento($fechaVencimiento): void
     {
-        $this->modelo = $modelo;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMarca()
-    {
-        return $this->marca;
-    }
-
-    /**
-     * @param mixed $marca
-     */
-    public function setMarca($marca): void
-    {
-        $this->marca = $marca;
+        $this->fechaVencimiento = $fechaVencimiento;
     }
 
     /**
      * @return mixed
      */
-    public function getAnio()
+    public function getTotalAvaluo()
     {
-        return $this->anio;
+        return $this->totalAvaluo;
     }
 
     /**
-     * @param mixed $anio
+     * @param mixed $totalAvaluo
      */
-    public function setAnio($anio): void
+    public function setTotalAvaluo($totalAvaluo): void
     {
-        $this->anio = $anio;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getColor()
-    {
-        return $this->color;
-    }
-
-    /**
-     * @param mixed $color
-     */
-    public function setColor($color): void
-    {
-        $this->color = $color;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPlacas()
-    {
-        return $this->placas;
-    }
-
-    /**
-     * @param mixed $placas
-     */
-    public function setPlacas($placas): void
-    {
-        $this->placas = $placas;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFactura()
-    {
-        return $this->factura;
-    }
-
-    /**
-     * @param mixed $factura
-     */
-    public function setFactura($factura): void
-    {
-        $this->factura = $factura;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getKilometraje()
-    {
-        return $this->kilometraje;
-    }
-
-    /**
-     * @param mixed $kilometraje
-     */
-    public function setKilometraje($kilometraje): void
-    {
-        $this->kilometraje = $kilometraje;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAgencia()
-    {
-        return $this->agencia;
-    }
-
-    /**
-     * @param mixed $agencia
-     */
-    public function setAgencia($agencia): void
-    {
-        $this->agencia = $agencia;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNumMotor()
-    {
-        return $this->numMotor;
-    }
-
-    /**
-     * @param mixed $numMotor
-     */
-    public function setNumMotor($numMotor): void
-    {
-        $this->numMotor = $numMotor;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSerieChasis()
-    {
-        return $this->serieChasis;
-    }
-
-    /**
-     * @param mixed $serieChasis
-     */
-    public function setSerieChasis($serieChasis): void
-    {
-        $this->serieChasis = $serieChasis;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getVin()
-    {
-        return $this->vin;
-    }
-
-    /**
-     * @param mixed $vin
-     */
-    public function setVin($vin): void
-    {
-        $this->vin = $vin;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRepuve()
-    {
-        return $this->repuve;
-    }
-
-    /**
-     * @param mixed $repuve
-     */
-    public function setRepuve($repuve): void
-    {
-        $this->repuve = $repuve;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getGasolina()
-    {
-        return $this->gasolina;
-    }
-
-    /**
-     * @param mixed $gasolina
-     */
-    public function setGasolina($gasolina): void
-    {
-        $this->gasolina = $gasolina;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTarjetaCirc()
-    {
-        return $this->tarjetaCirc;
-    }
-
-    /**
-     * @param mixed $tarjetaCirc
-     */
-    public function setTarjetaCirc($tarjetaCirc): void
-    {
-        $this->tarjetaCirc = $tarjetaCirc;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTipoBlindaje()
-    {
-        return $this->tipoBlindaje;
-    }
-
-    /**
-     * @param mixed $tipoBlindaje
-     */
-    public function setTipoBlindaje($tipoBlindaje): void
-    {
-        $this->tipoBlindaje = $tipoBlindaje;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAseguradora()
-    {
-        return $this->aseguradora;
-    }
-
-    /**
-     * @param mixed $aseguradora
-     */
-    public function setAseguradora($aseguradora): void
-    {
-        $this->aseguradora = $aseguradora;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPoliza()
-    {
-        return $this->poliza;
-    }
-
-    /**
-     * @param mixed $poliza
-     */
-    public function setPoliza($poliza): void
-    {
-        $this->poliza = $poliza;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFechaVencPoliza()
-    {
-        return $this->fechaVencPoliza;
-    }
-
-    /**
-     * @param mixed $fechaVencPoliza
-     */
-    public function setFechaVencPoliza($fechaVencPoliza): void
-    {
-        $this->fechaVencPoliza = $fechaVencPoliza;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTipoPoliza()
-    {
-        return $this->tipoPoliza;
-    }
-
-    /**
-     * @param mixed $tipoPoliza
-     */
-    public function setTipoPoliza($tipoPoliza): void
-    {
-        $this->tipoPoliza = $tipoPoliza;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getObservacionesAuto()
-    {
-        return $this->observacionesAuto;
-    }
-
-    /**
-     * @param mixed $observacionesAuto
-     */
-    public function setObservacionesAuto($observacionesAuto): void
-    {
-        $this->observacionesAuto = $observacionesAuto;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAutoCirculacion()
-    {
-        return $this->autoCirculacion;
-    }
-
-    /**
-     * @param mixed $autoCirculacion
-     */
-    public function setAutoCirculacion($autoCirculacion): void
-    {
-        $this->autoCirculacion = $autoCirculacion;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBTarjCirc()
-    {
-        return $this->bTarjCirc;
-    }
-
-    /**
-     * @param mixed $bTarjCirc
-     */
-    public function setBTarjCirc($bTarjCirc): void
-    {
-        $this->bTarjCirc = $bTarjCirc;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBIfe()
-    {
-        return $this->bIfe;
-    }
-
-    /**
-     * @param mixed $bIfe
-     */
-    public function setBIfe($bIfe): void
-    {
-        $this->bIfe = $bIfe;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBTenencia()
-    {
-        return $this->bTenencia;
-    }
-
-    /**
-     * @param mixed $bTenencia
-     */
-    public function setBTenencia($bTenencia): void
-    {
-        $this->bTenencia = $bTenencia;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBPolizaSeguro()
-    {
-        return $this->bPolizaSeguro;
-    }
-
-    /**
-     * @param mixed $bPolizaSeguro
-     */
-    public function setBPolizaSeguro($bPolizaSeguro): void
-    {
-        $this->bPolizaSeguro = $bPolizaSeguro;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBLicencia()
-    {
-        return $this->bLicencia;
-    }
-
-    /**
-     * @param mixed $bLicencia
-     */
-    public function setBLicencia($bLicencia): void
-    {
-        $this->bLicencia = $bLicencia;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBFactura()
-    {
-        return $this->bFactura;
-    }
-
-    /**
-     * @param mixed $bFactura
-     */
-    public function setBFactura($bFactura): void
-    {
-        $this->bFactura = $bFactura;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBImportacion()
-    {
-        return $this->bImportacion;
-    }
-
-    /**
-     * @param mixed $bImportacion
-     */
-    public function setBImportacion($bImportacion): void
-    {
-        $this->bImportacion = $bImportacion;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTasaInteres()
-    {
-        return $this->tasaInteres;
-    }
-
-    /**
-     * @param mixed $tasaInteres
-     */
-    public function setTasaInteres($tasaInteres): void
-    {
-        $this->tasaInteres = $tasaInteres;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTipoInteres()
-    {
-        return $this->tipoInteres;
-    }
-
-    /**
-     * @param mixed $tipoInteres
-     */
-    public function setTipoInteres($tipoInteres): void
-    {
-        $this->tipoInteres = $tipoInteres;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPeriodo()
-    {
-        return $this->periodo;
-    }
-
-    /**
-     * @param mixed $periodo
-     */
-    public function setPeriodo($periodo): void
-    {
-        $this->periodo = $periodo;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPlazo()
-    {
-        return $this->plazo;
-    }
-
-    /**
-     * @param mixed $plazo
-     */
-    public function setPlazo($plazo): void
-    {
-        $this->plazo = $plazo;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTasa()
-    {
-        return $this->tasa;
-    }
-
-    /**
-     * @param mixed $tasa
-     */
-    public function setTasa($tasa): void
-    {
-        $this->tasa = $tasa;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAlm()
-    {
-        return $this->alm;
-    }
-
-    /**
-     * @param mixed $alm
-     */
-    public function setAlm($alm): void
-    {
-        $this->alm = $alm;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSeguro()
-    {
-        return $this->seguro;
-    }
-
-    /**
-     * @param mixed $seguro
-     */
-    public function setSeguro($seguro): void
-    {
-        $this->seguro = $seguro;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTotalEvaluo()
-    {
-        return $this->totalEvaluo;
-    }
-
-    /**
-     * @param mixed $totalEvaluo
-     */
-    public function setTotalEvaluo($totalEvaluo): void
-    {
-        $this->totalEvaluo = $totalEvaluo;
+        $this->totalAvaluo = $totalAvaluo;
     }
 
     /**
@@ -851,99 +247,626 @@ class Auto
     /**
      * @return mixed
      */
-    public function getTipoPromocion()
+    public function getAbono()
     {
-        return $this->tipoPromocion;
+        return $this->abono;
     }
 
     /**
-     * @param mixed $tipoPromocion
+     * @param mixed $abono
      */
-    public function setTipoPromocion($tipoPromocion): void
+    public function setAbono($abono): void
     {
-        $this->tipoPromocion = $tipoPromocion;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTipoAgrupamiento()
-    {
-        return $this->tipoAgrupamiento;
-    }
-
-    /**
-     * @param mixed $tipoAgrupamiento
-     */
-    public function setTipoAgrupamiento($tipoAgrupamiento): void
-    {
-        $this->tipoAgrupamiento = $tipoAgrupamiento;
+        $this->abono = $abono;
     }
 
     /**
      * @return mixed
      */
-    public function getCtoPolizaSeguro()
+    public function getIntereses()
     {
-        return $this->ctoPolizaSeguro;
+        return $this->intereses;
     }
 
     /**
-     * @param mixed $ctoPolizaSeguro
+     * @param mixed $intereses
      */
-    public function setCtoPolizaSeguro($ctoPolizaSeguro): void
+    public function setIntereses($intereses): void
     {
-        $this->ctoPolizaSeguro = $ctoPolizaSeguro;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCtoGPS()
-    {
-        return $this->ctoGPS;
-    }
-
-    /**
-     * @param mixed $ctoGPS
-     */
-    public function setCtoGPS($ctoGPS): void
-    {
-        $this->ctoGPS = $ctoGPS;
+        $this->intereses = $intereses;
     }
 
     /**
      * @return mixed
      */
-    public function getMsjInternoAuto()
+    public function getPago()
     {
-        return $this->msjInternoAuto;
+        return $this->pago;
     }
 
     /**
-     * @param mixed $msjInternoAuto
+     * @param mixed $pago
      */
-    public function setMsjInternoAuto($msjInternoAuto): void
+    public function setPago($pago): void
     {
-        $this->msjInternoAuto = $msjInternoAuto;
+        $this->pago = $pago;
     }
 
     /**
      * @return mixed
      */
-    public function getComoSeEntero()
+    public function getFechaAlm()
     {
-        return $this->comoSeEntero;
+        return $this->fecha_Alm;
     }
 
     /**
-     * @param mixed $comoSeEntero
+     * @param mixed $fecha_Alm
      */
-    public function setComoSeEntero($comoSeEntero): void
+    public function setFechaAlm($fecha_Alm): void
     {
-        $this->comoSeEntero = $comoSeEntero;
+        $this->fecha_Alm = $fecha_Alm;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getFechaMovimiento()
+    {
+        return $this->fecha_Movimiento;
+    }
+
+    /**
+     * @param mixed $fecha_Movimiento
+     */
+    public function setFechaMovimiento($fecha_Movimiento): void
+    {
+        $this->fecha_Movimiento = $fecha_Movimiento;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrigenFolio()
+    {
+        return $this->origen_Folio;
+    }
+
+    /**
+     * @param mixed $origen_Folio
+     */
+    public function setOrigenFolio($origen_Folio): void
+    {
+        $this->origen_Folio = $origen_Folio;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDestFolio()
+    {
+        return $this->dest_Folio;
+    }
+
+    /**
+     * @param mixed $dest_Folio
+     */
+    public function setDestFolio($dest_Folio): void
+    {
+        $this->dest_Folio = $dest_Folio;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEstatus()
+    {
+        return $this->estatus;
+    }
+
+    /**
+     * @param mixed $estatus
+     */
+    public function setEstatus($estatus): void
+    {
+        $this->estatus = $estatus;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getObservaciones()
+    {
+        return $this->observaciones;
+    }
+
+    /**
+     * @param mixed $observaciones
+     */
+    public function setObservaciones($observaciones): void
+    {
+        $this->observaciones = $observaciones;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFechaCreacion()
+    {
+        return $this->fecha_creacion;
+    }
+
+    /**
+     * @param mixed $fecha_creacion
+     */
+    public function setFechaCreacion($fecha_creacion): void
+    {
+        $this->fecha_creacion = $fecha_creacion;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdFecVencimiento()
+    {
+        return $this->idFecVencimiento;
+    }
+
+    /**
+     * @param mixed $idFecVencimiento
+     */
+    public function setIdFecVencimiento($idFecVencimiento): void
+    {
+        $this->idFecVencimiento = $idFecVencimiento;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+    /**
+     * @param mixed $usuario
+     */
+    public function setUsuario($usuario): void
+    {
+        $this->usuario = $usuario;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdTipoVehiculo()
+    {
+        return $this->idTipoVehiculo;
+    }
+
+    /**
+     * @param mixed $idTipoVehiculo
+     */
+    public function setIdTipoVehiculo($idTipoVehiculo): void
+    {
+        $this->idTipoVehiculo = $idTipoVehiculo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdMarca()
+    {
+        return $this->idMarca;
+    }
+
+    /**
+     * @param mixed $idMarca
+     */
+    public function setIdMarca($idMarca): void
+    {
+        $this->idMarca = $idMarca;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdModelo()
+    {
+        return $this->idModelo;
+    }
+
+    /**
+     * @param mixed $idModelo
+     */
+    public function setIdModelo($idModelo): void
+    {
+        $this->idModelo = $idModelo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdAnio()
+    {
+        return $this->idAnio;
+    }
+
+    /**
+     * @param mixed $idAnio
+     */
+    public function setIdAnio($idAnio): void
+    {
+        $this->idAnio = $idAnio;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdColor()
+    {
+        return $this->idColor;
+    }
+
+    /**
+     * @param mixed $idColor
+     */
+    public function setIdColor($idColor): void
+    {
+        $this->idColor = $idColor;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdPlacas()
+    {
+        return $this->idPlacas;
+    }
+
+    /**
+     * @param mixed $idPlacas
+     */
+    public function setIdPlacas($idPlacas): void
+    {
+        $this->idPlacas = $idPlacas;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdFactura()
+    {
+        return $this->idFactura;
+    }
+
+    /**
+     * @param mixed $idFactura
+     */
+    public function setIdFactura($idFactura): void
+    {
+        $this->idFactura = $idFactura;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdKms()
+    {
+        return $this->idKms;
+    }
+
+    /**
+     * @param mixed $idKms
+     */
+    public function setIdKms($idKms): void
+    {
+        $this->idKms = $idKms;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdAgencia()
+    {
+        return $this->idAgencia;
+    }
+
+    /**
+     * @param mixed $idAgencia
+     */
+    public function setIdAgencia($idAgencia): void
+    {
+        $this->idAgencia = $idAgencia;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdMotor()
+    {
+        return $this->idMotor;
+    }
+
+    /**
+     * @param mixed $idMotor
+     */
+    public function setIdMotor($idMotor): void
+    {
+        $this->idMotor = $idMotor;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdSerie()
+    {
+        return $this->idSerie;
+    }
+
+    /**
+     * @param mixed $idSerie
+     */
+    public function setIdSerie($idSerie): void
+    {
+        $this->idSerie = $idSerie;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdVehiculo()
+    {
+        return $this->idVehiculo;
+    }
+
+    /**
+     * @param mixed $idVehiculo
+     */
+    public function setIdVehiculo($idVehiculo): void
+    {
+        $this->idVehiculo = $idVehiculo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdRepuve()
+    {
+        return $this->idRepuve;
+    }
+
+    /**
+     * @param mixed $idRepuve
+     */
+    public function setIdRepuve($idRepuve): void
+    {
+        $this->idRepuve = $idRepuve;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdGasolina()
+    {
+        return $this->idGasolina;
+    }
+
+    /**
+     * @param mixed $idGasolina
+     */
+    public function setIdGasolina($idGasolina): void
+    {
+        $this->idGasolina = $idGasolina;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdAseguradora()
+    {
+        return $this->idAseguradora;
+    }
+
+    /**
+     * @param mixed $idAseguradora
+     */
+    public function setIdAseguradora($idAseguradora): void
+    {
+        $this->idAseguradora = $idAseguradora;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdTarjeta()
+    {
+        return $this->idTarjeta;
+    }
+
+    /**
+     * @param mixed $idTarjeta
+     */
+    public function setIdTarjeta($idTarjeta): void
+    {
+        $this->idTarjeta = $idTarjeta;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdPoliza()
+    {
+        return $this->idPoliza;
+    }
+
+    /**
+     * @param mixed $idPoliza
+     */
+    public function setIdPoliza($idPoliza): void
+    {
+        $this->idPoliza = $idPoliza;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdFecVencimientoAuto()
+    {
+        return $this->idFecVencimientoAuto;
+    }
+
+    /**
+     * @param mixed $idFecVencimientoAuto
+     */
+    public function setIdFecVencimientoAuto($idFecVencimientoAuto): void
+    {
+        $this->idFecVencimientoAuto = $idFecVencimientoAuto;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdTipoPoliza()
+    {
+        return $this->idTipoPoliza;
+    }
+
+    /**
+     * @param mixed $idTipoPoliza
+     */
+    public function setIdTipoPoliza($idTipoPoliza): void
+    {
+        $this->idTipoPoliza = $idTipoPoliza;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdObservacionesAuto()
+    {
+        return $this->idObservacionesAuto;
+    }
+
+    /**
+     * @param mixed $idObservacionesAuto
+     */
+    public function setIdObservacionesAuto($idObservacionesAuto): void
+    {
+        $this->idObservacionesAuto = $idObservacionesAuto;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdCheckTarjeta()
+    {
+        return $this->idCheckTarjeta;
+    }
+
+    /**
+     * @param mixed $idCheckTarjeta
+     */
+    public function setIdCheckTarjeta($idCheckTarjeta): void
+    {
+        $this->idCheckTarjeta = $idCheckTarjeta;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdCheckFactura()
+    {
+        return $this->idCheckFactura;
+    }
+
+    /**
+     * @param mixed $idCheckFactura
+     */
+    public function setIdCheckFactura($idCheckFactura): void
+    {
+        $this->idCheckFactura = $idCheckFactura;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdCheckINE()
+    {
+        return $this->idCheckINE;
+    }
+
+    /**
+     * @param mixed $idCheckINE
+     */
+    public function setIdCheckINE($idCheckINE): void
+    {
+        $this->idCheckINE = $idCheckINE;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdCheckImportacion()
+    {
+        return $this->idCheckImportacion;
+    }
+
+    /**
+     * @param mixed $idCheckImportacion
+     */
+    public function setIdCheckImportacion($idCheckImportacion): void
+    {
+        $this->idCheckImportacion = $idCheckImportacion;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdCheckTenecia()
+    {
+        return $this->idCheckTenecia;
+    }
+
+    /**
+     * @param mixed $idCheckTenecia
+     */
+    public function setIdCheckTenecia($idCheckTenecia): void
+    {
+        $this->idCheckTenecia = $idCheckTenecia;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdCheckPoliza()
+    {
+        return $this->idCheckPoliza;
+    }
+
+    /**
+     * @param mixed $idCheckPoliza
+     */
+    public function setIdCheckPoliza($idCheckPoliza): void
+    {
+        $this->idCheckPoliza = $idCheckPoliza;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdCheckLicencia()
+    {
+        return $this->idCheckLicencia;
+    }
+
+    /**
+     * @param mixed $idCheckLicencia
+     */
+    public function setIdCheckLicencia($idCheckLicencia): void
+    {
+        $this->idCheckLicencia = $idCheckLicencia;
+    }
 
 
 }

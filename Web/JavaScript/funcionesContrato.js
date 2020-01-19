@@ -57,6 +57,7 @@ function generarContrato() {
         })
     }
 }
+
 //consultar contratos
 function consultarContratos() {
     var contratoTemporal = $("#idContratoTemp").text();
@@ -79,6 +80,7 @@ function consultarContratos() {
     }
     return retorno;
 }
+
 //Agrega articulos a la tabla
 function actualizarArticulo() {
     var dataEnviar = {
@@ -103,6 +105,7 @@ function actualizarArticulo() {
 
 
 }
+
 //Agrega articulos obsololetos
 function articulosObsoletos() {
     $.ajax({
@@ -118,13 +121,126 @@ function articulosObsoletos() {
         },
     })
 }
+
 //Reimprimir
 function reimprimir() {
-alert("Reimprimiendo..");
+    alert("Reimprimiendo..");
 }
+
 //Canelar
 function cancelar() {
     $("#idFormEmpeno")[0].reset();
+    $("#idFormAuto")[0].reset();
     alertify.success("Contrato cancelado");
 }
 
+//Contrato
+function generarContratoAuto() {
+    var clienteEmpeno = $("#idClienteEmpeno").val();
+    if (clienteEmpeno != 0) {
+        var chkTarjeta = 0;
+        var chkFActura = 0;
+        var chkIne = 0;
+        var chkImportacion = 0;
+        var chkTenencia = 0;
+        var chkPoliza = 0;
+        var chkLicencia = 0;
+        if ($('#idCheckTarjeta').is(":checked")) {
+            chkTarjeta = 1;
+        }
+        if ($('#idCheckFactura').is(":checked")) {
+            chkFActura = 1;
+        }
+        if ($('#idCheckINE').is(":checked")) {
+            chkIne = 1;
+        }
+        if ($('#idCheckImportacion').is(":checked")) {
+            chkImportacion = 1;
+        }
+        if ($('#idCheckTenecia').is(":checked")) {
+            chkTenencia = 1;
+        }
+        if ($('#idCheckPoliza').is(":checked")) {
+            chkPoliza = 1;
+        }
+        if ($('#idCheckLicencia').is(":checked")) {
+            chkLicencia = 1;
+        }
+
+
+        var dataEnviar = {
+            "idClienteAuto": clienteEmpeno,
+            "id_Interes": $("#tipoInteresEmpeno").val(),
+            "folio": '',
+            "fechaVencimiento": $("#idFecVencimiento").val(),
+            "totalAvaluo": '',
+            "totalPrestamo": '',
+            "abono": '',
+            "intereses": '',
+            "pago": '',
+            "fecha_Alm": '',
+            "fecha_Movimiento": '',
+            "origen_Folio": '',
+            "dest_Folio": '',
+            "estatus": 1,
+            "observaciones": '',
+            "fecha_creacion": '',
+            "fecha_modifiacion": '',
+            "usuario": 1,
+            "idTipoVehiculo": $("#idTipoVehiculo").val(),
+            "idMarca": $("#idMarca").val(),
+            "idModelo": $("#idModelo").val(),
+            "idAnio": $("#idAnio").val(),
+            "idColor": $("#idColor").val(),
+            "idPlacas": $("#idPlacas").val(),
+            "idFactura": $("#idFactura").val(),
+            "idKms": $("#idKms").val(),
+            "idAgencia": $("#idAgencia").val(),
+            "idMotor": $("#idMotor").val(),
+            "idSerie": $("#idChasis").val(),
+            "idVehiculo": $("#idVehiculo").val(),
+            "idRepuve": $("#idRepuve").val(),
+            "idGasolina": $("#idGasolina").val(),
+            "idAseguradora": $("#idAseguradora").val(),
+            "idTarjeta": $("#idTarjeta").val(),
+            "idPoliza": $("#idPoliza").val(),
+            "idFechaVencAuto": $("#idFechaVencAuto").val(),
+            "idTipoPoliza": $("#idTipoPoliza").val(),
+            "idObservacionesAuto": $("#idObservacionesAuto").val().trim(),
+            "idCheckTarjeta": chkTarjeta,
+            "idCheckFactura": chkFActura,
+            "idCheckINE": chkIne,
+            "idCheckImportacion": chkImportacion,
+            "idCheckTenecia": chkTenencia,
+            "idCheckPoliza": chkPoliza,
+            "idCheckLicencia": chkLicencia
+        };
+        $.ajax({
+            data: dataEnviar,
+            url: '../../../com.Mexicash/Controlador/cAuto.php',
+            type: 'post',
+            success: function (response) {
+                if (response) {
+                    $("#idFormAuto")[0].reset();
+                    alertify.success("Contrato generado exitosamente.");
+                } else {
+                    alertify.error("Error al generar contrato.");
+                }
+
+            },
+        })
+    } else {
+        alert("Por Favor. Selecciona un cliente.")
+    }
+
+}
+
+function pruebasAuto() {
+    var chkTarjeta = 0;
+    if ($('#idCheckTarjeta').is(":checked")) {
+        alert("chek")
+        chkTarjeta = 1;
+    } else {
+        alert("no")
+    }
+}
