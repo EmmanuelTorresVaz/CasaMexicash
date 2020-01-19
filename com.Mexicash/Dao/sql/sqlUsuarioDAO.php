@@ -67,22 +67,24 @@ class sqlUsuarioDAO
 
     function loginAutentificion($usuario, $pass)
     {
-        $id = -1;
         try {
-            $this->__construct();
-            $array = array();
-            $sql = "select COUNT(*) as contar from usuarios_tbl where usuario = '$usuario' and password = '$pass'";
-            $ejecutarConsulta = $this->conexion->query($sql);
-            $fila = $this->db->getArray($ejecutarConsulta);
-            $id = $fila[0];
+            $id = -1;
+
+            $buscar = "select id_User  from usuarios_tbl ";
+
+            $statement = $this->conexion->query($buscar);
+
+            if ($statement->num_rows > 0) {
+                $fila = $statement->fetch_object();
+                $id = $fila->id_User;
+            }
+
         } catch (Exception $exc) {
-            $this->error = new ErroresInfo();
-            $this->error->setError("1", $exc->getMessage(), 1);
-            $this->error->imprimirError();
+            echo $exc->getMessage();
         } finally {
             $this->db->closeDB();
         }
 
-        return $id;
+        echo $id;
     }
 }
