@@ -170,6 +170,7 @@ function Metales() {
     Limpiar();
     LimpiarInteres();
     llenarComboInteres(1);
+    articulosObsoletos();
 }
 
 //Menu Electronicos
@@ -180,6 +181,7 @@ function Electronicos() {
     Limpiar();
     LimpiarInteres();
     llenarComboInteres(2);
+    articulosObsoletos();
 }
 
 //Alerta para confirmar la Eliminacion

@@ -46,6 +46,18 @@
                         </tbody>
                     </table>
                 </div>
+                <div>
+                    <table class="table table-hover table-condensed table-bordered" width="100%">
+                        <tr>
+                            <th>Empeños Activos</th>
+                            <th>Desempeños</th>
+                            <th>Refrendos</th>
+                            <th>Almoneda</th>
+                        </tr>
+                        <tbody id="idTBodyHistorialCount">
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div class="modal-footer">
                 <input type="button" class="btn btn-danger" data-dismiss="modal"

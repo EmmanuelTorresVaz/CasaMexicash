@@ -99,6 +99,7 @@ function agregarCliente() {
     }
 
 }
+
 //Funcion para traer datos de cliente agregado
 function buscarClienteAgregado() {
     $.ajax({
@@ -132,27 +133,33 @@ function mostrarTodos($idNombres) {
             data: dataEnviar,
             dataType: "json",
             success: function (datos) {
-                    var html = '';
-                    var i = 0;
-                    for (i; i < datos.length; i++) {
-                        var id_Cliente = datos[i].id_Cliente;
-                        var NombreCompleto = datos[i].NombreCompleto;
-                        var celular = datos[i].celular;
-                        var direccionCompleta = datos[i].direccionCompleta;
-                        if (NombreCompleto === null) {NombreCompleto = '';}
-                        if (celular === null) {celular = '';}
-                        if (direccionCompleta === null) {direccionCompleta = '';}
-
-                        html += '<tr>' +
-                            '<td>' + NombreCompleto + '</td>' +
-                            '<td>' + celular + '</td>' +
-                            '<td>' + direccionCompleta + '</td>' +
-                            '<td><input type="button" class="btn btn-info" value="Seleccionar" ' +
-                            'onclick="buscarClienteEditado(' + id_Cliente + '), salirModalBusquedaCliente()"></td>' +
-                            '</tr>';
+                var html = '';
+                var i = 0;
+                for (i; i < datos.length; i++) {
+                    var id_Cliente = datos[i].id_Cliente;
+                    var NombreCompleto = datos[i].NombreCompleto;
+                    var celular = datos[i].celular;
+                    var direccionCompleta = datos[i].direccionCompleta;
+                    if (NombreCompleto === null) {
+                        NombreCompleto = '';
                     }
-                    $('#idTBodyVerTodos').html(html);
+                    if (celular === null) {
+                        celular = '';
+                    }
+                    if (direccionCompleta === null) {
+                        direccionCompleta = '';
+                    }
+
+                    html += '<tr>' +
+                        '<td>' + NombreCompleto + '</td>' +
+                        '<td>' + celular + '</td>' +
+                        '<td>' + direccionCompleta + '</td>' +
+                        '<td><input type="button" class="btn btn-info" value="Seleccionar" ' +
+                        'onclick="buscarClienteEditado(' + id_Cliente + '), salirModalBusquedaCliente()"></td>' +
+                        '</tr>';
                 }
+                $('#idTBodyVerTodos').html(html);
+            }
         });
     }
 }
@@ -163,6 +170,7 @@ function historial($clienteEmpeno) {
     if ($clienteEmpeno == '' || $clienteEmpeno == null) {
         alert("Por seleccione un cliente.")
     } else {
+
         var dataEnviar = {
             "clienteEmpeno": $clienteEmpeno
         };
@@ -186,17 +194,39 @@ function historial($clienteEmpeno) {
                     var EstDesc = datos[i].EstDesc;
                     var Detalle = datos[i].Detalle;
 
-                    if (NombreCompleto === null) {NombreCompleto = '';}
-                    if (Interes === null) {Interes = '';}
-                    if (FechaVenc === null) {FechaVenc = '';}
-                    if (NombreCompleto === null) {NombreCompleto = '';}
-                    if (FechaVenc === null) {FechaVenc = '';}
-                    if (FechaCreac === null) {FechaCreac = '';}
-                    if (Observ === null) {Observ = '';}
-                    if (ArtTipo === null) {ArtTipo = '';}
-                    if (EstDesc === null) {EstDesc = '';}
-                    if (NombreCompleto === null) {NombreCompleto = '';}
-                    if (Detalle === null) {Detalle = '';}
+                    if (NombreCompleto === null) {
+                        NombreCompleto = '';
+                    }
+                    if (Interes === null) {
+                        Interes = '';
+                    }
+                    if (FechaVenc === null) {
+                        FechaVenc = '';
+                    }
+                    if (NombreCompleto === null) {
+                        NombreCompleto = '';
+                    }
+                    if (FechaVenc === null) {
+                        FechaVenc = '';
+                    }
+                    if (FechaCreac === null) {
+                        FechaCreac = '';
+                    }
+                    if (Observ === null) {
+                        Observ = '';
+                    }
+                    if (ArtTipo === null) {
+                        ArtTipo = '';
+                    }
+                    if (EstDesc === null) {
+                        EstDesc = '';
+                    }
+                    if (NombreCompleto === null) {
+                        NombreCompleto = '';
+                    }
+                    if (Detalle === null) {
+                        Detalle = '';
+                    }
 
                     html += '<tr>' +
                         '<td>' + contrato + '</td>' +
@@ -210,10 +240,62 @@ function historial($clienteEmpeno) {
                         '<td>' + Detalle + '</td>' +
                         '</tr>';
                 }
+historialCount($clienteEmpeno);
                 $('#idTBodyHistorial').html(html);
+
+
             }
         });
+
     }
+}
+
+//Funcion ver count de historial de un cliente
+function historialCount($clienteEmpeno) {
+    var dataEnviar = {
+        "clienteEmpeno": $clienteEmpeno
+    };
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/Cliente/HistorialCount.php',
+        data: dataEnviar,
+        dataType: "json",
+        success: function (datos) {
+            var html = '';
+            var i = 0;
+            for (i; i < datos.length; i++) {
+                var TotalEmpeno = datos[i].TotalEmpeno;
+                var TotalDesem = datos[i].TotalDesem;
+                var TotalRefrendo = datos[i].TotalRefrendo;
+                var TotalAlmoneda = datos[i].TotalAlmoneda;
+
+
+                if (TotalEmpeno === null) {
+                    TotalEmpeno = '0';
+                }
+                if (TotalDesem === null) {
+                    TotalDesem = '0';
+                }
+                if (TotalRefrendo === null) {
+                    TotalRefrendo = '0';
+                }
+                if (TotalAlmoneda === null) {
+                    TotalAlmoneda = '0';
+                }
+
+                html += '<tr>' +
+                    '<td>' + TotalEmpeno + '</td>' +
+                    '<td>' + TotalDesem + '</td>' +
+                    '<td>' + TotalRefrendo + '</td>' +
+                    '<td>' + TotalAlmoneda + '</td>' +
+                    '</tr>';
+            }
+
+            $('#idTBodyHistorialCount').html(html);
+
+        }
+    });
+
 }
 
 //Funcion autocompletar nombre de cliente
@@ -283,7 +365,7 @@ function LimpiarRegistroCliente() {
 //Funcion modal Editar cliente
 function modalEditarCliente($clienteEmpeno) {
     alert($clienteEmpeno),
-    $("#idFormRegistro")[0].reset();
+        $("#idFormRegistro")[0].reset();
     $("#idClienteEditar").val($clienteEmpeno);
     if ($clienteEmpeno == '' || $clienteEmpeno == null) {
         alert("Por favor selecciona un cliente.")

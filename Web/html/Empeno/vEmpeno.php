@@ -88,9 +88,12 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
         </div>
         <div class="row">
             <div class="col col-lg-4 border border-primary ">
-                <table border="0" width="100%" style="margin: 0 auto;" >
+                <table border="0" width="100%" class="tableInteres">
                     <tbody>
                     <tr>
+                        <br>
+                    </tr>
+                    <tr class="headt">
                         <td colspan="3" >
                             <input type="button" class="btn btn-success "
                                    data-toggle="modal" data-target="#modalRegistroNuevo"
@@ -112,7 +115,7 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                                    value="Ver todos">
                         </td>
                     </tr>
-                    <tr>
+                    <tr class="headt">
                         <td colspan="12">
                             <label for="nombreCliente">Nombre:</label>
                         </td>
@@ -126,12 +129,12 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                             <div id="suggestionsNombreEmpeno"></div>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class="headt">
                         <td colspan="12">
                             <label for="celular">Celular:</label>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class="headt">
                         <td colspan="12">
                             <input type="text" name="celularEmpeno" placeholder="" id="idCelularEmpeno"
                                    style="width: 120px"
@@ -143,23 +146,23 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                             <label for="direccion">Dirección:</label>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class="headt">
                         <td colspan="12" rowspan="2" name="direccionEmpeno">
                                     <textarea rows="3" cols="43" id="idDireccionEmpeno" class="textArea" disabled>
                                     </textarea>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class="headt">
                         <td>
 
                         </td>
                     </tr>
-                    <tr>
+                    <tr class="headt">
                         <td colspan="12">
                             <label for="cotitular">Nombre Cotitular:</label>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class="headt">
                         <td colspan="12">
                             <input type="text" id="nombreCotitular" name="idNombreCotitular"
                                    style="width: 350px" required/>
@@ -174,19 +177,6 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                         <td colspan="12">
                             <input type="text" id="idNombreBen" name="idNombreBen"
                                    style="width:350px" required/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="20"
-                               style="text-align:center" class="invisible" />
-                    </tr>
-                    <tr>
-                        <input type="text" id="idLlenarComboInteres" name="llenarComboInteres" size="20"
-                               style="text-align:center" class="invisible" value="1"/>
-                    </tr>
-                    <tr>
-                        <td>
-                            <br>
                         </td>
                     </tr>
                     </tbody>
@@ -372,7 +362,8 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                                         <td colspan="6">
                                             <input type="text" id="idPiedras" name="piedras" size="6"
                                                    style="text-align:center"/>
-                                            <label>pza</label></td>
+                                            <label>pza</label>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td colspan="6">Préstamo:</td>
@@ -527,6 +518,14 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                         <td>
                             <input type="button" class="btn btn-success" value="Agregar a la lista" onclick="Agregar()">
                         </td>
+                    <td>
+                        <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="20"
+                            />
+                    </td>
+                    <td>
+                        <input type="text" id="idLlenarComboInteres" name="llenarComboInteres" size="20"
+                               class="invisible" value="1"/>
+                    </td>
                     </tr>
                 </table>
             </div>
