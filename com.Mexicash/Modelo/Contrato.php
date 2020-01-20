@@ -19,9 +19,8 @@ class Contrato
     private $dest_Folio;
     private $estatus;
     private $observaciones;
-    private $fecha_creacion;
-    private $idFecVencimiento;
-    private $usuario;
+    private $beneficiario;
+    private $cotitular;
 
     /**
      * Contrato constructor.
@@ -41,11 +40,10 @@ class Contrato
      * @param $dest_Folio
      * @param $estatus
      * @param $observaciones
-     * @param $fecha_creacion
-     * @param $idFecVencimiento
-     * @param $usuario
+     * @param $beneficiario
+     * @param $cotitular
      */
-    public function __construct($idContrato, $idCliente, $id_Interes, $folio, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $abono, $intereses, $pago, $fecha_Alm, $fecha_Movimiento, $origen_Folio, $dest_Folio, $estatus, $observaciones, $fecha_creacion, $idFecVencimiento, $usuario)
+    public function __construct($idContrato, $idCliente, $id_Interes, $folio, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $abono, $intereses, $pago, $fecha_Alm, $fecha_Movimiento, $origen_Folio, $dest_Folio, $estatus, $observaciones, $beneficiario, $cotitular)
     {
         $this->idContrato = $idContrato;
         $this->idCliente = $idCliente;
@@ -63,9 +61,8 @@ class Contrato
         $this->dest_Folio = $dest_Folio;
         $this->estatus = $estatus;
         $this->observaciones = $observaciones;
-        $this->fecha_creacion = $fecha_creacion;
-        $this->idFecVencimiento = $idFecVencimiento;
-        $this->usuario = $usuario;
+        $this->beneficiario = $beneficiario;
+        $this->cotitular = $cotitular;
     }
 
     /**
@@ -327,51 +324,34 @@ class Contrato
     /**
      * @return mixed
      */
-    public function getFechaCreacion()
+    public function getBeneficiario()
     {
-        return $this->fecha_creacion;
+        return $this->beneficiario;
     }
 
     /**
-     * @param mixed $fecha_creacion
+     * @param mixed $beneficiario
      */
-    public function setFechaCreacion($fecha_creacion): void
+    public function setBeneficiario($beneficiario): void
     {
-        $this->fecha_creacion = $fecha_creacion;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdFecVencimiento()
-    {
-        return $this->idFecVencimiento;
-    }
-
-    /**
-     * @param mixed $idFecVencimiento
-     */
-    public function setIdFecVencimiento($idFecVencimiento): void
-    {
-        $this->idFecVencimiento = $idFecVencimiento;
+        $this->beneficiario = $beneficiario;
     }
 
     /**
      * @return mixed
      */
-    public function getUsuario()
+    public function getCotitular()
     {
-        return $this->usuario;
+        return $this->cotitular;
     }
 
     /**
-     * @param mixed $usuario
+     * @param mixed $cotitular
      */
-    public function setUsuario($usuario): void
+    public function setCotitular($cotitular): void
     {
-        $this->usuario = $usuario;
+        $this->cotitular = $cotitular;
     }
-
 
 
 }

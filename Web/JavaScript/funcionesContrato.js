@@ -36,9 +36,8 @@ function generarContrato() {
             "dest_Folio": '',
             "estatus": 1,
             "observaciones": '',
-            "fecha_creacion": '',
-            "fecha_modifiacion": '',
-            "usuario": 1,
+            "cotitular": $("#idNombreBen").val(),
+            "beneficiario": $("#nombreCotitular").val(),
         };
 
         $.ajax({
@@ -184,9 +183,8 @@ function generarContratoAuto() {
             "dest_Folio": '',
             "estatus": 1,
             "observaciones": '',
-            "fecha_creacion": '',
-            "fecha_modifiacion": '',
-            "usuario": 1,
+            "cotitular": $("#idNombreBen").val(),
+            "beneficiario": $("#nombreCotitular").val(),
             "idTipoVehiculo": $("#idTipoVehiculo").val(),
             "idMarca": $("#idMarca").val(),
             "idModelo": $("#idModelo").val(),

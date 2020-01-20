@@ -36,16 +36,18 @@ class sqlAutoDAO
             $destFolio = $auto->getDestFolio();
             $estatus = $auto->getEstatus();
             $observaciones = $auto->getObservaciones();
+            $cotitular = $auto->getCotitular();
+            $beneficiario = $auto->getBeneficiario();
             $fechaCreacion = date('Y-m-d H:i:s');
             $fechaModificacion = date('Y-m-d H:i:s');
             $usuario = $_SESSION["idUsuario"];
 
             $insertaContrato = "INSERT INTO contrato_tbl " .
                 "(id_Cliente, id_Interes, folio, fecha_Vencimiento, total_Avaluo, total_Prestamo, abono, intereses, pago,  " .
-                "fecha_Alm, fecha_Movimiento, origen_Folio, dest_Folio, id_Estatus, observaciones, fecha_creacion, fecha_modificacion, usuario) VALUES " .
+                "fecha_Alm, fecha_Movimiento, origen_Folio, dest_Folio, id_Estatus, observaciones,beneficiario, cotitular, fecha_creacion, fecha_modificacion, usuario) VALUES " .
                 "('" . $id_Cliente . "', '" . $id_Interes . "', '" . $folio . "', '" . $fechaVencimiento . "', '" . $totalAvaluo . "', '" . $totalPrestamo .
                 " .', '" . $abono . "', '" . $interes . "', '" . $pago . "', '" . $fechaAlm . "', '" . $fechaMovimiento . "', '" . $origenFolio .
-                "', '" . $destFolio . "', '" . $estatus . "', '" . $observaciones . "', '" . $fechaCreacion . "', '" . $fechaModificacion . "', '" . $usuario . "')";
+                "', '" . $destFolio . "', '" . $estatus . "', '" . $observaciones . "', '" . $beneficiario . "','" . $cotitular . "','" . $fechaCreacion . "', '" . $fechaModificacion . "', '" . $usuario . "')";
 
             if ($ps = $this->conexion->prepare($insertaContrato)) {
                 if ($ps->execute()) {

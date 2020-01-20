@@ -42,6 +42,7 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
             $("#idFormEmpeno").trigger("reset");
             $("#divTablaArticulos").load('tablaArticulos.php');
             $("#btnEditar").prop('disabled', true);
+            llenarComboInteres(1);
         });
     </script>
     <style type="text/css">
@@ -87,14 +88,10 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
         </div>
         <div class="row">
             <div class="col col-lg-4 border border-primary ">
-                <table border="0" width="100%" style="margin: 0 auto;">
+                <table border="0" width="100%" style="margin: 0 auto;" >
                     <tbody>
                     <tr>
-                        <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="20"
-                               style="text-align:center" class="invisible" />
-                    </tr>
-                    <tr>
-                        <td colspan="3">
+                        <td colspan="3" >
                             <input type="button" class="btn btn-success "
                                    data-toggle="modal" data-target="#modalRegistroNuevo"
                                    value="Agregar">
@@ -180,6 +177,14 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                         </td>
                     </tr>
                     <tr>
+                        <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="20"
+                               style="text-align:center" class="invisible" />
+                    </tr>
+                    <tr>
+                        <input type="text" id="idLlenarComboInteres" name="llenarComboInteres" size="20"
+                               style="text-align:center" class="invisible" value="1"/>
+                    </tr>
+                    <tr>
                         <td>
                             <br>
                         </td>
@@ -211,20 +216,12 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                     </tr>
                     <tr class="headt">
                         <td colspan="6" class="border border-dark">Tasa Interés</td>
-                        <td colspan="6" class="border border-dark">
+
+                        <td colspan="6" class="border border-dark" id="idComboInteresTD">
                             <select id="tipoInteresEmpeno" name="cmbTipoInteres" class="selectpicker"
                                     onchange="SeleccionarInteres($('#tipoInteresEmpeno').val())">
-                                <option value="0">Seleccione:</option>
-                                <?php
-
-                                $data = array();
-                                $sql = new sqlInteresesDAO();
-                                $data = $sql->llenarCmbTipoInteres();
-                                for ($i = 0; $i < count($data); $i++) {
-                                    echo "<option value=" . $data[$i]['id_interes'] . ">" . $data[$i]['tasa_interes'] . "</option>";
-                                }
-                                ?>
                             </select>
+
                         </td>
                     </tr>
                     <tr>
@@ -301,11 +298,11 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                     <tr>
                         <td align="center">
                             <input type="button" class="btn btn-primary" value="Metales"
-                                   onclick="Limpiar(), Metales();">
+                                   onclick="Metales();">
                         </td>
                         <td align="center">
                             <input type="button" class="btn btn-primary" value="Electronicos/Varios"
-                                   onclick="Limpiar(), Electronicos();">
+                                   onclick="Electronicos();">
                         </td>
                     </tr>
                     <tr>

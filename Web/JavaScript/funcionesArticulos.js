@@ -35,61 +35,67 @@ function Agregar() {
     if (clienteEmpeno != 0) {
         var formElectronico = $("#idTipoElectronico").val();
         var formMetal = $("#idTipoMetal").val();
-        if (formMetal > 0) {
-            //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
-            var dataEnviar = {
-                "$idTipoEnviar": 1,
-                "idClienteInteres":clienteEmpeno,
-                "idContratoTemp": $("#idContratoTemp").text(),
-                "idTipoMetal": formMetal,
-                "idPrenda": $("#idPrenda").val(),
-                "idKilataje": $("#idKilataje").val(),
-                "idCalidad": $("#idCalidad").val(),
-                "idCantidad": $("#idCantidad").val(),
-                "idPeso": $("#idPeso").val(),
-                "idPesoPiedra": $("#idPesoPiedra").val(),
-                "idPiedras": $("#idPiedras").val(),
-                "idPrestamo": $("#idPrestamo").val(),
-                "idAvaluo": $("#idAvaluo").val(),
-                "idPrestamoMax": $("#idPrestamoMax").val(),
-                "idUbicacion": $("#idUbicacion").val(),
-                "idDetallePrenda": $("#idDetallePrenda").val()
-            };
-        } else if (formElectronico > 0) {
-            //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
-            var dataEnviar = {
-                "$idTipoEnviar": 2,
-                "idClienteInteres": clienteEmpeno,
-                "idContratoTemp": $("#idContratoTemp").text(),
-                "idTipoElectronico": formElectronico,
-                "idMarca": $("#idMarca").val(),
-                "idEstado": $("#idEstado").val(),
-                "idModelo": $("#idModelo").val(),
-                "idTamaño": $("#idTamaño").val(),
-                "idColor": $("#idColor").val(),
-                "idSerie": $("#idSerie").val(),
-                "idPrestamoElectronico": $("#idPrestamoElectronico").val(),
-                "idAvaluoElectronico": $("#idAvaluoElectronico").val(),
-                "idPrestamoMaxElectronico": $("#idPrestamoMaxElectronico").val(),
-                "idUbicacionElectronico": $("#idUbicacionElectronico").val(),
-                "idDetallePrendaElectronico": $("#idDetallePrendaElectronico").val()
-            };
+        if (formMetal != 0 || formElectronico != 0) {
+            alert(formMetal);
+            alert(formElectronico);
+            if (formMetal > 0) {
+                //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
+                var dataEnviar = {
+                    "$idTipoEnviar": 1,
+                    "idClienteInteres": clienteEmpeno,
+                    "idContratoTemp": $("#idContratoTemp").text(),
+                    "idTipoMetal": formMetal,
+                    "idPrenda": $("#idPrenda").val(),
+                    "idKilataje": $("#idKilataje").val(),
+                    "idCalidad": $("#idCalidad").val(),
+                    "idCantidad": $("#idCantidad").val(),
+                    "idPeso": $("#idPeso").val(),
+                    "idPesoPiedra": $("#idPesoPiedra").val(),
+                    "idPiedras": $("#idPiedras").val(),
+                    "idPrestamo": $("#idPrestamo").val(),
+                    "idAvaluo": $("#idAvaluo").val(),
+                    "idPrestamoMax": $("#idPrestamoMax").val(),
+                    "idUbicacion": $("#idUbicacion").val(),
+                    "idDetallePrenda": $("#idDetallePrenda").val()
+                };
+            } else if (formElectronico > 0) {
+                //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
+                var dataEnviar = {
+                    "$idTipoEnviar": 2,
+                    "idClienteInteres": clienteEmpeno,
+                    "idContratoTemp": $("#idContratoTemp").text(),
+                    "idTipoElectronico": formElectronico,
+                    "idMarca": $("#idMarca").val(),
+                    "idEstado": $("#idEstado").val(),
+                    "idModelo": $("#idModelo").val(),
+                    "idTamaño": $("#idTamaño").val(),
+                    "idColor": $("#idColor").val(),
+                    "idSerie": $("#idSerie").val(),
+                    "idPrestamoElectronico": $("#idPrestamoElectronico").val(),
+                    "idAvaluoElectronico": $("#idAvaluoElectronico").val(),
+                    "idPrestamoMaxElectronico": $("#idPrestamoMaxElectronico").val(),
+                    "idUbicacionElectronico": $("#idUbicacionElectronico").val(),
+                    "idDetallePrendaElectronico": $("#idDetallePrendaElectronico").val()
+                };
+            }
+            $.ajax({
+                data: dataEnviar,
+                url: '../../../com.Mexicash/Controlador/Articulo.php',
+                type: 'post',
+                success: function (response) {
+                    if (response) {
+                        cargarTablaArticulo($("#idContratoTemp").text());
+                        $("#divTablaArticulos").load('tablaArticulos.php');
+                        Limpiar();
+                        alertify.success("Articulo agregado exitosamente.");
+                    } else {
+                        alertify.error("Error al agregar articulo.");
+                    }
+                },
+            })
+        } else {
+            alert("Por Favor. Selecciona un tipo de articulo.")
         }
-        $.ajax({
-            data: dataEnviar,
-            url: '../../../com.Mexicash/Controlador/Articulo.php',
-            type: 'post',
-            success: function (response) {
-                if (response) {
-                    cargarTablaArticulo($("#idContratoTemp").text());
-                    $("#divTablaArticulos").load('tablaArticulos.php');
-                    Limpiar();
-                    alertify.success("Articulo agregado exitosamente.");
-                } else {
-                    alertify.error("Error al agregar articulo.");
-                }
-            },
-        })
     } else {
         alert("Por Favor. Selecciona un cliente.")
     }
@@ -98,6 +104,8 @@ function Agregar() {
 
 //Cargar tabla Articulos
 function cargarTablaArticulo($contratoTemp) {
+    alert($contratoTemp);
+    alert("carga");
     if ($contratoTemp != '') {
         var dataEnviar = {
             "idContratoTemp": $contratoTemp
@@ -106,25 +114,37 @@ function cargarTablaArticulo($contratoTemp) {
             type: "POST",
             url: '../../../com.Mexicash/Controlador/tblArticulos.php',
             data: dataEnviar,
-            dataType:"json",
+            dataType: "json",
             success: function (datos) {
                 alert("Refrescando tabla.");
-                setTimeout('',200)
+                setTimeout('', 200)
                 var html = '';
-                var i= 0;
-                for (i ; i < datos.length; i++) {
+                var i = 0;
+                for (i; i < datos.length; i++) {
                     var marca = datos[i].marca;
                     var estado = datos[i].estado;
                     var modelo = datos[i].modelo;
                     var prestamo = datos[i].prestamo;
                     var avaluo = datos[i].avaluo;
                     var detalle = datos[i].detalle;
-                    if (marca === null) {marca = '';}
-                    if (estado === null) {estado = '';}
-                    if (modelo === null) {modelo = '';}
-                    if (prestamo === null) {prestamo = '';}
-                    if (avaluo === null) {avaluo = '';}
-                    if (detalle === null) {detalle = '';}
+                    if (marca === null) {
+                        marca = '';
+                    }
+                    if (estado === null) {
+                        estado = '';
+                    }
+                    if (modelo === null) {
+                        modelo = '';
+                    }
+                    if (prestamo === null) {
+                        prestamo = '';
+                    }
+                    if (avaluo === null) {
+                        avaluo = '';
+                    }
+                    if (detalle === null) {
+                        detalle = '';
+                    }
                     html += '<tr>' +
                         '<td>' + marca + '</td>' +
                         '<td>' + estado + '</td>' +
@@ -147,12 +167,19 @@ function cargarTablaArticulo($contratoTemp) {
 function Metales() {
     $("#divElectronicos").hide();
     $("#divMetales").show();
+    Limpiar();
+    LimpiarInteres();
+    llenarComboInteres(1);
 }
 
 //Menu Electronicos
 function Electronicos() {
     $("#divMetales").hide();
     $("#divElectronicos").show();
+    $("#divElectronicos").show();
+    Limpiar();
+    LimpiarInteres();
+    llenarComboInteres(2);
 }
 
 //Alerta para confirmar la Eliminacion

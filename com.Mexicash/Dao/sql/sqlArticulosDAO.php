@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
 include_once(MODELO_PATH . "Articulo.php");
 include_once(BASE_PATH . "Conexion.php");

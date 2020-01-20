@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
 include_once(MODELO_PATH . "Cliente.php");
 include_once(MODELO_PATH . "ClienteActualizar.php");

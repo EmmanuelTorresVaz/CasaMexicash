@@ -38,31 +38,30 @@ class sqlInteresesDAO
         return $id;
     }
 
-    function llenarCmbTipoInteres(){
+    function llenarCmbTipoInteres($idTablaInteres){
         $datos = array();
 
         try {
-            $buscar = "SELECT id_interes, tasa_interes FROM cat_interes WHERE tablaInteres='PRENDA'";
+            $buscar = "SELECT id_interes, tasa_interes FROM cat_interes WHERE tablaInteres=". $idTablaInteres;
             $rs = $this->conexion->query($buscar);
 
+            $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
                 while ($row = $rs->fetch_assoc()) {
                     $data = [
                         "id_interes" => $row["id_interes"],
                         "tasa_interes" => $row["tasa_interes"]
                     ];
-
                     array_push($datos, $data);
                 }
             }
-
         } catch (Exception $exc) {
             echo $exc->getMessage();
         } finally {
             $this->db->closeDB();
         }
 
-        return $datos;
+        echo json_encode($datos);
     }
 
     function llenarCmbTipoInteresAutos(){
@@ -94,11 +93,9 @@ class sqlInteresesDAO
 
     function llenarFormIntereses($idInteres)
     {
-
         $datos = array();
-
         try {
-            $buscar = "SELECT id_interes, tasa_interes, tipo_interes as tipoInteres, periodo, plazo, tasa, alm, seguro, iva, tipo_Promocion, 
+            $buscar = "SELECT id_interes, tasa_interes, tipo_interes as tipoInteres, periodo, plazo, tasa, alm, seguro, iva, 
                         tipo_Agrupamiento,dias FROM cat_interes WHERE id_interes = " . $idInteres;
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
@@ -113,7 +110,8 @@ class sqlInteresesDAO
         }
 
         //return  json_encode($data);
-        echo json_encode($data);    }
+        echo json_encode($data);
+    }
 
 
 }

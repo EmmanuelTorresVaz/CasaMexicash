@@ -19,9 +19,8 @@ class Auto
     private $dest_Folio;
     private $estatus;
     private $observaciones;
-    private $fecha_creacion;
-    private $idFecVencimiento;
-    private $usuario;
+    private $beneficiario;
+    private $cotitular;
     //Auto
     private $idTipoVehiculo;
     private $idMarca;
@@ -68,9 +67,8 @@ class Auto
      * @param $dest_Folio
      * @param $estatus
      * @param $observaciones
-     * @param $fecha_creacion
-     * @param $idFecVencimiento
-     * @param $usuario
+     * @param $beneficiario
+     * @param $cotitular
      * @param $idTipoVehiculo
      * @param $idMarca
      * @param $idModelo
@@ -99,7 +97,7 @@ class Auto
      * @param $idCheckPoliza
      * @param $idCheckLicencia
      */
-    public function __construct($idClienteAuto, $id_Interes, $folio, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $abono, $intereses, $pago, $fecha_Alm, $fecha_Movimiento, $origen_Folio, $dest_Folio, $estatus, $observaciones, $fecha_creacion, $idFecVencimiento, $usuario, $idTipoVehiculo, $idMarca, $idModelo, $idAnio, $idColor, $idPlacas, $idFactura, $idKms, $idAgencia, $idMotor, $idSerie, $idVehiculo, $idRepuve, $idGasolina, $idAseguradora, $idTarjeta, $idPoliza, $idFecVencimientoAuto, $idTipoPoliza, $idObservacionesAuto, $idCheckTarjeta, $idCheckFactura, $idCheckINE, $idCheckImportacion, $idCheckTenecia, $idCheckPoliza, $idCheckLicencia)
+    public function __construct($idClienteAuto, $id_Interes, $folio, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $abono, $intereses, $pago, $fecha_Alm, $fecha_Movimiento, $origen_Folio, $dest_Folio, $estatus, $observaciones, $beneficiario, $cotitular, $idTipoVehiculo, $idMarca, $idModelo, $idAnio, $idColor, $idPlacas, $idFactura, $idKms, $idAgencia, $idMotor, $idSerie, $idVehiculo, $idRepuve, $idGasolina, $idAseguradora, $idTarjeta, $idPoliza, $idFecVencimientoAuto, $idTipoPoliza, $idObservacionesAuto, $idCheckTarjeta, $idCheckFactura, $idCheckINE, $idCheckImportacion, $idCheckTenecia, $idCheckPoliza, $idCheckLicencia)
     {
         $this->idClienteAuto = $idClienteAuto;
         $this->id_Interes = $id_Interes;
@@ -116,9 +114,8 @@ class Auto
         $this->dest_Folio = $dest_Folio;
         $this->estatus = $estatus;
         $this->observaciones = $observaciones;
-        $this->fecha_creacion = $fecha_creacion;
-        $this->idFecVencimiento = $idFecVencimiento;
-        $this->usuario = $usuario;
+        $this->beneficiario = $beneficiario;
+        $this->cotitular = $cotitular;
         $this->idTipoVehiculo = $idTipoVehiculo;
         $this->idMarca = $idMarca;
         $this->idModelo = $idModelo;
@@ -391,49 +388,33 @@ class Auto
     /**
      * @return mixed
      */
-    public function getFechaCreacion()
+    public function getBeneficiario()
     {
-        return $this->fecha_creacion;
+        return $this->beneficiario;
     }
 
     /**
-     * @param mixed $fecha_creacion
+     * @param mixed $beneficiario
      */
-    public function setFechaCreacion($fecha_creacion): void
+    public function setBeneficiario($beneficiario): void
     {
-        $this->fecha_creacion = $fecha_creacion;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdFecVencimiento()
-    {
-        return $this->idFecVencimiento;
-    }
-
-    /**
-     * @param mixed $idFecVencimiento
-     */
-    public function setIdFecVencimiento($idFecVencimiento): void
-    {
-        $this->idFecVencimiento = $idFecVencimiento;
+        $this->beneficiario = $beneficiario;
     }
 
     /**
      * @return mixed
      */
-    public function getUsuario()
+    public function getCotitular()
     {
-        return $this->usuario;
+        return $this->cotitular;
     }
 
     /**
-     * @param mixed $usuario
+     * @param mixed $cotitular
      */
-    public function setUsuario($usuario): void
+    public function setCotitular($cotitular): void
     {
-        $this->usuario = $usuario;
+        $this->cotitular = $cotitular;
     }
 
     /**

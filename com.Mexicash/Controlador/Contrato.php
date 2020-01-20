@@ -19,9 +19,8 @@ $origen_Folio = $_POST['origen_Folio'];
 $dest_Folio = $_POST['dest_Folio'];
 $estatus = $_POST['estatus'];
 $observaciones = $_POST['observaciones'];
-$fecha_creacion = $_POST['fecha_creacion'];
-$idFecVencimiento = $_POST['fechaVencimiento'];
-$usuario = $_POST['usuario'];
+$beneficiario = $_POST['beneficiario'];
+$cotitular = $_POST['cotitular'];
 
 $contrato = new Contrato(
     $idContrato,
@@ -40,9 +39,9 @@ $contrato = new Contrato(
     $dest_Folio,
     $estatus,
     $observaciones,
-    $fecha_creacion,
-    $idFecVencimiento,
-    $usuario
+    $beneficiario,
+    $cotitular
+
 );
 
 $sqlContrato = new sqlContratoDAO();
