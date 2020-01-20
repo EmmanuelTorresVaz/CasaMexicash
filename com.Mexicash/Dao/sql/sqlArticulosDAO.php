@@ -173,4 +173,78 @@ class sqlArticulosDAO
 
         return $datos;
     }
+
+
+    function llenarCmbPrenda($idTipoCombo){
+        $datos = array();
+
+        try {
+            $buscar = "SELECT id_prenda , descripcion FROM cat_prenda WHERE id_tipoArticulo=$idTipoCombo";
+
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_prenda" => $row["id_prenda"],
+                        "descripcion" => $row["descripcion"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        echo json_encode($datos);
+    }
+    function llenarCmbKilataje($idTipoCombo){
+        $datos = array();
+
+        try {
+            $buscar = "SELECT id_Kilataje , descripcion FROM cat_kilataje WHERE id_tipoArticulo=$idTipoCombo";
+
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_Kilataje" => $row["id_Kilataje"],
+                        "descripcion" => $row["descripcion"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        echo json_encode($datos);
+    }
+    function llenarCmbCalidad($idTipoCombo){
+        $datos = array();
+
+        try {
+            $buscar = "SELECT id_calidad , descripcion FROM cat_calidad ";
+
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_calidad" => $row["id_calidad"],
+                        "descripcion" => $row["descripcion"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        echo json_encode($datos);
+    }
 }

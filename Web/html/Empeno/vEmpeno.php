@@ -313,7 +313,8 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                                     <tr>
                                         <td colspan="6">Tipo:</td>
                                         <td colspan="6">
-                                            <select id="idTipoMetal" name="cmbTipoMetal" class="selectpicker">
+                                            <select id="idTipoMetal" name="cmbTipoMetal" class="selectpicker"
+                                                    onchange="selectMetalCmb($('#idTipoMetal').val())">
                                                 <option value="0">Seleccione:</option>
                                                 <?php
                                                 $data = array();
@@ -330,8 +331,6 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                                         <td colspan="6">Prenda:</td>
                                         <td colspan="6">
                                             <select id="idPrenda" name="cmbPrenda" class="selectpicker">
-                                                <option value="0">Seleccione:</option>
-                                                <option value="1">1</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -339,15 +338,11 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                                         <td colspan="3">Kilataje:</td>
                                         <td colspan="3">
                                             <select id="idKilataje" name="cmbKilataje" class="selectpicker">
-                                                <option value="0">Seleccione:</option>
-                                                <option value="1">1</option>
                                             </select>
                                         </td>
                                         <td colspan="3">Calidad:</td>
                                         <td colspan="3">
                                             <select id="idCalidad" name="cmbCalidad" class="selectpicker">
-                                                <option value="0">Seleccione:</option>
-                                                <option value="1">1</option>
                                             </select>
                                         </td>
                                     </tr>

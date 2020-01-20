@@ -218,9 +218,82 @@ function eliminarArticulo($idArticulo) {
 
 }
 
-
 function prueba() {
     alert($("#idContratoTemp").text());
 }
 
+function selectMetalCmb($tipoMetal) {
+    selectPrenda($tipoMetal);
+    selectKilataje($tipoMetal);
+    selectCalidad($tipoMetal);
+}
 
+function selectPrenda($tipoMetal) {
+    var dataEnviar = {
+        "clase": 1,
+        "idTipoMetal": $tipoMetal
+    };
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/comboMetales.php',
+        data: dataEnviar,
+        dataType: "json",
+        success: function (datos) {
+            var html = "";
+            html += " <option value=0>Seleccione:</option>"
+            var i = 0;
+            for (i; i < datos.length; i++) {
+                var idPrenda = datos[i].id_prenda;
+                var descripcion = datos[i].descripcion;
+                html += '<option value=' + idPrenda + '>' + descripcion + '</option>';
+            }
+            $('#idPrenda').html(html);
+        }
+    });
+}
+function selectKilataje($tipoMetal) {
+    var dataEnviar = {
+        "clase": 2,
+        "idTipoMetal": $tipoMetal
+    };
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/comboMetales.php',
+        data: dataEnviar,
+        dataType: "json",
+        success: function (datos) {
+            var html = "";
+            html += " <option value=0>Seleccione:</option>"
+            var i = 0;
+            for (i; i < datos.length; i++) {
+                var idPrenda = datos[i].id_Kilataje;
+                var descripcion = datos[i].descripcion;
+                html += '<option value=' + idPrenda + '>' + descripcion + '</option>';
+            }
+            $('#idKilataje').html(html);
+        }
+    });
+}
+function selectCalidad($tipoMetal) {
+    var dataEnviar = {
+        "clase": 3,
+        "idTipoMetal": $tipoMetal
+    };
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/comboMetales.php',
+        data: dataEnviar,
+        dataType: "json",
+        success: function (datos) {
+            var html = "";
+            html += " <option value=0>Seleccione:</option>"
+            var i = 0;
+            for (i; i < datos.length; i++) {
+                var idPrenda = datos[i].id_calidad;
+                var descripcion = datos[i].descripcion;
+                html += '<option value=' + idPrenda + '>' + descripcion + '</option>';
+            }
+            $('#idCalidad').html(html);
+        }
+    });
+}
