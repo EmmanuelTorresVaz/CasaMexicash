@@ -13,7 +13,7 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
 include_once(HTML_PATH . "Clientes/modalHistorial.php");
 include_once(HTML_PATH . "Clientes/modalBusquedaCliente.php");
 include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
-
+include_once (HTML_PATH. "menu.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -35,7 +35,7 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
     <!--    Script inicial-->
     <script type="application/javascript">
         $(document).ready(function () {
-            $('.menuContainer').load('menu.php');
+           // $('.menuContainer').load('menu.php');
         });
     </script>
     <style type="text/css">
@@ -73,7 +73,7 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
 </head>
 <body>
 <form id="idForm>uto" name="formEmpeno">
-    <div class="menuContainer"></div>
+
     <div id="contenedor" class="container">
         <div>
             <br>

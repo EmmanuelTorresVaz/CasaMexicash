@@ -302,4 +302,30 @@ class sqlArticulosDAO
 
         return $datos;
     }
+
+    function llenarCmbTipoAuto()
+    {
+        $datos = array();
+
+        try {
+            $buscar = "SELECT id_Cat_Articulo, descripcion FROM cat_articulos where tipo='Tipo Auto'";
+            $rs = $this->conexion->query($buscar);
+
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_Auto" => $row["id_Cat_Articulo"],
+                        "descripcion" => $row["descripcion"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        return $datos;
+    }
 }

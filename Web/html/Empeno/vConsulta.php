@@ -4,7 +4,8 @@ if(!isset($_SESSION["idUsuario"])){
     header("Location: ../index.php");
     session_destroy();
 }
-
+include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
+include_once (HTML_PATH. "menu.php");
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -24,7 +25,7 @@ if(!isset($_SESSION["idUsuario"])){
 
     <script>
         $(document).ready(function () {
-            $('.menuContainer').load('menu.php');
+           // $('.menuContainer').load('menu.php');
             $('#consultas').load('consultaCliente.php');
         });
     </script>
@@ -72,8 +73,6 @@ if(!isset($_SESSION["idUsuario"])){
 
 </head>
 <body>
-<div class="menuContainer" ></div>
-
 <div class="container-fluid" style="position: absolute; top: 8.2vh; border:1px solid black; height: 91.8vh">
 
     <div style="position: relative; top: 2vh; left: 60%; height: 33vh">

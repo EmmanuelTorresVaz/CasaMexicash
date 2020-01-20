@@ -14,7 +14,7 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
 include_once(HTML_PATH . "Clientes/modalHistorial.php");
 include_once(HTML_PATH . "Clientes/modalBusquedaCliente.php");
 include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
-
+include_once (HTML_PATH. "menu.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -35,7 +35,7 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
     <!--    Script inicial-->
     <script type="application/javascript">
         $(document).ready(function () {
-            $('.menuContainer').load('menu.php');
+           // $('.menuContainer').load('menu.php');
         });
     </script>
     <style type="text/css">
@@ -73,7 +73,6 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
 </head>
 <body>
 <form id="idFormAuto" name="formAuto">
-    <div class="menuContainer"></div>
     <div id="contenedor" class="container">
         <div>
             <br>
@@ -348,8 +347,15 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                     <tr>
                         <td colspan="2">
                             <select id="idTipoVehiculo" name="cmbVehiculo" class="selectpicker">
-                                <option value="1">Seleccione:</option>
-                                <option value="1">Auto</option>
+                                    <option value="0">Seleccione:</option>
+                                    <?php
+                                    $data = array();
+                                    $sql = new sqlArticulosDAO();
+                                    $data = $sql->llenarCmbTipoAuto();
+                                    for ($i = 0; $i < count($data); $i++) {
+                                        echo "<option value=" . $data[$i]['id_Auto'] . ">" . $data[$i]['descripcion'] . "</option>";
+                                    }
+                                    ?>
                             </select>
                         </td>
                         <td colspan="2">
@@ -365,8 +371,17 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                                    style="text-align:left"/>
                         </td>
                         <td>
-                            <input type="text" id="idColor" name="color" size="15"
-                                   style="text-align:left"/>
+                            <select id="idColor" name="cmbColor" class="selectpicker" style="width: 150px">
+                                <option value="0">Seleccione:</option>
+                                <?php
+                                $data = array();
+                                $sql = new sqlArticulosDAO();
+                                $data = $sql->llenarCmbColores();
+                                for ($i = 0; $i < count($data); $i++) {
+                                    echo "<option value=" . $data[$i]['id_Color'] . ">" . $data[$i]['descripcion'] . "</option>";
+                                }
+                                ?>
+                            </select>
                         </td>
                         <td>
                             <input type="text" id="idPlacas" name="placas" size="15"
