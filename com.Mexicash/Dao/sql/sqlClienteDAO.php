@@ -478,7 +478,7 @@ WHERE id_Cliente = '$idClienteEditar'";
                         INNER JOIN cliente_tbl as Cli on Con.id_Cliente = Cli.id_Cliente 
                         INNER JOIN cat_interes as Inte on Con.id_Interes = Inte.id_interes 
                         INNER JOIN articulo_tbl as Art on Con.id_Contrato = Art.id_Contrato
-                        INNER JOIN cat_estatus as Est on Art.id_Estatus = Est.id_Estatus WHERE Con.id_Cliente=$clienteEmpeno";
+                        INNER JOIN cat_estatus as Est on Con.id_Estatus = Est.id_Estatus WHERE Con.id_Cliente=$clienteEmpeno";
 
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
@@ -494,6 +494,36 @@ WHERE id_Cliente = '$idClienteEditar'";
                         "ArtTipo" => $row["ArtTipo"],
                         "EstDesc" => $row["EstDesc"],
                         "Detalle" => $row["Detalle"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        echo json_encode($datos);
+    }
+
+    public function historialCount($clienteEmpeno)
+    {
+        $datos = array();
+        try {
+            $buscar = "SELECT SUM(Con.id_Estatus=1) as TotalEmpeno,SUM(Con.id_Estatus=2) as TotalDesem, " .
+                " SUM(Con.id_Estatus=3) as TotalRefrendo,SUM(Con.id_Estatus=4) as TotalAlmoneda " .
+                " FROM contrato_tbl as Con INNER JOIN cliente_tbl as Cli on Con.id_Cliente = Cli.id_Cliente " .
+                " INNER JOIN cat_estatus as Sta on Con.id_Estatus = Sta.id_Estatus WHERE Con.id_Cliente=$clienteEmpeno";
+
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "TotalEmpeno" => $row["TotalEmpeno"],
+                        "TotalDesem" => $row["TotalDesem"],
+                        "TotalRefrendo" => $row["TotalRefrendo"],
+                        "TotalAlmoneda" => $row["TotalAlmoneda"]
                     ];
                     array_push($datos, $data);
                 }
