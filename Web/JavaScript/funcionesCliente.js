@@ -83,7 +83,6 @@ function agregarCliente() {
             url: '../../../com.Mexicash/Controlador/Cliente/RegistroCliente.php',
             type: 'post',
             success: function (response) {
-                alert(response)
                 if (response == 1) {
                     $("#idFormRegistro")[0].reset();
                     $("#modalRegistroNuevo").modal('hide');//ocultamos el modal
@@ -364,13 +363,11 @@ function LimpiarRegistroCliente() {
 
 //Funcion modal Editar cliente
 function modalEditarCliente($clienteEmpeno) {
-    alert($clienteEmpeno),
         $("#idFormRegistro")[0].reset();
     $("#idClienteEditar").val($clienteEmpeno);
     if ($clienteEmpeno == '' || $clienteEmpeno == null) {
         alert("Por favor selecciona un cliente.")
     } else {
-        alert($clienteEmpeno);
         var dataEnviar = {
             "idClienteEditar": $clienteEmpeno
         };

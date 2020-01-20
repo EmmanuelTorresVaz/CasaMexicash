@@ -1,4 +1,7 @@
 <?php
+if(!isset($_SESSION)) {
+    session_start();
+}
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
 include_once(MODELO_PATH . "Articulo.php");
 include_once(BASE_PATH . "Conexion.php");
@@ -72,18 +75,18 @@ class sqlArticulosDAO
                     . $idDetallePrendaE . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "'," . $usuario . " )";
             }
 
-            echo $insertMetal;
             if ($ps = $this->conexion->prepare($insertMetal)) {
                 if ($ps->execute()) {
-                    $verdad = true;
+                    $verdad =  mysqli_stmt_affected_rows($ps);
                 } else {
-                    $verdad = false;
+                    $verdad = -1;
                 }
             } else {
-                $verdad = false;
+                $verdad = -1;
             }
+
         } catch (Exception $exc) {
-            $verdad = false;
+            $verdad = -1;
             echo $exc->getMessage();
         } finally {
             $this->db->closeDB();

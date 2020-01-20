@@ -81,8 +81,7 @@ function Agregar() {
                 url: '../../../com.Mexicash/Controlador/Articulo.php',
                 type: 'post',
                 success: function (response) {
-                    alert(response)
-                    if (response) {
+                    if (response == 1) {
                         cargarTablaArticulo($("#idContratoTemp").text());
                         $("#divTablaArticulos").load('tablaArticulos.php');
                         Limpiar();
@@ -103,8 +102,6 @@ function Agregar() {
 
 //Cargar tabla Articulos
 function cargarTablaArticulo($contratoTemp) {
-    alert($contratoTemp);
-    alert("carga");
     if ($contratoTemp != '') {
         var dataEnviar = {
             "idContratoTemp": $contratoTemp
