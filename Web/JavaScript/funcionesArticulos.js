@@ -227,7 +227,9 @@ function selectMetalCmb($tipoMetal) {
     selectKilataje($tipoMetal);
     selectCalidad($tipoMetal);
 }
-
+function selectArticuloCmb($tipoMetal) {
+    selectCalidadArt($tipoMetal);
+}
 function selectPrenda($tipoMetal) {
     var dataEnviar = {
         "clase": 1,
@@ -294,6 +296,29 @@ function selectCalidad($tipoMetal) {
                 html += '<option value=' + idPrenda + '>' + descripcion + '</option>';
             }
             $('#idCalidad').html(html);
+        }
+    });
+}
+function selectCalidadArt($tipoMetal) {
+    var dataEnviar = {
+        "clase": 3,
+        "idTipoMetal": $tipoMetal
+    };
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/comboMetales.php',
+        data: dataEnviar,
+        dataType: "json",
+        success: function (datos) {
+            var html = "";
+            html += " <option value=0>Seleccione:</option>"
+            var i = 0;
+            for (i; i < datos.length; i++) {
+                var idPrenda = datos[i].id_calidad;
+                var descripcion = datos[i].descripcion;
+                html += '<option value=' + idPrenda + '>' + descripcion + '</option>';
+            }
+            $('#idEstadoArt').html(html);
         }
     });
 }

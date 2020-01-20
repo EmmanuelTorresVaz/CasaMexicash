@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION["idUsuario"])){
+if (!isset($_SESSION["idUsuario"])) {
     header("Location: ../index.php");
     session_destroy();
 }
@@ -71,6 +71,7 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
         .headt td {
             height: 35px;
         }
+
         .inputCliente {
             text-transform: uppercase;
         }
@@ -80,9 +81,8 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
 <body>
 <form id="idFormEmpeno" name="formEmpeno">
     <div class="menuContainer"></div>
-  <div id="contenedor" class="container">
+    <div id="contenedor" class="container">
         <div>
-            <br>
             <br>
             <br>
         </div>
@@ -94,7 +94,7 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                         <br>
                     </tr>
                     <tr class="headt">
-                        <td colspan="3" >
+                        <td colspan="3">
                             <input type="button" class="btn btn-success "
                                    data-toggle="modal" data-target="#modalRegistroNuevo"
                                    value="Agregar">
@@ -107,11 +107,12 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                         <td colspan="3">
                             <input type="button" class="btn btn-warning "
                                    data-toggle="modal" data-target="#modalHistorial" id="btnEditar"
-                                   value="Historial" onclick="historial($('#idClienteEmpeno').val())" >
+                                   value="Historial" onclick="historial($('#idClienteEmpeno').val())">
                         </td>
                         <td colspan="3">
                             <input type="button" class="btn btn-success "
-                                   data-toggle="modal" data-target="#modalBusquedaCliente" onclick="mostrarTodos($('#idNombres').val())"
+                                   data-toggle="modal" data-target="#modalBusquedaCliente"
+                                   onclick="mostrarTodos($('#idNombres').val())"
                                    value="Ver todos">
                         </td>
                     </tr>
@@ -123,7 +124,8 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                     <tr>
                         <td colspan="12">
                             <div>
-                                <input id="idNombres" name="Nombres" type="text" style="width: 350px" class="inputCliente"
+                                <input id="idNombres" name="Nombres" type="text" style="width: 350px"
+                                       class="inputCliente"
                                        onkeypress="nombreAutocompletar()" placeholder="Buscar Cliente..."/>
                             </div>
                             <div id="suggestionsNombreEmpeno"></div>
@@ -314,12 +316,12 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                                         <td colspan="6">Tipo:</td>
                                         <td colspan="6">
                                             <select id="idTipoMetal" name="cmbTipoMetal" class="selectpicker"
-                                                    onchange="selectMetalCmb($('#idTipoMetal').val())">
+                                                    onchange="selectMetalCmb($('#idTipoMetal').val())" style="width: 150px">
                                                 <option value="0">Seleccione:</option>
                                                 <?php
                                                 $data = array();
                                                 $sql = new sqlArticulosDAO();
-                                                $data = $sql->llenarCmbTipoArticulo();
+                                                $data = $sql->llenarCmbTipoPrenda();
                                                 for ($i = 0; $i < count($data); $i++) {
                                                     echo "<option value=" . $data[$i]['id_tipo'] . ">" . $data[$i]['descripcion'] . "</option>";
                                                 }
@@ -330,23 +332,24 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                                     <tr>
                                         <td colspan="6">Prenda:</td>
                                         <td colspan="6">
-                                            <select id="idPrenda" name="cmbPrenda" class="selectpicker">
+                                            <select id="idPrenda" name="cmbPrenda" class="selectpicker" style="width: 150px">
                                             </select>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3">Kilataje:</td>
-                                        <td colspan="3">
-                                            <select id="idKilataje" name="cmbKilataje" class="selectpicker">
-                                            </select>
-                                        </td>
-                                        <td colspan="3">Calidad:</td>
-                                        <td colspan="3">
-                                            <select id="idCalidad" name="cmbCalidad" class="selectpicker">
+                                        <td colspan="6">Kilataje:</td>
+                                        <td colspan="6">
+                                            <select id="idKilataje" name="cmbKilataje" class="selectpicker" style="width: 100px">
                                             </select>
                                         </td>
                                     </tr>
-
+                                    <tr>
+                                        <td colspan="6">Calidad:</td>
+                                        <td colspan="6">
+                                            <select id="idCalidad" name="cmbCalidad" class="selectpicker" style="width: 100px">
+                                            </select>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td colspan="6">Cantidad:</td>
                                         <td colspan="6">
@@ -425,9 +428,17 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                                         <td colspan="6">Tipo:</td>
                                         <td colspan="6">
                                             <select id="idTipoElectronico" name="cmbTipoElectronico"
-                                                    class="selectpicker" required>
+                                                    class="selectpicker"
+                                                    onchange="selectArticuloCmb($('#idTipoElectronico').val())" style="width: 150px">
                                                 <option value="0">Seleccione:</option>
-                                                <option value="1">1</option>
+                                                <?php
+                                                $data = array();
+                                                $sql = new sqlArticulosDAO();
+                                                $data = $sql->llenarCmbTipoArticulo();
+                                                for ($i = 0; $i < count($data); $i++) {
+                                                    echo "<option value=" . $data[$i]['id_tipo'] . ">" . $data[$i]['descripcion'] . "</option>";
+                                                }
+                                                ?>
                                             </select>
                                         </td>
                                     </tr>
@@ -441,9 +452,7 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                                     <tr>
                                         <td colspan="6">Estado:</td>
                                         <td colspan="6">
-                                            <select id="idEstado" name="cmbEstado" class="selectpicker">
-                                                <option value="0">Seleccione:</option>
-                                                <option value="1">1</option>
+                                            <select id="idEstadoArt" name="cmbEstado" class="selectpicker" style="width: 150px">
                                             </select>
                                         </td>
                                     </tr>
@@ -464,9 +473,16 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                                     <tr>
                                         <td colspan="6">Color:</td>
                                         <td colspan="6">
-                                            <select id="idColor" name="cmbColor" class="selectpicker">
-                                                <option value="0">Seleccione:</option>
-                                                <option value="1">1</option>
+                                            <select id="idColor" name="cmbColor" class="selectpicker" style="width: 150px">
+                                                    <option value="0">Seleccione:</option>
+                                                    <?php
+                                                    $data = array();
+                                                    $sql = new sqlArticulosDAO();
+                                                    $data = $sql->llenarCmbColores();
+                                                    for ($i = 0; $i < count($data); $i++) {
+                                                        echo "<option value=" . $data[$i]['id_Color'] . ">" . $data[$i]['descripcion'] . "</option>";
+                                                    }
+                                                    ?>
                                             </select>
                                         </td>
                                     </tr>
@@ -529,14 +545,14 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                         <td>
                             <input type="button" class="btn btn-success" value="Agregar a la lista" onclick="Agregar()">
                         </td>
-                    <td>
-                        <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="20"
+                        <td>
+                            <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="20"  class="invisible"
                             />
-                    </td>
-                    <td>
-                        <input type="text" id="idLlenarComboInteres" name="llenarComboInteres" size="20"
-                               class="invisible" value="1"/>
-                    </td>
+                        </td>
+                        <td>
+                            <input type="text" id="idLlenarComboInteres" name="llenarComboInteres" size="20"
+                                   class="invisible" value="1"/>
+                        </td>
                     </tr>
                 </table>
             </div>

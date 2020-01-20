@@ -148,7 +148,7 @@ class sqlArticulosDAO
     }
 
 
-    function llenarCmbTipoArticulo()
+    function llenarCmbTipoPrenda()
     {
         $datos = array();
 
@@ -173,7 +173,6 @@ class sqlArticulosDAO
 
         return $datos;
     }
-
 
     function llenarCmbPrenda($idTipoCombo){
         $datos = array();
@@ -228,7 +227,6 @@ class sqlArticulosDAO
 
         try {
             $buscar = "SELECT id_calidad , descripcion FROM cat_calidad ";
-
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
                 while ($row = $rs->fetch_assoc()) {
@@ -246,5 +244,58 @@ class sqlArticulosDAO
         }
 
         echo json_encode($datos);
+    }
+
+    function llenarCmbTipoArticulo()
+    {
+        $datos = array();
+
+        try {
+            $buscar = "SELECT id_tipo, descripcion FROM cat_tipoarticulo where grupo=2";
+            $rs = $this->conexion->query($buscar);
+
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_tipo" => $row["id_tipo"],
+                        "descripcion" => $row["descripcion"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        return $datos;
+    }
+
+
+    function llenarCmbColores()
+    {
+        $datos = array();
+
+        try {
+            $buscar = "SELECT id_Color, descripcion FROM cat_color";
+            $rs = $this->conexion->query($buscar);
+
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_Color" => $row["id_Color"],
+                        "descripcion" => $row["descripcion"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        return $datos;
     }
 }
