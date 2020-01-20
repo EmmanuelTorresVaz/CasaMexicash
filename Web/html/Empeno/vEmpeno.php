@@ -268,7 +268,17 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                     <tr class="headt">
                         <td colspan="6" class="table-info border border-dark">Tipo Promoción:</td>
                         <td colspan="6" class="border border-dark">
-                            <label id="idTipoPromocion"></label>
+                            <select id="idTipoPromocion" name="cmbTipoPromocion" class="selectpicker">
+                                <option value="0">Seleccione:</option>
+                                <?php
+                                $data = array();
+                                $sql = new sqlInteresesDAO();
+                                $data = $sql->llenarCmbTipoPromo();
+                                for ($i = 0; $i < count($data); $i++) {
+                                    echo "<option value=" . $data[$i]['id_TipoPromocion'] . ">" . $data[$i]['descripcion'] . "</option>";
+                                }
+                                ?>
+                            </select>
                         </td>
                     </tr>
                     <tr class="headt">
@@ -303,10 +313,16 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                                     <tr>
                                         <td colspan="6">Tipo:</td>
                                         <td colspan="6">
-                                            <select id="idTipoMetal" name="cmbTipoMetal"
-                                                    class="classArticulos selectpicker">
+                                            <select id="idTipoMetal" name="cmbTipoMetal" class="selectpicker">
                                                 <option value="0">Seleccione:</option>
-                                                <option value="1">1</option>
+                                                <?php
+                                                $data = array();
+                                                $sql = new sqlArticulosDAO();
+                                                $data = $sql->llenarCmbTipoArticulo();
+                                                for ($i = 0; $i < count($data); $i++) {
+                                                    echo "<option value=" . $data[$i]['id_tipo'] . ">" . $data[$i]['descripcion'] . "</option>";
+                                                }
+                                                ?>
                                             </select>
                                         </td>
                                     </tr>

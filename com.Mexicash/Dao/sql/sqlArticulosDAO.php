@@ -16,19 +16,19 @@ class sqlArticulosDAO
         $this->conexion = $this->db->connectDB();
     }
 
-    public function guardarArticulo($tipoPost,Articulo $articulo)
+    public function guardarArticulo($tipoPost, Articulo $articulo)
     {
         // TODO: Implement guardaCiente() method.
         try {
 
-           // $idCliente = $articulo->getCliente();
+            // $idCliente = $articulo->getCliente();
             $status = 1;
             $fechaCreacion = date('Y-m-d H:i:s');
             $fechaModificacion = date('Y-m-d H:i:s');
             $usuario = $_SESSION["idUsuario"];
             $contratoTemp = $articulo->getContratoTemp();
 
-            if($tipoPost=="1"){
+            if ($tipoPost == "1") {
                 $idTipoM = $articulo->getTipoM();
                 $idPrenda = $articulo->getPrenda();
                 $idKilataje = $articulo->getKilataje();
@@ -48,9 +48,9 @@ class sqlArticulosDAO
                     " detalle, id_Estatus, fecha_creacion, fecha_modificacion, usuario)  VALUES " .
                     "('" . $contratoTemp . "','" . $idTipoM . "','" . $idPrenda . "', '" . $idKilataje . "', '" . $idCalidad . "', '" . $idCantidad . "', '" . $idPeso
                     . "', '" . $idPesoPiedra . "', '" . $idPiedras . "', '" . $idPrestamo . "', '" . $idAvaluo . "', '" . $idPrestamoMax . "','" . $idUbicacion . "','"
-                    . $idDetallePrenda . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "',".$usuario ." )";
+                    . $idDetallePrenda . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "'," . $usuario . " )";
 
-            }else if($tipoPost=="2"){
+            } else if ($tipoPost == "2") {
                 $idTipoE = $articulo->getTipoE();
                 $idMarca = $articulo->getMarca();
                 $idEstado = $articulo->getEstado();
@@ -69,7 +69,7 @@ class sqlArticulosDAO
                     " detalle, id_Estatus, fecha_creacion, fecha_modificacion,usuario)  VALUES " .
                     "('" . $contratoTemp . "','" . $idTipoE . "','" . $idMarca . "', '" . $idEstado . "', '" . $idModelo . "', '" . $idTamaño . "', '" . $idColor
                     . "', '" . $idSerie . "','" . $idPrestamoE . "', '" . $idAvaluoE . "', '" . $idPrestamoMaxE . "', '" . $idUbicacionE . "','"
-                    . $idDetallePrendaE . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "',".$usuario ." )";
+                    . $idDetallePrendaE . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "'," . $usuario . " )";
             }
 
             if ($ps = $this->conexion->prepare($insertMetal)) {
@@ -96,7 +96,7 @@ class sqlArticulosDAO
         $datos = array();
         try {
             $usuario = $_SESSION["idUsuario"];
-            $buscar = "SELECT id_Articulo, marca, estado, modelo, prestamo,avaluo, detalle FROM articulo_tbl WHERE id_ContratoTemp='$idContratoTemp' and usuario=" .$usuario;
+            $buscar = "SELECT id_Articulo, marca, estado, modelo, prestamo,avaluo, detalle FROM articulo_tbl WHERE id_ContratoTemp='$idContratoTemp' and usuario=" . $usuario;
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
                 while ($row = $rs->fetch_assoc()) {
@@ -130,7 +130,7 @@ class sqlArticulosDAO
 
             if ($ps = $this->conexion->prepare($eliminarArticulo)) {
                 if ($ps->execute()) {
-                    $verdad =  mysqli_stmt_affected_rows($ps);
+                    $verdad = mysqli_stmt_affected_rows($ps);
                 } else {
                     $verdad = -1;
                 }
@@ -148,4 +148,29 @@ class sqlArticulosDAO
     }
 
 
+    function llenarCmbTipoArticulo()
+    {
+        $datos = array();
+
+        try {
+            $buscar = "SELECT id_tipo, descripcion FROM cat_tipoarticulo where grupo=1";
+            $rs = $this->conexion->query($buscar);
+
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_tipo" => $row["id_tipo"],
+                        "descripcion" => $row["descripcion"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        return $datos;
+    }
 }

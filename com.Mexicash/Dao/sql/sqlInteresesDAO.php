@@ -43,7 +43,6 @@ class sqlInteresesDAO
 
         try {
             $buscar = "SELECT id_interes, tasa_interes FROM cat_interes WHERE tablaInteres=". $idTablaInteres;
-            $rs = $this->conexion->query($buscar);
 
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
@@ -113,5 +112,29 @@ class sqlInteresesDAO
         echo json_encode($data);
     }
 
+    function llenarCmbTipoPromo(){
+        $datos = array();
+
+        try {
+            $buscar = "SELECT id_TipoPromocion, descripcion FROM cat_promocion";
+            $rs = $this->conexion->query($buscar);
+
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_TipoPromocion" => $row["id_TipoPromocion"],
+                        "descripcion" => $row["descripcion"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        return $datos;
+    }
 
 }
