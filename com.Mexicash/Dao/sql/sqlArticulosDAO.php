@@ -72,6 +72,7 @@ class sqlArticulosDAO
                     . $idDetallePrendaE . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "'," . $usuario . " )";
             }
 
+            echo $insertMetal;
             if ($ps = $this->conexion->prepare($insertMetal)) {
                 if ($ps->execute()) {
                     $verdad = true;

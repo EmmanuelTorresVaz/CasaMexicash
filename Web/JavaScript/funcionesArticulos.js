@@ -36,8 +36,6 @@ function Agregar() {
         var formElectronico = $("#idTipoElectronico").val();
         var formMetal = $("#idTipoMetal").val();
         if (formMetal != 0 || formElectronico != 0) {
-            alert(formMetal);
-            alert(formElectronico);
             if (formMetal > 0) {
                 //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
                 var dataEnviar = {
@@ -83,6 +81,7 @@ function Agregar() {
                 url: '../../../com.Mexicash/Controlador/Articulo.php',
                 type: 'post',
                 success: function (response) {
+                    alert(response)
                     if (response) {
                         cargarTablaArticulo($("#idContratoTemp").text());
                         $("#divTablaArticulos").load('tablaArticulos.php');
