@@ -7,6 +7,7 @@ $(document).ready(function () {
         buttonText: "Selecciona el día",
         changeMonth: true,
         changeYear: true,
+        yearRange: "1960:-18",
         dateFormat: 'yy/mm/dd'
     });
 
@@ -16,7 +17,6 @@ $(document).ready(function () {
             closeText: 'Cerrar',
             prevText: 'Previo',
             nextText: 'Próximo',
-
             monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
                 'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
             monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun',

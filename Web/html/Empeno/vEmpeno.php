@@ -20,6 +20,7 @@ include_once(EMPE_PATH . "menuEmpeno.php");
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <!--Generales-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../../librerias/bootstrap/css/bootstrap.css">
@@ -27,6 +28,13 @@ include_once(EMPE_PATH . "menuEmpeno.php");
     <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/themes/default.css">
     <script src="../../librerias/jquery-3.4.1.min.js"></script>
     <script src="../../librerias/bootstrap/js/bootstrap.js"></script>
+    <!--Calendario-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="../JavaScript/funcionesCalendario.js"></script>
+    <!--Funciones-->
     <script src="../../JavaScript/funcionesArticulos.js"></script>
     <script src="../../JavaScript/funcionesIntereses.js"></script>
     <script src="../../JavaScript/funcionesCliente.js"></script>
