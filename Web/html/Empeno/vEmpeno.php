@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION["idUsuario"])) {
+if(!isset($_SESSION["idUsuario"])){
     header("Location: ../index.php");
     session_destroy();
 }
@@ -35,6 +35,7 @@ include_once(EMPE_PATH . "menuEmpeno.php");
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="../JavaScript/funcionesCalendario.js"></script>
     <!--Funciones-->
+
     <script src="../../JavaScript/funcionesArticulos.js"></script>
     <script src="../../JavaScript/funcionesIntereses.js"></script>
     <script src="../../JavaScript/funcionesCliente.js"></script>
@@ -59,7 +60,7 @@ include_once(EMPE_PATH . "menuEmpeno.php");
             box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
             height: auto;
             position: absolute;
-            top: 45px;
+            top: 130px;
             z-index: 9999;
             width: 206px;
         }

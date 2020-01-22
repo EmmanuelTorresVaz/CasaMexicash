@@ -220,7 +220,7 @@ class sqlClienteDAO
                 " INNER JOIN cat_estado on cliente_tbl.estado = cat_estado.id_Estado " .
                 " INNER JOIN cat_municipio on cliente_tbl.municipio = cat_municipio.id_Municipio and cliente_tbl.estado = cat_municipio.id_Estado  " .
                 " INNER JOIN cat_localidad on cliente_tbl.localidad = cat_localidad.id_Localidad and cliente_tbl.estado = cat_localidad.id_Estado and cliente_tbl.municipio = cat_localidad.id_Municipio" .
-                " WHERE nombre LIKE '%" . strip_tags($idCliente) . "%' ";
+                " WHERE nombre LIKE '%" . strip_tags($idCliente) . "%' LIMIT 5 ";
             $statement = $this->conexion->query($buscar);
             if ($statement->num_rows > 0) {
                 while ($row = $statement->fetch_assoc()) {
