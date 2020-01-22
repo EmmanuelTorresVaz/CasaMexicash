@@ -18,7 +18,7 @@ function SeleccionarInteres(tipoInteresValue) {
                     document.getElementById('idPlazo').innerHTML = response.result.plazo;
                     document.getElementById('idTasaPorcen').innerHTML = response.result.tasa;
                     document.getElementById('idAlmPorcen').innerHTML = response.result.alm;
-                    document.getElementById('idSeguroPorcen').innerHTML = response.result.seguro;
+                    document.getElementById('idSeguroPorcen').innerHTML = response.result.seguro + ".00";
                     document.getElementById('idIvaPorcen').innerHTML = response.result.iva + " %";
                     document.getElementById('idAgrupamiento').innerHTML = response.result.tipo_Agrupamiento;
                     $("#idTotalAvaluo").val('0.00');

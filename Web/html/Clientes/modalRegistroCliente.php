@@ -18,63 +18,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
     <script src="../../JavaScript/funcionesCalendario.js"></script>
 
     <style type="text/css">
-        #sugerenciaEstado {
-            box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
-            height: auto;
-            position: absolute;
-            top: 45px;
-            z-index: 9999;
-            width: 206px;
-        }
 
-        #sugerenciaMunicipio {
-            box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
-            height: auto;
-            position: absolute;
-            top: 45px;
-            z-index: 9999;
-            width: 206px;
-        }
-
-        #sugerenciaLocalidad {
-            box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
-            height: auto;
-            position: absolute;
-            top: 45px;
-            z-index: 9999;
-            width: 206px;
-        }
-
-        #sugerenciaEstado .suggest-element {
-            background-color: #EEEEEE;
-            border-top: 1px solid #d6d4d4;
-            cursor: pointer;
-            padding: 8px;
-            width: 100%;
-            float: left;
-        }
-
-        #sugerenciaMunicipio .suggest-element {
-            background-color: #EEEEEE;
-            border-top: 1px solid #d6d4d4;
-            cursor: pointer;
-            padding: 8px;
-            width: 100%;
-            float: left;
-        }
-
-        #sugerenciaLocalidad .suggest-element {
-            background-color: #EEEEEE;
-            border-top: 1px solid #d6d4d4;
-            cursor: pointer;
-            padding: 8px;
-            width: 100%;
-            float: left;
-        }
-
-        .inputCliente {
-            text-transform: uppercase;
-        }
 
     </style>
 </head>
@@ -320,11 +264,11 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                         </tr>
                                         <tr>
                                             <td colspan="3">
-                            <textarea type="text" class="inputCliente" name="mensajeInterno" placeholder=""
+                            <textarea type="text" class="inputCliente textArea" name="mensajeInterno" placeholder=""
                                       id="idMensajeInterno"
                                       rows="3" cols="80"></textarea>
                                             </td>
-                                            <td>
+                                            <td style="vertical-align:top;">
                                                 <select type="text" name="promocion" placeholder="Selecciona:"
                                                         class="selectpicker"
                                                         id="idPromocion" style="width: 150px">

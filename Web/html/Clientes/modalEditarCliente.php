@@ -22,66 +22,6 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
     <script src="../../JavaScript/funcionesCatalogos.js"></script>
     <script src="../../JavaScript/funcionesCliente.js"></script>
 
-    <style type="text/css">
-        #sugerenciaEstado {
-            box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
-            height: auto;
-            position: absolute;
-            top: 45px;
-            z-index: 9999;
-            width: 206px;
-        }
-
-        #sugerenciaMunicipio {
-            box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
-            height: auto;
-            position: absolute;
-            top: 45px;
-            z-index: 9999;
-            width: 206px;
-        }
-
-        #sugerenciaLocalidad {
-            box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
-            height: auto;
-            position: absolute;
-            top: 45px;
-            z-index: 9999;
-            width: 206px;
-        }
-
-        #sugerenciaEstado .suggest-element {
-            background-color: #EEEEEE;
-            border-top: 1px solid #d6d4d4;
-            cursor: pointer;
-            padding: 8px;
-            width: 100%;
-            float: left;
-        }
-
-        #sugerenciaMunicipio .suggest-element {
-            background-color: #EEEEEE;
-            border-top: 1px solid #d6d4d4;
-            cursor: pointer;
-            padding: 8px;
-            width: 100%;
-            float: left;
-        }
-
-        #sugerenciaLocalidad .suggest-element {
-            background-color: #EEEEEE;
-            border-top: 1px solid #d6d4d4;
-            cursor: pointer;
-            padding: 8px;
-            width: 100%;
-            float: left;
-        }
-
-        .inputCliente {
-            text-transform: uppercase;
-        }
-
-    </style>
     <script>
         $(document).ready(function () {
             //  $('.menuContainer').load('menu.php');
@@ -108,7 +48,8 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                     <form id="idFormRegistro" autocomplete="off">
                         <div id="conteiner" class="container">
                             <div class="row">
-                                <input id="idEstadoEdit" name="Estado" type="text" style="width: 5px" class="invisible"/>
+                                <input id="idEstadoEdit" name="Estado" type="text" style="width: 5px"
+                                       class="invisible"/>
                                 <input id="idMunicipioEdit" name="municipio" type="text" style="width: 5px"
                                        class="invisible"/>
                                 <input id="idLocalidadEdit" name="localidad" type="text" style="width: 5px"
@@ -118,7 +59,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <table>
+                                    <table border="1">
                                         <tr>
                                             <td>Nombre(s):</td>
                                             <td>Apellido Paterno:</td>
@@ -190,9 +131,9 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                                        required/>
                                             </td>
                                             <td>
-                                                <input type="text" name="fechaNac" id="idFechaNacEdit" style="width: 200px"
-                                                       placeholder="aaaa/mm/dd"
-                                                       required/>
+                                                <input type="text" name="fechaNac" id="idFechaNacEdit"
+                                                       class="calendarioMod" style="width: 100px"
+                                                       required disabled/>
                                             </td>
                                             <td>
                                                 <input type="text" name="correo" id="idCorreoEdit" style="width: 200px"
@@ -335,11 +276,10 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                         </tr>
                                         <tr>
                                             <td colspan="3">
-                            <textarea type="text" class="inputCliente" name="mensajeInterno" placeholder=""
-                                      id="idMensajeInternoEdit"
-                                      rows="3" cols="80"></textarea>
+                                            <textarea type="text" class="inputCliente textArea" name="mensajeInterno" placeholder=""
+                                                     id="idMensajeInternoEdit" rows="3" cols="80"></textarea>
                                             </td>
-                                            <td>
+                                            <td style="vertical-align:top;">
                                                 <select type="text" name="promocion" placeholder="Selecciona:"
                                                         class="selectpicker"
                                                         id="idPromocionEdit" style="width: 150px">
@@ -359,7 +299,6 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                                     ?>
                                                 </select>
                                             </td>
-
                                         </tr>
                                     </table>
                                 </div>

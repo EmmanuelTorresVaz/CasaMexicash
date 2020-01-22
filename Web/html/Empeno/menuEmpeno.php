@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="../../librerias/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/alertify.css">
     <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/themes/default.css">
-    <script src="../../librerias/jquery-3.4.1.min.js"></script>
-    <script src="../../librerias/bootstrap/js/bootstrap.js"></script>
+    <script src="../../librerias/alertifyjs/alertify.js"></script>
+    <!-- bootstrap 4 -->
+
 
     <title>Mexicash</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-success navbar-dark fixed-top" style="background-color: #e3f2fd;">
-    <a class="navbar-brand" href="../../../../MexicashNuevo/Web/html/Empeno/vInicio.php">Inicio</a>
+    <a class="navbar-brand" href="vInicio.php">Inicio</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -27,11 +31,11 @@
                     Empeño
                 </a>
                 <div class="dropdown-menu" aria-labelledby="idEmpe">
-                    <a class="dropdown-item" href="../../../../MexicashNuevo/Web/html/Empeno/vEmpeno.php">Empeños</a>
-                    <a class="dropdown-item" href="../../../../MexicashNuevo/Web/html/Empeno/vDesempeno.php">Desempeños</a>
-                    <a class="dropdown-item" href="../../../../MexicashNuevo/Web/html/Empeno/vRefrendo.php">Refrendo</a>
-                    <a class="dropdown-item" href="../../../../MexicashNuevo/Web/html/Empeno/vConsulta.php">Consulta</a>
-                    <a class="dropdown-item" href="../../../../MexicashNuevo/Web/html/Empeno/vAuto.php">Auto</a>
+                    <a class="dropdown-item" href="vEmpeno.php">Empeños</a>
+                    <a class="dropdown-item" href="vDesempeno.php">Desempeños</a>
+                    <a class="dropdown-item" href="vRefrendo.php">Refrendo</a>
+                    <a class="dropdown-item" href="vConsulta.php">Consulta</a>
+                    <a class="dropdown-item" href="vAuto.php">Auto</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -111,6 +115,13 @@
                     <a class="dropdown-item" href="#">Cancelar Movimiento(P)</a>
 
                 </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="../../../index.php" id="idMovimientos" data-toggle="dropdown"
+                   aria-haspopup="true"
+                   aria-expanded="false">
+               Salir</a>
+
             </li>
         </ul>
     </div>

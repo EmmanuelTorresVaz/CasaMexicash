@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/themes/default.css">
     <script src="../../librerias/jquery-3.4.1.min.js"></script>
     <script src="../../librerias/bootstrap/js/bootstrap.js"></script>
+    <script src="../../librerias/alertifyjs/alertify.js"></script>
 
     <title>Mexicash</title>
 </head>

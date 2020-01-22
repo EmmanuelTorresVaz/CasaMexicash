@@ -1,9 +1,9 @@
 <?php
-session_start();
+/*session_start();
 if(!isset($_SESSION["idUsuario"])){
-    header("Location: ../index.php");
+    header("Location: ../../../index.php");
     session_destroy();
-}
+}*/
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
 include_once(SQL_PATH . "sqlClienteDAO.php");
 include_once(SQL_PATH . "sqlInteresesDAO.php");
@@ -23,11 +23,13 @@ include_once(EMPE_PATH . "menuEmpeno.php");
     <!--Generales-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="../../librerias/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/alertify.css">
     <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/themes/default.css">
-    <script src="../../librerias/jquery-3.4.1.min.js"></script>
-    <script src="../../librerias/bootstrap/js/bootstrap.js"></script>
+    <script src="../../librerias/alertifyjs/alertify.js"></script>
     <!--Calendario-->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
@@ -82,6 +84,60 @@ include_once(EMPE_PATH . "menuEmpeno.php");
             height: 35px;
         }
 
+        #sugerenciaEstado {
+            box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
+            height: auto;
+            position: absolute;
+            top: 230px;
+            z-index: 9999;
+            width: 206px;
+        }
+
+        #sugerenciaMunicipio {
+            box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
+            height: auto;
+            position: absolute;
+            top: 230px;
+            z-index: 9999;
+            width: 206px;
+        }
+
+        #sugerenciaLocalidad {
+            box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
+            height: auto;
+            position: absolute;
+            top: 230px;
+            z-index: 9999;
+            width: 206px;
+        }
+
+        #sugerenciaEstado .suggest-element {
+            background-color: #EEEEEE;
+            border-top: 1px solid #d6d4d4;
+            cursor: pointer;
+            padding: 8px;
+            width: 100%;
+            float: left;
+        }
+
+        #sugerenciaMunicipio .suggest-element {
+            background-color: #EEEEEE;
+            border-top: 1px solid #d6d4d4;
+            cursor: pointer;
+            padding: 8px;
+            width: 100%;
+            float: left;
+        }
+
+        #sugerenciaLocalidad .suggest-element {
+            background-color: #EEEEEE;
+            border-top: 1px solid #d6d4d4;
+            cursor: pointer;
+            padding: 8px;
+            width: 100%;
+            float: left;
+        }
+
         .inputCliente {
             text-transform: uppercase;
         }
@@ -107,18 +163,12 @@ include_once(EMPE_PATH . "menuEmpeno.php");
                             <input type="button" class="btn btn-success "
                                    data-toggle="modal" data-target="#modalRegistroNuevo"
                                    value="Agregar">
-                        </td>
-                        <td colspan="3">
                             <input type="button" class="btn btn-warning "
                                    data-toggle="modal" data-target="#modalEditarNuevo" id="btnEditar"
                                    value="Editar" onclick="modalEditarCliente($('#idClienteEmpeno').val())" disabled>
-                        </td>
-                        <td colspan="3">
                             <input type="button" class="btn btn-warning "
                                    data-toggle="modal" data-target="#modalHistorial" id="btnEditar"
                                    value="Historial" onclick="historial($('#idClienteEmpeno').val())">
-                        </td>
-                        <td colspan="3">
                             <input type="button" class="btn btn-success "
                                    data-toggle="modal" data-target="#modalBusquedaCliente"
                                    onclick="mostrarTodos($('#idNombres').val())"
@@ -133,7 +183,7 @@ include_once(EMPE_PATH . "menuEmpeno.php");
                     <tr>
                         <td colspan="12">
                             <div>
-                                <input id="idNombres" name="Nombres" type="text" style="width: 350px"
+                                <input id="idNombres" name="Nombres" type="text" style="width: 300px"
                                        class="inputCliente"
                                        onkeypress="nombreAutocompletar()" placeholder="Buscar Cliente..."/>
                             </div>
@@ -159,7 +209,7 @@ include_once(EMPE_PATH . "menuEmpeno.php");
                     </tr>
                     <tr class="headt">
                         <td colspan="12" rowspan="2" name="direccionEmpeno">
-                                    <textarea rows="3" cols="43" id="idDireccionEmpeno" class="textArea" disabled>
+                                    <textarea rows="4" cols="35" id="idDireccionEmpeno" class="textArea" disabled>
                                     </textarea>
                         </td>
                     </tr>
@@ -176,7 +226,7 @@ include_once(EMPE_PATH . "menuEmpeno.php");
                     <tr class="headt">
                         <td colspan="12">
                             <input type="text" id="nombreCotitular" name="idNombreCotitular"
-                                   style="width: 350px" required/>
+                                   style="width: 300px" required/>
                         </td>
                     </tr>
                     <tr>
@@ -187,7 +237,7 @@ include_once(EMPE_PATH . "menuEmpeno.php");
                     <tr>
                         <td colspan="12">
                             <input type="text" id="idNombreBen" name="idNombreBen"
-                                   style="width:350px" required/>
+                                   style="width:300px" required/>
                         </td>
                     </tr>
                     </tbody>
@@ -200,7 +250,7 @@ include_once(EMPE_PATH . "menuEmpeno.php");
                         <br>
                     </tr>
                     <tr class="headt">
-                        <td colspan="4" class="border border-dark border-right-0">
+                        <td colspan="6" class="border border-dark border-right-0">
                             <label for="contrato">Contrato:</label>
                             <?php
                             $contrato = array();
@@ -210,76 +260,76 @@ include_once(EMPE_PATH . "menuEmpeno.php");
                             echo "<label id='idContratoTemp'>$contrato</label>";
                             ?>
                         </td>
-                        <td colspan="8" class="border border-dark border-left-0">
+                        <td colspan="6" class="border border-dark border-left-0" align="left">
                             <label for="vence">Vence:</label>
                             <label id="idFecVencimiento"></label>
                         </td>
                     </tr>
                     <tr class="headt">
-                        <td colspan="6" class="border border-dark">Tasa Interés</td>
+                        <td colspan="6" class="border border-dark">Tasa Interés:</td>
 
                         <td colspan="6" class="border border-dark" id="idComboInteresTD">
-                            <select id="tipoInteresEmpeno" name="cmbTipoInteres" class="selectpicker"
+                            <select id="tipoInteresEmpeno" name="cmbTipoInteres" class="selectpicker"   style="width:150px"
                                     onchange="SeleccionarInteres($('#tipoInteresEmpeno').val())">
                             </select>
 
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="table-info border border-dark">Tipo Interés</td>
-                        <td colspan="4" class="table-info border border-dark">Periodo</td>
-                        <td colspan="4" class="table-info border border-dark">Plazo</td>
+                        <td colspan="4" class="table-info border border-dark" align="center">Tipo Interés</td>
+                        <td colspan="4" class="table-info border border-dark" align="center">Periodo</td>
+                        <td colspan="4" class="table-info border border-dark" align="center">Plazo</td>
                     </tr>
                     <tr class="headt">
-                        <td colspan="4" class="border border-dark ">
+                        <td colspan="4" class="border border-dark " align="center">
                             <label id="idTipoInteres"></label>
                             <br>
                         </td>
-                        <td colspan="4" class="border border-dark">
+                        <td colspan="4" class="border border-dark" align="center">
                             <label id="idPeriodo"></label>
                         </td>
-                        <td colspan="4" class="border border-dark">
+                        <td colspan="4" class="border border-dark" align="center">
                             <label id="idPlazo"></label>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3" class="table-info border border-dark ">% Tasa</td>
-                        <td colspan="3" class="table-info border border-dark">% Alm.</td>
-                        <td colspan="3" class="table-info border border-dark">% Seguro</td>
-                        <td colspan="3" class="table-info border border-dark">% I.V.A.</td>
+                        <td colspan="3" class="table-info border border-dark " align="center">% Tasa</td>
+                        <td colspan="3" class="table-info border border-dark" align="center">% Alm.</td>
+                        <td colspan="3" class="table-info border border-dark" align="center">% Seguro</td>
+                        <td colspan="3" class="table-info border border-dark" align="center">% I.V.A.</td>
                     </tr>
                     <tr class="headt">
-                        <td colspan="3" class="border border-dark">
+                        <td colspan="3" class="border border-dark" align="center">
                             <label id="idTasaPorcen"></label>
                         </td>
-                        <td colspan="3" class="border border-dark">
+                        <td colspan="3" class="border border-dark" align="center">
                             <label id="idAlmPorcen"></label>
                         </td>
-                        <td colspan="3" class="border border-dark">
+                        <td colspan="3" class="border border-dark" align="center">
                             <label id="idSeguroPorcen"></label>
                         </td>
-                        <td colspan="3" class="border border-dark">
+                        <td colspan="3" class="border border-dark" align="center">
                             <label id="idIvaPorcen"></label>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="6" class="table-info border border-dark">Total Avalúo</td>
-                        <td colspan="6" class="table-info border border-dark">Total Préstamo</td>
+                        <td colspan="6" class="table-info border border-dark" align="center">Total Avalúo</td>
+                        <td colspan="6" class="table-info border border-dark" align="center">Total Préstamo</td>
                     </tr>
                     <tr class="headt">
                         <td colspan="6" class="border border-dark" align="right">
-                            <input id="idTotalAvaluo" name="totalAvaluo" type="text" style="width: 150px"
+                            <input id="idTotalAvaluo" name="totalAvaluo" type="text" style="width: 150px; text-align: right"
                                    class="inputCliente"/>
                         </td>
                         <td colspan="6" class="border border-dark" align="right">
-                            <input id="idTotalPrestamo" name="totalPrestamo" type="text" style="width: 150px"
+                            <input id="idTotalPrestamo" name="totalPrestamo" type="text" style="width: 150px; text-align: right"
                                    class="inputCliente"/>
                         </td>
                     </tr>
                     <tr class="headt">
                         <td colspan="6" class="table-info border border-dark">Tipo Promoción:</td>
                         <td colspan="6" class="border border-dark">
-                            <select id="idTipoPromocion" name="cmbTipoPromocion" class="selectpicker">
+                            <select id="idTipoPromocion" name="cmbTipoPromocion" class="selectpicker"  style="width:155px">
                                 <option value="0">Seleccione:</option>
                                 <?php
                                 $data = array();
@@ -294,7 +344,7 @@ include_once(EMPE_PATH . "menuEmpeno.php");
                     </tr>
                     <tr class="headt">
                         <td colspan="6" class="table-info border border-dark">Tipo Agrupamiento:</td>
-                        <td colspan="6" class="border border-dark">
+                        <td colspan="6" class="border border-dark" align="center">
                             <label id="idAgrupamiento"></label>
                         </td>
                     </tr>

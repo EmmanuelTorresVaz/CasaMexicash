@@ -539,6 +539,7 @@ function confirmarActualizacion() {
 
 //Actualizar el cliente
 function actualizarCliente() {
+    alert("entra")
     //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
     var idNombre = $("#idNombreEdit").val();
     var idApPat = $("#idApPatEdit").val();
@@ -623,6 +624,7 @@ function actualizarCliente() {
             url: '../../../com.Mexicash/Controlador/Cliente/ActualizarCliente.php',
             type: 'post',
             success: function (response) {
+                alert(response);
                 if (response == 1) {
                     $("#idFormRegistro")[0].reset();
                     $("#modalEditarNuevo").modal('hide');//ocultamos el modal

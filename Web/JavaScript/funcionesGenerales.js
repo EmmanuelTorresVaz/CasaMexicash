@@ -36,4 +36,7 @@ function soloNumeros(e) {
     return patron.test(te);
 }
 
-
+function salirPagina() {
+    alert("entra")
+    location.href='../../../index.php';
+}
