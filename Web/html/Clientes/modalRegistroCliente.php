@@ -9,18 +9,13 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Mexicash</title>
-    <link rel="stylesheet" href="../../style/less/main.css"/>
-    <link rel="stylesheet" type="text/css" href="../../librerias/bootstrap/css/bootstrap.css">
-    <link href="../../style/css/magicsuggest/magicsuggest-min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/alertify.css"/>
-    <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/themes/default.css"/>
-    <script src="../../librerias/jquery/jquery-3.4.1.min.js"></script>
-    <script src="../../librerias/bootstrap/js/bootstrap.js"></script>
-    <script src="../../librerias/alertifyjs/alertify.js"></script>
-    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-    <script src="js/bootstrap-datetimepicker.min.js"></script>
-    <script src="../../JavaScript/funcionesCatalogos.js"></script>
-    <script src="../../JavaScript/funcionesCliente.js"></script>
+
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="../../JavaScript/funcionesCalendario.js"></script>
 
     <style type="text/css">
         #sugerenciaEstado {
@@ -82,15 +77,6 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
         }
 
     </style>
-    <script>
-        $(document).ready(function () {
-            //  $('.menuContainer').load('menu.php');
-            $("#idFecNac").datepicker({
-                changeMonth: true,
-                changeYear: true
-            });
-        });
-    </script>
 </head>
 <body>
 <div class="modal fade " id="modalRegistroNuevo" tabindex="-1" role="dialog"
@@ -190,9 +176,8 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                                        required/>
                                             </td>
                                             <td>
-                                                <input type="text" name="fechaNac" id="idFechaNac" style="width: 200px"
-                                                       placeholder="aaaa/mm/dd"
-                                                       required/>
+                                                <input type="text" name="fechaNac" id="idFechaNac" class="calendarioMod" style="width: 100px"
+                                                       required disabled/>
                                             </td>
                                             <td>
                                                 <input type="text" name="correo" id="idCorreo" style="width: 200px"

@@ -1,43 +1,38 @@
 <!DOCTYPE html>
-<html lang="en" id="htmlLogin">
+<html lang="en">
 <head>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="../../style/css/bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="../../style/less/pagPrincipal.css" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title class="">Mexicash</title>
-    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../../librerias/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/alertify.css">
+    <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/themes/default.css">
+    <script src="../../librerias/jquery-3.4.1.min.js"></script>
+    <script src="../../librerias/bootstrap/js/bootstrap.js"></script>
 
+    <title>Mexicash</title>
 </head>
-    <body id="bodyHome">
-        <header>
-            <div style="padding-left: 0">
-                <div class="col div-Navegador container-fluid" >
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light navegador fijador">
-                        <a class="navbar-brand ZBNav">Mexicash</a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                            <div class="navbar-nav nav-Home-collapsed navInicio">
-                                <a id="inicio" name="inicio" class="nav-item nav-link" href="MenuInicio.php">Inicio</a>
-                                <a id="nosotros" name="nosotros" class="nav-item nav-link" href="MenuNosotros.php">Nosotros</a>
-                                <a id="sucursal" name="sucursal" class="nav-item nav-link" href="MenuSucursales.php">Sucursales</a>
-                                <a id="contacto" name="contacto" class="nav-item nav-link" href="MenuContacto.php" >Contacto</a>
-                                <a id="login"     name="login" class="nav-item nav-link " href="MenuLoggin.php">Iniciar Sesión</a>
-                            </div>
-                        </div>
-                    </nav>
-                </div >
-            </div>
-        </header>
-        <!--Scripts-->
-        <script src="../../js/bootstrap.min.js"></script>
-        <script src="../../js/bootstrap.bundle.min.js"></script>
-        <script src="../../js/main/main.js"></script>
-        <script src="../../js/jquery-1.12.0.min.js"></script>
-    </body>
+<body>
+
+<nav class="navbar navbar-expand-sm bg-success navbar-dark fixed-top" style="background-color: #e3f2fd;">
+    <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="MenuInicio.php">
+                Mexicash
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="MenuNosotros.php">Nosotros</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="MenuSucursales.php">Sucursales</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="MenuContacto.php">Contacto</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="MenuLoggin.php">Ingresar</a>
+        </li>
+    </ul>
+</nav>
+</body>
 </html>

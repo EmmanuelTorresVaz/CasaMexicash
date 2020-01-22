@@ -30,3 +30,7 @@ function validarUser() {
         });
     }
 }
+
+function pruebaLog() {
+alert("entra");
+}

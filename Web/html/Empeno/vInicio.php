@@ -4,30 +4,23 @@ if(!isset($_SESSION["idUsuario"])){
     header("Location: ../index.php");
     session_destroy();
 }
+include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
+include_once(EMPE_PATH . "menuEmpeno.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Menu Acceso Rapido</title>
-    <link rel="stylesheet" type="text/css" href="../../librerias/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/alertify.css"/>
-    <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/themes/default.css"/>
-    <script src="../../librerias/jquery/jquery-3.4.1.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../../librerias/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/alertify.css">
+    <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/themes/default.css">
+    <script src="../../librerias/jquery-3.4.1.min.js"></script>
     <script src="../../librerias/bootstrap/js/bootstrap.js"></script>
-    <script src="../../librerias/alertifyjs/alertify.js"></script>
-
-
-    <!--    Script inicial-->
-    <script type="application/javascript">
-        $(document).ready(function () {
-            $('.menuContainer').load('menu.php');
-        });
-    </script>
 
 </head>
 <body>
 <form id="idFormEmpeno" name="formEmpeno">
-    <div class="menuContainer"></div>
     <div class="container-fluid" style="position: absolute; top: 8.2vh; height: 91.8vh">
         <div>
             <br>

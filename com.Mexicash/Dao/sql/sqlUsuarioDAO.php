@@ -66,7 +66,7 @@ class sqlUsuarioDAO
         try {
             $id = -1;
 
-            $buscar = "select id_User,usuario  from usuarios_tbl ";
+            $buscar = "select id_User,usuario  from usuarios_tbl where usuario = '". $usuario ."' and password = '". $pass."'";
 
             $statement = $this->conexion->query($buscar);
 

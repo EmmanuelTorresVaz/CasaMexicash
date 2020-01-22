@@ -12,15 +12,15 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
     <link rel="stylesheet" href="../../style/less/main.css"/>
     <link rel="stylesheet" href="../../style/css/bootstrap/bootstrap.css"/>
     <link href="../../style/css/magicsuggest/magicsuggest-min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../../librerias/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/alertify.css"/>
-    <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/themes/default.css"/>
-    <script src="../../librerias/jquery/jquery-3.4.1.min.js"></script>
-    <script src="../../librerias/bootstrap/js/bootstrap.js"></script>
-    <script src="../../librerias/alertifyjs/alertify.js"></script>
+    <link rel="stylesheet" type="text/css" href="../librerias/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/alertify.css"/>
+    <link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/themes/default.css"/>
+    <script src="../librerias/jquery/jquery-3.4.1.min.js"></script>
+    <script src="../librerias/bootstrap/js/bootstrap.js"></script>
+    <script src="../librerias/alertifyjs/alertify.js"></script>
     <script src="../../JavaScript/funcionesCatalogos.js"></script>
     <script src="../../JavaScript/funcionesCliente.js"></script>
-    <script src="../../librerias/jquery/jquery.numeric.js" type="text/javascript"></script>
+    <script src="../librerias/jquery/jquery.numeric.js" type="text/javascript"></script>
     <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <script src="js/bootstrap-datetimepicker.min.js"></script>
 

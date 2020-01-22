@@ -19,8 +19,8 @@ define('IMG_PATH', WEB_PATH.'img/');
 define('JS_PATH', WEB_PATH.'js/');
 define('STYLE_PATH', WEB_PATH.'style/');
 define('MENU_PATH', HTML_PATH.'Menu/');
+define('EMPE_PATH', HTML_PATH.'Empeno/');
 ?>
-
 
 
 

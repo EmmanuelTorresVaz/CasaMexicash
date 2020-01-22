@@ -13,20 +13,20 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
 include_once(HTML_PATH . "Clientes/modalHistorial.php");
 include_once(HTML_PATH . "Clientes/modalBusquedaCliente.php");
 include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
-include_once (HTML_PATH. "menu.php");
+include_once(EMPE_PATH . "menuEmpeno.php");
+
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Empe&ntilde;o</title>
-    <link rel="stylesheet" type="text/css" href="../../librerias/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/alertify.css"/>
-    <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/themes/default.css"/>
-
-    <script src="../../librerias/jquery/jquery-3.4.1.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../../librerias/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/alertify.css">
+    <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/themes/default.css">
+    <script src="../../librerias/jquery-3.4.1.min.js"></script>
     <script src="../../librerias/bootstrap/js/bootstrap.js"></script>
-    <script src="../../librerias/alertifyjs/alertify.js"></script>
     <script src="../../JavaScript/funcionesArticulos.js"></script>
     <script src="../../JavaScript/funcionesIntereses.js"></script>
     <script src="../../JavaScript/funcionesCliente.js"></script>

@@ -5,23 +5,21 @@ if(!isset($_SESSION["idUsuario"])){
     session_destroy();
 }
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
-include_once (HTML_PATH. "menu.php");
+include_once(EMPE_PATH . "menuEmpeno.php");
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../../librerias/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/alertify.css">
+    <link rel="stylesheet" type="text/css" href="../../librerias/alertifyjs/css/themes/default.css">
+    <script src="../../librerias/jquery-3.4.1.min.js"></script>
+    <script src="../../librerias/bootstrap/js/bootstrap.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Consultas</title>
-
-    <link rel="stylesheet" href="../../style/less/main.css"/>
-    <link rel="stylesheet" href="../../style/css/bootstrap/bootstrap.css"/>
-
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link href="../../style/css/magicsuggest/magicsuggest-min.css" rel="stylesheet">
 
     <script>
         $(document).ready(function () {

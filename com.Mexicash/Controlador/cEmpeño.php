@@ -50,7 +50,7 @@
         exit();
     }else{
         header('Status: 301 Moved Permanently', false, 301);
-        header('Location: ../../Web/html/menu.php');
+        header('Location: ../../Web/html/menuEmpeno.php');
         exit();
     }
 

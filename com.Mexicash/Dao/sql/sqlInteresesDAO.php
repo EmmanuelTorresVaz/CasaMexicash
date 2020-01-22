@@ -67,7 +67,7 @@ class sqlInteresesDAO
         $datos = array();
 
         try {
-            $buscar = "SELECT id_interes, tasa_interes FROM cat_interes WHERE tablaInteres='AUTO'";
+            $buscar = "SELECT id_interes, tasa_interes FROM cat_interes WHERE tablaInteres=3";
             $rs = $this->conexion->query($buscar);
 
             if ($rs->num_rows > 0) {
