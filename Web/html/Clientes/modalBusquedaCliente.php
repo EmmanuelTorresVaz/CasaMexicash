@@ -43,8 +43,6 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
             <div class="modal-footer">
                 <input type="button" class="btn btn-danger" data-dismiss="modal"
                        value="Salir">
-                <input type="button" class="btn btn-danger" onclick="CierraPopup()"
-                       value="Sal4ir">
             </div>
         </div>
     </div>

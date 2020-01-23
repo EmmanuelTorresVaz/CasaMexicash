@@ -36,7 +36,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
     <!--    Script inicial-->
     <script type="application/javascript">
         $(document).ready(function () {
-           // $('.menuContainer').load('menu.php');
+            // $('.menuContainer').load('menu.php');
             articulosObsoletos();
             $("#divElectronicos").hide();
             $("#divMetales").show();
@@ -44,7 +44,8 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
             $("#divTablaArticulos").load('tablaArticulos.php');
             $("#btnEditar").prop('disabled', true);
             llenarComboInteres(1);
-        });
+        }
+        $("#pruebaInpu").inputmask();
     </script>
     <style type="text/css">
         #suggestionsNombreEmpeno {
@@ -131,14 +132,19 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
             text-transform: uppercase;
         }
 
+
     </style>
 </head>
-<body class="bodyEmpeno">
+<body>
 <form id="idFormEmpeno" name="formEmpeno">
     <div id="contenedor" class="container">
         <div>
             <br>
             <br>
+            <div class="form-group">
+                <label for="currency">Currency</label>
+                <input type="text" class="form-control text-left" id="pruebaInpu" name="currency" data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'prefix': '€ ', 'placeholder': '0'">
+            </div>
         </div>
         <div class="row">
             <div class="col col-lg-4 border border-primary ">
@@ -307,7 +313,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr class="headt">
                         <td colspan="6" class="border border-dark" align="right">
-                            <input id="idTotalAvaluo" name="totalAvaluo" type="text" style="width: 150px; text-align: right"
+                            <input id="idTotalAvaluo" name="totalAvaluo"  type="text" style="width: 150px; text-align: right"
                                    class="inputCliente"/>
                         </td>
                         <td colspan="6" class="border border-dark" align="right">
