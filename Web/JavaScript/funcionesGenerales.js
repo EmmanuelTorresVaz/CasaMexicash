@@ -36,7 +36,16 @@ function soloNumeros(e) {
     return patron.test(te);
 }
 
-function salirPagina() {
-    alert("entra")
-    location.href='../../../index.php';
-}
+
+    function isNumberDecimal(e)
+    {
+        var tecla;
+        tecla = (document.all) ? e.keyCode : e.which;
+        if(tecla == 8)
+        {return true;}
+        var patron;
+        patron = /[0-9.]/
+        var te;
+        te = String.fromCharCode(tecla);
+        return patron.test(te);
+    }
