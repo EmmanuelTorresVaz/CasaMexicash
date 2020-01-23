@@ -120,8 +120,9 @@ class sqlContratoDAO
     public function articulosObsoletos()
     {
         // TODO: Implement guardaCiente() method.
+        $usuario = $_SESSION["idUsuario"];
         try {
-            $eliminarArticulo = "DELETE FROM articulo_tbl WHERE id_Contrato <> id_ContratoTemp";
+            $eliminarArticulo = "DELETE FROM articulo_tbl WHERE id_Contrato <> id_ContratoTemp and usuario=$usuario";
 
             if ($this->conexion->query($eliminarArticulo) === TRUE) {
                 $verdad = 1;

@@ -1,9 +1,11 @@
 <?php
-/*session_start();
+session_start();
+$_SESSION["usuario"]= "emmanuel";
+$_SESSION["idUsuario"] = 1;
 if(!isset($_SESSION["idUsuario"])){
     header("Location: ../../../index.php");
     session_destroy();
-}*/
+}
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
 include_once(SQL_PATH . "sqlClienteDAO.php");
 include_once(SQL_PATH . "sqlInteresesDAO.php");

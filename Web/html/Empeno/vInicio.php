@@ -1,4 +1,7 @@
 <?php
+session_start();
+$_SESSION["usuario"]= "emmanuel";
+$_SESSION["idUsuario"] = 1;
 /*session_start();
 if(!isset($_SESSION["idUsuario"])){
     header("Location: ../index.php");
@@ -21,7 +24,7 @@ include_once (HTML_PATH."Empeno/menuEmpeno.php")
             <h1 align="center">Menu acceso rapido</h1>
             <br>
             <br>
-         <!--   <h2 align="center">Bienvenido: <?php /*echo $_SESSION["usuario"]; */?></h2>-->
+         <h2 align="center">Bienvenido: <?php echo $_SESSION["usuario"]; ?></h2>
         </div>
         <div class="row">
             <div class="col-1" >

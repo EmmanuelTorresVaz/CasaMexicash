@@ -70,8 +70,4 @@ function LimpiarInteres() {
     document.getElementById('idAgrupamiento').innerHTML = '';
     $("#idTotalAvaluo").val('0.00');
     $("#idTotalPrestamo").val('0.00');
-    if (tipoInteresValue == 3) {
-        $("#idPoliza").val('0.00');
-        $("#idGPS").val("0.00");
-    }
 }

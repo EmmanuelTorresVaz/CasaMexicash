@@ -74,7 +74,6 @@ class sqlArticulosDAO
                     . "', '" . $idSerie . "','" . $idPrestamoE . "', '" . $idAvaluoE . "', '" . $idPrestamoMaxE . "', '" . $idUbicacionE . "','"
                     . $idDetallePrendaE . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "'," . $usuario . " )";
             }
-
             if ($ps = $this->conexion->prepare($insertMetal)) {
                 if ($ps->execute()) {
                     $verdad =  mysqli_stmt_affected_rows($ps);

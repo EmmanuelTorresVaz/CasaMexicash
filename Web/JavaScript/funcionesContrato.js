@@ -115,7 +115,7 @@ function articulosObsoletos() {
                 alertify.error("Error 0001.");
             } else {
                 $("#idFormEmpeno")[0].reset();
-                alertify.success("Bienvenidos");
+                //alertify.success("Bienvenidos");
             }
         },
     })
