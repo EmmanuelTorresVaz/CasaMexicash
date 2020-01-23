@@ -426,7 +426,6 @@ WHERE id_Cliente = '$idClienteEditar'";
                 " INNER JOIN cat_localidad on cliente_tbl.localidad = cat_localidad.id_Localidad and cliente_tbl.estado = cat_localidad.id_Estado and cliente_tbl.municipio = cat_localidad.id_Municipio" .
                 " WHERE  id_Cliente = '$idClienteEditado'";
             $rs = $this->conexion->query($buscar);
-
             if ($rs->num_rows > 0) {
                 $consulta = $rs->fetch_assoc();
                 $data['status'] = 'ok';

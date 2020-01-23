@@ -1,19 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
-
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Registro Clientes</title>
-    <link rel="stylesheet" href="../../style/less/main.css"/>
-    <link rel="stylesheet" type="text/css" href="../librerias/bootstrap/css/bootstrap.css">
-    <link href="../../style/css/magicsuggest/magicsuggest-min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/alertify.css"/>
-    <link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/themes/default.css"/>
-    <script src="../librerias/jquery/jquery-3.4.1.min.js"></script>
-    <script src="../librerias/bootstrap/js/bootstrap.js"></script>
-    <script src="../librerias/alertifyjs/alertify.js"></script>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Historial Cliente</title>
 </head>
 <body>
 <div class="modal fade " id="modalHistorial" tabindex="-1" role="dialog"
@@ -60,7 +50,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="button" class="btn btn-danger" data-dismiss="modal"
+                <input type="button" class="btn btn-warning w-23" data-dismiss="modal"
                        value="Salir">
             </div>
         </div>

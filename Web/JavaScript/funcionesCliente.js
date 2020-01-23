@@ -154,7 +154,7 @@ function mostrarTodos($idNombres) {
                         '<td>' + celular + '</td>' +
                         '<td>' + direccionCompleta + '</td>' +
                         '<td><input type="button" class="btn btn-info" value="Seleccionar" ' +
-                        'onclick="buscarClienteEditado(' + id_Cliente + '), salirModalBusquedaCliente()"></td>' +
+                        'onclick="CierraPopup()"></td>' +
                         '</tr>';
                 }
                 $('#idTBodyVerTodos').html(html);
@@ -663,8 +663,33 @@ function buscarClienteEditado($clienteEditado) {
     });
 }
 
-//Funcion salir
-function salirModalBusquedaCliente($nameModal) {
+
+//Funcion traer datos de cliente Editado y seleccionado
+function clienteBusqueda($clienteEditado) {
+    var dataEnviar = {
+        "$clienteEditado": $clienteEditado
+    };
+    $.ajax({
+        data: dataEnviar,
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/Cliente/BuscarClienteEditado.php',
+        dataType: "json",
+        success: function (response) {
+            if (response.status == 'ok') {
+                $("#modalBusquedaCliente").modal('hide');//ocultamos el modal
+                $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
+                $('.modal-backdrop').remove();//eliminamos el backdrop del modal
+                $("#idClienteEmpeno").val($clienteEditado);
+                $("#idNombres").val(response.result.NombreCompleto);
+                $("#idCelularEmpeno").val(response.result.celular);
+                $("#idDireccionEmpeno").val(response.result.direccionCompleta);
+                $("#btnEditar").prop('disabled', false);
+            }
+        }
+    });
+}
+function CierraPopup() {
+    alert("entra")
     $("#modalBusquedaCliente").modal('hide');//ocultamos el modal
     $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
     $('.modal-backdrop').remove();//eliminamos el backdrop del modal

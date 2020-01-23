@@ -5,22 +5,11 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
-
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Mexicash</title>
-
-
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registro Cliente</title>
     <script src="../../JavaScript/funcionesCalendario.js"></script>
-
-    <style type="text/css">
-
-
-    </style>
+    <script src="../../JavaScript/funcionesCatalogos.js"></script>
 </head>
 <body>
 <div class="modal fade " id="modalRegistroNuevo" tabindex="-1" role="dialog"
@@ -37,18 +26,10 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                 <div>
                     <form id="idFormRegistro" autocomplete="off">
                         <div id="conteiner" class="container">
+
                             <div class="row">
-                                <input id="idEstado" name="Estado" type="text" style="width: 5px" class="invisible"/>
-                                <input id="idMunicipio" name="municipio" type="text" style="width: 5px"
-                                       class="invisible"
-                                />
-                                <input id="idLocalidad" name="localidad" type="text" style="width: 5px"
-                                       class="invisible"
-                                />
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <table>
+                                <div class="col-12" align="center">
+                                    <table width="100%">
                                         <tr>
                                             <td>Nombre(s):</td>
                                             <td>Apellido Paterno:</td>
@@ -293,10 +274,18 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                     </table>
                                 </div>
                             </div>
+                            <div class="row">
+                                <input id="idEstado" name="Estado" type="text" style="width: 5px" class="invisible"/>
+                                <input id="idMunicipio" name="municipio" type="text" style="width: 5px"
+                                       class="invisible"
+                                />
+                                <input id="idLocalidad" name="localidad" type="text" style="width: 5px"
+                                       class="invisible"
+                                />
+                            </div>
                         </div>
                     </form>
                 </div>
-                <div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
             </div>
             <div class="modal-footer">
                 <input type="button" class="btn btn-primary" onclick="agregarCliente()"
