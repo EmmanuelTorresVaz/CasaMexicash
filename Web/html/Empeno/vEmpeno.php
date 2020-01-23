@@ -44,8 +44,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
             $("#divTablaArticulos").load('tablaArticulos.php');
             $("#btnEditar").prop('disabled', true);
             llenarComboInteres(1);
-        }
-        $("#pruebaInpu").inputmask();
+        })
     </script>
     <style type="text/css">
         #suggestionsNombreEmpeno {
@@ -141,10 +140,6 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
         <div>
             <br>
             <br>
-            <div class="form-group">
-                <label for="currency">Currency</label>
-                <input type="text" class="form-control text-left" id="pruebaInpu" name="currency" data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'prefix': '€ ', 'placeholder': '0'">
-            </div>
         </div>
         <div class="row">
             <div class="col col-lg-4 border border-primary ">
@@ -313,11 +308,11 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr class="headt">
                         <td colspan="6" class="border border-dark" align="right">
-                            <input id="idTotalAvaluo" name="totalAvaluo"  type="text" style="width: 150px; text-align: right"
+                            <input id="idTotalAvaluo" name="totalAvaluo" disabled type="text" style="width: 150px; text-align: right"
                                    class="inputCliente"/>
                         </td>
                         <td colspan="6" class="border border-dark" align="right">
-                            <input id="idTotalPrestamo" name="totalPrestamo" type="text" style="width: 150px; text-align: right"
+                            <input id="idTotalPrestamo" name="totalPrestamo" disabled type="text" style="width: 150px; text-align: right"
                                    class="inputCliente"/>
                         </td>
                     </tr>
@@ -407,28 +402,28 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                     <tr>
                                         <td colspan="6">Cantidad:</td>
                                         <td colspan="6">
-                                            <input type="text" id="idCantidad" name="cantidad" size="6"
+                                            <input type="text" id="idCantidad" name="cantidad" size="6"    onkeypress="return soloNumeros(event)"
                                                    style="text-align:center"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="6">Peso:</td>
                                         <td colspan="6">
-                                            <input type="text" id="idPeso" name="peso" size="6"
+                                            <input type="text" id="idPeso" name="peso" size="6"    onkeypress="return isNumberDecimal(event)"
                                                    style="text-align:center"/>
                                             <label>grs</label></td>
                                     </tr>
                                     <tr>
                                         <td colspan="6">Peso Piedra:</td>
                                         <td colspan="6">
-                                            <input type="text" id="idPesoPiedra" name="pesoPiedra" size="6"
+                                            <input type="text" id="idPesoPiedra" name="pesoPiedra" size="6"    onkeypress="return isNumberDecimal(event)"
                                                    style="text-align:center"/>
                                             <label>grs</label></td>
                                     </tr>
                                     <tr>
                                         <td colspan="6">Piedras:</td>
                                         <td colspan="6">
-                                            <input type="text" id="idPiedras" name="piedras" size="6"
+                                            <input type="text" id="idPiedras" name="piedras" size="6"    onkeypress="return soloNumeros(event)"
                                                    style="text-align:center"/>
                                             <label>pza</label>
                                         </td>
@@ -436,28 +431,28 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                     <tr>
                                         <td colspan="6">Préstamo:</td>
                                         <td colspan="6">
-                                            <input type="text" id="idPrestamo" name="prestamo" size="6"
+                                            <input type="text" id="idPrestamo" name="prestamo" size="6"   onkeypress="return isNumberDecimal(event)";
                                                    style="text-align:center"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="6">Avalúo:</td>
                                         <td colspan="6">
-                                            <input type="text" id="idAvaluo" name="avaluo" size="6"
+                                            <input type="text" id="idAvaluo" name="avaluo" size="6"    onkeypress="return isNumberDecimal(event)"
                                                    style="text-align:center"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="6">Préstamo Maximo:</td>
                                         <td colspan="6">
-                                            <input type="text" id="idPrestamoMax" name="prestamoMax" size="6"
+                                            <input type="text" id="idPrestamoMax" name="prestamoMax" size="6"    onkeypress="return isNumberDecimal(event)"
                                                    style="text-align:center"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="6">Ubicación:</td>
                                         <td colspan="6">
-                                            <input type="text" id="idUbicacion" name="ubicacion" size="6"
+                                            <input type="text" id="idUbicacion" name="ubicacion" size="15"
                                                    style="text-align:center"/>
 
                                         </td>
@@ -468,7 +463,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                         </td>
                                     <tr>
                                         <td colspan="12" name="detallePrenda">
-                                    <textarea rows="2" cols="40" id="idDetallePrenda" class="textArea">
+                                    <textarea rows="2" cols="30" id="idDetallePrenda" class="textArea">
                                     </textarea>
                                         </td>
                                     </tr>
@@ -550,21 +545,21 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                     <tr>
                                         <td colspan="6">Préstamo:</td>
                                         <td colspan="6">
-                                            <input type="text" id="idPrestamoElectronico" name="prestamoE" size="6"
+                                            <input type="text" id="idPrestamoElectronico" name="prestamoE" size="6"    onkeypress="return soloNumeros(event)"
                                                    style="text-align:center"/ value="">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="6">Avalúo:</td>
                                         <td colspan="6">
-                                            <input type="text" id="idAvaluoElectronico" name="avaluoE" size="6"
+                                            <input type="text" id="idAvaluoElectronico" name="avaluoE" size="6"    onkeypress="return soloNumeros(event)"
                                                    style="text-align:center" value=""/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="6">Prestamo Máximo:</td>
                                         <td colspan="6">
-                                            <input type="text" id="idPrestamoMaxElectronico" name="prestamoMaximoE"
+                                            <input type="text" id="idPrestamoMaxElectronico" name="prestamoMaximoE"    onkeypress="return soloNumeros(event)"
                                                    size="6"
                                                    style="text-align:center" value=""/>
                                             <label>grs</label></td>
@@ -572,7 +567,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                     <tr>
                                         <td colspan="6">Ubicación:</td>
                                         <td colspan="6">
-                                            <input type="text" id="idUbicacionElectronico" name="ubicacionE" size="6"
+                                            <input type="text" id="idUbicacionElectronico" name="ubicacionE" size="15"
                                                    style="text-align:center" value=""/>
                                         </td>
                                     </tr>
@@ -583,7 +578,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                     </tr>
                                     <tr>
                                         <td colspan="12" name="detallePrendaE">
-                                    <textarea rows="2" cols="40" id="idDetallePrendaElectronico" class="textArea">
+                                    <textarea rows="2" cols="30" id="idDetallePrendaElectronico" class="textArea">
                                     </textarea>
                                         </td>
                                     </tr>
