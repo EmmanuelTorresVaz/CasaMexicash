@@ -227,6 +227,10 @@ class sqlClienteDAO
                     $html .= '<div><a class="suggest-element" data="' . utf8_encode($row['NombreCompleto']) . '" celular="' . utf8_encode($row['celular'])
                         . '" direccionCompleta="' . utf8_encode($row['direccionCompleta']) . '" id="' . $row['id_Cliente'] . '">' . utf8_encode($row['NombreCompleto']) . '</a></div>';
                 }
+            }else{
+                while ($row = $statement->fetch_assoc()) {
+                    $html .= '<div><a class="suggest-element"><h3>Sin sugerencias... </h3></a></div>';
+                }
             }
         } catch (Exception $exc) {
             echo $exc->getMessage();

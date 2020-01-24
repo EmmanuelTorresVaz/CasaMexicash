@@ -5,7 +5,7 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
 
 $idTipoEnviar = $_POST['$idTipoEnviar'];
 
-if($idTipoEnviar ==1){
+if ($idTipoEnviar == 1) {
 
     $idTipoM = $_POST['idTipoMetal'];
     $idClienteInteres = $_POST['idClienteInteres'];
@@ -20,7 +20,9 @@ if($idTipoEnviar ==1){
     $idPrestamo = $_POST['idPrestamo'];
     $idAvaluo = $_POST['idAvaluo'];
     $idPrestamoMax = $_POST['idPrestamoMax'];
-    $idUbicacion = $_POST['idUbicacion'];
+    $idAvaluo = $_POST['idAvaluo'];
+    $tipoInteres = $_POST['tipoInteres'];
+    $interesMetal = $_POST['interesMetal'];
     $idDetallePrenda = $_POST['idDetallePrenda'];
     $idUbicacion = $_POST['idUbicacion'];
     $idDetallePrenda = $_POST['idDetallePrenda'];
@@ -35,10 +37,12 @@ if($idTipoEnviar ==1){
     $idPrestamoE = null;
     $idAvaluoE = null;
     $idPrestamoMaxE = null;
+    $tipoInteresE = null;
+    $interesArt = null;
     $idUbicacionE = null;
     $idDetallePrendaE = null;
 
-}else if ($idTipoEnviar ==2){
+} else if ($idTipoEnviar == 2) {
 
     $idTipoM = null;
     $idPrenda = null;
@@ -51,6 +55,8 @@ if($idTipoEnviar ==1){
     $idPrestamo = null;
     $idAvaluo = null;
     $idPrestamoMax = null;
+    $tipoInteres = null;
+    $interesMetal = null;
     $idUbicacion = null;
     $idDetallePrenda = null;
 
@@ -66,39 +72,45 @@ if($idTipoEnviar ==1){
     $idPrestamoE = $_POST['idPrestamoElectronico'];
     $idAvaluoE = $_POST['idAvaluoElectronico'];
     $idPrestamoMaxE = $_POST['idPrestamoMaxElectronico'];
+    $tipoInteresE = $_POST['tipoInteresE'];
+    $interesArt = $_POST['interesArt'];
     $idUbicacionE = $_POST['idUbicacionElectronico'];
     $idDetallePrendaE = $_POST['idDetallePrendaElectronico'];
 }
 
-    $articulo = new Articulo(
-        $idTipoM,
-        $idClienteInteres,
-        $idContratoTemp,
-        $idPrenda,
-        $idKilataje,
-        $idCalidad,
-        $idCantidad,
-        $idPeso,
-        $idPesoPiedra,
-        $idPiedras,
-        $idPrestamo,
-        $idAvaluo,
-        $idPrestamoMax,
-        $idUbicacion,
-        $idDetallePrenda,
-        $idTipoE,
-        $idMarca,
-        $idEstado,
-        $idModelo,
-        $idTamaño,
-        $idColor,
-        $idSerie,
-        $idPrestamoE,
-        $idAvaluoE,
-        $idPrestamoMaxE,
-        $idUbicacionE,
-        $idDetallePrendaE
-    );
+$articulo = new Articulo(
+    $idTipoM,
+    $idClienteInteres,
+    $idContratoTemp,
+    $idPrenda,
+    $idKilataje,
+    $idCalidad,
+    $idCantidad,
+    $idPeso,
+    $idPesoPiedra,
+    $idPiedras,
+    $idPrestamo,
+    $idAvaluo,
+    $idPrestamoMax,
+    $tipoInteres,
+    $interesMetal,
+    $idUbicacion,
+    $idDetallePrenda,
+    $idTipoE,
+    $idMarca,
+    $idEstado,
+    $idModelo,
+    $idTamaño,
+    $idColor,
+    $idSerie,
+    $idPrestamoE,
+    $idAvaluoE,
+    $idPrestamoMaxE,
+    $tipoInteresE,
+    $interesArt,
+    $idUbicacionE,
+    $idDetallePrendaE
+);
 
 $sqlArticulo = new sqlArticulosDAO();
 $sqlArticulo->guardarArticulo($idTipoEnviar, $articulo);

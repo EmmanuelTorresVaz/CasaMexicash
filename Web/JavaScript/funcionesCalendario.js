@@ -1,6 +1,4 @@
-
 $(document).ready(function () {
-
     $( ".calendarioMod" ).datepicker({
         showOn: "button",
         buttonImage: "../../img/calendario3.png",

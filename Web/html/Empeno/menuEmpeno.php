@@ -13,8 +13,8 @@
     <script src="../../librerias/alertifyjs/alertify.js"></script>
     <script src="../../librerias/popper.min.js"></script>
     <!--Calendario-->
-    <script src="../../JavaScript/funcionesCalendario.js"></script>
-</head>
+<!--    <script src="../../JavaScript/funcionesCalendario.js"></script>
+--></head>
 <body>
 <nav class="navbar navbar-expand-xl bg-success navbar-dark">
     <a class="navbar-brand" href="vInicio.php">Inicio</a>

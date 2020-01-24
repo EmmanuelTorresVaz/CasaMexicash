@@ -184,7 +184,7 @@ class sqlCatalogoDAO
                     $html .= '<div><a class="suggest-element" data="'.utf8_encode($row['descripcion']).'" id="'.$row['id_Estado'].'">'.utf8_encode($row['descripcion']).'</a></div>';
                 }
             }else{
-                $html .= '<div><a class="suggest-element" ><h3>Sin sugerencias... <?php echo $buscar; ?></h3></a></div>';
+                $html .= '<div><a class="suggest-element" ><h3>Sin sugerencias... </h3></a></div>';
 
             }
         }catch (Exception $exc){
@@ -208,7 +208,7 @@ class sqlCatalogoDAO
                     $html .= '<div><a class="suggest-element" data="'.utf8_encode($row['descripcion']).'" id="'.$row['id_Municipio'].'">'.utf8_encode($row['descripcion']).'</a></div>';
                 }
             }else{
-                $html .= '<div><a class="suggest-element" ><h3>Sin sugerencias... <?php echo $buscar; ?></h3></a></div>';
+                $html .= '<div><a class="suggest-element" ><h3>Sin sugerencias... </h3></a></div>';
 
             }
         }catch (Exception $exc){
@@ -232,7 +232,7 @@ class sqlCatalogoDAO
                     $html .= '<div><a class="suggest-element" data="'.utf8_encode($row['descripcion']).'" id="'.$row['id_Localidad'].'">'.utf8_encode($row['descripcion']).'</a></div>';
                 }
             }else{
-                $html .= '<div><a class="suggest-element" ><h3>Sin sugerencias... <?php echo $buscar; ?></h3></a></div>';
+                $html .= '<div><a class="suggest-element" ><h3>Sin sugerencias...</h3></a></div>';
 
             }
         }catch (Exception $exc){

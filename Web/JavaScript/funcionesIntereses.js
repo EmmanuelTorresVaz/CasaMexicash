@@ -21,12 +21,6 @@ function SeleccionarInteres(tipoInteresValue) {
                     document.getElementById('idSeguroPorcen').innerHTML = response.result.seguro + ".00";
                     document.getElementById('idIvaPorcen').innerHTML = response.result.iva + " %";
                     document.getElementById('idAgrupamiento').innerHTML = response.result.tipo_Agrupamiento;
-                    $("#idTotalAvaluo").val('0.00');
-                    $("#idTotalPrestamo").val('0.00');
-                    if (tipoInteresValue == 3) {
-                        $("#idPoliza").val('0.00');
-                        $("#idGPS").val("0.00");
-                    }
                 }
             },
         })

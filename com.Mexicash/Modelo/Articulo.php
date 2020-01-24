@@ -17,6 +17,8 @@ class Articulo
     private $idPrestamo;
     private $idAvaluo;
     private $idPrestamoMax;
+    private $tipoInteres;
+    private $interesMetal;
     private $idUbicacion;
     private $idDetallePrenda;
     //Electronico
@@ -30,9 +32,10 @@ class Articulo
     private $idPrestamoE;
     private $idAvaluoE;
     private $idPrestamoMaxE;
+    private $tipoInteresE;
+    private $interesArt;
     private $idUbicacionE;
     private $idDetallePrendaE;
-
 
 
     /**
@@ -51,6 +54,8 @@ class Articulo
      * @param $idPrestamo
      * @param $idAvaluo
      * @param $idPrestamoMax
+     * @param $tipoInteres
+     * @param $interesMetal
      * @param $idUbicacion
      * @param $idDetallePrenda
      * Electronico
@@ -81,6 +86,8 @@ class Articulo
         $idPrestamo,
         $idAvaluo,
         $idPrestamoMax,
+        $tipoInteres,
+        $interesMetal,
         $idUbicacion,
         $idDetallePrenda,
         $idTipoE,
@@ -93,6 +100,8 @@ class Articulo
         $idPrestamoE,
         $idAvaluoE,
         $idPrestamoMaxE,
+        $tipoInteresE,
+        $interesArt,
         $idUbicacionE,
         $idDetallePrendaE)
     {
@@ -110,6 +119,8 @@ class Articulo
         $this->prestamo = $idPrestamo;
         $this->avaluo = $idAvaluo;
         $this->prestamoMax = $idPrestamoMax;
+        $this->tipoInteres= $tipoInteres;
+        $this->interesMetal = $interesMetal;
         $this->ubicacion = $idUbicacion;
         $this->detallePrenda = $idDetallePrenda;
         //ELECTRONICOS
@@ -123,9 +134,75 @@ class Articulo
         $this->prestamoE = $idPrestamoE;
         $this->avaluoE = $idAvaluoE;
         $this->prestamoMaxE = $idPrestamoMaxE;
+        $this->tipoInteresE= $tipoInteresE;
+        $this->interesArt = $interesArt;
         $this->ubicacionE = $idUbicacionE;
         $this->detallePrendaE = $idDetallePrendaE;
 
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTipoInteres()
+    {
+        return $this->tipoInteres;
+    }
+
+    /**
+     * @param mixed $tipoInteres
+     */
+    public function setTipoInteres($tipoInteres): void
+    {
+        $this->tipoInteres = $tipoInteres;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInteresMetal()
+    {
+        return $this->interesMetal;
+    }
+
+    /**
+     * @param mixed $interesMetal
+     */
+    public function setInteresMetal($interesMetal): void
+    {
+        $this->interesMetal = $interesMetal;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTipoInteresE()
+    {
+        return $this->tipoInteresE;
+    }
+
+    /**
+     * @param mixed $tipoInteresE
+     */
+    public function setTipoInteresE($tipoInteresE): void
+    {
+        $this->tipoInteresE = $tipoInteresE;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInteresArt()
+    {
+        return $this->interesArt;
+    }
+
+    /**
+     * @param mixed $interesArt
+     */
+    public function setInteresArt($interesArt): void
+    {
+        $this->interesArt = $interesArt;
     }
 
 
@@ -562,8 +639,6 @@ class Articulo
     {
         $this->ubicacionE = $ubicacionE;
     }
-
-
 
 
 }

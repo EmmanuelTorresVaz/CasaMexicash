@@ -24,11 +24,11 @@ function generarContrato() {
             "idCliente": clienteEmpeno,
             "id_Interes": tipoInteres,
             "folio": '',
-            "fechaVencimiento": $("#idFecVencimiento").val(),
-            "totalAvaluo": '',
-            "totalPrestamo": '',
+            "fechaVencimiento": $("#idFecVencimiento").text(),
+            "totalAvaluo": $("#idTotalAvaluo").text(),
+            "totalPrestamo": $("#idTotalPrestamo").text(),
             "abono": '',
-            "intereses": '',
+            "intereses": $("#idTotalInteres").val(),
             "pago": '',
             "fecha_Alm": '',
             "fecha_Movimiento": '',
@@ -115,7 +115,21 @@ function articulosObsoletos() {
                 alertify.error("Error 0001.");
             } else {
                 $("#idFormEmpeno")[0].reset();
-                //alertify.success("Bienvenidos");
+                alertify.success("Bienvenidos");
+            }
+        },
+    })
+}
+//Limpia la tabla cuando cambia el tipo de articulo
+function limpiarTabla() {
+    $.ajax({
+        url: '../../../com.Mexicash/Controlador/ArticulosObsoletos.php',
+        type: 'post',
+        success: function (response) {
+            if (response == -1 || response == 0) {
+                alertify.error("Error 0001.");
+            } else {
+                alertify.warning("Se limpio tabla por modificar el tipo de articulo.");
             }
         },
     })

@@ -30,10 +30,11 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
     <script src="../../JavaScript/funcionesCliente.js"></script>
     <script src="../../JavaScript/funcionesContrato.js"></script>
     <script src="../../JavaScript/funcionesGenerales.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
+
+<!--    <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="//resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
 
     <!--    Script inicial-->
     <script type="application/javascript">
@@ -310,12 +311,14 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr class="headt">
                         <td colspan="6" class="border border-dark" align="right">
-                            <input id="idTotalAvaluo" name="totalAvaluo" disabled type="text" style="width: 150px; text-align: right"
+                            <input id="idTotalAvaluo" name="totalAvaluo" disabled type="text" style="width: 150px; text-align: right"  value="0.00"
                                    class="inputCliente"/>
                         </td>
                         <td colspan="6" class="border border-dark" align="right">
-                            <input id="idTotalPrestamo" name="totalPrestamo" disabled type="text" style="width: 150px; text-align: right"
+                            <input id="idTotalPrestamo" name="totalPrestamo" disabled type="text" style="width: 150px; text-align: right"  value="0.00"
                                    class="inputCliente"/>
+                            <input id="idTotalInteres" name="totalInteres" disabled type="text" style="width: 150px; text-align: right"
+                                   />
                         </td>
                     </tr>
                     <tr class="headt">
@@ -434,7 +437,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                         <td colspan="6">Préstamo:</td>
                                         <td colspan="6">
                                             <input type="text" id="idPrestamo" name="prestamo" size="6"   onkeypress="return isNumberDecimal(event)";
-                                                   style="text-align:center"/>
+                                                   style="text-align:center" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -447,7 +450,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                     <tr>
                                         <td colspan="6">Préstamo Maximo:</td>
                                         <td colspan="6">
-                                            <input type="text" id="idPrestamoMax" name="prestamoMax" size="6"    onkeypress="return isNumberDecimal(event)"
+                                            <input type="text" id="idPrestamoMax" name="prestamoMax" size="6" disabled value="0.00"
                                                    style="text-align:center"/>
                                         </td>
                                     </tr>
@@ -455,7 +458,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                         <td colspan="6">Ubicación:</td>
                                         <td colspan="6">
                                             <input type="text" id="idUbicacion" name="ubicacion" size="15"
-                                                   style="text-align:center"/>
+                                                   style="text-align:left"/>
 
                                         </td>
                                     </tr>
@@ -465,7 +468,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                         </td>
                                     <tr>
                                         <td colspan="12" name="detallePrenda">
-                                    <textarea rows="2" cols="30" id="idDetallePrenda" class="textArea">
+                                    <textarea rows="2" cols="30" id="idDetallePrenda" class="textArea" style="text-align:left">
                                     </textarea>
                                         </td>
                                     </tr>
@@ -561,7 +564,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                     <tr>
                                         <td colspan="6">Prestamo Máximo:</td>
                                         <td colspan="6">
-                                            <input type="text" id="idPrestamoMaxElectronico" name="prestamoMaximoE"    onkeypress="return soloNumeros(event)"
+                                            <input type="text" id="idPrestamoMaxElectronico" name="prestamoMaximoE"   disabled value="0.00"
                                                    size="6"
                                                    style="text-align:center" value=""/>
                                             <label>grs</label></td>
@@ -570,7 +573,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                         <td colspan="6">Ubicación:</td>
                                         <td colspan="6">
                                             <input type="text" id="idUbicacionElectronico" name="ubicacionE" size="15"
-                                                   style="text-align:center" value=""/>
+                                                   style="text-align:left" value=""/>
                                         </td>
                                     </tr>
                                     <tr>
@@ -580,7 +583,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                     </tr>
                                     <tr>
                                         <td colspan="12" name="detallePrendaE">
-                                    <textarea rows="2" cols="30" id="idDetallePrendaElectronico" class="textArea">
+                                    <textarea rows="2" cols="30" id="idDetallePrendaElectronico" class="textArea" style="text-align:left">
                                     </textarea>
                                         </td>
                                     </tr>
@@ -622,7 +625,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                 <br>
             </div>
             <div class="col col-lg-5">
-                <input type="button" class="btn btn-success" value="prueba" onclick="location.href='pruebas.php'">
+                <input type="button" class="btn btn-success" value="pruebaCalc" onclick="prestaMax();">
                 <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
                 <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
                 <input type="button" class="btn btn-primary" value="Generar" onclick="generarContrato()">&nbsp;

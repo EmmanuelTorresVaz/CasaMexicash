@@ -49,3 +49,7 @@ function soloNumeros(e) {
         te = String.fromCharCode(tecla);
         return patron.test(te);
     }
+
+
+    //Saber el tipo de dato
+//alert(typeof (MetalAvaluo))

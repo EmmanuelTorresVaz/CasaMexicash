@@ -9,8 +9,8 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registro Clientes</title>
     <script src="../../JavaScript/funcionesCatalogos.js"></script>
-    <script src="../../JavaScript/funcionesCliente.js"></script>
-
+<!--    <script src="../../JavaScript/funcionesCliente.js"></script>
+-->
 </head>
 <body>
 <div class="modal fade " id="modalEditarNuevo" tabindex="-1" role="dialog"
