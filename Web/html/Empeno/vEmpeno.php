@@ -47,6 +47,9 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
             $("#divTablaArticulos").load('tablaArticulos.php');
             $("#btnEditar").prop('disabled', true);
             llenarComboInteres(1);
+            $("#idAvaluo").blur(function(){
+               alert("Avaluo Pierde el foco");
+            });
         })
     </script>
     <style type="text/css">
