@@ -427,3 +427,9 @@ function prestaMax() {
     var prestamoMax = Math.floor(avaluo* 75)/100;
     $("#idPrestamoMax").val(prestamoMax);
 }
+function prestaMaxElectronico() {
+    var avaluo = parseFloat($("#idAvaluoElectronico").val());
+    var prestamoMax = Math.floor(avaluo* 75)/100;
+    $("#idPrestamoMaxElectronico").val(prestamoMax);
+
+}

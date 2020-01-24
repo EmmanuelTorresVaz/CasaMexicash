@@ -48,7 +48,10 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
             $("#btnEditar").prop('disabled', true);
             llenarComboInteres(1);
             $("#idAvaluo").blur(function(){
-               alert("Avaluo Pierde el foco");
+                prestaMax();
+            });
+            $("#idAvaluoElectronico").blur(function(){
+              prestaMaxElectronico();
             });
         })
     </script>
@@ -437,17 +440,17 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6">Préstamo:</td>
-                                        <td colspan="6">
-                                            <input type="text" id="idPrestamo" name="prestamo" size="6"   onkeypress="return isNumberDecimal(event)";
-                                                   style="text-align:center" />
-                                        </td>
-                                    </tr>
-                                    <tr>
                                         <td colspan="6">Avalúo:</td>
                                         <td colspan="6">
                                             <input type="text" id="idAvaluo" name="avaluo" size="6"    onkeypress="return isNumberDecimal(event)"
                                                    style="text-align:center"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6">Préstamo:</td>
+                                        <td colspan="6">
+                                            <input type="text" id="idPrestamo" name="prestamo" size="6"   onkeypress="return isNumberDecimal(event)";
+                                                   style="text-align:center" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -551,17 +554,17 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6">Préstamo:</td>
-                                        <td colspan="6">
-                                            <input type="text" id="idPrestamoElectronico" name="prestamoE" size="6"    onkeypress="return soloNumeros(event)"
-                                                   style="text-align:center"/ value="">
-                                        </td>
-                                    </tr>
-                                    <tr>
                                         <td colspan="6">Avalúo:</td>
                                         <td colspan="6">
                                             <input type="text" id="idAvaluoElectronico" name="avaluoE" size="6"    onkeypress="return soloNumeros(event)"
                                                    style="text-align:center" value=""/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6">Préstamo:</td>
+                                        <td colspan="6">
+                                            <input type="text" id="idPrestamoElectronico" name="prestamoE" size="6"    onkeypress="return soloNumeros(event)"
+                                                   style="text-align:center"/ >
                                         </td>
                                     </tr>
                                     <tr>
