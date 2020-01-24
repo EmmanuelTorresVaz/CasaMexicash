@@ -12,7 +12,13 @@ if($idtipe==1){
 }else if($idtipe==2){
     $sqlDesempeno->buscarContratoDes($idContratoDes) ;
 }else if($idtipe==3){
-    $sqlDesempeno->buscarContratoDes($idContratoDes) ;
+    $sqlDesempeno->buscarDetalleDes($idContratoDes) ;
+}else if($idtipe==4){
+    $sqlDesempeno->buscarClienteDesAuto($idContratoDes) ;
+}else if($idtipe==5){
+    $sqlDesempeno->buscarContratoDesAuto($idContratoDes) ;
+}else if($idtipe==6){
+    $sqlDesempeno->buscarDetalleDesAuto($idContratoDes) ;
 }
 
 

@@ -46,10 +46,10 @@ class sqlContratoDAO
 
             $insertaContrato = "INSERT INTO contrato_tbl " .
                 "(id_Contrato, id_Cliente, id_Interes, folio, fecha_Vencimiento, total_Avaluo, total_Prestamo, abono, intereses, pago,  " .
-                "fecha_Alm, fecha_Movimiento, origen_Folio, dest_Folio, id_Estatus, observaciones, cotitular,beneficiario, fecha_creacion, fecha_modificacion, usuario) VALUES ".
+                "fecha_Alm, fecha_Movimiento, origen_Folio, dest_Folio, id_Estatus, observaciones, cotitular,beneficiario, fecha_creacion, fecha_modificacion, usuario,tipoContrato) VALUES ".
                 "('" . $idContrato . "', '" . $id_Cliente . "', '" . $id_Interes . "', '" . $folio . "', '" . $fechaVencimiento . "', '" . $totalAvaluo . "', '" . $totalPrestamo .
                 " .', '" . $abono . "', '" . $interes . "', '" . $pago . "', '" . $fechaAlm . "', '" . $fechaMovimiento . "', '" . $origenFolio .
-                "', '" . $destFolio . "', '" . $estatus . "', '" . $observaciones . "', '" . $beneficiario . "','" . $cotitular . "','" . $fechaCreacion . "', ". "'" . $fechaModificacion . "', '" . $usuario . "')";
+                "', '" . $destFolio . "', '" . $estatus . "', '" . $observaciones . "', '" . $beneficiario . "','" . $cotitular . "','" . $fechaCreacion . "', ". "'" . $fechaModificacion . "', '" . $usuario . "',1)";
 
             if ($ps = $this->conexion->prepare($insertaContrato)) {
                 if ($ps->execute()) {
