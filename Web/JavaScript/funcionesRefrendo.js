@@ -139,20 +139,20 @@ function buscarDatosConDes() {
                         "Días transcurridos interés :Prue" + diasVencidos +"\n" +
                         "Plazo :" + PlazoDes +"\n" +
                         "Tasa :" + PlazoDes +"\n" +
-                        "Interes diario : $" + interesDia +"\n" +
-                        "Interes : $" + totalVencInteres +"\n" +
-                        "Almacenaje : $" + totalVencAlm +"\n" +
-                        "Seguro : $" + totalVencSeg +"\n" +
+                        "Interes diario : $" + interesDia.toFixed(2) +"\n" +
+                        "Interes : $" + totalVencInteres.toFixed(2) +"\n" +
+                        "Almacenaje : $" + totalVencAlm.toFixed(2) +"\n" +
+                        "Seguro : $" + totalVencSeg.toFixed(2) +"\n" +
                         "Moratorios : $Preguntar" +"\n" +
-                        "IVA : $" + totalVencIVA +"\n" +
+                        "IVA : $" + totalVencIVA.toFixed(2) +"\n" +
                         "Desempeño Ext : $ Preguntar");
 
                     var totalAPagar = TotalPrest + interesTotal;
                     document.getElementById('idConTDDes').innerHTML = contratoDesp;
-                    document.getElementById('idPresTDDes').innerHTML = TotalPrest;
-                    document.getElementById('idInteresTDDes').innerHTML = interesTotal;
-                    document.getElementById('totalAPagarTD').innerHTML = totalAPagar;
-                    document.getElementById('idAbonoTDRef').innerHTML = Abono;
+                    document.getElementById('idPresTDDes').innerHTML = TotalPrest.toFixed(2);
+                    document.getElementById('idInteresTDDes').innerHTML = interesTotal.toFixed(2);
+                    document.getElementById('totalAPagarTD').innerHTML = totalAPagar.toFixed(2);
+                    document.getElementById('idAbonoTDRef').innerHTML = Abono.toFixed(2);
                 }
             }
         });
@@ -319,21 +319,21 @@ function buscarDatosConDesAuto() {
                         "Días transcurridos :Prue" + diasVencidos+"\n" +
                         "Días transcurridos interés :Prue" + diasVencidos +"\n" +
                         "Plazo :" + PlazoDes +"\n" +
-                        "Tasa :" + PlazoDes +"\n" +
-                        "Interes diario : $" + interesDia +"\n" +
-                        "Interes : $" + totalVencInteres +"\n" +
-                        "Almacenaje : $" + totalVencAlm +"\n" +
-                        "Seguro : $" + totalVencSeg +"\n" +
+                        "Tasa :" + TasaDesc +"\n" +
+                        "Interes diario : $" + interesDia.toFixed(2) +"\n" +
+                        "Interes : $" + totalVencInteres.toFixed(2) +"\n" +
+                        "Almacenaje : $" + totalVencAlm.toFixed(2) +"\n" +
+                        "Seguro : $" + totalVencSeg.toFixed(2) +"\n" +
                         "Moratorios : $Preguntar" +"\n" +
-                        "IVA : $" + totalVencIVA +"\n" +
+                        "IVA : $" + totalVencIVA.toFixed(2) +"\n" +
                         "Desempeño Ext : $ Preguntar");
 
                     var totalAPagar = TotalPrest + interesTotal;
                     document.getElementById('idConTDDesAuto').innerHTML = contratoDesp;
-                    document.getElementById('idPresTDDesAuto').innerHTML = TotalPrest;
-                    document.getElementById('idInteresTDDesAuto').innerHTML = interesTotal;
-                    document.getElementById('totalAPagarTDAuto').innerHTML = totalAPagar;
-                    document.getElementById('idAbonoTDRefAuto').innerHTML = Abono;
+                    document.getElementById('idPresTDDesAuto').innerHTML = TotalPrest.toFixed(2);
+                    document.getElementById('idInteresTDDesAuto').innerHTML = interesTotal.toFixed(2);
+                    document.getElementById('totalAPagarTDAuto').innerHTML = totalAPagar.toFixed(2);
+                    document.getElementById('idAbonoTDRefAuto').innerHTML = Abono.toFixed(2);
                 }
             }
         });
@@ -375,4 +375,11 @@ function buscarDetalleDesAuto() {
             }
         });
     }
+}
+
+function pruebaRefr(){
+    var floatvar = 3.1555;
+    var reformat = floatvar.toFixed(2)
+    alert(floatvar);
+    alert(reformat);
 }

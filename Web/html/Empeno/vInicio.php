@@ -47,13 +47,6 @@ include_once (HTML_PATH."Empeno/menuEmpeno.php")
                     <tr>
                         <td align="center">
                             <br>
-                            <input type="button" class="btn btn-info  w-100" value="Autos"  onclick="location.href='vAuto.php'">
-                            <br>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="center">
-                            <br>
                             <input type="button" class="btn btn-info  w-100" value="Desempeño" onclick="location.href='vDesempeno.php'">
                             <br>
                         </td>
@@ -61,7 +54,50 @@ include_once (HTML_PATH."Empeno/menuEmpeno.php")
                     <tr>
                         <td align="center">
                             <br>
-                            <input type="button" class="btn btn-info  w-100" value="Refrendo">
+                            <input type="button" class="btn btn-info  w-100" value="Refrendo" onclick="location.href='vRefrendo.php'">
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <br>
+                            <input type="button" class="btn btn-info  w-100" value="Consulta" onclick="location.href='vConsulta.php'">
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            <br>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-2 border border-info " align="center">
+                <table width="80%">
+                    <tr>
+                        <td align="center">
+                            <br>
+                            <h2>Auto</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" width="50%">
+                            <br>
+                            <input type="button" class="btn btn-info w-100" value="Auto" onclick="location.href='vAuto.php'">
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <br>
+                            <input type="button" class="btn btn-info  w-100" value="Desempeño" onclick="location.href='vDesempenoAuto.php'">
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <br>
+                            <input type="button" class="btn btn-info  w-100" value="Refrendo" onclick="location.href='vRefrendoAuto.php'">
                             <br>
                         </td>
                     </tr>

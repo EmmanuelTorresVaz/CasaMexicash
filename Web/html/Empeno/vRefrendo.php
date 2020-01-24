@@ -165,7 +165,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                 <br>
             </div>
             <div class="col col-lg-5">
-                <input type="button" class="btn btn-success" value="prueba" onclick="location.href='pruebas.php'">
+                <input type="button" class="btn btn-success" value="prueba" onclick="pruebaRefr()">
                 <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
                 <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
                 <input type="button" class="btn btn-primary" value="Generar" onclick="generarContrato()">&nbsp;
