@@ -32,6 +32,17 @@
                     <li><a class="dropdown-item" href="vDesempeno.php">Desempeños</a></li>
                     <li><a class="dropdown-item" href="vRefrendo.php">Refrendo</a></li>
                     <li><a class="dropdown-item" href="vConsulta.php">Consulta</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Auto
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="vAuto.php">Empeños</a></li>
+                    <li><a class="dropdown-item" href="vDesempenoAuto.php">Desempeños</a></li>
+                    <li><a class="dropdown-item" href="vRefrendo.php">Refrendo</a></li>
+                    <li><a class="dropdown-item" href="vConsulta.php">Consulta</a></li>
                     <li><a class="dropdown-item" href="vAuto.php">Auto</a></li>
                 </ul>
             </li>

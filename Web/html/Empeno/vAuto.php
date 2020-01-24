@@ -352,11 +352,11 @@ include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
                     </tr>
                     <tr class="headt">
                         <td colspan="6" class="border border-dark" align="center">
-                            <input id="idTotalAvaluo" name="totalAvaluo" type="double" style="width: 150px; text-align:right;"
+                            <input id="idTotalAvaluoAuto" name="totalAvaluo" type="double" style="width: 150px; text-align:right;"
                                    class="inputCliente"/>
                         </td>
                         <td colspan="6" class="border border-dark" align="center">
-                            <input id="idTotalPrestamo" name="totalPrestamo" type="double" style="width: 150px; text-align:right;"
+                            <input id="idTotalPrestamoAuto" name="totalPrestamo" type="double" style="width: 150px; text-align:right;"
                                    class="inputCliente"/>
                         </td>
                     </tr>
