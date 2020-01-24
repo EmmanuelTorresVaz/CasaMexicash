@@ -19,6 +19,10 @@ if($idtipe==1){
     $sqlDesempeno->buscarContratoDesAuto($idContratoDes) ;
 }else if($idtipe==6){
     $sqlDesempeno->buscarDetalleDesAuto($idContratoDes) ;
+}else if($idtipe==7){
+    $sqlDesempeno->buscarContratoRef($idContratoDes) ;
+}else if($idtipe==8){
+    $sqlDesempeno->buscarContratoRefAuto($idContratoDes) ;
 }
 
 

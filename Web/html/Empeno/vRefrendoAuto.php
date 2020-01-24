@@ -21,13 +21,13 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
 
 </head>
 <body>
-<form id="idFormDes" name="formDes">
-    <div id="contenedor" class="container ">
-        <div align="center">
-            <br>
-            <h2>Refrendo</h2>
-            <br>
-        </div>
+<form id="idFormDesAuto" name="formDesAuto">
+    <div align="center">
+        <br>
+        <h2>Refrendo Auto</h2>
+        <br>
+    </div>
+    <div id="contenedor" class="container border border-danger">
         <div class="row">
             <div class="col col-lg-5 border border-primary ">
                 <table border="0" width="100%">
@@ -38,14 +38,14 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td style="width: 200px" align="left" colspan="2">
-                            <input type="button" class="btn btn-info " onclick="buscarContratoRef();"
+                            <input type="button" class="btn btn-info " onclick="buscarContratoDesAuto();"
                                    value="Buscar">
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 200px" align="left">
                             <label>Contrato:</label>
-                            <input type="text" id="idContratoDesempeno" name="contrato" size="10" value="2"
+                            <input type="text" id="idContratoDesempenoAuto" name="contrato" size="10" value="2"
                                    style="text-align:right"/>
                         </td>
                     </tr>
@@ -56,7 +56,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <textarea rows="5" cols="45" id="idDatosClienteDes" class="textArea" disabled>
+                            <textarea rows="5" cols="45" id="idDatosClienteDesAuto" class="textArea" disabled>
                             </textarea>
                         </td>
                     </tr>
@@ -67,7 +67,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <textarea rows="14" cols="45" id="idDatosContratoDes" class="textArea" disabled>
+                            <textarea rows="14" cols="45" id="idDatosContratoDesAuto" class="textArea" disabled>
                             </textarea>
                         </td>
                     </tr>
@@ -78,7 +78,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <textarea rows="4" cols="45" id="idDetalleContratoDes" class="textArea" disabled>
+                            <textarea rows="4" cols="45" id="idDetalleContratoDesAuto" class="textArea" disabled>
                             </textarea>
                         </td>
                     </tr>
@@ -97,10 +97,10 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                     <th>Interés</th>
                                     </thead>
                                     <tr>
-                                        <td> <label id="idConTDDes"></label></td>
-                                        <td> <label id="idPresTDDes"></label></td>
-                                        <td> <label id="idAbonoTDRef"></label></td>
-                                        <td> <label id="idInteresTDDes"></label></td>
+                                        <td> <label id="idConTDDesAuto"></label></td>
+                                        <td> <label id="idPresTDDesAuto"></label></td>
+                                        <td> <label id="idAbonoTDRefAuto"></label></td>
+                                        <td> <label id="idInteresTDDesAuto"></label></td>
                                     </tr>
                                     <tr>
                                         <td>Preguntar</td>
@@ -144,7 +144,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     <tr>
                         <td colspan="2">
                         </td>
-                        <td><h1><label id="totalAPagarTD"></label></h1></td>
+                        <td><h1><label id="totalAPagarTDAuto"></label></h1></td>
                     </tr>
                     <tr>
                         <td colspan="3">
@@ -157,19 +157,6 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
 
                     </tr>
                 </table>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col col-lg-7">
-                <br>
-            </div>
-            <div class="col col-lg-5">
-                <input type="button" class="btn btn-success" value="prueba" onclick="location.href='pruebas.php'">
-                <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
-                <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
-                <input type="button" class="btn btn-primary" value="Generar" onclick="generarContrato()">&nbsp;
-                <input type="button" class="btn btn-danger" value="Salir" onclick="location.href='vInicio.php'">&nbsp;
             </div>
         </div>
     </div>

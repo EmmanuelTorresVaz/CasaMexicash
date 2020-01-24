@@ -226,4 +226,86 @@ class sqlDesempenoDAO
         echo json_encode($datos);
     }
 
+    //Refrendo
+    public function buscarContratoRef($idContratoDes)
+    {
+        $datos = array();
+        try {
+            $buscar = "SELECT Con.fecha_creacion as FechaEmp, Con.fecha_Vencimiento as FechaVenc, Con.fecha_Movimiento as FechaCom,
+                        CONCAT (Inte.tipo_interes, ' ', Inte.plazo, ' ', Inte.periodo) as PlazoDes, Inte.tasa as TasaDesc,
+                        Inte.alm as AlmacDesc, Inte.seguro as SeguDesc, Inte.iva as IvaDesc, Con.intereses as InteresesDes,
+                         Inte.dias as Dias, Con.total_Prestamo as TotalPrest, Con.abono as Abono 
+                        FROM contrato_tbl as Con
+                        INNER JOIN cat_interes as Inte  on Con.id_Interes = Inte.id_interes
+                        WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 1";
+
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "FechaEmp" => $row["FechaEmp"],
+                        "FechaVenc" => $row["FechaVenc"],
+                        "FechaCom" => $row["FechaCom"],
+                        "PlazoDes" => $row["PlazoDes"],
+                        "TasaDesc" => $row["TasaDesc"],
+                        "AlmacDesc" => $row["AlmacDesc"],
+                        "SeguDesc" => $row["SeguDesc"],
+                        "IvaDesc" => $row["IvaDesc"],
+                        "Dias" => $row["Dias"],
+                        "InteresesDes" => $row["InteresesDes"],
+                        "TotalPrest" => $row["TotalPrest"],
+                        "Abono" => $row["Abono"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+        echo json_encode($datos);
+    }
+    public function buscarContratoRefAuto($idContratoDes)
+    {
+        $datos = array();
+        try {
+            $buscar = "SELECT Con.fecha_creacion as FechaEmp, Con.fecha_Vencimiento as FechaVenc, Con.fecha_Movimiento as FechaCom,
+                        CONCAT (Inte.tipo_interes, ' ', Inte.plazo, ' ', Inte.periodo) as PlazoDes, Inte.tasa as TasaDesc,
+                        Inte.alm as AlmacDesc, Inte.seguro as SeguDesc, Inte.iva as IvaDesc, Con.intereses as InteresesDes,
+                         Inte.dias as Dias, Con.total_Prestamo as TotalPrest,Con.abono as Abono 
+                        FROM contrato_tbl as Con
+                        INNER JOIN cat_interes as Inte  on Con.id_Interes = Inte.id_interes
+                        WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 2";
+
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "FechaEmp" => $row["FechaEmp"],
+                        "FechaVenc" => $row["FechaVenc"],
+                        "FechaCom" => $row["FechaCom"],
+                        "PlazoDes" => $row["PlazoDes"],
+                        "TasaDesc" => $row["TasaDesc"],
+                        "AlmacDesc" => $row["AlmacDesc"],
+                        "SeguDesc" => $row["SeguDesc"],
+                        "IvaDesc" => $row["IvaDesc"],
+                        "Dias" => $row["Dias"],
+                        "InteresesDes" => $row["InteresesDes"],
+                        "TotalPrest" => $row["TotalPrest"],
+                        "Abono" => $row["Abono"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+        echo json_encode($datos);
+    }
+
 }

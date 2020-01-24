@@ -41,7 +41,7 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <li><a class="dropdown-item" href="vAuto.php">Empeños</a></li>
                     <li><a class="dropdown-item" href="vDesempenoAuto.php">Desempeños</a></li>
-                    <li><a class="dropdown-item" href="vRefrendo.php">Refrendo</a></li>
+                    <li><a class="dropdown-item" href="vRefrendoAuto.php">Refrendo</a></li>
                     <li><a class="dropdown-item" href="vConsulta.php">Consulta</a></li>
                     <li><a class="dropdown-item" href="vAuto.php">Auto</a></li>
                 </ul>
