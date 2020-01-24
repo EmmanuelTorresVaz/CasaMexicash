@@ -44,6 +44,13 @@ function buscarClienteDes() {
                         $("#idDatosClienteDes").val(NombreCompleto + "\n" + DireccionCompleta + "\n" + DireccionCompletaEst + "\n" + "Cotitular: " + Cotitular + "\n" + "Usuario: " + UsuarioName);
                     }
                 }else{
+                    $("#idDatosClienteDes").val('');
+                    $("#idDatosContratoDes").val('');
+                    $("#idDetalleContratoDes").val('');
+                    document.getElementById('idConTDDes').innerHTML = '';
+                    document.getElementById('idPresTDDes').innerHTML = '';
+                    document.getElementById('idInteresTDDes').innerHTML = '';
+                    document.getElementById('totalAPagarTD').innerHTML = '';
                     alertify.error("Sin resultados para mostrar.");
                 }
             }
@@ -145,8 +152,6 @@ function buscarDatosConDes() {
                 }
             }
         });
-    } else {
-        alertify.error("Ingrese un contrato a buscar.");
     }
 }
 function buscarDetalleDes() {
@@ -175,8 +180,6 @@ function buscarDetalleDes() {
                 $("#idDetalleContratoDes").val(detalleContrato);
             }
         });
-    } else {
-        alertify.error("Ingrese un contrato a buscar.");
     }
 }
 
@@ -200,6 +203,7 @@ function buscarClienteDesAuto() {
             data: dataEnviar,
             dataType: "json",
             success: function (datos) {
+                alert(datos.length)
                 if(datos.length>0){
                     for (i = 0; i < datos.length; i++) {
                         var NombreCompleto = datos[i].NombreCompleto;
@@ -217,6 +221,13 @@ function buscarClienteDesAuto() {
                         $("#idDatosClienteDesAuto").val(NombreCompleto + "\n" + DireccionCompleta+ "\n" + DireccionCompletaEst+ "\n" + "Cotitular: " + Cotitular + "\n" + "Usuario: " + UsuarioName);
                     }
                 }
+                $("#idDatosClienteDesAuto").val('');
+                $("#idDatosContratoDesAuto").val('');
+                $("#idDetalleContratoDesAuto").val('');
+                document.getElementById('idConTDDesAuto').innerHTML = '';
+                document.getElementById('idPresTDDesAuto').innerHTML = '';
+                document.getElementById('idInteresTDDesAuto').innerHTML = '';
+                document.getElementById('totalAPagarTDAuto').innerHTML = '';
                 alertify.error("Sin resultados para mostrar.");
             }
         });

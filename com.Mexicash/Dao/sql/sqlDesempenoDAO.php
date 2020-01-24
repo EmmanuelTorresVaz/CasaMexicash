@@ -135,7 +135,7 @@ class sqlDesempenoDAO
                         LEFT JOIN cat_municipio as Mun on Cli.municipio = Mun.id_Municipio and Cli.estado = Mun.id_Estado 
                         LEFT JOIN cat_localidad as Loc on Cli.localidad = Loc.id_Localidad and Cli.estado = Loc.id_Estado and Cli.municipio = Loc.id_Municipio
                         LEFT JOIN usuarios_tbl as Usu on Con.usuario = Usu.id_User
-                        WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 2";
+                        WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato=2";
 
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
