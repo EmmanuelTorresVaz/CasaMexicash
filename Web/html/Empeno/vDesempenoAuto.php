@@ -121,7 +121,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="idCheckPorcentaje">
                                     <label class="form-check-label" for="automovil">Porcentaje</label>
-                                    <label class="form-check-label">0</label>
+                                    <label class="form-check-label">&nbsp;0</label>
                                 </div>
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="idCheckImporte">

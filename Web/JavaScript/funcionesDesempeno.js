@@ -203,9 +203,9 @@ function buscarClienteDesAuto() {
             data: dataEnviar,
             dataType: "json",
             success: function (datos) {
-                alert(datos.length)
                 if(datos.length>0){
                     for (i = 0; i < datos.length; i++) {
+
                         var NombreCompleto = datos[i].NombreCompleto;
                         var DireccionCompleta = datos[i].DireccionCompleta;
                         var DireccionCompletaEst = datos[i].DireccionCompletaEst;
@@ -217,18 +217,19 @@ function buscarClienteDesAuto() {
                         if (DireccionCompletaEst === null) {DireccionCompletaEst = '';}
                         if (Cotitular === null) {Cotitular = '';}
                         if (UsuarioName === null) {UsuarioName = '';}
-
                         $("#idDatosClienteDesAuto").val(NombreCompleto + "\n" + DireccionCompleta+ "\n" + DireccionCompletaEst+ "\n" + "Cotitular: " + Cotitular + "\n" + "Usuario: " + UsuarioName);
+
                     }
+                }else{
+                    $("#idDatosClienteDesAuto").val('');
+                    $("#idDatosContratoDesAuto").val('');
+                    $("#idDetalleContratoDesAuto").val('');
+                    document.getElementById('idConTDDesAuto').innerHTML = '';
+                    document.getElementById('idPresTDDesAuto').innerHTML = '';
+                    document.getElementById('idInteresTDDesAuto').innerHTML = '';
+                    document.getElementById('totalAPagarTDAuto').innerHTML = '';
+                    alertify.error("Sin resultados para mostrar.");
                 }
-                $("#idDatosClienteDesAuto").val('');
-                $("#idDatosContratoDesAuto").val('');
-                $("#idDetalleContratoDesAuto").val('');
-                document.getElementById('idConTDDesAuto').innerHTML = '';
-                document.getElementById('idPresTDDesAuto').innerHTML = '';
-                document.getElementById('idInteresTDDesAuto').innerHTML = '';
-                document.getElementById('totalAPagarTDAuto').innerHTML = '';
-                alertify.error("Sin resultados para mostrar.");
             }
         });
     } else {
