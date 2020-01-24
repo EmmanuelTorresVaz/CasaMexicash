@@ -32,13 +32,9 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
 </head>
 <body>
 <form id="idFormDes" name="formDes">
-    <div id="contenedor" class="container">
-        <div>
-            <br>
-            <br>
-        </div>
+    <div id="contenedor" class="container border border-danger">
         <div class="row">
-            <div class="col col-lg-5 border border-primary ">
+            <div class="col col-lg-6 border border-primary ">
                 <table border="0" width="100%">
                     <tr>
                         <td>
@@ -54,7 +50,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     <tr>
                         <td style="width: 200px" align="left">
                             <label>Contrato:</label>
-                            <input type="text" id="idContratoDesempeno" name="contrato" size="10"
+                            <input type="text" id="idContratoDesempeno" name="contrato" size="10" value="2"
                                    style="text-align:right"/>
                         </td>
                         <td style="width: 200px" align="left">
@@ -82,7 +78,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <textarea rows="5" cols="45" id="idDatosContratoDes" class="textArea" disabled>
+                            <textarea rows="14" cols="45" id="idDatosContratoDes" class="textArea" disabled>
                             </textarea>
                         </td>
                     </tr>
@@ -93,13 +89,13 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <textarea rows="2" cols="35" id="idDetalleContratoDes" class="textArea" disabled>
+                            <textarea rows="2" cols="45" id="idDetalleContratoDes" class="textArea" disabled>
                             </textarea>
                         </td>
                     </tr>
                 </table>
             </div>
-            <div class="col col-lg-7 border border-primary border-left-0">
+            <div class="col col-lg-6 border border-primary border-left-0">
                 <table width="100%" border="0">
                     <tr>
                         <td colspan="3">

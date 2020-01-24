@@ -24,7 +24,9 @@ class sqlDesempenoDAO
     $datos = array();
     try {
         $buscar = "SELECT CONCAT (Cli.nombre, ' ', Cli.apellido_Pat,' ', Cli.apellido_Mat) as NombreCompleto,
-                        CONCAT (calle, ', ',num_interior, ', ',num_exterior, ', ',  Loc.descripcion, ', ',Mun.descripcion,', ',Est.descripcion ) as DireccionCompleta, Con.cotitular as Cotitular, Usu.usuario as UsuarioName
+                        CONCAT (calle, ', ',num_interior, ', ',num_exterior, ', ',  Loc.descripcion, ', ') as DireccionCompleta,
+                        CONCAT (Mun.descripcion,', ',Est.descripcion ) as DireccionCompletaEst,
+                        Con.cotitular as Cotitular, Usu.usuario as UsuarioName
                         FROM contrato_tbl as Con
                         LEFT JOIN cliente_tbl as Cli on Con.id_Cliente = Cli.id_Cliente
                         LEFT JOIN cat_estado as Est on Cli.estado = Est.id_Estado
@@ -40,6 +42,7 @@ class sqlDesempenoDAO
                 $data = [
                     "NombreCompleto" => $row["NombreCompleto"],
                     "DireccionCompleta" => $row["DireccionCompleta"],
+                    "DireccionCompletaEst" => $row["DireccionCompletaEst"],
                     "Cotitular" => $row["Cotitular"],
                     "UsuarioName" => $row["UsuarioName"]
                 ];
