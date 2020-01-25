@@ -13,6 +13,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="../../JavaScript/funcionesRefrendo.js"></script>
+    <script src="../../JavaScript/funcionesGenerales.js"></script>
     <style>
         .textArea {
             resize: none;

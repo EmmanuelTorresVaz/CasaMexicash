@@ -73,7 +73,9 @@ function buscarDatosConDes() {
             dataType: "json",
             success: function (datos) {
                 for (i = 0; i < datos.length; i++) {
+
                     var FechaEmp = datos[i].FechaEmp;
+                    var FechaEmpConvert = datos[i].FechaEmpConvert;
                     var FechaVenc = datos[i].FechaVenc;
                     var FechaCom = datos[i].FechaCom;
                     var PlazoDes = datos[i].PlazoDes;
@@ -127,6 +129,28 @@ function buscarDatosConDes() {
                     var totalVencAlm = diaAlm * diasVencidos;
                     var totalVencSeg = diaSeg * diasVencidos;
                     var totalVencIVA = diaIva * diasVencidos;
+
+                    //evaluar fechas
+                    var fechaHoy = fechaActual();
+                    if(FechaVenc<fechaHoy){
+                        var fechaHoy = new Date();
+                        var FechaVenc = new Date();
+                        alert(typeof (FechaVenc))
+                        alert(typeof (fechaHoy))
+
+                        var fechaini = new Date('2016-07-01');
+
+                        var fechafin = new Date('2016-08-01');
+
+                        var diasdif= fechafin.getTime()-fechaini.getTime();
+
+                        var contdias = Math.round(diasdif/(1000*60*60*24));
+
+                        alert(contdias);
+
+                    }else{
+                        alert("entra aqui")
+                    }
 
 
                     $("#idDatosContratoDes").val("Fecha Empeño :" + FechaEmp +"\n" +

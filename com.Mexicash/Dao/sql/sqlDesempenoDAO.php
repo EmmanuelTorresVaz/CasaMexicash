@@ -60,7 +60,7 @@ class sqlDesempenoDAO
     {
         $datos = array();
         try {
-            $buscar = "SELECT Con.fecha_creacion as FechaEmp, Con.fecha_Vencimiento as FechaVenc, Con.fecha_Movimiento as FechaCom,
+            $buscar = "SELECT Con.fecha_creacion as FechaEmp,DATE(Con.fecha_creacion) as FechaEmpConvert, Con.fecha_Vencimiento as FechaVenc, Con.fecha_Movimiento as FechaCom,
                         CONCAT (Inte.tipo_interes, ' ', Inte.plazo, ' ', Inte.periodo) as PlazoDes, Inte.tasa as TasaDesc,
                         Inte.alm as AlmacDesc, Inte.seguro as SeguDesc, Inte.iva as IvaDesc, Con.intereses as InteresesDes,
                          Inte.dias as Dias, Con.total_Prestamo as TotalPrest
@@ -74,6 +74,7 @@ class sqlDesempenoDAO
                 while ($row = $rs->fetch_assoc()) {
                     $data = [
                         "FechaEmp" => $row["FechaEmp"],
+                        "FechaEmpConvert" => $row["FechaEmpConvert"],
                         "FechaVenc" => $row["FechaVenc"],
                         "FechaCom" => $row["FechaCom"],
                         "PlazoDes" => $row["PlazoDes"],
@@ -162,7 +163,7 @@ class sqlDesempenoDAO
     {
         $datos = array();
         try {
-            $buscar = "SELECT Con.fecha_creacion as FechaEmp, Con.fecha_Vencimiento as FechaVenc, Con.fecha_Movimiento as FechaCom,
+            $buscar = "SELECT Con.fecha_creacion as FechaEmp,DATE(Con.fecha_creacion) as FechaEmpConvert, Con.fecha_Vencimiento as FechaVenc, Con.fecha_Movimiento as FechaCom,
                         CONCAT (Inte.tipo_interes, ' ', Inte.plazo, ' ', Inte.periodo) as PlazoDes, Inte.tasa as TasaDesc,
                         Inte.alm as AlmacDesc, Inte.seguro as SeguDesc, Inte.iva as IvaDesc, Con.intereses as InteresesDes,
                          Inte.dias as Dias, Con.total_Prestamo as TotalPrest
@@ -176,6 +177,7 @@ class sqlDesempenoDAO
                 while ($row = $rs->fetch_assoc()) {
                     $data = [
                         "FechaEmp" => $row["FechaEmp"],
+                        "FechaEmpConvert" => $row["FechaEmpConvert"],
                         "FechaVenc" => $row["FechaVenc"],
                         "FechaCom" => $row["FechaCom"],
                         "PlazoDes" => $row["PlazoDes"],

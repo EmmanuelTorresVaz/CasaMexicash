@@ -9,8 +9,7 @@ function fechaActual() {
     if (mes < 10) {
         mes = '0' + mes;
     }
-    // diaActual = dia + '/' + mes + '/' + anio;
-    diaActual = anio + '/' + mes + '/' + dia;
+    diaActual = anio + '-' + mes + '-' + dia;
 
     return diaActual;
 }
@@ -37,8 +36,7 @@ function soloNumeros(e) {
 }
 
 
-    function isNumberDecimal(e)
-    {
+function isNumberDecimal(e) {
         var tecla;
         tecla = (document.all) ? e.keyCode : e.which;
         if(tecla == 8)

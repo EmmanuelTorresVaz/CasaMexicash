@@ -30,7 +30,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
     <script src="../../JavaScript/funcionesCliente.js"></script>
     <script src="../../JavaScript/funcionesContrato.js"></script>
     <script src="../../JavaScript/funcionesGenerales.js"></script>
-
+    <!--Calendario-->
 <!--    <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="//resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
