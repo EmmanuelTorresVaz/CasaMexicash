@@ -1,6 +1,6 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
-include_once(SQL_PATH . "sql.php");
+include_once(SQL_PATH . "sqlVentasDAO.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -27,13 +27,13 @@ include_once(SQL_PATH . "sql.php");
                     <table class="table table-hover table-condensed table-bordered" width="100%">
                         <thead>
                         <tr>
-                            <th>Nombre completo</th>
-                            <th>Celular</th>
-                            <th>Dirección Completa</th>
+                            <th>Codigo</th>
+                            <th>Articulo</th>
+                            <th>Avalo</th>
                             <th>Seleccionar</th>
                         </tr>
                         </thead>
-                        <tbody id="idTBodyVerTodos">
+                        <tbody id="idTBodyBuscarCodigo">
                         </tbody>
                     </table>
                 </div>

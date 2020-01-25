@@ -23,13 +23,14 @@ include_once (HTML_PATH. "Ventas/menuVentas.php")
     <!--Generales-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Empeño</title>
+    <title>Ventas</title>
     <!--Funciones-->
     <script src="../../JavaScript/funcionesArticulos.js"></script>
     <script src="../../JavaScript/funcionesIntereses.js"></script>
     <script src="../../JavaScript/funcionesCliente.js"></script>
     <script src="../../JavaScript/funcionesContrato.js"></script>
     <script src="../../JavaScript/funcionesGenerales.js"></script>
+    <script src="../../JavaScript/funcionesVentas.js"></script>
     <!--Calendario-->
   <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="//resources/demos/style.css">
@@ -212,7 +213,7 @@ include_once (HTML_PATH. "Ventas/menuVentas.php")
                         <td colspan="4">
                             <input type="button" class="btn btn-success "
                                    data-toggle="modal" data-target="#modalBusquedaCodigo"
-                                   onclick="fnBuscarCodigo($('#idCodigo').val())"
+                                   onclick="buscarCodigo($('#idCodigo').val())"
                                    value="Buscar Codigo">
                         </td>
                         <td colspan="4">

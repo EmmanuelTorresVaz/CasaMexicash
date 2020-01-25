@@ -2,7 +2,8 @@
 if(!isset($_SESSION)) {
     session_start();
 }
-
+include_once ($_SERVER['DOCUMENT_ROOT'].'/dirs.php');
+include_once (BASE_PATH."Conexion.php");
 class sqlVentasDAO
 {
 
@@ -17,17 +18,17 @@ class sqlVentasDAO
     }
 
 
-    public function buscarCodigo($idCodigo)
+    public function buscarCodigo($tipo,$idCodigo)
     {
         $datos = array();
         try {
 
             $buscar = "SELECT id_Articulo, detalle,avaluo FROM articulo_tbl ";
 
-            if($idCodigo==x){
-                $buscar = $buscar + " WHERE id_Estatus = 5 ";
+            if($tipo==1){
+                $buscar = $buscar ." WHERE id_Estatus = 1 ";
             }else{
-                $buscar = $buscar + " WHERE id_Estatus = 5 and id_Articulo=$idCodigo  ";
+                $buscar = $buscar . " WHERE id_Estatus = 1 and id_Articulo=$idCodigo  ";
             }
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {

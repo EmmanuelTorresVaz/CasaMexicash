@@ -1,10 +1,13 @@
-function fnBuscarCodigo($idCodigo) {
+function buscarCodigo($idCodigo) {
+    alert("entra")
     if ($idCodigo == '' || $idCodigo == null) {
         var dataEnviar = {
-            "idCodigo": 'x'
+            "tipo": 1,
+            "idCodigo": ''
         };
     } else {
         var dataEnviar = {
+            "tipo": 2,
             "idCodigo": $idCodigo
         };
     }
@@ -14,6 +17,7 @@ function fnBuscarCodigo($idCodigo) {
         url: '../../../com.Mexicash/Controlador/Ventas/BusquedaCodigo.php',
         data: dataEnviar,
         dataType: "json",
+
         success: function (datos) {
             var html = '';
             var i = 0;
@@ -21,25 +25,46 @@ function fnBuscarCodigo($idCodigo) {
                 var id_Articulo = datos[i].id_Articulo;
                 var detalle = datos[i].detalle;
                 var avaluo = datos[i].avaluo;
-                if (NombreCompleto === null) {
-                    NombreCompleto = '';
+                if (id_Articulo === null) {
+                    id_Articulo = '';
                 }
-                if (celular === null) {
-                    celular = '';
+                if (detalle === null) {
+                    detalle = '';
                 }
-                if (direccionCompleta === null) {
-                    direccionCompleta = '';
+                if (avaluo === null) {
+                    avaluo = '';
                 }
 
                 html += '<tr>' +
-                    '<td>' + NombreCompleto + '</td>' +
-                    '<td>' + celular + '</td>' +
-                    '<td>' + direccionCompleta + '</td>' +
+                    '<td>' + id_Articulo + '</td>' +
+                    '<td>' + detalle + '</td>' +
+                    '<td>' + avaluo + '</td>' +
                     '<td><input type="button" class="btn btn-info" data-dismiss="modal" value="Seleccionar" ' +
-                    'onclick="buscarClienteEditado(' + id_Cliente + ')"></td>' +
+                    'onclick="buscarCodigoSeleccionado(' + id_Articulo + ')"></td>' +
                     '</tr>';
             }
-            $('#idTBodyVerTodos').html(html);
+            $('#idTBodyBuscarCodigo').html(html);
+        }
+    });
+}
+
+function buscarCodigoSeleccionado($id_Articulo) {
+    var dataEnviar = {
+        "$clienteEditado": $clienteEditado
+    };
+    $.ajax({
+        data: dataEnviar,
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/Cliente/BuscarClienteEditado.php',
+        dataType: "json",
+        success: function (response) {
+            if (response.status == 'ok') {
+                $("#idClienteEmpeno").val($clienteEditado);
+                $("#idNombres").val(response.result.NombreCompleto);
+                $("#idCelularEmpeno").val(response.result.celular);
+                $("#idDireccionEmpeno").val(response.result.direccionCompleta);
+                $("#btnEditar").prop('disabled', false);
+            }
         }
     });
 }
