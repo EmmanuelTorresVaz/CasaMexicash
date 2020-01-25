@@ -1,12 +1,11 @@
 <?php
-session_start();
-$_SESSION["usuario"]= "emmanuel";
-$_SESSION["idUsuario"] = 1;
-/*session_start();
+if(!isset($_SESSION)) {
+    session_start();
+}
 if(!isset($_SESSION["idUsuario"])){
     header("Location: ../index.php");
     session_destroy();
-}*/
+}
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
 include_once (HTML_PATH."Empeno/menuEmpeno.php")
 ?>

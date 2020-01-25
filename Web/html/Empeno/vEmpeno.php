@@ -1,9 +1,9 @@
 <?php
-session_start();
-$_SESSION["usuario"]= "emmanuel";
-$_SESSION["idUsuario"] = 1;
+if(!isset($_SESSION)) {
+    session_start();
+}
 if(!isset($_SESSION["idUsuario"])){
-    header("Location: ../../../index.php");
+    header("Location: ../index.php");
     session_destroy();
 }
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
@@ -31,10 +31,10 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
     <script src="../../JavaScript/funcionesContrato.js"></script>
     <script src="../../JavaScript/funcionesGenerales.js"></script>
     <!--Calendario-->
-<!--    <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+   <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="//resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!--    Script inicial-->
     <script type="application/javascript">

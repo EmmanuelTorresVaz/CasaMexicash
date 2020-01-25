@@ -68,7 +68,7 @@ class sqlUsuarioDAO
         try {
             $id = -1;
 
-            $buscar = "select id_User,usuario  from usuarios_tbl where usuario = '". $usuario ."' and password = '". $pass."'";
+            $buscar = "select id_User,usuario,id_Sucursal  from usuarios_tbl where usuario = '". $usuario ."' and password = '". $pass."'";
 
             $statement = $this->conexion->query($buscar);
 
@@ -76,8 +76,10 @@ class sqlUsuarioDAO
                 $fila = $statement->fetch_object();
                 $id = $fila->id_User;
                 $idName = $fila->usuario;
+                $id_Sucursal = $fila->id_Sucursal;
                 $_SESSION['idUsuario'] = $id;
                 $_SESSION['usuario'] = $idName;
+                $_SESSION['sucursal'] = $id_Sucursal;
             }
 
         } catch (Exception $exc) {
