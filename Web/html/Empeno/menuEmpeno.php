@@ -58,15 +58,9 @@
                     Ventas
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" href="../Cierre/vCierre.php">Mostrador (P)</a></li>
-                </ul>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="../Ventas/vVentasMostrador.php">Mostrador (P)</a></li>
                     <li><a class="dropdown-item" href="../Cierre/vCierre.php">Abono (P)</a></li>
-                </ul>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <li><a class="dropdown-item" href="../Cierre/vCierre.php">Apartados (P)</a></li>
-                </ul>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <li><a class="dropdown-item" href="../Cierre/vCierre.php">Reportes (P)</a></li>
                 </ul>
             </li>
@@ -76,8 +70,6 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <li><a class="dropdown-item" href="../Cierre/vCierre.php">Existencias (P)</a></li>
-                </ul>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <li><a class="dropdown-item" href="#" onclick="ventanaInvFisico(1)">Inventario F&iacute;sico (M)</a></li>
                 </ul>
             </li>

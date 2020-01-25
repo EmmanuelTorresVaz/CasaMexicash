@@ -48,7 +48,7 @@
                     Cierre
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" href="vCierre.php">Cierre de Sucursal(P)</a></li>
+                    <li><a class="dropdown-item" href="../Cierre/vCierre.php">Cierre de Sucursal(P)</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown">
@@ -56,7 +56,7 @@
                     Ventas
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" href="../Ventas/vVentasMostrador.php">Mostrador (P)</a></li>
+                    <li><a class="dropdown-item" href="vVentasMostrador.php">Mostrador (P)</a></li>
                     <li><a class="dropdown-item" href="../Cierre/vCierre.php">Abono (P)</a></li>
                     <li><a class="dropdown-item" href="../Cierre/vCierre.php">Apartados (P)</a></li>
                     <li><a class="dropdown-item" href="../Cierre/vCierre.php">Reportes (P)</a></li>
