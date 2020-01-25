@@ -1,5 +1,7 @@
 <?php
-session_start();
+if(!isset($_SESSION)) {
+    session_start();
+}
 
 include_once ($_SERVER['DOCUMENT_ROOT'].'/dirs.php');
 include_once (MODELO_PATH."Usuario.php");
@@ -85,5 +87,34 @@ class sqlUsuarioDAO
         }
 
         echo $id;
+    }
+
+    function llenarCmbVendedor()
+    {
+        $datos = array();
+
+        try {
+            $sucursal = $_SESSION["sucursal"];
+            $buscar = "SELECT id_User,CONCAT(nombre, ' ', apellido_Pat, ' ', apellido_Mat) as NombreVend FROM usuarios_tbl 
+                        WHERE id_Sucursal=$sucursal";
+            echo $buscar;
+            $rs = $this->conexion->query($buscar);
+
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_User" => $row["id_User"],
+                        "NombreVend" => $row["NombreVend"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        return $datos;
     }
 }
