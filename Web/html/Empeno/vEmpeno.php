@@ -323,8 +323,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                         <td colspan="6" class="border border-dark" align="right">
                             <input id="idTotalPrestamo" name="totalPrestamo" disabled type="text" style="width: 150px; text-align: right"  value="0.00"
                                    class="inputCliente"/>
-                            <input id="idTotalInteres" name="totalInteres" disabled type="text" style="width: 150px; text-align: right"
-                                   />
+                            <input id="idTotalInteres" name="totalInteres" disabled type="text" style="width: 150px; text-align: right"/>
                         </td>
                     </tr>
                     <tr class="headt">
