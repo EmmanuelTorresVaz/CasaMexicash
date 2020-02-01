@@ -103,8 +103,8 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                                        required/>
                                             </td>
                                             <td>
-                                                <input type="text" name="fechaNac" id="idFechaNac" style="width: 100px" class="calendarioMod"
-                                                       required disabled/>
+                                                <input type="text" name="fechaNac" id="idFechaNac" style="width: 150px"
+                                                       required placeholder="AAAA-MM-DD"/>
                                             </td>
                                             <td>
                                                 <input type="text" name="correo" id="idCorreo" style="width: 200px"

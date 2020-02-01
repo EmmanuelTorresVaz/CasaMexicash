@@ -103,8 +103,8 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                             </td>
                                             <td>
                                                 <input type="text" name="fechaNac" id="idFechaNacEdit"
-                                                       class="calendarioMod" style="width: 100px"
-                                                       required disabled/>
+                                                     style="width: 150px"
+                                                       required placeholder="AAAA-MM-DD" />
                                             </td>
                                             <td>
                                                 <input type="text" name="correo" id="idCorreoEdit" style="width: 200px"
@@ -221,20 +221,8 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                                        style="width: 150px"/>
                                             </td>
                                             <td>
-                                                <select type="text" name="ocupacion" placeholder="Selecciona uno"
-                                                        class="selectpicker"
-                                                        id="idOcupacionEdit"
-                                                        style="width: 200px" required>
-                                                    <option value="22">Selecciona Uno</option>
-                                                    <?php
-                                                    $dataOcupaciones = array();
-                                                    $sq = new sqlCatalogoDAO();
-                                                    $dataOcupaciones = $sq->catOcupacionesLlenar();
-                                                    for ($i = 0; $i < count($dataOcupaciones); $i++) {
-                                                        echo "<option value=" . $dataOcupaciones[$i]['id_Ocupacion'] . ">" . $dataOcupaciones[$i]['descripcion'] . "</option>";
-                                                    }
-                                                    ?>
-                                                </select>
+                                                <input type="text" name="numInt" placeholder="" id="idOcupacionEdit"
+                                                       style="width: 200px"/>
                                             </td>
                                         </tr>
                                         <tr>

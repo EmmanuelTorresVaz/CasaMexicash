@@ -1,8 +1,8 @@
 <?php
-/*if(!isset($_SESSION)) {
+if(!isset($_SESSION)) {
     session_start();
 }
-if(!isset($_SESSION["idUsuario"])){
+/*if(!isset($_SESSION["idUsuario"])){
     header("Location: ../index.php");
     session_destroy();
 }*/
@@ -99,10 +99,6 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     <tbody>
                     <tr>
                         <br>
-                        <td>
-                            <input type="text" name="fechaNac" id="idFechaNac" style="width: 100px" class="calendarioMod"
-                                   required disabled/>
-                        </td>
                     </tr>
                     <tr class="headt">
                         <td colspan="3">
