@@ -10,6 +10,8 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
     <title>Registro Cliente</title>
     <script src="../../JavaScript/funcionesCatalogos.js"></script>
 
+
+
 </head>
 <body>
 <div class="modal fade " id="modalRegistroNuevo" tabindex="-1" role="dialog"
@@ -95,13 +97,13 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                                 </select>
                                             </td>
                                             <td>
-                                                <input type="text" name="numIdentificacion" placeholder=""
+                                                <input type="text" name="numIdentificacion" class="inputCliente"
                                                        id="idNumIdentificacion"
                                                        style="width: 200px"
                                                        required/>
                                             </td>
                                             <td>
-                                                <input type="text" name="fechaNac" id="idFechaNac" class="calendarioMod" style="width: 100px"
+                                                <input type="text" name="fechaNac" id="idFechaNac" style="width: 100px" class="calendarioMod"
                                                        required disabled/>
                                             </td>
                                             <td>

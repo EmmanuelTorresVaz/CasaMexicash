@@ -35,10 +35,9 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
     <script src="../../JavaScript/funcionesGenerales.js"></script>
     <!--Calendario-->
     <script src="../../JavaScript/funcionesCalendario.js"></script>
-  <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" href="//resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet"  type="text/css" href="../../librerias/jqueryui/jquery-ui.min.css">
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="../../librerias/jqueryui/jquery-ui.min.js"></script>
 
     <!--    Script inicial-->
     <script type="application/javascript">
