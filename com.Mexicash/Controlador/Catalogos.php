@@ -4,7 +4,6 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
 
 $tipoConsulta= $_POST['tipoConsulta'];
 $sqlCatalogo = new sqlCatalogoDAO();
-
  if($tipoConsulta==1){
     $idEstado= $_POST['Estado'];
      $idMunicipio= null;

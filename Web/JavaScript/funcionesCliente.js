@@ -20,7 +20,7 @@ function agregarCliente() {
     } else if (idApPat == "" || idApPat == null) {
         alert("Por favor ingrese apellido paterno.");
         validacion = false;
-    } else if (idSexo == "" || idSexo == null) {
+    } else if (idSexo == 0 || idSexo == null) {
         alert("Por favor seleccione el campo sexo.");
         validacion = false;
     } else if (idFechaNac == "" || idFechaNac == null) {
@@ -29,19 +29,19 @@ function agregarCliente() {
     } else if (idCelular == "" || idCelular == null) {
         alert("Por favor ingrese numero celular.");
         validacion = false;
-    } else if (idIdentificacion == "" || idIdentificacion == null) {
+    } else if (idIdentificacion == 0 || idIdentificacion == null) {
         alert("Por favor ingrese tipo de identificacion.");
         validacion = false;
     } else if (idNumIdentificacion == "" || idNumIdentificacion == null) {
         alert("Por favor ingrese número de identificación.");
         validacion = false;
-    } else if (idEstado == "" || idEstado == null) {
+    } else if (idEstado == 0 || idEstado == null) {
         alert("Por favor seleccione un estado.");
         validacion = false;
-    } else if (idMunicipio == "" || idMunicipio == null) {
+    } else if (idMunicipio == 0 || idMunicipio == null) {
         alert("Por favor seleccione un municipio.");
         validacion = false;
-    } else if (idLocalidad == "" || idLocalidad == null) {
+    } else if (idLocalidad == 0 || idLocalidad == null) {
         alert("Por favor seleccione una Localidad.");
         validacion = false;
     } else if (idCalle == "" || idCalle == null) {
@@ -665,4 +665,6 @@ function buscarClienteEditado($clienteEditado) {
     });
 }
 
-
+function openRegistrarCliente() {
+ window.open('RegistrarCliente.php' , 'Registro' , 'left=150,width=1000,height=500');
+}

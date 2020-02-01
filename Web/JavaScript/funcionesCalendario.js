@@ -1,13 +1,5 @@
 $(document).ready(function () {
-    $('.picker').appendTo('body');
-
     $( ".calendarioMod" ).datepicker({
-        beforeShow: function(input, inst) {
-            $(document).off('focusin.bs.modal');
-        },
-        onClose:function(){
-            $(document).on('focusin.bs.modal');
-        },
         showOn: "button",
         buttonImage: "../../img/calendario3.png",
         buttonImageOnly: true,
@@ -35,7 +27,6 @@ $(document).ready(function () {
             dateFormat: 'dd/mm/yy', firstDay: 0,
             initStatus: 'Selecciona la fecha', isRTL: false};
     $.datepicker.setDefaults($.datepicker.regional['es']);
-    $( "#calendarioMod" ).datepicker({ minDate: "-1D", maxDate: "+1M +10D" });
-
+    $( ".calendarioMod" ).datepicker({ minDate: "-1D", maxDate: "+1M +10D" });
 
 });

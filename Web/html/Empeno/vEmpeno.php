@@ -33,12 +33,6 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
     <script src="../../JavaScript/funcionesCliente.js"></script>
     <script src="../../JavaScript/funcionesContrato.js"></script>
     <script src="../../JavaScript/funcionesGenerales.js"></script>
-    <!--Calendario-->
-    <script src="../../JavaScript/funcionesCalendario.js"></script>
-    <link rel="stylesheet"  type="text/css" href="../../librerias/jqueryui/jquery-ui.min.css">
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="../../librerias/jqueryui/jquery-ui.min.js"></script>
-
     <!--    Script inicial-->
     <script type="application/javascript">
         $(document).ready(function () {
@@ -105,6 +99,10 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     <tbody>
                     <tr>
                         <br>
+                        <td>
+                            <input type="text" name="fechaNac" id="idFechaNac" style="width: 100px" class="calendarioMod"
+                                   required disabled/>
+                        </td>
                     </tr>
                     <tr class="headt">
                         <td colspan="3">
@@ -577,14 +575,13 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                 <br>
             </div>
             <div class="col col-lg-5">
-                <input type="button" class="btn btn-success" value="pruebaCalc" onclick="prestaMax();">
+                <input type="button" class="btn btn-success" value="pruebaCalc" onclick="openRegistrarCliente();">
                 <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
                 <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
                 <input type="button" class="btn btn-primary" value="Generar" onclick="generarContrato()">&nbsp;
                 <input type="button" class="btn btn-danger" value="Salir" onclick="location.href='vInicio.php'">&nbsp;
             </div>
         </div>
-    </div>
     </div>
     </div>
 </form>
