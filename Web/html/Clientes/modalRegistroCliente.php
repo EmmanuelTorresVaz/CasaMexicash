@@ -8,7 +8,6 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registro Cliente</title>
-<!--    <script src="../../JavaScript/funcionesCalendario.js"></script>-->
     <script src="../../JavaScript/funcionesCatalogos.js"></script>
 
 </head>
@@ -84,7 +83,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                                 <select type="text" name="identificacion" placeholder="Selecciona uno"
                                                         id="idIdentificacion"
                                                         style="width: 200px" required>
-                                                    <option value="44">Selecciona Uno</option>
+                                                    <option value="0">Selecciona Uno</option>
                                                     <?php
                                                     $dataIdent = array();
                                                     $sq = new sqlCatalogoDAO();
@@ -162,25 +161,26 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input id="idEstadoName" name="estadoName" type="text"
-                                                       style="width: 200px"
-                                                       onkeypress="estadoAutocompletar()" placeholder="Buscar Estado..."
-                                                       required/>
-                                                <div id="sugerenciaEstado"></div>
+                                                <select id="idEstado" name="estadoName" class="selectpicker"  style="width:155px"
+                                                onchange="llenarComboMunicipio()">
+                                                    <option value="0">Seleccione:</option>
+                                                    <?php
+                                                    $dataEstado = array();
+                                                    $sqlEstado = new sqlCatalogoDAO();
+                                                    $dataEstado = $sqlEstado->completaEstado();
+                                                    for ($i = 0; $i < count($dataEstado); $i++) {
+                                                        echo "<option value=" . $dataEstado[$i]['id_Estado'] . ">" . $dataEstado[$i]['descripcion'] . "</option>";
+                                                    }
+                                                    ?>
+                                                </select>
                                             </td>
                                             <td>
-                                                <input id="idMunicipioName" name="municipioName" type="text"
-                                                       style="width: 200px"
-                                                       onkeypress="municipioAutocompletar()"
-                                                       placeholder="Buscar Municipio..." required disabled/>
-                                                <div id="sugerenciaMunicipio"></div>
+                                                <select id="idMunicipio" name="municipioName" class="selectpicker"  style="width:200px" disabled onchange="llenarComboLocalidad()">
+                                                </select>
                                             </td>
                                             <td>
-                                                <input id="idLocalidadName" name="localidadName" type="text"
-                                                       style="width: 200px"
-                                                       onkeypress="localidadAutocompletar()"
-                                                       placeholder="Buscar Localidad..." required disabled/>
-                                                <div id="sugerenciaLocalidad"></div>
+                                                <select id="idLocalidad" name="localidadName" class="selectpicker"  style="width:200px" disabled>
+                                                </select>
                                             </td>
                                             <td>
                                                 <input type="text" class="inputCliente" name="calle" placeholder=""
@@ -188,7 +188,6 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                                        style="width: 200px"
                                                        required/>
                                             </td>
-
                                         </tr>
                                         <tr>
                                             <td>
@@ -220,20 +219,8 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                                        style="width: 150px"/>
                                             </td>
                                             <td>
-                                                <select type="text" name="ocupacion" placeholder="Selecciona uno"
-                                                        class="selectpicker"
-                                                        id="idOcupacion"
-                                                        style="width: 200px" required>
-                                                    <option value="22">Selecciona Uno</option>
-                                                    <?php
-                                                    $dataOcupaciones = array();
-                                                    $sq = new sqlCatalogoDAO();
-                                                    $dataOcupaciones = $sq->catOcupacionesLlenar();
-                                                    for ($i = 0; $i < count($dataOcupaciones); $i++) {
-                                                        echo "<option value=" . $dataOcupaciones[$i]['id_Ocupacion'] . ">" . $dataOcupaciones[$i]['descripcion'] . "</option>";
-                                                    }
-                                                    ?>
-                                                </select>
+                                                <input type="text" name="numInt" placeholder="" id="idOcupacion"
+                                                       style="width: 200px"/>
                                             </td>
                                         </tr>
                                         <tr>
@@ -274,15 +261,6 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                         </tr>
                                     </table>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <input id="idEstado" name="Estado" type="text" style="width: 5px" class="invisible"/>
-                                <input id="idMunicipio" name="municipio" type="text" style="width: 5px"
-                                       class="invisible"
-                                />
-                                <input id="idLocalidad" name="localidad" type="text" style="width: 5px"
-                                       class="invisible"
-                                />
                             </div>
                         </div>
                     </form>

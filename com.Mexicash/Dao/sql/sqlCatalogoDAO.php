@@ -92,7 +92,7 @@ class sqlCatalogoDAO
         $datos = array();
 
         try {
-            $buscar = "select id_Cat_Cliente, descripcion from cat_cliente where tipo = 'Identificacion';";
+            $buscar = "select id_Cat_Cliente, descripcion from cat_cliente where tipo = 'Identificacion'";
             $rs = $this->conexion->query( $buscar );
 
             if($rs->num_rows > 0){
@@ -171,77 +171,84 @@ class sqlCatalogoDAO
         return $datos;
     }
 
-    public function completaEstado($idEstado){
-        try{
-            $html = '';
+    public function completaEstado(){
+        $datos = array();
 
-            $buscar = "SELECT id_Estado, descripcion FROM cat_estado WHERE descripcion LIKE '%".strip_tags($idEstado)."%' and id_Estado='9' or id_Estado='15'";
+        try {
+            $buscar = "SELECT id_Estado, descripcion FROM cat_estado WHERE id_Estado='9' or id_Estado='15'";
+            $rs = $this->conexion->query( $buscar );
 
-            $statement = $this->conexion->query( $buscar );
+            if($rs->num_rows > 0){
+                while($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_Estado" => $row["id_Estado"],
+                        "descripcion" => $row["descripcion"]
+                    ];
 
-            if ($statement->num_rows > 0) {
-                while ($row = $statement->fetch_assoc()) {
-                    $html .= '<div><a class="suggest-element" data="'.utf8_encode($row['descripcion']).'" id="'.$row['id_Estado'].'">'.utf8_encode($row['descripcion']).'</a></div>';
+                    array_push($datos, $data);
                 }
-            }else{
-                $html .= '<div><a class="suggest-element" ><h3>Sin sugerencias... </h3></a></div>';
-
             }
+
         }catch (Exception $exc){
-            echo $exc->getMessage();
+            echo  $exc->getMessage();
         }finally{
             $this->db->closeDB();
         }
-        echo $html;
+
+        return $datos;
 
     }
-    public function completaMunicipio($idEstado,$idMunicipioName){
-        try{
-            $html = '';
 
-            $buscar = "SELECT id_Municipio, descripcion FROM cat_municipio WHERE id_Estado = '". $idEstado."' AND  descripcion LIKE '%".strip_tags($idMunicipioName)."%' ";
 
-            $statement = $this->conexion->query( $buscar );
+    function completaMunicipio($idEstado){
+        $datos = array();
 
-            if ($statement->num_rows > 0) {
-                while ($row = $statement->fetch_assoc()) {
-                    $html .= '<div><a class="suggest-element" data="'.utf8_encode($row['descripcion']).'" id="'.$row['id_Municipio'].'">'.utf8_encode($row['descripcion']).'</a></div>';
+        try {
+            $buscar = "SELECT id_Municipio, descripcion FROM cat_municipio  WHERE id_Estado='$idEstado'";
+
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_Municipio" => $row["id_Municipio"],
+                        "descripcion" => $row["descripcion"]
+                    ];
+                    array_push($datos, $data);
                 }
-            }else{
-                $html .= '<div><a class="suggest-element" ><h3>Sin sugerencias... </h3></a></div>';
-
             }
-        }catch (Exception $exc){
+        } catch (Exception $exc) {
             echo $exc->getMessage();
-        }finally{
+        } finally {
             $this->db->closeDB();
         }
-        echo $html;
 
+        echo json_encode($datos);
     }
 
-    public function completaLocalidad($idEstado,$idMunicipio, $idLocalidadName){
-        try{
-            $html = '';
+    function completaLocalidad($idEstado,$idMunicipio){
+        $datos = array();
 
-            $buscar = "SELECT id_Localidad, descripcion FROM cat_localidad WHERE id_Estado = '". $idEstado."' AND id_Municipio = '". $idMunicipio."' AND descripcion LIKE '%".strip_tags($idLocalidadName)."%' ";
-            $statement = $this->conexion->query( $buscar );
+        try {
+            $buscar = "SELECT id_Localidad, descripcion FROM cat_localidad  WHERE id_Estado='$idEstado' AND id_Municipio = '$idMunicipio'";
 
-            if ($statement->num_rows > 0) {
-                while ($row = $statement->fetch_assoc()) {
-                    $html .= '<div><a class="suggest-element" data="'.utf8_encode($row['descripcion']).'" id="'.$row['id_Localidad'].'">'.utf8_encode($row['descripcion']).'</a></div>';
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_Localidad" => $row["id_Localidad"],
+                        "descripcion" => $row["descripcion"]
+                    ];
+                    array_push($datos, $data);
                 }
-            }else{
-                $html .= '<div><a class="suggest-element" ><h3>Sin sugerencias...</h3></a></div>';
-
             }
-        }catch (Exception $exc){
+        } catch (Exception $exc) {
             echo $exc->getMessage();
-        }finally{
+        } finally {
             $this->db->closeDB();
         }
-        echo $html;
 
+        echo json_encode($datos);
     }
+
 
 }

@@ -1,11 +1,14 @@
 <?php
-if(!isset($_SESSION)) {
+/*if(!isset($_SESSION)) {
     session_start();
 }
 if(!isset($_SESSION["idUsuario"])){
     header("Location: ../index.php");
     session_destroy();
-}
+}*/
+$_SESSION['idUsuario'] = 1;
+$_SESSION['usuario'] = "admin";
+$_SESSION['sucursal'] = 1;
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
 include_once(SQL_PATH . "sqlClienteDAO.php");
 include_once(SQL_PATH . "sqlInteresesDAO.php");
@@ -31,7 +34,8 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
     <script src="../../JavaScript/funcionesContrato.js"></script>
     <script src="../../JavaScript/funcionesGenerales.js"></script>
     <!--Calendario-->
-   <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="../../JavaScript/funcionesCalendario.js"></script>
+  <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="//resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -80,60 +84,6 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
 
         .headt td {
             height: 35px;
-        }
-
-        #sugerenciaEstado {
-            box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
-            height: auto;
-            position: absolute;
-            top: 230px;
-            z-index: 9999;
-            width: 206px;
-        }
-
-        #sugerenciaMunicipio {
-            box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
-            height: auto;
-            position: absolute;
-            top: 230px;
-            z-index: 9999;
-            width: 206px;
-        }
-
-        #sugerenciaLocalidad {
-            box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
-            height: auto;
-            position: absolute;
-            top: 230px;
-            z-index: 9999;
-            width: 206px;
-        }
-
-        #sugerenciaEstado .suggest-element {
-            background-color: #EEEEEE;
-            border-top: 1px solid #d6d4d4;
-            cursor: pointer;
-            padding: 8px;
-            width: 100%;
-            float: left;
-        }
-
-        #sugerenciaMunicipio .suggest-element {
-            background-color: #EEEEEE;
-            border-top: 1px solid #d6d4d4;
-            cursor: pointer;
-            padding: 8px;
-            width: 100%;
-            float: left;
-        }
-
-        #sugerenciaLocalidad .suggest-element {
-            background-color: #EEEEEE;
-            border-top: 1px solid #d6d4d4;
-            cursor: pointer;
-            padding: 8px;
-            width: 100%;
-            float: left;
         }
 
         .inputCliente {
@@ -266,12 +216,10 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr class="headt">
                         <td colspan="6" class="border border-dark">Tasa Interés:</td>
-
                         <td colspan="6" class="border border-dark" id="idComboInteresTD">
                             <select id="tipoInteresEmpeno" name="cmbTipoInteres" class="selectpicker"   style="width:150px"
                                     onchange="SeleccionarInteres($('#tipoInteresEmpeno').val())">
                             </select>
-
                         </td>
                     </tr>
                     <tr>

@@ -1,108 +1,56 @@
-function estadoAutocompletar() {
-    $('#idEstadoName').on('keyup', function () {
-        var key = $(this).val();
-        var dataString = 'idEstadoName=' + key;
-        var dataEnviar = {
-            "tipoConsulta": 1,
-            "idEstadoName": key
-        };
-        $.ajax({
-            type: "POST",
-            url: '../../../com.Mexicash/Controlador/Catalogos.php',
-            data: dataEnviar,
-            success: function (data) {
-                //Escribimos las sugerencias que nos manda la consulta
-                $('#sugerenciaEstado').fadeIn(1000).html(data);
-                //Al hacer click en alguna de las sugerencias
-                $('.suggest-element').on('click', function () {
-                    //Obtenemos la id unica de la sugerencia pulsada
-                    var id = $(this).attr('id');
-                    //Editamos el valor del input con data de la sugerencia pulsada
-                    $('#idEstado').val(id);
-                    $('#idEstadoName').val($('#' + id).attr('data'));
-                    $("#idMunicipio").val("");
-                    $("#idMunicipioName").val("");
-                    $("#idLocalidad").val("");
-                    $("#idLocalidadName").val("");
-                    $("#idMunicipioName").prop('disabled', false);
-                    //Hacemos desaparecer el resto de sugerencias
-                    $('#sugerenciaEstado').fadeOut(1000);
-                    return false;
-                });
+
+
+function llenarComboMunicipio() {
+    $('#idMunicipio').prop('disabled',false);
+    $('#idLocalidad').prop('disabled',true);
+    $('#idMunicipio').val(0);
+    $('#idLocalidad').val(0);
+    var dataEnviar = {
+        "Estado":  $('#idEstado').val(),
+        "tipoConsulta" :1
+    };
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/Catalogos.php',
+        data: dataEnviar,
+        dataType: "json",
+        success: function (datos) {
+            var html = "";
+            html += " <option value=0>Seleccione:</option>"
+            var i = 0;
+            for (i; i < datos.length; i++) {
+                var id_Municipio = datos[i].id_Municipio;
+                var descripcion = datos[i].descripcion;
+                html += '<option value=' + id_Municipio + '>' + descripcion + '</option>';
             }
-        });
+            $('#idMunicipio').html(html);
+        }
     });
 }
 
-function municipioAutocompletar() {
-    $('#idMunicipioName').on('keyup', function () {
-        $("#idLocalidad").val("");
-        var key = $(this).val();
-        var dataString = 'idMunicipioName=' + key;
-        var dataEnviar = {
-            "tipoConsulta": 2,
-            "idMunicipioName": key,
-            "idEstado": $("#idEstado").val()
-        };
-        $.ajax({
-            type: "POST",
-            url: '../../../com.Mexicash/Controlador/Catalogos.php',
-            data: dataEnviar,
-            success: function (data) {
-
-                //Escribimos las sugerencias que nos manda la consulta
-                $('#sugerenciaMunicipio').fadeIn(1000).html(data);
-                //Al hacer click en alguna de las sugerencias
-                $('.suggest-element').on('click', function () {
-                    //Obtenemos la id unica de la sugerencia pulsada
-                    var id = $(this).attr('id');
-                    //Editamos el valor del input con data de la sugerencia pulsada
-                    $('#idMunicipio').val(id);
-                    $('#idMunicipioName').val($('#' + id).attr('data'));
-                    $("#idLocalidad").val("");
-                    $("#idLocalidadName").val("");
-                    $("#idLocalidadName").prop('disabled', false);
-                    //Hacemos desaparecer el resto de sugerencias
-                    $('#sugerenciaMunicipio').fadeOut(1000);
-                    return false;
-                });
+function llenarComboLocalidad() {
+    $('#idLocalidad').prop('disabled',false);
+    $('#idLocalidad').val(0);
+    var dataEnviar = {
+        "Estado":  $('#idEstado').val(),
+        "Municipio":  $('#idMunicipio').val(),
+        "tipoConsulta" :2
+    };
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/Catalogos.php',
+        data: dataEnviar,
+        dataType: "json",
+        success: function (datos) {
+            var html = "";
+            html += " <option value=0>Seleccione:</option>"
+            var i = 0;
+            for (i; i < datos.length; i++) {
+                var id_Localidad = datos[i].id_Localidad;
+                var descripcion = datos[i].descripcion;
+                html += '<option value=' + id_Localidad + '>' + descripcion + '</option>';
             }
-        });
+            $('#idLocalidad').html(html);
+        }
     });
 }
-function localidadAutocompletar() {
-    $('#idLocalidadName').on('keyup', function () {
-        var key = $('#idLocalidadName').val();
-        var dataString = 'idLocalidadName=' + key;
-        var dataEnviar = {
-            "tipoConsulta": 3,
-            "idLocalidadName": key,
-            "idEstado": $("#idEstado").val(),
-            "idMunicipio": $("#idMunicipio").val()
-        };
-        $.ajax({
-            type: "POST",
-            url: '../../../com.Mexicash/Controlador/Catalogos.php',
-            data: dataEnviar,
-            success: function (data) {
-
-                //Escribimos las sugerencias que nos manda la consulta
-                $('#sugerenciaLocalidad').fadeIn(1000).html(data);
-                //Al hacer click en alguna de las sugerencias
-                $('.suggest-element').on('click', function () {
-                    //Obtenemos la id unica de la sugerencia pulsada
-                    var id = $(this).attr('id');
-                    //Editamos el valor del input con data de la sugerencia pulsada
-                    $('#idLocalidad').val(id);
-                    $('#idLocalidadName').val($('#' + id).attr('data'));
-                    //Hacemos desaparecer el resto de sugerencias
-                    $('#sugerenciaLocalidad').fadeOut(1000);
-                    return false;
-                });
-            }
-        });
-    });
-
-}
-
-
