@@ -268,22 +268,6 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                         </td>
                     </tr>
                     <tr class="headt">
-                        <td colspan="6" class="table-info border border-dark">Tipo Promoción:</td>
-                        <td colspan="6" class="border border-dark">
-                            <select id="idTipoPromocion" name="cmbTipoPromocion" class="selectpicker"  style="width:155px">
-                                <option value="0">Seleccione:</option>
-                                <?php
-                                $data = array();
-                                $sql = new sqlInteresesDAO();
-                                $data = $sql->llenarCmbTipoPromo();
-                                for ($i = 0; $i < count($data); $i++) {
-                                    echo "<option value=" . $data[$i]['id_TipoPromocion'] . ">" . $data[$i]['descripcion'] . "</option>";
-                                }
-                                ?>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr class="headt">
                         <td colspan="6" class="table-info border border-dark">Tipo Agrupamiento:</td>
                         <td colspan="6" class="border border-dark" align="center">
                             <label id="idAgrupamiento"></label>

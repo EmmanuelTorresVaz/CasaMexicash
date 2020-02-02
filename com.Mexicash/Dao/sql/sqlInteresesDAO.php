@@ -1,4 +1,7 @@
 <?php
+if(!isset($_SESSION)) {
+    session_start();
+}
 include_once(MODELO_PATH . "Interes.php");
 include_once(BASE_PATH . "Conexion.php");
 
@@ -40,9 +43,9 @@ class sqlInteresesDAO
 
     function llenarCmbTipoInteres($idTablaInteres){
         $datos = array();
-
+        $sucursal = $_SESSION["sucursal"];
         try {
-            $buscar = "SELECT id_interes, tasa_interes FROM cat_interes WHERE tablaInteres=". $idTablaInteres;
+            $buscar = "SELECT id_interes, tasa_interes FROM cat_interes WHERE tablaInteres=". $idTablaInteres . " and sucursal=" .$sucursal;
 
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
@@ -65,9 +68,10 @@ class sqlInteresesDAO
 
     function llenarCmbTipoInteresAutos(){
         $datos = array();
+        $sucursal = $_SESSION["sucursal"];
 
         try {
-            $buscar = "SELECT id_interes, tasa_interes FROM cat_interes WHERE tablaInteres=3";
+            $buscar = "SELECT id_interes, tasa_interes FROM cat_interes WHERE tablaInteres=3  and sucursal=" .$sucursal;
             $rs = $this->conexion->query($buscar);
 
             if ($rs->num_rows > 0) {

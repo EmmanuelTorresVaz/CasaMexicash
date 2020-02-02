@@ -269,12 +269,6 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                         </td>
                     </tr>
                     <tr class="headt">
-                        <td colspan="6" class="table-info border border-dark">Tipo Promoción:</td>
-                        <td colspan="6" class="border border-dark">
-                            <label id="idTipoPromocion"></label>
-                        </td>
-                    </tr>
-                    <tr class="headt">
                         <td colspan="6" class="table-info border border-dark">Tipo Agrupamiento:</td>
                         <td colspan="6" class="border border-dark">
                             <label id="idAgrupamiento"></label>
