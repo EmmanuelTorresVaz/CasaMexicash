@@ -20,7 +20,6 @@ function SeleccionarInteres(tipoInteresValue) {
                     document.getElementById('idAlmPorcen').innerHTML = response.result.alm;
                     document.getElementById('idSeguroPorcen').innerHTML = response.result.seguro + ".00";
                     document.getElementById('idIvaPorcen').innerHTML = response.result.iva + " %";
-                    document.getElementById('idAgrupamiento').innerHTML = response.result.tipo_Agrupamiento;
                 }
             },
         })
@@ -61,7 +60,6 @@ function LimpiarInteres() {
     document.getElementById('idAlmPorcen').innerHTML= '';
     document.getElementById('idSeguroPorcen').innerHTML = '';
     document.getElementById('idIvaPorcen').innerHTML= '';
-    document.getElementById('idAgrupamiento').innerHTML = '';
     $("#idTotalAvaluo").val('0.00');
     $("#idTotalPrestamo").val('0.00');
 }

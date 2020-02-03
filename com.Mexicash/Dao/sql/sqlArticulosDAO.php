@@ -33,7 +33,6 @@ class sqlArticulosDAO
 
             if ($tipoPost == "1") {
                 $idTipoM = $articulo->getTipoM();
-                $idPrenda = $articulo->getPrenda();
                 $idKilataje = $articulo->getKilataje();
                 $idCalidad = $articulo->getCalidad();
                 $idCantidad = $articulo->getCantidad();
@@ -48,9 +47,9 @@ class sqlArticulosDAO
                 $idDetallePrenda = $articulo->getDetallePrenda();
 
                 $insert = "INSERT INTO articulo_tbl " .
-                    "(id_ContratoTemp,tipo, prenda, kilataje, calidad, cantidad, peso, peso_Piedra, piedras, prestamo, avaluo, tipoInteres,interesArticulo, ubicacion," .
+                    "(id_ContratoTemp,tipo, kilataje, calidad, cantidad, peso, peso_Piedra, piedras, prestamo, avaluo, tipoInteres,interesArticulo, ubicacion," .
                     " detalle, id_Estatus, fecha_creacion, fecha_modificacion, usuario)  VALUES " .
-                    "('" . $contratoTemp . "','" . $idTipoM . "','" . $idPrenda . "', '" . $idKilataje . "', '" . $idCalidad . "', '" . $idCantidad . "', '" . $idPeso
+                    "('" . $contratoTemp . "','" . $idTipoM . "', '" . $idKilataje . "', '" . $idCalidad . "', '" . $idCantidad . "', '" . $idPeso
                     . "', '" . $idPesoPiedra . "', '" . $idPiedras . "', '" . $idPrestamo . "', '" . $idAvaluo . "','" . $tipoInteres . "','" . $interesMetal . "','" . $idUbicacion . "','"
                     . $idDetallePrenda . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "'," . $usuario . " )";
 

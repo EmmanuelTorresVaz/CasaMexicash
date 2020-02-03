@@ -43,7 +43,6 @@ include_once(SQL_PATH . "sqlInteresesDAO.php");
                             $('#idAlmPorcen').val(response.result.alm);
                             $('#idSeguroPorcen').val(response.result.seguro);
                             $('#idIvaPorcen').val(response.result.iva + " %");
-                            $('#idAgrupamiento').val(response.result.tipo_Agrupamiento);
                         }
                     },
                 })
@@ -135,13 +134,7 @@ include_once(SQL_PATH . "sqlInteresesDAO.php");
                     <input type="text" id="idTotalPrestamo" name="totalPrestamo" size="9" value="0.00" style="text-align:center" disabled/>
                 </td>
             </tr>
-            <tr>
-                <td colspan="6" class="table-info border border-dark">Tipo Agrupamiento:</td>
-                <td colspan="6" class="border border-dark">
-                    <input type="text" id="idAgrupamiento" name="agrupamiento" size="14"  style="text-align:center" disabled/>
 
-                </td>
-            </tr>
             </tbody>
         </table>
     </div>

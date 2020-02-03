@@ -8,7 +8,6 @@ var Interes = 0.00;
 function Limpiar() {
     <!--   Limpiar Metales-->
     $("#idTipoMetal").val(0);
-    $("#idPrenda").val(0);
     $("#idKilataje").val(0);
     $("#idCalidad").val(0);
     $("#idCantidad").val("");
@@ -51,7 +50,6 @@ function Agregar() {
                         "idClienteInteres": clienteEmpeno,
                         "idContratoTemp": $("#idContratoTemp").text(),
                         "idTipoMetal": formMetal,
-                        "idPrenda": $("#idPrenda").val(),
                         "idKilataje": $("#idKilataje").val(),
                         "idCalidad": $("#idCalidad").val(),
                         "idCantidad": $("#idCantidad").val(),
@@ -248,7 +246,6 @@ function eliminarArticulo($idArticulo) {
 }
 
 function selectMetalCmb($tipoMetal) {
-    selectPrenda($tipoMetal);
     selectKilataje($tipoMetal);
     selectCalidad($tipoMetal);
 }
@@ -257,29 +254,7 @@ function selectArticuloCmb($tipoMetal) {
     selectCalidadArt($tipoMetal);
 }
 
-function selectPrenda($tipoMetal) {
-    var dataEnviar = {
-        "clase": 1,
-        "idTipoMetal": $tipoMetal
-    };
-    $.ajax({
-        type: "POST",
-        url: '../../../com.Mexicash/Controlador/comboMetales.php',
-        data: dataEnviar,
-        dataType: "json",
-        success: function (datos) {
-            var html = "";
-            html += " <option value=0>Seleccione:</option>"
-            var i = 0;
-            for (i; i < datos.length; i++) {
-                var idPrenda = datos[i].id_prenda;
-                var descripcion = datos[i].descripcion;
-                html += '<option value=' + idPrenda + '>' + descripcion + '</option>';
-            }
-            $('#idPrenda').html(html);
-        }
-    });
-}
+
 
 function selectKilataje($tipoMetal) {
     var dataEnviar = {
@@ -296,9 +271,9 @@ function selectKilataje($tipoMetal) {
             html += " <option value=0>Seleccione:</option>"
             var i = 0;
             for (i; i < datos.length; i++) {
-                var idPrenda = datos[i].id_Kilataje;
+                var idKilataje = datos[i].id_Kilataje;
                 var descripcion = datos[i].descripcion;
-                html += '<option value=' + idPrenda + '>' + descripcion + '</option>';
+                html += '<option value=' + idKilataje + '>' + descripcion + '</option>';
             }
             $('#idKilataje').html(html);
         }
@@ -320,9 +295,9 @@ function selectCalidad($tipoMetal) {
             html += " <option value=0>Seleccione:</option>"
             var i = 0;
             for (i; i < datos.length; i++) {
-                var idPrenda = datos[i].id_calidad;
+                var idCalidad = datos[i].id_calidad;
                 var descripcion = datos[i].descripcion;
-                html += '<option value=' + idPrenda + '>' + descripcion + '</option>';
+                html += '<option value=' + idCalidad + '>' + descripcion + '</option>';
             }
             $('#idCalidad').html(html);
         }
@@ -344,9 +319,9 @@ function selectCalidadArt($tipoMetal) {
             html += " <option value=0>Seleccione:</option>"
             var i = 0;
             for (i; i < datos.length; i++) {
-                var idPrenda = datos[i].id_calidad;
+                var id_calidad = datos[i].id_calidad;
                 var descripcion = datos[i].descripcion;
-                html += '<option value=' + idPrenda + '>' + descripcion + '</option>';
+                html += '<option value=' + id_calidad + '>' + descripcion + '</option>';
             }
             $('#idEstadoArt').html(html);
         }

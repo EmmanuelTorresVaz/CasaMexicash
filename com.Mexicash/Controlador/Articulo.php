@@ -10,7 +10,6 @@ if ($idTipoEnviar == 1) {
     $idTipoM = $_POST['idTipoMetal'];
     $idClienteInteres = $_POST['idClienteInteres'];
     $idContratoTemp = $_POST['idContratoTemp'];
-    $idPrenda = $_POST['idPrenda'];
     $idKilataje = $_POST['idKilataje'];
     $idCalidad = $_POST['idCalidad'];
     $idCantidad = $_POST['idCantidad'];
@@ -41,7 +40,6 @@ if ($idTipoEnviar == 1) {
 } else if ($idTipoEnviar == 2) {
 
     $idTipoM = null;
-    $idPrenda = null;
     $idKilataje = null;
     $idCalidad = null;
     $idCantidad = null;
@@ -74,7 +72,6 @@ $articulo = new Articulo(
     $idTipoM,
     $idClienteInteres,
     $idContratoTemp,
-    $idPrenda,
     $idKilataje,
     $idCalidad,
     $idCantidad,

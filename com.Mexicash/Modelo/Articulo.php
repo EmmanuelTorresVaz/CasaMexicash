@@ -7,7 +7,6 @@ class Articulo
     private $idTipoM;
     private $idClienteInteres;
     private $idContratoTemp;
-    private $idPrenda;
     private $idKilataje;
     private $idCalidad;
     private $idCantidad;
@@ -40,7 +39,6 @@ class Articulo
      * @param $idTipoM
      * @param $idClienteInteres
      * @param $idContratoTemp
-     * @param $idPrenda
      * @param $idKilataje
      * @param $idCalidad
      * @param $idCantidad
@@ -68,7 +66,6 @@ class Articulo
         $idTipoM,
         $idClienteInteres,
         $idContratoTemp,
-        $idPrenda,
         $idKilataje,
         $idCalidad,
         $idCantidad,
@@ -97,7 +94,6 @@ class Articulo
         $this->tipoM = $idTipoM;
         $this->cliente = $idClienteInteres;
         $this->contrato = $idContratoTemp;
-        $this->prenda = $idPrenda;
         $this->kilataje = $idKilataje;
         $this->calidad = $idCalidad;
         $this->cantidad = $idCantidad;

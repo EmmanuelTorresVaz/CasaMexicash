@@ -269,12 +269,6 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                         </td>
                     </tr>
                     <tr class="headt">
-                        <td colspan="6" class="table-info border border-dark">Tipo Agrupamiento:</td>
-                        <td colspan="6" class="border border-dark">
-                            <label id="idAgrupamiento"></label>
-                        </td>
-                    </tr>
-                    <tr class="headt">
                         <td colspan="6" class="table-info border border-dark">Costo Poliza Seguro:</td>
                         <td colspan="6" class="border border-dark" align="center" >
                             <input id="idPoliza" name="poliza" type="text" style="width: 150px; text-align:right;"

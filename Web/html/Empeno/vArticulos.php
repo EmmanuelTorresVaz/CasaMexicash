@@ -46,7 +46,6 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
                             $('#idAlmPorcen').val(response.result.alm);
                             $('#idSeguroPorcen').val(response.result.seguro);
                             $('#idIvaPorcen').val(response.result.iva + " %");
-                            $('#idAgrupamiento').val(response.result.tipo_Agrupamiento);
                         }
                     },
                 })

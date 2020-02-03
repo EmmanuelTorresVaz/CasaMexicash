@@ -268,12 +268,6 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                             <input id="idTotalInteres" name="totalInteres" disabled type="text" style="width: 150px; text-align: right"/>
                         </td>
                     </tr>
-                    <tr class="headt">
-                        <td colspan="6" class="table-info border border-dark">Tipo Agrupamiento:</td>
-                        <td colspan="6" class="border border-dark" align="center">
-                            <label id="idAgrupamiento"></label>
-                        </td>
-                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -311,13 +305,6 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                                     echo "<option value=" . $data[$i]['id_tipo'] . ">" . $data[$i]['descripcion'] . "</option>";
                                                 }
                                                 ?>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="6">Prenda:</td>
-                                        <td colspan="6">
-                                            <select id="idPrenda" name="cmbPrenda" class="selectpicker" style="width: 150px">
                                             </select>
                                         </td>
                                     </tr>
@@ -496,7 +483,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                             <input type="button" class="btn btn-success" value="Agregar a la lista" onclick="Agregar()">
                         </td>
                         <td>
-                            <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="20"  class="invisible"
+                            <input type="text" id="idClienteEmpenuo" name="clienteEmpeno" size="20"  class="invisible"
                             />
                         </td>
                         <td>
