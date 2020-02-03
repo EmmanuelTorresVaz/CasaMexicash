@@ -19,7 +19,6 @@ if ($idTipoEnviar == 1) {
     $idPiedras = $_POST['idPiedras'];
     $idPrestamo = $_POST['idPrestamo'];
     $idAvaluo = $_POST['idAvaluo'];
-    $idPrestamoMax = $_POST['idPrestamoMax'];
     $idAvaluo = $_POST['idAvaluo'];
     $tipoInteres = $_POST['tipoInteres'];
     $interesMetal = $_POST['interesMetal'];
@@ -31,12 +30,9 @@ if ($idTipoEnviar == 1) {
     $idMarca = null;
     $idEstado = null;
     $idModelo = null;
-    $idTamaño = null;
-    $idColor = null;
     $idSerie = null;
     $idPrestamoE = null;
     $idAvaluoE = null;
-    $idPrestamoMaxE = null;
     $tipoInteresE = null;
     $interesArt = null;
     $idUbicacionE = null;
@@ -54,7 +50,6 @@ if ($idTipoEnviar == 1) {
     $idPiedras = null;
     $idPrestamo = null;
     $idAvaluo = null;
-    $idPrestamoMax = null;
     $tipoInteres = null;
     $interesMetal = null;
     $idUbicacion = null;
@@ -66,12 +61,9 @@ if ($idTipoEnviar == 1) {
     $idMarca = $_POST['idMarca'];
     $idEstado = $_POST['idEstado'];
     $idModelo = $_POST['idModelo'];
-    $idTamaño = $_POST['idTamaño'];
-    $idColor = $_POST['idColor'];
     $idSerie = $_POST['idSerie'];
     $idPrestamoE = $_POST['idPrestamoElectronico'];
     $idAvaluoE = $_POST['idAvaluoElectronico'];
-    $idPrestamoMaxE = $_POST['idPrestamoMaxElectronico'];
     $tipoInteresE = $_POST['tipoInteresE'];
     $interesArt = $_POST['interesArt'];
     $idUbicacionE = $_POST['idUbicacionElectronico'];
@@ -91,7 +83,6 @@ $articulo = new Articulo(
     $idPiedras,
     $idPrestamo,
     $idAvaluo,
-    $idPrestamoMax,
     $tipoInteres,
     $interesMetal,
     $idUbicacion,
@@ -100,12 +91,9 @@ $articulo = new Articulo(
     $idMarca,
     $idEstado,
     $idModelo,
-    $idTamaño,
-    $idColor,
     $idSerie,
     $idPrestamoE,
     $idAvaluoE,
-    $idPrestamoMaxE,
     $tipoInteresE,
     $interesArt,
     $idUbicacionE,

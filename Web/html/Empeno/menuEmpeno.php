@@ -96,6 +96,11 @@
                             <li><a class="dropdown-item" href="#">Re-Impresiones(P)</a></li>
                         </ul>
                     </li>
+                    <li><a class="dropdown-item dropdown-toggle" href="#">Catalogos</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../Catalogos/catMetales.php">Metales</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
         </ul>

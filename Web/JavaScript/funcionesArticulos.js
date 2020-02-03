@@ -17,7 +17,6 @@ function Limpiar() {
     $("#idPiedras").val("");
     $("#idPrestamo").val("");
     $("#idAvaluo").val("");
-    $("#idPrestamoMax").val("");
     $("#idUbicacion").val("");
     $("#idDetallePrenda").val("");
     <!--   Limpiar Electronicos-->
@@ -25,12 +24,9 @@ function Limpiar() {
     $("#idMarca").val("");
     $("#idEstado").val(0);
     $("#idModelo").val("");
-    $("#idTamaño").val("");
-    $("#idColor").val(0);
     $("#idSerie").val("");
     $("#idPrestamoElectronico").val("");
     $("#idAvaluoElectronico").val("");
-    $("#idPrestamoMaxElectronico").val("");
     $("#idUbicacionElectronico").val("");
     $("#idDetallePrendaElectronico").val("");
 }
@@ -64,7 +60,6 @@ function Agregar() {
                         "idPiedras": $("#idPiedras").val(),
                         "idPrestamo":metalPrestamo,
                         "idAvaluo": metalAvaluo,
-                        "idPrestamoMax": $("#idPrestamoMax").val(),
                         "tipoInteres": tipoInteres,
                         "interesMetal": interesMetal,
                         "idUbicacion": $("#idUbicacion").val(),
@@ -100,12 +95,9 @@ function Agregar() {
                         "idMarca": $("#idMarca").val(),
                         "idEstado": $("#idEstado").val(),
                         "idModelo": $("#idModelo").val(),
-                        "idTamaño": $("#idTamaño").val(),
-                        "idColor": $("#idColor").val(),
                         "idSerie": $("#idSerie").val(),
                         "idPrestamoElectronico": artiPrestamo,
                         "idAvaluoElectronico": artiAvaluo,
-                        "idPrestamoMaxElectronico": $("#idPrestamoMaxElectronico").val(),
                         "tipoInteresE": tipoInteresE,
                         "interesArt": interesArti,
                         "idUbicacionElectronico": $("#idUbicacionElectronico").val(),
@@ -422,6 +414,20 @@ function sumarTotalesArticulo(artiPrestamo, artiAvaluo) {
     $("#idTotalPrestamo").val(Prestamo);
 }
 
+function calculaAvaluo() {
+    var prestamo = parseFloat($("#idPrestamo").val());
+    var avaluoImporte = Math.floor(prestamo* 33)/100;
+    prestamo = prestamo+ avaluoImporte;
+    $("#idAvaluo").val(prestamo);
+}
+
+function calculaAvaluoElec() {
+    var pretamoElec = parseFloat($("#idPrestamoElectronico").val());
+    var avaluoImporte = Math.floor(pretamoElec* 75)/100;
+    pretamoElec = pretamoElec + avaluoImporte;
+    $("#idAvaluoElectronico").val(pretamoElec);
+}
+/*
 function prestaMax() {
     var avaluo = parseFloat($("#idAvaluo").val());
     var prestamoMax = Math.floor(avaluo* 75)/100;
@@ -432,4 +438,4 @@ function prestaMaxElectronico() {
     var prestamoMax = Math.floor(avaluo* 75)/100;
     $("#idPrestamoMaxElectronico").val(prestamoMax);
 
-}
+}*/

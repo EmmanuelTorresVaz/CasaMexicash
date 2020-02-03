@@ -16,7 +16,6 @@ class Articulo
     private $idPiedras;
     private $idPrestamo;
     private $idAvaluo;
-    private $idPrestamoMax;
     private $tipoInteres;
     private $interesMetal;
     private $idUbicacion;
@@ -26,12 +25,9 @@ class Articulo
     private $idMarca;
     private $idEstado;
     private $idModelo;
-    private $idTamaño;
-    private $idColor;
     private $idSerie;
     private $idPrestamoE;
     private $idAvaluoE;
-    private $idPrestamoMaxE;
     private $tipoInteresE;
     private $interesArt;
     private $idUbicacionE;
@@ -53,7 +49,6 @@ class Articulo
      * @param $idPiedras
      * @param $idPrestamo
      * @param $idAvaluo
-     * @param $idPrestamoMax
      * @param $tipoInteres
      * @param $interesMetal
      * @param $idUbicacion
@@ -63,12 +58,9 @@ class Articulo
      * @param $idMarca
      * @param $idEstado
      * @param $idModelo
-     * @param $idTamaño
-     * @param $idColor
      * @param $idSerie
      * @param $idPrestamoE
      * @param $idAvaluoE
-     * @param $idPrestamoMaxE
      * @param $idUbicacionE
      * @param $idDetallePrendaE
      */
@@ -85,7 +77,6 @@ class Articulo
         $idPiedras,
         $idPrestamo,
         $idAvaluo,
-        $idPrestamoMax,
         $tipoInteres,
         $interesMetal,
         $idUbicacion,
@@ -94,12 +85,9 @@ class Articulo
         $idMarca,
         $idEstado,
         $idModelo,
-        $idTamaño,
-        $idColor,
         $idSerie,
         $idPrestamoE,
         $idAvaluoE,
-        $idPrestamoMaxE,
         $tipoInteresE,
         $interesArt,
         $idUbicacionE,
@@ -118,7 +106,6 @@ class Articulo
         $this->piedras = $idPiedras;
         $this->prestamo = $idPrestamo;
         $this->avaluo = $idAvaluo;
-        $this->prestamoMax = $idPrestamoMax;
         $this->tipoInteres= $tipoInteres;
         $this->interesMetal = $interesMetal;
         $this->ubicacion = $idUbicacion;
@@ -128,12 +115,9 @@ class Articulo
         $this->marca = $idMarca;
         $this->estado = $idEstado;
         $this->modelo = $idModelo;
-        $this->tamaño = $idTamaño;
-        $this->color = $idColor;
         $this->serie = $idSerie;
         $this->prestamoE = $idPrestamoE;
         $this->avaluoE = $idAvaluoE;
-        $this->prestamoMaxE = $idPrestamoMaxE;
         $this->tipoInteresE= $tipoInteresE;
         $this->interesArt = $interesArt;
         $this->ubicacionE = $idUbicacionE;

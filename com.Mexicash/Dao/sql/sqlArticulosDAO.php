@@ -42,17 +42,16 @@ class sqlArticulosDAO
                 $idPiedras = $articulo->getPiedras();
                 $idPrestamo = $articulo->getPrestamo();
                 $idAvaluo = $articulo->getAvaluo();
-                $idPrestamoMax = $articulo->getPrestamoMax();
                 $interesMetal = $articulo->getInteresMetal();
                 $tipoInteres = $articulo->getTipoInteres();
                 $idUbicacion = $articulo->getUbicacion();
                 $idDetallePrenda = $articulo->getDetallePrenda();
 
-                $insertMetal = "INSERT INTO articulo_tbl " .
-                    "(id_ContratoTemp,tipo, prenda, kilataje, calidad, cantidad, peso, peso_Piedra, piedras, prestamo, avaluo, prestamoMaximo, tipoInteres,interesArticulo, ubicacion," .
+                $insert = "INSERT INTO articulo_tbl " .
+                    "(id_ContratoTemp,tipo, prenda, kilataje, calidad, cantidad, peso, peso_Piedra, piedras, prestamo, avaluo, tipoInteres,interesArticulo, ubicacion," .
                     " detalle, id_Estatus, fecha_creacion, fecha_modificacion, usuario)  VALUES " .
                     "('" . $contratoTemp . "','" . $idTipoM . "','" . $idPrenda . "', '" . $idKilataje . "', '" . $idCalidad . "', '" . $idCantidad . "', '" . $idPeso
-                    . "', '" . $idPesoPiedra . "', '" . $idPiedras . "', '" . $idPrestamo . "', '" . $idAvaluo . "', '" . $idPrestamoMax . "','" . $tipoInteres . "','" . $interesMetal . "','" . $idUbicacion . "','"
+                    . "', '" . $idPesoPiedra . "', '" . $idPiedras . "', '" . $idPrestamo . "', '" . $idAvaluo . "','" . $tipoInteres . "','" . $interesMetal . "','" . $idUbicacion . "','"
                     . $idDetallePrenda . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "'," . $usuario . " )";
 
             } else if ($tipoPost == "2") {
@@ -60,25 +59,22 @@ class sqlArticulosDAO
                 $idMarca = $articulo->getMarca();
                 $idEstado = $articulo->getEstado();
                 $idModelo = $articulo->getModelo();
-                $idTamaño = $articulo->getTamaño();
-                $idColor = $articulo->getColor();
                 $idSerie = $articulo->getSerie();
                 $idPrestamoE = $articulo->getPrestamoE();
                 $idAvaluoE = $articulo->getAvaluoE();
-                $idPrestamoMaxE = $articulo->getPrestamoMaxE();
                 $interesArt = $articulo->getInteresArt();
                 $tipoInteresE = $articulo->getTipoInteresE();
                 $idUbicacionE = $articulo->getUbicacionE();
                 $idDetallePrendaE = $articulo->getDetallePrendaE();
 
-                $insertMetal = "INSERT INTO articulo_tbl " .
-                    "(id_ContratoTemp,tipo, marca, estado, modelo, tamaño, color, num_Serie, prestamo, avaluo, prestamoMaximo, tipoInteres,interesArticulo, ubicacion," .
+                $insert = "INSERT INTO articulo_tbl " .
+                    "(id_ContratoTemp,tipo, marca, estado, modelo, num_Serie, prestamo, avaluo, tipoInteres,interesArticulo, ubicacion," .
                     " detalle, id_Estatus, fecha_creacion, fecha_modificacion,usuario)  VALUES " .
-                    "('" . $contratoTemp . "','" . $idTipoE . "','" . $idMarca . "', '" . $idEstado . "', '" . $idModelo . "', '" . $idTamaño . "', '" . $idColor
-                    . "', '" . $idSerie . "','" . $idPrestamoE . "', '" . $idAvaluoE . "', '" . $idPrestamoMaxE . "','" . $tipoInteresE . "','" . $interesArt . "', '" . $idUbicacionE . "','"
+                    "('" . $contratoTemp . "','" . $idTipoE . "','" . $idMarca . "', '" . $idEstado . "', '" . $idModelo
+                    . "', '" . $idSerie . "','" . $idPrestamoE . "', '" . $idAvaluoE . "','" . $tipoInteresE . "','" . $interesArt . "', '" . $idUbicacionE . "','"
                     . $idDetallePrendaE . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "'," . $usuario . " )";
             }
-            if ($ps = $this->conexion->prepare($insertMetal)) {
+            if ($ps = $this->conexion->prepare($insert)) {
                 if ($ps->execute()) {
                     $verdad =  mysqli_stmt_affected_rows($ps);
                 } else {

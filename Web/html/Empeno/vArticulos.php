@@ -74,12 +74,9 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
                     "idMarca": $("#idMarca").val(),
                     "idEstado": $("#idEstado").val(),
                     "idModelo": $("#idModelo").val(),
-                    "idTamaño": $("#idTamaño").val(),
-                    "idColor": $("#idColor").val(),
                     "idSerie": $("#idSerie").val(),
                     "idPrestamoElectronico": $("#idPrestamoElectronico").val(),
                     "idAvaluoElectronico": $("#idAvaluoElectronico").val(),
-                    "idPrestamoMaxElectronico": $("#idPrestamoMaxElectronico").val(),
                     "idUbivacion": $("#idUbivacion").val(),
                     "idDetallePrendaElectronico": $("#idDetallePrendaElectronico").val()
                 };
@@ -195,13 +192,7 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
                                     <input type="text" id="idAvaluo" name="avaluo" size="6" style="text-align:center"/>
                                 </td>
                             </tr>
-                            <tr>
-                                <td colspan="6" class=" border border-dark">Préstamo Maximo:</td>
-                                <td colspan="6" class=" border border-dark">
-                                    <input type="text" id="idPrestamoMax" name="prestamoMax" size="6"
-                                           style="text-align:center"/>
-                                </td>
-                            </tr>
+
                             <tr>
                                 <td colspan="6" class="border border-dark">Ubicación:</td>
                                 <td colspan="6" class=" border border-dark">
@@ -292,13 +283,7 @@ include_once(SQL_PATH . "sqlArticulosDAO.php");
                                     <input type="text" id="idAvaluoElectronico" name="avaluoE" size="6" style="text-align:center" value="10"/>
                                 </td>
                             </tr>
-                            <tr>
-                                <td colspan="6" class=" border border-dark">Prestamo Máximo:</td>
-                                <td colspan="6" class="border border-dark">
-                                    <input type="text" id="idPrestamoMaxElectronico" name="prestamoMaximoE" size="6"
-                                           style="text-align:center" value="11.00"/>
-                                    <label>grs</label></td>
-                            </tr>
+
                             <tr>
                                 <td colspan="6" class=" border border-dark">Ubivación:</td>
                                 <td colspan="6" class="border border-dark">

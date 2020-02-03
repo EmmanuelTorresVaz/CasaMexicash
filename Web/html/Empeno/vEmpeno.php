@@ -44,12 +44,13 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
             $("#divTablaArticulos").load('tablaArticulos.php');
             $("#btnEditar").prop('disabled', true);
             llenarComboInteres(1);
-            $("#idAvaluo").blur(function(){
-                prestaMax();
+           $("#idPrestamo").blur(function(){
+               calculaAvaluo();
             });
-            $("#idAvaluoElectronico").blur(function(){
-              prestaMaxElectronico();
+            $("#idPrestamoElectronico").blur(function(){
+                calculaAvaluoElec();
             });
+
         })
     </script>
     <style type="text/css">
@@ -93,7 +94,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
             <br>
             <br>
         </div>
-        <div class="row">
+        <div class="row" >
             <div class="col col-lg-4 border border-primary ">
                 <table border="0" width="100%" class="tableInteres">
                     <tbody>
@@ -276,7 +277,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tbody>
                 </table>
             </div>
-            <div class="col col-lg-4 border border-primary border-left-0">
+            <div class="col col-lg-4 border border-primary border-left-0" >
                 <table width="100%">
                     <tr>
                         <br>
@@ -363,13 +364,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                             <label>pza</label>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="6">Avalúo:</td>
-                                        <td colspan="6">
-                                            <input type="text" id="idAvaluo" name="avaluo" size="6"    onkeypress="return isNumberDecimal(event)"
-                                                   style="text-align:center"/>
-                                        </td>
-                                    </tr>
+
                                     <tr>
                                         <td colspan="6">Préstamo:</td>
                                         <td colspan="6">
@@ -378,12 +373,13 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6">Préstamo Maximo:</td>
+                                        <td colspan="6">Avalúo:</td>
                                         <td colspan="6">
-                                            <input type="text" id="idPrestamoMax" name="prestamoMax" size="6" disabled value="0.00"
-                                                   style="text-align:center"/>
+                                            <input type="text" id="idAvaluo" name="avaluo" size="6"    onkeypress="return isNumberDecimal(event)"
+                                                   style="text-align:center" disabled/>
                                         </td>
                                     </tr>
+
                                     <tr>
                                         <td colspan="6">Ubicación:</td>
                                         <td colspan="6">
@@ -448,39 +444,9 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6">Tamaño:</td>
-                                        <td colspan="6">
-                                            <input type="text" id="idTamaño" name="tamaño" size="6"
-                                                   style="text-align:center" value=""/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="6">Color:</td>
-                                        <td colspan="6">
-                                            <select id="idColor" name="cmbColor" class="selectpicker" style="width: 150px">
-                                                    <option value="0">Seleccione:</option>
-                                                    <?php
-                                                    $data = array();
-                                                    $sql = new sqlArticulosDAO();
-                                                    $data = $sql->llenarCmbColores();
-                                                    for ($i = 0; $i < count($data); $i++) {
-                                                        echo "<option value=" . $data[$i]['id_Color'] . ">" . $data[$i]['descripcion'] . "</option>";
-                                                    }
-                                                    ?>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
                                         <td colspan="6">No.Serie:</td>
                                         <td colspan="6">
                                             <input type="text" id="idSerie" name="serie" size="6"
-                                                   style="text-align:center" value=""/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="6">Avalúo:</td>
-                                        <td colspan="6">
-                                            <input type="text" id="idAvaluoElectronico" name="avaluoE" size="6"    onkeypress="return soloNumeros(event)"
                                                    style="text-align:center" value=""/>
                                         </td>
                                     </tr>
@@ -492,13 +458,13 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6">Prestamo Máximo:</td>
+                                        <td colspan="6">Avalúo:</td>
                                         <td colspan="6">
-                                            <input type="text" id="idPrestamoMaxElectronico" name="prestamoMaximoE"   disabled value="0.00"
-                                                   size="6"
-                                                   style="text-align:center" value=""/>
-                                            <label>grs</label></td>
+                                            <input type="text" id="idAvaluoElectronico" name="avaluoE" size="6"    onkeypress="return soloNumeros(event)"
+                                                   style="text-align:center" disabled/>
+                                        </td>
                                     </tr>
+
                                     <tr>
                                         <td colspan="6">Ubicación:</td>
                                         <td colspan="6">

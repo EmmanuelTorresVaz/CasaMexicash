@@ -250,5 +250,33 @@ class sqlCatalogoDAO
         echo json_encode($datos);
     }
 
+    public function llenarTblCatMetales()
+    {
+        $datos = array();
+        try {
+            $buscar = "SELECT id_Kilataje,Tip.descripcion as TipoMetal,Kil.descripcion as DesMetal,precio
+                        FROM cat_kilataje as Kil
+                        INNER JOIN cat_tipoarticulo as Tip on Kil.id_tipoArticulo = Tip.id_tipo ";
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_Kilataje" => $row["id_Kilataje"],
+                        "TipoMetal" => $row["TipoMetal"],
+                        "DesMetal" => $row["DesMetal"],
+                        "precio" => $row["precio"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        echo json_encode($datos);
+    }
+
 
 }
