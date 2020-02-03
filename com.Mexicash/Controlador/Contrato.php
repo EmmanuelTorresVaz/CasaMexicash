@@ -3,7 +3,6 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
 include_once(MODELO_PATH . "Contrato.php");
 include_once(SQL_PATH . "sqlContratoDAO.php");
 
-$idContrato = $_POST['idContrato'];
 $idCliente = $_POST['idCliente'];
 $id_Interes = $_POST['id_Interes'];
 $folio = $_POST['folio'];
@@ -23,7 +22,6 @@ $beneficiario = $_POST['beneficiario'];
 $cotitular = $_POST['cotitular'];
 
 $contrato = new Contrato(
-    $idContrato,
     $idCliente,
     $id_Interes,
     $folio,

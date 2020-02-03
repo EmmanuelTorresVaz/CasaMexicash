@@ -184,16 +184,6 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                         <br>
                     </tr>
                     <tr class="headt">
-                        <td colspan="4" class="border border-dark border-right-0">
-                            <label for="contrato">Contrato:</label>
-                            <?php
-                            $contrato = array();
-                            $sql = new sqlContratoDAO();
-                            $contrato = $sql->buscarContratoTemp();
-                            $contrato = $contrato + 1;
-                            echo "<label id='idContratoTemp'>$contrato</label>";
-                            ?>
-                        </td>
                         <td colspan="8" class="border border-dark border-left-0">
                             <label for="vence">Vence:</label>
                             <label id="idFecVencimiento"></label>

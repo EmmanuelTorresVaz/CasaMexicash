@@ -3,7 +3,6 @@
 
 class Contrato
 {
-    private $idContrato;
     private $idCliente;
     private $id_Interes;
     private $folio;
@@ -24,7 +23,6 @@ class Contrato
 
     /**
      * Contrato constructor.
-     * @param $idContrato
      * @param $idCliente
      * @param $id_Interes
      * @param $folio
@@ -43,9 +41,8 @@ class Contrato
      * @param $beneficiario
      * @param $cotitular
      */
-    public function __construct($idContrato, $idCliente, $id_Interes, $folio, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $abono, $intereses, $pago, $fecha_Alm, $fecha_Movimiento, $origen_Folio, $dest_Folio, $estatus, $observaciones, $beneficiario, $cotitular)
+    public function __construct( $idCliente, $id_Interes, $folio, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $abono, $intereses, $pago, $fecha_Alm, $fecha_Movimiento, $origen_Folio, $dest_Folio, $estatus, $observaciones, $beneficiario, $cotitular)
     {
-        $this->idContrato = $idContrato;
         $this->idCliente = $idCliente;
         $this->id_Interes = $id_Interes;
         $this->folio = $folio;
@@ -65,21 +62,7 @@ class Contrato
         $this->cotitular = $cotitular;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getIdContrato()
-    {
-        return $this->idContrato;
-    }
 
-    /**
-     * @param mixed $idContrato
-     */
-    public function setIdContrato($idContrato): void
-    {
-        $this->idContrato = $idContrato;
-    }
 
     /**
      * @return mixed

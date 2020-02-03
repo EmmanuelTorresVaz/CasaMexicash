@@ -3,8 +3,6 @@ function generarContrato() {
     var clienteEmpeno = $("#idClienteEmpeno").val();
     var tipoInteres = $("#tipoInteresEmpeno").val();
     var validarContratoTemporal = consultarContratos();
-    var contratoTemporal = $("#idContratoTemp").text();
-
 
     var validate = true;
     if (clienteEmpeno == '' || clienteEmpeno == null) {
@@ -20,7 +18,6 @@ function generarContrato() {
     if (validate) {
         //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
         var dataEnviar = {
-            "idContrato": contratoTemporal,
             "idCliente": clienteEmpeno,
             "id_Interes": tipoInteres,
             "folio": '',
@@ -45,6 +42,7 @@ function generarContrato() {
             url: '../../../com.Mexicash/Controlador/Contrato.php',
             type: 'post',
             success: function (response) {
+                alert(response)
                 if (response) {
                     actualizarArticulo();
                     alertify.success("Contrato generado.");
@@ -59,31 +57,23 @@ function generarContrato() {
 
 //consultar contratos
 function consultarContratos() {
-    var contratoTemporal = $("#idContratoTemp").text();
     var retorno;
-    if (contratoTemporal != '') {
-        var dataEnviar = {
-            "idContratoTemp": contratoTemporal
-        };
         $.ajax({
             type: "POST",
             url: '../../../com.Mexicash/Controlador/tblArticulos.php',
-            data: dataEnviar,
             dataType: "json",
             success: function (datos) {
                 retorno = datos.length;
             }
         });
-    } else {
-        retorno = 0;
-    }
+
     return retorno;
 }
 
 //Agrega articulos a la tabla
 function actualizarArticulo() {
     var dataEnviar = {
-        "contratoTemp": $("#idContratoTemp").text()
+        "contratoTemp": 1
     };
     $.ajax({
         data: dataEnviar,

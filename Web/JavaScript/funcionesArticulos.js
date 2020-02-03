@@ -47,7 +47,6 @@ function Agregar() {
                     var tipoInteres = $("#tipoInteresEmpeno").val();
                     var dataEnviar = {
                         "$idTipoEnviar": 1,
-                        "idContratoTemp": $("#idContratoTemp").text(),
                         "idTipoMetal": formMetal,
                         "idKilataje": $("#idKilataje").val(),
                         "idCalidad": $("#idCalidad").val(),
@@ -67,9 +66,8 @@ function Agregar() {
                         url: '../../../com.Mexicash/Controlador/Articulo.php',
                         type: 'post',
                         success: function (response) {
-                            alert(response)
                             if (response == 1) {
-                                cargarTablaArticulo($("#idContratoTemp").text());
+                                cargarTablaArticulo();
                                 $("#divTablaArticulos").load('tablaArticulos.php');
                                 Limpiar();
                                 sumarTotalesMetal(metalPrestamo,metalAvaluo);
@@ -87,7 +85,6 @@ function Agregar() {
                     //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
                     var dataEnviar = {
                         "$idTipoEnviar": 2,
-                        "idContratoTemp": $("#idContratoTemp").text(),
                         "idTipoElectronico": formElectronico,
                         "idMarca": $("#idMarca").val(),
                         "idEstado": $("#idEstado").val(),
@@ -106,7 +103,7 @@ function Agregar() {
                         type: 'post',
                         success: function (response) {
                             if (response == 1) {
-                                cargarTablaArticulo($("#idContratoTemp").text());
+                                cargarTablaArticulo();
                                 $("#divTablaArticulos").load('tablaArticulos.php');
                                 Limpiar();
                                 sumarTotalesArticulo(artiPrestamo,artiAvaluo);
@@ -130,15 +127,11 @@ function Agregar() {
 }
 
 //Cargar tabla Articulos
-function cargarTablaArticulo($contratoTemp) {
-    if ($contratoTemp != '') {
-        var dataEnviar = {
-            "idContratoTemp": $contratoTemp
-        };
+function cargarTablaArticulo() {
+
         $.ajax({
             type: "POST",
             url: '../../../com.Mexicash/Controlador/tblArticulos.php',
-            data: dataEnviar,
             dataType: "json",
             success: function (datos) {
                 alert("Refrescando tabla.");
@@ -184,7 +177,6 @@ function cargarTablaArticulo($contratoTemp) {
                 $('#idTBodyArticulos').html(html);
             }
         });
-    }
     $("#divTablaArticulos").load('tablaArticulos.php');
 }
 
@@ -233,7 +225,7 @@ function eliminarArticulo($idArticulo) {
         type: 'post',
         success: function (response) {
             if (response == 1) {
-                cargarTablaArticulo($("#idContratoTemp").text());
+                cargarTablaArticulo();
                 $("#divTablaArticulos").load('tablaArticulos.php');
                 alertify.success("Eliminado con éxito.");
             } else {

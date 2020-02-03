@@ -43,13 +43,14 @@ class sqlAutoDAO
             $fechaCreacion = date('Y-m-d H:i:s');
             $fechaModificacion = date('Y-m-d H:i:s');
             $usuario = $_SESSION["idUsuario"];
+            $sucursal = $_SESSION["sucursal"];
 
             $insertaContrato = "INSERT INTO contrato_tbl " .
                 "(id_Cliente, id_Interes, folio, fecha_Vencimiento, total_Avaluo, total_Prestamo, abono, intereses, pago,  " .
-                "fecha_Alm, fecha_Movimiento, origen_Folio, dest_Folio, id_Estatus, observaciones,beneficiario, cotitular, fecha_creacion, fecha_modificacion, usuario,tipoContrato) VALUES " .
+                "fecha_Alm, fecha_Movimiento, origen_Folio, dest_Folio, id_Estatus, observaciones,beneficiario, cotitular, fecha_creacion, fecha_modificacion, usuario,sucursal,tipoContrato) VALUES " .
                 "('" . $id_Cliente . "', '" . $id_Interes . "', '" . $folio . "', '" . $fechaVencimiento . "', '" . $totalAvaluo . "', '" . $totalPrestamo .
                 " .', '" . $abono . "', '" . $interes . "', '" . $pago . "', '" . $fechaAlm . "', '" . $fechaMovimiento . "', '" . $origenFolio .
-                "', '" . $destFolio . "', '" . $estatus . "', '" . $observaciones . "', '" . $beneficiario . "','" . $cotitular . "','" . $fechaCreacion . "', '" . $fechaModificacion . "', '" . $usuario . "',2)";
+                "', '" . $destFolio . "', '" . $estatus . "', '" . $observaciones . "', '" . $beneficiario . "','" . $cotitular . "','" . $fechaCreacion . "', '" . $fechaModificacion . "', '" . $usuario . "','" . $sucursal . "',2)";
 
             if ($ps = $this->conexion->prepare($insertaContrato)) {
                 if ($ps->execute()) {
@@ -90,12 +91,12 @@ class sqlAutoDAO
 
                         $insertaAuto = "INSERT INTO auto_tbl(id_Contrato, tipo_Vehiculo,marca, modelo, año, color, placas, factura," .
                             " kilometraje, agencia, num_motor, serie_chasis, vin, repuve, gasolina, tarjeta_circulacion, aseguradora, poliza, fechaVencimiento," .
-                            " tipoPoliza, observaciones, chkTarjeta, chkFactura, chkINE, chkImportacion, chkTenencias, chkPoliza, chkLicencia, fecha_creacion, fecha_modificacion, usuario)" .
+                            " tipoPoliza, observaciones, chkTarjeta, chkFactura, chkINE, chkImportacion, chkTenencias, chkPoliza, chkLicencia, fecha_creacion, fecha_modificacion, usuario,sucursal)" .
                             " VALUES ('" . $idContratoAuto . "', '" . $idTipoVehiculo . "', '" . $idMarca . "', '" . $idModelo . "'," .
                             " '" . $idAnio . "', '" . $idColor . "', '" . $idPlacas . "', '" . $idFactura . "', '" . $idKms . "','" . $idAgencia . "','" . $idMotor . "'," .
                             " '" . $idSerie . "', '" . $idVehiculo . "', '" . $idRepuve . "', '" . $idGasolina . "', '" . $idTarjeta . "','" . $idAseguradora . "','" . $idPoliza . "'," .
                             " '" . $idFecVencimientoAuto . "', '" . $idTipoPoliza . "', '" . $idObservacionesAuto . "', '" . $idCheckTarjeta . "', '" . $idCheckFactura . "','" . $idCheckINE . "'," .
-                            " '" . $idCheckImportacion . "', '" . $idCheckTenecia . "', '" . $idCheckPoliza . "', '" . $idCheckLicencia . "', '" . $fechaCreacion . "','" . $fechaModificacion . "','" . $usuario . "')";
+                            " '" . $idCheckImportacion . "', '" . $idCheckTenecia . "', '" . $idCheckPoliza . "', '" . $idCheckLicencia . "', '" . $fechaCreacion . "','" . $fechaModificacion . "','" . $usuario . "','" . $sucursal . "')";
 
                         if ($ps = $this->conexion->prepare($insertaAuto)) {
                             if ($ps->execute()) {

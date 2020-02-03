@@ -22,7 +22,6 @@ class sqlContratoDAO
     {
         // TODO: Implement guardaCiente() method.
         try {
-            $idContrato = $contrato->getIdContrato();
             $id_Cliente = $contrato->getIdCliente();
             $id_Interes = $contrato->getIdInteres();
             $folio = $contrato->getFolio();
@@ -43,38 +42,44 @@ class sqlContratoDAO
             $fechaCreacion = date('Y-m-d H:i:s');
             $fechaModificacion = date('Y-m-d H:i:s');
             $usuario = $_SESSION["idUsuario"];
+            $sucursal = $_SESSION["sucursal"];
+
 
             $insertaContrato = "INSERT INTO contrato_tbl " .
-                "(id_Contrato, id_Cliente, id_Interes, folio, fecha_Vencimiento, total_Avaluo, total_Prestamo, abono, intereses, pago,  " .
-                "fecha_Alm, fecha_Movimiento, origen_Folio, dest_Folio, id_Estatus, observaciones, cotitular,beneficiario, fecha_creacion, fecha_modificacion, usuario,tipoContrato) VALUES ".
-                "('" . $idContrato . "', '" . $id_Cliente . "', '" . $id_Interes . "', '" . $folio . "', '" . $fechaVencimiento . "', '" . $totalAvaluo . "', '" . $totalPrestamo .
+                "(id_Cliente, id_Interes, folio, fecha_Vencimiento, total_Avaluo, total_Prestamo, abono, intereses, pago,  " .
+                "fecha_Alm, fecha_Movimiento, origen_Folio, dest_Folio, id_Estatus, observaciones, cotitular,beneficiario, fecha_creacion, fecha_modificacion, usuario,sucursal,tipoContrato) VALUES ".
+                "('" . $id_Cliente . "', '" . $id_Interes . "', '" . $folio . "', '" . $fechaVencimiento . "', '" . $totalAvaluo . "', '" . $totalPrestamo .
                 " .', '" . $abono . "', '" . $interes . "', '" . $pago . "', '" . $fechaAlm . "', '" . $fechaMovimiento . "', '" . $origenFolio .
-                "', '" . $destFolio . "', '" . $estatus . "', '" . $observaciones . "', '" . $beneficiario . "','" . $cotitular . "','" . $fechaCreacion . "', ". "'" . $fechaModificacion . "', '" . $usuario . "',1)";
+                "', '" . $destFolio . "', '" . $estatus . "', '" . $observaciones . "', '" . $beneficiario . "','" . $cotitular . "','" . $fechaCreacion . "', ". "'" . $fechaModificacion . "', '" . $usuario . "','" . $sucursal . "',1)";
 
             if ($ps = $this->conexion->prepare($insertaContrato)) {
                 if ($ps->execute()) {
-                    $verdad = true;
+                    $verdad =  mysqli_stmt_affected_rows($ps);
                 } else {
-                    $verdad = false;
+                    $verdad = -1;
                 }
             } else {
-                $verdad = false;
+                $verdad = -1;
             }
+
         } catch (Exception $exc) {
-            $verdad = false;
+            $verdad = -1;
             echo $exc->getMessage();
         } finally {
-            $verdad = false;
             $this->db->closeDB();
         }
         //return $verdad;
         echo $verdad;
     }
-    public function actualizarArticulo($contrato){
+    public function actualizarArticulo(){
         // TODO: Implement guardaCiente() method.
         try {
-
-            $updateArticulo = "UPDATE articulo_tbl SET id_Contrato='$contrato' WHERE id_ContratoTemp='$contrato'";
+            $usuario = $_SESSION["idUsuario"];
+            $buscar = "select max(id_Contrato) as idContrato  from contrato_tbl ";
+            $statement = $this->conexion->query($buscar);
+            $fila = $statement->fetch_object();
+            $idContratoAuto = $fila->idContrato;
+            $updateArticulo = "UPDATE articulo_tbl SET id_Contrato='$idContratoAuto' WHERE id_Contrato='' and usuario=$usuario";
 
             if ($ps = $this->conexion->prepare($updateArticulo)) {
                 if ($ps->execute()) {
@@ -122,7 +127,7 @@ class sqlContratoDAO
         // TODO: Implement guardaCiente() method.
         $usuario = $_SESSION["idUsuario"];
         try {
-            $eliminarArticulo = "DELETE FROM articulo_tbl WHERE id_Contrato <> id_ContratoTemp and usuario=$usuario";
+            $eliminarArticulo = "DELETE FROM articulo_tbl WHERE id_Contrato = '' and usuario=$usuario";
 
             if ($this->conexion->query($eliminarArticulo) === TRUE) {
                 $verdad = 1;

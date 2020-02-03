@@ -28,7 +28,7 @@ class sqlArticulosDAO
             $fechaCreacion = date('Y-m-d H:i:s');
             $fechaModificacion = date('Y-m-d H:i:s');
             $usuario = $_SESSION["idUsuario"];
-            $contratoTemp = $articulo->getContratoTemp();
+            $sucursal = $_SESSION["sucursal"];
 
             if ($tipoPost == "1") {
                 $idTipoM = $articulo->getTipoM();
@@ -46,11 +46,11 @@ class sqlArticulosDAO
                 $idDetallePrenda = $articulo->getDetallePrenda();
 
                 $insert = "INSERT INTO articulo_tbl " .
-                    "(id_ContratoTemp,tipo, kilataje, calidad, cantidad, peso, peso_Piedra, piedras, prestamo, avaluo, tipoInteres,interesArticulo, ubicacion," .
-                    " detalle, id_Estatus, fecha_creacion, fecha_modificacion, usuario)  VALUES " .
-                    "('" . $contratoTemp . "','" . $idTipoM . "', '" . $idKilataje . "', '" . $idCalidad . "', '" . $idCantidad . "', '" . $idPeso
+                    "(tipo, kilataje, calidad, cantidad, peso, peso_Piedra, piedras, prestamo, avaluo, tipoInteres,interesArticulo, ubicacion," .
+                    " detalle, id_Estatus, fecha_creacion, fecha_modificacion, usuario,sucursal)  VALUES " .
+                    "('" . $idTipoM . "', '" . $idKilataje . "', '" . $idCalidad . "', '" . $idCantidad . "', '" . $idPeso
                     . "', '" . $idPesoPiedra . "', '" . $idPiedras . "', '" . $idPrestamo . "', '" . $idAvaluo . "','" . $tipoInteres . "','" . $interesMetal . "','" . $idUbicacion . "','"
-                    . $idDetallePrenda . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "'," . $usuario . " )";
+                    . $idDetallePrenda . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "'," . $usuario . "," . $sucursal . " )";
 
             } else if ($tipoPost == "2") {
                 $idTipoE = $articulo->getTipoE();
@@ -66,11 +66,11 @@ class sqlArticulosDAO
                 $idDetallePrendaE = $articulo->getDetallePrendaE();
 
                 $insert = "INSERT INTO articulo_tbl " .
-                    "(id_ContratoTemp,tipo, marca, estado, modelo, num_Serie, prestamo, avaluo, tipoInteres,interesArticulo, ubicacion," .
-                    " detalle, id_Estatus, fecha_creacion, fecha_modificacion,usuario)  VALUES " .
-                    "('" . $contratoTemp . "','" . $idTipoE . "','" . $idMarca . "', '" . $idEstado . "', '" . $idModelo
+                    "(tipo, marca, estado, modelo, num_Serie, prestamo, avaluo, tipoInteres,interesArticulo, ubicacion," .
+                    " detalle, id_Estatus, fecha_creacion, fecha_modificacion,usuario,sucursal)  VALUES " .
+                    "('" . $idTipoE . "','" . $idMarca . "', '" . $idEstado . "', '" . $idModelo
                     . "', '" . $idSerie . "','" . $idPrestamoE . "', '" . $idAvaluoE . "','" . $tipoInteresE . "','" . $interesArt . "', '" . $idUbicacionE . "','"
-                    . $idDetallePrendaE . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "'," . $usuario . " )";
+                    . $idDetallePrendaE . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "'," . $usuario . "," . $sucursal . "  )";
             }
             if ($ps = $this->conexion->prepare($insert)) {
                 if ($ps->execute()) {
@@ -92,12 +92,12 @@ class sqlArticulosDAO
         echo $verdad;
     }
 
-    public function buscarArticulo($idContratoTemp)
+    public function buscarArticulo()
     {
         $datos = array();
         try {
             $usuario = $_SESSION["idUsuario"];
-            $buscar = "SELECT id_Articulo, marca, estado, modelo, prestamo,avaluo, detalle FROM articulo_tbl WHERE id_ContratoTemp='$idContratoTemp' and usuario=" . $usuario;
+            $buscar = "SELECT id_Articulo, marca, estado, modelo, prestamo,avaluo, detalle FROM articulo_tbl WHERE id_Contrato='' and usuario=" . $usuario;
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
                 while ($row = $rs->fetch_assoc()) {
