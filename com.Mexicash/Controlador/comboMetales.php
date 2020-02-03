@@ -11,7 +11,10 @@ if($Clase == 1){
     $comboMetal->llenarCmbKilataje($idTipoMetal) ;
 }else if($Clase == 3){
     $comboMetal->llenarCmbCalidad($idTipoMetal) ;
+}else if($Clase == 4){
+    $comboMetal->llenarKilatajePrecio($idTipoMetal) ;
 }
+
 
 
 

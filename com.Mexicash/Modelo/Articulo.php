@@ -5,7 +5,6 @@ class Articulo
 {
     //Metal
     private $idTipoM;
-    private $idClienteInteres;
     private $idContratoTemp;
     private $idKilataje;
     private $idCalidad;
@@ -37,7 +36,6 @@ class Articulo
      * Articulo constructor.
      * Metal
      * @param $idTipoM
-     * @param $idClienteInteres
      * @param $idContratoTemp
      * @param $idKilataje
      * @param $idCalidad
@@ -64,7 +62,6 @@ class Articulo
      */
     public function __construct(
         $idTipoM,
-        $idClienteInteres,
         $idContratoTemp,
         $idKilataje,
         $idCalidad,
@@ -92,7 +89,6 @@ class Articulo
     {
         //Metales
         $this->tipoM = $idTipoM;
-        $this->cliente = $idClienteInteres;
         $this->contrato = $idContratoTemp;
         $this->kilataje = $idKilataje;
         $this->calidad = $idCalidad;
@@ -283,37 +279,8 @@ class Articulo
         $this->cantidad = $cantidad;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCliente()
-    {
-        return $this->cliente;
-    }
 
-    /**
-     * @param mixed $cliente
-     */
-    public function setCliente($cliente): void
-    {
-        $this->cliente = $cliente;
-    }
 
-    /**
-     * @return mixed
-     */
-    public function getColor()
-    {
-        return $this->color;
-    }
-
-    /**
-     * @param mixed $color
-     */
-    public function setColor($color): void
-    {
-        $this->color = $color;
-    }
 
     /**
      * @return mixed
@@ -443,21 +410,6 @@ class Articulo
         $this->pesoPiedra = $pesoPiedra;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPrenda()
-    {
-        return $this->prenda;
-    }
-
-    /**
-     * @param mixed $prenda
-     */
-    public function setPrenda($prenda): void
-    {
-        $this->prenda = $prenda;
-    }
 
     /**
      * @return mixed
@@ -491,37 +443,7 @@ class Articulo
         $this->prestamoE = $prestamoE;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPrestamoMax()
-    {
-        return $this->prestamoMax;
-    }
 
-    /**
-     * @param mixed $prestamoMax
-     */
-    public function setPrestamoMax($prestamoMax): void
-    {
-        $this->prestamoMax = $prestamoMax;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPrestamoMaxE()
-    {
-        return $this->prestamoMaxE;
-    }
-
-    /**
-     * @param mixed $prestamoMaxE
-     */
-    public function setPrestamoMaxE($prestamoMaxE): void
-    {
-        $this->prestamoMaxE = $prestamoMaxE;
-    }
 
     /**
      * @return mixed
@@ -537,22 +459,6 @@ class Articulo
     public function setSerie($serie): void
     {
         $this->serie = $serie;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTamaño()
-    {
-        return $this->tamaño;
-    }
-
-    /**
-     * @param mixed $tamaño
-     */
-    public function setTamaño($tamaño): void
-    {
-        $this->tamaño = $tamaño;
     }
 
     /**

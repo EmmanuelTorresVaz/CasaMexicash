@@ -47,7 +47,6 @@ function Agregar() {
                     var tipoInteres = $("#tipoInteresEmpeno").val();
                     var dataEnviar = {
                         "$idTipoEnviar": 1,
-                        "idClienteInteres": clienteEmpeno,
                         "idContratoTemp": $("#idContratoTemp").text(),
                         "idTipoMetal": formMetal,
                         "idKilataje": $("#idKilataje").val(),
@@ -68,6 +67,7 @@ function Agregar() {
                         url: '../../../com.Mexicash/Controlador/Articulo.php',
                         type: 'post',
                         success: function (response) {
+                            alert(response)
                             if (response == 1) {
                                 cargarTablaArticulo($("#idContratoTemp").text());
                                 $("#divTablaArticulos").load('tablaArticulos.php');
@@ -87,7 +87,6 @@ function Agregar() {
                     //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
                     var dataEnviar = {
                         "$idTipoEnviar": 2,
-                        "idClienteInteres": clienteEmpeno,
                         "idContratoTemp": $("#idContratoTemp").text(),
                         "idTipoElectronico": formElectronico,
                         "idMarca": $("#idMarca").val(),
@@ -276,6 +275,28 @@ function selectKilataje($tipoMetal) {
                 html += '<option value=' + idKilataje + '>' + descripcion + '</option>';
             }
             $('#idKilataje').html(html);
+
+        }
+    });
+}
+
+function llenaPrecioKilataje() {
+    var idKil = $("#idKilataje").val();
+    var dataEnviar = {
+        "clase": 4,
+        "idTipoMetal": idKil
+    };
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/comboMetales.php',
+        data: dataEnviar,
+        dataType: "json",
+        success: function (datos) {
+            var i = 0;
+            for (i; i < datos.length; i++) {
+                var precio = datos[i].precio;
+                $('#idKilatajePrecio').val(precio);
+            }
         }
     });
 }
@@ -401,6 +422,56 @@ function calculaAvaluoElec() {
     var avaluoImporte = Math.floor(pretamoElec* 75)/100;
     pretamoElec = pretamoElec + avaluoImporte;
     $("#idAvaluoElectronico").val(pretamoElec);
+}
+
+function calculaPrestamoPeso() {
+    if($("#idTipoMetal").val()==0){
+        alert("Selecciona un tipo de metal")
+    }else {
+        if($("#idKilataje").val()==0){
+            alert("Selecciona un tipo de kilataje")
+        }else {
+            if($("#idCalidad").val()==0){
+                alert("Selecciona un tipo de calidad")
+            }else {
+                if ($("#idCantidad").val() == "") {
+                    alert("Ingresa el campo de Cantidad")
+                }else{
+                    if($("#idPeso").val()==""){
+                        alert("Ingresa el campo de Peso")
+                    }else {
+                        if($("#idPiedras").val()==""){
+                            alert("Ingresa el campo de Peso Piedras")
+                        }else {
+                            if($("#idPesoPiedra").val()==""){
+                                alert("Ingresa el campo de Piedras")
+                            }else {
+                                var cantidad = parseInt($("#idCantidad").val());
+                                var peso = parseFloat($("#idPeso").val());
+                                var pesoPiedra = parseFloat($("#idPesoPiedra").val());
+                                var piedras = parseInt($("#idPiedras").val());
+                                var kilPrecio = parseInt($("#idKilatajePrecio").val());
+
+                                var pesoTotalMetal = cantidad * peso;
+                                var pesoTotalPiedra = piedras * pesoPiedra;
+                                var pesoTotal = pesoTotalMetal - pesoTotalPiedra;
+                                var prestamo = pesoTotal * kilPrecio;
+
+                                $("#idAvaluo").val(prestamo);
+                                var avaluoImporte = Math.floor(prestamo * 33)/100;
+                                var avaluo = prestamo+ avaluoImporte;
+                                $("#idPrestamo").val(prestamo);
+                                $("#idAvaluo").val(avaluo);
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
 }
 /*
 function prestaMax() {

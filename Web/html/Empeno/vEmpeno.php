@@ -51,6 +51,9 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                 calculaAvaluoElec();
             });
 
+            $("#idPesoPiedra").blur(function(){
+                calculaPrestamoPeso();
+            });
         })
     </script>
     <style type="text/css">
@@ -100,6 +103,8 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     <tbody>
                     <tr>
                         <br>
+                        <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="20"
+                               style="text-align:center" class="invisible"/>
                     </tr>
                     <tr class="headt">
                         <td colspan="3">
@@ -311,8 +316,10 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                     <tr>
                                         <td colspan="6">Kilataje:</td>
                                         <td colspan="6">
-                                            <select id="idKilataje" name="cmbKilataje" class="selectpicker" style="width: 100px">
+                                            <select id="idKilataje" name="cmbKilataje" class="selectpicker" style="width: 100px" onchange="llenaPrecioKilataje()">
                                             </select>
+                                            <input type="text" id="idKilatajePrecio" name="kilatajePrecio" size="6" value="66"
+                                                  class=""/>
                                         </td>
                                     </tr>
                                     <tr>
@@ -337,13 +344,6 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                             <label>grs</label></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6">Peso Piedra:</td>
-                                        <td colspan="6">
-                                            <input type="text" id="idPesoPiedra" name="pesoPiedra" size="6"    onkeypress="return isNumberDecimal(event)"
-                                                   style="text-align:center"/>
-                                            <label>grs</label></td>
-                                    </tr>
-                                    <tr>
                                         <td colspan="6">Piedras:</td>
                                         <td colspan="6">
                                             <input type="text" id="idPiedras" name="piedras" size="6"    onkeypress="return soloNumeros(event)"
@@ -351,6 +351,14 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                             <label>pza</label>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td colspan="6">Peso Piedra:</td>
+                                        <td colspan="6">
+                                            <input type="text" id="idPesoPiedra" name="pesoPiedra" size="6"    onkeypress="return isNumberDecimal(event)"
+                                                   style="text-align:center"/>
+                                            <label>grs</label></td>
+                                    </tr>
+
 
                                     <tr>
                                         <td colspan="6">Préstamo:</td>

@@ -24,7 +24,6 @@ class sqlArticulosDAO
         // TODO: Implement guardaCiente() method.
         try {
 
-            // $idCliente = $articulo->getCliente();
             $status = 1;
             $fechaCreacion = date('Y-m-d H:i:s');
             $fechaModificacion = date('Y-m-d H:i:s');
@@ -73,6 +72,7 @@ class sqlArticulosDAO
                     . "', '" . $idSerie . "','" . $idPrestamoE . "', '" . $idAvaluoE . "','" . $tipoInteresE . "','" . $interesArt . "', '" . $idUbicacionE . "','"
                     . $idDetallePrendaE . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "'," . $usuario . " )";
             }
+            echo $insert;
             if ($ps = $this->conexion->prepare($insert)) {
                 if ($ps->execute()) {
                     $verdad =  mysqli_stmt_affected_rows($ps);
@@ -202,7 +202,6 @@ class sqlArticulosDAO
     }
     function llenarCmbKilataje($idTipoCombo){
         $datos = array();
-
         try {
             $buscar = "SELECT id_Kilataje , descripcion FROM cat_kilataje WHERE id_tipoArticulo=$idTipoCombo";
 
@@ -224,6 +223,30 @@ class sqlArticulosDAO
 
         echo json_encode($datos);
     }
+    function llenarKilatajePrecio($idKilataje){
+        $datos = array();
+
+        try {
+            $buscar = "SELECT precio FROM cat_kilataje WHERE id_Kilataje=$idKilataje";
+
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "precio" => $row["precio"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        echo json_encode($datos);
+    }
+
     function llenarCmbCalidad($idTipoCombo){
         $datos = array();
 
