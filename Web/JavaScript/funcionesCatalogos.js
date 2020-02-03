@@ -55,9 +55,9 @@ function llenarComboLocalidad() {
     });
 }
 
-function cargarTablaCatMetales() {
+function cargarTablaCatMetales($tipoMetal) {
         var dataEnviar = {
-            "tipo": 1
+            "tipoMetal" :$tipoMetal
         };
         $.ajax({
             type: "POST",
@@ -65,7 +65,6 @@ function cargarTablaCatMetales() {
             data: dataEnviar,
             dataType: "json",
             success: function (datos) {
-                alert(datos)
                 var html = '';
                 var i = 0;
                 for (i; i < datos.length; i++) {
@@ -83,14 +82,13 @@ function cargarTablaCatMetales() {
                         precio = '0.00';
                     }
                     html += '<tr>' +
-                        '<td>' + TipoMetal + '</td>' +
-                        '<td>' + DesMetal + '</td>' +
-                        '<td><input type="text" size="6"    onkeypress="return soloNumeros(event)" ' +
-                        ' style="text-align:center" value="' + precio + '"/></td>' +
-                        '<td><input type="button" class="btn btn-primary" value="Actualizar" ' +
-                        'onclick="guardarMetal(' + datos[i].id_Kilataje + ')"></td>' +
+                        '<td align="center">' + TipoMetal + '</td>' +
+                        '<td align="center">' + DesMetal + '</td>' +
+                        '<td align="center">$' + precio + '</td>' +
+                        '<td><input type="button" class="btn btn-success"  data-toggle="modal" data-target="#modalActualizarMetal"' +
+                        'value="Editar"  onclick="modalEditarMetal('+id_Kilataje+')"></td>' +
                         '<td><input type="button" class="btn btn-danger" value="Eliminar" ' +
-                        'onclick="confirmarEliminarCatMetal(' + datos[i].id_Kilataje + ')"></td>' +
+                        'onclick="confirmarEliminarCatMetal(' + id_Kilataje + ')"></td>' +
                         '</tr>';
                 }
 
@@ -110,45 +108,107 @@ function confirmarEliminarCatMetal($idMetal) {
             alertify.error('Cancelado')
         });
 }
-
-//Elimina articulos
+//Elimina metal
 function eliminarMetal($idMetal) {
+    var $tipoMetal = $("#idTipoMetalCat").val();
     var dataEnviar = {
         "tipo": 1,
         "idMetal": $idMetal
     };
     $.ajax({
         data: dataEnviar,
-        url: '../../../com.Mexicash/Controlador/EliminarArticulo.php',
+        url: '../../../com.Mexicash/Controlador/Catalogos/ActualizarMetal.php',
         type: 'post',
         success: function (response) {
             if (response == 1) {
-                cargarTablaArticulo($("#idContratoTemp").text());
-                $("#divTablaArticulos").load('tablaArticulos.php');
+                cargarTablaCatMetales($tipoMetal)
                 alertify.success("Eliminado con éxito.");
             } else {
-                alertify.error("Error al eliminar articulo.");
+                alertify.error("Error al eliminar metal.");
             }
         },
     })
 
 }
-function guardarMetal($idMetal) {
+function modalEditarMetal($idMetal) {
     var dataEnviar = {
-        "tipo": 2,
+        "tipo" : 4,
         "idMetal": $idMetal
     };
     $.ajax({
         data: dataEnviar,
-        url: '../../../com.Mexicash/Controlador/EliminarArticulo.php',
+        url: '../../../com.Mexicash/Controlador/Catalogos/ActualizarMetal.php',
+        type: 'post',
+        dataType: "json",
+        success: function (datos) {
+            var i = 0;
+            for (i; i < datos.length; i++) {
+                var id_Kilataje = datos[i].id_Kilataje;
+                var TipoMetal = datos[i].TipoMetal;
+                var DesMetal = datos[i].DesMetal;
+                var precio = datos[i].precio;
+                if (TipoMetal === null) {
+                    TipoMetal = '';
+                }
+                if (DesMetal === null) {
+                    DesMetal = '';
+                }
+                if (precio === null) {
+                    precio = '0.00';
+                }
+                $("#idKilatajeEditModal").val(id_Kilataje);
+                $('#idTipoCatMetEditModal').val(TipoMetal);
+                $('#idUnidadEditModal').val(DesMetal);
+                $('#idPrecioEditModal').val(precio);
+            }
+        }
+    })
+
+}
+function guardarMetal() {
+    var idTipo =  $('#idTipoMetalCatModal').val();
+    var unidad =  $('#idUnidadModal').val();
+    var precio =  $('#idPrecioModal').val();
+    var dataEnviar = {
+        "tipo" : 3,
+        "idTipo": idTipo,
+        "unidad": unidad,
+        "precio": precio
+    };
+    $.ajax({
+        data: dataEnviar,
+        url: '../../../com.Mexicash/Controlador/Catalogos/ActualizarMetal.php',
         type: 'post',
         success: function (response) {
             if (response == 1) {
-                cargarTablaArticulo($("#idContratoTemp").text());
-                $("#divTablaArticulos").load('tablaArticulos.php');
-                alertify.success("Eliminado con éxito.");
+                cargarTablaCatMetales(idTipo)
+                alertify.success("Guardado con éxito.");
             } else {
-                alertify.error("Error al eliminar articulo.");
+                alertify.error("Error al guardar metal.");
+            }
+        },
+    })
+
+}
+function actualizarMetal() {
+    var $idMetal =  $('#idKilatajeEditModal').val();
+    var precio =  $('#idPrecioEditModal').val();
+    var $tipoMetal = $("#idTipoMetalCat").val();
+    var dataEnviar = {
+        "tipo": 2,
+        "idMetal": $idMetal,
+        "precio": precio
+    };
+    $.ajax({
+        data: dataEnviar,
+        url: '../../../com.Mexicash/Controlador/Catalogos/ActualizarMetal.php',
+        type: 'post',
+        success: function (response) {
+            if (response == 1) {
+                cargarTablaCatMetales($tipoMetal)
+                alertify.success("Guardado con éxito.");
+            } else {
+                alertify.error("Error al guardar precio metal.");
             }
         },
     })

@@ -96,11 +96,14 @@
                             <li><a class="dropdown-item" href="#">Re-Impresiones(P)</a></li>
                         </ul>
                     </li>
-                    <li><a class="dropdown-item dropdown-toggle" href="#">Catalogos</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../Catalogos/catMetales.php">Metales</a></li>
-                        </ul>
-                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Catalogos
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="catMetales.php">Metales</a></li>
                 </ul>
             </li>
         </ul>

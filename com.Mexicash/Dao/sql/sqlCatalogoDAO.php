@@ -250,13 +250,13 @@ class sqlCatalogoDAO
         echo json_encode($datos);
     }
 
-    public function llenarTblCatMetales()
+    public function llenarTblCatMetales($idMetal)
     {
         $datos = array();
         try {
             $buscar = "SELECT id_Kilataje,Tip.descripcion as TipoMetal,Kil.descripcion as DesMetal,precio
                         FROM cat_kilataje as Kil
-                        INNER JOIN cat_tipoarticulo as Tip on Kil.id_tipoArticulo = Tip.id_tipo ";
+                        INNER JOIN cat_tipoarticulo as Tip on Kil.id_tipoArticulo = Tip.id_tipo WHERE Tip.id_tipo=$idMetal";
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
                 while ($row = $rs->fetch_assoc()) {
@@ -277,6 +277,104 @@ class sqlCatalogoDAO
 
         echo json_encode($datos);
     }
+    public function eliminarMetal($idMetal)
+    {
+        // TODO: Implement guardaCiente() method.
+        try {
+            $eliminarMetal= "DELETE FROM cat_kilataje WHERE id_Kilataje=$idMetal";
+            if ($ps = $this->conexion->prepare($eliminarMetal)) {
+                if ($ps->execute()) {
+                    $verdad = mysqli_stmt_affected_rows($ps);
+                } else {
+                    $verdad = -1;
+                }
+            } else {
+                $verdad = -1;
+            }
+        } catch (Exception $exc) {
+            $verdad = -1;
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+        //return $verdad;
+        echo $verdad;
+    }
+    public function guardarMetal($idMetal,$precio)
+    {
+        // TODO: Implement guardaCiente() method.
+        try {
+            $guardarMetal = "UPDATE cat_kilataje SET precio=$precio WHERE id_Kilataje=$idMetal";
+            if ($ps = $this->conexion->prepare($guardarMetal)) {
+                if ($ps->execute()) {
+                    $verdad = mysqli_stmt_affected_rows($ps);
+                } else {
+                    $verdad = -1;
+                }
+            } else {
+                $verdad = -1;
+            }
+        } catch (Exception $exc) {
+            $verdad = -1;
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+        //return $verdad;
+        echo $verdad;
+    }
+    public function agregarMetal($idTipo,$unidad,$precio)
+    {
+        // TODO: Implement guardaCiente() method.
+        try {
+            $insertarMetal = "INSERT INTO cat_kilataje(id_tipoArticulo, descripcion, precio) VALUES ($idTipo,'$unidad',$precio)";
+            if ($ps = $this->conexion->prepare($insertarMetal)) {
+                if ($ps->execute()) {
+                    $verdad = mysqli_stmt_affected_rows($ps);
+                } else {
+                    $verdad = -1;
+                }
+            } else {
+                $verdad = -1;
+            }
+        } catch (Exception $exc) {
+            $verdad = -1;
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+        //return $verdad;
+        echo $verdad;
+    }
+    public function modalLLenarMetales($idMetal)
+    {
+        $datos = array();
+        try {
+            $buscar = "SELECT id_Kilataje,Tip.descripcion as TipoMetal,Kil.descripcion as DesMetal,precio
+                        FROM cat_kilataje as Kil
+                        INNER JOIN cat_tipoarticulo as Tip on Kil.id_tipoArticulo = Tip.id_tipo WHERE id_Kilataje=$idMetal";
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_Kilataje" => $row["id_Kilataje"],
+                        "TipoMetal" => $row["TipoMetal"],
+                        "DesMetal" => $row["DesMetal"],
+                        "precio" => $row["precio"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        echo json_encode($datos);
+    }
+
+
 
 
 }

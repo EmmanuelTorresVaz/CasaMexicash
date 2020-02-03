@@ -102,6 +102,15 @@
                         </ul>
                     </li>
                 </ul>
+
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Catalogos
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="../Catalogos/catMetales.php">Metales</a></li>
+                </ul>
             </li>
         </ul>
     </div>
