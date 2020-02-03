@@ -72,7 +72,6 @@ class sqlArticulosDAO
                     . "', '" . $idSerie . "','" . $idPrestamoE . "', '" . $idAvaluoE . "','" . $tipoInteresE . "','" . $interesArt . "', '" . $idUbicacionE . "','"
                     . $idDetallePrendaE . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "'," . $usuario . " )";
             }
-            echo $insert;
             if ($ps = $this->conexion->prepare($insert)) {
                 if ($ps->execute()) {
                     $verdad =  mysqli_stmt_affected_rows($ps);

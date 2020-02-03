@@ -68,7 +68,6 @@ if ($idTipoEnviar == 1) {
 
 $articulo = new Articulo(
     $idTipoM,
-    $idClienteInteres,
     $idContratoTemp,
     $idKilataje,
     $idCalidad,

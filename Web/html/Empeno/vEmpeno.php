@@ -319,7 +319,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                             <select id="idKilataje" name="cmbKilataje" class="selectpicker" style="width: 100px" onchange="llenaPrecioKilataje()">
                                             </select>
                                             <input type="text" id="idKilatajePrecio" name="kilatajePrecio" size="6" value="66"
-                                                  class=""/>
+                                                  class="invisible"/>
                                         </td>
                                     </tr>
                                     <tr>
