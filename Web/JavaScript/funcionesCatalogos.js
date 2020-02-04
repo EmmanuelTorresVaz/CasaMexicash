@@ -214,3 +214,264 @@ function actualizarMetal() {
     })
 
 }
+
+//Electronico Agregar
+function llenarComboTipoE() {
+    var dataEnviar = {
+        "tipo" :1
+    };
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/Electronicos/Electronico.php',
+        data: dataEnviar,
+        dataType: "json",
+        success: function (datos) {
+            var html = "";
+            html += " <option value=0>Seleccione:</option>"
+            var i = 0;
+            for (i; i < datos.length; i++) {
+                var id_tipo = datos[i].id_tipo;
+                var descripcion = datos[i].descripcion;
+                html += '<option value=' + id_tipo + '>' + descripcion + '</option>';
+            }
+            $('#idTipoSelect').html(html);
+        }
+    });
+}
+function llenarComboMarcaE() {
+    $('#idMarcaSelect').prop('disabled',false);
+    $('#idModeloSelect').prop('disabled',false);
+    $('#idModeloSelect').val(0);
+    $('#idMarcaSelect').val(0);
+    var dataEnviar = {
+        "tipo" :2,
+        "tipoCombo" :$('#idTipoSelect').val()
+    };
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/Electronicos/Electronico.php',
+        data: dataEnviar,
+        dataType: "json",
+        success: function (datos) {
+            var html = "";
+            html += " <option value=0>Seleccione:</option>"
+            var i = 0;
+            for (i; i < datos.length; i++) {
+                var id_marca = datos[i].id_marca;
+                var descripcion = datos[i].descripcion;
+                html += '<option value=' + id_marca + '>' + descripcion + '</option>';
+            }
+            $('#idMarcaSelect').html(html);
+        }
+    });
+}
+function llenarComboModeloE() {
+    $('#idModeloSelect').prop('disabled',false);
+    $('#idModeloSelect').val(0);
+    var dataEnviar = {
+        "tipo" :3,
+        "tipoCombo" :$('#idTipoSelect').val(),
+        "marcaCombo" :$('#idMarcaSelect').val()
+    };
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/Electronicos/Electronico.php',
+        data: dataEnviar,
+        dataType: "json",
+        success: function (datos) {
+            var html = "";
+            html += " <option value=0>Seleccione:</option>"
+            var i = 0;
+            for (i; i < datos.length; i++) {
+                var id_modelo = datos[i].id_modelo;
+                var descripcion = datos[i].descripcion;
+                html += '<option value=' + id_modelo + '>' + descripcion + '</option>';
+            }
+            $('#idModeloSelect').html(html);
+
+        }
+    });
+}
+
+function agregarTipoE() {
+    var tipoText =  $('#idTipoAgregar').val();
+    if(tipoText==''){
+        alert("Ingrese el tipo.");
+    }else{
+        var dataEnviar = {
+            "tipo": 4,
+            "descripcion": tipoText
+        };
+        $.ajax({
+            data: dataEnviar,
+            url: '../../../com.Mexicash/Controlador/Electronicos/Electronico.php',
+            type: 'post',
+            success: function (response) {
+                if (response == 1) {
+                    $('#idTipoAgregar').val('');
+                    llenarComboTipoE();
+                    alertify.success("Se guardo el Tipo correctamente");
+
+                } else {
+                    alertify.error("Error al guardar tipo de producto.");
+                }
+            },
+        })
+    }
+}
+function agregarMarcaE() {
+    var tipoTextMarca = $('#idTipoModMarca').val();
+    if(tipoTextMarca==0){
+        alert("Por favor. Seleccione el tipo.")
+    }else{
+        var marcaText =  $('#idMarcaAgregar').val();
+        if(marcaText==''){
+            alert("Ingrese la marca.");
+
+        }else{
+            var dataEnviar = {
+                "tipo": 5,
+                "tipoCombo": tipoTextMarca,
+                "descripcion": marcaText,
+
+            };
+            $.ajax({
+                data: dataEnviar,
+                url: '../../../com.Mexicash/Controlador/Electronicos/Electronico.php',
+                type: 'post',
+                success: function (response) {
+                    if (response == 1) {
+                        $('#idTipoAgregar').val('');
+                        llenarComboMarcaE();
+                        alertify.success("Se guardo la Marca correctamente");
+
+                    } else {
+                        alertify.error("Error al guardar la marca de producto.");
+                    }
+                },
+            })
+        }
+    }
+}
+function agregarModeloE() {
+    var tipoTextMarca = $('#idTipoModModelo').val();
+    if(tipoTextMarca==0){
+        alert("Por favor. Seleccione el tipo.")
+    }else{
+        var marcaTipo =  $('#idMarcaModModelo').val();
+        if(marcaTipo==''){
+            alert("Por favor. Seleccione la marca.")
+        }else{
+            var modeloDes =  $('#idModeloAgregar').val();
+            if(modeloDes==''){
+                alert("Ingrese el modelo.");
+
+            }else{
+                var dataEnviar = {
+                    "tipo": 6,
+                    "tipoCombo": tipoTextMarca,
+                    "marcaCombo": marcaTipo,
+                    "descripcion": modeloDes
+
+                };
+                $.ajax({
+                    data: dataEnviar,
+                    url: '../../../com.Mexicash/Controlador/Electronicos/Electronico.php',
+                    type: 'post',
+                    success: function (response) {
+                        if (response == 1) {
+                            $('#idTipoAgregar').val('');
+                            llenarComboModeloE();
+                            alertify.success("Se guardo el Modelo correctamente");
+
+                        } else {
+                            alertify.error("Error al guardar el modelo de producto.");
+                        }
+                    },
+                })
+            }
+        }
+    }
+}
+function agregarProducto() {
+    var validateForm = true;
+    var cmbTipo = $('#idTipoModP').val();
+    var cmbMarca =  $('#idMarcaModP').val();
+    var cmbModelo =  $('#idModeloModP').val();
+    if(cmbTipo==0){
+        alert("Por favor. Seleccione el tipo.");
+        validateForm = false;
+    }else if(cmbMarca==0){
+        alert("Por favor. Seleccione la marca.");
+        validateForm = false;
+    }else if(cmbModelo==0){
+        alert("Por favor. Seleccione el modelo.");
+        validateForm = false;
+    }
+
+    if(validateForm){
+
+        var precio = $('#idPrecio').val();
+        var vitrina =  $('#idVitrina').val();
+        var caracteristicas =  $('#idCaracteristica').val().trim();
+
+        if(precio==""){
+            alert("Por favor. Ingrese el precio.")
+            validateForm = false;
+        }else if (vitrina==""){
+            alert("Por favor. Ingrese vitrina.")
+            validateForm = false;
+        }
+        if(validateForm){
+            var dataEnviar = {
+                "tipo": 7,
+                "cmbTipo": cmbTipo,
+                "cmbMarca": cmbMarca,
+                "cmbModelo": cmbModelo,
+                "precio": precio,
+                "vitrina": vitrina,
+                "caracteristicas": caracteristicas
+
+            };
+            $.ajax({
+                data: dataEnviar,
+                url: '../../../com.Mexicash/Controlador/Electronicos/Electronico.php',
+                type: 'post',
+                success: function (response) {
+                    if (response == 1) {
+                        $('#idTipoAgregar').val('');
+                        llenarComboModeloE();
+                        alertify.success("Se guardo el Modelo correctamente");
+
+                    } else {
+                        alertify.error("Error al guardar el modelo de producto.");
+                    }
+                },
+            })
+        }
+    }
+}
+
+function cargarTipoModal() {
+
+    $('#idTipoModMarca').val( $('#idTipoSelect').val());
+    $('#idMarcaAgregar').val('');
+   $('#idTipoModMarcaDes').val( $('select[name="tipoElect"] option:selected').text());
+}
+function cargarMarcaModal() {
+
+    $('#idTipoModModelo').val( $('#idTipoSelect').val());
+    $('#idMarcaModModelo').val( $('#idMarcaSelect').val());
+    $('#idModeloAgregar').val('');
+    $('#idTipoModDes').val( $('select[name="tipoElect"] option:selected').text());
+    $('#idMarcaModDes').val( $('select[name="marcaElect"] option:selected').text());
+}
+function cargarProductoModal() {
+
+    $('#idTipoModP').val( $('#idTipoSelect').val());
+    $('#idMarcaModP').val( $('#idMarcaSelect').val());
+    $('#idModeloModP').val( $('#idModeloSelect').val());
+    $('#idTipoDescP').val( $('select[name="tipoElect"] option:selected').text());
+    $('#idMarcaDescP').val( $('select[name="marcaElect"] option:selected').text());
+    $('#idModeloDescP').val( $('select[name="modeloElect"] option:selected').text());
+}

@@ -374,7 +374,170 @@ class sqlCatalogoDAO
         echo json_encode($datos);
     }
 
+    public function cmbElectroTipo(){
+        $datos = array();
 
+        try {
+            $buscar = "SELECT id_tipo, descripcion FROM cat_electronico_tipo ";
 
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_tipo" => $row["id_tipo"],
+                        "descripcion" => $row["descripcion"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
 
+        echo json_encode($datos);
+
+    }
+    public function cmbElectroMarca($tipoCombo){
+        $datos = array();
+
+        try {
+            $buscar = "SELECT id_marca, descripcion FROM cat_electronico_marca where id_tipo=$tipoCombo";
+
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_marca" => $row["id_marca"],
+                        "descripcion" => $row["descripcion"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        echo json_encode($datos);
+
+    }
+    public function cmbElectroModelo($tipoCombo,$marcaCombo){
+        $datos = array();
+
+        try {
+            $buscar = "SELECT id_modelo, descripcion FROM cat_electronico_modelo where id_tipo=$tipoCombo and id_marca=$marcaCombo";
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_modelo" => $row["id_modelo"],
+                        "descripcion" => $row["descripcion"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        echo json_encode($datos);
+
+    }
+    public function agregarTipo($descripcion)
+    {
+        // TODO: Implement guardaCiente() method.
+        try {
+            $insertarMetal = "INSERT INTO cat_electronico_tipo(descripcion) VALUES ('$descripcion')";
+            if ($ps = $this->conexion->prepare($insertarMetal)) {
+                if ($ps->execute()) {
+                    $verdad = mysqli_stmt_affected_rows($ps);
+                } else {
+                    $verdad = -1;
+                }
+            } else {
+                $verdad = -1;
+            }
+        } catch (Exception $exc) {
+            $verdad = -1;
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+        //return $verdad;
+        echo $verdad;
+    }
+    public function agregarMarca($tipoCombo,$descripcion)
+    {
+        // TODO: Implement guardaCiente() method.
+        try {
+            $insertarMarca = "INSERT INTO cat_electronico_marca (id_tipo, descripcion) VALUES ($tipoCombo,'$descripcion')";
+            if ($ps = $this->conexion->prepare($insertarMarca)) {
+                if ($ps->execute()) {
+                    $verdad = mysqli_stmt_affected_rows($ps);
+                } else {
+                    $verdad = -1;
+                }
+            } else {
+                $verdad = -1;
+            }
+        } catch (Exception $exc) {
+            $verdad = -1;
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        echo $verdad;
+    }
+    public function agregarModelo($tipoCombo,$marcaCombo,$descripcion)
+    {
+        // TODO: Implement guardaCiente() method.
+        try {
+            $insertarMarca = "INSERT INTO cat_electronico_modelo (id_tipo,id_marca, descripcion) VALUES ($tipoCombo,$marcaCombo,'$descripcion')";
+            if ($ps = $this->conexion->prepare($insertarMarca)) {
+                if ($ps->execute()) {
+                    $verdad = mysqli_stmt_affected_rows($ps);
+                } else {
+                    $verdad = -1;
+                }
+            } else {
+                $verdad = -1;
+            }
+        } catch (Exception $exc) {
+            $verdad = -1;
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        echo $verdad;
+    }
+    public function agregarProducto($cmbTipo,$cmbMarca,$cmbModelo,$precio,$vitrina,$caracteristicas)
+    {
+        // TODO: Implement guardaCiente() method.
+        try {
+            $insertarMarca = "INSERT INTO cat_electronico_modelo (id_tipo,id_marca, descripcion) VALUES ($tipoCombo,$marcaCombo,'$descripcion')";
+            if ($ps = $this->conexion->prepare($insertarMarca)) {
+                if ($ps->execute()) {
+                    $verdad = mysqli_stmt_affected_rows($ps);
+                } else {
+                    $verdad = -1;
+                }
+            } else {
+                $verdad = -1;
+            }
+        } catch (Exception $exc) {
+            $verdad = -1;
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        echo $verdad;
+    }
 }

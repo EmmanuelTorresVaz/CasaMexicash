@@ -1,9 +1,14 @@
+<?php
+include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
+include_once(SQL_PATH . "sqlCatalogoDAO.php");
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Historial Cliente</title>
+    <title>Electronicos varios</title>
+
 </head>
 <body>
 <div class="modal fade " id="modalArticulos" tabindex="-1" role="dialog"
@@ -18,44 +23,41 @@
             </div>
             <div class="modal-body">
                 <div>
-                    <table >
+                    <table width="100%">
                         <tr>
                             <td>
-                                <label>Tipo:</label>
-                            </td>
-                            <td>
-                                <label>Marca:</label>
-                            </td>
-                            <td>
-                                <label>Modelo:</label>
-                            </td>
-                            <td>
+                                <label>Tipo:</label>&nbsp;
                                 <img src="../../style/Img/mas.png"  data-toggle="modal"
-                                     data-target="#modalArticulos" alt="Agregar">
+                                     data-target="#modalAgregarTipo" alt="Agregar Tipo">
+                            </td>
+                            <td>
+                                <label>Marca:</label>&nbsp;
+                                <img src="../../style/Img/mas.png"  data-toggle="modal"
+                                     data-target="#modalAgregarMarca" alt="Agregar Marca" onclick="cargarTipoModal()">
+                            </td>
+                            <td>
+                                <label>Modelo:</label>&nbsp;
+                                <img src="../../style/Img/mas.png"  data-toggle="modal"
+                                     data-target="#modalAgregarModelo" alt="Agregar Modelo"  onclick="cargarMarcaModal()">
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <select id="idTipoModArt" name="tipoElect" class="selectpicker"  style="width:155px"
-                                        onchange="llenarComboMunicipio()">
-                                    <option value="0">Seleccione:</option>
-                                    <?php
-                                    $dataEstado = array();
-                                    $sqlEstado = new sqlCatalogoDAO();
-                                    $dataEstado = $sqlEstado->completaEstado();
-                                    for ($i = 0; $i < count($dataEstado); $i++) {
-                                        echo "<option value=" . $dataEstado[$i]['id_Estado'] . ">" . $dataEstado[$i]['descripcion'] . "</option>";
-                                    }
-                                    ?>
+                                <select id="idTipoSelect" name="tipoElect" class="selectpicker"  style="width:200px" onchange="llenarComboMarcaE();">
                                 </select>
                             </td>
                             <td>
-                                <select id="idMunicipio" name="municipioName" class="selectpicker"  style="width:200px" disabled onchange="llenarComboLocalidad()">
+                                <select id="idMarcaSelect" name="marcaElect" class="selectpicker"  style="width:200px" disabled onchange="llenarComboModeloE();">
                                 </select>
                             </td>
                             <td>
-                                <select id="idMunicipio" name="municipioName" class="selectpicker"  style="width:200px" disabled onchange="llenarComboLocalidad()">
+                                <select id="idModeloSelect" name="modeloElect" class="selectpicker"  style="width:200px" disabled onchange="">
                                 </select>
+                            </td>
+                            <td>
+                                <input type="button" class="btn btn-success" data-toggle="modal"
+                                       data-target="#modalAgregarProducto"
+                                       onclick="cargarProductoModal()"  value="Agregar" />
                             </td>
                         </tr>
                     </table>
