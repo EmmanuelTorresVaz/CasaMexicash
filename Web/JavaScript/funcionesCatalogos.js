@@ -411,9 +411,9 @@ function agregarProducto() {
 
     if(validateForm){
 
-        var precio = $('#idPrecio').val();
-        var vitrina =  $('#idVitrina').val();
-        var caracteristicas =  $('#idCaracteristica').val().trim();
+        var precio = $('#idPrecioP').val();
+        var vitrina =  $('#idVitrinaP').val();
+        var caracteristicas =  $('#idCaracteristicaP').val().trim();
 
         if(precio==""){
             alert("Por favor. Ingrese el precio.")
@@ -439,12 +439,11 @@ function agregarProducto() {
                 type: 'post',
                 success: function (response) {
                     if (response == 1) {
-                        $('#idTipoAgregar').val('');
-                        llenarComboModeloE();
-                        alertify.success("Se guardo el Modelo correctamente");
+                        cargarTblProducto()
+                        alertify.success("Se guardo el producto correctamente");
 
                     } else {
-                        alertify.error("Error al guardar el modelo de producto.");
+                        alertify.error("Error al guardar el producto.");
                     }
                 },
             })
@@ -467,6 +466,9 @@ function cargarMarcaModal() {
     $('#idMarcaModDes').val( $('select[name="marcaElect"] option:selected').text());
 }
 function cargarProductoModal() {
+    $('#idPrecioP').val('');
+    $('#idVitrinaP').val('');
+    $('#idCaracteristicaP').val('');
 
     $('#idTipoModP').val( $('#idTipoSelect').val());
     $('#idMarcaModP').val( $('#idMarcaSelect').val());
@@ -474,4 +476,57 @@ function cargarProductoModal() {
     $('#idTipoDescP').val( $('select[name="tipoElect"] option:selected').text());
     $('#idMarcaDescP').val( $('select[name="marcaElect"] option:selected').text());
     $('#idModeloDescP').val( $('select[name="modeloElect"] option:selected').text());
+}
+function cargarTblProducto() {
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/Electronicos/tblElectronico.php',
+        dataType: "json",
+        success: function (datos) {
+            alert("Refrescando tabla.");
+            var html = '';
+            var i = 0;
+            for (i; i < datos.length; i++) {
+                var tipo = datos[i].tipoE;
+                var marca = datos[i].marca;
+                var modelo = datos[i].modelo;
+                var precio = datos[i].precio;
+                var vitrina = datos[i].vitrina;
+                var caracteristicas = datos[i].caracteristicas;
+                if (tipo === null) {
+                    tipo = '';
+                }
+                if (marca === null) {
+                    marca = '';
+                }
+                if (modelo === null) {
+                    modelo = '';
+                }
+                if (precio === null) {
+                    precio = '';
+                }
+                if (vitrina === null) {
+                    vitrina = '';
+                }
+                if (caracteristicas === null) {
+                    caracteristicas = '';
+                }
+                html += '<tr>' +
+                    '<td>' + tipo + '</td>' +
+                    '<td>' + marca + '</td>' +
+                    '<td>' + modelo + '</td>' +
+                    '<td>' + precio + '</td>' +
+                    '<td>' + vitrina + '</td>' +
+                    '<td>' + caracteristicas + '</td>' +
+                    '<td><input type="button" class="btn btn-primary" value="Seleccionar" ' +
+                    'onclick="selecProd(' + datos[i].idElectronico + ')"></td>' +
+                    '</tr>';
+            }
+
+            $('#cargarTblProducto').html(html);
+        }
+    });
+}
+function selecProd() {
+
 }

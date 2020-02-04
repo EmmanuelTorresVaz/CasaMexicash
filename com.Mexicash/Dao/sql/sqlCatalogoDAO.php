@@ -521,8 +521,8 @@ class sqlCatalogoDAO
     {
         // TODO: Implement guardaCiente() method.
         try {
-            $insertarMarca = "INSERT INTO cat_electronico_modelo (id_tipo,id_marca, descripcion) VALUES ($tipoCombo,$marcaCombo,'$descripcion')";
-            if ($ps = $this->conexion->prepare($insertarMarca)) {
+            $insertarProducto = "INSERT INTO cat_electronico (tipo,marca, modelo,precio,vitrina,caracteristicas) VALUES ($cmbTipo,$cmbMarca,$cmbModelo,$precio,$vitrina,'$caracteristicas')";
+            if ($ps = $this->conexion->prepare($insertarProducto)) {
                 if ($ps->execute()) {
                     $verdad = mysqli_stmt_affected_rows($ps);
                 } else {
@@ -539,5 +539,38 @@ class sqlCatalogoDAO
         }
 
         echo $verdad;
+    }
+    public function buscarElectronico()
+    {
+        $datos = array();
+        try {
+            $buscar = "SELECT idElectronico, CT.descripcion,CM.descripcion ,CMO.descripcion,precio,vitrina,caracteristicas 
+                        FROM cat_electronico as E
+                        INNER JOIN cat_electronico_tipo as CT on E.tipo = CT.id_tipo
+                        INNER JOIN cat_electronico_marca as CM on E.marca = CM.id_marca
+                        INNER JOIN cat_electronico_modelo as CMO on E.modelo = CMO.id_modelo";
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "idElectronico" => $row["idElectronico"],
+                        "tipoE" => $row["tipo"],
+                        "marca" => $row["marca"],
+                        "modelo" => $row["modelo"],
+                        "precio" => $row["precio"],
+                        "vitrina" => $row["vitrina"],
+                        "caracteristicas" => $row["caracteristicas"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        echo json_encode($datos);
+        //echo json_encode($datos);
     }
 }

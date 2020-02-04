@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Nuevo Articulo</title>
+    <script type="text/css" src="../../JavaScript/funcionesGenerales.js"></script>
 </head>
 <body>
 <div class="modal fade " id="modalAgregarTipo" tabindex="-1" role="dialog"
@@ -11,7 +12,7 @@
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Historial del cliente</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Tipo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -40,7 +41,7 @@
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Historial del cliente</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Marca</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -82,7 +83,7 @@
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Historial del cliente</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Modelo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -125,7 +126,7 @@
             </div>
             <div class="modal-footer">
                 <input type="button" class="btn btn-success " data-dismiss="modal"
-                       onclick="agregarModeloE();"  value="Agregar Marca">
+                       onclick="agregarModeloE();"  value="Agregar Modelo">
             </div>
         </div>
     </div>
@@ -135,7 +136,7 @@
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Historial del cliente</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -171,7 +172,7 @@
                             <label>Precio:</label>
                         </td>
                         <td>
-                            <input type="text" id="idPrecio" name="precioMod" size="15"  onkeypress="isNumberDecimal()" style="text-align: right"/>
+                            <input type="text" id="idPrecioP" name="precioMod" size="15"  onkeypress="isNumberDecimal()" style="text-align: right"/>
                         </td>
                     </tr>
                     <tr>
@@ -179,7 +180,7 @@
                             <label>Vitrina:</label>
                         </td>
                         <td>
-                            <input type="text" id="idVitrina" name="vitrinaMod" size="15"  onkeypress="isNumberDecimal()" style="text-align: right"/>
+                            <input type="text" id="idVitrinaP" name="vitrinaMod" size="15"  onkeypress="isNumberDecimal()" style="text-align: right"/>
                         </td>
                     </tr>
                     <tr>
@@ -189,7 +190,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                               <textarea rows="4" cols="25" id="idCaracteristica" class="textArea" style="text-align: left">
+                               <textarea rows="4" cols="25" id="idCaracteristicaP" class="textArea" style="text-align: left">
                                     </textarea>
                         </td>
                     </tr>
@@ -206,7 +207,7 @@
             </div>
             <div class="modal-footer">
                 <input type="button" class="btn btn-success " data-dismiss="modal"
-                       onclick="agregarProducto();"  value="Agregar Marca">
+                       onclick="agregarProducto();"  value="Agregar Producto">
             </div>
         </div>
     </div>

@@ -8,6 +8,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Electronicos varios</title>
+    <script type="text/css" src="../../JavaScript/funcionesGenerales.js"></script>
 
 </head>
 <body>
@@ -69,11 +70,13 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                             <th>Tipo</th>
                             <th>Marca</th>
                             <th>Modelo</th>
-                            <th>Caracteristicas</th>
                             <th>Precio</th>
+                            <th>Vitrina</th>
+                            <th>Caracteristicas</th>
+                            <th>Seleccionar</th>
                         </tr>
                         </thead>
-                        <tbody id="idTBodyElectronico">
+                        <tbody id="cargarTblProducto">
                         </tbody>
                     </table>
                 </div>
