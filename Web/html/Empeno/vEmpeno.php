@@ -18,6 +18,7 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
 include_once(HTML_PATH . "Clientes/modalHistorial.php");
 include_once(HTML_PATH . "Clientes/modalBusquedaCliente.php");
 include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
+include_once(HTML_PATH . "Empeno/modalArticulos.php");
 include_once (HTML_PATH. "Empeno/menuEmpeno.php")
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -404,6 +405,8 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                                 }
                                                 ?>
                                             </select>
+                                            <img src="../../style/Img/lupa.png"  data-toggle="modal"
+                                                 data-target="#modalArticulos" alt="Buscar">
                                         </td>
                                     </tr>
                                     <tr>

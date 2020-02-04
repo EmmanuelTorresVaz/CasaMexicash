@@ -295,8 +295,6 @@ class sqlArticulosDAO
 
         return $datos;
     }
-
-
     function llenarCmbColores()
     {
         $datos = array();
@@ -322,7 +320,6 @@ class sqlArticulosDAO
 
         return $datos;
     }
-
     function llenarCmbTipoAuto()
     {
         $datos = array();
@@ -335,6 +332,33 @@ class sqlArticulosDAO
                 while ($row = $rs->fetch_assoc()) {
                     $data = [
                         "id_Auto" => $row["id_Cat_Articulo"],
+                        "descripcion" => $row["descripcion"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        return $datos;
+    }
+
+
+    function llenarCmbCatArticulos()
+    {
+        $datos = array();
+
+        try {
+            $buscar = "SELECT id_tipo, descripcion FROM cat_electronico ";
+            $rs = $this->conexion->query($buscar);
+
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_tipo" => $row["id_tipo"],
                         "descripcion" => $row["descripcion"]
                     ];
                     array_push($datos, $data);

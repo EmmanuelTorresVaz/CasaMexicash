@@ -10,7 +10,6 @@ class Contrato
     private $totalAvaluo;
     private $totalPrestamo;
     private $abono;
-    private $intereses;
     private $pago;
     private $fecha_Alm;
     private $fecha_Movimiento;
@@ -30,7 +29,6 @@ class Contrato
      * @param $totalAvaluo
      * @param $totalPrestamo
      * @param $abono
-     * @param $intereses
      * @param $pago
      * @param $fecha_Alm
      * @param $fecha_Movimiento
@@ -41,7 +39,7 @@ class Contrato
      * @param $beneficiario
      * @param $cotitular
      */
-    public function __construct( $idCliente, $id_Interes, $folio, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $abono, $intereses, $pago, $fecha_Alm, $fecha_Movimiento, $origen_Folio, $dest_Folio, $estatus, $observaciones, $beneficiario, $cotitular)
+    public function __construct( $idCliente, $id_Interes, $folio, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $abono, $pago, $fecha_Alm, $fecha_Movimiento, $origen_Folio, $dest_Folio, $estatus, $observaciones, $beneficiario, $cotitular)
     {
         $this->idCliente = $idCliente;
         $this->id_Interes = $id_Interes;
@@ -50,7 +48,6 @@ class Contrato
         $this->totalAvaluo = $totalAvaluo;
         $this->totalPrestamo = $totalPrestamo;
         $this->abono = $abono;
-        $this->intereses = $intereses;
         $this->pago = $pago;
         $this->fecha_Alm = $fecha_Alm;
         $this->fecha_Movimiento = $fecha_Movimiento;
@@ -176,21 +173,7 @@ class Contrato
         $this->abono = $abono;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getIntereses()
-    {
-        return $this->intereses;
-    }
 
-    /**
-     * @param mixed $intereses
-     */
-    public function setIntereses($intereses): void
-    {
-        $this->intereses = $intereses;
-    }
 
     /**
      * @return mixed

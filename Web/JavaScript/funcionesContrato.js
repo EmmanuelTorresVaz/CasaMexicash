@@ -22,8 +22,8 @@ function generarContrato() {
             "id_Interes": tipoInteres,
             "folio": '',
             "fechaVencimiento": $("#idFecVencimiento").text(),
-            "totalAvaluo": $("#idTotalAvaluo").text(),
-            "totalPrestamo": $("#idTotalPrestamo").text(),
+            "totalAvaluo": $("#idTotalAvaluo").val(),
+            "totalPrestamo": $("#idTotalPrestamo").val(),
             "abono": '',
             "intereses": $("#idTotalInteres").val(),
             "pago": '',
@@ -42,7 +42,6 @@ function generarContrato() {
             url: '../../../com.Mexicash/Controlador/Contrato.php',
             type: 'post',
             success: function (response) {
-                alert(response)
                 if (response) {
                     actualizarArticulo();
                     alertify.success("Contrato generado.");
