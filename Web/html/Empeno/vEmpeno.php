@@ -189,6 +189,11 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                    style="width:300px" required/>
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="12">
+                        &nbsp;
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -200,12 +205,12 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr class="headt">
                         <td colspan="12" class="border border-dark " align="left">
-                            <label for="vence">Vence:</label>
+                            <label for="vence">&nbsp;Vence:</label>
                             <label id="idFecVencimiento"></label>
                         </td>
                     </tr>
                     <tr class="headt">
-                        <td colspan="6" class="border border-dark">Tasa Interés:</td>
+                        <td colspan="6" class="border border-dark">&nbsp;Tasa Interés:</td>
                         <td colspan="6" class="border border-dark" id="idComboInteresTD">
                             <select id="tipoInteresEmpeno" name="cmbTipoInteres" class="selectpicker"   style="width:150px"
                                     onchange="SeleccionarInteres($('#tipoInteresEmpeno').val())">
@@ -428,7 +433,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                         <td colspan="6">Modelo:</td>
                                         <td colspan="6">
                                             <select id="idModelo" name="modeloSelect" class="selectpicker"  style="width:150px" disabled
-                                                    onchange="cargarTblProducto($('#idTipoSelect').val(),$('#idMarcaSelect').val(),$('#idModeloSelect').val())">
+                                                    onchange="llenarDatosElectronico($('#idTipoElectronico').val(),$('#idMarca').val(),$('#idModelo').val())">
                                             </select>
                                         </td>
                                     </tr>

@@ -35,7 +35,6 @@ function Limpiar() {
 function Agregar() {
     var clienteEmpeno = $("#idClienteEmpeno").val();
     var tipoInteres = $("#tipoInteresEmpeno").val();
-    alert($("#idVitrina").val())
     if (clienteEmpeno != 0) {
         if (tipoInteres != 0) {
             var formElectronico = $("#idTipoElectronico").val();
@@ -161,8 +160,6 @@ function cargarTablaArticulo() {
                     }
                     html += '<tr>' +
                         '<td>' + marca + '</td>' +
-
-
                         '<td>' + modelo + '</td>' +
                         '<td>' + prestamo + '</td>' +
                         '<td>' + avaluo + '</td>' +
@@ -386,6 +383,9 @@ function calculaAvaluo() {
     var prestamo = parseFloat($("#idPrestamo").val());
     var avaluoImporte = Math.floor(prestamo* 33)/100;
     prestamo = prestamo+ avaluoImporte;
+
+    prestamo = prestamo.toFixed(2)
+    prestamo = parseFloat(prestamo)
     $("#idAvaluo").val(prestamo);
 }
 
@@ -393,6 +393,8 @@ function calculaAvaluoElec() {
     var pretamoElec = parseFloat($("#idPrestamoElectronico").val());
     var avaluoImporte = Math.floor(pretamoElec* 75)/100;
     pretamoElec = pretamoElec + avaluoImporte;
+    pretamoElec = pretamoElec.toFixed(2)
+    pretamoElec = parseFloat(pretamoElec)
     $("#idAvaluoElectronico").val(pretamoElec);
 }
 
@@ -499,6 +501,192 @@ function cmbModeloVEmpe() {
     var tipoSelect = $('#idTipoElectronico').val();
     var marcaSelect = $('#idMarca').val();
     var modeloSelect = 0;
+    var dataEnviar = {
+        "tipo": 3,
+        "tipoCombo": tipoSelect,
+        "marcaCombo": marcaSelect
+    };
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/Electronicos/Electronico.php',
+        data: dataEnviar,
+        dataType: "json",
+        success: function (datos) {
+            var html = "";
+            html += " <option value=0>Seleccione:</option>"
+            var i = 0;
+            for (i; i < datos.length; i++) {
+                var id_modelo = datos[i].id_modelo;
+                var descripcion = datos[i].descripcion;
+                html += '<option value=' + id_modelo + '>' + descripcion + '</option>';
+            }
+            $('#idModelo').html(html);
+        }
+    });
+}
+
+function llenarDatosElectronico(tipoSelect, marcaSelect, modeloSelect) {
+    var dataEnviar = {
+        "tipoCombo": tipoSelect,
+        "marcaCombo": marcaSelect,
+        "modeloCombo": modeloSelect
+
+    };
+    $.ajax({
+        data: dataEnviar,
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/Electronicos/tblElectronico.php',
+        dataType: "json",
+        success: function (datos) {
+            var i = 0;
+            for (i; i < datos.length; i++) {
+                var idElectronico = datos[i].idElectronico;
+                var tipo = datos[i].tipoE;
+                var marca = datos[i].marca;
+                var modelo = datos[i].modelo;
+                var precio = datos[i].precio;
+                var vitrina = datos[i].vitrina;
+                var caracteristicas = datos[i].caracteristicas;
+                if (tipo === null) {
+                    tipo = '';
+                }
+                if (marca === null) {
+                    marca = '';
+                }
+                if (modelo === null) {
+                    modelo = '';
+                }
+                if (precio === null) {
+                    precio = '';
+                }
+                if (vitrina === null) {
+                    vitrina = '';
+                }
+                if (caracteristicas === null) {
+                    caracteristicas = '';
+                }
+
+                var pretamoElec = parseFloat(precio);
+                var avaluoImporte = Math.floor(pretamoElec* 75)/100;
+                avaluoImporte = pretamoElec + avaluoImporte;
+                avaluoImporte = avaluoImporte.toFixed(2)
+                avaluoImporte = parseFloat(avaluoImporte)
+
+                $("#idPrestamoElectronico").val(precio);
+                $("#idAvaluoElectronico").val(avaluoImporte);
+                $("#idVitrinaElectronico").val(vitrina);
+                $("#idDetallePrendaElectronico").val(caracteristicas);
+
+            }
+        }
+    });
+}
+
+function llenarDatosFromModal($idProducto) {
+    var dataEnviar = {
+        "tipo": 1,
+        "idProducto": $idProducto
+    };
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/Electronicos/ActualizarTblElectronico.php',
+        data: dataEnviar,
+        dataType: "json",
+        success: function (datos) {
+            for (i = 0; i < datos.length; i++) {
+                var idElectronico = datos[i].idElectronico;
+                var tipoId = datos[i].tipoId;
+                var tipoEditar = datos[i].tipoEditar;
+                var marcaId = datos[i].marcaId;
+                var marca = datos[i].marca;
+                var modeloId = datos[i].modeloId;
+                var modelo = datos[i].modelo;
+                var precio = datos[i].precio;
+                var vitrina = datos[i].vitrina;
+                var caracteristicas = datos[i].caracteristicas;
+                if (tipoId === null) {
+                    tipoId = '';
+                }
+                if (marcaId === null) {
+                    marcaId = '';
+                }
+                if (modeloId === null) {
+                    modeloId = '';
+                }
+                if (tipoEditar === null) {
+                    tipoEditar = '';
+                }
+                if (marca === null) {
+                    marca = '';
+                }
+                if (modelo === null) {
+                    modelo = '';
+                }
+                if (precio === null) {
+                    precio = '';
+                }
+                if (vitrina === null) {
+                    vitrina = '';
+                }
+                if (caracteristicas === null) {
+                    caracteristicas = '';
+                }
+                combMarcaVEmpeFromModal(tipoId);
+                cmbModeloVEmpeFromModal(tipoId,marcaId);
+                alert("Cargando datos.")
+                var pretamoElec = parseFloat(precio);
+                var avaluoImporte = Math.floor(pretamoElec* 75)/100;
+                avaluoImporte = pretamoElec + avaluoImporte;
+                avaluoImporte = avaluoImporte.toFixed(2)
+                avaluoImporte = parseFloat(avaluoImporte)
+                $("#idTipoElectronico").val(tipoId);
+                $("#idMarca").val(marcaId);
+                $("#idModelo").val(modeloId);
+                $("#idPrestamoElectronico").val(precio);
+                $("#idAvaluoElectronico").val(avaluoImporte);
+                $("#idVitrinaElectronico").val(vitrina);
+                $("#idDetallePrendaElectronico").val(caracteristicas);
+
+
+            }
+        }
+    });
+
+}
+
+function combMarcaVEmpeFromModal(tipoId) {
+    $('#idMarca').prop('disabled', false);
+    $('#idMarca').val(0);
+
+    var tipoSelect = tipoId;
+    var dataEnviar = {
+        "tipo": 2,
+        "tipoCombo": tipoSelect
+    };
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/Electronicos/Electronico.php',
+        data: dataEnviar,
+        dataType: "json",
+        success: function (datos) {
+            var html = "";
+            html += " <option value=0>Seleccione:</option>"
+            var i = 0;
+            for (i; i < datos.length; i++) {
+                var id_marca = datos[i].id_marca;
+                var descripcion = datos[i].descripcion;
+                html += '<option value=' + id_marca + '>' + descripcion + '</option>';
+            }
+            $('#idMarca').html(html);
+        }
+    });
+}
+
+function cmbModeloVEmpeFromModal(tipoId,marcaId) {
+    $('#idModelo').prop('disabled', false);
+    $('#idModelo').val(0);
+    var tipoSelect = tipoId;
+    var marcaSelect = marcaId;
     var dataEnviar = {
         "tipo": 3,
         "tipoCombo": tipoSelect,

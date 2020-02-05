@@ -612,8 +612,7 @@ function cargarTblProducto(tipoSelect, marcaSelect, modeloSelect) {
                     '<td><img src="../../style/Img/editarNor.jpg"  data-toggle="modal" ' +
                     'data-target="#modalEditarProducto" alt="Editar"  onclick="editarProducto(' + idElectronico + ')"></td>' +
                     '<td><img src="../../style/Img/eliminarNor.jpg" alt="Eliminar"  onclick="confirmarEliminarProd(' + idElectronico + ')"></td>' +
-                    '<td><img src="../../style/Img/seleccionarNor.png"  data-toggle="modal" ' +
-                    'data-target="#modalAgregarModelo" alt="Seleccionar"  onclick="selecProd()"></td>' +
+                    '<td><img src="../../style/Img/seleccionarNor.png"  data-dismiss="modal" alt="Seleccionar"  onclick="llenarDatosFromModal(' + idElectronico + ')"></td>' +
                     '</tr>';
             }
 
@@ -693,10 +692,5 @@ function eliminarProductoProd($idProducto) {
             }
         },
     })
-
-}
-
-
-function selecProd() {
 
 }

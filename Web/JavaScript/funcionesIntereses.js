@@ -20,10 +20,26 @@ function SeleccionarInteres(tipoInteresValue) {
                     document.getElementById('idAlmPorcen').innerHTML = response.result.alm;
                     document.getElementById('idSeguroPorcen').innerHTML = response.result.seguro + ".00";
                     document.getElementById('idIvaPorcen').innerHTML = response.result.iva + " %";
+                    limpiarTablaInteres();
+                    $("#divTablaArticulos").load('tablaArticulos.php');
                 }
             },
         })
     }
+}
+
+function limpiarTablaInteres() {
+    $.ajax({
+        url: '../../../com.Mexicash/Controlador/ArticulosObsoletos.php',
+        type: 'post',
+        success: function (response) {
+            if (response == -1 || response == 0) {
+                alertify.error("Error 0001.");
+            } else {
+                alertify.warning("Se limpio tabla por modificar el tipo de interes.");
+            }
+        },
+    })
 }
 
 function llenarComboInteres($tipoCombo) {
