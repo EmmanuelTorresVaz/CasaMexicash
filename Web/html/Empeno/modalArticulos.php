@@ -52,7 +52,8 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                 </select>
                             </td>
                             <td>
-                                <select id="idModeloSelect" name="modeloElect" class="selectpicker"  style="width:200px" disabled onchange="">
+                                <select id="idModeloSelect" name="modeloElect" class="selectpicker"  style="width:200px" disabled
+                                        onchange="cargarTblProducto($('#idTipoSelect').val(),$('#idMarcaSelect').val(),$('#idModeloSelect').val())">
                                 </select>
                             </td>
                             <td>
@@ -73,12 +74,35 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                             <th>Precio</th>
                             <th>Vitrina</th>
                             <th>Caracteristicas</th>
-                            <th>Seleccionar</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody id="cargarTblProducto">
                         </tbody>
                     </table>
+
+                </div>
+                <div>
+                    <table class="table table-hover table-condensed table-bordered" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Precio</th>
+                            <th>Vitrina</th>
+                            <th>Caracteristicas</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="cargarTblProducto2">
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
             <div class="modal-footer">

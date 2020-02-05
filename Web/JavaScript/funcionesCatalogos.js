@@ -1,13 +1,11 @@
-
-
 function llenarComboMunicipio() {
-    $('#idMunicipio').prop('disabled',false);
-    $('#idLocalidad').prop('disabled',true);
+    $('#idMunicipio').prop('disabled', false);
+    $('#idLocalidad').prop('disabled', true);
     $('#idMunicipio').val(0);
     $('#idLocalidad').val(0);
     var dataEnviar = {
-        "Estado":  $('#idEstado').val(),
-        "tipoConsulta" :1
+        "Estado": $('#idEstado').val(),
+        "tipoConsulta": 1
     };
     $.ajax({
         type: "POST",
@@ -29,12 +27,12 @@ function llenarComboMunicipio() {
 }
 
 function llenarComboLocalidad() {
-    $('#idLocalidad').prop('disabled',false);
+    $('#idLocalidad').prop('disabled', false);
     $('#idLocalidad').val(0);
     var dataEnviar = {
-        "Estado":  $('#idEstado').val(),
-        "Municipio":  $('#idMunicipio').val(),
-        "tipoConsulta" :2
+        "Estado": $('#idEstado').val(),
+        "Municipio": $('#idMunicipio').val(),
+        "tipoConsulta": 2
     };
     $.ajax({
         type: "POST",
@@ -56,45 +54,45 @@ function llenarComboLocalidad() {
 }
 
 function cargarTablaCatMetales($tipoMetal) {
-        var dataEnviar = {
-            "tipoMetal" :$tipoMetal
-        };
-        $.ajax({
-            type: "POST",
-            url: '../../../com.Mexicash/Controlador/Catalogos/tblCatMetales.php',
-            data: dataEnviar,
-            dataType: "json",
-            success: function (datos) {
-                var html = '';
-                var i = 0;
-                for (i; i < datos.length; i++) {
-                    var id_Kilataje = datos[i].id_Kilataje;
-                    var TipoMetal = datos[i].TipoMetal;
-                    var DesMetal = datos[i].DesMetal;
-                    var precio = datos[i].precio;
-                    if (TipoMetal === null) {
-                        TipoMetal = '';
-                    }
-                    if (DesMetal === null) {
-                        DesMetal = '';
-                    }
-                    if (precio === null) {
-                        precio = '0.00';
-                    }
-                    html += '<tr>' +
-                        '<td align="center">' + TipoMetal + '</td>' +
-                        '<td align="center">' + DesMetal + '</td>' +
-                        '<td align="center">$' + precio + '</td>' +
-                        '<td><input type="button" class="btn btn-success"  data-toggle="modal" data-target="#modalActualizarMetal"' +
-                        'value="Editar"  onclick="modalEditarMetal('+id_Kilataje+')"></td>' +
-                        '<td><input type="button" class="btn btn-danger" value="Eliminar" ' +
-                        'onclick="confirmarEliminarCatMetal(' + id_Kilataje + ')"></td>' +
-                        '</tr>';
+    var dataEnviar = {
+        "tipoMetal": $tipoMetal
+    };
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/Catalogos/tblCatMetales.php',
+        data: dataEnviar,
+        dataType: "json",
+        success: function (datos) {
+            var html = '';
+            var i = 0;
+            for (i; i < datos.length; i++) {
+                var id_Kilataje = datos[i].id_Kilataje;
+                var TipoMetal = datos[i].TipoMetal;
+                var DesMetal = datos[i].DesMetal;
+                var precio = datos[i].precio;
+                if (TipoMetal === null) {
+                    TipoMetal = '';
                 }
-
-                $('#idCatMetales').html(html);
+                if (DesMetal === null) {
+                    DesMetal = '';
+                }
+                if (precio === null) {
+                    precio = '0.00';
+                }
+                html += '<tr>' +
+                    '<td align="center">' + TipoMetal + '</td>' +
+                    '<td align="center">' + DesMetal + '</td>' +
+                    '<td align="center">$' + precio + '</td>' +
+                    '<td><input type="button" class="btn btn-success"  data-toggle="modal" data-target="#modalActualizarMetal"' +
+                    'value="Editar"  onclick="modalEditarMetal(' + id_Kilataje + ')"></td>' +
+                    '<td><input type="button" class="btn btn-danger" value="Eliminar" ' +
+                    'onclick="confirmarEliminarCatMetal(' + id_Kilataje + ')"></td>' +
+                    '</tr>';
             }
-        });
+
+            $('#idCatMetales').html(html);
+        }
+    });
 }
 
 //Alerta para confirmar la Eliminacion
@@ -108,6 +106,7 @@ function confirmarEliminarCatMetal($idMetal) {
             alertify.error('Cancelado')
         });
 }
+
 //Elimina metal
 function eliminarMetal($idMetal) {
     var $tipoMetal = $("#idTipoMetalCat").val();
@@ -130,9 +129,10 @@ function eliminarMetal($idMetal) {
     })
 
 }
+
 function modalEditarMetal($idMetal) {
     var dataEnviar = {
-        "tipo" : 4,
+        "tipo": 4,
         "idMetal": $idMetal
     };
     $.ajax({
@@ -165,12 +165,13 @@ function modalEditarMetal($idMetal) {
     })
 
 }
+
 function guardarMetal() {
-    var idTipo =  $('#idTipoMetalCatModal').val();
-    var unidad =  $('#idUnidadModal').val();
-    var precio =  $('#idPrecioModal').val();
+    var idTipo = $('#idTipoMetalCatModal').val();
+    var unidad = $('#idUnidadModal').val();
+    var precio = $('#idPrecioModal').val();
     var dataEnviar = {
-        "tipo" : 3,
+        "tipo": 3,
         "idTipo": idTipo,
         "unidad": unidad,
         "precio": precio
@@ -190,9 +191,10 @@ function guardarMetal() {
     })
 
 }
+
 function actualizarMetal() {
-    var $idMetal =  $('#idKilatajeEditModal').val();
-    var precio =  $('#idPrecioEditModal').val();
+    var $idMetal = $('#idKilatajeEditModal').val();
+    var precio = $('#idPrecioEditModal').val();
     var $tipoMetal = $("#idTipoMetalCat").val();
     var dataEnviar = {
         "tipo": 2,
@@ -218,7 +220,7 @@ function actualizarMetal() {
 //Electronico Agregar
 function llenarComboTipoE() {
     var dataEnviar = {
-        "tipo" :1
+        "tipo": 1
     };
     $.ajax({
         type: "POST",
@@ -238,14 +240,18 @@ function llenarComboTipoE() {
         }
     });
 }
+
 function llenarComboMarcaE() {
-    $('#idMarcaSelect').prop('disabled',false);
-    $('#idModeloSelect').prop('disabled',false);
+    $('#idMarcaSelect').prop('disabled', false);
+    $('#idModeloSelect').prop('disabled', false);
     $('#idModeloSelect').val(0);
     $('#idMarcaSelect').val(0);
+    var tipoSelect = $('#idTipoSelect').val();
+    var marcaSelect = 0;
+    var modeloSelect = 0;
     var dataEnviar = {
-        "tipo" :2,
-        "tipoCombo" :$('#idTipoSelect').val()
+        "tipo": 2,
+        "tipoCombo": tipoSelect
     };
     $.ajax({
         type: "POST",
@@ -262,16 +268,21 @@ function llenarComboMarcaE() {
                 html += '<option value=' + id_marca + '>' + descripcion + '</option>';
             }
             $('#idMarcaSelect').html(html);
+            cargarTblProducto(tipoSelect,marcaSelect,modeloSelect);
         }
     });
 }
+
 function llenarComboModeloE() {
-    $('#idModeloSelect').prop('disabled',false);
+    $('#idModeloSelect').prop('disabled', false);
     $('#idModeloSelect').val(0);
+    var tipoSelect = $('#idTipoSelect').val();
+    var marcaSelect = $('#idMarcaSelect').val();
+    var modeloSelect = 0;
     var dataEnviar = {
-        "tipo" :3,
-        "tipoCombo" :$('#idTipoSelect').val(),
-        "marcaCombo" :$('#idMarcaSelect').val()
+        "tipo": 3,
+        "tipoCombo": tipoSelect,
+        "marcaCombo": marcaSelect
     };
     $.ajax({
         type: "POST",
@@ -288,16 +299,16 @@ function llenarComboModeloE() {
                 html += '<option value=' + id_modelo + '>' + descripcion + '</option>';
             }
             $('#idModeloSelect').html(html);
-
+            cargarTblProducto(tipoSelect,marcaSelect,modeloSelect);
         }
     });
 }
 
 function agregarTipoE() {
-    var tipoText =  $('#idTipoAgregar').val();
-    if(tipoText==''){
+    var tipoText = $('#idTipoAgregar').val();
+    if (tipoText == '') {
         alert("Ingrese el tipo.");
-    }else{
+    } else {
         var dataEnviar = {
             "tipo": 4,
             "descripcion": tipoText
@@ -319,16 +330,17 @@ function agregarTipoE() {
         })
     }
 }
+
 function agregarMarcaE() {
     var tipoTextMarca = $('#idTipoModMarca').val();
-    if(tipoTextMarca==0){
+    if (tipoTextMarca == 0) {
         alert("Por favor. Seleccione el tipo.")
-    }else{
-        var marcaText =  $('#idMarcaAgregar').val();
-        if(marcaText==''){
+    } else {
+        var marcaText = $('#idMarcaAgregar').val();
+        if (marcaText == '') {
             alert("Ingrese la marca.");
 
-        }else{
+        } else {
             var dataEnviar = {
                 "tipo": 5,
                 "tipoCombo": tipoTextMarca,
@@ -353,20 +365,21 @@ function agregarMarcaE() {
         }
     }
 }
+
 function agregarModeloE() {
     var tipoTextMarca = $('#idTipoModModelo').val();
-    if(tipoTextMarca==0){
+    if (tipoTextMarca == 0) {
         alert("Por favor. Seleccione el tipo.")
-    }else{
-        var marcaTipo =  $('#idMarcaModModelo').val();
-        if(marcaTipo==''){
+    } else {
+        var marcaTipo = $('#idMarcaModModelo').val();
+        if (marcaTipo == '') {
             alert("Por favor. Seleccione la marca.")
-        }else{
-            var modeloDes =  $('#idModeloAgregar').val();
-            if(modeloDes==''){
+        } else {
+            var modeloDes = $('#idModeloAgregar').val();
+            if (modeloDes == '') {
                 alert("Ingrese el modelo.");
 
-            }else{
+            } else {
                 var dataEnviar = {
                     "tipo": 6,
                     "tipoCombo": tipoTextMarca,
@@ -393,36 +406,37 @@ function agregarModeloE() {
         }
     }
 }
+
 function agregarProducto() {
     var validateForm = true;
     var cmbTipo = $('#idTipoModP').val();
-    var cmbMarca =  $('#idMarcaModP').val();
-    var cmbModelo =  $('#idModeloModP').val();
-    if(cmbTipo==0){
+    var cmbMarca = $('#idMarcaModP').val();
+    var cmbModelo = $('#idModeloModP').val();
+    if (cmbTipo == 0) {
         alert("Por favor. Seleccione el tipo.");
         validateForm = false;
-    }else if(cmbMarca==0){
+    } else if (cmbMarca == 0) {
         alert("Por favor. Seleccione la marca.");
         validateForm = false;
-    }else if(cmbModelo==0){
+    } else if (cmbModelo == 0) {
         alert("Por favor. Seleccione el modelo.");
         validateForm = false;
     }
 
-    if(validateForm){
+    if (validateForm) {
 
         var precio = $('#idPrecioP').val();
-        var vitrina =  $('#idVitrinaP').val();
-        var caracteristicas =  $('#idCaracteristicaP').val().trim();
+        var vitrina = $('#idVitrinaP').val();
+        var caracteristicas = $('#idCaracteristicaP').val().trim();
 
-        if(precio==""){
+        if (precio == "") {
             alert("Por favor. Ingrese el precio.")
             validateForm = false;
-        }else if (vitrina==""){
+        } else if (vitrina == "") {
             alert("Por favor. Ingrese vitrina.")
             validateForm = false;
         }
-        if(validateForm){
+        if (validateForm) {
             var dataEnviar = {
                 "tipo": 7,
                 "cmbTipo": cmbTipo,
@@ -438,6 +452,7 @@ function agregarProducto() {
                 url: '../../../com.Mexicash/Controlador/Electronicos/Electronico.php',
                 type: 'post',
                 success: function (response) {
+                    alert(response)
                     if (response == 1) {
                         cargarTblProducto()
                         alertify.success("Se guardo el producto correctamente");
@@ -453,32 +468,42 @@ function agregarProducto() {
 
 function cargarTipoModal() {
 
-    $('#idTipoModMarca').val( $('#idTipoSelect').val());
+    $('#idTipoModMarca').val($('#idTipoSelect').val());
     $('#idMarcaAgregar').val('');
-   $('#idTipoModMarcaDes').val( $('select[name="tipoElect"] option:selected').text());
+    $('#idTipoModMarcaDes').val($('select[name="tipoElect"] option:selected').text());
 }
+
 function cargarMarcaModal() {
 
-    $('#idTipoModModelo').val( $('#idTipoSelect').val());
-    $('#idMarcaModModelo').val( $('#idMarcaSelect').val());
+    $('#idTipoModModelo').val($('#idTipoSelect').val());
+    $('#idMarcaModModelo').val($('#idMarcaSelect').val());
     $('#idModeloAgregar').val('');
-    $('#idTipoModDes').val( $('select[name="tipoElect"] option:selected').text());
-    $('#idMarcaModDes').val( $('select[name="marcaElect"] option:selected').text());
+    $('#idTipoModDes').val($('select[name="tipoElect"] option:selected').text());
+    $('#idMarcaModDes').val($('select[name="marcaElect"] option:selected').text());
 }
+
 function cargarProductoModal() {
     $('#idPrecioP').val('');
     $('#idVitrinaP').val('');
     $('#idCaracteristicaP').val('');
 
-    $('#idTipoModP').val( $('#idTipoSelect').val());
-    $('#idMarcaModP').val( $('#idMarcaSelect').val());
-    $('#idModeloModP').val( $('#idModeloSelect').val());
-    $('#idTipoDescP').val( $('select[name="tipoElect"] option:selected').text());
-    $('#idMarcaDescP').val( $('select[name="marcaElect"] option:selected').text());
-    $('#idModeloDescP').val( $('select[name="modeloElect"] option:selected').text());
+    $('#idTipoModP').val($('#idTipoSelect').val());
+    $('#idMarcaModP').val($('#idMarcaSelect').val());
+    $('#idModeloModP').val($('#idModeloSelect').val());
+    $('#idTipoDescP').val($('select[name="tipoElect"] option:selected').text());
+    $('#idMarcaDescP').val($('select[name="marcaElect"] option:selected').text());
+    $('#idModeloDescP').val($('select[name="modeloElect"] option:selected').text());
 }
-function cargarTblProducto() {
+
+function cargarTblProducto(tipoSelect,marcaSelect,modeloSelect) {
+    var dataEnviar = {
+        "tipoCombo": tipoSelect,
+        "marcaCombo": marcaSelect,
+        "modeloCombo": modeloSelect
+
+    };
     $.ajax({
+        data: dataEnviar,
         type: "POST",
         url: '../../../com.Mexicash/Controlador/Electronicos/tblElectronico.php',
         dataType: "json",
@@ -518,8 +543,12 @@ function cargarTblProducto() {
                     '<td>' + precio + '</td>' +
                     '<td>' + vitrina + '</td>' +
                     '<td>' + caracteristicas + '</td>' +
-                    '<td><input type="button" class="btn btn-primary" value="Seleccionar" ' +
-                    'onclick="selecProd(' + datos[i].idElectronico + ')"></td>' +
+                    '<td><img src="../../style/Img/editarNor.jpg"  data-toggle="modal" ' +
+                    'data-target="#modalAgregarModelo" alt="Editar"  onclick="cargarMarcaModal()"></td>' +
+                    '<td><img src="../../style/Img/eliminarNor.jpg"  data-toggle="modal" ' +
+                    'data-target="#modalAgregarModelo" alt="Eliminar"  onclick="cargarMarcaModal()"></td>' +
+                    '<td><img src="../../style/Img/seleccionarNor.png"  data-toggle="modal" ' +
+                    'data-target="#modalAgregarModelo" alt="Seleccionar"  onclick="cargarMarcaModal()"></td>' +
                     '</tr>';
             }
 

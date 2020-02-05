@@ -540,15 +540,23 @@ class sqlCatalogoDAO
 
         echo $verdad;
     }
-    public function buscarElectronico()
+    public function buscarElectronico($tipoComboTbl,$marcaComboTbl,$modeloComboTbl)
     {
         $datos = array();
         try {
-            $buscar = "SELECT idElectronico, CT.descripcion,CM.descripcion ,CMO.descripcion,precio,vitrina,caracteristicas 
+            $buscar = "SELECT idElectronico, CT.descripcion as tipo,CM.descripcion as marca,CMO.descripcion as modelo,precio,vitrina,caracteristicas 
                         FROM cat_electronico as E
                         INNER JOIN cat_electronico_tipo as CT on E.tipo = CT.id_tipo
                         INNER JOIN cat_electronico_marca as CM on E.marca = CM.id_marca
-                        INNER JOIN cat_electronico_modelo as CMO on E.modelo = CMO.id_modelo";
+                        INNER JOIN cat_electronico_modelo as CMO on E.modelo = CMO.id_modelo WHERE E.tipo = $tipoComboTbl";
+
+            if($marcaComboTbl!=0){
+                $buscar = $buscar . " AND E.marca = ".$marcaComboTbl;
+            }
+            if($modeloComboTbl!=0){
+                $buscar = $buscar . " AND E.modelo = ".$modeloComboTbl;
+            }
+
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
                 while ($row = $rs->fetch_assoc()) {
@@ -573,4 +581,6 @@ class sqlCatalogoDAO
         echo json_encode($datos);
         //echo json_encode($datos);
     }
+
+
 }
