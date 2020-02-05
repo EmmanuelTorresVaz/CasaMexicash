@@ -671,6 +671,29 @@ E.modelo as modeloId,CMO.descripcion as modelo,precio,vitrina,caracteristicas
         echo $verdad;
     }
 
+    public function eliminarProducto($idProducto){
+        // TODO: Implement guardaCiente() method.
+        try {
+            $eliminarArticulo = "DELETE FROM cat_electronico WHERE idElectronico=$idProducto";
+
+            if ($ps = $this->conexion->prepare($eliminarArticulo)) {
+                if ($ps->execute()) {
+                    $verdad = mysqli_stmt_affected_rows($ps);
+                } else {
+                    $verdad = -1;
+                }
+            } else {
+                $verdad = -1;
+            }
+        } catch (Exception $exc) {
+            $verdad = -1;
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+        //return $verdad;
+        echo $verdad;
+    }
 
 
 }

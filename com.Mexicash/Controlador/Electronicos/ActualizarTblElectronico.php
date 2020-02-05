@@ -8,8 +8,7 @@ $sqlCatalogo = new sqlCatalogoDAO();
 if ($tipo == 1) {
     $sqlCatalogo->buscarElectronicoById($idProducto);
 } else if ($tipo == 2) {
-    $tipoCombo = $_POST['tipoCombo'];
-    $sqlCatalogo->cmbElectroMarca($tipoCombo);
+    $sqlCatalogo->eliminarProducto($idProducto);
 }
 
 

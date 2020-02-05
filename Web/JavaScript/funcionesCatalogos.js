@@ -452,9 +452,8 @@ function agregarProducto() {
                 url: '../../../com.Mexicash/Controlador/Electronicos/Electronico.php',
                 type: 'post',
                 success: function (response) {
-                    alert(response)
                     if (response == 1) {
-                        cargarTblProducto()
+                        cargarTblProducto(cmbTipo,cmbMarca,cmbModelo)
                         alertify.success("Se guardo el producto correctamente");
 
                     } else {
@@ -612,10 +611,9 @@ function cargarTblProducto(tipoSelect, marcaSelect, modeloSelect) {
                     '<td>' + caracteristicas + '</td>' +
                     '<td><img src="../../style/Img/editarNor.jpg"  data-toggle="modal" ' +
                     'data-target="#modalEditarProducto" alt="Editar"  onclick="editarProducto(' + idElectronico + ')"></td>' +
-                    '<td><img src="../../style/Img/eliminarNor.jpg"  data-toggle="modal" ' +
-                    'data-target="#modalAgregarModelo" alt="Eliminar"  onclick="cargarMarcaModal()"></td>' +
+                    '<td><img src="../../style/Img/eliminarNor.jpg" alt="Eliminar"  onclick="confirmarEliminarProd(' + idElectronico + ')"></td>' +
                     '<td><img src="../../style/Img/seleccionarNor.png"  data-toggle="modal" ' +
-                    'data-target="#modalAgregarModelo" alt="Seleccionar"  onclick="cargarMarcaModal()"></td>' +
+                    'data-target="#modalAgregarModelo" alt="Seleccionar"  onclick="selecProd()"></td>' +
                     '</tr>';
             }
 
@@ -629,9 +627,9 @@ function actualizarProducto() {
     var precio = $('#idPrecioE').val();
     var vitrina = $('#idVitrinaE').val();
 
-    var $idTipoModE = $('#idTipoModE').val();
-    var $idMarcaModE = $('#idMarcaModE').val();
-    var $idModeloModE = $('#idModeloModE').val();
+    var $idTipoModE = $('#idTipoSelect').val();
+    var $idMarcaModE = $('#idMarcaSelect').val();
+    var $idModeloModE = $('#idModeloSelect').val();
     var caracteristicas = $('#idCaracteristicaE').val().trim();
 
     var dataEnviar = {
@@ -659,6 +657,45 @@ function actualizarProducto() {
 
 
 }
+
+function confirmarEliminarProd($idProducto) {
+    alertify.confirm('Eliminar',
+        'Confirme eliminacion de articulo seleccionado.',
+        function () {
+            eliminarProductoProd($idProducto)
+        },
+        function () {
+            alertify.error('Cancelado')
+        });
+}
+
+//Elimina articulos
+function eliminarProductoProd($idProducto) {
+    var $idTipoModE = $('#idTipoSelect').val();
+    var $idMarcaModE = $('#idMarcaSelect').val();
+    var $idModeloModE = $('#idModeloSelect').val();
+
+    var dataEnviar = {
+        "tipo": 2,
+        "idProducto": $idProducto
+    };
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/Electronicos/ActualizarTblElectronico.php',
+        data: dataEnviar,
+        dataType: "json",
+        success: function (response) {
+            if (response == 1) {
+                cargarTblProducto($idTipoModE,$idMarcaModE,$idModeloModE)
+                alertify.success("Eliminado con éxito.");
+            } else {
+                alertify.error("Error al eliminar articulo.");
+            }
+        },
+    })
+
+}
+
 
 function selecProd() {
 
