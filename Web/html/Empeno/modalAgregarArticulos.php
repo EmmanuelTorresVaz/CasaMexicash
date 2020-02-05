@@ -212,5 +212,87 @@
         </div>
     </div>
 </div>
+<div class="modal fade " id="modalEditarProducto" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" align="center">
+                <table width="100%" >
+                    <tr>
+                        <td>
+                            <label>Tipo:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="idTipoDescE" name="tipoP" size="15"  disabled/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Marca:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="idMarcaDescE" name="marcaP" size="15"  disabled/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Modelo:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="idModeloDescE" name="modeloP" size="15"  disabled/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Precio:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="idPrecioE" name="precioMod" size="15"  onkeypress="isNumberDecimal()" style="text-align: right"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Vitrina:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="idVitrinaE" name="vitrinaMod" size="15"  onkeypress="isNumberDecimal()" style="text-align: right"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label>Caracteristicas:</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                               <textarea rows="4" cols="25" id="idCaracteristicaE" class="textArea" style="text-align: left">
+                                    </textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <input type="text" id="idElectronico"  size="5" class="invisible"/>
+                            <input type="text" id="idTipoModE"  size="5" class="invisible"/>
+                        </td>
+                        <td >
+                            <input type="text" id="idMarcaModE"  size="5" class="invisible"/>
+                            <input type="text" id="idModeloModE"  size="5" class="invisible"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-primary " data-dismiss="modal"
+                       onclick="actualizarProducto();"  value="Editar Producto">
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

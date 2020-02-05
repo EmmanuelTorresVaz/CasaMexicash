@@ -33,6 +33,12 @@ if ($tipo == 1) {
     $vitrina = $_POST['vitrina'];
     $caracteristicas = $_POST['caracteristicas'];
     $sqlCatalogo->agregarProducto($cmbTipo,$cmbMarca,$cmbModelo,$precio,$vitrina,$caracteristicas);
+}else if ($tipo == 8) {
+    $idElectro = $_POST['idElectro'];
+    $precio = $_POST['precio'];
+    $vitrina = $_POST['vitrina'];
+    $caracteristicas = $_POST['caracteristicas'];
+    $sqlCatalogo->editarProducto($idElectro,$precio,$vitrina,$caracteristicas);
 }
 
 

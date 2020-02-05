@@ -1,8 +1,8 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
-include_once (MODELO_PATH."Identificacion.php");
-include_once (MODELO_PATH."Promocion.php");
-include_once (BASE_PATH."Conexion.php");
+include_once(MODELO_PATH . "Identificacion.php");
+include_once(MODELO_PATH . "Promocion.php");
+include_once(BASE_PATH . "Conexion.php");
 
 class sqlCatalogoDAO
 {
@@ -10,65 +10,71 @@ class sqlCatalogoDAO
     protected $db;
 
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->db = new Conexion();
         $this->conexion = $this->db->connectDB();
     }
 
-    public function guardaPromocion(Promocion $promocion){
+    public function guardaPromocion(Promocion $promocion)
+    {
         try {
             $tipo_Promocion = $promocion->getTipoPromocion();
             $descripcion_Promocion = $promocion->getDescripcionPromocion();
-        }catch (Exception $exc){
-            echo  $exc->getMessage();
-        }finally{
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
             $this->db->closeDB();
         }
     }
 
-    public function borraPromocion(Promocion $promocion){
+    public function borraPromocion(Promocion $promocion)
+    {
         try {
             $tipo_Promocion = $promocion->getTipoPromocion();
             $descripcion_Promocion = $promocion->getDescripcionPromocion();
-        }catch (Exception $exc){
-            echo  $exc->getMessage();
-        }finally{
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
             $this->db->closeDB();
         }
     }
 
-    public function guardaIdentificacion(Identificacion $identificacion){
+    public function guardaIdentificacion(Identificacion $identificacion)
+    {
         try {
             $tipo_Identificacion = $identificacion->getTipoIdentificacion();
             $descripcion_Identificacion = $identificacion->getDescripcionIdentificacion();
-        }catch (Exception $exc){
-            echo  $exc->getMessage();
-        }finally{
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
             $this->db->closeDB();
         }
     }
 
-    public function borraIdentificacion(Identificacion $identificacion){
+    public function borraIdentificacion(Identificacion $identificacion)
+    {
         try {
             $tipo_Identificacion = $identificacion->getTipoIdentificacion();
             $descripcion_Identificacion = $identificacion->getDescripcionIdentificacion();
-        }catch (Exception $exc){
-            echo  $exc->getMessage();
-        }finally{
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
             $this->db->closeDB();
         }
     }
 
-    public function traePromociones(){
+    public function traePromociones()
+    {
 
         $datos = array();
 
         try {
             $buscar = "select id_Cat_Cliente, descripcion from cat_cliente where tipo = 'Promocion';";
-            $rs = $this->conexion->query( $buscar );
+            $rs = $this->conexion->query($buscar);
 
-            if($rs->num_rows > 0){
-                while($row = $rs->fetch_assoc()) {
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
                     $data = [
                         "id_Cat_Cliente" => $row["id_Cat_Cliente"],
                         "descripcion" => $row["descripcion"]
@@ -78,25 +84,26 @@ class sqlCatalogoDAO
                 }
             }
 
-        }catch (Exception $exc){
-            echo  $exc->getMessage();
-        }finally{
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
             $this->db->closeDB();
         }
 
         return $datos;
     }
 
-    public function traeIdentificaciones(){
+    public function traeIdentificaciones()
+    {
 
         $datos = array();
 
         try {
             $buscar = "select id_Cat_Cliente, descripcion from cat_cliente where tipo = 'Identificacion'";
-            $rs = $this->conexion->query( $buscar );
+            $rs = $this->conexion->query($buscar);
 
-            if($rs->num_rows > 0){
-                while($row = $rs->fetch_assoc()) {
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
                     $data = [
                         "id_Cat_Cliente" => $row["id_Cat_Cliente"],
                         "descripcion" => $row["descripcion"]
@@ -106,9 +113,9 @@ class sqlCatalogoDAO
                 }
             }
 
-        }catch (Exception $exc){
-            echo  $exc->getMessage();
-        }finally{
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
             $this->db->closeDB();
         }
 
@@ -116,14 +123,15 @@ class sqlCatalogoDAO
     }
 
 
-    public function llenarCmbSexo(){
+    public function llenarCmbSexo()
+    {
         $datos = array();
         try {
             $buscar = "select id_Cat_Cliente, descripcion from cat_cliente where tipo = 'Sexo'";
-            $rs = $this->conexion->query( $buscar );
+            $rs = $this->conexion->query($buscar);
 
-            if($rs->num_rows > 0){
-                while($row = $rs->fetch_assoc()) {
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
                     $data = [
                         "id_Cat_Cliente" => $row["id_Cat_Cliente"],
                         "descripcion" => $row["descripcion"]
@@ -133,9 +141,9 @@ class sqlCatalogoDAO
                 }
             }
 
-        }catch (Exception $exc){
-            echo  $exc->getMessage();
-        }finally{
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
             $this->db->closeDB();
         }
 
@@ -143,16 +151,17 @@ class sqlCatalogoDAO
     }
 
 
-    public function catOcupacionesLlenar(){
+    public function catOcupacionesLlenar()
+    {
 
         $datos = array();
 
         try {
             $buscar = "select id_Ocupacion, descripcion from cat_ocupaciones";
-            $rs = $this->conexion->query( $buscar );
+            $rs = $this->conexion->query($buscar);
 
-            if($rs->num_rows > 0){
-                while($row = $rs->fetch_assoc()) {
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
                     $data = [
                         "id_Ocupacion" => $row["id_Ocupacion"],
                         "descripcion" => $row["descripcion"]
@@ -162,24 +171,25 @@ class sqlCatalogoDAO
                 }
             }
 
-        }catch (Exception $exc){
-            echo  $exc->getMessage();
-        }finally{
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
             $this->db->closeDB();
         }
 
         return $datos;
     }
 
-    public function completaEstado(){
+    public function completaEstado()
+    {
         $datos = array();
 
         try {
             $buscar = "SELECT id_Estado, descripcion FROM cat_estado WHERE id_Estado='9' or id_Estado='15'";
-            $rs = $this->conexion->query( $buscar );
+            $rs = $this->conexion->query($buscar);
 
-            if($rs->num_rows > 0){
-                while($row = $rs->fetch_assoc()) {
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
                     $data = [
                         "id_Estado" => $row["id_Estado"],
                         "descripcion" => $row["descripcion"]
@@ -189,9 +199,9 @@ class sqlCatalogoDAO
                 }
             }
 
-        }catch (Exception $exc){
-            echo  $exc->getMessage();
-        }finally{
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
             $this->db->closeDB();
         }
 
@@ -200,7 +210,8 @@ class sqlCatalogoDAO
     }
 
 
-    function completaMunicipio($idEstado){
+    function completaMunicipio($idEstado)
+    {
         $datos = array();
 
         try {
@@ -225,7 +236,8 @@ class sqlCatalogoDAO
         echo json_encode($datos);
     }
 
-    function completaLocalidad($idEstado,$idMunicipio){
+    function completaLocalidad($idEstado, $idMunicipio)
+    {
         $datos = array();
 
         try {
@@ -277,11 +289,12 @@ class sqlCatalogoDAO
 
         echo json_encode($datos);
     }
+
     public function eliminarMetal($idMetal)
     {
         // TODO: Implement guardaCiente() method.
         try {
-            $eliminarMetal= "DELETE FROM cat_kilataje WHERE id_Kilataje=$idMetal";
+            $eliminarMetal = "DELETE FROM cat_kilataje WHERE id_Kilataje=$idMetal";
             if ($ps = $this->conexion->prepare($eliminarMetal)) {
                 if ($ps->execute()) {
                     $verdad = mysqli_stmt_affected_rows($ps);
@@ -300,7 +313,8 @@ class sqlCatalogoDAO
         //return $verdad;
         echo $verdad;
     }
-    public function guardarMetal($idMetal,$precio)
+
+    public function guardarMetal($idMetal, $precio)
     {
         // TODO: Implement guardaCiente() method.
         try {
@@ -323,7 +337,8 @@ class sqlCatalogoDAO
         //return $verdad;
         echo $verdad;
     }
-    public function agregarMetal($idTipo,$unidad,$precio)
+
+    public function agregarMetal($idTipo, $unidad, $precio)
     {
         // TODO: Implement guardaCiente() method.
         try {
@@ -346,6 +361,7 @@ class sqlCatalogoDAO
         //return $verdad;
         echo $verdad;
     }
+
     public function modalLLenarMetales($idMetal)
     {
         $datos = array();
@@ -374,7 +390,8 @@ class sqlCatalogoDAO
         echo json_encode($datos);
     }
 
-    public function cmbElectroTipo(){
+    public function cmbElectroTipo()
+    {
         $datos = array();
 
         try {
@@ -399,7 +416,9 @@ class sqlCatalogoDAO
         echo json_encode($datos);
 
     }
-    public function cmbElectroMarca($tipoCombo){
+
+    public function cmbElectroMarca($tipoCombo)
+    {
         $datos = array();
 
         try {
@@ -424,7 +443,9 @@ class sqlCatalogoDAO
         echo json_encode($datos);
 
     }
-    public function cmbElectroModelo($tipoCombo,$marcaCombo){
+
+    public function cmbElectroModelo($tipoCombo, $marcaCombo)
+    {
         $datos = array();
 
         try {
@@ -448,6 +469,7 @@ class sqlCatalogoDAO
         echo json_encode($datos);
 
     }
+
     public function agregarTipo($descripcion)
     {
         // TODO: Implement guardaCiente() method.
@@ -471,7 +493,8 @@ class sqlCatalogoDAO
         //return $verdad;
         echo $verdad;
     }
-    public function agregarMarca($tipoCombo,$descripcion)
+
+    public function agregarMarca($tipoCombo, $descripcion)
     {
         // TODO: Implement guardaCiente() method.
         try {
@@ -494,7 +517,8 @@ class sqlCatalogoDAO
 
         echo $verdad;
     }
-    public function agregarModelo($tipoCombo,$marcaCombo,$descripcion)
+
+    public function agregarModelo($tipoCombo, $marcaCombo, $descripcion)
     {
         // TODO: Implement guardaCiente() method.
         try {
@@ -517,7 +541,8 @@ class sqlCatalogoDAO
 
         echo $verdad;
     }
-    public function agregarProducto($cmbTipo,$cmbMarca,$cmbModelo,$precio,$vitrina,$caracteristicas)
+
+    public function agregarProducto($cmbTipo, $cmbMarca, $cmbModelo, $precio, $vitrina, $caracteristicas)
     {
         // TODO: Implement guardaCiente() method.
         try {
@@ -540,7 +565,8 @@ class sqlCatalogoDAO
 
         echo $verdad;
     }
-    public function buscarElectronico($tipoComboTbl,$marcaComboTbl,$modeloComboTbl)
+
+    public function buscarElectronico($tipoComboTbl, $marcaComboTbl, $modeloComboTbl)
     {
         $datos = array();
         try {
@@ -550,11 +576,11 @@ class sqlCatalogoDAO
                         INNER JOIN cat_electronico_marca as CM on E.marca = CM.id_marca
                         INNER JOIN cat_electronico_modelo as CMO on E.modelo = CMO.id_modelo WHERE E.tipo = $tipoComboTbl";
 
-            if($marcaComboTbl!=0){
-                $buscar = $buscar . " AND E.marca = ".$marcaComboTbl;
+            if ($marcaComboTbl != 0) {
+                $buscar = $buscar . " AND E.marca = " . $marcaComboTbl;
             }
-            if($modeloComboTbl!=0){
-                $buscar = $buscar . " AND E.modelo = ".$modeloComboTbl;
+            if ($modeloComboTbl != 0) {
+                $buscar = $buscar . " AND E.modelo = " . $modeloComboTbl;
             }
 
             $rs = $this->conexion->query($buscar);
@@ -581,6 +607,70 @@ class sqlCatalogoDAO
         echo json_encode($datos);
         //echo json_encode($datos);
     }
+
+    public function buscarElectronicoById($idProducto)
+    {
+        $datos = array();
+        try {
+            $buscar = "SELECT idElectronico,E.tipo as tipoId, CT.descripcion as tipoEditar,E.marca as marcaId, CM.descripcion as marca, 
+E.modelo as modeloId,CMO.descripcion as modelo,precio,vitrina,caracteristicas 
+                        FROM cat_electronico as E
+                        INNER JOIN cat_electronico_tipo as CT on E.tipo = CT.id_tipo
+                        INNER JOIN cat_electronico_marca as CM on E.marca = CM.id_marca
+                        INNER JOIN cat_electronico_modelo as CMO on E.modelo = CMO.id_modelo WHERE idElectronico = $idProducto";
+
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "idElectronico" => $row["idElectronico"],
+                        "tipoId" => $row["tipoId"],
+                        "tipoEditar" => $row["tipoEditar"],
+                        "marcaId" => $row["marcaId"],
+                        "marca" => $row["marca"],
+                        "modeloId" => $row["modeloId"],
+                        "modelo" => $row["modelo"],
+                        "precio" => $row["precio"],
+                        "vitrina" => $row["vitrina"],
+                        "caracteristicas" => $row["caracteristicas"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        echo json_encode($datos);
+    }
+
+    public function editarProducto($idElectro, $precio,$vitrina,$caracteristicas)
+    {
+        // TODO: Implement guardaCiente() method.
+        try {
+            $insertarProducto = "UPDATE cat_electronico SET precio=$precio,vitrina=$vitrina,caracteristicas= '$caracteristicas' WHERE idElectronico= $idElectro";
+
+            if ($ps = $this->conexion->prepare($insertarProducto)) {
+                if ($ps->execute()) {
+                    $verdad = mysqli_stmt_affected_rows($ps);
+                } else {
+                    $verdad = -1;
+                }
+            } else {
+                $verdad = -1;
+            }
+        } catch (Exception $exc) {
+            $verdad = -1;
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        echo $verdad;
+    }
+
 
 
 }
