@@ -395,12 +395,12 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                         <td colspan="6">
                                             <select id="idTipoElectronico" name="cmbTipoElectronico"
                                                     class="selectpicker"
-                                                    onchange="selectArticuloCmb($('#idTipoElectronico').val())" style="width: 150px">
+                                                    onchange="combMarcaVEmpe($('#idTipoElectronico').val())" style="width: 150px">
                                                 <option value="0">Seleccione:</option>
                                                 <?php
                                                 $data = array();
                                                 $sql = new sqlArticulosDAO();
-                                                $data = $sql->llenarCmbTipoArticulo();
+                                                $data = $sql->llenarCmbCatArticulos();
                                                 for ($i = 0; $i < count($data); $i++) {
                                                     echo "<option value=" . $data[$i]['id_tipo'] . ">" . $data[$i]['descripcion'] . "</option>";
                                                 }
@@ -413,22 +413,16 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                     <tr>
                                         <td colspan="6">Marca:</td>
                                         <td colspan="6">
-                                            <input type="text" id="idMarca" name="marca" size="6"
-                                                   style="text-align:center" value=""/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="6">Estado:</td>
-                                        <td colspan="6">
-                                            <select id="idEstadoArt" name="cmbEstado" class="selectpicker" style="width: 150px">
+                                            <select id="idMarca" name="marcaSelect" class="selectpicker"  style="width:150px" disabled onchange="cmbModeloVEmpe($('#idMarca').val());">
                                             </select>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="6">Modelo:</td>
                                         <td colspan="6">
-                                            <input type="text" id="idModelo" name="modelo" size="6"
-                                                   style="text-align:center" value=""/>
+                                            <select id="idModelo" name="modeloSelect" class="selectpicker"  style="width:150px" disabled
+                                                    onchange="cargarTblProducto($('#idTipoSelect').val(),$('#idMarcaSelect').val(),$('#idModeloSelect').val())">
+                                            </select>
                                         </td>
                                     </tr>
                                     <tr>
@@ -509,7 +503,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                 <br>
             </div>
             <div class="col col-lg-5">
-                <input type="button" class="btn btn-success" value="pruebaCalc" onclick="openRegistrarCliente();">
+                <input type="button" class="btn btn-success" value="pruebaCalc" onclick="traerDatosModal();">
                 <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
                 <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
                 <input type="button" class="btn btn-primary" value="Generar" onclick="generarContrato()">&nbsp;

@@ -245,8 +245,6 @@ function selectArticuloCmb($tipoMetal) {
     selectCalidadArt($tipoMetal);
 }
 
-
-
 function selectKilataje($tipoMetal) {
     var dataEnviar = {
         "clase": 2,
@@ -317,29 +315,6 @@ function selectCalidad($tipoMetal) {
     });
 }
 
-function selectCalidadArt($tipoMetal) {
-    var dataEnviar = {
-        "clase": 3,
-        "idTipoMetal": $tipoMetal
-    };
-    $.ajax({
-        type: "POST",
-        url: '../../../com.Mexicash/Controlador/comboMetales.php',
-        data: dataEnviar,
-        dataType: "json",
-        success: function (datos) {
-            var html = "";
-            html += " <option value=0>Seleccione:</option>"
-            var i = 0;
-            for (i; i < datos.length; i++) {
-                var id_calidad = datos[i].id_calidad;
-                var descripcion = datos[i].descripcion;
-                html += '<option value=' + id_calidad + '>' + descripcion + '</option>';
-            }
-            $('#idEstadoArt').html(html);
-        }
-    });
-}
 
 /*function calcularInteres(metalPrestamo, metalAvaluo) {*/
 
@@ -361,6 +336,7 @@ function calcularInteresMetal(metalPrestamo) {
     $("#idTotalInteres").val(Interes);
     return interesMetal;
 }
+
 function calcularInteresArticulo(artiPrestamo) {
     artiPrestamo =  parseFloat(artiPrestamo);
     var varTasaPorcen = parseFloat($("#idTasaPorcen").text());
@@ -393,6 +369,7 @@ function sumarTotalesMetal(metalPrestamo,metalAvaluo) {
     Prestamo =Prestamo +metalPres;
     $("#idTotalPrestamo").val(Prestamo);
 }
+
 function sumarTotalesArticulo(artiPrestamo, artiAvaluo) {
     var artiAvaluo = parseFloat(artiAvaluo);
     var artiPrestamo = parseFloat(artiPrestamo);
@@ -477,3 +454,67 @@ function prestaMaxElectronico() {
     $("#idPrestamoMaxElectronico").val(prestamoMax);
 
 }*/
+
+function traerDatosModal() {
+
+}
+
+function combMarcaVEmpe() {
+    $('#idMarca').prop('disabled', false);
+    $('#idMarca').val(0);
+
+    var tipoSelect = $('#idTipoElectronico').val();
+    var marcaSelect = 0;
+    var modeloSelect = 0;
+    var dataEnviar = {
+        "tipo": 2,
+        "tipoCombo": tipoSelect
+    };
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/Electronicos/Electronico.php',
+        data: dataEnviar,
+        dataType: "json",
+        success: function (datos) {
+            var html = "";
+            html += " <option value=0>Seleccione:</option>"
+            var i = 0;
+            for (i; i < datos.length; i++) {
+                var id_marca = datos[i].id_marca;
+                var descripcion = datos[i].descripcion;
+                html += '<option value=' + id_marca + '>' + descripcion + '</option>';
+            }
+            $('#idMarca').html(html);
+        }
+    });
+}
+
+function cmbModeloVEmpe() {
+    $('#idModelo').prop('disabled', false);
+    $('#idModelo').val(0);
+    var tipoSelect = $('#idTipoElectronico').val();
+    var marcaSelect = $('#idMarca').val();
+    var modeloSelect = 0;
+    var dataEnviar = {
+        "tipo": 3,
+        "tipoCombo": tipoSelect,
+        "marcaCombo": marcaSelect
+    };
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/Electronicos/Electronico.php',
+        data: dataEnviar,
+        dataType: "json",
+        success: function (datos) {
+            var html = "";
+            html += " <option value=0>Seleccione:</option>"
+            var i = 0;
+            for (i; i < datos.length; i++) {
+                var id_modelo = datos[i].id_modelo;
+                var descripcion = datos[i].descripcion;
+                html += '<option value=' + id_modelo + '>' + descripcion + '</option>';
+            }
+            $('#idModelo').html(html);
+        }
+    });
+}

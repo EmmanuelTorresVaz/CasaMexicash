@@ -352,7 +352,7 @@ class sqlArticulosDAO
         $datos = array();
 
         try {
-            $buscar = "SELECT id_tipo, descripcion FROM cat_electronico ";
+            $buscar = "SELECT id_tipo, descripcion FROM cat_electronico_tipo";
             $rs = $this->conexion->query($buscar);
 
             if ($rs->num_rows > 0) {
