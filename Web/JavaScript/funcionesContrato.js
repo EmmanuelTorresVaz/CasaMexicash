@@ -16,28 +16,26 @@ function generarContrato() {
         validate = false;
     }
     if (validate) {
-        var varTasaPorcen = parseFloat($("#idTasaPorcen").text());
-        var varAlmPorcen = parseFloat($("#idAlmPorcen").text());
-        var varSeguroPorcen = parseFloat($("#idSeguroPorcen").text());
-        var varIvaPorcen = parseFloat($("#idIvaPorcen").text());
-
+        var totalPrestamo = parseFloat($("#idTotalPrestamo").val());
+        var sumaInteresPrestamo = parseFloat($("#idTotalInteres").val());
+        var totalInteres = sumaInteresPrestamo -totalPrestamo;
         var dataEnviar = {
             "idCliente": clienteEmpeno,
-            "folio": '',
             "fechaVencimiento": $("#idFecVencimiento").text(),
             "totalAvaluo": $("#idTotalAvaluo").val(),
-            "totalPrestamo": $("#idTotalPrestamo").val(),
-            "abono": '',
-            "intereses": $("#idTotalInteres").val(),
-            "pago": '',
-            "fecha_Alm": '',
-            "fecha_Movimiento": '',
-            "origen_Folio": '',
-            "dest_Folio": '',
+            "totalPrestamo": totalPrestamo,
+            "total_Interes": totalInteres,
+            "sumaInteresPrestamo":sumaInteresPrestamo,
+            "fecha_Alm": $("#idFechaAlm").val(),
             "estatus": 1,
-            "observaciones": '',
             "cotitular": $("#idNombreBen").val(),
             "beneficiario": $("#nombreCotitular").val(),
+            "plazo": $("#idPlazo").val(),
+            "tasa": $("#idTasaPorcen").val(),
+            "alm": $("#idAlmPorcen").val(),
+            "seguro": $("#idSeguroPorcen").val(),
+            "iva": $("#idIvaPorcen").val(),
+            "dias": $("#diasInteres").val(),
         };
 
         $.ajax({

@@ -141,4 +141,29 @@ class sqlInteresesDAO
         return $datos;
     }
 
+    function diasAlmoneda()
+    {
+        $datos = array();
+
+        try {
+            $buscar = "SELECT  dias FROM cat_almoneda where activo=1";
+            $rs = $this->conexion->query($buscar);
+
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "dias" => $row["dias"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        return $datos;
+    }
+
 }

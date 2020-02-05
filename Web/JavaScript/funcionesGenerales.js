@@ -21,7 +21,12 @@ function sumarDias($diasASumar) {
         anio = fecha.getFullYear(),
         addTime = $diasASumar * 86400; //Tiempo en segundos
     fecha.setSeconds(addTime); //Añado el tiempo
-    var fechaDias = fecha.getDate() + "/" + (fecha.getMonth() + 1) + "/" + fecha.getFullYear();
+  var  mesNuevo = fecha.getMonth() + 1;
+    if(mesNuevo<10){
+        var agregarCero = "0" + mesNuevo;
+    }
+
+    var fechaDias = fecha.getDate() + "/" + agregarCero + "/" + fecha.getFullYear();
     return fechaDias;
 }
 
