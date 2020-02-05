@@ -17,8 +17,8 @@ if ($idTipoEnviar == 1) {
     $idPrestamo = $_POST['idPrestamo'];
     $idAvaluo = $_POST['idAvaluo'];
     $idAvaluo = $_POST['idAvaluo'];
-    $tipoInteres = $_POST['tipoInteres'];
-    $interesMetal = $_POST['interesMetal'];
+    $idVitrina = $_POST['idVitrina'];
+    $interes = $_POST['interes'];
     $idDetallePrenda = $_POST['idDetallePrenda'];
     $idUbicacion = $_POST['idUbicacion'];
     $idDetallePrenda = $_POST['idDetallePrenda'];
@@ -50,7 +50,6 @@ if ($idTipoEnviar == 1) {
     $interesMetal = null;
     $idUbicacion = null;
     $idDetallePrenda = null;
-
     $idTipoE = $_POST['idTipoElectronico'];
     $idMarca = $_POST['idMarca'];
     $idEstado = $_POST['idEstado'];
@@ -58,8 +57,8 @@ if ($idTipoEnviar == 1) {
     $idSerie = $_POST['idSerie'];
     $idPrestamoE = $_POST['idPrestamoElectronico'];
     $idAvaluoE = $_POST['idAvaluoElectronico'];
-    $tipoInteresE = $_POST['tipoInteresE'];
-    $interesArt = $_POST['interesArt'];
+    $idVitrina = $_POST['idVitrina'];
+    $interes = $_POST['interes'];
     $idUbicacionE = $_POST['idUbicacionElectronico'];
     $idDetallePrendaE = $_POST['idDetallePrendaElectronico'];
 }
@@ -74,8 +73,8 @@ $articulo = new Articulo(
     $idPiedras,
     $idPrestamo,
     $idAvaluo,
-    $tipoInteres,
-    $interesMetal,
+    $idVitrina,
+    $interes,
     $idUbicacion,
     $idDetallePrenda,
     $idTipoE,
@@ -85,8 +84,6 @@ $articulo = new Articulo(
     $idSerie,
     $idPrestamoE,
     $idAvaluoE,
-    $tipoInteresE,
-    $interesArt,
     $idUbicacionE,
     $idDetallePrendaE
 );

@@ -13,10 +13,10 @@ class Articulo
     private $idPiedras;
     private $idPrestamo;
     private $idAvaluo;
-    private $tipoInteres;
-    private $interesMetal;
     private $idUbicacion;
     private $idDetallePrenda;
+    private $idVitrina;
+    private $interes;
     //Electronico
     private $idTipoE;
     private $idMarca;
@@ -25,8 +25,7 @@ class Articulo
     private $idSerie;
     private $idPrestamoE;
     private $idAvaluoE;
-    private $tipoInteresE;
-    private $interesArt;
+
     private $idUbicacionE;
     private $idDetallePrendaE;
 
@@ -43,10 +42,10 @@ class Articulo
      * @param $idPiedras
      * @param $idPrestamo
      * @param $idAvaluo
-     * @param $tipoInteres
-     * @param $interesMetal
      * @param $idUbicacion
      * @param $idDetallePrenda
+     * @param $idVitrina
+     * @param $interes
      * Electronico
      * @param $idTipoE
      * @param $idMarca
@@ -68,8 +67,8 @@ class Articulo
         $idPiedras,
         $idPrestamo,
         $idAvaluo,
-        $tipoInteres,
-        $interesMetal,
+        $idVitrina,
+        $interes,
         $idUbicacion,
         $idDetallePrenda,
         $idTipoE,
@@ -79,8 +78,6 @@ class Articulo
         $idSerie,
         $idPrestamoE,
         $idAvaluoE,
-        $tipoInteresE,
-        $interesArt,
         $idUbicacionE,
         $idDetallePrendaE)
     {
@@ -94,8 +91,8 @@ class Articulo
         $this->piedras = $idPiedras;
         $this->prestamo = $idPrestamo;
         $this->avaluo = $idAvaluo;
-        $this->tipoInteres= $tipoInteres;
-        $this->interesMetal = $interesMetal;
+        $this->vitrina = $idVitrina;
+        $this->interes = $interes;
         $this->ubicacion = $idUbicacion;
         $this->detallePrenda = $idDetallePrenda;
         //ELECTRONICOS
@@ -106,8 +103,7 @@ class Articulo
         $this->serie = $idSerie;
         $this->prestamoE = $idPrestamoE;
         $this->avaluoE = $idAvaluoE;
-        $this->tipoInteresE= $tipoInteresE;
-        $this->interesArt = $interesArt;
+
         $this->ubicacionE = $idUbicacionE;
         $this->detallePrendaE = $idDetallePrendaE;
 
@@ -116,69 +112,34 @@ class Articulo
     /**
      * @return mixed
      */
-    public function getTipoInteres()
+    public function getVitrina()
     {
-        return $this->tipoInteres;
+        return $this->vitrina;
     }
 
     /**
-     * @param mixed $tipoInteres
+     * @param mixed $idVitrina
      */
-    public function setTipoInteres($tipoInteres): void
+    public function setVitrina($idVitrina): void
     {
-        $this->tipoInteres = $tipoInteres;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getInteresMetal()
-    {
-        return $this->interesMetal;
-    }
-
-    /**
-     * @param mixed $interesMetal
-     */
-    public function setInteresMetal($interesMetal): void
-    {
-        $this->interesMetal = $interesMetal;
+        $this->vitrina = $idVitrina;
     }
 
     /**
      * @return mixed
      */
-    public function getTipoInteresE()
+    public function getInteres()
     {
-        return $this->tipoInteresE;
+        return $this->interes;
     }
 
     /**
-     * @param mixed $tipoInteresE
+     * @param mixed $interes
      */
-    public function setTipoInteresE($tipoInteresE): void
+    public function setInteres($interes): void
     {
-        $this->tipoInteresE = $tipoInteresE;
+        $this->interes = $interes;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getInteresArt()
-    {
-        return $this->interesArt;
-    }
-
-    /**
-     * @param mixed $interesArt
-     */
-    public function setInteresArt($interesArt): void
-    {
-        $this->interesArt = $interesArt;
-    }
-
-
-
 
     /**
      * @return mixed

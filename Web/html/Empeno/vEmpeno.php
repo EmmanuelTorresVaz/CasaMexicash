@@ -365,6 +365,13 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                                    style="text-align:center" disabled/>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td colspan="6">Vitrina:</td>
+                                        <td colspan="6">
+                                            <input type="text" id="idVitrina" name="vitrina" size="6"    onkeypress="return soloNumeros(event)"
+                                                   style="text-align:center" />
+                                        </td>
+                                    </tr>
 
                                     <tr>
                                         <td colspan="6">Ubicación:</td>
@@ -446,6 +453,13 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                                    style="text-align:center" disabled/>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td colspan="6">Vitrina:</td>
+                                        <td colspan="6">
+                                            <input type="text" id="idVitrinaElectronico" name="vitrinaE" size="6"    onkeypress="return soloNumeros(event)"
+                                                   style="text-align:center" />
+                                        </td>
+                                    </tr>
 
                                     <tr>
                                         <td colspan="6">Ubicación:</td>
@@ -503,7 +517,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                 <br>
             </div>
             <div class="col col-lg-5">
-                <input type="button" class="btn btn-success" value="pruebaCalc" onclick="traerDatosModal();">
+                <input type="button" class="btn btn-success" value="pruebaCalc" onclick="calcularInteresArticulo();">
                 <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
                 <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
                 <input type="button" class="btn btn-primary" value="Generar" onclick="generarContrato()">&nbsp;

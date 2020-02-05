@@ -21,7 +21,8 @@ function Limpiar() {
     <!--   Limpiar Electronicos-->
     $("#idTipoElectronico").val(0);
     $("#idMarca").val("");
-    $("#idEstado").val(0);
+    $("#idVitrina").val(0);
+    $("#idVitrinaElectronico").val(0);
     $("#idModelo").val("");
     $("#idSerie").val("");
     $("#idPrestamoElectronico").val("");
@@ -34,17 +35,18 @@ function Limpiar() {
 function Agregar() {
     var clienteEmpeno = $("#idClienteEmpeno").val();
     var tipoInteres = $("#tipoInteresEmpeno").val();
+    alert($("#idVitrina").val())
     if (clienteEmpeno != 0) {
         if (tipoInteres != 0) {
             var formElectronico = $("#idTipoElectronico").val();
             var formMetal = $("#idTipoMetal").val();
             if (formMetal != 0 || formElectronico != 0) {
+
                 if (formMetal > 0) {
                     //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
                     var metalAvaluo = $("#idAvaluo").val();
                     var metalPrestamo = $("#idPrestamo").val();
                     var interesMetal = calcularInteresMetal(metalPrestamo);
-                    var tipoInteres = $("#tipoInteresEmpeno").val();
                     var dataEnviar = {
                         "$idTipoEnviar": 1,
                         "idTipoMetal": formMetal,
@@ -56,10 +58,11 @@ function Agregar() {
                         "idPiedras": $("#idPiedras").val(),
                         "idPrestamo":metalPrestamo,
                         "idAvaluo": metalAvaluo,
-                        "tipoInteres": tipoInteres,
-                        "interesMetal": interesMetal,
+                        "idVitrina": $("#idVitrina").val(),
                         "idUbicacion": $("#idUbicacion").val(),
-                        "idDetallePrenda": $("#idDetallePrenda").val()
+                        "idDetallePrenda": $("#idDetallePrenda").val(),
+                        "interes": interesMetal,
+
                     };
                     $.ajax({
                         data: dataEnviar,
@@ -81,7 +84,6 @@ function Agregar() {
                     var artiAvaluo = $("#idAvaluoElectronico").val();
                     var artiPrestamo = $("#idPrestamoElectronico").val();
                     var interesArti = calcularInteresArticulo(artiPrestamo);
-                    var tipoInteresE = $("#tipoInteresEmpeno").val();
                     //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
                     var dataEnviar = {
                         "$idTipoEnviar": 2,
@@ -92,10 +94,10 @@ function Agregar() {
                         "idSerie": $("#idSerie").val(),
                         "idPrestamoElectronico": artiPrestamo,
                         "idAvaluoElectronico": artiAvaluo,
-                        "tipoInteresE": tipoInteresE,
-                        "interesArt": interesArti,
+                        "idVitrina": $("#idVitrinaElectronico").val(),
                         "idUbicacionElectronico": $("#idUbicacionElectronico").val(),
-                        "idDetallePrendaElectronico": $("#idDetallePrendaElectronico").val()
+                        "idDetallePrendaElectronico": $("#idDetallePrendaElectronico").val(),
+                        "interes": interesArti,
                     };
                     $.ajax({
                         data: dataEnviar,
@@ -128,8 +130,7 @@ function Agregar() {
 
 //Cargar tabla Articulos
 function cargarTablaArticulo() {
-
-        $.ajax({
+    $.ajax({
             type: "POST",
             url: '../../../com.Mexicash/Controlador/tblArticulos.php',
             dataType: "json",
@@ -139,16 +140,12 @@ function cargarTablaArticulo() {
                 var i = 0;
                 for (i; i < datos.length; i++) {
                     var marca = datos[i].marca;
-                    var estado = datos[i].estado;
                     var modelo = datos[i].modelo;
                     var prestamo = datos[i].prestamo;
                     var avaluo = datos[i].avaluo;
                     var detalle = datos[i].detalle;
                     if (marca === null) {
                         marca = '';
-                    }
-                    if (estado === null) {
-                        estado = '';
                     }
                     if (modelo === null) {
                         modelo = '';
@@ -164,7 +161,8 @@ function cargarTablaArticulo() {
                     }
                     html += '<tr>' +
                         '<td>' + marca + '</td>' +
-                        '<td>' + estado + '</td>' +
+
+
                         '<td>' + modelo + '</td>' +
                         '<td>' + prestamo + '</td>' +
                         '<td>' + avaluo + '</td>' +
@@ -330,11 +328,15 @@ function calcularInteresMetal(metalPrestamo) {
     var calculaSeg = Math.floor(metalPrestamo* varSeguroPorcen)/100;
     var calculaIva = Math.floor(metalPrestamo* varIvaPorcen)/100;
 
-
-    var interesMetal = metalPrestamo +calculaTasa + calculaALm +calculaSeg + calculaIva;
+    var interes = calculaTasa + calculaALm +calculaSeg + calculaIva;
+    var interesMetal = metalPrestamo + interes;
+    interesMetal = interesMetal.toFixed(2)
+    interesMetal = parseFloat(interesMetal)
+    interes = interes.toFixed(2)
+    interes = parseFloat(interes)
     Interes = Interes + interesMetal;
     $("#idTotalInteres").val(Interes);
-    return interesMetal;
+    return interes;
 }
 
 function calcularInteresArticulo(artiPrestamo) {
@@ -349,15 +351,16 @@ function calcularInteresArticulo(artiPrestamo) {
     var calculaSeg = Math.floor(artiPrestamo* varSeguroPorcen)/100;
     var calculaIva = Math.floor(artiPrestamo* varIvaPorcen)/100;
 
-    alert("tasa float" + calculaTasa);
-    alert("alm float" + calculaALm);
-    alert("seg float" + calculaSeg);
-    alert("iva float" + calculaIva);
+    var interes = +calculaTasa + calculaALm +calculaSeg + calculaIva;
+    var interesArti = artiPrestamo + interes;
 
-    var interesArti = artiPrestamo +calculaTasa + calculaALm +calculaSeg + calculaIva;
+    interesArti = interesArti.toFixed(2)
+    interesArti = parseFloat(interesArti)
+    interes = interes.toFixed(2)
+    interes = parseFloat(interes)
     Interes = Interes + interesArti;
     $("#idTotalInteres").val(Interes);
-    return interesArti;
+    return interes;
 }
 
 function sumarTotalesMetal(metalPrestamo,metalAvaluo) {
@@ -442,6 +445,7 @@ function calculaPrestamoPeso() {
 
 
 }
+
 /*
 function prestaMax() {
     var avaluo = parseFloat($("#idAvaluo").val());

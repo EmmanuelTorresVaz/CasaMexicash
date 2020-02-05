@@ -29,6 +29,8 @@ class sqlArticulosDAO
             $fechaModificacion = date('Y-m-d H:i:s');
             $usuario = $_SESSION["idUsuario"];
             $sucursal = $_SESSION["sucursal"];
+            $idVitrina = $articulo->getVitrina();
+            $interes = $articulo->getInteres();
 
             if ($tipoPost == "1") {
                 $idTipoM = $articulo->getTipoM();
@@ -40,36 +42,32 @@ class sqlArticulosDAO
                 $idPiedras = $articulo->getPiedras();
                 $idPrestamo = $articulo->getPrestamo();
                 $idAvaluo = $articulo->getAvaluo();
-                $interesMetal = $articulo->getInteresMetal();
-                $tipoInteres = $articulo->getTipoInteres();
+
                 $idUbicacion = $articulo->getUbicacion();
                 $idDetallePrenda = $articulo->getDetallePrenda();
 
                 $insert = "INSERT INTO articulo_tbl " .
-                    "(tipo, kilataje, calidad, cantidad, peso, peso_Piedra, piedras, prestamo, avaluo, tipoInteres,interesArticulo, ubicacion," .
+                    "(tipo, kilataje, calidad, cantidad, peso, peso_Piedra, piedras, prestamo, avaluo,vitrina, interes, ubicacion," .
                     " detalle, id_Estatus, fecha_creacion, fecha_modificacion, usuario,sucursal)  VALUES " .
                     "('" . $idTipoM . "', '" . $idKilataje . "', '" . $idCalidad . "', '" . $idCantidad . "', '" . $idPeso
-                    . "', '" . $idPesoPiedra . "', '" . $idPiedras . "', '" . $idPrestamo . "', '" . $idAvaluo . "','" . $tipoInteres . "','" . $interesMetal . "','" . $idUbicacion . "','"
+                    . "', '" . $idPesoPiedra . "', '" . $idPiedras . "', '" . $idPrestamo . "', '" . $idAvaluo . "', '" . $idVitrina . "', '" . $interes . "','" . $idUbicacion . "','"
                     . $idDetallePrenda . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "'," . $usuario . "," . $sucursal . " )";
 
             } else if ($tipoPost == "2") {
                 $idTipoE = $articulo->getTipoE();
                 $idMarca = $articulo->getMarca();
-                $idEstado = $articulo->getEstado();
                 $idModelo = $articulo->getModelo();
                 $idSerie = $articulo->getSerie();
                 $idPrestamoE = $articulo->getPrestamoE();
                 $idAvaluoE = $articulo->getAvaluoE();
-                $interesArt = $articulo->getInteresArt();
-                $tipoInteresE = $articulo->getTipoInteresE();
                 $idUbicacionE = $articulo->getUbicacionE();
                 $idDetallePrendaE = $articulo->getDetallePrendaE();
 
                 $insert = "INSERT INTO articulo_tbl " .
-                    "(tipo, marca, estado, modelo, num_Serie, prestamo, avaluo, tipoInteres,interesArticulo, ubicacion," .
+                    "(tipo, marca, modelo, num_Serie, prestamo, avaluo,vitrina,interes,  ubicacion," .
                     " detalle, id_Estatus, fecha_creacion, fecha_modificacion,usuario,sucursal)  VALUES " .
-                    "('" . $idTipoE . "','" . $idMarca . "', '" . $idEstado . "', '" . $idModelo
-                    . "', '" . $idSerie . "','" . $idPrestamoE . "', '" . $idAvaluoE . "','" . $tipoInteresE . "','" . $interesArt . "', '" . $idUbicacionE . "','"
+                    "('" . $idTipoE . "','" . $idMarca . "', '" . $idModelo
+                    . "', '" . $idSerie . "','" . $idPrestamoE . "', '" . $idAvaluoE . "', '" . $idVitrina . "', '" . $interes . "','" . $idUbicacionE . "','"
                     . $idDetallePrendaE . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "'," . $usuario . "," . $sucursal . "  )";
             }
             if ($ps = $this->conexion->prepare($insert)) {
@@ -97,14 +95,13 @@ class sqlArticulosDAO
         $datos = array();
         try {
             $usuario = $_SESSION["idUsuario"];
-            $buscar = "SELECT id_Articulo, marca, estado, modelo, prestamo,avaluo, detalle FROM articulo_tbl WHERE id_Contrato='' and usuario=" . $usuario;
+            $buscar = "SELECT id_Articulo, marca, modelo, prestamo,avaluo, detalle FROM articulo_tbl WHERE id_Contrato='' and usuario=" . $usuario;
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
                 while ($row = $rs->fetch_assoc()) {
                     $data = [
                         "id_Articulo" => $row["id_Articulo"],
                         "marca" => $row["marca"],
-                        "estado" => $row["estado"],
                         "modelo" => $row["modelo"],
                         "prestamo" => $row["prestamo"],
                         "avaluo" => $row["avaluo"],
@@ -147,7 +144,6 @@ class sqlArticulosDAO
         //return $verdad;
         echo $verdad;
     }
-
 
     function llenarCmbTipoPrenda()
     {
@@ -199,6 +195,7 @@ class sqlArticulosDAO
 
         echo json_encode($datos);
     }
+
     function llenarCmbKilataje($idTipoCombo){
         $datos = array();
         try {
@@ -222,6 +219,7 @@ class sqlArticulosDAO
 
         echo json_encode($datos);
     }
+
     function llenarKilatajePrecio($idKilataje){
         $datos = array();
 
@@ -295,6 +293,7 @@ class sqlArticulosDAO
 
         return $datos;
     }
+
     function llenarCmbColores()
     {
         $datos = array();
@@ -320,6 +319,7 @@ class sqlArticulosDAO
 
         return $datos;
     }
+
     function llenarCmbTipoAuto()
     {
         $datos = array();
@@ -345,7 +345,6 @@ class sqlArticulosDAO
 
         return $datos;
     }
-
 
     function llenarCmbCatArticulos()
     {
