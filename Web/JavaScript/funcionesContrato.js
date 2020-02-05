@@ -16,10 +16,13 @@ function generarContrato() {
         validate = false;
     }
     if (validate) {
-        //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
+        var varTasaPorcen = parseFloat($("#idTasaPorcen").text());
+        var varAlmPorcen = parseFloat($("#idAlmPorcen").text());
+        var varSeguroPorcen = parseFloat($("#idSeguroPorcen").text());
+        var varIvaPorcen = parseFloat($("#idIvaPorcen").text());
+
         var dataEnviar = {
             "idCliente": clienteEmpeno,
-            "id_Interes": tipoInteres,
             "folio": '',
             "fechaVencimiento": $("#idFecVencimiento").text(),
             "totalAvaluo": $("#idTotalAvaluo").val(),

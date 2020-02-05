@@ -46,6 +46,7 @@ function Agregar() {
                     var metalAvaluo = $("#idAvaluo").val();
                     var metalPrestamo = $("#idPrestamo").val();
                     var interesMetal = calcularInteresMetal(metalPrestamo);
+
                     var dataEnviar = {
                         "$idTipoEnviar": 1,
                         "idTipoMetal": formMetal,
@@ -361,8 +362,8 @@ function calcularInteresArticulo(artiPrestamo) {
 }
 
 function sumarTotalesMetal(metalPrestamo,metalAvaluo) {
-    var metalAva= parseFloat(metalPrestamo);
-    var metalPres = parseFloat(metalAvaluo);
+    var metalAva= parseFloat(metalAvaluo);
+    var metalPres = parseFloat(metalPrestamo);
     //Suma el monto de avaluo
     Avaluo = Avaluo + metalAva;
     $("#idTotalAvaluo").val(Avaluo);
