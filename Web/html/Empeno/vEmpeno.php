@@ -104,21 +104,9 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                 <table border="0" width="100%" class="tableInteres">
                     <tbody>
                     <tr>
-                        <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="20"
-                               style="text-align:center" class="invisible"/>
-                        <input id="idDiasAlmoneda" name ="diasAlm" size="3" class="invisible"
-                        value="  <?php
-                        $data = array();
-                        $sql = new sqlInteresesDAO();
-                        $data = $sql->diasAlmoneda();
-                        for ($i = 0; $i < count($data); $i++) {
-                            echo  $data[$i]['dias'] ;
-                        }
-                        ?>"/>
-                        <input type="text" id="idFechaAlm" name="fechaAlm" size="20"
-                               style="text-align:center" class="invisible"/>
-                        <input type="text" id="diasInteres" name="diasInteres" size="3"
-                               style="text-align:center" class=""/>
+                        <td>
+                            &nbsp;
+                        </td>
                     </tr>
                     <tr class="headt">
                         <td colspan="3">
@@ -204,8 +192,24 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="12">
-                        &nbsp;
+                            <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="5"
+                                   style="text-align:center" class="invisible"/>
+                            <input id="idDiasAlmoneda" name ="diasAlm" size="3" class="invisible"
+                                   value="  <?php
+                                   $data = array();
+                                   $sql = new sqlInteresesDAO();
+                                   $data = $sql->diasAlmoneda();
+                                   for ($i = 0; $i < count($data); $i++) {
+                                       echo  $data[$i]['dias'] ;
+                                   }
+                                   ?>"/>
+                            <input type="text" id="idFechaAlm" name="fechaAlm" size="12"
+                                   style="text-align:center" class="invisible"/>
+                            <input type="text" id="diasInteres" name="diasInteres" size="3"
+                                   style="text-align:center" class="invisible"/>
+                            <input id="idTotalInteres" name="totalInteres" disabled type="text" style="width: 150px; text-align: right" class="invisible"/>
                         </td>
+
                     </tr>
                     </tbody>
                 </table>
@@ -279,7 +283,6 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                         <td colspan="6" class="border border-dark" align="right">
                             <input id="idTotalPrestamo" name="totalPrestamo" disabled type="text" style="width: 150px; text-align: right"  value="0.00"
                                    class="inputCliente"/>
-                            <input id="idTotalInteres" name="totalInteres" disabled type="text" style="width: 150px; text-align: right"/>
                         </td>
                     </tr>
                     </tbody>

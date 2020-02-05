@@ -4,42 +4,39 @@ include_once(MODELO_PATH . "Contrato.php");
 include_once(SQL_PATH . "sqlContratoDAO.php");
 
 $idCliente = $_POST['idCliente'];
-$id_Interes = $_POST['id_Interes'];
-$folio = $_POST['folio'];
 $fechaVencimiento = $_POST['fechaVencimiento'];
 $totalAvaluo = $_POST['totalAvaluo'];
 $totalPrestamo = $_POST['totalPrestamo'];
-$abono = $_POST['abono'];
-$intereses = $_POST['intereses'];
-$pago = $_POST['pago'];
+$total_Interes = $_POST['total_Interes'];
+$sumaInteresPrestamo = $_POST['sumaInteresPrestamo'];
 $fecha_Alm = $_POST['fecha_Alm'];
-$fecha_Movimiento = $_POST['fecha_Movimiento'];
-$origen_Folio = $_POST['origen_Folio'];
-$dest_Folio = $_POST['dest_Folio'];
 $estatus = $_POST['estatus'];
-$observaciones = $_POST['observaciones'];
-$beneficiario = $_POST['beneficiario'];
 $cotitular = $_POST['cotitular'];
+$beneficiario = $_POST['beneficiario'];
+$plazo = $_POST['plazo'];
+$tasa = $_POST['tasa'];
+$alm = $_POST['alm'];
+$seguro = $_POST['seguro'];
+$iva = $_POST['iva'];
+$dias = $_POST['dias'];
 
 $contrato = new Contrato(
-    $idCliente,
-    $id_Interes,
-    $folio,
-    $fechaVencimiento,
-    $totalAvaluo,
-    $totalPrestamo,
-    $abono,
-    $intereses,
-    $pago,
-    $fecha_Alm,
-    $fecha_Movimiento,
-    $origen_Folio,
-    $dest_Folio,
-    $estatus,
-    $observaciones,
-    $beneficiario,
-    $cotitular
-
+   $idCliente,
+$fechaVencimiento,
+$totalAvaluo,
+$totalPrestamo,
+$total_Interes,
+$sumaInteresPrestamo,
+$fecha_Alm,
+$estatus,
+$cotitular,
+$beneficiario,
+$plazo,
+$tasa,
+$alm,
+$seguro,
+$iva,
+$dias
 );
 
 $sqlContrato = new sqlContratoDAO();

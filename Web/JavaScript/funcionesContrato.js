@@ -19,6 +19,7 @@ function generarContrato() {
         var totalPrestamo = parseFloat($("#idTotalPrestamo").val());
         var sumaInteresPrestamo = parseFloat($("#idTotalInteres").val());
         var totalInteres = sumaInteresPrestamo -totalPrestamo;
+        totalInteres =totalInteres.toFixed(2);
         var dataEnviar = {
             "idCliente": clienteEmpeno,
             "fechaVencimiento": $("#idFecVencimiento").text(),
@@ -28,13 +29,13 @@ function generarContrato() {
             "sumaInteresPrestamo":sumaInteresPrestamo,
             "fecha_Alm": $("#idFechaAlm").val(),
             "estatus": 1,
-            "cotitular": $("#idNombreBen").val(),
-            "beneficiario": $("#nombreCotitular").val(),
-            "plazo": $("#idPlazo").val(),
-            "tasa": $("#idTasaPorcen").val(),
-            "alm": $("#idAlmPorcen").val(),
-            "seguro": $("#idSeguroPorcen").val(),
-            "iva": $("#idIvaPorcen").val(),
+            "cotitular": $("#nombreCotitular").val(),
+            "beneficiario": $("#idNombreBen").val(),
+            "plazo": $("#idPlazo").text(),
+            "tasa": $("#idTasaPorcen").text(),
+            "alm": $("#idAlmPorcen").text(),
+            "seguro": $("#idSeguroPorcen").text(),
+            "iva": $("#idIvaPorcen").text(),
             "dias": $("#diasInteres").val(),
         };
 
@@ -44,6 +45,7 @@ function generarContrato() {
             type: 'post',
             success: function (response) {
                 if (response) {
+                    alert(response)
                     actualizarArticulo();
                     alertify.success("Contrato generado.");
 

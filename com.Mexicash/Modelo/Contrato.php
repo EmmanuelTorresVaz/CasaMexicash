@@ -4,62 +4,60 @@
 class Contrato
 {
     private $idCliente;
-    private $id_Interes;
-    private $folio;
     private $fechaVencimiento;
     private $totalAvaluo;
     private $totalPrestamo;
-    private $abono;
-    private $pago;
+    private $total_Interes;
+    private $sumaInteresPrestamo;
     private $fecha_Alm;
-    private $fecha_Movimiento;
-    private $origen_Folio;
-    private $dest_Folio;
     private $estatus;
-    private $observaciones;
-    private $beneficiario;
     private $cotitular;
+    private $beneficiario;
+    private $plazo;
+    private $tasa;
+    private $alm;
+    private $seguro;
+    private $iva;
+    private $dias;
 
     /**
      * Contrato constructor.
      * @param $idCliente
-     * @param $id_Interes
-     * @param $folio
      * @param $fechaVencimiento
      * @param $totalAvaluo
      * @param $totalPrestamo
-     * @param $abono
-     * @param $pago
+     * @param $total_Interes
+     * @param $sumaInteresPrestamo
      * @param $fecha_Alm
-     * @param $fecha_Movimiento
-     * @param $origen_Folio
-     * @param $dest_Folio
      * @param $estatus
-     * @param $observaciones
-     * @param $beneficiario
      * @param $cotitular
+     * @param $beneficiario
+     * @param $plazo
+     * @param $tasa
+     * @param $alm
+     * @param $seguro
+     * @param $iva
+     * @param $dias
      */
-    public function __construct( $idCliente, $id_Interes, $folio, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $abono, $pago, $fecha_Alm, $fecha_Movimiento, $origen_Folio, $dest_Folio, $estatus, $observaciones, $beneficiario, $cotitular)
+    public function __construct($idCliente, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $total_Interes, $sumaInteresPrestamo, $fecha_Alm, $estatus, $cotitular, $beneficiario, $plazo, $tasa, $alm, $seguro, $iva, $dias)
     {
         $this->idCliente = $idCliente;
-        $this->id_Interes = $id_Interes;
-        $this->folio = $folio;
         $this->fechaVencimiento = $fechaVencimiento;
         $this->totalAvaluo = $totalAvaluo;
         $this->totalPrestamo = $totalPrestamo;
-        $this->abono = $abono;
-        $this->pago = $pago;
+        $this->total_Interes = $total_Interes;
+        $this->sumaInteresPrestamo = $sumaInteresPrestamo;
         $this->fecha_Alm = $fecha_Alm;
-        $this->fecha_Movimiento = $fecha_Movimiento;
-        $this->origen_Folio = $origen_Folio;
-        $this->dest_Folio = $dest_Folio;
         $this->estatus = $estatus;
-        $this->observaciones = $observaciones;
-        $this->beneficiario = $beneficiario;
         $this->cotitular = $cotitular;
+        $this->beneficiario = $beneficiario;
+        $this->plazo = $plazo;
+        $this->tasa = $tasa;
+        $this->alm = $alm;
+        $this->seguro = $seguro;
+        $this->iva = $iva;
+        $this->dias = $dias;
     }
-
-
 
     /**
      * @return mixed
@@ -75,38 +73,6 @@ class Contrato
     public function setIdCliente($idCliente): void
     {
         $this->idCliente = $idCliente;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdInteres()
-    {
-        return $this->id_Interes;
-    }
-
-    /**
-     * @param mixed $id_Interes
-     */
-    public function setIdInteres($id_Interes): void
-    {
-        $this->id_Interes = $id_Interes;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFolio()
-    {
-        return $this->folio;
-    }
-
-    /**
-     * @param mixed $folio
-     */
-    public function setFolio($folio): void
-    {
-        $this->folio = $folio;
     }
 
     /**
@@ -160,35 +126,33 @@ class Contrato
     /**
      * @return mixed
      */
-    public function getAbono()
+    public function getTotalInteres()
     {
-        return $this->abono;
+        return $this->total_Interes;
     }
 
     /**
-     * @param mixed $abono
+     * @param mixed $total_Interes
      */
-    public function setAbono($abono): void
+    public function setTotalInteres($total_Interes): void
     {
-        $this->abono = $abono;
+        $this->total_Interes = $total_Interes;
     }
-
-
 
     /**
      * @return mixed
      */
-    public function getPago()
+    public function getSumaInteresPrestamo()
     {
-        return $this->pago;
+        return $this->sumaInteresPrestamo;
     }
 
     /**
-     * @param mixed $pago
+     * @param mixed $sumaInteresPrestamo
      */
-    public function setPago($pago): void
+    public function setSumaInteresPrestamo($sumaInteresPrestamo): void
     {
-        $this->pago = $pago;
+        $this->sumaInteresPrestamo = $sumaInteresPrestamo;
     }
 
     /**
@@ -210,54 +174,6 @@ class Contrato
     /**
      * @return mixed
      */
-    public function getFechaMovimiento()
-    {
-        return $this->fecha_Movimiento;
-    }
-
-    /**
-     * @param mixed $fecha_Movimiento
-     */
-    public function setFechaMovimiento($fecha_Movimiento): void
-    {
-        $this->fecha_Movimiento = $fecha_Movimiento;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getOrigenFolio()
-    {
-        return $this->origen_Folio;
-    }
-
-    /**
-     * @param mixed $origen_Folio
-     */
-    public function setOrigenFolio($origen_Folio): void
-    {
-        $this->origen_Folio = $origen_Folio;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDestFolio()
-    {
-        return $this->dest_Folio;
-    }
-
-    /**
-     * @param mixed $dest_Folio
-     */
-    public function setDestFolio($dest_Folio): void
-    {
-        $this->dest_Folio = $dest_Folio;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getEstatus()
     {
         return $this->estatus;
@@ -274,17 +190,17 @@ class Contrato
     /**
      * @return mixed
      */
-    public function getObservaciones()
+    public function getCotitular()
     {
-        return $this->observaciones;
+        return $this->cotitular;
     }
 
     /**
-     * @param mixed $observaciones
+     * @param mixed $cotitular
      */
-    public function setObservaciones($observaciones): void
+    public function setCotitular($cotitular): void
     {
-        $this->observaciones = $observaciones;
+        $this->cotitular = $cotitular;
     }
 
     /**
@@ -306,17 +222,97 @@ class Contrato
     /**
      * @return mixed
      */
-    public function getCotitular()
+    public function getPlazo()
     {
-        return $this->cotitular;
+        return $this->plazo;
     }
 
     /**
-     * @param mixed $cotitular
+     * @param mixed $plazo
      */
-    public function setCotitular($cotitular): void
+    public function setPlazo($plazo): void
     {
-        $this->cotitular = $cotitular;
+        $this->plazo = $plazo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTasa()
+    {
+        return $this->tasa;
+    }
+
+    /**
+     * @param mixed $tasa
+     */
+    public function setTasa($tasa): void
+    {
+        $this->tasa = $tasa;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAlm()
+    {
+        return $this->alm;
+    }
+
+    /**
+     * @param mixed $alm
+     */
+    public function setAlm($alm): void
+    {
+        $this->alm = $alm;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSeguro()
+    {
+        return $this->seguro;
+    }
+
+    /**
+     * @param mixed $seguro
+     */
+    public function setSeguro($seguro): void
+    {
+        $this->seguro = $seguro;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIva()
+    {
+        return $this->iva;
+    }
+
+    /**
+     * @param mixed $iva
+     */
+    public function setIva($iva): void
+    {
+        $this->iva = $iva;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDias()
+    {
+        return $this->dias;
+    }
+
+    /**
+     * @param mixed $dias
+     */
+    public function setDias($dias): void
+    {
+        $this->dias = $dias;
     }
 
 

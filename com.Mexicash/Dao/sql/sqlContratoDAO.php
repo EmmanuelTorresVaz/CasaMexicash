@@ -22,23 +22,24 @@ class sqlContratoDAO
     {
         // TODO: Implement guardaCiente() method.
         try {
+
+
             $id_Cliente = $contrato->getIdCliente();
-            $id_Interes = $contrato->getIdInteres();
-            $folio = $contrato->getFolio();
             $fechaVencimiento = $contrato->getFechaVencimiento();
             $totalAvaluo = $contrato->getTotalAvaluo();
             $totalPrestamo = $contrato->getTotalPrestamo();
-            $abono = $contrato->getAbono();
-            $interes = $contrato->getIdInteres();
-            $pago = $contrato->getPago();
+            $totalInteres = $contrato->getTotalInteres();
+            $sumaInteresPrestamo= $contrato->getSumaInteresPrestamo();
             $fechaAlm = $contrato->getFechaAlm();
-            $fechaMovimiento = $contrato->getFechaMovimiento();
-            $origenFolio = $contrato->getOrigenFolio();
-            $destFolio = $contrato->getDestFolio();
             $estatus = $contrato->getEstatus();
-            $observaciones = $contrato->getObservaciones();
             $beneficiario = $contrato->getBeneficiario();
             $cotitular = $contrato->getCotitular();
+            $plazo = $contrato->getPlazo();
+            $tasa= $contrato->getTasa();
+            $alm = $contrato->getAlm();
+            $seguro = $contrato->getSeguro();
+            $iva = $contrato->getIva();
+            $dias = $contrato->getDias();
             $fechaCreacion = date('Y-m-d H:i:s');
             $fechaModificacion = date('Y-m-d H:i:s');
             $usuario = $_SESSION["idUsuario"];
@@ -46,12 +47,13 @@ class sqlContratoDAO
 
 
             $insertaContrato = "INSERT INTO contrato_tbl " .
-                "(id_Cliente, id_Interes, folio, fecha_Vencimiento, total_Avaluo, total_Prestamo, abono, intereses, pago,  " .
-                "fecha_Alm, fecha_Movimiento, origen_Folio, dest_Folio, id_Estatus, observaciones, cotitular,beneficiario, fecha_creacion, fecha_modificacion, usuario,sucursal,tipoContrato) VALUES ".
-                "('" . $id_Cliente . "', '" . $id_Interes . "', '" . $folio . "', '" . $fechaVencimiento . "', '" . $totalAvaluo . "', '" . $totalPrestamo .
-                " .', '" . $abono . "', '" . $interes . "', '" . $pago . "', '" . $fechaAlm . "', '" . $fechaMovimiento . "', '" . $origenFolio .
-                "', '" . $destFolio . "', '" . $estatus . "', '" . $observaciones . "', '" . $beneficiario . "','" . $cotitular . "','" . $fechaCreacion . "', ". "'" . $fechaModificacion . "', '" . $usuario . "','" . $sucursal . "',1)";
+                "(id_Cliente,  fecha_Vencimiento, total_Avaluo, total_Prestamo, total_Interes,suma_InteresPrestamo,  " .
+                "fecha_Alm, id_Estatus, cotitular,beneficiario, plazo,tasa,alm,seguro,iva,dias, fecha_creacion, fecha_modificacion, usuario,sucursal,tipoContrato) VALUES ".
+                "('" . $id_Cliente . "', '" . $fechaVencimiento . "', '" . $totalAvaluo . "', '" . $totalPrestamo .
+                "', '" . $totalInteres . "', '" . $sumaInteresPrestamo . "',  '" . $fechaAlm .
+                "', '" .  $estatus . "', '" . $beneficiario . "','" . $cotitular . "','" . $plazo . "','" . $tasa . "','" . $alm . "','" . $seguro . "','" . $iva . "','" . $dias . "','" . $fechaCreacion . "', ". "'" . $fechaModificacion . "', '" . $usuario . "','" . $sucursal . "',1)";
 
+            echo $insertaContrato;
             if ($ps = $this->conexion->prepare($insertaContrato)) {
                 if ($ps->execute()) {
                     $verdad =  mysqli_stmt_affected_rows($ps);
