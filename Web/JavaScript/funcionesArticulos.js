@@ -319,7 +319,8 @@ function calcularInteresMetal(metalPrestamo) {
     var varTasaPorcen = parseFloat($("#idTasaPorcen").text());
     var varAlmPorcen = parseFloat($("#idAlmPorcen").text());
     var varSeguroPorcen = parseFloat($("#idSeguroPorcen").text());
-    var varIvaPorcen = parseFloat($("#idIvaPorcen").text());
+    var varIvaPorcen = "0." + $("#idIvaPorcen").text();
+     varIvaPorcen = parseFloat(varIvaPorcen);
 
     var calculaTasa = Math.floor(metalPrestamo* varTasaPorcen)/100;
     var calculaALm = Math.floor(metalPrestamo* varAlmPorcen)/100;
@@ -342,7 +343,8 @@ function calcularInteresArticulo(artiPrestamo) {
     var varTasaPorcen = parseFloat($("#idTasaPorcen").text());
     var varAlmPorcen = parseFloat($("#idAlmPorcen").text());
     var varSeguroPorcen = parseFloat($("#idSeguroPorcen").text());
-    var varIvaPorcen = parseFloat($("#idIvaPorcen").text());
+    var varIvaPorcen = "0." + $("#idIvaPorcen").text();
+    varIvaPorcen = parseFloat(varIvaPorcen);
 
     var calculaTasa = Math.floor(artiPrestamo* varTasaPorcen)/100;
     var calculaALm = Math.floor(artiPrestamo* varAlmPorcen)/100;

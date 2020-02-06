@@ -87,7 +87,7 @@ class sqlDesempenoDAO
                         "FechaEmpConvert" => $row["FechaEmpConvert"],
                         "FechaVenc" => $row["FechaVenc"],
                         "FechaAlm" => $row["FechaAlm"],
-                        "PlazoDes" => $row["PlazoDes"],
+                        "PlazoDesc" => $row["PlazoDesc"],
                         "TasaDesc" => $row["TasaDesc"],
                         "AlmacDesc" => $row["AlmacDesc"],
                         "SeguDesc" => $row["SeguDesc"],
