@@ -45,7 +45,6 @@ function generarContrato() {
             type: 'post',
             success: function (response) {
                 if (response) {
-                    alert(response)
                     actualizarArticulo();
                     alertify.success("Contrato generado.");
 

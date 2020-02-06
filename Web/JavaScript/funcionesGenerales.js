@@ -21,12 +21,17 @@ function sumarDias($diasASumar) {
         anio = fecha.getFullYear(),
         addTime = $diasASumar * 86400; //Tiempo en segundos
     fecha.setSeconds(addTime); //Añado el tiempo
-  var  mesNuevo = fecha.getMonth() + 1;
-    if(mesNuevo<10){
-        var agregarCero = "0" + mesNuevo;
+    var mesNuevo = fecha.getMonth() + 1;
+    var diaNuevo = fecha.getDate();
+
+    if (mesNuevo < 10) {
+        mesNuevo = "0" + mesNuevo;
+    }
+    if (diaNuevo < 10) {
+        diaNuevo = "0" + diaNuevo;
     }
 
-    var fechaDias = fecha.getDate() + "/" + agregarCero + "/" + fecha.getFullYear();
+    var fechaDias = fecha.getFullYear() + "-" + mesNuevo + "-" + diaNuevo;
     return fechaDias;
 }
 
@@ -42,17 +47,42 @@ function soloNumeros(e) {
 
 
 function isNumberDecimal(e) {
-        var tecla;
-        tecla = (document.all) ? e.keyCode : e.which;
-        if(tecla == 8)
-        {return true;}
-        var patron;
-        patron = /[0-9.]/
-        var te;
-        te = String.fromCharCode(tecla);
-        return patron.test(te);
+    var tecla;
+    tecla = (document.all) ? e.keyCode : e.which;
+    if (tecla == 8) {
+        return true;
     }
+    var patron;
+    patron = /[0-9.]/
+    var te;
+    te = String.fromCharCode(tecla);
+    return patron.test(te);
+}
 
+function fechaPrueba() {
+    var tipoText = $('#idFecVencimiento').text();
+    var tipoText2 = $('#idFechaAlm').val();
 
-    //Saber el tipo de dato
+    var dataEnviar = {
+        "tipo": 10,
+        "descripcion": tipoText
+    };
+    $.ajax({
+        data: dataEnviar,
+        url: '../../../com.Mexicash/Controlador/Electronicos/Electronico.php',
+        type: 'post',
+        success: function (response) {
+            alert(response)
+            if (response == 1) {
+                alertify.success("Se guardo la fecha bien");
+
+            } else {
+                alertify.error("Error .");
+            }
+        },
+    })
+
+}
+
+//Saber el tipo de dato
 //alert(typeof (MetalAvaluo))

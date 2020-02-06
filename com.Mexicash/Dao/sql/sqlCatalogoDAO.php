@@ -695,5 +695,29 @@ E.modelo as modeloId,CMO.descripcion as modelo,precio,vitrina,caracteristicas
         echo $verdad;
     }
 
+    public function pruebaFecha($idElectro)
+    {
+        // TODO: Implement guardaCiente() method.
+        try {
+            $insertarProducto = "INSERT INTO fechapruebas (fecha) VALUES ('$idElectro')";
+            echo $insertarProducto;
+            if ($ps = $this->conexion->prepare($insertarProducto)) {
+                if ($ps->execute()) {
+                    $verdad = mysqli_stmt_affected_rows($ps);
+                } else {
+                    $verdad = -1;
+                }
+            } else {
+                $verdad = -1;
+            }
+        } catch (Exception $exc) {
+            $verdad = -1;
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        echo $verdad;
+    }
 
 }

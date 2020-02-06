@@ -39,6 +39,10 @@ if ($tipo == 1) {
     $vitrina = $_POST['vitrina'];
     $caracteristicas = $_POST['caracteristicas'];
     $sqlCatalogo->editarProducto($idElectro,$precio,$vitrina,$caracteristicas);
+}else if ($tipo == 10) {
+    $idElectro = $_POST['descripcion'];
+
+    $sqlCatalogo->pruebaFecha($idElectro);
 }
 
 
