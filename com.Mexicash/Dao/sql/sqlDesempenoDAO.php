@@ -19,6 +19,45 @@ class sqlDesempenoDAO
         $this->conexion = $this->db->connectDB();
     }
 
+    public function generarDesempeno($pago,$idImporte,$idContrato)
+    {
+        // TODO: Implement guardaCiente() method.
+        try {
+            $fechaModificacion = date('Y-m-d H:i:s');
+            $usuario = $_SESSION["idUsuario"];
+            $updateDesempeno = "UPDATE contrato_tbl SET pago=$pago,fecha_Pago='$fechaModificacion' ,
+                                descuento=$idImporte, usuario= $usuario ,
+                                fecha_modificacion = '$fechaModificacion',	id_Estatus=2
+                                WHERE id_Contrato=$idContrato";
+            if ($ps = $this->conexion->prepare($updateDesempeno)) {
+                if ($ps->execute()) {
+                    $updateArticulos = "UPDATE articulo_tbl SET id_Estatus=2
+                                WHERE id_Contrato=$idContrato";
+                    if ($ps = $this->conexion->prepare($updateArticulos)) {
+                        if ($ps->execute()) {
+                            $verdad = mysqli_stmt_affected_rows($ps);
+                        } else {
+                            $verdad = -1;
+                        }
+                    } else {
+                        $verdad = -1;
+                    }
+                } else {
+                    $verdad = -1;
+                }
+            } else {
+                $verdad = -1;
+            }
+        } catch (Exception $exc) {
+            $verdad = -1;
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+        //return $verdad;
+        echo $verdad;
+    }
+
     public function buscarClienteDes($idContratoDes)
     {
         $datos = array();
@@ -33,7 +72,7 @@ class sqlDesempenoDAO
                         LEFT JOIN cat_municipio as Mun on Cli.municipio = Mun.id_Municipio and Cli.estado = Mun.id_Estado 
                         LEFT JOIN cat_localidad as Loc on Cli.localidad = Loc.id_Localidad and Cli.estado = Loc.id_Estado and Cli.municipio = Loc.id_Municipio
                         LEFT JOIN usuarios_tbl as Usu on Con.usuario = Usu.id_User
-                        WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 1";
+                        WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 1  and Con.id_Estatus= 1";
 
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
@@ -76,7 +115,7 @@ class sqlDesempenoDAO
                         Con.total_Interes AS TotalInteres,
                         Con.suma_InteresPrestamo AS TotalInteresPrestamo
                         FROM contrato_tbl as Con
-                        WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 1";
+                        WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 1  and Con.id_Estatus= 1";
 
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
@@ -113,7 +152,7 @@ class sqlDesempenoDAO
         $datos = array();
         try {
             $buscar = "SELECT Art.detalle as Detalle,Art.ubicacion as Ubicacion FROM articulo_tbl as Art
-                        WHERE Art.id_Contrato = '$idContratoDes'";
+                        WHERE Art.id_Contrato = '$idContratoDes'  and Art.id_Estatus= 1";
 
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
@@ -149,7 +188,7 @@ class sqlDesempenoDAO
                         LEFT JOIN cat_municipio as Mun on Cli.municipio = Mun.id_Municipio and Cli.estado = Mun.id_Estado 
                         LEFT JOIN cat_localidad as Loc on Cli.localidad = Loc.id_Localidad and Cli.estado = Loc.id_Estado and Cli.municipio = Loc.id_Municipio
                         LEFT JOIN usuarios_tbl as Usu on Con.usuario = Usu.id_User
-                        WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato=2";
+                        WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato=2  and Con.id_Estatus= 1";
 
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
@@ -183,7 +222,7 @@ class sqlDesempenoDAO
                          Inte.dias as Dias, Con.total_Prestamo as TotalPrest
                         FROM contrato_tbl as Con
                         INNER JOIN cat_interes as Inte  on Con.id_Interes = Inte.id_interes
-                        WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 2";
+                        WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 2  and Con.id_Estatus= 1";
 
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
@@ -219,7 +258,7 @@ class sqlDesempenoDAO
         $datos = array();
         try {
             $buscar = "SELECT Auto.marca as Marca,Auto.modelo as Modelo,Auto.año as Anio,Auto.color as ColorAuto,  Auto.observaciones as Obs FROM auto_tbl as Auto
-                        WHERE Auto.id_Contrato = '$idContratoDes' ";
+                        WHERE Auto.id_Contrato = '$idContratoDes' and Auto.id_Estatus= 1";
 
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
@@ -254,7 +293,7 @@ class sqlDesempenoDAO
                          Inte.dias as Dias, Con.total_Prestamo as TotalPrest, Con.abono as Abono 
                         FROM contrato_tbl as Con
                         INNER JOIN cat_interes as Inte  on Con.id_Interes = Inte.id_interes
-                        WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 1";
+                        WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 1 and Con.id_Estatus= 1";
 
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
@@ -295,7 +334,7 @@ class sqlDesempenoDAO
                          Inte.dias as Dias, Con.total_Prestamo as TotalPrest,Con.abono as Abono 
                         FROM contrato_tbl as Con
                         INNER JOIN cat_interes as Inte  on Con.id_Interes = Inte.id_interes
-                        WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 2";
+                        WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 2  and Con.id_Estatus= 1";
 
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {

@@ -1,5 +1,6 @@
 //consultar contrato
 function buscarContratoDes() {
+    $("#idContratoBusqueda").val('');
     buscarClienteDes();
     buscarDatosConDes();
     buscarDetalleDes();
@@ -74,7 +75,7 @@ function buscarDatosConDes() {
             data: dataEnviar,
             dataType: "json",
             success: function (datos) {
-
+                $("#idContratoBusqueda").val(contratoDesp);
                 for (i = 0; i < datos.length; i++) {
                     var FechaEmp = datos[i].FechaEmp;
                     var FechaEmpConvert = datos[i].FechaEmpConvert;
@@ -123,20 +124,17 @@ function buscarDatosConDes() {
                     TotalInteresPrestamo = parseFloat(TotalInteresPrestamo);
 
 
-
-
                     var fechaHoy = new Date();
                     var FechaVencFormat = formatStringToDate(FechaVenc);
                     var diasVencidos = 0;
-                    if(FechaVencFormat<fechaHoy){
-                        var diasdif= fechaHoy.getTime()-FechaVencFormat.getTime();
-                        diasVencidos = Math.round(diasdif/(1000*60*60*24));
+                    if (FechaVencFormat < fechaHoy) {
+                        var diasdif = fechaHoy.getTime() - FechaVencFormat.getTime();
+                        diasVencidos = Math.round(diasdif / (1000 * 60 * 60 * 24));
                     }
                     var FechaAlmFormat = formatStringToDate(FechaAlm);
-                    if(FechaAlmFormat<fechaHoy){
+                    if (FechaAlmFormat < fechaHoy) {
                         $("#trAlmoneda").show();
                     }
-
 
 
                     //Se calcula el interes por día
@@ -160,9 +158,9 @@ function buscarDatosConDes() {
                     var totalVencSeg = diaSeg * diasVencidos;
                     var totalVencIVA = diaIva * diasVencidos;
 
-                    var interesGenerado = totalVencInteres +totalVencAlm +totalVencSeg+ totalVencIVA;
+                    var interesGenerado = totalVencInteres + totalVencAlm + totalVencSeg + totalVencIVA;
 
-                    var TotalFinal = TotalPrestamo +interesGenerado;
+                    var TotalFinal = TotalPrestamo + interesGenerado;
 
                     $("#idDatosContratoDes").val("Fecha Empeño :" + FechaEmp + "\n" +
                         "Fecha Vencimiento :" + FechaVenc + "\n" +
@@ -183,6 +181,8 @@ function buscarDatosConDes() {
                     document.getElementById('idPresTDDes').innerHTML = TotalPrestamo.toFixed(2);
                     document.getElementById('idInteresTDDes').innerHTML = interesGenerado.toFixed(2);
                     document.getElementById('totalAPagarTD').innerHTML = TotalFinal.toFixed(2);
+                    $("#btnGenerar").prop('disabled', false);
+                    $("#totalTD").show();
                 }
             }
         });
@@ -455,8 +455,75 @@ function buscarDetalleDesAuto() {
     }
 }
 
-function formatStringToDate(text) {
-    var myDate = text.split('-');
-   return  new Date(myDate[0], myDate[1] - 1, myDate[2]);
 
+
+
+function checkDescuento() {
+    var checkBox = document.getElementById("idDescuento");
+    if (checkBox.checked == true) {
+        $("#idPorcentaje").prop('disabled', false);
+        $("#idImporte").prop('disabled', false);
+    } else {
+        $("#idPorcentaje").prop('disabled', true);
+        $("#idImporte").prop('disabled', true);
+    }
+}
+
+function calculaDescuento() {
+    var descuento = $("#idPorcentaje").val();
+    var descuento = parseInt(descuento);
+    if (descuento > 10) {
+        alert("El descuento no puede ser mayor al 10%");
+    } else {
+        var total = $("#totalAPagarTD").text();
+        var total = parseFloat(total);
+
+        var total = parseFloat(total);
+        var importe = Math.floor(total * descuento) / 100;
+        importe = importe.toFixed(2);
+        var descuento = total - importe;
+        $("#idImporte").val(importe);
+        document.getElementById('totalDecuentoTD').innerHTML = descuento.toFixed(2);
+        $("#descuentoTD").show();
+
+    }
+}
+
+function reCalculaDescuento() {
+    var total = $("#totalAPagarTD").text();
+    var total = parseFloat(total);
+    var importe = $("#idImporte").val();
+    var importe = parseFloat(importe);
+    var descuento = total - importe;
+    document.getElementById('totalDecuentoTD').innerHTML = descuento.toFixed(2);
+    $("#totalDecuentoTD").show();
+}
+
+function generarDesempeno() {
+        var dataEnviar = {
+            "pago":  $("#totalDecuentoTD").text(),
+            "idContrato":  $("#idContratoBusqueda").val(),
+            "descuento": $("#idImporte").val()
+        };
+
+        $.ajax({
+            data: dataEnviar,
+            url: '../../../com.Mexicash/Controlador/Desempeno/generarDesempeno.php',
+            type: 'post',
+            success: function (response) {
+                if (response>0) {
+                    cancelarDesempeno();
+                    alertify.success("Desempeño generado.");
+                } else {
+                    alertify.error("Error al generar desempeño.");
+                }
+            },
+        })
+}
+function cancelarDesempeno() {
+    $("#idFormDes")[0].reset();
+    $("#totalAPagarTD").text('')
+    $("#totalDecuentoTD").text('')
+    $("#totalTD").hide();
+    $("#descuentoTD").hide();
 }

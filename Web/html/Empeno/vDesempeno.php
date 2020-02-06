@@ -32,6 +32,16 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
     <script type="application/javascript">
         $(document).ready(function () {
             $("#trAlmoneda").hide();
+            $("#totalTD").hide();
+            $("#descuentoTD").hide();
+            $("#idPorcentaje").blur(function(){
+                calculaDescuento();
+            });
+            $("#idImporte").blur(function(){
+                reCalculaDescuento();
+            });
+            $("#btnGenerar").prop('disabled', true);
+
         });
     </script>
     <style>
@@ -66,7 +76,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     <tr>
                         <td style="width: 200px" align="left">
                             <label>Contrato:</label>
-                            <input type="text" id="idContratoDesempeno" name="contrato" size="10" value="37"
+                            <input type="text" id="idContratoDesempeno" name="contrato" size="10" value=""
                                    style="text-align:right"/>
                         </td>
                     </tr>
@@ -136,43 +146,36 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                         </td>
                     </tr>
                     <tr>
-                        <td style="width: 200px">
-                            <div>
-                                <h4>Descuento Interes</h4>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="idCheckPorcentaje">
-                                    <label class="form-check-label" for="automovil">Porcentaje</label>
-                                    <label class="form-check-label">&nbsp;0</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="idCheckImporte">
-                                    <label class="form-check-label" for="automovil">Importe</label>
-                                    <label class="form-check-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0</label>
-                                </div>
-                            </div>
+                        <td colspan="2" style="width: 100px">
+                            <label class="form-check-label">Descuento Interes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <input type="checkbox" class="form-check-input" id="idDescuento" onclick="checkDescuento()">
                         </td>
-                        <td style="width: 200px"></td>
-                        <td style="width: 200px"></td>
+                        <td align="right" id="totalTD"><h3>Total a Pagar: $<label id="totalAPagarTD"></label></h3></td>
                     </tr>
                     <tr>
-                        <td colspan="2">
+                        <td colspan="1" style="width: 100px">
+                            <label >Porcentaje</label>
                         </td>
-                        <td><h2>Total a Pagar:</h2></td>
+                        <td colspan="1" align="center">
+                            <input type="text" id="idPorcentaje" name="porcentaje"
+                                   style="width: 100px; text-align: right" disabled />
+                        </td>
+                        <td align="right" id="descuentoTD"><h3>Con Descuento: $<label id="totalDecuentoTD"></label></h3></td>
                     </tr>
                     <tr>
-                        <td colspan="2">
+                        <td colspan="1" style="width: 100px">
+                            <label >Importe</label>
                         </td>
-                        <td><h1><label id="totalAPagarTD"></label></h1></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">
+                        <td colspan="1" align="center">
+                            <input type="text" id="idImporte" name="importe"
+                                   style="width: 100px; text-align: right" disabled />
+                        </td>
+                        <td style="width: 400px">
+                            &nbsp;
                         </td>
                     </tr>
                     <tr id="trAlmoneda" style="color:#FF0000" >
-                        <td colspan="2"><h1>¡Contrato en almoneda!</h1></td>
-                        <td >
-                        </td>
-
+                        <td colspan="3"><h3>¡Contrato en almoneda!</h3></td>
                     </tr>
                 </table>
             </div>
@@ -180,13 +183,14 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
 
         <div class="row">
             <div class="col col-lg-7">
-                <br>
+                <input type="text" id="idContratoBusqueda" name="contratoBus"
+                       style="width: 100px;" class="invisible" />
             </div>
             <div class="col col-lg-5">
                 <input type="button" class="btn btn-success" value="prueba" onclick="formatStringToDate('2019-03-05')">
-                <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
+                <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelarDesempeno()">&nbsp;
                 <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
-                <input type="button" class="btn btn-primary" value="Generar" onclick="generarContrato()">&nbsp;
+                <input type="button" class="btn btn-primary" value="Generar" id="btnGenerar" onclick="generarDesempeno()" disabled>&nbsp;
                 <input type="button" class="btn btn-danger" value="Salir" onclick="location.href='vInicio.php'">&nbsp;
             </div>
         </div>
