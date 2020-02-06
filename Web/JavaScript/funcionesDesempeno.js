@@ -77,28 +77,25 @@ function buscarDatosConDes() {
                     var FechaEmp = datos[i].FechaEmp;
                     var FechaEmpConvert = datos[i].FechaEmpConvert;
                     var FechaVenc = datos[i].FechaVenc;
-                    var FechaCom = datos[i].FechaCom;
+                    var FechaAlm = datos[i].FechaAlm;
                     var PlazoDes = datos[i].PlazoDes;
                     var TasaDesc = datos[i].TasaDesc;
                     var AlmacDesc = datos[i].AlmacDesc;
                     var SeguDesc = datos[i].SeguDesc;
                     var IvaDesc = datos[i].IvaDesc;
                     var Dias = datos[i].Dias;
-                    var InteresesDes = datos[i].InteresesDes;
-                    var TotalPrest = datos[i].TotalPrest;
+                    var TotalPrestamo = datos[i].TotalPrestamo;
+                    var TotalInteres = datos[i].TotalInteres;
+                    var TotalInteresPrestamo = datos[i].TotalInteresPrestamo;
 
-                    if (FechaEmp === null) {FechaEmp = '';}
-                    if (FechaVenc === null) {FechaVenc = '';}
-                    if (FechaCom === null) {FechaCom = '';}
+                    if (FechaAlm === null) {FechaAlm = '';}
                     if (PlazoDes === null) {PlazoDes = '';}
                     if (TasaDesc === null) {TasaDesc = '';}
                     if (AlmacDesc === null) {AlmacDesc = '';}
                     if (SeguDesc === null) {SeguDesc = '';}
                     if (IvaDesc === null) {IvaDesc = '';}
                     if (Dias === null) {Dias = '';}
-                    if (InteresesDes === null) {InteresesDes = '';}
-                    if (TotalPrest === null) {TotalPrest = '';}
-                    if (FechaCom == '0000-00-00 00:00:00') {FechaCom = '';}
+
 
                     InteresesDes = parseFloat(InteresesDes);
                     TotalPrest =  parseFloat(TotalPrest);
@@ -137,11 +134,11 @@ function buscarDatosConDes() {
                         var FechaVenc = new Date();
                         alert(typeof (FechaVenc))
                         alert(typeof (fechaHoy))
-
-                        var fechaini = new Date('2016-07-01');
-
-                        var fechafin = new Date('2016-08-01');
-
+                        var $hoy = date("Y-m-d");
+                        var fechaini = new Date(FechaVenc);
+alert(fechaini)
+                        var fechafin = new Date($hoy);
+                        alert(fechafin)
                         var diasdif= fechafin.getTime()-fechaini.getTime();
 
                         var contdias = Math.round(diasdif/(1000*60*60*24));

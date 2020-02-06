@@ -21,22 +21,22 @@ $iva = $_POST['iva'];
 $dias = $_POST['dias'];
 
 $contrato = new Contrato(
-   $idCliente,
-$fechaVencimiento,
-$totalAvaluo,
-$totalPrestamo,
-$total_Interes,
-$sumaInteresPrestamo,
-$fecha_Alm,
-$estatus,
-$cotitular,
-$beneficiario,
-$plazo,
-$tasa,
-$alm,
-$seguro,
-$iva,
-$dias
+    $idCliente,
+    $fechaVencimiento,
+    $totalAvaluo,
+    $totalPrestamo,
+    $total_Interes,
+    $sumaInteresPrestamo,
+    $fecha_Alm,
+    $estatus,
+    $cotitular,
+    $beneficiario,
+    $plazo,
+    $tasa,
+    $alm,
+    $seguro,
+    $iva,
+    $dias
 );
 
 $sqlContrato = new sqlContratoDAO();

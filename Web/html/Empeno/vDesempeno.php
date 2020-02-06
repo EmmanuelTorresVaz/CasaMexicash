@@ -1,11 +1,21 @@
 <?php
-if(!isset($_SESSION)) {
+/*if(!isset($_SESSION)) {
     session_start();
 }
 if(!isset($_SESSION["idUsuario"])){
     header("Location: ../index.php");
     session_destroy();
+}*/
+if(!isset($_SESSION)) {
+    session_start();
 }
+/*if(!isset($_SESSION["idUsuario"])){
+    header("Location: ../index.php");
+    session_destroy();
+}*/
+$_SESSION['idUsuario'] = 1;
+$_SESSION['usuario'] = "admin";
+$_SESSION['sucursal'] = 1;
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
 include_once (HTML_PATH. "Empeno/menuEmpeno.php")
 ?>
@@ -56,7 +66,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     <tr>
                         <td style="width: 200px" align="left">
                             <label>Contrato:</label>
-                            <input type="text" id="idContratoDesempeno" name="contrato" size="10" value="2"
+                            <input type="text" id="idContratoDesempeno" name="contrato" size="10" value="38"
                                    style="text-align:right"/>
                         </td>
                     </tr>

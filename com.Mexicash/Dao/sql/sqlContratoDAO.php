@@ -51,7 +51,7 @@ class sqlContratoDAO
                 "fecha_Alm, id_Estatus, cotitular,beneficiario, plazo,tasa,alm,seguro,iva,dias, fecha_creacion, fecha_modificacion, usuario,sucursal,tipoContrato) VALUES ".
                 "('" . $id_Cliente . "', '" . $fechaVencimiento . "', '" . $totalAvaluo . "', '" . $totalPrestamo .
                 "', '" . $totalInteres . "', '" . $sumaInteresPrestamo . "',  '" . $fechaAlm .
-                "', '" .  $estatus . "', '" . $beneficiario . "','" . $cotitular . "','" . $plazo . "','" . $tasa . "','" . $alm . "','" . $seguro . "','" . $iva . "','" . $dias . "','" . $fechaCreacion . "', ". "'" . $fechaModificacion . "', '" . $usuario . "','" . $sucursal . "',1)";
+                "', '" .  $estatus . "', '" . $cotitular . "','" . $beneficiario . "','" . $plazo . "','" . $tasa . "','" . $alm . "','" . $seguro . "','" . $iva . "','" . $dias . "','" . $fechaCreacion . "', ". "'" . $fechaModificacion . "', '" . $usuario . "','" . $sucursal . "',1)";
 
             if ($ps = $this->conexion->prepare($insertaContrato)) {
                 if ($ps->execute()) {
