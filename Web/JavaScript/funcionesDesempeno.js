@@ -72,6 +72,7 @@ function buscarDatosConDes() {
             data: dataEnviar,
             dataType: "json",
             success: function (datos) {
+                alert(datos)
                 for (i = 0; i < datos.length; i++) {
 
                     var FechaEmp = datos[i].FechaEmp;
@@ -97,8 +98,8 @@ function buscarDatosConDes() {
                     if (Dias === null) {Dias = '';}
 
 
-                    InteresesDes = parseFloat(InteresesDes);
-                    TotalPrest =  parseFloat(TotalPrest);
+/*                    InteresesDes = parseFloat(InteresesDes);
+                    TotalPrest =  parseFloat(TotalPrest);*/
                     TasaDesc = parseFloat(TasaDesc);
                     AlmacDesc =  parseFloat(AlmacDesc);
                     SeguDesc = parseFloat(SeguDesc);
