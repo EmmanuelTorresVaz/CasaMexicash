@@ -76,7 +76,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     <tr>
                         <td style="width: 200px" align="left">
                             <label>Contrato:</label>
-                            <input type="text" id="idContratoDesempeno" name="contrato" size="10" value=""
+                            <input type="text" id="idContratoDesempeno" name="contrato" size="10" value="38"
                                    style="text-align:right"/>
                         </td>
                     </tr>
