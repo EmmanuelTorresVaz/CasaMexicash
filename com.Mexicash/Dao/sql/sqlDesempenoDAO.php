@@ -31,7 +31,46 @@ class sqlDesempenoDAO
                                 WHERE id_Contrato=$idContrato";
             if ($ps = $this->conexion->prepare($updateDesempeno)) {
                 if ($ps->execute()) {
-                    $updateArticulos = "UPDATE articulo_tbl SET id_Estatus=2
+                    $updateArticulos = "UPDATE articulo_tbl SET id_Estatus=2, fecha_modificacion = '$fechaModificacion',usuario= $usuario 
+                                WHERE id_Contrato=$idContrato";
+                    if ($ps = $this->conexion->prepare($updateArticulos)) {
+                        if ($ps->execute()) {
+                            $verdad = mysqli_stmt_affected_rows($ps);
+                        } else {
+                            $verdad = -1;
+                        }
+                    } else {
+                        $verdad = -1;
+                    }
+                } else {
+                    $verdad = -1;
+                }
+            } else {
+                $verdad = -1;
+            }
+        } catch (Exception $exc) {
+            $verdad = -1;
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+        //return $verdad;
+        echo $verdad;
+    }
+
+    public function generarDesempenoAuto($pago, $idImporte, $idContrato)
+    {
+        // TODO: Implement guardaCiente() method.
+        try {
+            $fechaModificacion = date('Y-m-d H:i:s');
+            $usuario = $_SESSION["idUsuario"];
+            $updateDesempeno = "UPDATE contrato_tbl SET pago=$pago,fecha_Pago='$fechaModificacion' ,
+                                descuento=$idImporte, usuario= $usuario ,
+                                fecha_modificacion = '$fechaModificacion',	id_Estatus=2
+                                WHERE id_Contrato=$idContrato";
+            if ($ps = $this->conexion->prepare($updateDesempeno)) {
+                if ($ps->execute()) {
+                    $updateArticulos = "UPDATE auto_tbl SET id_Estatus=2, fecha_modificacion = '$fechaModificacion',usuario= $usuario 
                                 WHERE id_Contrato=$idContrato";
                     if ($ps = $this->conexion->prepare($updateArticulos)) {
                         if ($ps->execute()) {
@@ -216,12 +255,23 @@ class sqlDesempenoDAO
     {
         $datos = array();
         try {
-            $buscar = "SELECT Con.fecha_creacion as FechaEmp,DATE(Con.fecha_creacion) as FechaEmpConvert, Con.fecha_Vencimiento as FechaVenc, Con.fecha_Movimiento as FechaCom,
-                        CONCAT (Inte.tipo_interes, ' ', Inte.plazo, ' ', Inte.periodo) as PlazoDes, Inte.tasa as TasaDesc,
-                        Inte.alm as AlmacDesc, Inte.seguro as SeguDesc, Inte.iva as IvaDesc, Con.intereses as InteresesDes,
-                         Inte.dias as Dias, Con.total_Prestamo as TotalPrest
+            $buscar = "SELECT
+                        Con.fecha_creacion AS FechaEmp,
+                        DATE(Con.fecha_creacion) AS FechaEmpConvert,
+                        Con.fecha_Vencimiento AS FechaVenc,
+                        Con.fecha_Alm AS FechaAlm,
+                        Con.plazo AS PlazoDesc,
+                        Con.tasa AS TasaDesc,
+                        Con.alm AS AlmacDesc,
+                        Con.seguro AS SeguDesc,
+                        Con.iva AS IvaDesc,
+                        Con.dias AS Dias,
+                        Con.total_Prestamo AS TotalPrestamo,
+                        Con.total_Interes AS TotalInteres,
+                        Con.suma_InteresPrestamo AS TotalInteresPrestamo,
+                        Con.polizaSeguro AS PolizaSeguro,
+                        Con.gps AS GPS
                         FROM contrato_tbl as Con
-                        INNER JOIN cat_interes as Inte  on Con.id_Interes = Inte.id_interes
                         WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 2  and Con.id_Estatus= 1";
 
             $rs = $this->conexion->query($buscar);
@@ -232,15 +282,18 @@ class sqlDesempenoDAO
                         "FechaEmp" => $row["FechaEmp"],
                         "FechaEmpConvert" => $row["FechaEmpConvert"],
                         "FechaVenc" => $row["FechaVenc"],
-                        "FechaCom" => $row["FechaCom"],
-                        "PlazoDes" => $row["PlazoDes"],
+                        "FechaAlm" => $row["FechaAlm"],
+                        "PlazoDesc" => $row["PlazoDesc"],
                         "TasaDesc" => $row["TasaDesc"],
                         "AlmacDesc" => $row["AlmacDesc"],
                         "SeguDesc" => $row["SeguDesc"],
                         "IvaDesc" => $row["IvaDesc"],
                         "Dias" => $row["Dias"],
-                        "InteresesDes" => $row["InteresesDes"],
-                        "TotalPrest" => $row["TotalPrest"]
+                        "TotalPrestamo" => $row["TotalPrestamo"],
+                        "TotalInteres" => $row["TotalInteres"],
+                        "TotalInteresPrestamo" => $row["TotalInteresPrestamo"],
+                        "PolizaSeguro" => $row["PolizaSeguro"],
+                        "GPS" => $row["GPS"]
                     ];
                     array_push($datos, $data);
                 }
@@ -252,6 +305,8 @@ class sqlDesempenoDAO
         }
         echo json_encode($datos);
     }
+
+
 
     public function buscarDetalleDesAuto($idContratoDes)
     {
@@ -398,5 +453,38 @@ class sqlDesempenoDAO
         }
         echo json_encode($datos);
     }
+    public function estatusContratoAuto($idContratoDes)
+    {
+        $datos = array();
+        try {
+            $buscar = "SELECT Con.id_Contrato as Contrato, Con.fecha_creacion as Fecha,
+                        CONCAT (Cli.nombre, ' ',Cli.apellido_Pat,' ', Cli.apellido_Mat) as NombreCompleto,
+                        Est.descripcion as Estatus, Con.id_Estatus as idEstatus FROM contrato_tbl as Con
+                        INNER JOIN cliente_tbl as Cli on Con.id_Cliente = Cli.id_Cliente
+                        INNER JOIN cat_estatus as Est on Con.id_Estatus = Est.id_Estatus
+                        WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 2";
+
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "Contrato" => $row["Contrato"],
+                        "Fecha" => $row["Fecha"],
+                        "NombreCompleto" => $row["NombreCompleto"],
+                        "Estatus" => $row["Estatus"],
+                        "idEstatus" => $row["idEstatus"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+        echo json_encode($datos);
+    }
+
 
 }

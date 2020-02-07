@@ -1,6 +1,5 @@
 //consultar contrato
 function buscarContratoDes() {
-    $("#idContratoBusqueda").val('');
     estatusContrato();
 }
 
@@ -261,18 +260,13 @@ function buscarDetalleDes() {
 }
 
 
-//consultar contrato Auto
-function buscarContratoDesAuto() {
-    buscarContratoDesAuto();
-}
-
 //consultar contrato
 function buscarContratoDesAuto() {
-    estatusContrato();
+    estatusContratoAuto();
 }
 
-function estatusContrato(){
-    var contratoDesp = $("#idContratoDesempeno").val();
+function estatusContratoAuto(){
+    var contratoDesp = $("#idContratoDesempenoAuto").val();
     if (contratoDesp != '') {
         var dataEnviar = {
             "tipe": 10,
@@ -383,30 +377,25 @@ function buscarDatosConDesAuto() {
             data: dataEnviar,
             dataType: "json",
             success: function (datos) {
+                $("#idContratoBusqueda").val(contratoDesp);
                 for (i = 0; i < datos.length; i++) {
                     var FechaEmp = datos[i].FechaEmp;
+                    var FechaEmpConvert = datos[i].FechaEmpConvert;
                     var FechaVenc = datos[i].FechaVenc;
-                    var FechaCom = datos[i].FechaCom;
-                    var PlazoDes = datos[i].PlazoDes;
+                    var FechaAlm = datos[i].FechaAlm;
+                    var PlazoDesc = datos[i].PlazoDesc;
                     var TasaDesc = datos[i].TasaDesc;
                     var AlmacDesc = datos[i].AlmacDesc;
                     var SeguDesc = datos[i].SeguDesc;
                     var IvaDesc = datos[i].IvaDesc;
                     var Dias = datos[i].Dias;
-                    var InteresesDes = datos[i].InteresesDes;
-                    var TotalPrest = datos[i].TotalPrest;
-
-                    if (FechaEmp === null) {
-                        FechaEmp = '';
-                    }
-                    if (FechaVenc === null) {
-                        FechaVenc = '';
-                    }
-                    if (FechaCom === null) {
-                        FechaCom = '';
-                    }
-                    if (PlazoDes === null) {
-                        PlazoDes = '';
+                    var TotalPrestamo = datos[i].TotalPrestamo;
+                    var TotalInteres = datos[i].TotalInteres;
+                    var TotalInteresPrestamo = datos[i].TotalInteresPrestamo;
+                    var PolizaSeguro = datos[i].PolizaSeguro;
+                    var GPS = datos[i].GPS;
+                    if (PlazoDesc === null) {
+                        PlazoDesc = '';
                     }
                     if (TasaDesc === null) {
                         TasaDesc = '';
@@ -423,70 +412,89 @@ function buscarDatosConDesAuto() {
                     if (Dias === null) {
                         Dias = '';
                     }
-                    if (InteresesDes === null) {
-                        InteresesDes = '';
-                    }
-                    if (TotalPrest === null) {
-                        TotalPrest = '';
-                    }
-                    if (FechaCom == '0000-00-00 00:00:00') {
-                        FechaCom = '';
-                    }
 
-                    InteresesDes = parseFloat(InteresesDes);
-                    TotalPrest = parseFloat(TotalPrest);
+
+                    IvaDesc = "0." + IvaDesc;
+
                     TasaDesc = parseFloat(TasaDesc);
                     AlmacDesc = parseFloat(AlmacDesc);
                     SeguDesc = parseFloat(SeguDesc);
                     IvaDesc = parseFloat(IvaDesc);
+                    var tasaIvaTotal = TasaDesc + AlmacDesc + IvaDesc;
                     Dias = parseInt(Dias);
+                    TotalPrestamo = parseFloat(TotalPrestamo);
+                    TotalInteres = parseFloat(TotalInteres);
+                    TotalInteresPrestamo = parseFloat(TotalInteresPrestamo);
 
-                    //Prueba dias vencidos
-                    var diasVencidos = 10;
-                    //Se resta el prestamo a los intereses
-                    var interesTotal = InteresesDes - TotalPrest;
+
+                    var fechaHoy = new Date();
+                    var FechaVencFormat = formatStringToDate(FechaVenc);
+                    var diasVencidos = 0;
+                    if (FechaVencFormat < fechaHoy) {
+                        var diasdif = fechaHoy.getTime() - FechaVencFormat.getTime();
+                        diasVencidos = Math.round(diasdif / (1000 * 60 * 60 * 24));
+                    }
+                    var FechaAlmFormat = formatStringToDate(FechaAlm);
+                    if (FechaAlmFormat < fechaHoy) {
+                        $("#trAlmoneda").show();
+                    }
+
+
                     //Se calcula el interes por día
-                    var interesDia = interesTotal / Dias;
+                    var interesDia = TotalInteres / Dias;
                     //Se saca los porcentajes mensuales
-                    var calculaInteres = Math.floor(TotalPrest * TasaDesc) / 100;
-                    var calculaALm = Math.floor(TotalPrest * AlmacDesc) / 100;
-                    var calculaSeg = Math.floor(TotalPrest * SeguDesc) / 100;
-                    var calculaIva = Math.floor(TotalPrest * IvaDesc) / 100;
-                    //Se calculan los intereses por día
+                    var calculaInteres = Math.floor(TotalPrestamo * TasaDesc) / 100;
+                    var calculaALm = Math.floor(TotalPrestamo * AlmacDesc) / 100;
+                    var calculaSeg = Math.floor(TotalPrestamo * SeguDesc) / 100;
+                    var calculaIva = Math.floor(TotalPrestamo * IvaDesc) / 100;
+
+
                     var diaInteres = calculaInteres / Dias;
                     var diaAlm = calculaALm / Dias;
                     var diaSeg = calculaSeg / Dias;
                     var diaIva = calculaIva / Dias;
 
+
+                    //Se calculan los intereses por día
                     var totalVencInteres = diaInteres * diasVencidos;
                     var totalVencAlm = diaAlm * diasVencidos;
                     var totalVencSeg = diaSeg * diasVencidos;
                     var totalVencIVA = diaIva * diasVencidos;
 
+                    var interesGenerado = totalVencInteres + totalVencAlm + totalVencSeg + totalVencIVA;
+
+                    var TotalFinal = TotalPrestamo + interesGenerado;
+
+                    PolizaSeguro = parseFloat(PolizaSeguro);
+                    GPS = parseFloat(GPS);
 
                     $("#idDatosContratoDesAuto").val("Fecha Empeño :" + FechaEmp + "\n" +
                         "Fecha Vencimiento :" + FechaVenc + "\n" +
-                        "Fecha Comercialización :" + FechaCom + "\n" +
-                        "Días transcurridos :Prue" + diasVencidos + "\n" +
-                        "Días transcurridos interés :Prue" + diasVencidos + "\n" +
-                        "Plazo :" + PlazoDes + "\n" +
-                        "Tasa :" + TasaDesc + "\n" +
+                        "Fecha Comercialización :" + FechaAlm + "\n" +
+                        "Días transcurridos :" + diasVencidos + "\n" +
+                        "Días transcurridos interés :" + diasVencidos + "\n" +
+                        "Plazo :" + PlazoDesc + "\n" +
+                        "Tasa :" + tasaIvaTotal + "\n" +
                         "Interes diario : $" + interesDia.toFixed(2) + "\n" +
                         "Interes : $" + totalVencInteres.toFixed(2) + "\n" +
                         "Almacenaje : $" + totalVencAlm.toFixed(2) + "\n" +
                         "Seguro : $" + totalVencSeg.toFixed(2) + "\n" +
                         "Moratorios : $Preguntar" + "\n" +
                         "IVA : $" + totalVencIVA.toFixed(2) + "\n" +
+                        "Poliza Seguro :"  + PolizaSeguro.toFixed(2) + "\n" +
+                        "GPS : " + GPS.toFixed(2) + "\n" +
                         "Desempeño Ext : $ Preguntar");
 
-                    var totalAPagar = TotalPrest + interesTotal;
                     document.getElementById('idConTDDesAuto').innerHTML = contratoDesp;
-                    document.getElementById('idPresTDDesAuto').innerHTML = TotalPrest.toFixed(2);
-                    document.getElementById('idInteresTDDesAuto').innerHTML = interesTotal.toFixed(2);
-                    document.getElementById('totalAPagarTDAuto').innerHTML = totalAPagar.toFixed(2);
+                    document.getElementById('idPresTDDesAuto').innerHTML = TotalPrestamo.toFixed(2);
+                    document.getElementById('idInteresTDDesAuto').innerHTML = interesGenerado.toFixed(2);
+                    document.getElementById('totalAPagarTDAuto').innerHTML = TotalFinal.toFixed(2);
+                    $("#btnGenerar").prop('disabled', false);
+                    $("#totalTD").show();
                 }
             }
         });
+
     }
 }
 
@@ -551,7 +559,6 @@ function checkDescuento() {
         $("#idImporte").prop('disabled', true);
     }
 }
-
 function calculaDescuento() {
     var descuento = $("#idPorcentaje").val();
     var descuento = parseInt(descuento);
@@ -571,7 +578,6 @@ function calculaDescuento() {
 
     }
 }
-
 function reCalculaDescuento() {
     var total = $("#totalAPagarTD").text();
     var total = parseFloat(total);
@@ -609,4 +615,81 @@ function cancelarDesempeno() {
     $("#totalDecuentoTD").text('')
     $("#totalTD").hide();
     $("#descuentoTD").hide();
+
+    $("#idConTDDes").text('');
+    $("#idPresTDDes").text('');
+    $("#idInteresTDDes").text('');
+}
+
+function checkDescuentoAuto() {
+    var checkBox = document.getElementById("idDescuentoAuto");
+    if (checkBox.checked == true) {
+        $("#idPorcentajeAuto").prop('disabled', false);
+        $("#idImporteAuto").prop('disabled', false);
+    } else {
+        $("#idPorcentajeAuto").prop('disabled', true);
+        $("#idImporteAuto").prop('disabled', true);
+    }
+}
+function calculaDescuentoAuto() {
+    var descuento = $("#idPorcentajeAuto").val();
+    var descuento = parseInt(descuento);
+    if (descuento > 10) {
+        alert("El descuento no puede ser mayor al 10%");
+    } else {
+        var total = $("#totalAPagarTDAuto").text();
+        var total = parseFloat(total);
+
+        var total = parseFloat(total);
+        var importe = Math.floor(total * descuento) / 100;
+        importe = importe.toFixed(2);
+        var descuento = total - importe;
+        $("#idImporteAuto").val(importe);
+        document.getElementById('totalDecuentoTD').innerHTML = descuento.toFixed(2);
+        $("#descuentoTD").show();
+
+    }
+}
+function reCalculaDescuentoAuto() {
+    var total = $("#totalAPagarTDAuto").text();
+    var total = parseFloat(total);
+    var importe = $("#idImporteAuto").val();
+    var importe = parseFloat(importe);
+    var descuento = total - importe;
+    document.getElementById('totalDecuentoTD').innerHTML = descuento.toFixed(2);
+    $("#totalDecuentoTD").show();
+}
+function generarDesempenoAuto() {
+    var dataEnviar = {
+        "pago":  $("#totalDecuentoTD").text(),
+        "idContrato":  $("#idContratoBusqueda").val(),
+        "descuento": $("#idImporteAuto").val()
+    };
+
+    $.ajax({
+        data: dataEnviar,
+        url: '../../../com.Mexicash/Controlador/Desempeno/generarDesempenoAuto.php',
+        type: 'post',
+        success: function (response) {
+            if (response>0) {
+                cancelarDesempenoAuto();
+                alertify.success("Desempeño generado.");
+            } else {
+                alertify.error("Error al generar desempeño.");
+            }
+        },
+    })
+}
+function cancelarDesempenoAuto() {
+    $("#idFormDesAuto")[0].reset();
+    $("#totalAPagarTDAuto").text('');
+    $("#totalDecuentoTD").text('');
+    $("#totalTD").hide();
+    $("#descuentoTD").hide();
+
+
+    $("#idConTDDesAuto").text('');
+    $("#idPresTDDesAuto").text('');
+    $("#idInteresTDDesAuto").text('');
+
 }

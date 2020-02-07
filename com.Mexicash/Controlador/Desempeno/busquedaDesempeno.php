@@ -26,6 +26,9 @@ if($idtipe==1){
 }else if($idtipe==9){
     //Busqueda de estatus
     $sqlDesempeno->estatusContrato($idContratoDes) ;
+}else if($idtipe==10){
+    //Busqueda de estatus
+    $sqlDesempeno->estatusContratoAuto($idContratoDes) ;
 }
 
 

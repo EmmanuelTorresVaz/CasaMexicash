@@ -21,7 +21,21 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
             resize: none;
         }
     </style>
+    <script type="application/javascript">
+        $(document).ready(function () {
+            $("#trAlmoneda").hide();
+            $("#totalTD").hide();
+            $("#descuentoTD").hide();
+            $("#idPorcentajeAuto").blur(function(){
+                calculaDescuentoAuto();
+            });
+            $("#idImporteAuto").blur(function(){
+                reCalculaDescuentoAuto();
+            });
+            $("#btnGenerar").prop('disabled', true);
 
+        });
+    </script>
 </head>
 <body>
 <form id="idFormDesAuto" name="formDesAuto">
@@ -30,7 +44,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
         <h2>Desempeño Auto</h2>
         <br>
     </div>
-    <div id="contenedor" class="container border border-danger">
+    <div id="contenedor" class="container">
         <div class="row">
             <div class="col col-lg-5 border border-primary ">
                 <table border="0" width="100%">
@@ -48,7 +62,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     <tr>
                         <td style="width: 200px" align="left">
                             <label>Contrato:</label>
-                            <input type="text" id="idContratoDesempenoAuto" name="contrato" size="10" value="2"
+                            <input type="text" id="idContratoDesempenoAuto" name="contrato" size="10" value=""
                                    style="text-align:right"/>
                         </td>
                     </tr>
@@ -59,7 +73,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <textarea rows="5" cols="45" id="idDatosClienteDesAuto" class="textArea" disabled>
+                            <textarea rows="6" cols="45" id="idDatosClienteDesAuto" class="textArea" disabled>
                             </textarea>
                         </td>
                     </tr>
@@ -70,7 +84,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <textarea rows="14" cols="45" id="idDatosContratoDesAuto" class="textArea" disabled>
+                            <textarea rows="16" cols="45" id="idDatosContratoDesAuto" class="textArea" disabled>
                             </textarea>
                         </td>
                     </tr>
@@ -118,45 +132,52 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                         </td>
                     </tr>
                     <tr>
-                        <td style="width: 200px">
-                            <div>
-                                <h4>Descuento Interes</h4>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="idCheckPorcentaje">
-                                    <label class="form-check-label" for="automovil">Porcentaje</label>
-                                    <label class="form-check-label">&nbsp;0</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="idCheckImporte">
-                                    <label class="form-check-label" for="automovil">Importe</label>
-                                    <label class="form-check-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0</label>
-                                </div>
-                            </div>
+                        <td colspan="2" style="width: 100px">
+                            <label class="form-check-label">Descuento Interes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <input type="checkbox" class="form-check-input" id="idDescuentoAuto" onclick="checkDescuentoAuto()">
                         </td>
-                        <td style="width: 200px"></td>
-                        <td style="width: 200px"></td>
+                        <td align="right" id="totalTD"><h3>Total a Pagar: $<label id="totalAPagarTDAuto"></label></h3></td>
                     </tr>
                     <tr>
-                        <td colspan="2">
+                        <td colspan="1" style="width: 100px">
+                            <label >Porcentaje</label>
                         </td>
-                        <td><h2>Total a Pagar:</h2></td>
+                        <td colspan="1" align="center">
+                            <input type="text" id="idPorcentajeAuto" name="porcentaje"
+                                   style="width: 100px; text-align: right" disabled />
+                        </td>
+                        <td align="right" id="descuentoTD"><h3>Con Descuento: $<label id="totalDecuentoTD"></label></h3></td>
                     </tr>
                     <tr>
-                        <td colspan="2">
+                        <td colspan="1" style="width: 100px">
+                            <label >Importe</label>
                         </td>
-                        <td><h1><label id="totalAPagarTDAuto"></label></h1></td>
+                        <td colspan="1" align="center">
+                            <input type="text" id="idImporteAuto" name="importe"
+                                   style="width: 100px; text-align: right" disabled />
+                        </td>
+                        <td style="width: 400px">
+                            &nbsp;
+                        </td>
                     </tr>
-                    <tr>
-                        <td colspan="3">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><h1>Si esta en almoneda</h1></td>
-                        <td colspan="2">
-                        </td>
-
+                    <tr id="trAlmoneda" style="color:#FF0000" >
+                        <td colspan="3"><h3>¡Contrato en almoneda!</h3></td>
                     </tr>
                 </table>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-lg-7">
+                <input type="text" id="idContratoBusqueda" name="contratoBus"
+                       style="width: 100px;" class="invisible" />
+            </div>
+            <div class="col col-lg-5">
+                <input type="button" class="btn btn-success" value="prueba" onclick="formatStringToDate('2019-03-05')">
+                <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelarDesempenoAuto()">&nbsp;
+                <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
+                <input type="button" class="btn btn-primary" value="Generar" id="btnGenerar" onclick="generarDesempenoAuto()" disabled>&nbsp;
+                <input type="button" class="btn btn-danger" value="Salir" onclick="location.href='vInicio.php'">&nbsp;
             </div>
         </div>
     </div>
