@@ -171,25 +171,28 @@ function generarContratoAuto() {
             chkLicencia = 1;
         }
 
+        var prestamoAuto = $("#idTotalPrestamoAuto").val();
+        var interesAuto = calcularInteresAuto(prestamoAuto);
 
         var dataEnviar = {
             "idClienteAuto": clienteEmpeno,
-            "id_Interes": $("#tipoInteresEmpeno").val(),
-            "folio": '',
-            "fechaVencimiento": $("#idFechaVencAuto").val(),
+            "fechaVencimiento": $("#idFecVencimiento").text(),
             "totalAvaluo":  $("#idTotalAvaluoAuto").val(),
             "totalPrestamo":  $("#idTotalPrestamoAuto").val(),
-            "abono": '',
-            "intereses": '',
-            "pago": '',
-            "fecha_Alm": '',
-            "fecha_Movimiento": '',
-            "origen_Folio": '',
-            "dest_Folio": '',
+            "total_Interes": interesAuto,
+            "sumaInteresPrestamo": $("#idSumaInteresPrestamo").val(),
+            "polizaSeguro": $("#idPolizaSeguro").val(),
+            "gps": $("#idGPS").val(),
+            "fecha_Alm": $("#idFechaAlm").val(),
             "estatus": 1,
-            "observaciones": '',
-            "cotitular": $("#idNombreBen").val(),
-            "beneficiario": $("#nombreCotitular").val(),
+            "beneficiario": $("#idNombreBen").val(),
+            "cotitular": $("#nombreCotitular").val(),
+            "plazo": $("#idPlazo").text(),
+            "tasa": $("#idTasaPorcen").text(),
+            "alm": $("#idAlmPorcen").text(),
+            "seguro": $("#idSeguroPorcen").text(),
+            "iva": $("#idIvaPorcen").text(),
+            "dias": $("#diasInteres").val(),
             "idTipoVehiculo": $("#idTipoVehiculo").val(),
             "idMarca": $("#idMarca").val(),
             "idModelo": $("#idModelo").val(),
@@ -208,6 +211,8 @@ function generarContratoAuto() {
             "idTarjeta": $("#idTarjeta").val(),
             "idPoliza": $("#idPoliza").val(),
             "idFechaVencAuto": $("#idFechaVencAuto").val(),
+
+
             "idTipoPoliza": $("#idTipoPoliza").val(),
             "idObservacionesAuto": $("#idObservacionesAuto").val().trim(),
             "idCheckTarjeta": chkTarjeta,
@@ -223,6 +228,7 @@ function generarContratoAuto() {
             url: '../../../com.Mexicash/Controlador/cAuto.php',
             type: 'post',
             success: function (response) {
+                alert(response)
                 if (response) {
                     $("#idFormAuto")[0].reset();
                     alertify.success("Contrato generado exitosamente.");

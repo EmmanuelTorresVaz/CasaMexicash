@@ -5,22 +5,23 @@ class Auto
 {
     //Contrato
     private $idClienteAuto;
-    private $id_Interes;
-    private $folio;
     private $fechaVencimiento;
     private $totalAvaluo;
     private $totalPrestamo;
-    private $abono;
-    private $intereses;
-    private $pago;
+    private $total_Interes;
+    private $sumaInteresPrestamo;
+    private $polizaSeguroCost;
+    private $gps;
     private $fecha_Alm;
-    private $fecha_Movimiento;
-    private $origen_Folio;
-    private $dest_Folio;
     private $estatus;
-    private $observaciones;
     private $beneficiario;
     private $cotitular;
+    private $plazo;
+    private $tasa;
+    private $alm;
+    private $seguro;
+    private $iva;
+    private $dias;
     //Auto
     private $idTipoVehiculo;
     private $idMarca;
@@ -53,22 +54,23 @@ class Auto
     /**
      * Auto constructor.
      * @param $idClienteAuto
-     * @param $id_Interes
-     * @param $folio
      * @param $fechaVencimiento
      * @param $totalAvaluo
      * @param $totalPrestamo
-     * @param $abono
-     * @param $intereses
-     * @param $pago
+     * @param $total_Interes
+     * @param $sumaInteresPrestamo
+     * @param $polizaSeguroCost
+     * @param $gps
      * @param $fecha_Alm
-     * @param $fecha_Movimiento
-     * @param $origen_Folio
-     * @param $dest_Folio
      * @param $estatus
-     * @param $observaciones
      * @param $beneficiario
      * @param $cotitular
+     * @param $plazo
+     * @param $tasa
+     * @param $alm
+     * @param $seguro
+     * @param $iva
+     * @param $dias
      * @param $idTipoVehiculo
      * @param $idMarca
      * @param $idModelo
@@ -97,25 +99,26 @@ class Auto
      * @param $idCheckPoliza
      * @param $idCheckLicencia
      */
-    public function __construct($idClienteAuto, $id_Interes, $folio, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $abono, $intereses, $pago, $fecha_Alm, $fecha_Movimiento, $origen_Folio, $dest_Folio, $estatus, $observaciones, $beneficiario, $cotitular, $idTipoVehiculo, $idMarca, $idModelo, $idAnio, $idColor, $idPlacas, $idFactura, $idKms, $idAgencia, $idMotor, $idSerie, $idVehiculo, $idRepuve, $idGasolina, $idAseguradora, $idTarjeta, $idPoliza, $idFecVencimientoAuto, $idTipoPoliza, $idObservacionesAuto, $idCheckTarjeta, $idCheckFactura, $idCheckINE, $idCheckImportacion, $idCheckTenecia, $idCheckPoliza, $idCheckLicencia)
+    public function __construct($idClienteAuto, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $total_Interes, $sumaInteresPrestamo, $polizaSeguroCost, $gps,$fecha_Alm, $estatus, $beneficiario, $cotitular, $plazo, $tasa, $alm, $seguro, $iva, $dias, $idTipoVehiculo, $idMarca, $idModelo, $idAnio, $idColor, $idPlacas, $idFactura, $idKms, $idAgencia, $idMotor, $idSerie, $idVehiculo, $idRepuve, $idGasolina, $idAseguradora, $idTarjeta, $idPoliza, $idFecVencimientoAuto, $idTipoPoliza, $idObservacionesAuto, $idCheckTarjeta, $idCheckFactura, $idCheckINE, $idCheckImportacion, $idCheckTenecia, $idCheckPoliza, $idCheckLicencia)
     {
         $this->idClienteAuto = $idClienteAuto;
-        $this->id_Interes = $id_Interes;
-        $this->folio = $folio;
         $this->fechaVencimiento = $fechaVencimiento;
         $this->totalAvaluo = $totalAvaluo;
         $this->totalPrestamo = $totalPrestamo;
-        $this->abono = $abono;
-        $this->intereses = $intereses;
-        $this->pago = $pago;
+        $this->total_Interes = $total_Interes;
+        $this->sumaInteresPrestamo = $sumaInteresPrestamo;
+        $this->poliza_SeguroCost = $polizaSeguroCost;
+        $this->gps = $gps;
         $this->fecha_Alm = $fecha_Alm;
-        $this->fecha_Movimiento = $fecha_Movimiento;
-        $this->origen_Folio = $origen_Folio;
-        $this->dest_Folio = $dest_Folio;
         $this->estatus = $estatus;
-        $this->observaciones = $observaciones;
         $this->beneficiario = $beneficiario;
         $this->cotitular = $cotitular;
+        $this->plazo = $plazo;
+        $this->tasa = $tasa;
+        $this->alm = $alm;
+        $this->seguro = $seguro;
+        $this->iva = $iva;
+        $this->dias = $dias;
         $this->idTipoVehiculo = $idTipoVehiculo;
         $this->idMarca = $idMarca;
         $this->idModelo = $idModelo;
@@ -148,6 +151,54 @@ class Auto
     /**
      * @return mixed
      */
+    public function getPolizaSeguroCost()
+    {
+        return $this->polizaSeguroCost;
+    }
+
+    /**
+     * @param mixed $polizaSeguroCost
+     */
+    public function setPolizaSeguroCost($polizaSeguroCost): void
+    {
+        $this->polizaSeguroCost = $polizaSeguroCost;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPolizaSeguro()
+    {
+        return $this->polizaSeguro;
+    }
+
+    /**
+     * @param mixed $polizaSeguro
+     */
+    public function setPolizaSeguro($polizaSeguro): void
+    {
+        $this->polizaSeguro = $polizaSeguro;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGps()
+    {
+        return $this->gps;
+    }
+
+    /**
+     * @param mixed $gps
+     */
+    public function setGps($gps): void
+    {
+        $this->gps = $gps;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getIdClienteAuto()
     {
         return $this->idClienteAuto;
@@ -159,38 +210,6 @@ class Auto
     public function setIdClienteAuto($idClienteAuto): void
     {
         $this->idClienteAuto = $idClienteAuto;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdInteres()
-    {
-        return $this->id_Interes;
-    }
-
-    /**
-     * @param mixed $id_Interes
-     */
-    public function setIdInteres($id_Interes): void
-    {
-        $this->id_Interes = $id_Interes;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFolio()
-    {
-        return $this->folio;
-    }
-
-    /**
-     * @param mixed $folio
-     */
-    public function setFolio($folio): void
-    {
-        $this->folio = $folio;
     }
 
     /**
@@ -244,49 +263,33 @@ class Auto
     /**
      * @return mixed
      */
-    public function getAbono()
+    public function getTotalInteres()
     {
-        return $this->abono;
+        return $this->total_Interes;
     }
 
     /**
-     * @param mixed $abono
+     * @param mixed $total_Interes
      */
-    public function setAbono($abono): void
+    public function setTotalInteres($total_Interes): void
     {
-        $this->abono = $abono;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIntereses()
-    {
-        return $this->intereses;
-    }
-
-    /**
-     * @param mixed $intereses
-     */
-    public function setIntereses($intereses): void
-    {
-        $this->intereses = $intereses;
+        $this->total_Interes = $total_Interes;
     }
 
     /**
      * @return mixed
      */
-    public function getPago()
+    public function getSumaInteresPrestamo()
     {
-        return $this->pago;
+        return $this->sumaInteresPrestamo;
     }
 
     /**
-     * @param mixed $pago
+     * @param mixed $sumaInteresPrestamo
      */
-    public function setPago($pago): void
+    public function setSumaInteresPrestamo($sumaInteresPrestamo): void
     {
-        $this->pago = $pago;
+        $this->sumaInteresPrestamo = $sumaInteresPrestamo;
     }
 
     /**
@@ -308,54 +311,6 @@ class Auto
     /**
      * @return mixed
      */
-    public function getFechaMovimiento()
-    {
-        return $this->fecha_Movimiento;
-    }
-
-    /**
-     * @param mixed $fecha_Movimiento
-     */
-    public function setFechaMovimiento($fecha_Movimiento): void
-    {
-        $this->fecha_Movimiento = $fecha_Movimiento;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getOrigenFolio()
-    {
-        return $this->origen_Folio;
-    }
-
-    /**
-     * @param mixed $origen_Folio
-     */
-    public function setOrigenFolio($origen_Folio): void
-    {
-        $this->origen_Folio = $origen_Folio;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDestFolio()
-    {
-        return $this->dest_Folio;
-    }
-
-    /**
-     * @param mixed $dest_Folio
-     */
-    public function setDestFolio($dest_Folio): void
-    {
-        $this->dest_Folio = $dest_Folio;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getEstatus()
     {
         return $this->estatus;
@@ -367,22 +322,6 @@ class Auto
     public function setEstatus($estatus): void
     {
         $this->estatus = $estatus;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getObservaciones()
-    {
-        return $this->observaciones;
-    }
-
-    /**
-     * @param mixed $observaciones
-     */
-    public function setObservaciones($observaciones): void
-    {
-        $this->observaciones = $observaciones;
     }
 
     /**
@@ -415,6 +354,102 @@ class Auto
     public function setCotitular($cotitular): void
     {
         $this->cotitular = $cotitular;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlazo()
+    {
+        return $this->plazo;
+    }
+
+    /**
+     * @param mixed $plazo
+     */
+    public function setPlazo($plazo): void
+    {
+        $this->plazo = $plazo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTasa()
+    {
+        return $this->tasa;
+    }
+
+    /**
+     * @param mixed $tasa
+     */
+    public function setTasa($tasa): void
+    {
+        $this->tasa = $tasa;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAlm()
+    {
+        return $this->alm;
+    }
+
+    /**
+     * @param mixed $alm
+     */
+    public function setAlm($alm): void
+    {
+        $this->alm = $alm;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSeguro()
+    {
+        return $this->seguro;
+    }
+
+    /**
+     * @param mixed $seguro
+     */
+    public function setSeguro($seguro): void
+    {
+        $this->seguro = $seguro;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIva()
+    {
+        return $this->iva;
+    }
+
+    /**
+     * @param mixed $iva
+     */
+    public function setIva($iva): void
+    {
+        $this->iva = $iva;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDias()
+    {
+        return $this->dias;
+    }
+
+    /**
+     * @param mixed $dias
+     */
+    public function setDias($dias): void
+    {
+        $this->dias = $dias;
     }
 
     /**

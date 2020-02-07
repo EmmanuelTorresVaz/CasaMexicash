@@ -172,7 +172,7 @@
                             <label>Precio:</label>
                         </td>
                         <td>
-                            <input type="text" id="idPrecioP" name="precioMod" size="15"  onkeypress="isNumberDecimal()" style="text-align: right"/>
+                            <input type="text" id="idPrecioP" name="precioMod" size="15"  onkeypress="return isNumberDecimal(event)" style="text-align: right"/>
                         </td>
                     </tr>
                     <tr>
@@ -180,7 +180,7 @@
                             <label>Vitrina:</label>
                         </td>
                         <td>
-                            <input type="text" id="idVitrinaP" name="vitrinaMod" size="15"  onkeypress="isNumberDecimal()" style="text-align: right"/>
+                            <input type="text" id="idVitrinaP" name="vitrinaMod" size="15"  onkeypress="return isNumberDecimal(event)" style="text-align: right"/>
                         </td>
                     </tr>
                     <tr>
@@ -253,7 +253,7 @@
                             <label>Precio:</label>
                         </td>
                         <td>
-                            <input type="text" id="idPrecioE" name="precioMod" size="15"  onkeypress="isNumberDecimal()" style="text-align: right"/>
+                            <input type="text" id="idPrecioE" name="precioMod" size="15"  onkeypress="return isNumberDecimal(event)" style="text-align: right"/>
                         </td>
                     </tr>
                     <tr>
@@ -261,7 +261,7 @@
                             <label>Vitrina:</label>
                         </td>
                         <td>
-                            <input type="text" id="idVitrinaE" name="vitrinaMod" size="15"  onkeypress="isNumberDecimal()" style="text-align: right"/>
+                            <input type="text" id="idVitrinaE" name="vitrinaMod" size="15"  onkeypress="return isNumberDecimal(event)" style="text-align: right"/>
                         </td>
                     </tr>
                     <tr>

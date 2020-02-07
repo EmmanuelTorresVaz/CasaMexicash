@@ -1,8 +1,8 @@
 <?php
-if(!isset($_SESSION)) {
+if (!isset($_SESSION)) {
     session_start();
 }
-if(!isset($_SESSION["idUsuario"])){
+if (!isset($_SESSION["idUsuario"])) {
     header("Location: ../index.php");
     session_destroy();
 }
@@ -15,7 +15,7 @@ include_once(HTML_PATH . "Clientes/modalRegistroCliente.php");
 include_once(HTML_PATH . "Clientes/modalHistorial.php");
 include_once(HTML_PATH . "Clientes/modalBusquedaCliente.php");
 include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
-include_once (HTML_PATH. "Empeno/menuEmpeno.php")
+include_once(HTML_PATH . "Empeno/menuEmpeno.php")
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -26,6 +26,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
     <script src="../../JavaScript/funcionesCliente.js"></script>
     <script src="../../JavaScript/funcionesContrato.js"></script>
     <script src="../../JavaScript/funcionesGenerales.js"></script>
+    <script src="../../JavaScript/funcionesArticulos.js"></script>
 
     <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="//resources/demos/style.css">
@@ -37,7 +38,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
             box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
             height: auto;
             position: absolute;
-            top: 45px;
+            top: 170px;
             z-index: 9999;
             width: 206px;
         }
@@ -64,6 +65,13 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
         }
 
     </style>
+    <script type="application/javascript">
+        $(document).ready(function () {
+            $("#idTotalPrestamoAuto").blur(function () {
+                calculaAvaluoAuto();
+            });
+        })
+    </script>
 </head>
 <body>
 <form id="idFormAuto" name="formAuto">
@@ -75,12 +83,8 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
         </div>
         <div class="row">
             <div class="col col-lg-6 border border-primary ">
-                <table border="0" width="100%" style="margin: 0 auto;">
+                <table border="0" width="90%" style="margin: 0 auto;">
                     <tbody>
-                    <tr>
-                        <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="20"
-                               style="text-align:center" class="invisible"/>
-                    </tr>
                     <tr>
                         <td colspan="3">
                             <input type="button" class="btn btn-success "
@@ -138,12 +142,12 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="12" rowspan="2" name="direccionEmpeno">
-                                    <textarea rows="3" cols="43" id="idDireccionEmpeno" class="textArea" disabled>
+                                    <textarea rows="3" cols="36" id="idDireccionEmpeno" class="textArea" disabled>
                                     </textarea>
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td colspan="12">
 
                         </td>
                     </tr>
@@ -160,7 +164,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="12">
-                            <label for="benediciario">Nombre Beneficiario:</label>
+                            <label for="beneficiario">Nombre Beneficiario:</label>
                         </td>
                     </tr>
                     <tr>
@@ -170,8 +174,24 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <br>
+                        <td colspan="12">
+                            <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="20"
+                                   style="text-align:center" class="invisible"/>
+                            <input id="idDiasAlmoneda" name="diasAlm" size="3" class="invisible"
+                                   value="  <?php
+                                   $data = array();
+                                   $sql = new sqlInteresesDAO();
+                                   $data = $sql->diasAlmoneda();
+                                   for ($i = 0; $i < count($data); $i++) {
+                                       echo $data[$i]['dias'];
+                                   }
+                                   ?>"/>
+                            <input id="idSumaInteresPrestamo" name="totalInteres" disabled type="text"
+                                   style="width: 150px; text-align: right" class="invisible"/>
+                            <input type="text" id="idFechaAlm" name="fechaAlm" size="12"
+                                   style="text-align:center" class="invisible"/>
+                            <input type="text" id="diasInteres" name="diasInteres" size="3"
+                                   style="text-align:center" class="invisible"/>
                         </td>
                     </tr>
                     </tbody>
@@ -184,13 +204,13 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                         <br>
                     </tr>
                     <tr class="headt">
-                        <td colspan="8" class="border border-dark border-left-0">
-                            <label for="vence">Vence:</label>
+                        <td colspan="12" class="border border-dark">
+                            <label for="vence">&nbsp;Vence:</label>
                             <label id="idFecVencimiento"></label>
                         </td>
                     </tr>
                     <tr class="headt">
-                        <td colspan="6" class="border border-dark">Tasa Interés</td>
+                        <td colspan="6" class="border border-dark">&nbsp;Tasa Interés</td>
                         <td colspan="6" class="border border-dark">
                             <select id="tipoInteresEmpeno" name="cmbTipoInteres" class="selectpicker"
                                     onchange="SeleccionarInteres($('#tipoInteresEmpeno').val())">
@@ -225,13 +245,13 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3" class="table-info border border-dark ">% Tasa</td>
-                        <td colspan="3" class="table-info border border-dark">% Alm.</td>
-                        <td colspan="3" class="table-info border border-dark">% Seguro</td>
-                        <td colspan="3" class="table-info border border-dark">% I.V.A.</td>
+                        <td colspan="3" class="table-info border border-dark "  align="center">% Tasa</td>
+                        <td colspan="3" class="table-info border border-dark"  align="center">% Alm.</td>
+                        <td colspan="3" class="table-info border border-dark"  align="center">% Seguro</td>
+                        <td colspan="3" class="table-info border border-dark"  align="center">% I.V.A.</td>
                     </tr>
                     <tr class="headt">
-                        <td colspan="3" class="border border-dark"  align="center">
+                        <td colspan="3" class="border border-dark" align="center">
                             <label id="idTasaPorcen"></label>
                         </td>
                         <td colspan="3" class="border border-dark" align="center">
@@ -245,30 +265,32 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="6" class="table-info border border-dark">Total Avalúo</td>
-                        <td colspan="6" class="table-info border border-dark">Total Préstamo</td>
+                        <td colspan="6" class="table-info border border-dark"  align="center">Total Avalúo</td>
+                        <td colspan="6" class="table-info border border-dark"  align="center">Total Préstamo</td>
                     </tr>
                     <tr class="headt">
                         <td colspan="6" class="border border-dark" align="center">
-                            <input id="idTotalAvaluoAuto" name="totalAvaluo" type="double" style="width: 150px; text-align:right;"
+                            <input id="idTotalAvaluoAuto" name="totalAvaluo" type="double"
+                                   style="width: 150px; text-align:right;"
                                    class="inputCliente"/>
                         </td>
                         <td colspan="6" class="border border-dark" align="center">
-                            <input id="idTotalPrestamoAuto" name="totalPrestamo" type="double" style="width: 150px; text-align:right;"
-                                   class="inputCliente"/>
-                        </td>
-                    </tr>
-                    <tr class="headt">
-                        <td colspan="6" class="table-info border border-dark">Costo Poliza Seguro:</td>
-                        <td colspan="6" class="border border-dark" align="center" >
-                            <input id="idPoliza" name="poliza" type="text" style="width: 150px; text-align:right;"
+                            <input id="idTotalPrestamoAuto" name="totalPrestamo" type="double"
+                                   style="width: 150px; text-align:right;"
                                    class="inputCliente"/>
                         </td>
                     </tr>
                     <tr class="headt">
-                        <td colspan="6" class="table-info border border-dark">Costo GPS:</td>
+                        <td colspan="6" class="table-info border border-dark"  align="center">Costo Poliza Seguro:</td>
                         <td colspan="6" class="border border-dark" align="center">
-                            <input id="idGPS" name="gps" type="text" style="width: 150px; text-align:right;"
+                            <input id="idPolizaSeguro" name="poliza" type="text" style="width: 150px; text-align:right;" onkeypress="return isNumberDecimal(event)"
+                                   class="inputCliente"/>
+                        </td>
+                    </tr>
+                    <tr class="headt">
+                        <td colspan="6" class="table-info border border-dark"  align="center">Costo GPS:</td>
+                        <td colspan="6" class="border border-dark" align="center">
+                            <input id="idGPS" name="gps" type="text" style="width: 150px; text-align:right;" onkeypress="return isNumberDecimal(event)"
                                    class="inputCliente"/>
                         </td>
                     </tr>
@@ -319,31 +341,31 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     <tr>
                         <td colspan="2">
                             <select id="idTipoVehiculo" name="cmbVehiculo" class="selectpicker">
-                                    <option value="0">Seleccione:</option>
-                                    <?php
-                                    $data = array();
-                                    $sql = new sqlArticulosDAO();
-                                    $data = $sql->llenarCmbTipoAuto();
-                                    for ($i = 0; $i < count($data); $i++) {
-                                        echo "<option value=" . $data[$i]['id_Auto'] . ">" . $data[$i]['descripcion'] . "</option>";
-                                    }
-                                    ?>
+                                <option value="0">Seleccione:</option>
+                                <?php
+                                $data = array();
+                                $sql = new sqlArticulosDAO();
+                                $data = $sql->llenarCmbTipoAuto();
+                                for ($i = 0; $i < count($data); $i++) {
+                                    echo "<option value=" . $data[$i]['id_Auto'] . ">" . $data[$i]['descripcion'] . "</option>";
+                                }
+                                ?>
                             </select>
                         </td>
                         <td colspan="2">
-                            <input type="text" id="idMarca" name="marca" size="15"
+                            <input type="text" id="idMarca" name="marca" size="13"
                                    style="text-align:left"/>
                         </td>
                         <td>
-                            <input type="text" id="idModelo" name="modelo" size="15"
+                            <input type="text" id="idModelo" name="modelo" size="13"
                                    style="text-align:left"/>
                         </td>
                         <td>
-                            <input type="text" id="idAnio" name="anio" size="15"
+                            <input type="text" id="idAnio" name="anio" size="13"
                                    style="text-align:left"/>
                         </td>
                         <td>
-                            <select id="idColor" name="cmbColor" class="selectpicker" style="width: 150px">
+                            <select id="idColor" name="cmbColor" class="selectpicker" style="width: 120px">
                                 <option value="0">Seleccione:</option>
                                 <?php
                                 $data = array();
@@ -356,15 +378,15 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                             </select>
                         </td>
                         <td>
-                            <input type="text" id="idPlacas" name="placas" size="15"
+                            <input type="text" id="idPlacas" name="placas" size="13"
                                    style="text-align:left"/>
                         </td>
                         <td>
-                            <input type="text" id="idFactura" name="factura" size="15"
+                            <input type="text" id="idFactura" name="factura" size="13"
                                    style="text-align:left"/>
                         </td>
                         <td>
-                            <input type="text" id="idKms" name="kms" size="15"
+                            <input type="text" id="idKms" name="kms" size="13"
                                    style="text-align:left"/>
                         </td>
                     </tr>
@@ -453,19 +475,19 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="text" id="idAgencia" name="agencia" size="15"
+                            <input type="text" id="idAgencia" name="agencia" size="13"
                                    style="text-align:left"/>
                         </td>
                         <td colspan="2">
-                            <input type="text" id="idMotor" name="motor" size="15"
+                            <input type="text" id="idMotor" name="motor" size="13"
                                    style="text-align:left"/>
                         </td>
                         <td>
-                            <input type="text" id="idChasis" name="chasis" size="15"
+                            <input type="text" id="idChasis" name="chasis" size="13"
                                    style="text-align:left"/>
                         </td>
                         <td colspan="2" align="center">
-                            <input type="text" id="idVehiculo" name="vehiculo" size="15"
+                            <input type="text" id="idVehiculo" name="vehiculo" size="13"
                                    style="text-align:left"/>
                         </td>
                     </tr>
@@ -485,19 +507,19 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="text" id="idRepuve" name="repuve" size="15"
+                            <input type="text" id="idRepuve" name="repuve" size="13"
                                    style="text-align:left"/>
                         </td>
                         <td colspan="2">
-                            <input type="text" id="idGasolina" name="gasolina" size="15"
+                            <input type="text" id="idGasolina" name="gasolina" size="13"
                                    style="text-align:left"/>
                         </td>
                         <td>
-                            <input type="text" id="idAseguradora" name="aseguradora" size="15"
+                            <input type="text" id="idAseguradora" name="aseguradora" size="13"
                                    style="text-align:left"/>
                         </td>
                         <td colspan="2" align="center">
-                            <input type="text" id="idTarjeta" name="tarjeta" size="15"
+                            <input type="text" id="idTarjeta" name="tarjeta" size="13"
                                    style="text-align:left"/>
                         </td>
                     </tr>
@@ -515,15 +537,15 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     <tr>
 
                         <td colspan="2">
-                            <input type="text" id="idPoliza" name="poliza" size="15"
+                            <input type="text" id="idPoliza" name="poliza" size="13"
                                    style="text-align:left"/>
                         </td>
                         <td colspan="2">
-                            <input type="text" id="idFechaVencAuto" name="fechaVencAuto" size="15"
-                                   style="text-align:left"/>
+                            <input type="text" id="idFechaVencAuto" name="fechaVencAuto" size="13"
+                                   style="text-align:left" placeholder="AAAA-MM-DD"/>
                         </td>
                         <td colspan="6">
-                            <input type="text" id="idTipoPoliza" name="tipoPoliza" size="15"
+                            <input type="text" id="idTipoPoliza" name="tipoPoliza" size="13"
                                    style="text-align:left"/>
                         </td>
                     </tr>
@@ -533,10 +555,12 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                         </td>
 
                     </tr>
-                    <td colspan="10" name="observacionesAuto">
+                    <tr>
+                        <td colspan="10" name="observacionesAuto">
                                     <textarea rows="2" cols="60" id="idObservacionesAuto" class="textArea">
                                     </textarea>
-                    </td>
+                        </td>
+                    </tr>
 
                     </tbody>
                 </table>

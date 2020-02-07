@@ -363,6 +363,31 @@ function calcularInteresArticulo(artiPrestamo) {
     return interes;
 }
 
+function calcularInteresAuto(prestamoAuto) {
+    prestamoAuto =  parseFloat(prestamoAuto);
+    var varTasaPorcen = parseFloat($("#idTasaPorcen").text());
+    var varAlmPorcen = parseFloat($("#idAlmPorcen").text());
+    var varSeguroPorcen = parseFloat($("#idSeguroPorcen").text());
+    var varIvaPorcen = "0." + $("#idIvaPorcen").text();
+    varIvaPorcen = parseFloat(varIvaPorcen);
+
+    var calculaTasa = Math.floor(prestamoAuto* varTasaPorcen)/100;
+    var calculaALm = Math.floor(prestamoAuto* varAlmPorcen)/100;
+    var calculaSeg = Math.floor(prestamoAuto* varSeguroPorcen)/100;
+    var calculaIva = Math.floor(prestamoAuto* varIvaPorcen)/100;
+
+    var interes = +calculaTasa + calculaALm +calculaSeg + calculaIva;
+    var interesAuto = prestamoAuto + interes;
+
+    interesAuto = interesAuto.toFixed(2)
+    interesAuto = parseFloat(interesAuto)
+    interes = interes.toFixed(2)
+    interes = parseFloat(interes)
+    $("#idSumaInteresPrestamo").val(interesAuto);
+
+    return interes;
+}
+
 function sumarTotalesMetal(metalPrestamo,metalAvaluo) {
     var metalAva= parseFloat(metalAvaluo);
     var metalPres = parseFloat(metalPrestamo);
@@ -399,6 +424,16 @@ function calculaAvaluoElec() {
     pretamoElec = pretamoElec.toFixed(2)
     pretamoElec = parseFloat(pretamoElec)
     $("#idAvaluoElectronico").val(pretamoElec);
+}
+
+function calculaAvaluoAuto() {
+    var prestamo = parseFloat($("#idTotalPrestamoAuto").val());
+    var avaluoImporte = Math.floor(prestamo* 33)/100;
+    prestamo = prestamo+ avaluoImporte;
+
+    prestamo = prestamo.toFixed(2)
+    prestamo = parseFloat(prestamo)
+    $("#idTotalAvaluoAuto").val(prestamo);
 }
 
 function calculaPrestamoPeso() {

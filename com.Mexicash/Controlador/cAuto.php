@@ -5,22 +5,26 @@ include_once(SQL_PATH . "sqlAutoDAO.php");
 
 //DatosContrato
 $idClienteAuto = $_POST['idClienteAuto'];
-$id_Interes = $_POST['id_Interes'];
-$folio = $_POST['folio'];
 $fechaVencimiento = $_POST['fechaVencimiento'];
 $totalAvaluo = $_POST['totalAvaluo'];
 $totalPrestamo = $_POST['totalPrestamo'];
-$abono = $_POST['abono'];
-$intereses = $_POST['intereses'];
-$pago = $_POST['pago'];
+$total_Interes = $_POST['total_Interes'];
+$sumaInteresPrestamo = $_POST['sumaInteresPrestamo'];
+$polizaSeguroCost = $_POST['polizaSeguro'];
+$gps = $_POST['gps'];
 $fecha_Alm = $_POST['fecha_Alm'];
-$fecha_Movimiento = $_POST['fecha_Movimiento'];
-$origen_Folio = $_POST['origen_Folio'];
-$dest_Folio = $_POST['dest_Folio'];
 $estatus = $_POST['estatus'];
-$observaciones = $_POST['observaciones'];
 $beneficiario = $_POST['beneficiario'];
 $cotitular = $_POST['cotitular'];
+$plazo = $_POST['plazo'];
+$tasa = $_POST['tasa'];
+$alm = $_POST['alm'];
+$seguro = $_POST['seguro'];
+$iva = $_POST['iva'];
+$dias = $_POST['dias'];
+$polizaSeguro = $_POST['polizaSeguro'];
+$gps = $_POST['gps'];
+
 //Auto
 $idTipoVehiculo = $_POST['idTipoVehiculo'];
 $idMarca = $_POST['idMarca'];
@@ -52,24 +56,25 @@ $idCheckLicencia = $_POST['idCheckLicencia'];
 
 
 $auto = new Auto(
-    //Contrato
+//Contrato
     $idClienteAuto,
-    $id_Interes,
-    $folio,
     $fechaVencimiento,
     $totalAvaluo,
     $totalPrestamo,
-    $abono,
-    $intereses,
-    $pago,
+    $total_Interes,
+    $sumaInteresPrestamo,
+    $polizaSeguroCost,
+    $gps,
     $fecha_Alm,
-    $fecha_Movimiento,
-    $origen_Folio,
-    $dest_Folio,
     $estatus,
-    $observaciones,
     $beneficiario,
-$cotitular,
+    $cotitular,
+    $plazo,
+    $tasa,
+    $alm,
+    $seguro,
+    $iva,
+    $dias,
     //Auto
     $idTipoVehiculo,
     $idMarca,

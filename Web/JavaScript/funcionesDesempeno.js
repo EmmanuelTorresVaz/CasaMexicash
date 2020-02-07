@@ -1,9 +1,49 @@
 //consultar contrato
 function buscarContratoDes() {
     $("#idContratoBusqueda").val('');
-    buscarClienteDes();
-    buscarDatosConDes();
-    buscarDetalleDes();
+    estatusContrato();
+}
+
+function estatusContrato(){
+    var contratoDesp = $("#idContratoDesempeno").val();
+    if (contratoDesp != '') {
+        var dataEnviar = {
+            "tipe": 9,
+            "contratoDese": contratoDesp
+        };
+        $.ajax({
+            type: "POST",
+            url: '../../../com.Mexicash/Controlador/Desempeno/busquedaDesempeno.php',
+            data: dataEnviar,
+            dataType: "json",
+            success: function (datos) {
+                if (datos.length > 0) {
+                    $("#idContratoBusqueda").val(contratoDesp);
+                    for (i = 0; i < datos.length; i++) {
+                        var Contrato = datos[i].Contrato;
+                        var Fecha = datos[i].Fecha;
+                        var NombreCompleto = datos[i].NombreCompleto;
+                        var Estatus = datos[i].Estatus;
+                        var idEstatus = datos[i].idEstatus;
+
+                        if (idEstatus == 1) {
+                            buscarClienteDes();
+                            buscarDatosConDes();
+                            buscarDetalleDes();
+                        } else {
+                            alert("El contrato No. : " + Contrato + ", creado el " + Fecha + "\n" +
+                                " del cliente:   " + NombreCompleto + "\n" +
+                                " se ecnuentra con el estatus " + Estatus + ". \n");
+                        }
+                    }
+                } else {
+                    alertify.error("No se encontro ningun contrato con ese número.");
+                }
+            }
+        });
+    }else{
+        alertify.error("Ingrese un contrato a buscar.");
+    }
 }
 
 function buscarClienteDes() {
@@ -57,8 +97,6 @@ function buscarClienteDes() {
                 }
             }
         });
-    } else {
-        alertify.error("Ingrese un contrato a buscar.");
     }
 }
 
@@ -225,9 +263,54 @@ function buscarDetalleDes() {
 
 //consultar contrato Auto
 function buscarContratoDesAuto() {
-    buscarClienteDesAuto();
-    buscarDatosConDesAuto();
-    buscarDetalleDesAuto();
+    buscarContratoDesAuto();
+}
+
+//consultar contrato
+function buscarContratoDesAuto() {
+    estatusContrato();
+}
+
+function estatusContrato(){
+    var contratoDesp = $("#idContratoDesempeno").val();
+    if (contratoDesp != '') {
+        var dataEnviar = {
+            "tipe": 10,
+            "contratoDese": contratoDesp
+        };
+        $.ajax({
+            type: "POST",
+            url: '../../../com.Mexicash/Controlador/Desempeno/busquedaDesempeno.php',
+            data: dataEnviar,
+            dataType: "json",
+            success: function (datos) {
+                if (datos.length > 0) {
+                    $("#idContratoBusqueda").val(contratoDesp);
+                    for (i = 0; i < datos.length; i++) {
+                        var Contrato = datos[i].Contrato;
+                        var Fecha = datos[i].Fecha;
+                        var NombreCompleto = datos[i].NombreCompleto;
+                        var Estatus = datos[i].Estatus;
+                        var idEstatus = datos[i].idEstatus;
+
+                        if (idEstatus == 1) {
+                            buscarClienteDesAuto();
+                            buscarDatosConDesAuto();
+                            buscarDetalleDesAuto();
+                        } else {
+                            alert("El contrato No. : " + Contrato + ", creado el " + Fecha + "\n" +
+                                " del cliente:   " + NombreCompleto + "\n" +
+                                " se ecnuentra con el estatus " + Estatus + ". \n");
+                        }
+                    }
+                } else {
+                    alertify.error("No se encontro ningun contrato con ese número.");
+                }
+            }
+        });
+    }else{
+        alertify.error("Ingrese un contrato a buscar.");
+    }
 }
 
 function buscarClienteDesAuto() {
@@ -278,7 +361,7 @@ function buscarClienteDesAuto() {
                     document.getElementById('idPresTDDesAuto').innerHTML = '';
                     document.getElementById('idInteresTDDesAuto').innerHTML = '';
                     document.getElementById('totalAPagarTDAuto').innerHTML = '';
-                    alertify.error("Sin resultados para mostrar.");
+                    estatusContrato();
                 }
             }
         });

@@ -19,7 +19,7 @@ class sqlDesempenoDAO
         $this->conexion = $this->db->connectDB();
     }
 
-    public function generarDesempeno($pago,$idImporte,$idContrato)
+    public function generarDesempeno($pago, $idImporte, $idContrato)
     {
         // TODO: Implement guardaCiente() method.
         try {
@@ -353,6 +353,40 @@ class sqlDesempenoDAO
                         "InteresesDes" => $row["InteresesDes"],
                         "TotalPrest" => $row["TotalPrest"],
                         "Abono" => $row["Abono"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+        echo json_encode($datos);
+    }
+
+
+    public function estatusContrato($idContratoDes)
+    {
+        $datos = array();
+        try {
+            $buscar = "SELECT Con.id_Contrato as Contrato, Con.fecha_creacion as Fecha,
+                        CONCAT (Cli.nombre, ' ',Cli.apellido_Pat,' ', Cli.apellido_Mat) as NombreCompleto,
+                        Est.descripcion as Estatus, Con.id_Estatus as idEstatus FROM contrato_tbl as Con
+                        INNER JOIN cliente_tbl as Cli on Con.id_Cliente = Cli.id_Cliente
+                        INNER JOIN cat_estatus as Est on Con.id_Estatus = Est.id_Estatus
+                        WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 1";
+
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "Contrato" => $row["Contrato"],
+                        "Fecha" => $row["Fecha"],
+                        "NombreCompleto" => $row["NombreCompleto"],
+                        "Estatus" => $row["Estatus"],
+                        "idEstatus" => $row["idEstatus"]
                     ];
                     array_push($datos, $data);
                 }
