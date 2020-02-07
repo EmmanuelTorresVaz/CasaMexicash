@@ -260,12 +260,9 @@ class sqlClienteDAO
     telefono,
     correo,
     estado,
-    cat_estado.descripcion as estadoName,
-    codigo_Postal,
     municipio,
-    cat_municipio.descripcion as municipioName,
     localidad,
-    cat_localidad.descripcion as localidadName,
+    codigo_Postal,
     calle,
     num_exterior,
     num_interior,
@@ -273,9 +270,6 @@ class sqlClienteDAO
     promocion
 FROM
     cliente_tbl
-INNER JOIN cat_estado ON cliente_tbl.estado = cat_estado.id_Estado
-INNER JOIN cat_municipio ON cliente_tbl.municipio = cat_municipio.id_Municipio AND cliente_tbl.estado = cat_municipio.id_Estado
-INNER JOIN cat_localidad ON cliente_tbl.localidad = cat_localidad.id_Localidad AND cliente_tbl.estado = cat_localidad.id_Estado AND cliente_tbl.municipio = cat_localidad.id_Municipio
 WHERE
     id_Cliente = '$idClienteEditar'";
 
@@ -298,12 +292,9 @@ WHERE
                         "telefono" => $row["telefono"],
                         "correo" => $row["correo"],
                         "estado" => $row["estado"],
-                        "estadoName" => $row["estadoName"],
-                        "codigo_Postal" => $row["codigo_Postal"],
                         "municipio" => $row["municipio"],
-                        "municipioName" => $row["municipioName"],
                         "localidad" => $row["localidad"],
-                        "localidadName" => $row["localidadName"],
+                        "codigo_Postal" => $row["codigo_Postal"],
                         "calle" => $row["calle"],
                         "num_exterior" => $row["num_exterior"],
                         "num_interior" => $row["num_interior"],

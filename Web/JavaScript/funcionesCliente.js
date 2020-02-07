@@ -396,12 +396,12 @@ function modalEditarCliente($clienteEmpeno) {
                     var telefono = datos[i].telefono;
                     var correo = datos[i].correo;
                     var estado = datos[i].estado;
-                    var estadoName = datos[i].estadoName;
-                    var codigo_Postal = datos[i].codigo_Postal;
                     var municipio = datos[i].municipio;
-                    var municipioName = datos[i].municipioName;
+                    llenarComboMunFromModal(estado);
+                    llenarComboLocFromModal(estado,municipio)
+                    alert("Cargando datos.")
                     var localidad = datos[i].localidad;
-                    var localidadName = datos[i].localidadName;
+                    var codigo_Postal = datos[i].codigo_Postal;
                     var calle = datos[i].calle;
                     var num_exterior = datos[i].num_exterior;
                     var num_interior = datos[i].num_interior;
@@ -450,23 +450,16 @@ function modalEditarCliente($clienteEmpeno) {
                     if (estado === null) {
                         estado = '';
                     }
-                    if (estadoName === null) {
-                        estadoName = '';
-                    }
+
                     if (codigo_Postal === null) {
                         codigo_Postal = '';
                     }
                     if (municipio === null) {
                         municipio = '';
                     }
-                    if (municipioName === null) {
-                        municipioName = '';
-                    }
+
                     if (localidad === null) {
                         localidad = '';
-                    }
-                    if (localidadName === null) {
-                        localidadName = '';
                     }
                     if (calle === null) {
                         calle = '';
@@ -493,18 +486,13 @@ function modalEditarCliente($clienteEmpeno) {
                     $("#idNumIdentificacionEdit").val(num_Identificacion);
                     $("#idFechaNacEdit").val(fecha_Nacimiento);
                     $("#idCorreoEdit").val(correo);
-
                     $("#idRfcEdit").val(rfc);
                     $("#idCurpEdit").val(curp);
                     $("#idCelularEdit").val(celular);
                     $("#idTelefonoEdit").val(telefono);
-                    $("#idEstadoEdit").val(estado);
-                    $("#idEstadoNameEdit").val(estadoName);
-                    $("#idMunicipioEdit").val(municipio);
-                    $("#idMunicipioNameEdit").val(municipioName);
-
-                    $("#idLocalidadEdit").val(localidad);
-                    $("#idLocalidadNameEdit").val(localidadName);
+                    $("#idEstadoNameEdit").val(estado);
+                    $("#idMunicipioNameEdit").val(municipio);
+                    $("#idLocalidadNameEdit").val(localidad);
                     $("#idCalleEdit").val(calle);
                     $("#idCPEdit").val(codigo_Postal);
                     $("#idNumIntEdit").val(num_interior);
@@ -551,9 +539,9 @@ function actualizarCliente() {
     var idCelular = $("#idCelularEdit").val();
     var idIdentificacion = $("#idIdentificacionEdit").val();
     var idNumIdentificacion = $("#idNumIdentificacionEdit").val();
-    var idEstado = $("#idEstadoEdit").val();
-    var idMunicipio = $("#idMunicipioEdit").val();
-    var idLocalidad = $("#idLocalidadEdit").val();
+    var idEstado = $("#idEstadoNameEdit").val();
+    var idMunicipio = $("#idMunicipioNameEdit").val();
+    var idLocalidad = $("#idLocalidadNameEdit").val();
     var idCalle = $("#idCalleEdit").val();
     var idNumExt = $("#idNumExtEdit").val();
     var validacion = true;

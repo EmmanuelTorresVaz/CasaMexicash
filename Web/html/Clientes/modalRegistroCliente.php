@@ -240,7 +240,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                       rows="3" cols="80"></textarea>
                                             </td>
                                             <td style="vertical-align:top;">
-                                                <select type="text" name="promocion" placeholder="Selecciona:"
+                                                <select name="promocion"
                                                         class="selectpicker"
                                                         id="idPromocion" style="width: 150px">
                                                     <option value="0">Selecciona:</option>

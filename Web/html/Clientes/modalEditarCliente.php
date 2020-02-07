@@ -163,25 +163,26 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input id="idEstadoNameEdit" name="estadoName" type="text"
-                                                       style="width: 200px"
-                                                       onkeypress="estadoAutocompletar()" placeholder="Buscar Estado..."
-                                                       required/>
-                                                <div id="sugerenciaEstadoEdit"></div>
+                                                <select id="idEstadoNameEdit" name="estadoName" class="selectpicker"  style="width:155px"
+                                                        onchange="llenarComboMunicipioEdit()">
+                                                    <option value="0">Seleccione:</option>
+                                                    <?php
+                                                    $dataEstado = array();
+                                                    $sqlEstado = new sqlCatalogoDAO();
+                                                    $dataEstado = $sqlEstado->completaEstado();
+                                                    for ($i = 0; $i < count($dataEstado); $i++) {
+                                                        echo "<option value=" . $dataEstado[$i]['id_Estado'] . ">" . $dataEstado[$i]['descripcion'] . "</option>";
+                                                    }
+                                                    ?>
+                                                </select>
                                             </td>
                                             <td>
-                                                <input id="idMunicipioNameEdit" name="municipioName" type="text"
-                                                       style="width: 200px"
-                                                       onkeypress="municipioAutocompletar()"
-                                                       placeholder="Buscar Municipio..." required disabled/>
-                                                <div id="sugerenciaMunicipioEdit"></div>
+                                                <select id="idMunicipioNameEdit" name="municipioName" class="selectpicker"  style="width:200px"  onchange="llenarComboLocalidadEdit()">
+                                                </select>
                                             </td>
                                             <td>
-                                                <input id="idLocalidadNameEdit" name="localidadName" type="text"
-                                                       style="width: 200px"
-                                                       onkeypress="localidadAutocompletar()"
-                                                       placeholder="Buscar Localidad..." required disabled/>
-                                                <div id="sugerenciaLocalidadEdit"></div>
+                                                <select id="idLocalidadNameEdit" name="localidadName" class="selectpicker"  style="width:200px" >
+                                                </select>
                                             </td>
                                             <td>
                                                 <input type="text" class="inputCliente" name="calle" placeholder=""
@@ -263,12 +264,6 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                 </div>
                             </div>
                             <div class="row">
-                                <input id="idEstadoEdit" name="Estado" type="text" style="width: 5px"
-                                       class="invisible"/>
-                                <input id="idMunicipioEdit" name="municipio" type="text" style="width: 5px"
-                                       class="invisible"/>
-                                <input id="idLocalidadEdit" name="localidad" type="text" style="width: 5px"
-                                       class="invisible"/>
                                 <input id="idClienteEditar" name="clienteEditar" type="text" style="width: 5px"
                                        class="invisible"/>
                             </div>
