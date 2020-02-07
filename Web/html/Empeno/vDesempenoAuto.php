@@ -111,13 +111,19 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                     <th>Contrato</th>
                                     <th>Préstamo</th>
                                     <th>Interés</th>
+                                    <th>Seguro Poliza</th>
+                                    <th>GPS</th>
                                     </thead>
                                     <tr>
                                         <td> <label id="idConTDDesAuto"></label></td>
                                         <td> <label id="idPresTDDesAuto"></label></td>
                                         <td> <label id="idInteresTDDesAuto"></label></td>
+                                        <td> <label id="idPolizaSegTDDes"></label></td>
+                                        <td> <label id="idGPSTDDes"></label></td>
                                     </tr>
                                     <tr>
+                                        <td>Preguntar</td>
+                                        <td>Preguntar</td>
                                         <td>Preguntar</td>
                                         <td>Preguntar</td>
                                         <td>Preguntar</td>

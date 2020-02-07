@@ -135,6 +135,8 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                         <td>Preguntar</td>
                                         <td>Preguntar</td>
                                         <td>Preguntar</td>
+                                        <td>Preguntar</td>
+                                        <td>Preguntar</td>
                                     </tr>
                                 </table>
                             </div>
