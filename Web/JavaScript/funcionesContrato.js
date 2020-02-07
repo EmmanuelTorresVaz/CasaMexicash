@@ -173,7 +173,6 @@ function generarContratoAuto() {
 
         var prestamoAuto = $("#idTotalPrestamoAuto").val();
         var interesAuto = calcularInteresAuto(prestamoAuto);
-
         var dataEnviar = {
             "idClienteAuto": clienteEmpeno,
             "fechaVencimiento": $("#idFecVencimiento").text(),
@@ -211,8 +210,6 @@ function generarContratoAuto() {
             "idTarjeta": $("#idTarjeta").val(),
             "idPoliza": $("#idPoliza").val(),
             "idFechaVencAuto": $("#idFechaVencAuto").val(),
-
-
             "idTipoPoliza": $("#idTipoPoliza").val(),
             "idObservacionesAuto": $("#idObservacionesAuto").val().trim(),
             "idCheckTarjeta": chkTarjeta,
@@ -229,7 +226,7 @@ function generarContratoAuto() {
             type: 'post',
             success: function (response) {
                 alert(response)
-                if (response) {
+                if (response>0) {
                     $("#idFormAuto")[0].reset();
                     alertify.success("Contrato generado exitosamente.");
                 } else {
@@ -245,11 +242,7 @@ function generarContratoAuto() {
 }
 
 function pruebasAuto() {
-    var chkTarjeta = 0;
-    if ($('#idCheckTarjeta').is(":checked")) {
-        alert("chek")
-        chkTarjeta = 1;
-    } else {
-        alert("no")
-    }
+
+        alert($('#idPolizaSeguro').val())
+
 }

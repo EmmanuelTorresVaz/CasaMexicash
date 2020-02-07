@@ -22,9 +22,6 @@ $alm = $_POST['alm'];
 $seguro = $_POST['seguro'];
 $iva = $_POST['iva'];
 $dias = $_POST['dias'];
-$polizaSeguro = $_POST['polizaSeguro'];
-$gps = $_POST['gps'];
-
 //Auto
 $idTipoVehiculo = $_POST['idTipoVehiculo'];
 $idMarca = $_POST['idMarca'];

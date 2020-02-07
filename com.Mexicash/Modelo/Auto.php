@@ -99,7 +99,7 @@ class Auto
      * @param $idCheckPoliza
      * @param $idCheckLicencia
      */
-    public function __construct($idClienteAuto, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $total_Interes, $sumaInteresPrestamo, $polizaSeguroCost, $gps,$fecha_Alm, $estatus, $beneficiario, $cotitular, $plazo, $tasa, $alm, $seguro, $iva, $dias, $idTipoVehiculo, $idMarca, $idModelo, $idAnio, $idColor, $idPlacas, $idFactura, $idKms, $idAgencia, $idMotor, $idSerie, $idVehiculo, $idRepuve, $idGasolina, $idAseguradora, $idTarjeta, $idPoliza, $idFecVencimientoAuto, $idTipoPoliza, $idObservacionesAuto, $idCheckTarjeta, $idCheckFactura, $idCheckINE, $idCheckImportacion, $idCheckTenecia, $idCheckPoliza, $idCheckLicencia)
+    public function __construct($idClienteAuto, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $total_Interes, $sumaInteresPrestamo, $polizaSeguroCost, $gps, $fecha_Alm, $estatus, $beneficiario, $cotitular, $plazo, $tasa, $alm, $seguro, $iva, $dias, $idTipoVehiculo, $idMarca, $idModelo, $idAnio, $idColor, $idPlacas, $idFactura, $idKms, $idAgencia, $idMotor, $idSerie, $idVehiculo, $idRepuve, $idGasolina, $idAseguradora, $idTarjeta, $idPoliza, $idFecVencimientoAuto, $idTipoPoliza, $idObservacionesAuto, $idCheckTarjeta, $idCheckFactura, $idCheckINE, $idCheckImportacion, $idCheckTenecia, $idCheckPoliza, $idCheckLicencia)
     {
         $this->idClienteAuto = $idClienteAuto;
         $this->fechaVencimiento = $fechaVencimiento;
@@ -107,7 +107,7 @@ class Auto
         $this->totalPrestamo = $totalPrestamo;
         $this->total_Interes = $total_Interes;
         $this->sumaInteresPrestamo = $sumaInteresPrestamo;
-        $this->poliza_SeguroCost = $polizaSeguroCost;
+        $this->polizaSeguroCost = $polizaSeguroCost;
         $this->gps = $gps;
         $this->fecha_Alm = $fecha_Alm;
         $this->estatus = $estatus;
@@ -146,54 +146,6 @@ class Auto
         $this->idCheckTenecia = $idCheckTenecia;
         $this->idCheckPoliza = $idCheckPoliza;
         $this->idCheckLicencia = $idCheckLicencia;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPolizaSeguroCost()
-    {
-        return $this->polizaSeguroCost;
-    }
-
-    /**
-     * @param mixed $polizaSeguroCost
-     */
-    public function setPolizaSeguroCost($polizaSeguroCost): void
-    {
-        $this->polizaSeguroCost = $polizaSeguroCost;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPolizaSeguro()
-    {
-        return $this->polizaSeguro;
-    }
-
-    /**
-     * @param mixed $polizaSeguro
-     */
-    public function setPolizaSeguro($polizaSeguro): void
-    {
-        $this->polizaSeguro = $polizaSeguro;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getGps()
-    {
-        return $this->gps;
-    }
-
-    /**
-     * @param mixed $gps
-     */
-    public function setGps($gps): void
-    {
-        $this->gps = $gps;
     }
 
     /**
@@ -290,6 +242,38 @@ class Auto
     public function setSumaInteresPrestamo($sumaInteresPrestamo): void
     {
         $this->sumaInteresPrestamo = $sumaInteresPrestamo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPolizaSeguroCost()
+    {
+        return $this->polizaSeguroCost;
+    }
+
+    /**
+     * @param mixed $polizaSeguroCost
+     */
+    public function setPolizaSeguroCost($polizaSeguroCost): void
+    {
+        $this->polizaSeguroCost = $polizaSeguroCost;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGps()
+    {
+        return $this->gps;
+    }
+
+    /**
+     * @param mixed $gps
+     */
+    public function setGps($gps): void
+    {
+        $this->gps = $gps;
     }
 
     /**
@@ -883,6 +867,7 @@ class Auto
     {
         $this->idCheckLicencia = $idCheckLicencia;
     }
+
 
 
 }

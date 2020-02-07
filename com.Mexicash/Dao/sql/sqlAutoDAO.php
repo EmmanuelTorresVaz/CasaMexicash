@@ -29,7 +29,7 @@ class sqlAutoDAO
             $totalPrestamo = $auto->getTotalPrestamo();
             $totalInteres = $auto->getTotalInteres();
             $sumaInteresPrestamo = $auto->getSumaInteresPrestamo();
-            $polizaSeguroCost = $auto->getPolizaSeguroCost();
+            $polizaInteres = $auto->getPolizaSeguroCost();
             $gps = $auto->getGps();
             $fechaAlm = $auto->getFechaAlm();
             $estatus = $auto->getEstatus();
@@ -45,14 +45,12 @@ class sqlAutoDAO
             $fechaModificacion = date('Y-m-d H:i:s');
             $usuario = $_SESSION["idUsuario"];
             $sucursal = $_SESSION["sucursal"];
-
             $insertaContrato = "INSERT INTO contrato_tbl " .
                 "(id_Cliente, fecha_Vencimiento, total_Avaluo, total_Prestamo,total_Interes, suma_InteresPrestamo, polizaSeguro, gps, " .
                 "fecha_Alm, id_Estatus,beneficiario, cotitular, plazo,tasa, alm, seguro,iva,dias, fecha_creacion, fecha_modificacion, usuario,sucursal,tipoContrato) VALUES " .
-                "('" . $id_Cliente . "', '" . $fechaVencimiento . "', '" . $totalAvaluo . "','" . $totalPrestamo . "','" . $totalInteres . "', '" . $sumaInteresPrestamo . "', '" . $polizaSeguroCost . "', '" . $gps .
+                "('" . $id_Cliente . "', '" . $fechaVencimiento . "', '" . $totalAvaluo . "','" . $totalPrestamo . "','" . $totalInteres . "', '" . $sumaInteresPrestamo . "', '" . $polizaInteres . "', '" . $gps .
                 "', '" . $fechaAlm . "', '" . $estatus . "','" . $beneficiario . "','" . $cotitular . "','" . $plazo . "','" . $tasa . "','" . $alm . "','" . $seguro . "','" . $iva . "','" . $dias . "','" . $fechaCreacion . "', '" . $fechaModificacion . "', '" . $usuario . "','" . $sucursal . "',2)";
 
-            echo $insertaContrato;
             if ($ps = $this->conexion->prepare($insertaContrato)) {
                 if ($ps->execute()) {
 
@@ -101,27 +99,24 @@ class sqlAutoDAO
 
                         if ($ps = $this->conexion->prepare($insertaAuto)) {
                             if ($ps->execute()) {
-                                $verdadAuto = mysqli_stmt_affected_rows($ps);
-                                if($verdadAuto > 0){
-                                    $verdad = true;
-                                }
+                                $verdad =  mysqli_stmt_affected_rows($ps);
                             } else {
-                                $verdad = false;
+                                $verdad = -1;
                             }
                         } else {
-                            $verdad = false;
+                            $verdad = -1;
                         }
                     } else {
-                        $verdad = false;
+                        $verdad = -1;
                     }
                 } else {
-                    $verdad = false;
+                    $verdad = -1;
                 }
             } else {
-                $verdad = false;
+                $verdad = -1;
             }
         } catch (Exception $exc) {
-            $verdad = false;
+            $verdad = -1;
             echo $exc->getMessage();
         } finally {
             $this->db->closeDB();

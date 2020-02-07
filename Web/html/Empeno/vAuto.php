@@ -38,7 +38,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
             box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
             height: auto;
             position: absolute;
-            top: 170px;
+            top: 103px;
             z-index: 9999;
             width: 206px;
         }
