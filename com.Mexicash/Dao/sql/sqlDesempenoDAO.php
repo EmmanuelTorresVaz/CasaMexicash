@@ -152,7 +152,10 @@ class sqlDesempenoDAO
                         Con.dias AS Dias,
                         Con.total_Prestamo AS TotalPrestamo,
                         Con.total_Interes AS TotalInteres,
-                        Con.suma_InteresPrestamo AS TotalInteresPrestamo
+                        Con.suma_InteresPrestamo AS TotalInteresPrestamo,
+                        Con.abono AS Abono,
+                        Con.fecha_Abono AS FechaAbono
+                        
                         FROM contrato_tbl as Con
                         WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 1  and Con.id_Estatus= 1";
 
@@ -173,7 +176,9 @@ class sqlDesempenoDAO
                         "Dias" => $row["Dias"],
                         "TotalPrestamo" => $row["TotalPrestamo"],
                         "TotalInteres" => $row["TotalInteres"],
-                        "TotalInteresPrestamo" => $row["TotalInteresPrestamo"]
+                        "TotalInteresPrestamo" => $row["TotalInteresPrestamo"],
+                        "Abono" => $row["Abono"],
+                        "FechaAbono" => $row["FechaAbono"]
                     ];
                     array_push($datos, $data);
                 }
@@ -342,13 +347,24 @@ class sqlDesempenoDAO
     {
         $datos = array();
         try {
-            $buscar = "SELECT Con.fecha_creacion as FechaEmp, Con.fecha_Vencimiento as FechaVenc, Con.fecha_Movimiento as FechaCom,
-                        CONCAT (Inte.tipo_interes, ' ', Inte.plazo, ' ', Inte.periodo) as PlazoDes, Inte.tasa as TasaDesc,
-                        Inte.alm as AlmacDesc, Inte.seguro as SeguDesc, Inte.iva as IvaDesc, Con.intereses as InteresesDes,
-                         Inte.dias as Dias, Con.total_Prestamo as TotalPrest, Con.abono as Abono 
+            $buscar = "SELECT
+                        Con.fecha_creacion AS FechaEmp,
+                        DATE(Con.fecha_creacion) AS FechaEmpConvert,
+                        Con.fecha_Vencimiento AS FechaVenc,
+                        Con.fecha_Alm AS FechaAlm,
+                        Con.plazo AS PlazoDesc,
+                        Con.tasa AS TasaDesc,
+                        Con.alm AS AlmacDesc,
+                        Con.seguro AS SeguDesc,
+                        Con.iva AS IvaDesc,
+                        Con.dias AS Dias,
+                        Con.total_Prestamo AS TotalPrestamo,
+                        Con.total_Interes AS TotalInteres,
+                        Con.suma_InteresPrestamo AS TotalInteresPrestamo,
+                        Con.abono AS Abono,
+                        Con.fecha_Abono AS FechaAbono
                         FROM contrato_tbl as Con
-                        INNER JOIN cat_interes as Inte  on Con.id_Interes = Inte.id_interes
-                        WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 1 and Con.id_Estatus= 1";
+                        WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 1  and Con.id_Estatus= 1";
 
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
@@ -356,17 +372,20 @@ class sqlDesempenoDAO
                 while ($row = $rs->fetch_assoc()) {
                     $data = [
                         "FechaEmp" => $row["FechaEmp"],
+                        "FechaEmpConvert" => $row["FechaEmpConvert"],
                         "FechaVenc" => $row["FechaVenc"],
-                        "FechaCom" => $row["FechaCom"],
-                        "PlazoDes" => $row["PlazoDes"],
+                        "FechaAlm" => $row["FechaAlm"],
+                        "PlazoDesc" => $row["PlazoDesc"],
                         "TasaDesc" => $row["TasaDesc"],
                         "AlmacDesc" => $row["AlmacDesc"],
                         "SeguDesc" => $row["SeguDesc"],
                         "IvaDesc" => $row["IvaDesc"],
                         "Dias" => $row["Dias"],
-                        "InteresesDes" => $row["InteresesDes"],
-                        "TotalPrest" => $row["TotalPrest"],
-                        "Abono" => $row["Abono"]
+                        "TotalPrestamo" => $row["TotalPrestamo"],
+                        "TotalInteres" => $row["TotalInteres"],
+                        "TotalInteresPrestamo" => $row["TotalInteresPrestamo"],
+                                  "Abono" => $row["Abono"],
+                        "FechaAbono" => $row["FechaAbono"]
                     ];
                     array_push($datos, $data);
                 }

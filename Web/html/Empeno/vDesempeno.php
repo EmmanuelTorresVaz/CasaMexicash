@@ -76,7 +76,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     <tr>
                         <td style="width: 200px" align="left">
                             <label>Contrato:</label>
-                            <input type="text" id="idContratoDesempeno" name="contrato" size="10" value="38"
+                            <input type="text" id="idContratoDesempeno" name="contrato" size="10" value="52"
                                    style="text-align:right"/>
                         </td>
                     </tr>
@@ -182,7 +182,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                        style="width: 100px;" class="invisible" />
             </div>
             <div class="col col-lg-5">
-                <input type="button" class="btn btn-success" value="prueba" onclick="formatStringToDate('2019-03-05')">
+                <input type="button" class="btn btn-success" value="prueba" onclick="fechaFormato()">
                 <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelarDesempeno()">&nbsp;
                 <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
                 <input type="button" class="btn btn-primary" value="Generar" id="btnGenerar" onclick="generarDesempeno()" disabled>&nbsp;

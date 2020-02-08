@@ -90,5 +90,21 @@ function formatStringToDate(text) {
 
 }
 
+function fechaFormato() {
+    var fecha = new Date();
+    var mesNuevo = fecha.getMonth() + 1;
+    var diaNuevo = fecha.getDate();
+
+    if (mesNuevo < 10) {
+        mesNuevo = "0" + mesNuevo;
+    }
+    if (diaNuevo < 10) {
+        diaNuevo = "0" + diaNuevo;
+    }
+
+    var fechaHoyFormat = fecha.getFullYear() + "-" + mesNuevo + "-" + diaNuevo;
+    return fechaHoyFormat;
+}
+
 //Saber el tipo de dato
 //alert(typeof (MetalAvaluo))
