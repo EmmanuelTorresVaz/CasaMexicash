@@ -277,7 +277,9 @@ class sqlDesempenoDAO
                         Con.total_Interes AS TotalInteres,
                         Con.suma_InteresPrestamo AS TotalInteresPrestamo,
                         Con.polizaSeguro AS PolizaSeguro,
-                        Con.gps AS GPS
+                        Con.gps AS GPS,
+                        Con.abono AS Abono,
+                        Con.fecha_Abono AS FechaAbono
                         FROM contrato_tbl as Con
                         WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 2  and Con.id_Estatus= 1";
 
@@ -301,7 +303,9 @@ class sqlDesempenoDAO
                         "TotalInteres" => $row["TotalInteres"],
                         "TotalInteresPrestamo" => $row["TotalInteresPrestamo"],
                         "PolizaSeguro" => $row["PolizaSeguro"],
-                        "GPS" => $row["GPS"]
+                        "GPS" => $row["GPS"],
+                        "Abono" => $row["Abono"],
+                        "FechaAbono" => $row["FechaAbono"]
                     ];
                     array_push($datos, $data);
                 }
@@ -389,7 +393,7 @@ class sqlDesempenoDAO
                         "TotalPrestamo" => $row["TotalPrestamo"],
                         "TotalInteres" => $row["TotalInteres"],
                         "TotalInteresPrestamo" => $row["TotalInteresPrestamo"],
-                                  "Abono" => $row["Abono"],
+                        "Abono" => $row["Abono"],
                         "FechaAbono" => $row["FechaAbono"]
                     ];
                     array_push($datos, $data);
@@ -422,6 +426,8 @@ class sqlDesempenoDAO
                         Con.total_Prestamo AS TotalPrestamo,
                         Con.total_Interes AS TotalInteres,
                         Con.suma_InteresPrestamo AS TotalInteresPrestamo,
+                        Con.polizaSeguro AS PolizaSeguro,
+                        Con.gps AS GPS,
                         Con.abono AS Abono,
                         Con.fecha_Abono AS FechaAbono
                         FROM contrato_tbl as Con
@@ -436,16 +442,20 @@ class sqlDesempenoDAO
                         "FechaEmpConvert" => $row["FechaEmpConvert"],
                         "FechaVenc" => $row["FechaVenc"],
                         "FechaVenConvert" => $row["FechaVenConvert"],
-                        "FechaCom" => $row["FechaCom"],
-                        "PlazoDes" => $row["PlazoDes"],
+                        "FechaAlm" => $row["FechaAlm"],
+                        "PlazoDesc" => $row["PlazoDesc"],
                         "TasaDesc" => $row["TasaDesc"],
                         "AlmacDesc" => $row["AlmacDesc"],
                         "SeguDesc" => $row["SeguDesc"],
                         "IvaDesc" => $row["IvaDesc"],
                         "Dias" => $row["Dias"],
-                        "InteresesDes" => $row["InteresesDes"],
-                        "TotalPrest" => $row["TotalPrest"],
-                        "Abono" => $row["Abono"]
+                        "TotalPrestamo" => $row["TotalPrestamo"],
+                        "TotalInteres" => $row["TotalInteres"],
+                        "TotalInteresPrestamo" => $row["TotalInteresPrestamo"],
+                        "PolizaSeguro" => $row["PolizaSeguro"],
+                        "GPS" => $row["GPS"],
+                        "Abono" => $row["Abono"],
+                        "FechaAbono" => $row["FechaAbono"]
                     ];
                     array_push($datos, $data);
                 }

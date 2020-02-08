@@ -59,14 +59,14 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td style="width: 200px" align="left" colspan="2">
-                            <input type="button" class="btn btn-info " onclick="buscarContratoDesAuto();"
+                            <input type="button" class="btn btn-info " onclick="buscarContratoRefAuto();"
                                    value="Buscar">
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 200px" align="left">
                             <label>Contrato:</label>
-                            <input type="text" id="idContratoDesempenoAuto" name="contrato" size="10" value="2"
+                            <input type="text" id="idContratoDesempenoAuto" name="contrato" size="10" value=""
                                    style="text-align:right"/>
                         </td>
                     </tr>
@@ -114,20 +114,35 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                     <thead>
                                     <th>Contrato</th>
                                     <th>Préstamo</th>
-                                    <th>Abono</th>
                                     <th>Interés</th>
+                                    <th>GPS</th>
+                                    <th>Poliza</th>
+                                    <th>Abono</th>
+
                                     </thead>
                                     <tr>
                                         <td> <label id="idConTDDesAuto"></label></td>
                                         <td> <label id="idPresTDDesAuto"></label></td>
-                                        <td> <label id="idAbonoTDRefAuto"></label></td>
                                         <td> <label id="idInteresTDDesAuto"></label></td>
+                                        <td> <label id="idGPSTDDes"></label></td>
+                                        <td> <label id="idPolizaSegTDDes"></label></td>
+                                        <td> <label id="idAbonoTDRefAuto"></label></td>
+
                                     </tr>
                                     <tr>
-                                        <td>Preguntar</td>
-                                        <td>Preguntar</td>
-                                        <td>Preguntar</td>
-                                        <td>Preguntar</td>
+                                        <td></td>
+                                        <td align="right"><input type="text" id="idPrestamoAbono" disabled
+                                                                 style="width: 100px; text-align: right"/>
+                                        </td>
+                                        <td align="right"><input type="text" id="idInteresAbono" disabled
+                                                                 style="width: 100px; text-align: right"/>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td></td>
+                                        <td align="right"><input type="text" id="idAbono" name="abono"
+                                                                 style="width: 100px; text-align: right"
+                                                                 onkeypress="return isNumberDecimal(event)"/></td>
                                     </tr>
                                 </table>
                             </div>
