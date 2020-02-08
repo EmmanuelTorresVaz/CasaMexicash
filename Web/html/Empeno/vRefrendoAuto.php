@@ -21,6 +21,24 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
             resize: none;
         }
     </style>
+    <script type="application/javascript">
+        $(document).ready(function () {
+            $("#trAlmoneda").hide();
+            $("#totalTD").hide();
+            $("#descuentoTD").hide();
+            $("#idPorcentaje").blur(function () {
+                calculaDescuentoAuto();
+            });
+            $("#idImporte").blur(function () {
+                reCalculaDescuento();
+            });
+            $("#idAbono").blur(function () {
+                calcularAbono();
+            });
+            $("#btnGenerar").prop('disabled', true);
+
+        });
+    </script>
 
 </head>
 <body>

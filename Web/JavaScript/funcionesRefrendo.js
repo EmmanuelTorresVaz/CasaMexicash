@@ -115,7 +115,6 @@ function buscarDatosConRef() {
                 $("#idContratoBusqueda").val(contratoDesp);
                 for (i = 0; i < datos.length; i++) {
                     var FechaEmp = datos[i].FechaEmp;
-                    var FechaEmpConvert = datos[i].FechaEmpConvert;
                     var FechaVenc = datos[i].FechaVenc;
                     var FechaAlm = datos[i].FechaAlm;
                     var PlazoDesc = datos[i].PlazoDesc;
@@ -125,7 +124,6 @@ function buscarDatosConRef() {
                     var IvaDesc = datos[i].IvaDesc;
                     var Dias = datos[i].Dias;
                     var TotalPrestamo = datos[i].TotalPrestamo;
-                    var TotalInteres = datos[i].TotalInteres;
                     var TotalInteresPrestamo = datos[i].TotalInteresPrestamo;
 
                     if (PlazoDesc === null) {
@@ -147,7 +145,6 @@ function buscarDatosConRef() {
                         Dias = '';
                     }
 
-
                     //SE obtienen los intereses en  porcentajes
                     IvaDesc = "0." + IvaDesc;
                     TasaDesc = parseFloat(TasaDesc);
@@ -156,7 +153,6 @@ function buscarDatosConRef() {
                     IvaDesc = parseFloat(IvaDesc);
                     Dias = parseInt(Dias);
                     TotalPrestamo = parseFloat(TotalPrestamo);
-                    TotalInteres = parseFloat(TotalInteres);
                     TotalInteresPrestamo = parseFloat(TotalInteresPrestamo);
 
                     //Interes Total porcentaje
@@ -164,9 +160,21 @@ function buscarDatosConRef() {
 
                     var diasVencidos = Dias;
 
-                    //Se calcula el interes por día
-                    var interesDia = TotalInteres / Dias;
+                    //Valida si esta en almoneda
+                    var FechaAlmFormat = formatStringToDate(FechaAlm);
+                    if (FechaAlmFormat < fechaHoy) {
+                        $("#trAlmoneda").show();
+                    }
 
+                    //Se saca los porcentajes mensuales
+                    var calculaInteres = Math.floor(TotalPrestamo * TasaDesc) / 100;
+                    var calculaALm = Math.floor(TotalPrestamo * AlmacDesc) / 100;
+                    var calculaSeg = Math.floor(TotalPrestamo * SeguDesc) / 100;
+                    var calculaIva = Math.floor(TotalPrestamo * IvaDesc) / 100;
+
+                    var totalInteres = calculaInteres + calculaALm +calculaSeg + calculaIva;
+                    //Se calcula el interes por día
+                    var interesDia = totalInteres / Dias;
                     //Formato a fechas para obtener dias moratorios
                     var fechaHoy = new Date();
                     var FechaVencFormat = formatStringToDate(FechaVenc);
@@ -175,21 +183,8 @@ function buscarDatosConRef() {
                     if (FechaVencFormat < fechaHoy) {
                         var diasdif = fechaHoy.getTime() - FechaVencFormat.getTime();
                         diasMoratorios = Math.round(diasdif / (1000 * 60 * 60 * 24));
-                        diasInteresMor =  diasMoratorios*interesDia;
+                        diasInteresMor =  diasMoratorios * interesDia;
                     }
-                    //Valida si esta en almoneda
-                    var FechaAlmFormat = formatStringToDate(FechaAlm);
-                    if (FechaAlmFormat < fechaHoy) {
-                        $("#trAlmoneda").show();
-                    }
-
-
-                    //Se saca los porcentajes mensuales
-                    var calculaInteres = Math.floor(TotalPrestamo * TasaDesc) / 100;
-                    var calculaALm = Math.floor(TotalPrestamo * AlmacDesc) / 100;
-                    var calculaSeg = Math.floor(TotalPrestamo * SeguDesc) / 100;
-                    var calculaIva = Math.floor(TotalPrestamo * IvaDesc) / 100;
-
 
                     //Porcentajes por dia
                     var diaInteres = calculaInteres / Dias;
@@ -391,10 +386,7 @@ function buscarDatosConDesAutoRef() {
             success: function (datos) {
                 $("#idContratoBusqueda").val(contratoDesp);
                 for (i = 0; i < datos.length; i++) {
-
-
                     var FechaEmp = datos[i].FechaEmp;
-                    var FechaEmpConvert = datos[i].FechaEmpConvert;
                     var FechaVenc = datos[i].FechaVenc;
                     var FechaAlm = datos[i].FechaAlm;
                     var PlazoDesc = datos[i].PlazoDesc;
@@ -404,7 +396,6 @@ function buscarDatosConDesAutoRef() {
                     var IvaDesc = datos[i].IvaDesc;
                     var Dias = datos[i].Dias;
                     var TotalPrestamo = datos[i].TotalPrestamo;
-                    var TotalInteres = datos[i].TotalInteres;
                     var TotalInteresPrestamo = datos[i].TotalInteresPrestamo;
                     var PolizaSeguro = datos[i].PolizaSeguro;
                     var GPS = datos[i].GPS;
@@ -428,7 +419,6 @@ function buscarDatosConDesAutoRef() {
                         Dias = '';
                     }
 
-
                     //SE obtienen los intereses en  porcentajes
                     IvaDesc = "0." + IvaDesc;
                     TasaDesc = parseFloat(TasaDesc);
@@ -437,7 +427,6 @@ function buscarDatosConDesAutoRef() {
                     IvaDesc = parseFloat(IvaDesc);
                     Dias = parseInt(Dias);
                     TotalPrestamo = parseFloat(TotalPrestamo);
-                    TotalInteres = parseFloat(TotalInteres);
                     TotalInteresPrestamo = parseFloat(TotalInteresPrestamo);
 
                     //Interes Total porcentaje
@@ -445,9 +434,21 @@ function buscarDatosConDesAutoRef() {
 
                     var diasVencidos = Dias;
 
-                    //Se calcula el interes por día
-                    var interesDia = TotalInteres / Dias;
+                    //Valida si esta en almoneda
+                    var FechaAlmFormat = formatStringToDate(FechaAlm);
+                    if (FechaAlmFormat < fechaHoy) {
+                        $("#trAlmoneda").show();
+                    }
 
+                    //Se saca los porcentajes mensuales
+                    var calculaInteres = Math.floor(TotalPrestamo * TasaDesc) / 100;
+                    var calculaALm = Math.floor(TotalPrestamo * AlmacDesc) / 100;
+                    var calculaSeg = Math.floor(TotalPrestamo * SeguDesc) / 100;
+                    var calculaIva = Math.floor(TotalPrestamo * IvaDesc) / 100;
+
+                    var totalInteres = calculaInteres + calculaALm +calculaSeg + calculaIva;
+                    //Se calcula el interes por día
+                    var interesDia = totalInteres / Dias;
                     //Formato a fechas para obtener dias moratorios
                     var fechaHoy = new Date();
                     var FechaVencFormat = formatStringToDate(FechaVenc);
@@ -456,21 +457,8 @@ function buscarDatosConDesAutoRef() {
                     if (FechaVencFormat < fechaHoy) {
                         var diasdif = fechaHoy.getTime() - FechaVencFormat.getTime();
                         diasMoratorios = Math.round(diasdif / (1000 * 60 * 60 * 24));
-                        diasInteresMor =  diasMoratorios*interesDia;
+                        diasInteresMor =  diasMoratorios * interesDia;
                     }
-                    //Valida si esta en almoneda
-                    var FechaAlmFormat = formatStringToDate(FechaAlm);
-                    if (FechaAlmFormat < fechaHoy) {
-                        $("#trAlmoneda").show();
-                    }
-
-
-                    //Se saca los porcentajes mensuales
-                    var calculaInteres = Math.floor(TotalPrestamo * TasaDesc) / 100;
-                    var calculaALm = Math.floor(TotalPrestamo * AlmacDesc) / 100;
-                    var calculaSeg = Math.floor(TotalPrestamo * SeguDesc) / 100;
-                    var calculaIva = Math.floor(TotalPrestamo * IvaDesc) / 100;
-
 
                     //Porcentajes por dia
                     var diaInteres = calculaInteres / Dias;
@@ -487,7 +475,6 @@ function buscarDatosConDesAutoRef() {
 
                     var interesGenerado = totalVencInteres + totalVencAlm + totalVencSeg + totalVencIVA;
                     interesGenerado = interesGenerado + diasInteresMor;
-
                     PolizaSeguro = parseFloat(PolizaSeguro);
                     GPS = parseFloat(GPS);
                     var TotalFinal = TotalPrestamo + interesGenerado +PolizaSeguro +GPS;
@@ -593,19 +580,22 @@ function calculaDescuento() {
     if (descuento > 10) {
         alert("El descuento no puede ser mayor al 10%");
     } else {
-        var total = $("#totalAPagarTD").text();
-        var total = parseFloat(total);
-
-        var total = parseFloat(total);
-        var importe = Math.floor(total * descuento) / 100;
+        var totalInteres = $("#idInteresAbono").val();
+        var totalInteres = parseFloat(totalInteres);
+        var importe = Math.floor(totalInteres * descuento) / 100;
         importe = importe.toFixed(2);
-        var descuento = total - importe;
+        var descuento = totalInteres - importe; //78.4
         $("#idImporte").val(importe);
+        $("#idInteresAbono").val(descuento);
+        var total = $("#totalAPagarTD").text();
+         total = parseFloat(total);
+        var descuento = total - importe;
         document.getElementById('totalDecuentoTD').innerHTML = descuento.toFixed(2);
         $("#descuentoTD").show();
 
     }
 }
+
 function calcularAbono() {
     var abono = $("#idAbono").val();
     var abono = parseFloat(abono);
@@ -634,13 +624,18 @@ function calcularAbono() {
     }
 }
 function reCalculaDescuento() {
-    var total = $("#totalAPagarTD").text();
+    var total = $("#idInteresAbono").val();
     var total = parseFloat(total);
     var importe = $("#idImporte").val();
     var importe = parseFloat(importe);
-    var descuento = total - importe;
-    document.getElementById('totalDecuentoTD').innerHTML = descuento.toFixed(2);
-    $("#totalDecuentoTD").show();
+    if(total>importe){
+        var descuento = total - importe;
+        document.getElementById('totalDecuentoTD').innerHTML = descuento.toFixed(2);
+        $("#totalDecuentoTD").show();
+    }else{
+        alert("El importe no puede ser mayor al interes.")
+    }
+
 }
 
 function generarDesempeno() {
@@ -692,14 +687,16 @@ function calculaDescuentoAuto() {
     if (descuento > 10) {
         alert("El descuento no puede ser mayor al 10%");
     } else {
-        var total = $("#totalAPagarTDAuto").text();
-        var total = parseFloat(total);
-
-        var total = parseFloat(total);
-        var importe = Math.floor(total * descuento) / 100;
+        var totalInteres = $("#idInteresAbono").val();
+        var totalInteres = parseFloat(totalInteres);
+        var importe = Math.floor(totalInteres * descuento) / 100;
         importe = importe.toFixed(2);
+        var descuento = totalInteres - importe; //78.4
+        $("#idImporte").val(importe);
+        $("#idInteresAbono").val(descuento);
+        var total = $("#totalAPagarTD").text();
+        total = parseFloat(total);
         var descuento = total - importe;
-        $("#idImporteAuto").val(importe);
         document.getElementById('totalDecuentoTD').innerHTML = descuento.toFixed(2);
         $("#descuentoTD").show();
 

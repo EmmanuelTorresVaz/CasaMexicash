@@ -145,7 +145,6 @@ function buscarDatosConDes() {
                         Dias = '';
                     }
 
-
                     //SE obtienen los intereses en  porcentajes
                     IvaDesc = "0." + IvaDesc;
                     TasaDesc = parseFloat(TasaDesc);
@@ -166,10 +165,6 @@ function buscarDatosConDes() {
                     if (FechaAlmFormat < fechaHoy) {
                         $("#trAlmoneda").show();
                     }
-
-
-
-
 
                     //Se saca los porcentajes mensuales
                     var calculaInteres = Math.floor(TotalPrestamo * TasaDesc) / 100;
@@ -205,9 +200,7 @@ function buscarDatosConDes() {
                     //Porcentajes por dia
 
                     var interesGenerado = totalVencInteres + totalVencAlm + totalVencSeg + totalVencIVA;
-                    alert(interesGenerado);
                     interesGenerado = interesGenerado + diasInteresMor;
-                    alert(interesGenerado);
                     var TotalFinal = TotalPrestamo + interesGenerado;
 
                     $("#idDatosContratoDes").val("Fecha Empeño :" + FechaEmp + "\n" +
@@ -591,8 +584,6 @@ function calculaDescuento() {
     } else {
         var total = $("#totalAPagarTD").text();
         var total = parseFloat(total);
-
-        var total = parseFloat(total);
         var importe = Math.floor(total * descuento) / 100;
         importe = importe.toFixed(2);
         var descuento = total - importe;
@@ -662,8 +653,6 @@ function calculaDescuentoAuto() {
         alert("El descuento no puede ser mayor al 10%");
     } else {
         var total = $("#totalAPagarTDAuto").text();
-        var total = parseFloat(total);
-
         var total = parseFloat(total);
         var importe = Math.floor(total * descuento) / 100;
         importe = importe.toFixed(2);

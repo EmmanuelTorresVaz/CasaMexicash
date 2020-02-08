@@ -160,7 +160,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                             <input type="text" id="idPorcentaje" name="porcentaje"
                                    style="width: 100px; text-align: right" disabled/>
                         </td>
-                        <td align="right" id="descuentoTD"><h3>Con Descuento: $<label id="totalDecuentoTD"></label></h3>
+                        <td align="right" id="descuentoTD"><h3>Con Descuento : $<label id="totalDecuentoTD"></label></h3>
                         </td>
                     </tr>
                     <tr>
