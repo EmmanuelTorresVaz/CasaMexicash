@@ -143,6 +143,7 @@ class sqlDesempenoDAO
                         Con.fecha_creacion AS FechaEmp,
                         DATE(Con.fecha_creacion) AS FechaEmpConvert,
                         Con.fecha_Vencimiento AS FechaVenc,
+                        DATE(Con.fecha_Vencimiento) AS FechaVenConvert,
                         Con.fecha_Alm AS FechaAlm,
                         Con.plazo AS PlazoDesc,
                         Con.tasa AS TasaDesc,
@@ -155,7 +156,6 @@ class sqlDesempenoDAO
                         Con.suma_InteresPrestamo AS TotalInteresPrestamo,
                         Con.abono AS Abono,
                         Con.fecha_Abono AS FechaAbono
-                        
                         FROM contrato_tbl as Con
                         WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 1  and Con.id_Estatus= 1";
 
@@ -167,6 +167,7 @@ class sqlDesempenoDAO
                         "FechaEmp" => $row["FechaEmp"],
                         "FechaEmpConvert" => $row["FechaEmpConvert"],
                         "FechaVenc" => $row["FechaVenc"],
+                        "FechaVenConvert" => $row["FechaVenConvert"],
                         "FechaAlm" => $row["FechaAlm"],
                         "PlazoDesc" => $row["PlazoDesc"],
                         "TasaDesc" => $row["TasaDesc"],
@@ -264,6 +265,7 @@ class sqlDesempenoDAO
                         Con.fecha_creacion AS FechaEmp,
                         DATE(Con.fecha_creacion) AS FechaEmpConvert,
                         Con.fecha_Vencimiento AS FechaVenc,
+                        DATE(Con.fecha_Vencimiento) AS FechaVenConvert,
                         Con.fecha_Alm AS FechaAlm,
                         Con.plazo AS PlazoDesc,
                         Con.tasa AS TasaDesc,
@@ -287,6 +289,7 @@ class sqlDesempenoDAO
                         "FechaEmp" => $row["FechaEmp"],
                         "FechaEmpConvert" => $row["FechaEmpConvert"],
                         "FechaVenc" => $row["FechaVenc"],
+                        "FechaVenConvert" => $row["FechaVenConvert"],
                         "FechaAlm" => $row["FechaAlm"],
                         "PlazoDesc" => $row["PlazoDesc"],
                         "TasaDesc" => $row["TasaDesc"],
@@ -351,6 +354,7 @@ class sqlDesempenoDAO
                         Con.fecha_creacion AS FechaEmp,
                         DATE(Con.fecha_creacion) AS FechaEmpConvert,
                         Con.fecha_Vencimiento AS FechaVenc,
+                        DATE(Con.fecha_Vencimiento) AS FechaVenConvert,
                         Con.fecha_Alm AS FechaAlm,
                         Con.plazo AS PlazoDesc,
                         Con.tasa AS TasaDesc,
@@ -374,6 +378,7 @@ class sqlDesempenoDAO
                         "FechaEmp" => $row["FechaEmp"],
                         "FechaEmpConvert" => $row["FechaEmpConvert"],
                         "FechaVenc" => $row["FechaVenc"],
+                        "FechaVenConvert" => $row["FechaVenConvert"],
                         "FechaAlm" => $row["FechaAlm"],
                         "PlazoDesc" => $row["PlazoDesc"],
                         "TasaDesc" => $row["TasaDesc"],
@@ -402,12 +407,24 @@ class sqlDesempenoDAO
     {
         $datos = array();
         try {
-            $buscar = "SELECT Con.fecha_creacion as FechaEmp, Con.fecha_Vencimiento as FechaVenc, Con.fecha_Movimiento as FechaCom,
-                        CONCAT (Inte.tipo_interes, ' ', Inte.plazo, ' ', Inte.periodo) as PlazoDes, Inte.tasa as TasaDesc,
-                        Inte.alm as AlmacDesc, Inte.seguro as SeguDesc, Inte.iva as IvaDesc, Con.intereses as InteresesDes,
-                         Inte.dias as Dias, Con.total_Prestamo as TotalPrest,Con.abono as Abono 
+            $buscar = "SELECT
+                        Con.fecha_creacion AS FechaEmp,
+                        DATE(Con.fecha_creacion) AS FechaEmpConvert,
+                        Con.fecha_Vencimiento AS FechaVenc,
+                        DATE(Con.fecha_Vencimiento) AS FechaVenConvert,
+                        Con.fecha_Alm AS FechaAlm,
+                        Con.plazo AS PlazoDesc,
+                        Con.tasa AS TasaDesc,
+                        Con.alm AS AlmacDesc,
+                        Con.seguro AS SeguDesc,
+                        Con.iva AS IvaDesc,
+                        Con.dias AS Dias,
+                        Con.total_Prestamo AS TotalPrestamo,
+                        Con.total_Interes AS TotalInteres,
+                        Con.suma_InteresPrestamo AS TotalInteresPrestamo,
+                        Con.abono AS Abono,
+                        Con.fecha_Abono AS FechaAbono
                         FROM contrato_tbl as Con
-                        INNER JOIN cat_interes as Inte  on Con.id_Interes = Inte.id_interes
                         WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 2  and Con.id_Estatus= 1";
 
             $rs = $this->conexion->query($buscar);
@@ -416,7 +433,9 @@ class sqlDesempenoDAO
                 while ($row = $rs->fetch_assoc()) {
                     $data = [
                         "FechaEmp" => $row["FechaEmp"],
+                        "FechaEmpConvert" => $row["FechaEmpConvert"],
                         "FechaVenc" => $row["FechaVenc"],
+                        "FechaVenConvert" => $row["FechaVenConvert"],
                         "FechaCom" => $row["FechaCom"],
                         "PlazoDes" => $row["PlazoDes"],
                         "TasaDesc" => $row["TasaDesc"],

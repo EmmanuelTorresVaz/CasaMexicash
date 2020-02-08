@@ -225,7 +225,6 @@ function generarContratoAuto() {
             url: '../../../com.Mexicash/Controlador/cAuto.php',
             type: 'post',
             success: function (response) {
-                alert(response)
                 if (response>0) {
                     $("#idFormAuto")[0].reset();
                     alertify.success("Contrato generado exitosamente.");

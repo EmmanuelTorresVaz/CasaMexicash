@@ -106,5 +106,12 @@ function fechaFormato() {
     return fechaHoyFormat;
 }
 
+function pruebadecimal() {
+    var num = 9.3;
+    alert(num)
+    num = Math.round(num * 100) / 100;
+    alert(num)
+}
+
 //Saber el tipo de dato
-//alert(typeof (MetalAvaluo))
+//alert(typeof (totalVencInteres))

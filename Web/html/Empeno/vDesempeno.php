@@ -182,7 +182,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                        style="width: 100px;" class="invisible" />
             </div>
             <div class="col col-lg-5">
-                <input type="button" class="btn btn-success" value="prueba" onclick="fechaFormato()">
+                <input type="button" class="btn btn-success" value="prueba" onclick="pruebadecimal()">
                 <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelarDesempeno()">&nbsp;
                 <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
                 <input type="button" class="btn btn-primary" value="Generar" id="btnGenerar" onclick="generarDesempeno()" disabled>&nbsp;
