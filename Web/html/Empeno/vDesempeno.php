@@ -131,13 +131,6 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                         <td> <label id="idPresTDDes"></label></td>
                                         <td> <label id="idInteresTDDes"></label></td>
                                     </tr>
-                                    <tr>
-                                        <td>Preguntar</td>
-                                        <td>Preguntar</td>
-                                        <td>Preguntar</td>
-                                        <td>Preguntar</td>
-                                        <td>Preguntar</td>
-                                    </tr>
                                 </table>
                             </div>
                         </td>
