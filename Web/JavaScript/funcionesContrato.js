@@ -240,8 +240,19 @@ function generarContratoAuto() {
 
 }
 
-function pruebasAuto() {
+function pruebaspdf() {
+    var dataEnviar = {
+        "idCliente": 5648,
+    };
 
-        alert($('#idPolizaSeguro').val())
+    $.ajax({
+        data: dataEnviar,
+        url: '../PDF/contrato.php',
+        type: 'post',
+        success: function (response) {
+                alertify.success("Contrato pdf.");
+        },
+    })
+    window.open('../PDF/contrato.php')
 
 }
