@@ -178,12 +178,12 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                             </td>
                                             <td>
                                                 <input type="text" class="inputCliente" name="municipioName" placeholder=""
-                                                       id="idMunicipio"
+                                                       id="idMunicipioEdit"
                                                        style="width: 200px" required/>
                                             </td>
                                             <td>
                                                 <input type="text" class="localidadName" name="municipioName" placeholder=""
-                                                       id="idLocalidad"
+                                                       id="idLocalidadEdit"
                                                        style="width: 200px" required/>
                                             </td>
                                             <td>

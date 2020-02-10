@@ -400,9 +400,6 @@ function modalEditarCliente($clienteEmpeno) {
                         var correo = datos[i].correo;
                         var estado = datos[i].estado;
                         var municipio = datos[i].municipio;
-                        llenarComboMunFromModal(estado);
-                        llenarComboLocFromModal(estado,municipio)
-                        alert("Cargando datos.")
                         var localidad = datos[i].localidad;
                         var codigo_Postal = datos[i].codigo_Postal;
                         var calle = datos[i].calle;
@@ -480,7 +477,6 @@ function modalEditarCliente($clienteEmpeno) {
                             promocion = '';
                         }
 
-
                         $("#idNombreEdit").val(nombre);
                         $("#idApMatEdit").val(apellido_Mat);
                         $("#idApPatEdit").val(apellido_Pat);
@@ -494,8 +490,8 @@ function modalEditarCliente($clienteEmpeno) {
                         $("#idCelularEdit").val(celular);
                         $("#idTelefonoEdit").val(telefono);
                         $("#idEstadoNameEdit").val(estado);
-                        $("#idMunicipioNameEdit").val(municipio);
-                        $("#idLocalidadNameEdit").val(localidad);
+                        $("#idMunicipioEdit").val(municipio);
+                        $("#idLocalidadEdit").val(localidad);
                         $("#idCalleEdit").val(calle);
                         $("#idCPEdit").val(codigo_Postal);
                         $("#idNumIntEdit").val(num_interior);
