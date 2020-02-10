@@ -628,28 +628,9 @@ function buscarDetalleDesAuto() {
 function checkDescuento() {
     var checkBox = document.getElementById("idDescuento");
     if (checkBox.checked == true) {
-        $("#idPorcentaje").prop('disabled', false);
         $("#idImporte").prop('disabled', false);
     } else {
-        $("#idPorcentaje").prop('disabled', true);
         $("#idImporte").prop('disabled', true);
-    }
-}
-function calculaDescuento() {
-    var descuento = $("#idPorcentaje").val();
-    var descuento = parseInt(descuento);
-    if (descuento > 10) {
-        alert("El descuento no puede ser mayor al 10%");
-    } else {
-        var total = $("#totalAPagarTD").text();
-        var total = parseFloat(total);
-        var importe = Math.floor(total * descuento) / 100;
-        importe = importe.toFixed(2);
-        var descuento = total - importe;
-        $("#idImporte").val(importe);
-        document.getElementById('totalDecuentoTD').innerHTML = descuento.toFixed(2);
-        $("#descuentoTD").show();
-
     }
 }
 function reCalculaDescuento() {
@@ -698,28 +679,9 @@ function cancelarDesempeno() {
 function checkDescuentoAuto() {
     var checkBox = document.getElementById("idDescuentoAuto");
     if (checkBox.checked == true) {
-        $("#idPorcentajeAuto").prop('disabled', false);
         $("#idImporteAuto").prop('disabled', false);
     } else {
-        $("#idPorcentajeAuto").prop('disabled', true);
         $("#idImporteAuto").prop('disabled', true);
-    }
-}
-function calculaDescuentoAuto() {
-    var descuento = $("#idPorcentajeAuto").val();
-    var descuento = parseInt(descuento);
-    if (descuento > 10) {
-        alert("El descuento no puede ser mayor al 10%");
-    } else {
-        var total = $("#totalAPagarTDAuto").text();
-        var total = parseFloat(total);
-        var importe = Math.floor(total * descuento) / 100;
-        importe = importe.toFixed(2);
-        var descuento = total - importe;
-        $("#idImporteAuto").val(importe);
-        document.getElementById('totalDecuentoTD').innerHTML = descuento.toFixed(2);
-        $("#descuentoTD").show();
-
     }
 }
 function reCalculaDescuentoAuto() {

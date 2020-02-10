@@ -27,8 +27,8 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <li><a class="dropdown-item" href="vEmpeno.php">Empeños</a></li>
-                    <li><a class="dropdown-item" href="vDesempeno.php">Desempeños</a></li>
                     <li><a class="dropdown-item" href="vRefrendo.php">Refrendo</a></li>
+                    <li><a class="dropdown-item" href="vDesempeno.php">Desempeños</a></li>
                     <li><a class="dropdown-item" href="vConsulta.php">Consulta</a></li>
                 </ul>
             </li>
@@ -38,8 +38,8 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <li><a class="dropdown-item" href="vAuto.php">Empeños</a></li>
-                    <li><a class="dropdown-item" href="vDesempenoAuto.php">Desempeños</a></li>
                     <li><a class="dropdown-item" href="vRefrendoAuto.php">Refrendo</a></li>
+                    <li><a class="dropdown-item" href="vDesempenoAuto.php">Desempeños</a></li>
                     <li><a class="dropdown-item" href="vConsulta.php">Consulta</a></li>
                 </ul>
             </li>

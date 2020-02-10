@@ -1,5 +1,5 @@
 function SeleccionarInteres(tipoInteresValue) {
-    var diasAlm =$("#idDiasAlmoneda").val();
+    $("#idDiasAlmoneda").val(0);
 
     if (tipoInteresValue != "null" || tipoInteresValue != 0) {
         var dataEnviar = {
@@ -16,11 +16,8 @@ function SeleccionarInteres(tipoInteresValue) {
                     document.getElementById('idPeriodo').innerHTML = response.result.periodo;
                     var diasPeriodo = response.result.dias;
                     var sumarMes = sumarDias(diasPeriodo);
-                    diasAlm = parseInt(diasAlm);
                     diasPeriodo = parseInt(diasPeriodo);
-                    diasAlm = diasAlm + diasPeriodo;
-                    var sumarAlm = sumarDias(diasAlm);
-                    $("#idFechaAlm").val(sumarAlm);
+                    $("#idDiasAlmoneda").prop('disabled', false);
                     $("#diasInteres").val(diasPeriodo);
                     document.getElementById('idFecVencimiento').innerHTML = sumarMes;
                     document.getElementById('idPlazo').innerHTML = response.result.plazo;
@@ -88,3 +85,15 @@ function LimpiarInteres() {
     $("#idTotalPrestamo").val('0.00');
 }
 
+function calcularDias() {
+       var diasAlm =  $('select[name="diasAlmName"] option:selected').text();
+    var diasPeriodo =$("#diasInteres").val();
+    alert(diasAlm)
+    alert(diasPeriodo)
+    diasAlm = parseInt(diasAlm);
+    diasPeriodo = parseInt(diasPeriodo);
+    diasAlm = diasAlm + diasPeriodo;
+    alert(diasAlm)
+    var sumarAlm = sumarDias(diasAlm);
+    $("#idFechaAlm").val(sumarAlm);
+}

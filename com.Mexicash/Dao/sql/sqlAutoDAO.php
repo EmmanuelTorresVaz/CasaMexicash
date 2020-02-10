@@ -31,6 +31,7 @@ class sqlAutoDAO
             $sumaInteresPrestamo = $auto->getSumaInteresPrestamo();
             $polizaInteres = $auto->getPolizaSeguroCost();
             $gps = $auto->getGps();
+            $pension = $auto->getPension();
             $fechaAlm = $auto->getFechaAlm();
             $estatus = $auto->getEstatus();
             $beneficiario = $auto->getBeneficiario();
@@ -46,9 +47,9 @@ class sqlAutoDAO
             $usuario = $_SESSION["idUsuario"];
             $sucursal = $_SESSION["sucursal"];
             $insertaContrato = "INSERT INTO contrato_tbl " .
-                "(id_Cliente, fecha_Vencimiento, total_Avaluo, total_Prestamo,total_Interes, suma_InteresPrestamo, polizaSeguro, gps, " .
+                "(id_Cliente, fecha_Vencimiento, total_Avaluo, total_Prestamo,total_Interes, suma_InteresPrestamo, polizaSeguro, gps, pension, " .
                 "fecha_Alm, id_Estatus,beneficiario, cotitular, plazo,tasa, alm, seguro,iva,dias, fecha_creacion, fecha_modificacion, usuario,sucursal,tipoContrato) VALUES " .
-                "('" . $id_Cliente . "', '" . $fechaVencimiento . "', '" . $totalAvaluo . "','" . $totalPrestamo . "','" . $totalInteres . "', '" . $sumaInteresPrestamo . "', '" . $polizaInteres . "', '" . $gps .
+                "('" . $id_Cliente . "', '" . $fechaVencimiento . "', '" . $totalAvaluo . "','" . $totalPrestamo . "','" . $totalInteres . "', '" . $sumaInteresPrestamo . "', '" . $polizaInteres . "','" . $gps . "', '" . $pension .
                 "', '" . $fechaAlm . "', '" . $estatus . "','" . $beneficiario . "','" . $cotitular . "','" . $plazo . "','" . $tasa . "','" . $alm . "','" . $seguro . "','" . $iva . "','" . $dias . "','" . $fechaCreacion . "', '" . $fechaModificacion . "', '" . $usuario . "','" . $sucursal . "',2)";
 
             if ($ps = $this->conexion->prepare($insertaContrato)) {

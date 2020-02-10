@@ -26,9 +26,6 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
             $("#trAlmoneda").hide();
             $("#totalTD").hide();
             $("#descuentoTD").hide();
-            $("#idPorcentaje").blur(function () {
-                calculaDescuentoAuto();
-            });
             $("#idImporte").blur(function () {
                 reCalculaDescuento();
             });

@@ -128,3 +128,5 @@ function isDateValidate(e) {
 
 //Saber el tipo de dato
 //alert(typeof (totalVencInteres))
+//Obtener el valor texto de un select
+//  $('select[name="lineas"] option:selected').text());

@@ -118,7 +118,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                    value="Agregar">
                             <input type="button" class="btn btn-warning "
                                    data-toggle="modal" data-target="#modalEditarNuevo" id="btnEditar"
-                                   value="Editar" onclick="modalEditarCliente($('#idClienteEmpeno').val())" disabled>
+                                   value="Editar" onclick="modalEdiFtarCliente($('#idClienteEmpeno').val())" disabled>
                             <input type="button" class="btn btn-warning "
                                    data-toggle="modal" data-target="#modalHistorial" id="btnHistorial"
                                    value="Historial" onclick="historial($('#idClienteEmpeno').val())">
@@ -179,7 +179,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     <tr class="headt">
                         <td colspan="12">
                             <input type="text" id="nombreCotitular" name="idNombreCotitular"
-                                   style="width: 300px" required/>
+                                   style="width: 300px"  placeholder="A. Paterno-A. Materno-Nombre"/>
                         </td>
                     </tr>
                     <tr>
@@ -190,22 +190,13 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     <tr>
                         <td colspan="12">
                             <input type="text" id="idNombreBen" name="idNombreBen"
-                                   style="width:300px" required/>
+                                   style="width:300px"  placeholder="A. Paterno-A. Materno-Nombre"/>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="12">
                             <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="5"
                                    style="text-align:center" class="invisible"/>
-                            <input id="idDiasAlmoneda" name ="diasAlm" size="3" class="invisible"
-                                   value="  <?php
-                                   $data = array();
-                                   $sql = new sqlInteresesDAO();
-                                   $data = $sql->diasAlmoneda();
-                                   for ($i = 0; $i < count($data); $i++) {
-                                       echo  $data[$i]['dias'] ;
-                                   }
-                                   ?>"/>
                             <input type="text" id="idFechaAlm" name="fechaAlm" size="12"
                                    style="text-align:center" class="invisible"/>
                             <input type="text" id="diasInteres" name="diasInteres" size="3"
@@ -287,6 +278,23 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                             <input id="idTotalPrestamo" name="totalPrestamo" disabled type="text" style="width: 150px; text-align: right"  value="0.00"
                                    class="inputCliente"/>
                         </td>
+                    </tr>
+                    <tr class="headt">
+                        <td colspan="6" class="border border-dark">&nbsp;Días Almoneda</td>
+                        <td colspan="6" class="border border-dark" align="center">
+                            <select id="idDiasAlmoneda" name="diasAlmName" class="selectpicker" disabled
+                                    onchange="calcularDias()"
+                                   style="width: 80px">
+                                <option value="0">0</option>
+                                <?php
+                                $data = array();
+                                $sql = new sqlInteresesDAO();
+                                $data = $sql->diasAlmoneda();
+                                for ($i = 0; $i < count($data); $i++) {
+                                    echo "<option value=" . $data[$i]['id_fechaAlm'] . ">" . $data[$i]['dias'] . "</option>";
+                                }
+                                ?>
+                            </select></td>
                     </tr>
                     </tbody>
                 </table>
@@ -398,7 +406,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                     </tr>
 
                                     <tr>
-                                        <td colspan="6">Ubicación:</td>
+                                        <td colspan="6">Observaciones de la tienda:</td>
                                         <td colspan="6">
                                             <input type="text" id="idUbicacion" name="ubicacion" size="15"
                                                    style="text-align:left"/>
@@ -486,7 +494,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                     </tr>
 
                                     <tr>
-                                        <td colspan="6">Ubicación:</td>
+                                        <td colspan="6">Observaciones de la tienda:</td>
                                         <td colspan="6">
                                             <input type="text" id="idUbicacionElectronico" name="ubicacionE" size="15"
                                                    style="text-align:left" value=""/>
@@ -544,7 +552,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                 <input type="button" class="btn btn-success" value="pruebaCalc"  onclick="location.href='../PDF/pdfPrueba.php'">&nbsp;
                 <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
                 <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
-                <input type="button" class="btn btn-primary" value="Generar" onclick="generarContrato()">&nbsp;
+                <input type="button" class="btn btn-primary" value="Contrato" onclick="generarContrato()">&nbsp;
                 <input type="button" class="btn btn-danger" value="Salir" onclick="location.href='vInicio.php'">&nbsp;
             </div>
         </div>

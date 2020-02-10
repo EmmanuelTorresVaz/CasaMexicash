@@ -159,7 +159,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                     <tr>
                         <td colspan="12">
                             <input type="text" id="nombreCotitular" name="idNombreCotitular"
-                                   style="width: 350px" required/>
+                                   style="width: 350px"  placeholder="A. Paterno-A. Materno-Nombre"/>
                         </td>
                     </tr>
                     <tr>
@@ -170,7 +170,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                     <tr>
                         <td colspan="12">
                             <input type="text" id="idNombreBen" name="idNombreBen"
-                                   style="width:350px" required/>
+                                   style="width:350px"  placeholder="A. Paterno-A. Materno-Nombre"/>
                         </td>
                     </tr>
                     <tr>
@@ -281,14 +281,21 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                         </td>
                     </tr>
                     <tr class="headt">
-                        <td colspan="6" class="table-info border border-dark"  align="center">Costo Poliza Seguro:</td>
+                        <td colspan="6" class="table-info border border-dark"  align="center">Costo Pensión Mensual:</td>
+                        <td colspan="6" class="border border-dark" align="center">
+                            <input id="idPension" name="poliza" type="text" style="width: 150px; text-align:right;" onkeypress="return isNumberDecimal(event)"
+                                   class="inputCliente"/>
+                        </td>
+                    </tr>
+                    <tr class="headt">
+                        <td colspan="6" class="table-info border border-dark"  align="center">Costo Poliza Mensual:</td>
                         <td colspan="6" class="border border-dark" align="center">
                             <input id="idPolizaSeguro" name="poliza" type="text" style="width: 150px; text-align:right;" onkeypress="return isNumberDecimal(event)"
                                    class="inputCliente"/>
                         </td>
                     </tr>
                     <tr class="headt">
-                        <td colspan="6" class="table-info border border-dark"  align="center">Costo GPS:</td>
+                        <td colspan="6" class="table-info border border-dark"  align="center">Costo GPS Mensual:</td>
                         <td colspan="6" class="border border-dark" align="center">
                             <input id="idGPS" name="gps" type="text" style="width: 150px; text-align:right;" onkeypress="return isNumberDecimal(event)"
                                    class="inputCliente"/>
@@ -575,7 +582,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                 <input type="button" class="btn btn-success" value="prueba" onclick="pruebasAuto()">
                 <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
                 <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
-                <input type="button" class="btn btn-primary" value="Generar" onclick="generarContratoAuto()">&nbsp;
+                <input type="button" class="btn btn-primary" value="Contrato" onclick="generarContratoAuto()">&nbsp;
                 <input type="button" class="btn btn-danger" value="Salir" onclick="location.href='vInicio.php'">&nbsp;
             </div>
         </div>

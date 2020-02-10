@@ -34,9 +34,6 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
             $("#trAlmoneda").hide();
             $("#totalTD").hide();
             $("#descuentoTD").hide();
-            $("#idPorcentaje").blur(function(){
-                calculaDescuento();
-            });
             $("#idImporte").blur(function(){
                 reCalculaDescuento();
             });
@@ -148,13 +145,6 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                         <td align="right" id="totalTD"><h3>Total a Pagar: $<label id="totalAPagarTD"></label></h3></td>
                     </tr>
                     <tr>
-                        <td colspan="1" style="width: 100px">
-                            <label >Porcentaje</label>
-                        </td>
-                        <td colspan="1" align="center">
-                            <input type="text" id="idPorcentaje" name="porcentaje"
-                                   style="width: 100px; text-align: right" disabled />
-                        </td>
                         <td align="right" id="descuentoTD"><h3>Con Descuento: $<label id="totalDecuentoTD"></label></h3></td>
                     </tr>
                     <tr>

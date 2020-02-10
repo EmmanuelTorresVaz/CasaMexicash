@@ -636,7 +636,6 @@ function buscarDetalleDesAutoRef() {
 function checkDescuento() {
     var checkBox = document.getElementById("idDescuento");
     if (checkBox.checked == true) {
-        $("#idPorcentaje").prop('disabled', false);
         $("#idImporte").prop('disabled', false);
         $("#idAbono").val(0.00);
         var prestamo = $("#idPresTDDes").text();
@@ -644,29 +643,7 @@ function checkDescuento() {
         $("#idPrestamoAbono").val(prestamo);
         $("#idInteresAbono").val(interes);
     } else {
-        $("#idPorcentaje").prop('disabled', true);
         $("#idImporte").prop('disabled', true);
-    }
-}
-function calculaDescuento() {
-    var descuento = $("#idPorcentaje").val();
-    var descuento = parseInt(descuento);
-    if (descuento > 10) {
-        alert("El descuento no puede ser mayor al 10%");
-    } else {
-        var totalInteres = $("#idInteresTDDes").text();
-        var totalInteres = parseFloat(totalInteres);
-        var importe = Math.floor(totalInteres * descuento) / 100;
-        importe = importe.toFixed(2);
-        var descuento = totalInteres - importe; //78.4
-        $("#idImporte").val(importe);
-        $("#idInteresAbono").val(descuento.toFixed(2));
-        var total = $("#totalAPagarTD").text();
-         total = parseFloat(total);
-        var descuento = total - importe;
-        document.getElementById('totalDecuentoTD').innerHTML = descuento.toFixed(2);
-        $("#descuentoTD").show();
-
     }
 }
 
@@ -758,32 +735,9 @@ function cancelarDesempeno() {
 function checkDescuentoAuto() {
     var checkBox = document.getElementById("idDescuentoAuto");
     if (checkBox.checked == true) {
-        $("#idPorcentajeAuto").prop('disabled', false);
         $("#idImporteAuto").prop('disabled', false);
     } else {
-        $("#idPorcentajeAuto").prop('disabled', true);
         $("#idImporteAuto").prop('disabled', true);
-    }
-}
-function calculaDescuentoAuto() {
-    var descuento = $("#idPorcentajeAuto").val();
-    var descuento = parseInt(descuento);
-    if (descuento > 10) {
-        alert("El descuento no puede ser mayor al 10%");
-    } else {
-        var totalInteres = $("#idInteresAbono").val();
-        var totalInteres = parseFloat(totalInteres);
-        var importe = Math.floor(totalInteres * descuento) / 100;
-        importe = importe.toFixed(2);
-        var descuento = totalInteres - importe; //78.4
-        $("#idImporte").val(importe);
-        $("#idInteresAbono").val(descuento);
-        var total = $("#totalAPagarTD").text();
-        total = parseFloat(total);
-        var descuento = total - importe;
-        document.getElementById('totalDecuentoTD').innerHTML = descuento.toFixed(2);
-        $("#descuentoTD").show();
-
     }
 }
 function reCalculaDescuentoAuto() {

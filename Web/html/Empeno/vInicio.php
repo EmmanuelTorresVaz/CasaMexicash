@@ -46,14 +46,14 @@ include_once (HTML_PATH."Empeno/menuEmpeno.php")
                     <tr>
                         <td align="center">
                             <br>
-                            <input type="button" class="btn btn-info  w-100" value="Desempeño" onclick="location.href='vDesempeno.php'">
+                            <input type="button" class="btn btn-info  w-100" value="Refrendo" onclick="location.href='vRefrendo.php'">
                             <br>
                         </td>
                     </tr>
                     <tr>
                         <td align="center">
                             <br>
-                            <input type="button" class="btn btn-info  w-100" value="Refrendo" onclick="location.href='vRefrendo.php'">
+                            <input type="button" class="btn btn-info  w-100" value="Desempeño" onclick="location.href='vDesempeno.php'">
                             <br>
                         </td>
                     </tr>
@@ -89,14 +89,14 @@ include_once (HTML_PATH."Empeno/menuEmpeno.php")
                     <tr>
                         <td align="center">
                             <br>
-                            <input type="button" class="btn btn-info  w-100" value="Desempeño" onclick="location.href='vDesempenoAuto.php'">
+                            <input type="button" class="btn btn-info  w-100" value="Refrendo" onclick="location.href='vRefrendoAuto.php'">
                             <br>
                         </td>
                     </tr>
                     <tr>
                         <td align="center">
                             <br>
-                            <input type="button" class="btn btn-info  w-100" value="Refrendo" onclick="location.href='vRefrendoAuto.php'">
+                            <input type="button" class="btn btn-info  w-100" value="Desempeño" onclick="location.href='vDesempenoAuto.php'">
                             <br>
                         </td>
                     </tr>

@@ -182,6 +182,7 @@ function generarContratoAuto() {
             "sumaInteresPrestamo": $("#idSumaInteresPrestamo").val(),
             "polizaSeguro": $("#idPolizaSeguro").val(),
             "gps": $("#idGPS").val(),
+            "pension": $("#idPension").val(),
             "fecha_Alm": $("#idFechaAlm").val(),
             "estatus": 1,
             "beneficiario": $("#idNombreBen").val(),

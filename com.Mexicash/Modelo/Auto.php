@@ -12,6 +12,7 @@ class Auto
     private $sumaInteresPrestamo;
     private $polizaSeguroCost;
     private $gps;
+    private $pension;
     private $fecha_Alm;
     private $estatus;
     private $beneficiario;
@@ -61,6 +62,7 @@ class Auto
      * @param $sumaInteresPrestamo
      * @param $polizaSeguroCost
      * @param $gps
+     * @param $pension
      * @param $fecha_Alm
      * @param $estatus
      * @param $beneficiario
@@ -99,7 +101,7 @@ class Auto
      * @param $idCheckPoliza
      * @param $idCheckLicencia
      */
-    public function __construct($idClienteAuto, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $total_Interes, $sumaInteresPrestamo, $polizaSeguroCost, $gps, $fecha_Alm, $estatus, $beneficiario, $cotitular, $plazo, $tasa, $alm, $seguro, $iva, $dias, $idTipoVehiculo, $idMarca, $idModelo, $idAnio, $idColor, $idPlacas, $idFactura, $idKms, $idAgencia, $idMotor, $idSerie, $idVehiculo, $idRepuve, $idGasolina, $idAseguradora, $idTarjeta, $idPoliza, $idFecVencimientoAuto, $idTipoPoliza, $idObservacionesAuto, $idCheckTarjeta, $idCheckFactura, $idCheckINE, $idCheckImportacion, $idCheckTenecia, $idCheckPoliza, $idCheckLicencia)
+    public function __construct($idClienteAuto, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $total_Interes, $sumaInteresPrestamo, $polizaSeguroCost, $gps, $pension, $fecha_Alm, $estatus, $beneficiario, $cotitular, $plazo, $tasa, $alm, $seguro, $iva, $dias, $idTipoVehiculo, $idMarca, $idModelo, $idAnio, $idColor, $idPlacas, $idFactura, $idKms, $idAgencia, $idMotor, $idSerie, $idVehiculo, $idRepuve, $idGasolina, $idAseguradora, $idTarjeta, $idPoliza, $idFecVencimientoAuto, $idTipoPoliza, $idObservacionesAuto, $idCheckTarjeta, $idCheckFactura, $idCheckINE, $idCheckImportacion, $idCheckTenecia, $idCheckPoliza, $idCheckLicencia)
     {
         $this->idClienteAuto = $idClienteAuto;
         $this->fechaVencimiento = $fechaVencimiento;
@@ -109,6 +111,7 @@ class Auto
         $this->sumaInteresPrestamo = $sumaInteresPrestamo;
         $this->polizaSeguroCost = $polizaSeguroCost;
         $this->gps = $gps;
+        $this->pension = $pension;
         $this->fecha_Alm = $fecha_Alm;
         $this->estatus = $estatus;
         $this->beneficiario = $beneficiario;
@@ -276,6 +279,21 @@ class Auto
         $this->gps = $gps;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPension()
+    {
+        return $this->pension;
+    }
+
+    /**
+     * @param mixed $pension
+     */
+    public function setPension($pension): void
+    {
+        $this->pension = $pension;
+    }
     /**
      * @return mixed
      */

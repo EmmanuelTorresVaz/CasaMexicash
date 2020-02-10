@@ -12,6 +12,7 @@ $total_Interes = $_POST['total_Interes'];
 $sumaInteresPrestamo = $_POST['sumaInteresPrestamo'];
 $polizaSeguroCost = $_POST['polizaSeguro'];
 $gps = $_POST['gps'];
+$pension = $_POST['pension'];
 $fecha_Alm = $_POST['fecha_Alm'];
 $estatus = $_POST['estatus'];
 $beneficiario = $_POST['beneficiario'];
@@ -62,6 +63,7 @@ $auto = new Auto(
     $sumaInteresPrestamo,
     $polizaSeguroCost,
     $gps,
+    $pension,
     $fecha_Alm,
     $estatus,
     $beneficiario,

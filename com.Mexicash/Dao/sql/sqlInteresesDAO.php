@@ -146,12 +146,13 @@ class sqlInteresesDAO
         $datos = array();
 
         try {
-            $buscar = "SELECT  dias FROM cat_almoneda where activo=1";
+            $buscar = "SELECT  id_fechaAlm, dias FROM cat_almoneda order by dias";
             $rs = $this->conexion->query($buscar);
 
             if ($rs->num_rows > 0) {
                 while ($row = $rs->fetch_assoc()) {
                     $data = [
+                        "id_fechaAlm" => $row["id_fechaAlm"],
                         "dias" => $row["dias"]
                     ];
                     array_push($datos, $data);
