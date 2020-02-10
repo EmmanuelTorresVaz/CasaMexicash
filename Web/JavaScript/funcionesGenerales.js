@@ -113,5 +113,18 @@ function pruebadecimal() {
     alert(num)
 }
 
+function isDateValidate(e) {
+    var tecla;
+    tecla = (document.all) ? e.keyCode : e.which;
+    if (tecla == 8) {
+        return true;
+    }
+    var patron;
+    patron = /[0-9-]/
+    var te;
+    te = String.fromCharCode(tecla);
+    return patron.test(te);
+}
+
 //Saber el tipo de dato
 //alert(typeof (totalVencInteres))

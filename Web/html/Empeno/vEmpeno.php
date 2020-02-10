@@ -56,6 +56,9 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
             $("#idPesoPiedra").blur(function(){
                 calculaPrestamoPeso();
             });
+            $("#idNombres").blur(function(){
+                $('#suggestionsNombreEmpeno').fadeOut(500);
+            });
         })
     </script>
     <style type="text/css">

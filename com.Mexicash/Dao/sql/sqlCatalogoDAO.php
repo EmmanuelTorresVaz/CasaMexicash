@@ -185,7 +185,7 @@ class sqlCatalogoDAO
         $datos = array();
 
         try {
-            $buscar = "SELECT id_Estado, descripcion FROM cat_estado WHERE id_Estado='9' or id_Estado='15'";
+            $buscar = "SELECT id_Estado, descripcion FROM cat_estado";
             $rs = $this->conexion->query($buscar);
 
             if ($rs->num_rows > 0) {

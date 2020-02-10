@@ -1,4 +1,4 @@
-function llenarComboMunicipio() {
+/*function llenarComboMunicipio() {
     $('#idMunicipio').prop('disabled', false);
     $('#idLocalidad').prop('disabled', true);
     $('#idMunicipio').val(0);
@@ -146,7 +146,7 @@ function llenarComboLocFromModal($idEstado,$idMunicipio) {
             $('#idLocalidadNameEdit').html(html);
         }
     });
-}
+}*/
 
 
 function cargarTablaCatMetales($tipoMetal) {

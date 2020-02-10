@@ -367,142 +367,146 @@ function LimpiarRegistroCliente() {
 
 //Funcion modal Editar cliente
 function modalEditarCliente($clienteEmpeno) {
-        $("#idFormRegistro")[0].reset();
+    $("#idFormRegistro")[0].reset();
     $("#idClienteEditar").val($clienteEmpeno);
     if ($clienteEmpeno == '' || $clienteEmpeno == null) {
         alert("Por favor selecciona un cliente.")
     } else {
-        var dataEnviar = {
-            "idClienteEditar": $clienteEmpeno
-        };
-        $.ajax({
-            type: "POST",
-            url: '../../../com.Mexicash/Controlador/Cliente/BuscarClienteDatos.php',
-            data: dataEnviar,
-            dataType: "json",
-            success: function (datos) {
-                for (i = 0; i < datos.length; i++) {
-                    var nombre = datos[i].nombre;
-                    var apellido_Pat = datos[i].apellido_Pat;
-                    var apellido_Mat = datos[i].apellido_Mat;
-                    var sexo = datos[i].sexo;
-                    var fecha_Nacimiento = datos[i].fecha_Nacimiento;
-                    var curp = datos[i].curp;
-                    var ocupacion = datos[i].ocupacion;
-                    var tipo_Identificacion = datos[i].tipo_Identificacion;
-                    var num_Identificacion = datos[i].num_Identificacion;
-                    var celular = datos[i].celular;
-                    var rfc = datos[i].rfc;
-                    var telefono = datos[i].telefono;
-                    var correo = datos[i].correo;
-                    var estado = datos[i].estado;
-                    var municipio = datos[i].municipio;
-                    llenarComboMunFromModal(estado);
-                    llenarComboLocFromModal(estado,municipio)
-                    alert("Cargando datos.")
-                    var localidad = datos[i].localidad;
-                    var codigo_Postal = datos[i].codigo_Postal;
-                    var calle = datos[i].calle;
-                    var num_exterior = datos[i].num_exterior;
-                    var num_interior = datos[i].num_interior;
-                    var mensaje = datos[i].mensaje;
-                    var promocion = datos[i].promocion;
+        if($("#idNombres").val()==''|| $("#idNombres").val==null){
+            alert("Por favor selecciona un cliente.")
+        }else{
+            var dataEnviar = {
+                "idClienteEditar": $clienteEmpeno
+            };
+            $.ajax({
+                type: "POST",
+                url: '../../../com.Mexicash/Controlador/Cliente/BuscarClienteDatos.php',
+                data: dataEnviar,
+                dataType: "json",
+                success: function (datos) {
+                    for (i = 0; i < datos.length; i++) {
+                        var nombre = datos[i].nombre;
+                        var apellido_Pat = datos[i].apellido_Pat;
+                        var apellido_Mat = datos[i].apellido_Mat;
+                        var sexo = datos[i].sexo;
+                        var fecha_Nacimiento = datos[i].fecha_Nacimiento;
+                        var curp = datos[i].curp;
+                        var ocupacion = datos[i].ocupacion;
+                        var tipo_Identificacion = datos[i].tipo_Identificacion;
+                        var num_Identificacion = datos[i].num_Identificacion;
+                        var celular = datos[i].celular;
+                        var rfc = datos[i].rfc;
+                        var telefono = datos[i].telefono;
+                        var correo = datos[i].correo;
+                        var estado = datos[i].estado;
+                        var municipio = datos[i].municipio;
+                        llenarComboMunFromModal(estado);
+                        llenarComboLocFromModal(estado,municipio)
+                        alert("Cargando datos.")
+                        var localidad = datos[i].localidad;
+                        var codigo_Postal = datos[i].codigo_Postal;
+                        var calle = datos[i].calle;
+                        var num_exterior = datos[i].num_exterior;
+                        var num_interior = datos[i].num_interior;
+                        var mensaje = datos[i].mensaje;
+                        var promocion = datos[i].promocion;
 
-                    if (nombre === null) {
-                        nombre = '';
-                    }
-                    if (apellido_Pat === null) {
-                        apellido_Pat = '';
-                    }
-                    if (apellido_Mat === null) {
-                        apellido_Mat = '';
-                    }
-                    if (sexo === null) {
-                        sexo = '';
-                    }
-                    if (fecha_Nacimiento === null) {
-                        fecha_Nacimiento = '';
-                    }
-                    if (curp === null) {
-                        curp = '';
-                    }
-                    if (ocupacion === null) {
-                        ocupacion = '';
-                    }
-                    if (tipo_Identificacion === null) {
-                        tipo_Identificacion = '';
-                    }
-                    if (num_Identificacion === null) {
-                        num_Identificacion = '';
-                    }
-                    if (celular === null) {
-                        celular = '';
-                    }
-                    if (rfc === null) {
-                        rfc = '';
-                    }
-                    if (telefono === null) {
-                        telefono = '';
-                    }
-                    if (correo === null) {
-                        correo = '';
-                    }
-                    if (estado === null) {
-                        estado = '';
-                    }
+                        if (nombre === null) {
+                            nombre = '';
+                        }
+                        if (apellido_Pat === null) {
+                            apellido_Pat = '';
+                        }
+                        if (apellido_Mat === null) {
+                            apellido_Mat = '';
+                        }
+                        if (sexo === null) {
+                            sexo = '';
+                        }
+                        if (fecha_Nacimiento === null) {
+                            fecha_Nacimiento = '';
+                        }
+                        if (curp === null) {
+                            curp = '';
+                        }
+                        if (ocupacion === null) {
+                            ocupacion = '';
+                        }
+                        if (tipo_Identificacion === null) {
+                            tipo_Identificacion = '';
+                        }
+                        if (num_Identificacion === null) {
+                            num_Identificacion = '';
+                        }
+                        if (celular === null) {
+                            celular = '';
+                        }
+                        if (rfc === null) {
+                            rfc = '';
+                        }
+                        if (telefono === null) {
+                            telefono = '';
+                        }
+                        if (correo === null) {
+                            correo = '';
+                        }
+                        if (estado === null) {
+                            estado = '';
+                        }
 
-                    if (codigo_Postal === null) {
-                        codigo_Postal = '';
-                    }
-                    if (municipio === null) {
-                        municipio = '';
-                    }
+                        if (codigo_Postal === null) {
+                            codigo_Postal = '';
+                        }
+                        if (municipio === null) {
+                            municipio = '';
+                        }
 
-                    if (localidad === null) {
-                        localidad = '';
-                    }
-                    if (calle === null) {
-                        calle = '';
-                    }
-                    if (num_exterior === null) {
-                        num_exterior = '';
-                    }
-                    if (num_interior === null) {
-                        num_interior = '';
-                    }
-                    if (mensaje === null) {
-                        mensaje = '';
-                    }
-                    if (promocion === null) {
-                        promocion = '';
-                    }
+                        if (localidad === null) {
+                            localidad = '';
+                        }
+                        if (calle === null) {
+                            calle = '';
+                        }
+                        if (num_exterior === null) {
+                            num_exterior = '';
+                        }
+                        if (num_interior === null) {
+                            num_interior = '';
+                        }
+                        if (mensaje === null) {
+                            mensaje = '';
+                        }
+                        if (promocion === null) {
+                            promocion = '';
+                        }
 
 
-                    $("#idNombreEdit").val(nombre);
-                    $("#idApMatEdit").val(apellido_Mat);
-                    $("#idApPatEdit").val(apellido_Pat);
-                    $("#idSexoEdit").val(sexo);
-                    $("#idIdentificacionEdit").val(tipo_Identificacion);
-                    $("#idNumIdentificacionEdit").val(num_Identificacion);
-                    $("#idFechaNacEdit").val(fecha_Nacimiento);
-                    $("#idCorreoEdit").val(correo);
-                    $("#idRfcEdit").val(rfc);
-                    $("#idCurpEdit").val(curp);
-                    $("#idCelularEdit").val(celular);
-                    $("#idTelefonoEdit").val(telefono);
-                    $("#idEstadoNameEdit").val(estado);
-                    $("#idMunicipioNameEdit").val(municipio);
-                    $("#idLocalidadNameEdit").val(localidad);
-                    $("#idCalleEdit").val(calle);
-                    $("#idCPEdit").val(codigo_Postal);
-                    $("#idNumIntEdit").val(num_interior);
-                    $("#idNumExtEdit").val(num_exterior);
-                    $("#idOcupacionEdit").val(ocupacion);
-                    $("#idMensajeInternoEdit").val(mensaje);
-                    $("#idPromocionEdit").val(promocion);
+                        $("#idNombreEdit").val(nombre);
+                        $("#idApMatEdit").val(apellido_Mat);
+                        $("#idApPatEdit").val(apellido_Pat);
+                        $("#idSexoEdit").val(sexo);
+                        $("#idIdentificacionEdit").val(tipo_Identificacion);
+                        $("#idNumIdentificacionEdit").val(num_Identificacion);
+                        $("#idFechaNacEdit").val(fecha_Nacimiento);
+                        $("#idCorreoEdit").val(correo);
+                        $("#idRfcEdit").val(rfc);
+                        $("#idCurpEdit").val(curp);
+                        $("#idCelularEdit").val(celular);
+                        $("#idTelefonoEdit").val(telefono);
+                        $("#idEstadoNameEdit").val(estado);
+                        $("#idMunicipioNameEdit").val(municipio);
+                        $("#idLocalidadNameEdit").val(localidad);
+                        $("#idCalleEdit").val(calle);
+                        $("#idCPEdit").val(codigo_Postal);
+                        $("#idNumIntEdit").val(num_interior);
+                        $("#idNumExtEdit").val(num_exterior);
+                        $("#idOcupacionEdit").val(ocupacion);
+                        $("#idMensajeInternoEdit").val(mensaje);
+                        $("#idPromocionEdit").val(promocion);
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 }
 

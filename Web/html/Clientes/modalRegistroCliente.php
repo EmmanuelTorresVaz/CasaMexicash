@@ -104,7 +104,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                             </td>
                                             <td>
                                                 <input type="text" name="fechaNac" id="idFechaNac" style="width: 150px"
-                                                       required placeholder="AAAA-MM-DD"/>
+                                                       required placeholder="AAAA-MM-DD"  onkeypress="return isDateValidate(event)"/>
                                             </td>
                                             <td>
                                                 <input type="text" name="correo" id="idCorreo" style="width: 200px"
@@ -177,12 +177,14 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                                 </select>
                                             </td>
                                             <td>
-                                                <select id="idMunicipio" name="municipioName" class="selectpicker"  style="width:200px" disabled onchange="llenarComboLocalidad()">
-                                                </select>
+                                                <input type="text" class="inputCliente" name="municipioName" placeholder=""
+                                                       id="idMunicipio"
+                                                       style="width: 200px" required/>
                                             </td>
                                             <td>
-                                                <select id="idLocalidad" name="localidadName" class="selectpicker"  style="width:200px" disabled>
-                                                </select>
+                                                <input type="text" class="inputCliente" name="municipioName" placeholder=""
+                                                       id="idLocalidad"
+                                                       style="width: 200px" required/>
                                             </td>
                                             <td>
                                                 <input type="text" class="inputCliente" name="calle" placeholder=""

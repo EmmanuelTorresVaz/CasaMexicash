@@ -177,12 +177,14 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                                 </select>
                                             </td>
                                             <td>
-                                                <select id="idMunicipioNameEdit" name="municipioName" class="selectpicker"  style="width:200px"  onchange="llenarComboLocalidadEdit()">
-                                                </select>
+                                                <input type="text" class="inputCliente" name="municipioName" placeholder=""
+                                                       id="idMunicipio"
+                                                       style="width: 200px" required/>
                                             </td>
                                             <td>
-                                                <select id="idLocalidadNameEdit" name="localidadName" class="selectpicker"  style="width:200px" >
-                                                </select>
+                                                <input type="text" class="localidadName" name="municipioName" placeholder=""
+                                                       id="idLocalidad"
+                                                       style="width: 200px" required/>
                                             </td>
                                             <td>
                                                 <input type="text" class="inputCliente" name="calle" placeholder=""
@@ -240,7 +242,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                                      id="idMensajeInternoEdit" rows="3" cols="80"></textarea>
                                             </td>
                                             <td style="vertical-align:top;">
-                                                <select type="text" name="promocion" placeholder="Selecciona:"
+                                                <select name="promocion" placeholder="Selecciona:"
                                                         class="selectpicker"
                                                         id="idPromocionEdit" style="width: 150px">
                                                     <option value="0">Selecciona:</option>
