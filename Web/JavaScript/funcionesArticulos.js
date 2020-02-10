@@ -21,7 +21,7 @@ function Limpiar() {
     <!--   Limpiar Electronicos-->
     $("#idTipoElectronico").val(0);
     $("#idMarca").val("");
-    $("#idVitrina").val(0);
+    $("#idVitrina").val("");
     $("#idVitrinaElectronico").val(0);
     $("#idModelo").val("");
     $("#idSerie").val("");
@@ -35,89 +35,95 @@ function Limpiar() {
 function Agregar() {
     var clienteEmpeno = $("#idClienteEmpeno").val();
     var tipoInteres = $("#tipoInteresEmpeno").val();
+    var vitrina = $("#idVitrina").val();
+    var vitrinaE = $("#idVitrinaElectronico").val();
+
     if (clienteEmpeno != 0) {
         if (tipoInteres != 0) {
-            var formElectronico = $("#idTipoElectronico").val();
-            var formMetal = $("#idTipoMetal").val();
-            if (formMetal != 0 || formElectronico != 0) {
+            if (vitrina != "" || vitrinaE != "") {
+                var formElectronico = $("#idTipoElectronico").val();
+                var formMetal = $("#idTipoMetal").val();
+                if (formMetal != 0 || formElectronico != 0) {
+                    if (formMetal > 0) {
+                        //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
+                        var metalAvaluo = $("#idAvaluo").val();
+                        var metalPrestamo = $("#idPrestamo").val();
+                        var interesMetal = calcularInteresMetal(metalPrestamo);
 
-                if (formMetal > 0) {
-                    //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
-                    var metalAvaluo = $("#idAvaluo").val();
-                    var metalPrestamo = $("#idPrestamo").val();
-                    var interesMetal = calcularInteresMetal(metalPrestamo);
+                        var dataEnviar = {
+                            "$idTipoEnviar": 1,
+                            "idTipoMetal": formMetal,
+                            "idKilataje": $("#idKilataje").val(),
+                            "idCalidad": $("#idCalidad").val(),
+                            "idCantidad": $("#idCantidad").val(),
+                            "idPeso": $("#idPeso").val(),
+                            "idPesoPiedra": $("#idPesoPiedra").val(),
+                            "idPiedras": $("#idPiedras").val(),
+                            "idPrestamo": metalPrestamo,
+                            "idAvaluo": metalAvaluo,
+                            "idVitrina": $("#idVitrina").val(),
+                            "idUbicacion": $("#idUbicacion").val(),
+                            "idDetallePrenda": $("#idDetallePrenda").val(),
+                            "interes": interesMetal,
 
-                    var dataEnviar = {
-                        "$idTipoEnviar": 1,
-                        "idTipoMetal": formMetal,
-                        "idKilataje": $("#idKilataje").val(),
-                        "idCalidad": $("#idCalidad").val(),
-                        "idCantidad": $("#idCantidad").val(),
-                        "idPeso": $("#idPeso").val(),
-                        "idPesoPiedra": $("#idPesoPiedra").val(),
-                        "idPiedras": $("#idPiedras").val(),
-                        "idPrestamo":metalPrestamo,
-                        "idAvaluo": metalAvaluo,
-                        "idVitrina": $("#idVitrina").val(),
-                        "idUbicacion": $("#idUbicacion").val(),
-                        "idDetallePrenda": $("#idDetallePrenda").val(),
-                        "interes": interesMetal,
-
-                    };
-                    $.ajax({
-                        data: dataEnviar,
-                        url: '../../../com.Mexicash/Controlador/Articulo.php',
-                        type: 'post',
-                        success: function (response) {
-                            if (response == 1) {
-                                cargarTablaArticulo();
-                                $("#divTablaArticulos").load('tablaArticulos.php');
-                                Limpiar();
-                                sumarTotalesMetal(metalPrestamo,metalAvaluo);
-                                alertify.success("Articulo agregado exitosamente.");
-                            } else {
-                                alertify.error("Error al agregar articulo.");
-                            }
-                        },
-                    })
-                } else if (formElectronico > 0) {
-                    var artiAvaluo = $("#idAvaluoElectronico").val();
-                    var artiPrestamo = $("#idPrestamoElectronico").val();
-                    var interesArti = calcularInteresArticulo(artiPrestamo);
-                    //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
-                    var dataEnviar = {
-                        "$idTipoEnviar": 2,
-                        "idTipoElectronico": formElectronico,
-                        "idMarca": $("#idMarca").val(),
-                        "idEstado": $("#idEstado").val(),
-                        "idModelo": $("#idModelo").val(),
-                        "idSerie": $("#idSerie").val(),
-                        "idPrestamoElectronico": artiPrestamo,
-                        "idAvaluoElectronico": artiAvaluo,
-                        "idVitrina": $("#idVitrinaElectronico").val(),
-                        "idUbicacionElectronico": $("#idUbicacionElectronico").val(),
-                        "idDetallePrendaElectronico": $("#idDetallePrendaElectronico").val(),
-                        "interes": interesArti,
-                    };
-                    $.ajax({
-                        data: dataEnviar,
-                        url: '../../../com.Mexicash/Controlador/Articulo.php',
-                        type: 'post',
-                        success: function (response) {
-                            if (response == 1) {
-                                cargarTablaArticulo();
-                                $("#divTablaArticulos").load('tablaArticulos.php');
-                                Limpiar();
-                                sumarTotalesArticulo(artiPrestamo,artiAvaluo);
-                                alertify.success("Articulo agregado exitosamente.");
-                            } else {
-                                alertify.error("Error al agregar articulo.");
-                            }
-                        },
-                    })
+                        };
+                        $.ajax({
+                            data: dataEnviar,
+                            url: '../../../com.Mexicash/Controlador/Articulo.php',
+                            type: 'post',
+                            success: function (response) {
+                                if (response == 1) {
+                                    cargarTablaArticulo();
+                                    $("#divTablaArticulos").load('tablaArticulos.php');
+                                    Limpiar();
+                                    sumarTotalesMetal(metalPrestamo, metalAvaluo);
+                                    alertify.success("Articulo agregado exitosamente.");
+                                } else {
+                                    alertify.error("Error al agregar articulo.");
+                                }
+                            },
+                        })
+                    } else if (formElectronico > 0) {
+                        var artiAvaluo = $("#idAvaluoElectronico").val();
+                        var artiPrestamo = $("#idPrestamoElectronico").val();
+                        var interesArti = calcularInteresArticulo(artiPrestamo);
+                        //  si es metal envia tipoAtticulo como 1 si es Electronico corresponde el 2
+                        var dataEnviar = {
+                            "$idTipoEnviar": 2,
+                            "idTipoElectronico": formElectronico,
+                            "idMarca": $("#idMarca").val(),
+                            "idEstado": $("#idEstado").val(),
+                            "idModelo": $("#idModelo").val(),
+                            "idSerie": $("#idSerie").val(),
+                            "idPrestamoElectronico": artiPrestamo,
+                            "idAvaluoElectronico": artiAvaluo,
+                            "idVitrina": $("#idVitrinaElectronico").val(),
+                            "idUbicacionElectronico": $("#idUbicacionElectronico").val(),
+                            "idDetallePrendaElectronico": $("#idDetallePrendaElectronico").val(),
+                            "interes": interesArti,
+                        };
+                        $.ajax({
+                            data: dataEnviar,
+                            url: '../../../com.Mexicash/Controlador/Articulo.php',
+                            type: 'post',
+                            success: function (response) {
+                                if (response == 1) {
+                                    cargarTablaArticulo();
+                                    $("#divTablaArticulos").load('tablaArticulos.php');
+                                    Limpiar();
+                                    sumarTotalesArticulo(artiPrestamo, artiAvaluo);
+                                    alertify.success("Articulo agregado exitosamente.");
+                                } else {
+                                    alertify.error("Error al agregar articulo.");
+                                }
+                            },
+                        })
+                    }
+                } else {
+                    alertify.error("Por Favor. Selecciona un tipo de articulo.");
                 }
             } else {
-                alertify.error("Por Favor. Selecciona un tipo de articulo.");
+                alertify.error("Por Favor. Ingresa precio vitrina.");
             }
         } else {
             alertify.error("Por Favor. Selecciona un tipo de interes.");
@@ -131,48 +137,48 @@ function Agregar() {
 //Cargar tabla Articulos
 function cargarTablaArticulo() {
     $.ajax({
-            type: "POST",
-            url: '../../../com.Mexicash/Controlador/tblArticulos.php',
-            dataType: "json",
-            success: function (datos) {
-                alert("Refrescando tabla.");
-                var html = '';
-                var i = 0;
-                for (i; i < datos.length; i++) {
-                    var marca = datos[i].marca;
-                    var modelo = datos[i].modelo;
-                    var prestamo = datos[i].prestamo;
-                    var avaluo = datos[i].avaluo;
-                    var detalle = datos[i].detalle;
-                    if (marca === null) {
-                        marca = '';
-                    }
-                    if (modelo === null) {
-                        modelo = '';
-                    }
-                    if (prestamo === null) {
-                        prestamo = '';
-                    }
-                    if (avaluo === null) {
-                        avaluo = '';
-                    }
-                    if (detalle === null) {
-                        detalle = '';
-                    }
-                    html += '<tr>' +
-                        '<td>' + marca + '</td>' +
-                        '<td>' + modelo + '</td>' +
-                        '<td>' + prestamo + '</td>' +
-                        '<td>' + avaluo + '</td>' +
-                        '<td>' + detalle + '</td>' +
-                        '<td><input type="button" class="btn btn-danger" value="Eliminar" ' +
-                        'onclick="confirmarEliminar(' + datos[i].id_Articulo + ')"></td>' +
-                        '</tr>';
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/tblArticulos.php',
+        dataType: "json",
+        success: function (datos) {
+            alert("Refrescando tabla.");
+            var html = '';
+            var i = 0;
+            for (i; i < datos.length; i++) {
+                var marca = datos[i].marca;
+                var modelo = datos[i].modelo;
+                var prestamo = datos[i].prestamo;
+                var avaluo = datos[i].avaluo;
+                var detalle = datos[i].detalle;
+                if (marca === null) {
+                    marca = '';
                 }
-
-                $('#idTBodyArticulos').html(html);
+                if (modelo === null) {
+                    modelo = '';
+                }
+                if (prestamo === null) {
+                    prestamo = '';
+                }
+                if (avaluo === null) {
+                    avaluo = '';
+                }
+                if (detalle === null) {
+                    detalle = '';
+                }
+                html += '<tr>' +
+                    '<td>' + marca + '</td>' +
+                    '<td>' + modelo + '</td>' +
+                    '<td>' + prestamo + '</td>' +
+                    '<td>' + avaluo + '</td>' +
+                    '<td>' + detalle + '</td>' +
+                    '<td><input type="button" class="btn btn-danger" value="Eliminar" ' +
+                    'onclick="confirmarEliminar(' + datos[i].id_Articulo + ')"></td>' +
+                    '</tr>';
             }
-        });
+
+            $('#idTBodyArticulos').html(html);
+        }
+    });
     $("#divTablaArticulos").load('tablaArticulos.php');
 }
 
@@ -311,23 +317,20 @@ function selectCalidad($tipoMetal) {
     });
 }
 
-
-/*function calcularInteres(metalPrestamo, metalAvaluo) {*/
-
 function calcularInteresMetal(metalPrestamo) {
-    metalPrestamo =  parseFloat(metalPrestamo);
+    metalPrestamo = parseFloat(metalPrestamo);
     var varTasaPorcen = parseFloat($("#idTasaPorcen").text());
     var varAlmPorcen = parseFloat($("#idAlmPorcen").text());
     var varSeguroPorcen = parseFloat($("#idSeguroPorcen").text());
     var varIvaPorcen = "0." + $("#idIvaPorcen").text();
-     varIvaPorcen = parseFloat(varIvaPorcen);
+    varIvaPorcen = parseFloat(varIvaPorcen);
 
-    var calculaTasa = Math.floor(metalPrestamo* varTasaPorcen)/100;
-    var calculaALm = Math.floor(metalPrestamo* varAlmPorcen)/100;
-    var calculaSeg = Math.floor(metalPrestamo* varSeguroPorcen)/100;
-    var calculaIva = Math.floor(metalPrestamo* varIvaPorcen)/100;
+    var calculaTasa = Math.floor(metalPrestamo * varTasaPorcen) / 100;
+    var calculaALm = Math.floor(metalPrestamo * varAlmPorcen) / 100;
+    var calculaSeg = Math.floor(metalPrestamo * varSeguroPorcen) / 100;
+    var calculaIva = Math.floor(metalPrestamo * varIvaPorcen) / 100;
 
-    var interes = calculaTasa + calculaALm +calculaSeg + calculaIva;
+    var interes = calculaTasa + calculaALm + calculaSeg + calculaIva;
     var interesMetal = metalPrestamo + interes;
     interesMetal = interesMetal.toFixed(2)
     interesMetal = parseFloat(interesMetal)
@@ -339,19 +342,19 @@ function calcularInteresMetal(metalPrestamo) {
 }
 
 function calcularInteresArticulo(artiPrestamo) {
-    artiPrestamo =  parseFloat(artiPrestamo);
+    artiPrestamo = parseFloat(artiPrestamo);
     var varTasaPorcen = parseFloat($("#idTasaPorcen").text());
     var varAlmPorcen = parseFloat($("#idAlmPorcen").text());
     var varSeguroPorcen = parseFloat($("#idSeguroPorcen").text());
     var varIvaPorcen = "0." + $("#idIvaPorcen").text();
     varIvaPorcen = parseFloat(varIvaPorcen);
 
-    var calculaTasa = Math.floor(artiPrestamo* varTasaPorcen)/100;
-    var calculaALm = Math.floor(artiPrestamo* varAlmPorcen)/100;
-    var calculaSeg = Math.floor(artiPrestamo* varSeguroPorcen)/100;
-    var calculaIva = Math.floor(artiPrestamo* varIvaPorcen)/100;
+    var calculaTasa = Math.floor(artiPrestamo * varTasaPorcen) / 100;
+    var calculaALm = Math.floor(artiPrestamo * varAlmPorcen) / 100;
+    var calculaSeg = Math.floor(artiPrestamo * varSeguroPorcen) / 100;
+    var calculaIva = Math.floor(artiPrestamo * varIvaPorcen) / 100;
 
-    var interes = +calculaTasa + calculaALm +calculaSeg + calculaIva;
+    var interes = +calculaTasa + calculaALm + calculaSeg + calculaIva;
     var interesArti = artiPrestamo + interes;
 
     interesArti = interesArti.toFixed(2)
@@ -364,19 +367,19 @@ function calcularInteresArticulo(artiPrestamo) {
 }
 
 function calcularInteresAuto(prestamoAuto) {
-    prestamoAuto =  parseFloat(prestamoAuto);
+    prestamoAuto = parseFloat(prestamoAuto);
     var varTasaPorcen = parseFloat($("#idTasaPorcen").text());
     var varAlmPorcen = parseFloat($("#idAlmPorcen").text());
     var varSeguroPorcen = parseFloat($("#idSeguroPorcen").text());
     var varIvaPorcen = "0." + $("#idIvaPorcen").text();
     varIvaPorcen = parseFloat(varIvaPorcen);
 
-    var calculaTasa = Math.floor(prestamoAuto* varTasaPorcen)/100;
-    var calculaALm = Math.floor(prestamoAuto* varAlmPorcen)/100;
-    var calculaSeg = Math.floor(prestamoAuto* varSeguroPorcen)/100;
-    var calculaIva = Math.floor(prestamoAuto* varIvaPorcen)/100;
+    var calculaTasa = Math.floor(prestamoAuto * varTasaPorcen) / 100;
+    var calculaALm = Math.floor(prestamoAuto * varAlmPorcen) / 100;
+    var calculaSeg = Math.floor(prestamoAuto * varSeguroPorcen) / 100;
+    var calculaIva = Math.floor(prestamoAuto * varIvaPorcen) / 100;
 
-    var interes = +calculaTasa + calculaALm +calculaSeg + calculaIva;
+    var interes = +calculaTasa + calculaALm + calculaSeg + calculaIva;
     var interesAuto = prestamoAuto + interes;
 
     interesAuto = interesAuto.toFixed(2)
@@ -388,13 +391,13 @@ function calcularInteresAuto(prestamoAuto) {
     return interes;
 }
 
-function sumarTotalesMetal(metalPrestamo,metalAvaluo) {
-    var metalAva= parseFloat(metalAvaluo);
+function sumarTotalesMetal(metalPrestamo, metalAvaluo) {
+    var metalAva = parseFloat(metalAvaluo);
     var metalPres = parseFloat(metalPrestamo);
     //Suma el monto de avaluo
     Avaluo = Avaluo + metalAva;
     $("#idTotalAvaluo").val(Avaluo);
-    Prestamo =Prestamo +metalPres;
+    Prestamo = Prestamo + metalPres;
     $("#idTotalPrestamo").val(Prestamo);
 }
 
@@ -403,14 +406,14 @@ function sumarTotalesArticulo(artiPrestamo, artiAvaluo) {
     var artiPrestamo = parseFloat(artiPrestamo);
     Avaluo = Avaluo + artiAvaluo;
     $("#idTotalAvaluo").val(Avaluo);
-    Prestamo = Prestamo +artiPrestamo;
+    Prestamo = Prestamo + artiPrestamo;
     $("#idTotalPrestamo").val(Prestamo);
 }
 
 function calculaAvaluo() {
     var prestamo = parseFloat($("#idPrestamo").val());
-    var avaluoImporte = Math.floor(prestamo* 33)/100;
-    prestamo = prestamo+ avaluoImporte;
+    var avaluoImporte = Math.floor(prestamo * 33) / 100;
+    prestamo = prestamo + avaluoImporte;
 
     prestamo = prestamo.toFixed(2)
     prestamo = parseFloat(prestamo)
@@ -418,18 +421,34 @@ function calculaAvaluo() {
 }
 
 function calculaAvaluoElec() {
-    var pretamoElec = parseFloat($("#idPrestamoElectronico").val());
-    var avaluoImporte = Math.floor(pretamoElec* 75)/100;
-    pretamoElec = pretamoElec + avaluoImporte;
-    pretamoElec = pretamoElec.toFixed(2)
-    pretamoElec = parseFloat(pretamoElec)
-    $("#idAvaluoElectronico").val(pretamoElec);
+    if ($("#idTipoElectronico").val() == 0) {
+        alert("Selecciona un tipo de electronico")
+    } else {
+        if ($("#idMarca").val() == 0) {
+            alert("Selecciona una marca")
+        } else {
+            if ($("#idModelo").val() == 0) {
+                alert("Selecciona un modelo")
+            } else {
+                if ($("#idPrestamoElectronico").val() == 0) {
+                    alert("Ingresa la cantidad de prestamo.")
+                } else {
+                    var pretamoElec = parseFloat($("#idPrestamoElectronico").val());
+                    var avaluoImporte = Math.floor(pretamoElec * 75) / 100;
+                    pretamoElec = pretamoElec + avaluoImporte;
+                    pretamoElec = pretamoElec.toFixed(2)
+                    pretamoElec = parseFloat(pretamoElec)
+                    $("#idAvaluoElectronico").val(pretamoElec);
+                }
+            }
+        }
+    }
 }
 
 function calculaAvaluoAuto() {
     var prestamo = parseFloat($("#idTotalPrestamoAuto").val());
-    var avaluoImporte = Math.floor(prestamo* 33)/100;
-    prestamo = prestamo+ avaluoImporte;
+    var avaluoImporte = Math.floor(prestamo * 33) / 100;
+    prestamo = prestamo + avaluoImporte;
 
     prestamo = prestamo.toFixed(2)
     prestamo = parseFloat(prestamo)
@@ -437,27 +456,27 @@ function calculaAvaluoAuto() {
 }
 
 function calculaPrestamoPeso() {
-    if($("#idTipoMetal").val()==0){
+    if ($("#idTipoMetal").val() == 0) {
         alert("Selecciona un tipo de metal")
-    }else {
-        if($("#idKilataje").val()==0){
+    } else {
+        if ($("#idKilataje").val() == 0) {
             alert("Selecciona un tipo de kilataje")
-        }else {
-            if($("#idCalidad").val()==0){
+        } else {
+            if ($("#idCalidad").val() == 0) {
                 alert("Selecciona un tipo de calidad")
-            }else {
+            } else {
                 if ($("#idCantidad").val() == "") {
                     alert("Ingresa el campo de Cantidad")
-                }else{
-                    if($("#idPeso").val()==""){
+                } else {
+                    if ($("#idPeso").val() == "") {
                         alert("Ingresa el campo de Peso")
-                    }else {
-                        if($("#idPiedras").val()==""){
-                            alert("Ingresa el campo de Peso Piedras")
-                        }else {
-                            if($("#idPesoPiedra").val()==""){
-                                alert("Ingresa el campo de Piedras")
-                            }else {
+                    } else {
+                        if ($("#idPiedras").val() == "") {
+                            alert("Ingresa el campo de Piedras")
+                        } else {
+                            if ($("#idPesoPiedra").val() == "") {
+                                alert("Ingresa el campo de Peso Piedras")
+                            } else {
                                 var cantidad = parseInt($("#idCantidad").val());
                                 var peso = parseFloat($("#idPeso").val());
                                 var pesoPiedra = parseFloat($("#idPesoPiedra").val());
@@ -470,10 +489,11 @@ function calculaPrestamoPeso() {
                                 var prestamo = pesoTotal * kilPrecio;
 
                                 $("#idAvaluo").val(prestamo);
-                                var avaluoImporte = Math.floor(prestamo * 33)/100;
-                                var avaluo = prestamo+ avaluoImporte;
+                                var avaluoImporte = Math.floor(prestamo * 33) / 100;
+                                var avaluo = prestamo + avaluoImporte;
                                 $("#idPrestamo").val(prestamo);
                                 $("#idAvaluo").val(avaluo);
+                                calculaAvaluo();
 
                             }
                         }
@@ -485,7 +505,6 @@ function calculaPrestamoPeso() {
 
 
 }
-
 
 function combMarcaVEmpe() {
     $('#idMarca').prop('disabled', false);
@@ -589,7 +608,7 @@ function llenarDatosElectronico(tipoSelect, marcaSelect, modeloSelect) {
                 }
 
                 var pretamoElec = parseFloat(precio);
-                var avaluoImporte = Math.floor(pretamoElec* 75)/100;
+                var avaluoImporte = Math.floor(pretamoElec * 75) / 100;
                 avaluoImporte = pretamoElec + avaluoImporte;
                 avaluoImporte = avaluoImporte.toFixed(2)
                 avaluoImporte = parseFloat(avaluoImporte)
@@ -654,10 +673,10 @@ function llenarDatosFromModal($idProducto) {
                     caracteristicas = '';
                 }
                 combMarcaVEmpeFromModal(tipoId);
-                cmbModeloVEmpeFromModal(tipoId,marcaId);
+                cmbModeloVEmpeFromModal(tipoId, marcaId);
                 alert("Cargando datos.")
                 var pretamoElec = parseFloat(precio);
-                var avaluoImporte = Math.floor(pretamoElec* 75)/100;
+                var avaluoImporte = Math.floor(pretamoElec * 75) / 100;
                 avaluoImporte = pretamoElec + avaluoImporte;
                 avaluoImporte = avaluoImporte.toFixed(2)
                 avaluoImporte = parseFloat(avaluoImporte)
@@ -704,7 +723,7 @@ function combMarcaVEmpeFromModal(tipoId) {
     });
 }
 
-function cmbModeloVEmpeFromModal(tipoId,marcaId) {
+function cmbModeloVEmpeFromModal(tipoId, marcaId) {
     $('#idModelo').prop('disabled', false);
     $('#idModelo').val(0);
     var tipoSelect = tipoId;

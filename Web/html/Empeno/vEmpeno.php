@@ -1,5 +1,5 @@
 <?php
-if(!isset($_SESSION)) {
+if (!isset($_SESSION)) {
     session_start();
 }
 /*if(!isset($_SESSION["idUsuario"])){
@@ -20,7 +20,7 @@ include_once(HTML_PATH . "Clientes/modalBusquedaCliente.php");
 include_once(HTML_PATH . "Clientes/modalEditarCliente.php");
 include_once(HTML_PATH . "Empeno/modalArticulos.php");
 include_once(HTML_PATH . "Empeno/modalAgregarArticulos.php");
-include_once (HTML_PATH. "Empeno/menuEmpeno.php")
+include_once(HTML_PATH . "Empeno/menuEmpeno.php")
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -46,17 +46,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
             $("#divTablaArticulos").load('tablaArticulos.php');
             $("#btnEditar").prop('disabled', true);
             llenarComboInteres(1);
-           $("#idPrestamo").blur(function(){
-               calculaAvaluo();
-            });
-            $("#idPrestamoElectronico").blur(function(){
-                calculaAvaluoElec();
-            });
-
-            $("#idPesoPiedra").blur(function(){
-                calculaPrestamoPeso();
-            });
-            $("#idNombres").blur(function(){
+            $("#idNombres").blur(function () {
                 $('#suggestionsNombreEmpeno').fadeOut(500);
             });
         })
@@ -82,6 +72,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
 
         .textArea {
             resize: none;
+            text-align: left;
         }
 
         .headt td {
@@ -100,9 +91,8 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
     <div id="contenedor" class="container">
         <div>
             <br>
-            <br>
         </div>
-        <div class="row" >
+        <div class="row">
             <div class="col col-lg-4 border border-primary ">
                 <table border="0" width="100%" class="tableInteres">
                     <tbody>
@@ -179,7 +169,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     <tr class="headt">
                         <td colspan="12">
                             <input type="text" id="nombreCotitular" name="idNombreCotitular"
-                                   style="width: 300px"  placeholder="A. Paterno-A. Materno-Nombre"/>
+                                   style="width: 300px" placeholder="A. Paterno-A. Materno-Nombre"/>
                         </td>
                     </tr>
                     <tr>
@@ -190,7 +180,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     <tr>
                         <td colspan="12">
                             <input type="text" id="idNombreBen" name="idNombreBen"
-                                   style="width:300px"  placeholder="A. Paterno-A. Materno-Nombre"/>
+                                   style="width:300px" placeholder="A. Paterno-A. Materno-Nombre"/>
                         </td>
                     </tr>
                     <tr>
@@ -201,7 +191,8 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                    style="text-align:center" class="invisible"/>
                             <input type="text" id="diasInteres" name="diasInteres" size="3"
                                    style="text-align:center" class="invisible"/>
-                            <input id="idTotalInteres" name="totalInteres" disabled type="text" style="width: 150px; text-align: right" class="invisible"/>
+                            <input id="idTotalInteres" name="totalInteres" disabled type="text"
+                                   style="width: 150px; text-align: right" class="invisible"/>
                         </td>
 
                     </tr>
@@ -223,7 +214,8 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     <tr class="headt">
                         <td colspan="6" class="border border-dark">&nbsp;Tasa Interés:</td>
                         <td colspan="6" class="border border-dark" id="idComboInteresTD">
-                            <select id="tipoInteresEmpeno" name="cmbTipoInteres" class="selectpicker"   style="width:150px"
+                            <select id="tipoInteresEmpeno" name="cmbTipoInteres" class="selectpicker"
+                                    style="width:150px"
                                     onchange="SeleccionarInteres($('#tipoInteresEmpeno').val())">
                             </select>
                         </td>
@@ -271,11 +263,13 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr class="headt">
                         <td colspan="6" class="border border-dark" align="right">
-                            <input id="idTotalAvaluo" name="totalAvaluo" disabled type="text" style="width: 150px; text-align: right"  value="0.00"
+                            <input id="idTotalAvaluo" name="totalAvaluo" disabled type="text"
+                                   style="width: 150px; text-align: right" value="0.00"
                                    class="inputCliente"/>
                         </td>
                         <td colspan="6" class="border border-dark" align="right">
-                            <input id="idTotalPrestamo" name="totalPrestamo" disabled type="text" style="width: 150px; text-align: right"  value="0.00"
+                            <input id="idTotalPrestamo" name="totalPrestamo" disabled type="text"
+                                   style="width: 150px; text-align: right" value="0.00"
                                    class="inputCliente"/>
                         </td>
                     </tr>
@@ -284,7 +278,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                         <td colspan="6" class="border border-dark" align="center">
                             <select id="idDiasAlmoneda" name="diasAlmName" class="selectpicker" disabled
                                     onchange="calcularDias()"
-                                   style="width: 80px">
+                                    style="width: 80px">
                                 <option value="0">0</option>
                                 <?php
                                 $data = array();
@@ -296,11 +290,20 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                 ?>
                             </select></td>
                     </tr>
+                    <tr align="center">
+                        <td colspan="6">
+                            <input type="text" id="idClienteEmpenuo" name="clienteEmpeno" size="20" class="invisible"/>
+                        </td>
+                        <td colspan="6">
+                            <input type="text" id="idLlenarComboInteres" name="llenarComboInteres" size="20"
+                                   class="invisible" value="1"/>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="col col-lg-4 border border-primary border-left-0" >
-                <table width="100%">
+            <div class="col col-lg-4 border border-primary border-left-0">
+                <table width="100%" >
                     <tr>
                         <br>
                     </tr>
@@ -317,13 +320,14 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     <tr>
                         <td colspan="2">
                             <div id="divMetales">
-                                <table>
+                                <table  width="100%">
                                     <tbody class="text-body" align="left">
                                     <tr>
-                                        <td colspan="6">Tipo:</td>
-                                        <td colspan="6">
+                                        <td colspan="3">Tipo:</td>
+                                        <td colspan="9">
                                             <select id="idTipoMetal" name="cmbTipoMetal" class="selectpicker"
-                                                    onchange="selectMetalCmb($('#idTipoMetal').val())" style="width: 150px">
+                                                    onchange="selectMetalCmb($('#idTipoMetal').val())"
+                                                    style="width: 150px">
                                                 <option value="0">Seleccione:</option>
                                                 <?php
                                                 $data = array();
@@ -337,80 +341,73 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6">Kilataje:</td>
-                                        <td colspan="6">
-                                            <select id="idKilataje" name="cmbKilataje" class="selectpicker" style="width: 100px" onchange="llenaPrecioKilataje()">
-                                            </select>
-                                            <input type="text" id="idKilatajePrecio" name="kilatajePrecio" size="6" value="66"
-                                                  class="invisible"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="6">Calidad:</td>
-                                        <td colspan="6">
-                                            <select id="idCalidad" name="cmbCalidad" class="selectpicker" style="width: 100px">
+                                        <td colspan="3">Kilataje:</td>
+                                        <td colspan="9">
+                                            <select id="idKilataje" name="cmbKilataje" class="selectpicker"
+                                                    style="width: 150px" onchange="llenaPrecioKilataje()">
                                             </select>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6">Cantidad:</td>
-                                        <td colspan="6">
-                                            <input type="text" id="idCantidad" name="cantidad" size="6"    onkeypress="return soloNumeros(event)"
+                                        <td colspan="3" >Calidad:</td>
+                                        <td colspan="9">
+                                            <select id="idCalidad" name="cmbCalidad" class="selectpicker"
+                                                    style="width: 150px">
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">Cantidad:</td>
+                                        <td colspan="3">
+                                            <input type="text" id="idCantidad" name="cantidad" size="5"
+                                                   onkeypress="return soloNumeros(event)"
                                                    style="text-align:center"/>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="6">Peso:</td>
-                                        <td colspan="6">
-                                            <input type="text" id="idPeso" name="peso" size="6"    onkeypress="return isNumberDecimal(event)"
+                                        <td colspan="3">Peso:</td>
+                                        <td colspan="3">
+                                            <input type="text" id="idPeso" name="peso" size="4"
+                                                   onkeypress="return isNumberDecimal(event)"
                                                    style="text-align:center"/>
                                             <label>grs</label></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6">Piedras:</td>
-                                        <td colspan="6">
-                                            <input type="text" id="idPiedras" name="piedras" size="6"    onkeypress="return soloNumeros(event)"
+                                        <td colspan="3">Piedras:</td>
+                                        <td colspan="3">
+                                            <input type="text" id="idPiedras" name="piedras" size="5" value="0"
+                                                   onkeypress="return soloNumeros(event)"
                                                    style="text-align:center"/>
                                             <label>pza</label>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="6">Peso Piedra:</td>
-                                        <td colspan="6">
-                                            <input type="text" id="idPesoPiedra" name="pesoPiedra" size="6"    onkeypress="return isNumberDecimal(event)"
+                                        <td colspan="3">Peso:</td>
+                                        <td colspan="3">
+                                            <input type="text" id="idPesoPiedra" name="pesoPiedra" size="4" value="0.00"
+                                                   onkeypress="return isNumberDecimal(event)"
                                                    style="text-align:center"/>
                                             <label>grs</label></td>
                                     </tr>
-
-
                                     <tr>
-                                        <td colspan="6">Préstamo:</td>
-                                        <td colspan="6">
-                                            <input type="text" id="idPrestamo" name="prestamo" size="6"   onkeypress="return isNumberDecimal(event)";
+                                        <td colspan="3">Préstamo:</td>
+                                        <td colspan="3">
+                                            <input type="text" id="idPrestamo" name="prestamo" size="5"
+                                                   onkeypress="return isNumberDecimal(event)" ;
+                                                   style="text-align:center"/>
+                                        </td>
+                                        <td colspan="3">Avalúo:</td>
+                                        <td colspan="3">
+                                            <input type="text" id="idAvaluo" name="avaluo" size="5"
+                                                   onkeypress="return isNumberDecimal(event)"
                                                    style="text-align:center" />
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6">Avalúo:</td>
-                                        <td colspan="6">
-                                            <input type="text" id="idAvaluo" name="avaluo" size="6"    onkeypress="return isNumberDecimal(event)"
-                                                   style="text-align:center" disabled/>
+                                        <td colspan="3">Vitrina:</td>
+                                        <td colspan="3">
+                                            <input type="text" id="idVitrina" name="vitrina" size="5"
+                                                   onkeypress="return soloNumeros(event)"
+                                                   style="text-align:center"/>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="6">Vitrina:</td>
-                                        <td colspan="6">
-                                            <input type="text" id="idVitrina" name="vitrina" size="6"    onkeypress="return soloNumeros(event)"
-                                                   style="text-align:center" />
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td colspan="6">Observaciones de la tienda:</td>
-                                        <td colspan="6">
-                                            <input type="text" id="idUbicacion" name="ubicacion" size="15"
-                                                   style="text-align:left"/>
-
+                                        <td colspan="6" >
+                                            <input type="button" class="btn btn-info" value="Calcular" onclick="calculaPrestamoPeso()">
                                         </td>
                                     </tr>
                                     <tr>
@@ -419,22 +416,41 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                         </td>
                                     <tr>
                                         <td colspan="12" name="detallePrenda">
-                                    <textarea rows="2" cols="30" id="idDetallePrenda" class="textArea" style="text-align:left">
-                                    </textarea>
+                                            <p>
+                                              <textarea name="detalle" id="idDetallePrenda"
+                                                        class="textArea" rows="2" cols="40"></textarea></p>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="12">Observaciones de la tienda:</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="12">
+                                            <p><textarea name="mensaje" id="idUbicacion"
+                                                         class="textArea" rows="2" cols="40"></textarea></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" id="idKilatajePrecio" name="kilatajePrecio" size="6"
+                                                   value="0"
+                                                   class="invisible"/>
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <div id="divElectronicos">
-                                <table>
+                                <table width="100%">
                                     <tbody class="text-body border" align="left">
                                     <tr>
-                                        <td colspan="6">Tipo:</td>
-                                        <td colspan="6">
+                                        <td colspan="3">Tipo:</td>
+                                        <td colspan="9">
                                             <select id="idTipoElectronico" name="cmbTipoElectronico"
                                                     class="selectpicker"
-                                                    onchange="combMarcaVEmpe($('#idTipoElectronico').val())" style="width: 150px">
+                                                    onchange="combMarcaVEmpe($('#idTipoElectronico').val())"
+                                                    style="width: 150px">
                                                 <option value="0">Seleccione:</option>
                                                 <?php
                                                 $data = array();
@@ -445,59 +461,61 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                                 }
                                                 ?>
                                             </select>
-                                            <img src="../../style/Img/lupa.png"  data-toggle="modal"
-                                                 data-target="#modalArticulos" alt="Buscar" onclick="llenarComboTipoE();">
+                                            <img src="../../style/Img/lupa.png" data-toggle="modal"
+                                                 data-target="#modalArticulos" alt="Buscar"
+                                                 onclick="llenarComboTipoE();">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6">Marca:</td>
-                                        <td colspan="6">
-                                            <select id="idMarca" name="marcaSelect" class="selectpicker"  style="width:150px" disabled onchange="cmbModeloVEmpe($('#idMarca').val());">
+                                        <td colspan="3">Marca:</td>
+                                        <td colspan="9">
+                                            <select id="idMarca" name="marcaSelect" class="selectpicker"
+                                                    style="width:150px" disabled
+                                                    onchange="cmbModeloVEmpe($('#idMarca').val());">
                                             </select>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="6">Modelo:</td>
-                                        <td colspan="6">
-                                            <select id="idModelo" name="modeloSelect" class="selectpicker"  style="width:150px" disabled
+                                        <td colspan="3">Modelo:</td>
+                                        <td colspan="9">
+                                            <select id="idModelo" name="modeloSelect" class="selectpicker"
+                                                    style="width:150px" disabled
                                                     onchange="llenarDatosElectronico($('#idTipoElectronico').val(),$('#idMarca').val(),$('#idModelo').val())">
                                             </select>
                                         </td>
                                     </tr>
+
                                     <tr>
-                                        <td colspan="6">No.Serie:</td>
-                                        <td colspan="6">
-                                            <input type="text" id="idSerie" name="serie" size="6"
-                                                   style="text-align:center" value=""/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="6">Préstamo:</td>
-                                        <td colspan="6">
-                                            <input type="text" id="idPrestamoElectronico" name="prestamoE" size="6"    onkeypress="return soloNumeros(event)"
+                                        <td colspan="3">Préstamo:</td>
+                                        <td colspan="3">
+                                            <input type="text" id="idPrestamoElectronico" name="prestamoE" size="5"
+                                                   onkeypress="return soloNumeros(event)"
                                                    style="text-align:center"/ >
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="6">Avalúo:</td>
-                                        <td colspan="6">
-                                            <input type="text" id="idAvaluoElectronico" name="avaluoE" size="6"    onkeypress="return soloNumeros(event)"
-                                                   style="text-align:center" disabled/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="6">Vitrina:</td>
-                                        <td colspan="6">
-                                            <input type="text" id="idVitrinaElectronico" name="vitrinaE" size="6"    onkeypress="return soloNumeros(event)"
+                                        <td colspan="3">Avalúo:</td>
+                                        <td colspan="3">
+                                            <input type="text" id="idAvaluoElectronico" name="avaluoE" size="5"
+                                                   onkeypress="return soloNumeros(event)"
                                                    style="text-align:center" />
                                         </td>
                                     </tr>
+                                        <tr>
+                                        <td colspan="3">Vitrina:</td>
+                                        <td colspan="3">
+                                            <input type="text" id="idVitrinaElectronico" name="vitrinaE" size="5"
+                                                   onkeypress="return soloNumeros(event)"
+                                                   style="text-align:center"/>
+                                        </td>
+                                            <td colspan="6">
+                                                <input type="button" class="btn btn-info" value="Calcular" onclick="calculaAvaluoElec()">
 
+                                            </td>
+                                    </tr>
                                     <tr>
-                                        <td colspan="6">Observaciones de la tienda:</td>
-                                        <td colspan="6">
-                                            <input type="text" id="idUbicacionElectronico" name="ubicacionE" size="15"
-                                                   style="text-align:left" value=""/>
+                                        <td colspan="3">No.Serie:</td>
+                                        <td colspan="9">
+                                            <input type="text" id="idSerie" name="serie" size="18"
+                                                   style="text-align:center" value=""/>
                                         </td>
                                     </tr>
                                     <tr>
@@ -507,8 +525,18 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                                     </tr>
                                     <tr>
                                         <td colspan="12" name="detallePrendaE">
-                                    <textarea rows="2" cols="30" id="idDetallePrendaElectronico" class="textArea" style="text-align:left">
-                                    </textarea>
+                                            <textarea rows="2" cols="40" id="idDetallePrendaElectronico"
+                                                      class="textArea"></textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="12">Observaciones de la tienda:</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="12">
+                                            <textarea rows="2" cols="40" id="idUbicacionElectronico" class="textArea"
+                                                      name="ubicacionE"></textarea>
+
                                         </td>
                                     </tr>
                                     </tbody>
@@ -522,14 +550,6 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                         </td>
                         <td>
                             <input type="button" class="btn btn-success" value="Agregar a la lista" onclick="Agregar()">
-                        </td>
-                        <td>
-                            <input type="text" id="idClienteEmpenuo" name="clienteEmpeno" size="20"  class="invisible"
-                            />
-                        </td>
-                        <td>
-                            <input type="text" id="idLlenarComboInteres" name="llenarComboInteres" size="20"
-                                   class="invisible" value="1"/>
                         </td>
                     </tr>
                 </table>
@@ -549,7 +569,8 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                 <br>
             </div>
             <div class="col col-lg-5">
-                <input type="button" class="btn btn-success" value="pruebaCalc"  onclick="location.href='../PDF/pdfPrueba.php'">&nbsp;
+                <input type="button" class="btn btn-success" value="pruebaCalc"
+                       onclick="location.href='../PDF/pdfPrueba.php'">&nbsp;
                 <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
                 <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
                 <input type="button" class="btn btn-primary" value="Contrato" onclick="generarContrato()">&nbsp;

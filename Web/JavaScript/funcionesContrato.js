@@ -3,6 +3,7 @@ function generarContrato() {
     var clienteEmpeno = $("#idClienteEmpeno").val();
     var tipoInteres = $("#tipoInteresEmpeno").val();
     var validarContratoTemporal = consultarContratos();
+    var diasAlmoneda = $("#idDiasAlmoneda").val();
 
     var validate = true;
     if (clienteEmpeno == '' || clienteEmpeno == null) {
@@ -13,6 +14,9 @@ function generarContrato() {
         validate = false;
     } else if (validarContratoTemporal == 0) {
         alert("Por Favor. Ingresa los articulos.");
+        validate = false;
+    } else if (diasAlmoneda == 0) {
+        alert("Por Favor. Selecciona los días de almoneda.");
         validate = false;
     }
     if (validate) {
