@@ -43,7 +43,8 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
             $("#divElectronicos").hide();
             $("#divMetales").show();
             $("#idFormEmpeno").trigger("reset");
-            $("#divTablaArticulos").load('tablaArticulos.php');
+            $("#divTablaMetales").load('tablaMetales.php');
+            $("#divTablaArticulos").hide();
             $("#btnEditar").prop('disabled', true);
             llenarComboInteres(1);
             $("#idNombres").blur(function () {
@@ -561,6 +562,8 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
             </div>
         </div>
         <div class="row">
+            <div id="divTablaMetales" class="col col-lg-12">
+            </div>
             <div id="divTablaArticulos" class="col col-lg-12">
             </div>
         </div>

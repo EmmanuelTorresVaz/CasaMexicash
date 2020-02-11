@@ -26,6 +26,7 @@ function SeleccionarInteres(tipoInteresValue) {
                     document.getElementById('idSeguroPorcen').innerHTML = response.result.seguro + ".00";
                     document.getElementById('idIvaPorcen').innerHTML = response.result.iva + " %";
                     limpiarTablaInteres();
+                    $("#divTablaMetales").load('tablaMetales.php');
                     $("#divTablaArticulos").load('tablaArticulos.php');
                 }
             },

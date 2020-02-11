@@ -119,6 +119,35 @@ class sqlArticulosDAO
         echo json_encode($datos);
         //echo json_encode($datos);
     }
+    public function buscarMetales()
+    {
+        $datos = array();
+        try {
+            $usuario = $_SESSION["idUsuario"];
+            $buscar = "SELECT id_Articulo, marca, modelo, prestamo,avaluo, detalle FROM articulo_tbl WHERE id_Contrato='' and usuario=" . $usuario;
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "id_Articulo" => $row["id_Articulo"],
+                        "marca" => $row["marca"],
+                        "modelo" => $row["modelo"],
+                        "prestamo" => $row["prestamo"],
+                        "avaluo" => $row["avaluo"],
+                        "detalle" => $row["detalle"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+
+        echo json_encode($datos);
+        //echo json_encode($datos);
+    }
 
     public function eliminarArticulo($idArticulo)
     {

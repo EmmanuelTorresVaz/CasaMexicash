@@ -73,8 +73,8 @@ function Agregar() {
                             type: 'post',
                             success: function (response) {
                                 if (response == 1) {
-                                    cargarTablaArticulo();
-                                    $("#divTablaArticulos").load('tablaArticulos.php');
+                                    cargarTablaMetales();
+                                    $("#divTablaMetales").load('tablaMetales.php');
                                     Limpiar();
                                     sumarTotalesMetal(metalPrestamo, metalAvaluo);
                                     alertify.success("Articulo agregado exitosamente.");
@@ -135,10 +135,56 @@ function Agregar() {
 }
 
 //Cargar tabla Articulos
+function cargarTablaMetales() {
+    $.ajax({
+        type: "POST",
+        url: '../../../com.Mexicash/Controlador/Articulos/tblMetales.php',
+        dataType: "json",
+        success: function (datos) {
+            alert("Refrescando tabla.");
+            var html = '';
+            var i = 0;
+            for (i; i < datos.length; i++) {
+                var marca = datos[i].marca;
+                var modelo = datos[i].modelo;
+                var prestamo = datos[i].prestamo;
+                var avaluo = datos[i].avaluo;
+                var detalle = datos[i].detalle;
+                if (marca === null) {
+                    marca = '';
+                }
+                if (modelo === null) {
+                    modelo = '';
+                }
+                if (prestamo === null) {
+                    prestamo = '';
+                }
+                if (avaluo === null) {
+                    avaluo = '';
+                }
+                if (detalle === null) {
+                    detalle = '';
+                }
+                html += '<tr>' +
+                    '<td>' + marca + '</td>' +
+                    '<td>' + modelo + '</td>' +
+                    '<td>' + prestamo + '</td>' +
+                    '<td>' + avaluo + '</td>' +
+                    '<td>' + detalle + '</td>' +
+                    '<td><input type="button" class="btn btn-danger" value="Eliminar" ' +
+                    'onclick="confirmarEliminarMetales(' + datos[i].id_Articulo + ')"></td>' +
+                    '</tr>';
+            }
+
+            $('#idTBodyMetales').html(html);
+        }
+    });
+    $("#divTablaMetales").load('tablaMetales.php');
+}
 function cargarTablaArticulo() {
     $.ajax({
         type: "POST",
-        url: '../../../com.Mexicash/Controlador/tblArticulos.php',
+        url: '../../../com.Mexicash/Controlador/Articulos/tblArticulos.php',
         dataType: "json",
         success: function (datos) {
             alert("Refrescando tabla.");
@@ -182,6 +228,7 @@ function cargarTablaArticulo() {
     $("#divTablaArticulos").load('tablaArticulos.php');
 }
 
+
 //Menu Mentales
 function Metales() {
     $("#divElectronicos").hide();
@@ -190,7 +237,8 @@ function Metales() {
     LimpiarInteres();
     llenarComboInteres(1);
     limpiarTabla();
-    $("#divTablaArticulos").load('tablaArticulos.php');
+    $("#divTablaMetales").load('tablaMetales.php');
+    $("#divTablaArticulos").hide();
 }
 
 //Menu Electronicos
@@ -201,7 +249,8 @@ function Electronicos() {
     LimpiarInteres();
     llenarComboInteres(2);
     limpiarTabla();
-    $("#divTablaArticulos").load('tablaArticulos.php');
+    $("#divTablaMetales").hide();
+    $("#divTablaArticulos").load('tablaMetales.php');
 }
 
 //Alerta para confirmar la Eliminacion
@@ -210,6 +259,16 @@ function confirmarEliminar($idArticulo) {
         'Confirme eliminacion de articulo seleccionado.',
         function () {
             eliminarArticulo($idArticulo)
+        },
+        function () {
+            alertify.error('Cancelado')
+        });
+}
+function confirmarEliminarMetales($idArticulo) {
+    alertify.confirm('Eliminar',
+        'Confirme eliminacion de articulo seleccionado.',
+        function () {
+            eliminarMetales($idArticulo)
         },
         function () {
             alertify.error('Cancelado')
@@ -229,6 +288,26 @@ function eliminarArticulo($idArticulo) {
             if (response == 1) {
                 cargarTablaArticulo();
                 $("#divTablaArticulos").load('tablaArticulos.php');
+                alertify.success("Eliminado con éxito.");
+            } else {
+                alertify.error("Error al eliminar articulo.");
+            }
+        },
+    })
+
+}e
+function eliminarMetales($idArticulo) {
+    var dataEnviar = {
+        "$idArticulo": $idArticulo
+    };
+    $.ajax({
+        data: dataEnviar,
+        url: '../../../com.Mexicash/Controlador/EliminarArticulo.php',
+        type: 'post',
+        success: function (response) {
+            if (response == 1) {
+                cargarTablaMetales();
+                $("#divTablaMetales").load('tablaMetales.php');
                 alertify.success("Eliminado con éxito.");
             } else {
                 alertify.error("Error al eliminar articulo.");
