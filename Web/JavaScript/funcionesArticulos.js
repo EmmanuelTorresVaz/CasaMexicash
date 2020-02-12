@@ -192,6 +192,7 @@ function cargarTablaArticulo() {
             var html = '';
             var i = 0;
             for (i; i < datos.length; i++) {
+                var tipo = datos[i].tipo;
                 var marca = datos[i].marca;
                 var modelo = datos[i].modelo;
                 var prestamo = datos[i].prestamo;
@@ -213,6 +214,7 @@ function cargarTablaArticulo() {
                     detalle = '';
                 }
                 html += '<tr>' +
+                    '<td>' + tipo + '</td>' +
                     '<td>' + marca + '</td>' +
                     '<td>' + modelo + '</td>' +
                     '<td>' + prestamo + '</td>' +
