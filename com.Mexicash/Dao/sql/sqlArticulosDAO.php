@@ -61,13 +61,14 @@ class sqlArticulosDAO
                 $idPrestamoE = $articulo->getPrestamoE();
                 $idAvaluoE = $articulo->getAvaluoE();
                 $idUbicacionE = $articulo->getUbicacionE();
+                $precioCat = $articulo->getPrecioCat();
                 $idDetallePrendaE = $articulo->getDetallePrendaE();
 
                 $insert = "INSERT INTO articulo_tbl " .
-                    "(tipo, marca, modelo, num_Serie, prestamo, avaluo,vitrina,interes,  ubicacion," .
+                    "(tipo, marca, modelo, num_Serie, prestamo, avaluo,vitrina, precioCat, interes,  ubicacion," .
                     " detalle, id_Estatus, fecha_creacion, fecha_modificacion,usuario,sucursal)  VALUES " .
                     "('" . $idTipoE . "','" . $idMarca . "', '" . $idModelo
-                    . "', '" . $idSerie . "','" . $idPrestamoE . "', '" . $idAvaluoE . "', '" . $idVitrina . "', '" . $interes . "','" . $idUbicacionE . "','"
+                    . "', '" . $idSerie . "','" . $idPrestamoE . "', '" . $idAvaluoE . "', '" . $idVitrina . "', '" . $precioCat . "','" . $interes . "','" . $idUbicacionE . "','"
                     . $idDetallePrendaE . "','" . $status . "','" . $fechaCreacion . "','" . $fechaModificacion . "'," . $usuario . "," . $sucursal . "  )";
             }
             if ($ps = $this->conexion->prepare($insert)) {

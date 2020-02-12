@@ -98,6 +98,7 @@ function Agregar() {
                             "idPrestamoElectronico": artiPrestamo,
                             "idAvaluoElectronico": artiAvaluo,
                             "idVitrina": $("#idVitrinaElectronico").val(),
+                            "idPrecioCat": $("#idPrecioCat").val(),
                             "idUbicacionElectronico": $("#idUbicacionElectronico").val(),
                             "idDetallePrendaElectronico": $("#idDetallePrendaElectronico").val(),
                             "interes": interesArti,
@@ -250,7 +251,7 @@ function Electronicos() {
     llenarComboInteres(2);
     limpiarTabla();
     $("#divTablaMetales").hide();
-    $("#divTablaArticulos").load('tablaMetales.php');
+    $("#divTablaArticulos").load('tablaArticulos.php');
 }
 
 //Alerta para confirmar la Eliminacion
@@ -700,6 +701,7 @@ function llenarDatosElectronico(tipoSelect, marcaSelect, modeloSelect) {
                 $("#idPrestamoElectronico").val(precio);
                 $("#idAvaluoElectronico").val(avaluoImporte);
                 $("#idVitrinaElectronico").val(vitrina);
+                $("#idPrecioCat").val(vitrina);
                 $("#idDetallePrendaElectronico").val(caracteristicas);
 
             }
@@ -770,6 +772,7 @@ function llenarDatosFromModal($idProducto) {
                 $("#idPrestamoElectronico").val(precio);
                 $("#idAvaluoElectronico").val(avaluoImporte);
                 $("#idVitrinaElectronico").val(vitrina);
+                $("#idPrecioCat").val(vitrina);
                 $("#idDetallePrendaElectronico").val(caracteristicas);
 
 

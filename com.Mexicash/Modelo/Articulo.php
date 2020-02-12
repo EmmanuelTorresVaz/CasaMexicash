@@ -16,6 +16,7 @@ class Articulo
     private $idUbicacion;
     private $idDetallePrenda;
     private $idVitrina;
+    private $idPrecioCat;
     private $interes;
     //Electronico
     private $idTipoE;
@@ -25,7 +26,6 @@ class Articulo
     private $idSerie;
     private $idPrestamoE;
     private $idAvaluoE;
-
     private $idUbicacionE;
     private $idDetallePrendaE;
 
@@ -45,6 +45,7 @@ class Articulo
      * @param $idUbicacion
      * @param $idDetallePrenda
      * @param $idVitrina
+     * @param $idPrecioCat
      * @param $interes
      * Electronico
      * @param $idTipoE
@@ -68,6 +69,7 @@ class Articulo
         $idPrestamo,
         $idAvaluo,
         $idVitrina,
+        $idPrecioCat,
         $interes,
         $idUbicacion,
         $idDetallePrenda,
@@ -92,6 +94,7 @@ class Articulo
         $this->prestamo = $idPrestamo;
         $this->avaluo = $idAvaluo;
         $this->vitrina = $idVitrina;
+        $this->precioCat = $idPrecioCat;
         $this->interes = $interes;
         $this->ubicacion = $idUbicacion;
         $this->detallePrenda = $idDetallePrenda;
@@ -107,6 +110,22 @@ class Articulo
         $this->ubicacionE = $idUbicacionE;
         $this->detallePrendaE = $idDetallePrendaE;
 
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrecioCat()
+    {
+        return $this->precioCat;
+    }
+
+    /**
+     * @param mixed $idPrecioCat
+     */
+    public function setPrecioCat($idPrecioCat): void
+    {
+        $this->precioCat = $idPrecioCat;
     }
 
     /**

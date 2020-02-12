@@ -74,6 +74,8 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
         .textArea {
             resize: none;
             text-align: left;
+            text-transform: uppercase;
+
         }
 
         .headt td {
@@ -128,8 +130,8 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                         <td colspan="12">
                             <div>
                                 <input id="idNombres" name="Nombres" type="text" style="width: 300px"
-                                       class="inputCliente" onkeypress="return soloLetras(event)"
-                                       onkeypress="nombreAutocompletar()" placeholder="Buscar Cliente..."/>
+                                       class="inputCliente" onkeypress="nombreAutocompletar()"
+                                       placeholder="Buscar Cliente..."/>
                             </div>
                             <div id="suggestionsNombreEmpeno"></div>
                         </td>
@@ -169,7 +171,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                     </tr>
                     <tr class="headt">
                         <td colspan="12">
-                            <input type="text" id="nombreCotitular" name="idNombreCotitular" onkeypress="return soloLetras(event)"
+                            <input type="text" id="nombreCotitular" name="idNombreCotitular" class="inputCliente" onkeypress="return soloLetras(event)"
                                    style="width: 300px" placeholder="A. Paterno-A. Materno-Nombre"/>
                         </td>
                     </tr>
@@ -180,7 +182,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="12">
-                            <input type="text" id="idNombreBen" name="idNombreBen" onkeypress="return soloLetras(event)"
+                            <input type="text" id="idNombreBen" class="inputCliente" name="idNombreBen" onkeypress="return soloLetras(event)"
                                    style="width:300px" placeholder="A. Paterno-A. Materno-Nombre"/>
                         </td>
                     </tr>
@@ -507,15 +509,24 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                                                    onkeypress="return soloNumeros(event)"
                                                    style="text-align:center"/>
                                         </td>
-                                            <td colspan="6">
-                                                <input type="button" class="btn btn-info" value="Calcular" onclick="calculaAvaluoElec()">
+                                            <td colspan="3">Catalogo:</td>
+                                            <td colspan="3">
+                                                <input type="text" id="idPrecioCat" disabled name="vitrinaE" size="5"
+                                                       onkeypress="return soloNumeros(event)"
+                                                       style="text-align:center"/>
                                             </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="12">
+                                            <input type="button" class="btn btn-info" value="Calcular" onclick="calculaAvaluoElec()">
+
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td colspan="3">No.Serie:</td>
                                         <td colspan="9">
                                             <input type="text" id="idSerie" name="serie" size="18"
-                                                   style="text-align:center" value=""/>
+                                                   style="text-align:left" value=""/>
                                         </td>
                                     </tr>
                                     <tr>

@@ -18,6 +18,7 @@ if ($idTipoEnviar == 1) {
     $idAvaluo = $_POST['idAvaluo'];
     $idAvaluo = $_POST['idAvaluo'];
     $idVitrina = $_POST['idVitrina'];
+    $idPrecioCat = null;
     $interes = $_POST['interes'];
     $idDetallePrenda = $_POST['idDetallePrenda'];
     $idUbicacion = $_POST['idUbicacion'];
@@ -58,6 +59,7 @@ if ($idTipoEnviar == 1) {
     $idPrestamoE = $_POST['idPrestamoElectronico'];
     $idAvaluoE = $_POST['idAvaluoElectronico'];
     $idVitrina = $_POST['idVitrina'];
+    $idPrecioCat = $_POST['idPrecioCat'];
     $interes = $_POST['interes'];
     $idUbicacionE = $_POST['idUbicacionElectronico'];
     $idDetallePrendaE = $_POST['idDetallePrendaElectronico'];
@@ -74,6 +76,7 @@ $articulo = new Articulo(
     $idPrestamo,
     $idAvaluo,
     $idVitrina,
+    $idPrecioCat,
     $interes,
     $idUbicacion,
     $idDetallePrenda,
