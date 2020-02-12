@@ -128,7 +128,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                         <td colspan="12">
                             <div>
                                 <input id="idNombres" name="Nombres" type="text" style="width: 300px"
-                                       class="inputCliente"
+                                       class="inputCliente" onkeypress="return soloLetras(event)"
                                        onkeypress="nombreAutocompletar()" placeholder="Buscar Cliente..."/>
                             </div>
                             <div id="suggestionsNombreEmpeno"></div>
@@ -169,7 +169,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                     </tr>
                     <tr class="headt">
                         <td colspan="12">
-                            <input type="text" id="nombreCotitular" name="idNombreCotitular"
+                            <input type="text" id="nombreCotitular" name="idNombreCotitular" onkeypress="return soloLetras(event)"
                                    style="width: 300px" placeholder="A. Paterno-A. Materno-Nombre"/>
                         </td>
                     </tr>
@@ -180,7 +180,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="12">
-                            <input type="text" id="idNombreBen" name="idNombreBen"
+                            <input type="text" id="idNombreBen" name="idNombreBen" onkeypress="return soloLetras(event)"
                                    style="width:300px" placeholder="A. Paterno-A. Materno-Nombre"/>
                         </td>
                     </tr>
@@ -509,7 +509,6 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                                         </td>
                                             <td colspan="6">
                                                 <input type="button" class="btn btn-info" value="Calcular" onclick="calculaAvaluoElec()">
-
                                             </td>
                                     </tr>
                                     <tr>

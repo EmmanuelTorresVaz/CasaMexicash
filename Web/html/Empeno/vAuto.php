@@ -65,13 +65,6 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
         }
 
     </style>
-    <script type="application/javascript">
-        $(document).ready(function () {
-            $("#idTotalPrestamoAuto").blur(function () {
-                calculaAvaluoAuto();
-            });
-        })
-    </script>
 </head>
 <body>
 <form id="idFormAuto" name="formAuto">
@@ -116,7 +109,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                     <tr>
                         <td colspan="12">
                             <div>
-                                <input id="idNombres" name="Nombres" type="text" style="width: 350px"
+                                <input id="idNombres" name="Nombres" type="text" style="width: 350px" onkeypress="return soloLetras(event)"
                                        class="inputCliente"
                                        onkeypress="nombreAutocompletar()" placeholder="Buscar Cliente..."/>
                             </div>
@@ -158,7 +151,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="12">
-                            <input type="text" id="nombreCotitular" name="idNombreCotitular"
+                            <input type="text" id="nombreCotitular" name="idNombreCotitular" onkeypress="return soloLetras(event)"
                                    style="width: 350px"  placeholder="A. Paterno-A. Materno-Nombre"/>
                         </td>
                     </tr>
@@ -169,7 +162,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="12">
-                            <input type="text" id="idNombreBen" name="idNombreBen"
+                            <input type="text" id="idNombreBen" name="idNombreBen" onkeypress="return soloLetras(event)"
                                    style="width:350px"  placeholder="A. Paterno-A. Materno-Nombre"/>
                         </td>
                     </tr>
@@ -265,19 +258,23 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="6" class="table-info border border-dark"  align="center">Total Avalúo</td>
-                        <td colspan="6" class="table-info border border-dark"  align="center">Total Préstamo</td>
+                        <td colspan="4" class="table-info border border-dark"  align="center">Total Avalúo</td>
+                        <td colspan="4" class="table-info border border-dark"  align="center">Total Préstamo</td>
+                        <td colspan="4" class="table-info border border-dark"  align="center"></td>
                     </tr>
                     <tr class="headt">
-                        <td colspan="6" class="border border-dark" align="center">
-                            <input id="idTotalAvaluoAuto" name="totalAvaluo" type="double"
+                        <td colspan="4" class="border border-dark" align="center">
+                            <input id="idTotalAvaluoAuto" name="totalAvaluo" type="double" onkeypress="return isNumberDecimal(event)"
                                    style="width: 150px; text-align:right;"
                                    class="inputCliente"/>
                         </td>
-                        <td colspan="6" class="border border-dark" align="center">
-                            <input id="idTotalPrestamoAuto" name="totalPrestamo" type="double"
+                        <td colspan="4" class="border border-dark" align="center">
+                            <input id="idTotalPrestamoAuto" name="totalPrestamo" type="double" onkeypress="return isNumberDecimal(event)"
                                    style="width: 150px; text-align:right;"
                                    class="inputCliente"/>
+                        </td>
+                        <td colspan="4" class="border border-dark" align="center">
+                            <input type="button" class="btn btn-info" value="Calcular" onclick="calculaAvaluoAuto()">
                         </td>
                     </tr>
                     <tr class="headt">

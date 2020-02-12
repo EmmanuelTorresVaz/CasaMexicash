@@ -41,17 +41,17 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                         <tr>
                                             <td>
                                                 <input type="text" class="inputCliente" name="nombre" id="idNombre"
-                                                       placeholder="Nombres"
+                                                       placeholder="Nombres" onkeypress="return soloLetras(event)"
                                                        style="width: 200px"
                                                        required/>
                                             </td>
                                             <td>
                                                 <input type="text" class="inputCliente" name="apPat" id="idApPat"
-                                                       placeholder="Apellido Paterno" style="width: 200px"
+                                                       placeholder="Apellido Paterno" style="width: 200px" onkeypress="return soloLetras(event)"
                                                        required/>
                                             </td>
                                             <td>
-                                                <input type="text" class="inputCliente" name="apMat" id="idApMat"
+                                                <input type="text" class="inputCliente" name="apMat" id="idApMat" onkeypress="return soloLetras(event)"
                                                        placeholder="Apellido Materno" style="width: 200px"/>
                                             </td>
                                             <td>
@@ -178,12 +178,12 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                             </td>
                                             <td>
                                                 <input type="text" class="inputCliente" name="municipioName" placeholder=""
-                                                       id="idMunicipio"
+                                                       id="idMunicipio" onkeypress="return soloLetras(event)"
                                                        style="width: 200px" required/>
                                             </td>
                                             <td>
                                                 <input type="text" class="inputCliente" name="municipioName" placeholder=""
-                                                       id="idLocalidad"
+                                                       id="idLocalidad" onkeypress="return soloLetras(event)"
                                                        style="width: 200px" required/>
                                             </td>
                                             <td>

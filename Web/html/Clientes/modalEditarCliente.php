@@ -40,17 +40,17 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                         <tr>
                                             <td>
                                                 <input type="text" class="inputCliente" name="nombre" id="idNombreEdit"
-                                                       placeholder="Nombres"
+                                                       placeholder="Nombres" onkeypress="return soloLetras(event)"
                                                        style="width: 200px"
                                                        required/>
                                             </td>
                                             <td>
                                                 <input type="text" class="inputCliente" name="apPat" id="idApPatEdit"
-                                                       placeholder="Apellido Paterno" style="width: 200px"
+                                                       placeholder="Apellido Paterno" style="width: 200px" onkeypress="return soloLetras(event)"
                                                        required/>
                                             </td>
                                             <td>
-                                                <input type="text" class="inputCliente" name="apMat" id="idApMatEdit"
+                                                <input type="text" class="inputCliente" name="apMat" id="idApMatEdit" onkeypress="return soloLetras(event)"
                                                        placeholder="Apellido Materno" style="width: 200px"/>
                                             </td>
                                             <td>
@@ -103,7 +103,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                             </td>
                                             <td>
                                                 <input type="text" name="fechaNac" id="idFechaNacEdit"
-                                                     style="width: 150px"
+                                                     style="width: 150px"  onkeypress="return isDateValidate(event)"
                                                        required placeholder="AAAA-MM-DD" />
                                             </td>
                                             <td>
@@ -178,12 +178,12 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                             </td>
                                             <td>
                                                 <input type="text" class="inputCliente" name="municipioName" placeholder=""
-                                                       id="idMunicipioEdit"
+                                                       id="idMunicipioEdit" onkeypress="return soloLetras(event)"
                                                        style="width: 200px" required/>
                                             </td>
                                             <td>
                                                 <input type="text" class="localidadName" name="municipioName" placeholder=""
-                                                       id="idLocalidadEdit"
+                                                       id="idLocalidadEdit" onkeypress="return soloLetras(event)"
                                                        style="width: 200px" required/>
                                             </td>
                                             <td>

@@ -89,12 +89,9 @@ function LimpiarInteres() {
 function calcularDias() {
        var diasAlm =  $('select[name="diasAlmName"] option:selected').text();
     var diasPeriodo =$("#diasInteres").val();
-    alert(diasAlm)
-    alert(diasPeriodo)
     diasAlm = parseInt(diasAlm);
     diasPeriodo = parseInt(diasPeriodo);
     diasAlm = diasAlm + diasPeriodo;
-    alert(diasAlm)
     var sumarAlm = sumarDias(diasAlm);
     $("#idFechaAlm").val(sumarAlm);
 }

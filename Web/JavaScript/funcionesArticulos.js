@@ -525,13 +525,18 @@ function calculaAvaluoElec() {
 }
 
 function calculaAvaluoAuto() {
-    var prestamo = parseFloat($("#idTotalPrestamoAuto").val());
-    var avaluoImporte = Math.floor(prestamo * 33) / 100;
-    prestamo = prestamo + avaluoImporte;
+    if($("#idTotalPrestamoAuto").val()==0||$("#idTotalPrestamoAuto").val()==''){
+        alert("Por favor ingrese una cantidad en prestamo.")
+    }else{
+        var prestamo = parseFloat($("#idTotalPrestamoAuto").val());
+        var avaluoImporte = Math.floor(prestamo * 33) / 100;
+        prestamo = prestamo + avaluoImporte;
 
-    prestamo = prestamo.toFixed(2)
-    prestamo = parseFloat(prestamo)
-    $("#idTotalAvaluoAuto").val(prestamo);
+        prestamo = prestamo.toFixed(2)
+        prestamo = parseFloat(prestamo)
+        $("#idTotalAvaluoAuto").val(prestamo);
+    }
+
 }
 
 function calculaPrestamoPeso() {
