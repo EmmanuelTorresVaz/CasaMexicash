@@ -12,6 +12,9 @@
     <script src="../../librerias/bootstrap/js/bootstrapNav.js"></script>
     <script src="../../librerias/alertifyjs/alertify.js"></script>
     <script src="../../librerias/popper.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../style/General/StyloGeneral.css">
+    <script src="../../JavaScript/funcionesGenerales.js"></script>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-xl bg-success navbar-dark">

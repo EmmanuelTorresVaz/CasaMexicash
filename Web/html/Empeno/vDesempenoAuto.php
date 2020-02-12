@@ -15,7 +15,6 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="../../JavaScript/funcionesDesempeno.js"></script>
-    <script src="../../JavaScript/funcionesGenerales.js"></script>
     <style>
         .textArea {
             resize: none;
@@ -70,7 +69,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <textarea rows="6" cols="45" id="idDatosClienteDesAuto" class="textArea" disabled>
+                            <textarea rows="6" cols="45" id="idDatosClienteDesAuto" class="textAreaUP" disabled>
                             </textarea>
                         </td>
                     </tr>
@@ -92,7 +91,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <textarea rows="4" cols="45" id="idDetalleContratoDesAuto" class="textArea" disabled>
+                            <textarea rows="4" cols="45" id="idDetalleContratoDesAuto" class="textAreaUP" disabled>
                             </textarea>
                         </td>
                     </tr>

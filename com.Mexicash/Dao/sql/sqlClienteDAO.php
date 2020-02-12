@@ -154,15 +154,11 @@ class sqlClienteDAO
                 } else {
                     if ($opc == 3) {
 
-                        $buscar = "SELECT c.id_Cliente, CONCAT (c.apellido_Mat, ' ', c.apellido_Pat,' ',  c.nombre) as nombreCompleto, c.fecha_Nacimiento, c.curp, c.celular, c.rfc, c.telefono, c.correo, CONCAT (c.calle, ' ', c.num_exterior, ', Interior ', c.num_interior, ', CP ', c.codigo_Postal, ', ', l.descripcion) as direccionCompleta, e.descripcion as estado  
+                        $buscar = "SELECT c.id_Cliente, CONCAT (c.apellido_Mat, ' ', c.apellido_Pat,' ',  c.nombre) as nombreCompleto, c.fecha_Nacimiento, c.curp, c.celular, c.rfc, c.telefono, c.correo, CONCAT (c.calle, ' ', c.num_exterior, ', Interior ', c.num_interior, ', CP ', c.codigo_Postal, ', ', localidad) as direccionCompleta, e.descripcion as estado  
                                 FROM cliente_tbl as c 
                                 INNER JOIN cat_estado as e
                                 on c.estado = e.id_Estado 
-                                INNER JOIN cat_municipio as m
-                                on c.municipio = m.id_Municipio and c.estado = m.id_Estado 
-                                INNER JOIN cat_localidad as l
-                                on c.localidad = l.id_Localidad and c.estado = l.id_Estado and c.municipio = l.id_Municipio 
-                                where concat(c.nombre, ' ', c.apellido_Pat, ' ', c.apellido_Mat) like concat('%', '" . $nombre . "', '%');";
+                             where concat(c.nombre, ' ', c.apellido_Pat, ' ', c.apellido_Mat) like concat('%', '" . $nombre . "', '%');";
                     }
                 }
             }
@@ -408,10 +404,8 @@ WHERE id_Cliente = '$idClienteEditar'";
     public function buscarClienteAgregado(){
         try {
 
-            $buscar = "SELECT id_Cliente, CONCAT (apellido_Mat, ' ',apellido_Pat,' ',  nombre) as NombreCompleto, celular , CONCAT (calle, ', ',num_interior, ', ',num_exterior, ', ',  cat_localidad.descripcion, ', ',cat_municipio.descripcion,', ',cat_estado.descripcion ) as direccionCompleta FROM cliente_tbl " .
+            $buscar = "SELECT id_Cliente, CONCAT (apellido_Mat, ' ',apellido_Pat,' ',  nombre) as NombreCompleto, celular , CONCAT (calle, ', ',num_interior, ', ',num_exterior, ', ',  localidad, ', ',municipio,', ',cat_estado.descripcion ) as direccionCompleta FROM cliente_tbl " .
                 " INNER JOIN cat_estado on cliente_tbl.estado = cat_estado.id_Estado " .
-                " INNER JOIN cat_municipio on cliente_tbl.municipio = cat_municipio.id_Municipio and cliente_tbl.estado = cat_municipio.id_Estado  " .
-                " INNER JOIN cat_localidad on cliente_tbl.localidad = cat_localidad.id_Localidad and cliente_tbl.estado = cat_localidad.id_Estado and cliente_tbl.municipio = cat_localidad.id_Municipio" .
                 " WHERE  id_Cliente = (SELECT MAX(id_Cliente) FROM cliente_tbl)";
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
@@ -431,10 +425,8 @@ WHERE id_Cliente = '$idClienteEditar'";
     public function buscarClienteEditado($idClienteEditado){
         try {
 
-            $buscar = "SELECT id_Cliente, CONCAT (apellido_Mat , ' ',apellido_Pat,' ', nombre) as NombreCompleto, celular , CONCAT (calle, ', ',num_interior, ', ',num_exterior, ', ',  cat_localidad.descripcion, ', ',cat_municipio.descripcion,', ',cat_estado.descripcion ) as direccionCompleta FROM cliente_tbl " .
+            $buscar = "SELECT id_Cliente, CONCAT (apellido_Mat , ' ',apellido_Pat,' ', nombre) as NombreCompleto, celular , CONCAT (calle, ', ',num_interior, ', ',num_exterior, ', ',  localidad, ', ',municipio,', ',cat_estado.descripcion ) as direccionCompleta FROM cliente_tbl " .
                 " INNER JOIN cat_estado on cliente_tbl.estado = cat_estado.id_Estado " .
-                " INNER JOIN cat_municipio on cliente_tbl.municipio = cat_municipio.id_Municipio and cliente_tbl.estado = cat_municipio.id_Estado  " .
-                " INNER JOIN cat_localidad on cliente_tbl.localidad = cat_localidad.id_Localidad and cliente_tbl.estado = cat_localidad.id_Estado and cliente_tbl.municipio = cat_localidad.id_Municipio" .
                 " WHERE  id_Cliente = '$idClienteEditado'";
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
@@ -455,10 +447,8 @@ WHERE id_Cliente = '$idClienteEditar'";
     {
         $datos = array();
         try {
-            $buscar = "SELECT id_Cliente, CONCAT (apellido_Mat , ' ',apellido_Pat,' ',nombre ) as NombreCompleto, celular , CONCAT (calle, ', ',num_interior, ', ',num_exterior, ', ',  cat_localidad.descripcion, ', ',cat_municipio.descripcion,', ',cat_estado.descripcion ) as direccionCompleta FROM cliente_tbl " .
+            $buscar = "SELECT id_Cliente, CONCAT (apellido_Mat , ' ',apellido_Pat,' ',nombre ) as NombreCompleto, celular , CONCAT (calle, ', ',num_interior, ', ',num_exterior, ', ',  localidad, ', ', municipio,', ',cat_estado.descripcion ) as direccionCompleta FROM cliente_tbl " .
                 " INNER JOIN cat_estado on cliente_tbl.estado = cat_estado.id_Estado " .
-                " INNER JOIN cat_municipio on cliente_tbl.municipio = cat_municipio.id_Municipio and cliente_tbl.estado = cat_municipio.id_Estado  " .
-                " INNER JOIN cat_localidad on cliente_tbl.localidad = cat_localidad.id_Localidad and cliente_tbl.estado = cat_localidad.id_Estado and cliente_tbl.municipio = cat_localidad.id_Municipio" .
                 " WHERE nombre LIKE '%" . strip_tags($idNombres) . "%' ";
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {

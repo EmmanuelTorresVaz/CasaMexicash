@@ -15,12 +15,6 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="../../JavaScript/funcionesRefrendo.js"></script>
-    <script src="../../JavaScript/funcionesGenerales.js"></script>
-    <style>
-        .textArea {
-            resize: none;
-        }
-    </style>
     <script type="application/javascript">
         $(document).ready(function () {
             $("#trAlmoneda").hide();
@@ -63,7 +57,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                     <tr>
                         <td style="width: 200px" align="left">
                             <label>Contrato:</label>
-                            <input type="text" id="idContratoDesempeno" name="contrato" size="10" value="38"
+                            <input type="text" id="idContratoDesempeno" name="contrato" size="10" value="53"
                                    style="text-align:right"/>
                         </td>
                     </tr>
@@ -74,7 +68,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <textarea rows="5" cols="45" id="idDatosClienteDes" class="textArea" disabled>
+                            <textarea rows="5" cols="45" id="idDatosClienteDes" class="textAreaUP" disabled>
                             </textarea>
                         </td>
                     </tr>
@@ -96,7 +90,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <textarea rows="4" cols="45" id="idDetalleContratoDes" class="textArea" disabled>
+                            <textarea rows="4" cols="45" id="idDetalleContratoDes" class="textAreaUP" disabled>
                             </textarea>
                         </td>
                     </tr>

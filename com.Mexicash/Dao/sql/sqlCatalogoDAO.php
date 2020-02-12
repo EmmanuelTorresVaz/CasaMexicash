@@ -210,58 +210,6 @@ class sqlCatalogoDAO
     }
 
 
-    function completaMunicipio($idEstado)
-    {
-        $datos = array();
-
-        try {
-            $buscar = "SELECT id_Municipio, descripcion FROM cat_municipio  WHERE id_Estado='$idEstado'";
-
-            $rs = $this->conexion->query($buscar);
-            if ($rs->num_rows > 0) {
-                while ($row = $rs->fetch_assoc()) {
-                    $data = [
-                        "id_Municipio" => $row["id_Municipio"],
-                        "descripcion" => $row["descripcion"]
-                    ];
-                    array_push($datos, $data);
-                }
-            }
-        } catch (Exception $exc) {
-            echo $exc->getMessage();
-        } finally {
-            $this->db->closeDB();
-        }
-
-        echo json_encode($datos);
-    }
-
-    function completaLocalidad($idEstado, $idMunicipio)
-    {
-        $datos = array();
-
-        try {
-            $buscar = "SELECT id_Localidad, descripcion FROM cat_localidad  WHERE id_Estado='$idEstado' AND id_Municipio = '$idMunicipio'";
-
-            $rs = $this->conexion->query($buscar);
-            if ($rs->num_rows > 0) {
-                while ($row = $rs->fetch_assoc()) {
-                    $data = [
-                        "id_Localidad" => $row["id_Localidad"],
-                        "descripcion" => $row["descripcion"]
-                    ];
-                    array_push($datos, $data);
-                }
-            }
-        } catch (Exception $exc) {
-            echo $exc->getMessage();
-        } finally {
-            $this->db->closeDB();
-        }
-
-        echo json_encode($datos);
-    }
-
     public function llenarTblCatMetales($idMetal)
     {
         $datos = array();

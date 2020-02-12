@@ -102,14 +102,12 @@ class sqlDesempenoDAO
         $datos = array();
         try {
             $buscar = "SELECT CONCAT (Cli.nombre, ' ', Cli.apellido_Pat,' ', Cli.apellido_Mat) as NombreCompleto,
-                        CONCAT (calle, ', ',num_interior, ', ',num_exterior, ', ',  Loc.descripcion, ', ') as DireccionCompleta,
-                        CONCAT (Mun.descripcion,', ',Est.descripcion ) as DireccionCompletaEst,
+                        CONCAT (calle, ', ',num_interior, ', ',num_exterior, ', ',  localidad, ', ') as DireccionCompleta,
+                        CONCAT (municipio,', ',Est.descripcion ) as DireccionCompletaEst,
                         Con.cotitular as Cotitular, Usu.usuario as UsuarioName
                         FROM contrato_tbl as Con
                         LEFT JOIN cliente_tbl as Cli on Con.id_Cliente = Cli.id_Cliente
                         LEFT JOIN cat_estado as Est on Cli.estado = Est.id_Estado
-                        LEFT JOIN cat_municipio as Mun on Cli.municipio = Mun.id_Municipio and Cli.estado = Mun.id_Estado 
-                        LEFT JOIN cat_localidad as Loc on Cli.localidad = Loc.id_Localidad and Cli.estado = Loc.id_Estado and Cli.municipio = Loc.id_Municipio
                         LEFT JOIN usuarios_tbl as Usu on Con.usuario = Usu.id_User
                         WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= 1  and Con.id_Estatus= 1";
 
@@ -224,14 +222,12 @@ class sqlDesempenoDAO
         $datos = array();
         try {
             $buscar = "SELECT CONCAT (Cli.nombre, ' ', Cli.apellido_Pat,' ', Cli.apellido_Mat) as NombreCompleto,
-                        CONCAT (calle, ', ',num_interior, ', ',num_exterior, ', ',  Loc.descripcion, ', ') as DireccionCompleta,
-                        CONCAT (Mun.descripcion,', ',Est.descripcion ) as DireccionCompletaEst,
+                        CONCAT (calle, ', ',num_interior, ', ',num_exterior, ', ',  localidad, ', ') as DireccionCompleta,
+                        CONCAT (municipio,', ',Est.descripcion ) as DireccionCompletaEst,
                         Con.cotitular as Cotitular, Usu.usuario as UsuarioName
                         FROM contrato_tbl as Con
                         LEFT JOIN cliente_tbl as Cli on Con.id_Cliente = Cli.id_Cliente
                         LEFT JOIN cat_estado as Est on Cli.estado = Est.id_Estado
-                        LEFT JOIN cat_municipio as Mun on Cli.municipio = Mun.id_Municipio and Cli.estado = Mun.id_Estado 
-                        LEFT JOIN cat_localidad as Loc on Cli.localidad = Loc.id_Localidad and Cli.estado = Loc.id_Estado and Cli.municipio = Loc.id_Municipio
                         LEFT JOIN usuarios_tbl as Usu on Con.usuario = Usu.id_User
                         WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato=2  and Con.id_Estatus= 1";
 

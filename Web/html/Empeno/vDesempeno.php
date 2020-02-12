@@ -41,12 +41,6 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
 
         });
     </script>
-    <style>
-        .textArea {
-            resize: none;
-        }
-    </style>
-
 </head>
 <body>
 <form id="idFormDes" name="formDes">
@@ -84,7 +78,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <textarea rows="5" cols="45" id="idDatosClienteDes" class="textArea" disabled>
+                            <textarea rows="5" cols="45" id="idDatosClienteDes" class="textAreaUP" disabled>
                             </textarea>
                         </td>
                     </tr>
@@ -106,7 +100,7 @@ include_once (HTML_PATH. "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <textarea rows="4" cols="45" id="idDetalleContratoDes" class="textArea" disabled>
+                            <textarea rows="4" cols="45" id="idDetalleContratoDes" class="textAreaUP" disabled>
                             </textarea>
                         </td>
                     </tr>
