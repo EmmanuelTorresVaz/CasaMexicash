@@ -232,26 +232,29 @@ function cargarTablaArticulo() {
 
 //Menu Mentales
 function Metales() {
-    $("#divElectronicos").hide();
     $("#divMetales").show();
+    $("#divElectronicos").hide();
+    $("#divTablaMetales").show();
+    $("#divTablaArticulos").hide();
     Limpiar();
     LimpiarInteres();
     llenarComboInteres(1);
     limpiarTabla();
-    $("#divTablaMetales").load('tablaMetales.php');
-    $("#divTablaArticulos").hide();
+
+
 }
 
 //Menu Electronicos
 function Electronicos() {
     $("#divMetales").hide();
     $("#divElectronicos").show();
+    $("#divTablaMetales").hide();
+    $("#divTablaArticulos").show();
     Limpiar();
     LimpiarInteres();
     llenarComboInteres(2);
     limpiarTabla();
-    $("#divTablaMetales").hide();
-    $("#divTablaArticulos").load('tablaArticulos.php');
+
 }
 
 //Alerta para confirmar la Eliminacion

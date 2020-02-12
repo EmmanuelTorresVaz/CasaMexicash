@@ -44,6 +44,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
             $("#divMetales").show();
             $("#idFormEmpeno").trigger("reset");
             $("#divTablaMetales").load('tablaMetales.php');
+            $("#divTablaArticulos").load('tablaArticulos.php');
             $("#divTablaArticulos").hide();
             $("#btnEditar").prop('disabled', true);
             llenarComboInteres(1);
@@ -572,9 +573,9 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
             </div>
         </div>
         <div class="row">
-            <div id="divTablaMetales" class="col col-lg-12">
+            <div id="divTablaMetales" class="col col-lg-12 border border-danger" >
             </div>
-            <div id="divTablaArticulos" class="col col-lg-12">
+            <div id="divTablaArticulos" class="col col-lg-12 border border-danger">
             </div>
         </div>
         <div class="row">

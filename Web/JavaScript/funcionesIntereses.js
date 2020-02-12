@@ -84,6 +84,7 @@ function LimpiarInteres() {
     document.getElementById('idIvaPorcen').innerHTML= '';
     $("#idTotalAvaluo").val('0.00');
     $("#idTotalPrestamo").val('0.00');
+    $("#idDiasAlmoneda").val('0');
 }
 
 function calcularDias() {
