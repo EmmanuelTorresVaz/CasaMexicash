@@ -47,9 +47,9 @@ class sqlContratoDAO
 
 
             $insertaContrato = "INSERT INTO contrato_tbl " .
-                "(id_Cliente,  fecha_Vencimiento, total_Avaluo, total_Prestamo, total_Interes,suma_InteresPrestamo,  " .
+                "(id_Cliente,  fecha_Vencimiento, total_Avaluo, total_Prestamo,total_PrestamoInicial, total_Interes,suma_InteresPrestamo,  " .
                 "fecha_Alm, id_Estatus, cotitular,beneficiario, plazo,tasa,alm,seguro,iva,dias, fecha_creacion, fecha_modificacion, usuario,sucursal,tipoContrato) VALUES ".
-                "('" . $id_Cliente . "', '" . $fechaVencimiento . "', '" . $totalAvaluo . "', '" . $totalPrestamo .
+                "('" . $id_Cliente . "', '" . $fechaVencimiento . "', '" . $totalAvaluo . "', '" . $totalPrestamo . "', '" . $totalPrestamo .
                 "', '" . $totalInteres . "', '" . $sumaInteresPrestamo . "',  '" . $fechaAlm .
                 "', '" .  $estatus . "', '" . $cotitular . "','" . $beneficiario . "','" . $plazo . "','" . $tasa . "','" . $alm . "','" . $seguro . "','" . $iva . "','" . $dias . "','" . $fechaCreacion . "', ". "'" . $fechaModificacion . "', '" . $usuario . "','" . $sucursal . "',1)";
 

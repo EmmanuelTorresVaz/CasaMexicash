@@ -145,6 +145,18 @@ function soloLetras(e){
     }
 }
 
+function formatoMoneda($cantidad) {
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2
+    })
+
+    var cantidadRetorno = formatter.format($cantidad);
+
+    return cantidadRetorno;
+}
+
 //Saber el tipo de dato
 //alert(typeof (totalVencInteres))
 //Obtener el valor texto de un select

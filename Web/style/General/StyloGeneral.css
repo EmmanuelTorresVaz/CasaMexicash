@@ -2,11 +2,21 @@
 
 .textArea {
     resize: none;
-    text-transform: uppercase;
 
 }
 .textAreaUP {
     resize: none;
     text-transform: uppercase;
+
+}
+
+.textAreaRes {
+    resize: none;
+}
+
+--Input
+
+.inputMinus {
+    text-transform: lowercase;
 
 }

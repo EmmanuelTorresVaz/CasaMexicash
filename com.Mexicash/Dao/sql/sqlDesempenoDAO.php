@@ -97,7 +97,7 @@ class sqlDesempenoDAO
         echo $verdad;
     }
 
-    public function buscarClienteDes($idContratoDes)
+    public function buscarCliente($idContratoDes)
     {
         $datos = array();
         try {
@@ -314,8 +314,6 @@ class sqlDesempenoDAO
         echo json_encode($datos);
     }
 
-
-
     public function buscarDetalleDesAuto($idContratoDes)
     {
         $datos = array();
@@ -464,7 +462,6 @@ class sqlDesempenoDAO
         echo json_encode($datos);
     }
 
-
     public function estatusContrato($idContratoDes)
     {
         $datos = array();
@@ -497,6 +494,7 @@ class sqlDesempenoDAO
         }
         echo json_encode($datos);
     }
+
     public function estatusContratoAuto($idContratoDes)
     {
         $datos = array();
@@ -530,5 +528,26 @@ class sqlDesempenoDAO
         echo json_encode($datos);
     }
 
+    public function validarToken($token){
+        try {
+            $id = -1;
+            $buscar = "SELECT id_token,descripcion FROM cat_token 
+                        WHERE descripcion = '$token' and estatus= 1";
+            $statement = $this->conexion->query($buscar);
+            if ($statement->num_rows > 0) {
+                $fila = $statement->fetch_object();
+                $id = $fila->id_token;
+            }else{
+                $id = -1;
+            }
 
+        } catch (Exception $exc) {
+            $id = -1;
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+        echo $id;
+        //return $id;
+    }
 }

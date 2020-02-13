@@ -8,7 +8,7 @@ $sqlDesempeno= new sqlDesempenoDAO();
 
 //Datos del cliente
 if($idtipe==1){
-    $sqlDesempeno->buscarClienteDes($idContratoDes) ;
+    $sqlDesempeno->buscarCliente($idContratoDes) ;
 }else if($idtipe==2){
     $sqlDesempeno->buscarContratoDes($idContratoDes) ;
 }else if($idtipe==3){
@@ -20,6 +20,7 @@ if($idtipe==1){
 }else if($idtipe==6){
     $sqlDesempeno->buscarDetalleDesAuto($idContratoDes) ;
 }else if($idtipe==7){
+    //Buscar datos del contrato desde Referencia
     $sqlDesempeno->buscarContratoRef($idContratoDes) ;
 }else if($idtipe==8){
     $sqlDesempeno->buscarContratoRefAuto($idContratoDes) ;
