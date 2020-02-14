@@ -25,7 +25,6 @@ function generarContrato() {
         var totalInteres = sumaInteresPrestamo -totalPrestamo;
         totalInteres =totalInteres.toFixed(2);
         var diasAlmonedaValue = $('select[name="diasAlmName"] option:selected').text();
-alert(diasAlmoneda)
         var dataEnviar = {
             "idCliente": clienteEmpeno,
             "fechaVencimiento": $("#idFecVencimiento").text(),
