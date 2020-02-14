@@ -19,6 +19,7 @@ $alm = $_POST['alm'];
 $seguro = $_POST['seguro'];
 $iva = $_POST['iva'];
 $dias = $_POST['dias'];
+$diasAlmonedaValue = $_POST['diasAlmonedaValue'];
 
 $contrato = new Contrato(
     $idCliente,
@@ -36,7 +37,8 @@ $contrato = new Contrato(
     $alm,
     $seguro,
     $iva,
-    $dias
+    $dias,
+    $diasAlmonedaValue
 );
 
 $sqlContrato = new sqlContratoDAO();

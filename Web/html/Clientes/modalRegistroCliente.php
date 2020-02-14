@@ -223,7 +223,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                                        style="width: 150px"/>
                                             </td>
                                             <td>
-                                                <input type="text" name="numInt" placeholder="" id="idOcupacion"
+                                                <input type="text" name="numInt" placeholder="" id="idOcupacion" class="inputCliente"
                                                        style="width: 200px"/>
                                             </td>
                                         </tr>

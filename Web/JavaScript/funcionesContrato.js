@@ -24,6 +24,8 @@ function generarContrato() {
         var sumaInteresPrestamo = parseFloat($("#idTotalInteres").val());
         var totalInteres = sumaInteresPrestamo -totalPrestamo;
         totalInteres =totalInteres.toFixed(2);
+        var diasAlmonedaValue = $('select[name="diasAlmName"] option:selected').text();
+alert(diasAlmoneda)
         var dataEnviar = {
             "idCliente": clienteEmpeno,
             "fechaVencimiento": $("#idFecVencimiento").text(),
@@ -41,6 +43,7 @@ function generarContrato() {
             "seguro": $("#idSeguroPorcen").text(),
             "iva": $("#idIvaPorcen").text(),
             "dias": $("#diasInteres").val(),
+            "diasAlmonedaValue": diasAlmonedaValue
         };
 
         $.ajax({
@@ -140,6 +143,12 @@ function cancelar() {
     $("#idFormEmpeno")[0].reset();
     $("#idFormAuto")[0].reset();
     alertify.success("Contrato cancelado");
+}
+
+function prueba2() {
+    var diasAlmonedaValue = $('select[name="diasAlmName"] option:selected').text();
+    alert(diasAlmonedaValue)
+
 }
 
 //Contrato

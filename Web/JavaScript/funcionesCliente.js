@@ -540,8 +540,8 @@ function actualizarCliente() {
     var idIdentificacion = $("#idIdentificacionEdit").val();
     var idNumIdentificacion = $("#idNumIdentificacionEdit").val();
     var idEstado = $("#idEstadoNameEdit").val();
-    var idMunicipio = $("#idMunicipioNameEdit").val();
-    var idLocalidad = $("#idLocalidadNameEdit").val();
+    var idMunicipio = $("#idMunicipioEdit").val();
+    var idLocalidad = $("#idLocalidadEdit").val();
     var idCalle = $("#idCalleEdit").val();
     var idNumExt = $("#idNumExtEdit").val();
     var validacion = true;

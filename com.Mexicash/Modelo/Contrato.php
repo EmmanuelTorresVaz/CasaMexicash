@@ -19,6 +19,7 @@ class Contrato
     private $seguro;
     private $iva;
     private $dias;
+    private $diasAlmonedaValue;
 
     /**
      * Contrato constructor.
@@ -38,8 +39,9 @@ class Contrato
      * @param $seguro
      * @param $iva
      * @param $dias
+     * @param $diasAlmonedaValue
      */
-    public function __construct($idCliente, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $total_Interes, $sumaInteresPrestamo, $fecha_Alm, $estatus, $cotitular, $beneficiario, $plazo, $tasa, $alm, $seguro, $iva, $dias)
+    public function __construct($idCliente, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $total_Interes, $sumaInteresPrestamo, $fecha_Alm, $estatus, $cotitular, $beneficiario, $plazo, $tasa, $alm, $seguro, $iva, $dias,$diasAlmonedaValue)
     {
         $this->idCliente = $idCliente;
         $this->fechaVencimiento = $fechaVencimiento;
@@ -57,8 +59,24 @@ class Contrato
         $this->seguro = $seguro;
         $this->iva = $iva;
         $this->dias = $dias;
+        $this->diasAlmonedaValue = $diasAlmonedaValue;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getDiasAlm()
+    {
+        return $this->diasAlmonedaValue;
+    }
+
+    /**
+     * @param mixed $diasAlmonedaValue
+     */
+    public function setDiasAlm($diasAlmonedaValue): void
+    {
+        $this->diasAlmonedaValue = $diasAlmonedaValue;
+    }
     /**
      * @return mixed
      */

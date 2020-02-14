@@ -146,16 +146,21 @@ function cargarTablaMetales() {
             var html = '';
             var i = 0;
             for (i; i < datos.length; i++) {
-                var marca = datos[i].marca;
-                var modelo = datos[i].modelo;
+
+                var tipoMetal = datos[i].tipoMetal;
+                var kilataje = datos[i].kilataje;
+                var calidad = datos[i].calidad;
                 var prestamo = datos[i].prestamo;
                 var avaluo = datos[i].avaluo;
                 var detalle = datos[i].detalle;
-                if (marca === null) {
-                    marca = '';
+                if (tipoMetal === null) {
+                    tipoMetal = '';
                 }
-                if (modelo === null) {
-                    modelo = '';
+                if (kilataje === null) {
+                    kilataje = '';
+                }
+                if (calidad === null) {
+                    calidad = '';
                 }
                 if (prestamo === null) {
                     prestamo = '';
@@ -167,8 +172,9 @@ function cargarTablaMetales() {
                     detalle = '';
                 }
                 html += '<tr>' +
-                    '<td>' + marca + '</td>' +
-                    '<td>' + modelo + '</td>' +
+                    '<td>' + tipoMetal + '</td>' +
+                    '<td>' + kilataje + '</td>' +
+                    '<td>' + calidad + '</td>' +
                     '<td>' + prestamo + '</td>' +
                     '<td>' + avaluo + '</td>' +
                     '<td>' + detalle + '</td>' +

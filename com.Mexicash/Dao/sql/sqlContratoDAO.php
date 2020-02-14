@@ -40,6 +40,8 @@ class sqlContratoDAO
             $seguro = $contrato->getSeguro();
             $iva = $contrato->getIva();
             $dias = $contrato->getDias();
+            $diasAlm = $contrato->getDiasAlm();
+
             $fechaCreacion = date('Y-m-d H:i:s');
             $fechaModificacion = date('Y-m-d H:i:s');
             $usuario = $_SESSION["idUsuario"];
@@ -48,10 +50,10 @@ class sqlContratoDAO
 
             $insertaContrato = "INSERT INTO contrato_tbl " .
                 "(id_Cliente,  fecha_Vencimiento, total_Avaluo, total_Prestamo,total_PrestamoInicial, total_Interes,suma_InteresPrestamo,  " .
-                "fecha_Alm, id_Estatus, cotitular,beneficiario, plazo,tasa,alm,seguro,iva,dias, fecha_creacion, fecha_modificacion, usuario,sucursal,tipoContrato) VALUES ".
+                "fecha_Alm, id_Estatus, cotitular,beneficiario,diasAlm, plazo,tasa,alm,seguro,iva,dias, fecha_creacion, fecha_modificacion, usuario,sucursal,tipoContrato) VALUES ".
                 "('" . $id_Cliente . "', '" . $fechaVencimiento . "', '" . $totalAvaluo . "', '" . $totalPrestamo . "', '" . $totalPrestamo .
                 "', '" . $totalInteres . "', '" . $sumaInteresPrestamo . "',  '" . $fechaAlm .
-                "', '" .  $estatus . "', '" . $cotitular . "','" . $beneficiario . "','" . $plazo . "','" . $tasa . "','" . $alm . "','" . $seguro . "','" . $iva . "','" . $dias . "','" . $fechaCreacion . "', ". "'" . $fechaModificacion . "', '" . $usuario . "','" . $sucursal . "',1)";
+                "', '" .  $estatus . "', '" . $cotitular . "','" . $beneficiario . "','" . $diasAlm . "','" . $plazo . "','" . $tasa . "','" . $alm . "','" . $seguro . "','" . $iva . "','" . $dias . "','" . $fechaCreacion . "', ". "'" . $fechaModificacion . "', '" . $usuario . "','" . $sucursal . "',1)";
 
             if ($ps = $this->conexion->prepare($insertaContrato)) {
                 if ($ps->execute()) {

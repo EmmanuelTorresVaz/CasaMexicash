@@ -130,14 +130,20 @@ class sqlArticulosDAO
         $datos = array();
         try {
             $usuario = $_SESSION["idUsuario"];
-            $buscar = "SELECT id_Articulo, marca, modelo, prestamo,avaluo, detalle FROM articulo_tbl WHERE id_Contrato='' and usuario=" . $usuario;
+            $buscar = "SELECT id_Articulo, TA.descripcion as tipoMetal, TK.descripcion as kilataje,TC.descripcion as calidad, 
+                        prestamo,avaluo, detalle FROM articulo_tbl AR
+                        INNER JOIN cat_tipoarticulo as TA on AR.tipo = TA.id_tipo
+                        INNER JOIN cat_kilataje as TK on AR.kilataje = TK.id_Kilataje
+                        INNER JOIN cat_calidad as TC on AR.calidad = TC.id_calidad
+                        WHERE id_Contrato='' and usuario=" . $usuario;
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
                 while ($row = $rs->fetch_assoc()) {
                     $data = [
                         "id_Articulo" => $row["id_Articulo"],
-                        "marca" => $row["marca"],
-                        "modelo" => $row["modelo"],
+                        "tipoMetal" => $row["tipoMetal"],
+                        "kilataje" => $row["kilataje"],
+                        "calidad" => $row["calidad"],
                         "prestamo" => $row["prestamo"],
                         "avaluo" => $row["avaluo"],
                         "detalle" => $row["detalle"]

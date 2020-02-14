@@ -353,6 +353,19 @@ WHERE
             $idMensajeInterno = $clienteData->getMensajeInterno();
             $fechaModificacion = date('Y-m-d H:i:s');
             $usuario = $_SESSION["idUsuario"];
+            $idNombre = strtoupper($idNombre);
+            $idApPat = strtoupper($idApPat);
+            $idApMat = strtoupper($idApMat);
+            $idCurp = strtoupper($idCurp);
+            $idOcupacion = strtoupper($idOcupacion);
+            $idCorreo = strtolower($idCorreo);
+            $idNumIdentificacion = strtoupper($idNumIdentificacion);
+            $idRfc = strtoupper($idRfc);
+            $idMunicipio = strtoupper($idMunicipio);
+            $idLocalidad = strtoupper($idLocalidad);
+            $idCalle = strtoupper($idCalle);
+            $idMensajeInterno = strtoupper($idMensajeInterno);
+
             $updateCliente = "UPDATE cliente_tbl
 SET
     nombre = '$idNombre',

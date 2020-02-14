@@ -112,7 +112,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                                    value="Agregar">
                             <input type="button" class="btn btn-warning "
                                    data-toggle="modal" data-target="#modalEditarNuevo" id="btnEditar"
-                                   value="Editar" onclick="modalEdiFtarCliente($('#idClienteEmpeno').val())" disabled>
+                                   value="Editar" onclick="modalEditarCliente($('#idClienteEmpeno').val())" disabled>
                             <input type="button" class="btn btn-warning "
                                    data-toggle="modal" data-target="#modalHistorial" id="btnHistorial"
                                    value="Historial" onclick="historial($('#idClienteEmpeno').val())">
@@ -585,6 +585,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
             <div class="col col-lg-5">
                 <input type="button" class="btn btn-success" value="pruebaCalc"
                        onclick="location.href='../PDF/pdfPrueba.php'">&nbsp;
+                <input type="button" class="btn btn-warning" value="Cancelar" onclick="prueba2()">&nbsp;
                 <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
                 <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
                 <input type="button" class="btn btn-primary" value="Contrato" onclick="generarContrato()">&nbsp;
