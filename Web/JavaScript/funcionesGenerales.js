@@ -35,6 +35,14 @@ function sumarDias($diasASumar) {
     return fechaDias;
 }
 
+function calcularDiasAlmoneda(diasContrato, diasAlm) {
+    diasAlm = parseInt(diasAlm);
+    diasContrato = parseInt(diasContrato);
+    diasAlm = diasAlm + diasContrato;
+    var sumarAlm = sumarDias(diasAlm);
+    return sumarAlm;
+}
+
 function soloNumeros(e) {
     tecla = (document.all) ? e.keyCode : e.which;
     if (tecla == 8) return true;

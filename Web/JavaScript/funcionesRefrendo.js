@@ -157,6 +157,7 @@ function buscarDatosContrato() {
                     var TotalInteresPrestamo = datos[i].TotalInteresPrestamo;
                     var Abono = datos[i].Abono;
                     var FechaAbono = datos[i].FechaAbono;
+                    var DiasAlmoneda = datos[i].DiasAlmoneda;
                     var fechaHoy = new Date();
                     var diasForInteres = 0;
                     //SE obtienen los intereses en  porcentajes
@@ -173,7 +174,6 @@ function buscarDatosContrato() {
                     var fechaHoyText = fechaFormato();
                     var diasMoratorios = 0;
                     var diasInteresMor = 0;
-
 
                     // Dias trasncurridos
                     if (Abono == null) {
@@ -209,6 +209,11 @@ function buscarDatosContrato() {
                         PlazoDesc = PlazoDesc + " Diario";
                     }
 
+
+                    var nuevaFechaVencimiento = sumarDias(DiasContrato);
+                    var nuevaFechaAlm = calcularDiasAlmoneda(DiasContrato, DiasAlmoneda)
+                    $("#idNuevaFechaVenc").val(nuevaFechaVencimiento);
+                    $("#idNuevaFechaAlm").val(nuevaFechaAlm);
                     //INTERES DIARIO
                     //Se saca los porcentajes mensuales
                     var calculaInteres = Math.floor(TotalPrestamo * TasaDesc) / 100;
@@ -267,6 +272,8 @@ function buscarDatosContrato() {
                     interesGenerado = formatoMoneda(interesGenerado);
                     TotalFinal = formatoMoneda(TotalFinal);
                     TotalPrestamo = formatoMoneda(TotalPrestamo);
+                    $("#idAbonoAnteriorInput").val(Abono)
+                    Abono = formatoMoneda(Abono);
 
 
                     //Valida si esta en almoneda
@@ -450,6 +457,8 @@ function calcularAbono() {
                 var abonoResta = abono - interesPendiente;
                 var saldoPendiente = totalPrestamo - abonoResta;
                 $("#idSaldoPendienteInput").val(saldoPendiente);
+                abonoResta = Math.round(abonoResta * 100) / 100;
+                $("#idAbonoACapitalInput").val(abonoResta)
                 abonoResta = formatoMoneda(abonoResta);
                 saldoPendiente = formatoMoneda(saldoPendiente);
                 alert("Se abonara a capital: " + abonoResta);
@@ -483,33 +492,45 @@ function generar() {
                 alert("Por favor realice un pago.");
             } else {
                 var token = $("#idToken").val();
-                var abonoACapital = 0.00;
+                var abono = 0.00;
                 var descuento;
                 var gps = null;
-                var pension= null;
-                var poliza= null;
+                var pension = null;
+                var poliza = null;
+                var newFechaVencimiento = null;
+                var newFechaAlm = null;
+                var idEstatusArt = 1;
                 //si trae descuento
                 if (token != '') {
                     descuento = $("#idImporte").val();
-                }else{
+                } else {
                     token = 0;
-                     descuento = 0.00;
+                    descuento = 0.00;
                 }
                 //Refrendo
                 if (tipeFormulario == 1) {
-                    abonoACapital = $("#idAbonoCapitalNota").val();
+                    var abonoAnterior = $("#idAbonoAnteriorInput").val();
+                    var abonoACapital = $("#idAbonoACapitalInput").val();
+                    var nombreMensaje = "Refrendo";
+                    abonoAnterior = parseFloat(abonoAnterior);
+                    abonoACapital = parseFloat(abonoACapital);
+                    abono = abonoAnterior + abonoACapital;
+                    newFechaVencimiento = $("#idNuevaFechaVenc").val();
+                    newFechaAlm = $("#idNuevaFechaAlm").val();
                 }
-
 
                 var dataEnviar = {
                     "contrato": contratoBusqueda,
                     "token": token,
                     "descuento": descuento,
-                    "abonoACapital": abonoACapital,
+                    "abonoACapital": abono,
                     "saldoPendiente": saldoPendiente,
                     "gps": gps,
                     "pension": pension,
                     "poliza": poliza,
+                    "newFechaVencimiento": newFechaVencimiento,
+                    "newFechaAlm": newFechaAlm,
+                    "idEstatusArt": idEstatusArt,
                     "tipeFormulario": tipeFormulario
                 };
 
@@ -518,11 +539,11 @@ function generar() {
                     url: '../../../com.Mexicash/Controlador/Desempeno/generarDesempeno.php',
                     type: 'post',
                     success: function (response) {
-                        if (response > 0) {
-                            cancelarDesempeno();
-                            alertify.success("Desempeño generado.");
+                        if (response == -1) {
+                            alertify.error("Error al generar " + nombreMensaje);
                         } else {
-                            alertify.error("Error al generar desempeño.");
+                            cancelar();
+                            alertify.success(nombreMensaje + " generado.");
                         }
                     },
                 })
@@ -924,3 +945,11 @@ function cancelarDesempenoAuto() {
 }
 
 
+function prueba() {
+    var abonoAnterior = $("#idAbonoTDDes").text();
+    alert(abonoAnterior);
+    alert(typeof (abonoAnterior))
+    abonoAnterior = parseFloat(abonoAnterior);
+    alert(abonoAnterior)
+    alert(typeof (abonoAnterior))
+}

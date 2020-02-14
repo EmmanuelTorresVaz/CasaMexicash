@@ -11,9 +11,14 @@ $saldoPendiente = $_POST['saldoPendiente'];
 $gps = $_POST['gps'];
 $pension = $_POST['pension'];
 $poliza = $_POST['poliza'];
+$newFechaAlm = $_POST['newFechaAlm'];
+$newFechaVencimiento = $_POST['newFechaVencimiento'];
+$idEstatusArt = $_POST['idEstatusArt'];
+
+
 
 $sqlDesempeno = new sqlDesempenoDAO();
-$sqlDesempeno->generar($tipeFormulario,$contrato,$token,$descuento,$abonoACapital,$saldoPendiente,$gps,$pension,$poliza);
+$sqlDesempeno->generar($tipeFormulario,$newFechaVencimiento,$saldoPendiente,$descuento, $newFechaAlm, $abonoACapital,$contrato,$idEstatusArt);
 
 
 

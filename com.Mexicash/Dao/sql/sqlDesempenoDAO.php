@@ -53,7 +53,7 @@ class sqlDesempenoDAO
     }
 
     //Busqueda de Cliente
-    public function buscarCliente($idContratoDes, $tipoContrato,$estatus)
+    public function buscarCliente($idContratoDes, $tipoContrato, $estatus)
     {
         $datos = array();
         try {
@@ -89,7 +89,7 @@ class sqlDesempenoDAO
     }
 
     //Busqueda de Contrato
-    public function buscarContrato($idContratoDes,$tipoContrato,$estatus)
+    public function buscarContrato($idContratoDes, $tipoContrato, $estatus)
     {
         $datos = array();
         try {
@@ -109,7 +109,8 @@ class sqlDesempenoDAO
                         Con.total_Interes AS TotalInteres,
                         Con.suma_InteresPrestamo AS TotalInteresPrestamo,
                         Con.abono AS Abono,
-                        Con.fecha_Abono AS FechaAbono
+                        Con.fecha_Abono AS FechaAbono,
+                        Con.diasAlm AS DiasAlmoneda
                         FROM contrato_tbl as Con
                         WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= $tipoContrato and Con.id_Estatus= $estatus";
 
@@ -132,7 +133,8 @@ class sqlDesempenoDAO
                         "TotalInteres" => $row["TotalInteres"],
                         "TotalInteresPrestamo" => $row["TotalInteresPrestamo"],
                         "Abono" => $row["Abono"],
-                        "FechaAbono" => $row["FechaAbono"]
+                        "FechaAbono" => $row["FechaAbono"],
+                        "DiasAlmoneda" => $row["DiasAlmoneda"]
                     ];
                     array_push($datos, $data);
                 }
@@ -146,7 +148,7 @@ class sqlDesempenoDAO
     }
 
     //Busqueda de detalle del contrato
-    public function buscarDetalle($idContratoDes,$estatus)
+    public function buscarDetalle($idContratoDes, $estatus)
     {
         $datos = array();
         try {
@@ -172,7 +174,8 @@ class sqlDesempenoDAO
     }
 
     //Validacion de token
-    public function validarToken($token){
+    public function validarToken($token)
+    {
         try {
             $id = -1;
             $buscar = "SELECT id_token,descripcion FROM cat_token 
@@ -181,7 +184,7 @@ class sqlDesempenoDAO
             if ($statement->num_rows > 0) {
                 $fila = $statement->fetch_object();
                 $id = $fila->id_token;
-            }else{
+            } else {
                 $id = -1;
             }
 
@@ -196,20 +199,30 @@ class sqlDesempenoDAO
     }
 
     //Generar Desempeño o Refrendo
-    public function generar($tipeFormulario,$contrato,$token,$descuento,$abonoACapital,$saldoPendiente,$gps,$pension,$poliza)
+    public function generar($tipeFormulario, $newFechaVencimiento, $saldoPendiente, $descuento, $newFechaAlm, $abonoACapital, $contrato, $idEstatusArt)
     {
         // TODO: Implement guardaCiente() method.
         try {
             $fechaModificacion = date('Y-m-d H:i:s');
             $usuario = $_SESSION["idUsuario"];
-            $updateDesempeno = "UPDATE contrato_tbl SET pago=$pago,fecha_Pago='$fechaModificacion' ,
-                                descuento=$idImporte, usuario= $usuario ,
-                                fecha_modificacion = '$fechaModificacion',	id_Estatus=2
-                                WHERE id_Contrato=$idContrato";
-            if ($ps = $this->conexion->prepare($updateDesempeno)) {
+            $updateContrato = "UPDATE contrato_tbl SET
+                                    fecha_Vencimiento = '$newFechaVencimiento',
+                                    total_Prestamo = $saldoPendiente,
+                                    descuento = $descuento,
+                                    fecha_Alm = '$newFechaAlm',
+                                    abono = $abonoACapital,
+                                    fecha_Abono = '$fechaModificacion',
+                                    fecha_modificacion = '$fechaModificacion',
+                                    usuario = $usuario
+                                    WHERE
+                                    id_Contrato = $contrato";
+
+            if ($ps = $this->conexion->prepare($updateContrato)) {
                 if ($ps->execute()) {
-                    $updateArticulos = "UPDATE articulo_tbl SET id_Estatus=2, fecha_modificacion = '$fechaModificacion',usuario= $usuario 
-                                WHERE id_Contrato=$idContrato";
+                    if($tipeFormulario==1){
+                        $updateArticulos = "UPDATE articulo_tbl SET  fecha_modificacion = '$fechaModificacion',usuario= $usuario, id_Estatus = $idEstatusArt 
+                                WHERE id_Contrato=$contrato";
+                    }
                     if ($ps = $this->conexion->prepare($updateArticulos)) {
                         if ($ps->execute()) {
                             $verdad = mysqli_stmt_affected_rows($ps);
@@ -461,7 +474,6 @@ class sqlDesempenoDAO
     }
 
 
-
     public function buscarContratoRefAuto($idContratoDes)
     {
         $datos = array();
@@ -522,7 +534,6 @@ class sqlDesempenoDAO
         }
         echo json_encode($datos);
     }
-
 
 
     public function estatusContratoAuto($idContratoDes)

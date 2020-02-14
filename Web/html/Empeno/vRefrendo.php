@@ -221,7 +221,7 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
                     <tr id="trAlmoneda" style="color:#FF0000">
                         <td colspan="3"><h3>¡Contrato en almoneda!</h3></td>
                     </tr>
-                    <tr class="invisible">
+                    <tr class="">
                         <td>
                             <input type="text" id="idPrestamoAbono"  style="width: 100px; text-align: right"/>
                         </td>
@@ -235,8 +235,8 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
                             <input type="text" id="idInteresPendiente" style="width: 100px; text-align: right"/>
                         </td>
                     </tr>
-                    <tr class="invisible">
-                        <td  colspan="2" >
+                    <tr class="">
+                        <td >
                             <input type="text" id="idTotalFinalInput"  style="width: 100px; text-align: right"/>
                         </td>
                         <td>
@@ -244,6 +244,20 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
                         </td>
                         <td>
                             <input type="text" id="idSaldoPendienteInput" value="0.00" style="width: 100px; text-align: right"/>
+                        </td>
+                        <td>
+                            <input type="text" id="idNuevaFechaVenc" value="0" style="width: 100px; text-align: right"/>
+                        </td>
+                    </tr>
+                    <tr class="">
+                        <td colspan="2">
+                            <input type="text" id="idNuevaFechaAlm" value="0" style="width: 100px; text-align: right"/>
+                        </td>
+                        <td>
+                            <input type="text" id="idAbonoAnteriorInput" value="0" style="width: 100px; text-align: right"/>
+                        </td>
+                        <td>
+                            <input type="text" id="idAbonoACapitalInput" value="0" style="width: 100px; text-align: right"/>
                         </td>
                     </tr>
                 </table>
@@ -257,6 +271,7 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
                        style="width: 100px;" class="invisible"/>
             </div>
             <div class="col col-lg-5" align="right">
+                <input type="button" class="btn btn-warning" value="x" onclick="prueba()">&nbsp;
                 <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
                 <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
                 <input type="button" class="btn btn-primary" value="Refrendo" onclick="generar()">&nbsp;
