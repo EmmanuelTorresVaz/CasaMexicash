@@ -38,11 +38,11 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
                     <tr>
                         <td style="width: 200px" align="left">
                             <label>Contrato:</label>
-                            <input type="text" id="idContratoDesempeno" name="contrato" size="10" value=""
+                            <input type="text" id="idContrato" name="contrato" size="10" value="53"
                                    style="text-align:right"/>
                         </td>
                         <td style="width: 200px" align="left" >
-                            <input type="button" class="btn btn-info " onclick="buscarContrato();"
+                            <input type="button" class="btn btn-info " onclick="estatusContrato();"
                                    value="Buscar">
                         </td>
                     </tr>
@@ -239,11 +239,11 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
                         <td  colspan="2" >
                             <input type="text" id="idTotalFinalInput"  style="width: 100px; text-align: right"/>
                         </td>
-                        <td   >
+                        <td>
                             <input type="text" id="idToken"  style="width: 100px; text-align: right"/>
                         </td>
-                        <td  >
-                            <input type="text" id="idSaldoPendienteInput"  style="width: 100px; text-align: right"/>
+                        <td>
+                            <input type="text" id="idSaldoPendienteInput" value="0.00" style="width: 100px; text-align: right"/>
                         </td>
                     </tr>
                 </table>

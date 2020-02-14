@@ -1,16 +1,33 @@
 var errorToken = 0;
+//tipo de contrato articulo
+var tipoContrato = 1;
+//tipo de contrato auto
+// var tipoContrato = 2;
+//Estatus 1 es Empeño
+var estatus = 1;
+// tipe 1 refrendo,tipe 2 refrendo auto,tipe 3 desempeño,tipe 4 desempeño auto,
+var tipeFormulario = 1;
 
-//consultar contrato
-function buscarContrato() {
-    estatusContrato();
-}
-
+//Consultar contrato
 function estatusContrato() {
-    var contratoDesp = $("#idContratoDesempeno").val();
-    if (contratoDesp != '') {
+    var contrato = $("#idContrato").val();
+    $("#idFormDesRef")[0].reset();
+    $("#idConTDDes").text('')
+    $("#idPresTDDes").text('')
+    $("#idInteresTDDes").text('');
+    $("#idAbonoTDDes").text('');
+    $("#btnGenerar").prop('disabled', true);
+    $("#btnAbono").prop('disabled', true);
+    $("#idAbono").prop('disabled', true);
+    $("#idContrato").prop('disabled', true);
+
+
+    if (contrato != '') {
         var dataEnviar = {
-            "tipe": 9,
-            "contratoDese": contratoDesp
+            "tipe": 1,
+            "contrato": contrato,
+            "tipoContrato": tipoContrato,
+            "estatus": estatus
         };
         $.ajax({
             type: "POST",
@@ -19,7 +36,7 @@ function estatusContrato() {
             dataType: "json",
             success: function (datos) {
                 if (datos.length > 0) {
-                    $("#idContratoBusqueda").val(contratoDesp);
+                    $("#idContratoBusqueda").val(contrato);
                     for (i = 0; i < datos.length; i++) {
                         var Contrato = datos[i].Contrato;
                         var Fecha = datos[i].Fecha;
@@ -30,7 +47,7 @@ function estatusContrato() {
                         if (idEstatus == 1) {
                             buscarCliente();
                             buscarDatosContrato();
-                            buscarDetalleRef();
+                            buscarDetalle();
                         } else {
                             alert("El contrato No. : " + Contrato + ", creado el " + Fecha + "\n" +
                                 " del cliente:   " + NombreCompleto + "\n" +
@@ -47,12 +64,15 @@ function estatusContrato() {
     }
 }
 
+//Buscar cliente
 function buscarCliente() {
-    var contratoDesp = $("#idContratoDesempeno").val();
-    if (contratoDesp != '') {
+    var contrato = $("#idContrato").val();
+    if (contrato != '') {
         var dataEnviar = {
-            "tipe": 1,
-            "contratoDese": contratoDesp
+            "tipe": 2,
+            "contrato": contrato,
+            "tipoContrato": tipoContrato,
+            "estatus": estatus
         };
         $.ajax({
             type: "POST",
@@ -72,6 +92,7 @@ function buscarCliente() {
                         if (NombreCompleto === null) {
                             NombreCompleto = '';
                         }
+
                         if (DireccionCompleta === null) {
                             DireccionCompleta = '';
                         }
@@ -103,12 +124,15 @@ function buscarCliente() {
     }
 }
 
+//Buscar datos del contrato
 function buscarDatosContrato() {
-    var contratoDesp = $("#idContratoDesempeno").val();
-    if (contratoDesp != '') {
+    var contrato = $("#idContrato").val();
+    if (contrato != '') {
         var dataEnviar = {
-            "tipe": 7,
-            "contratoDese": contratoDesp
+            "tipe": 3,
+            "contrato": contrato,
+            "tipoContrato": tipoContrato,
+            "estatus": estatus
         };
         $.ajax({
             type: "POST",
@@ -116,7 +140,7 @@ function buscarDatosContrato() {
             data: dataEnviar,
             dataType: "json",
             success: function (datos) {
-                $("#idContratoBusqueda").val(contratoDesp);
+                $("#idContratoBusqueda").val(contrato);
                 for (i = 0; i < datos.length; i++) {
                     var FechaEmp = datos[i].FechaEmp;
                     var FechaVenConvert = datos[i].FechaVenConvert;
@@ -266,7 +290,7 @@ function buscarDatosContrato() {
                         "Moratorios : " + diasInteresMor + "\n" +
                         "IVA : " + totalVencIVA);
 
-                    document.getElementById('idConTDDes').innerHTML = contratoDesp;
+                    document.getElementById('idConTDDes').innerHTML = contrato;
                     document.getElementById('idPresTDDes').innerHTML = TotalPrestamo;
                     document.getElementById('idInteresTDDes').innerHTML = interesGenerado;
                     document.getElementById('idAbonoTDDes').innerHTML = Abono;
@@ -290,12 +314,15 @@ function buscarDatosContrato() {
     }
 }
 
-function buscarDetalleRef() {
-    var contratoDesp = $("#idContratoDesempeno").val();
-    if (contratoDesp != '') {
+//Buscar detalle del contrato
+function buscarDetalle() {
+    var contrato = $("#idContrato").val();
+    if (contrato != '') {
         var dataEnviar = {
-            "tipe": 3,
-            "contratoDese": contratoDesp
+            "tipe": 4,
+            "contrato": contrato,
+            "tipoContrato": tipoContrato,
+            "estatus": estatus
         };
         $.ajax({
             type: "POST",
@@ -323,6 +350,7 @@ function buscarDetalleRef() {
     }
 }
 
+//Validar token
 function token() {
     var dataEnviar = {
         "token": $("#idCodigoAut").val()
@@ -335,10 +363,10 @@ function token() {
             if (response > 0) {
                 $("#idImporte").prop('disabled', false);
                 $("#idToken").val(response);
-               // var token = parseInt(response);
+                // var token = parseInt(response);
                 var token = 20;
 
-                if(token>20){
+                if (token > 20) {
                     alert("Los Token se estan terminando, favor de avisar al administrador");
                 }
 
@@ -360,18 +388,52 @@ function token() {
 
 }
 
+//Check de descuento activado
 function checkDescuento() {
-    // $("#idCodigoAut").val('');
+    $("#idCodigoAut").val('');
     $("#btnDescuento").prop('disabled', false);
     $("#idAbonoCapitalNota").val('$0.00');
     $("#idSaldoPendiente").val($("#idTotalFinalInput").val());
 }
 
+//Calcular descuento
+function reCalculaDescuento() {
+    var importe = $("#idImporte").val();
+    if (importe == '') {
+        alert("Por favor ingrese el descuento.");
+    } else {
+        var interes = $("#idInteresAbono").val();
+        var interes = parseFloat(interes);
+
+        var importe = parseFloat(importe);
+        if (importe <= interes) {
+            var intersPendiente = interes - importe;
+            intersPendiente = Math.round(intersPendiente * 100) / 100;
+            $("#idInteresPendiente").val(intersPendiente);
+            $("#idInteresPendienteNota").val(intersPendiente);
+            var toatalFinal = $("#idTotalInput").val();
+            var totalFinal = parseFloat(toatalFinal);
+            var subTotal = totalFinal - importe;
+            $("#idSaldoPendienteInput").val(subTotal);
+            totalFinal = subTotal;
+            subTotal = formatoMoneda(subTotal);
+            $("#idTotalFinalInput").val(totalFinal);
+            $("#idTotalFinalNota").val(subTotal);
+            $("#idSaldoPendiente").val(subTotal);
+
+
+        } else {
+            alert("El importe no puede ser mayor al interes.");
+        }
+    }
+}
+
+//Calcular Abono
 function calcularAbono() {
     var abono = $("#idAbono").val();
-    if(abono==''){
+    if (abono == '') {
         alert("Por favor ingrese el abono.");
-    }else{
+    } else {
         var abono = parseFloat(abono);
         var interesPendiente = $("#idInteresPendiente").val();
         var interesPendiente = parseFloat(interesPendiente);
@@ -399,71 +461,74 @@ function calcularAbono() {
     }
 }
 
-function reCalculaDescuento() {
-    var importe = $("#idImporte").val();
-    if(importe==''){
-        alert("Por favor ingrese el descuento.");
-    }else{
-        var interes = $("#idInteresAbono").val();
-        var interes = parseFloat(interes);
+//Generar pago
+function generar() {
+    //$tipe == 1 es refrendo normal
+    //$tipe == 2 es refrendo auto
+    //$tipe == 3 es desempeño normal
+    //$tipe == 4 es desempeño auto
+    var contratoBusqueda = $("#idContratoBusqueda").val();
 
-        var importe = parseFloat(importe);
-        if (importe <= interes) {
-            var intersPendiente = interes - importe;
-            intersPendiente = Math.round(intersPendiente * 100) / 100;
-            $("#idInteresPendiente").val(intersPendiente);
-            $("#idInteresPendienteNota").val(intersPendiente);
-            var toatalFinal = $("#idTotalInput").val();
-            var totalFinal = parseFloat(toatalFinal);
-            var subTotal = totalFinal - importe;
-            $("#idSaldoPendienteInput").val(subTotal);
-            totalFinal = subTotal;
-            subTotal = formatoMoneda(subTotal);
-            $("#idTotalFinalInput").val(totalFinal);
-            $("#idTotalFinalNota").val(subTotal);
-            $("#idSaldoPendiente").val(subTotal);
-
-
+    if (contratoBusqueda == '') {
+        alert("Por favor. Realice la busqueda de contrato.")
+    } else {
+        var saldoPendiente = $("#idSaldoPendienteInput").val();
+        if (saldoPendiente == 0.00) {
+            alert("Por favor. Realice la operación de pago.")
         } else {
-            alert("El importe no puede ser mayor al interes.");
+            var totalInicial = $("#idTotalInput").val();
+            totalInicial = parseFloat(totalInicial);
+            saldoPendiente = parseFloat(saldoPendiente);
+            if (totalInicial == saldoPendiente) {
+                alert("Por favor realice un pago.");
+            } else {
+                var token = $("#idToken").val();
+                var abonoACapital = 0.00;
+                var descuento;
+                var gps = null;
+                var pension= null;
+                var poliza= null;
+                //si trae descuento
+                if (token != '') {
+                    descuento = $("#idImporte").val();
+                }else{
+                    token = 0;
+                     descuento = 0.00;
+                }
+                //Refrendo
+                if (tipeFormulario == 1) {
+                    abonoACapital = $("#idAbonoCapitalNota").val();
+                }
+
+
+                var dataEnviar = {
+                    "contrato": contratoBusqueda,
+                    "token": token,
+                    "descuento": descuento,
+                    "abonoACapital": abonoACapital,
+                    "saldoPendiente": saldoPendiente,
+                    "gps": gps,
+                    "pension": pension,
+                    "poliza": poliza,
+                    "tipeFormulario": tipeFormulario
+                };
+
+                $.ajax({
+                    data: dataEnviar,
+                    url: '../../../com.Mexicash/Controlador/Desempeno/generarDesempeno.php',
+                    type: 'post',
+                    success: function (response) {
+                        if (response > 0) {
+                            cancelarDesempeno();
+                            alertify.success("Desempeño generado.");
+                        } else {
+                            alertify.error("Error al generar desempeño.");
+                        }
+                    },
+                })
+            }
         }
     }
-}
-
-function generar() {
-    var saldoPendiente = $("#idSaldoPendienteInput").val();
-    var token = $("#idToken").val();
-    var abonoACapital = $("#idAbonoCapitalNota").val();
-    var descuento = 0.00;
-    var gps = null;
-    var pension = null;
-    var poliza = null;
-    if(token!=''){
-         descuento = $("#idImporte").val();
-    }
-
-    var dataEnviar = {
-        "tipe": 1,
-        "saldoPendiente": saldoPendiente,
-        "descuento": abonoACapital,
-        "descuento": descuento,
-        "token": token
-
-    };
-
-    $.ajax({
-        data: dataEnviar,
-        url: '../../../com.Mexicash/Controlador/Desempeno/generarDesempeno.php',
-        type: 'post',
-        success: function (response) {
-            if (response > 0) {
-                cancelarDesempeno();
-                alertify.success("Desempeño generado.");
-            } else {
-                alertify.error("Error al generar desempeño.");
-            }
-        },
-    })
 }
 
 function cancelar() {
@@ -483,11 +548,11 @@ function buscarContratoRefAuto() {
 }
 
 function estatusContratoAutoRef() {
-    var contratoDesp = $("#idContratoDesempenoAuto").val();
-    if (contratoDesp != '') {
+    var contrato = $("#idContrato").val();
+    if (contrato != '') {
         var dataEnviar = {
             "tipe": 10,
-            "contratoDese": contratoDesp
+            "contratoDese": contrato
         };
         $.ajax({
             type: "POST",
@@ -496,7 +561,7 @@ function estatusContratoAutoRef() {
             dataType: "json",
             success: function (datos) {
                 if (datos.length > 0) {
-                    $("#idContratoBusqueda").val(contratoDesp);
+                    $("#idContratoBusqueda").val(contrato);
                     for (i = 0; i < datos.length; i++) {
                         var Contrato = datos[i].Contrato;
                         var Fecha = datos[i].Fecha;
@@ -525,11 +590,11 @@ function estatusContratoAutoRef() {
 }
 
 function buscarClienteDesAutoRef() {
-    var contratoDesp = $("#idContratoDesempenoAuto").val();
-    if (contratoDesp != '') {
+    var contrato = $("#idContrato").val();
+    if (contrato != '') {
         var dataEnviar = {
             "tipe": 4,
-            "contratoDese": contratoDesp
+            "contratoDese": contrato
         };
         $.ajax({
             type: "POST",
@@ -582,11 +647,11 @@ function buscarClienteDesAutoRef() {
 }
 
 function buscarDatosConDesAutoRef() {
-    var contratoDesp = $("#idContratoDesempenoAuto").val();
-    if (contratoDesp != '') {
+    var contrato = $("#idContrato").val();
+    if (contrato != '') {
         var dataEnviar = {
             "tipe": 8,
-            "contratoDese": contratoDesp
+            "contratoDese": contrato
         };
         $.ajax({
             type: "POST",
@@ -594,7 +659,7 @@ function buscarDatosConDesAutoRef() {
             data: dataEnviar,
             dataType: "json",
             success: function (datos) {
-                $("#idContratoBusqueda").val(contratoDesp);
+                $("#idContratoBusqueda").val(contrato);
                 for (i = 0; i < datos.length; i++) {
                     var PolizaSeguro = datos[i].PolizaSeguro;
                     var GPS = datos[i].GPS;
@@ -739,7 +804,7 @@ function buscarDatosConDesAutoRef() {
                         "GPS : " + GPS + "\n" +
                         "Desempeño Ext : $ Preguntar");
 
-                    document.getElementById('idConTDDesAuto').innerHTML = contratoDesp;
+                    document.getElementById('idConTDDesAuto').innerHTML = contrato;
                     document.getElementById('idPresTDDesAuto').innerHTML = TotalPrestamo;
                     document.getElementById('idInteresTDDesAuto').innerHTML = interesGenerado;
                     document.getElementById('idPolizaSegTDDes').innerHTML = PolizaSeguro;
@@ -757,11 +822,11 @@ function buscarDatosConDesAutoRef() {
 }
 
 function buscarDetalleDesAutoRef() {
-    var contratoDesp = $("#idContratoDesempenoAuto").val();
-    if (contratoDesp != '') {
+    var contrato = $("#idContrato").val();
+    if (contrato != '') {
         var dataEnviar = {
             "tipe": 6,
-            "contratoDese": contratoDesp
+            "contratoDese": contrato
         };
         $.ajax({
             type: "POST",
@@ -803,10 +868,6 @@ function buscarDetalleDesAutoRef() {
         });
     }
 }
-
-
-
-
 
 
 function checkDescuentoAuto() {

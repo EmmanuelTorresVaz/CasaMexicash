@@ -3,33 +3,43 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
 include_once(SQL_PATH . "sqlDesempenoDAO.php");
 
 $idtipe = $_POST['tipe'];
-$idContratoDes = $_POST['contratoDese'];
+$idContrato = $_POST['contrato'];
+$tipoContrato = $_POST['tipoContrato'];
+$estatus = $_POST['estatus'];
 $sqlDesempeno= new sqlDesempenoDAO();
 
-//Datos del cliente
-if($idtipe==1){
-    $sqlDesempeno->buscarCliente($idContratoDes) ;
+if($idtipe==1) {
+    //Busqueda de estatus
+    $sqlDesempeno->estatusContrato($idContrato, $tipoContrato);
 }else if($idtipe==2){
-    $sqlDesempeno->buscarContratoDes($idContratoDes) ;
+    //Datos del cliente
+    $sqlDesempeno->buscarCliente($idContrato, $tipoContrato,$estatus);
 }else if($idtipe==3){
-    $sqlDesempeno->buscarDetalleDes($idContratoDes) ;
+    //Buscar datos del contrato
+    $sqlDesempeno->buscarContrato($idContrato, $tipoContrato,$estatus);
 }else if($idtipe==4){
-    $sqlDesempeno->buscarClienteDesAuto($idContratoDes) ;
+    $sqlDesempeno->buscarDetalle($idContrato,$estatus) ;
+}
+
+
+
+
+ if($idtipe==22){
+    $sqlDesempeno->buscarContratoDes($idContrato) ;
+}else if($idtipe==44){
+    $sqlDesempeno->buscarClienteDesAuto($idContrato) ;
 }else if($idtipe==5){
-    $sqlDesempeno->buscarContratoDesAuto($idContratoDes) ;
+    $sqlDesempeno->buscarContratoDesAuto($idContrato) ;
 }else if($idtipe==6){
-    $sqlDesempeno->buscarDetalleDesAuto($idContratoDes) ;
-}else if($idtipe==7){
-    //Buscar datos del contrato desde Referencia
-    $sqlDesempeno->buscarContratoRef($idContratoDes) ;
+    $sqlDesempeno->buscarDetalleDesAuto($idContrato) ;
 }else if($idtipe==8){
-    $sqlDesempeno->buscarContratoRefAuto($idContratoDes) ;
+    $sqlDesempeno->buscarContratoRefAuto($idContrato) ;
 }else if($idtipe==9){
     //Busqueda de estatus
-    $sqlDesempeno->estatusContrato($idContratoDes) ;
+    $sqlDesempeno->estatusContrato($idContrato,$tipoContrato) ;
 }else if($idtipe==10){
     //Busqueda de estatus
-    $sqlDesempeno->estatusContratoAuto($idContratoDes) ;
+    $sqlDesempeno->estatusContratoAuto($idContrato) ;
 }
 
 
