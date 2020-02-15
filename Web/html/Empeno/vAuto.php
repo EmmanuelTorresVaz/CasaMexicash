@@ -28,11 +28,6 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
     <script src="../../JavaScript/funcionesGenerales.js"></script>
     <script src="../../JavaScript/funcionesArticulos.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" href="//resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
     <style type="text/css">
         #suggestionsNombreEmpeno {
             box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .2);
@@ -62,6 +57,11 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
 
         .inputCliente {
             text-transform: uppercase;
+        }
+
+        .inputMinus {
+            text-transform: lowercase;
+
         }
 
     </style>
@@ -109,7 +109,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                     <tr>
                         <td colspan="12">
                             <div>
-                                <input id="idNombres" name="Nombres" type="text" style="width: 350px" onkeypress="return soloLetras(event)"
+                                <input id="idNombres" name="Nombres" type="text" style="width: 350px"
                                        class="inputCliente"
                                        onkeypress="nombreAutocompletar()" placeholder="Buscar Cliente..."/>
                             </div>
@@ -151,8 +151,9 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="12">
-                            <input type="text" id="nombreCotitular" name="idNombreCotitular" onkeypress="return soloLetras(event)"
-                                   style="width: 350px"  placeholder="A. Paterno-A. Materno-Nombre"/>
+                            <input type="text" id="nombreCotitular" name="idNombreCotitular"
+                                   onkeypress="return soloLetras(event)"
+                                   style="width: 350px" placeholder="A. Paterno-A. Materno-Nombre"/>
                         </td>
                     </tr>
                     <tr>
@@ -163,22 +164,13 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                     <tr>
                         <td colspan="12">
                             <input type="text" id="idNombreBen" name="idNombreBen" onkeypress="return soloLetras(event)"
-                                   style="width:350px"  placeholder="A. Paterno-A. Materno-Nombre"/>
+                                   style="width:350px" placeholder="A. Paterno-A. Materno-Nombre"/>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="12">
                             <input type="text" id="idClienteEmpeno" name="clienteEmpeno" size="20"
                                    style="text-align:center" class="invisible"/>
-                            <input id="idDiasAlmoneda" name="diasAlm" size="3" class="invisible"
-                                   value="  <?php
-                                   $data = array();
-                                   $sql = new sqlInteresesDAO();
-                                   $data = $sql->diasAlmoneda();
-                                   for ($i = 0; $i < count($data); $i++) {
-                                       echo $data[$i]['dias'];
-                                   }
-                                   ?>"/>
                             <input id="idSumaInteresPrestamo" name="totalInteres" disabled type="text"
                                    style="width: 150px; text-align: right" class="invisible"/>
                             <input type="text" id="idFechaAlm" name="fechaAlm" size="12"
@@ -238,10 +230,10 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3" class="table-info border border-dark "  align="center">% Tasa</td>
-                        <td colspan="3" class="table-info border border-dark"  align="center">% Alm.</td>
-                        <td colspan="3" class="table-info border border-dark"  align="center">% Seguro</td>
-                        <td colspan="3" class="table-info border border-dark"  align="center">% I.V.A.</td>
+                        <td colspan="3" class="table-info border border-dark " align="center">% Tasa</td>
+                        <td colspan="3" class="table-info border border-dark" align="center">% Alm.</td>
+                        <td colspan="3" class="table-info border border-dark" align="center">% Seguro</td>
+                        <td colspan="3" class="table-info border border-dark" align="center">% I.V.A.</td>
                     </tr>
                     <tr class="headt">
                         <td colspan="3" class="border border-dark" align="center">
@@ -258,18 +250,20 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="table-info border border-dark"  align="center">Total Avalúo</td>
-                        <td colspan="4" class="table-info border border-dark"  align="center">Total Préstamo</td>
-                        <td colspan="4" class="table-info border border-dark"  align="center"></td>
+                        <td colspan="4" class="table-info border border-dark" align="center">Total Avalúo</td>
+                        <td colspan="4" class="table-info border border-dark" align="center">Total Préstamo</td>
+                        <td colspan="4" class="table-info border border-dark" align="center"></td>
                     </tr>
                     <tr class="headt">
                         <td colspan="4" class="border border-dark" align="center">
-                            <input id="idTotalAvaluoAuto" name="totalAvaluo" type="double" onkeypress="return isNumberDecimal(event)"
+                            <input id="idTotalAvaluoAuto" name="totalAvaluo" type="double"
+                                   onkeypress="return isNumberDecimal(event)"
                                    style="width: 150px; text-align:right;"
                                    class="inputCliente"/>
                         </td>
                         <td colspan="4" class="border border-dark" align="center">
-                            <input id="idTotalPrestamoAuto" name="totalPrestamo" type="double" onkeypress="return isNumberDecimal(event)"
+                            <input id="idTotalPrestamoAuto" name="totalPrestamo" type="double"
+                                   onkeypress="return isNumberDecimal(event)"
                                    style="width: 150px; text-align:right;"
                                    class="inputCliente"/>
                         </td>
@@ -278,25 +272,45 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                         </td>
                     </tr>
                     <tr class="headt">
-                        <td colspan="6" class="table-info border border-dark"  align="center">Costo Pensión Mensual:</td>
+                        <td colspan="6" class="table-info border border-dark" align="center">Costo Pensión Mensual:</td>
                         <td colspan="6" class="border border-dark" align="center">
-                            <input id="idPension" name="poliza" type="text" style="width: 150px; text-align:right;" onkeypress="return isNumberDecimal(event)"
+                            <input id="idPension" name="poliza" type="text" style="width: 150px; text-align:right;"
+                                   onkeypress="return isNumberDecimal(event)"
                                    class="inputCliente"/>
                         </td>
                     </tr>
                     <tr class="headt">
-                        <td colspan="6" class="table-info border border-dark"  align="center">Costo Poliza Mensual:</td>
+                        <td colspan="6" class="table-info border border-dark" align="center">Costo Poliza Mensual:</td>
                         <td colspan="6" class="border border-dark" align="center">
-                            <input id="idPolizaSeguro" name="poliza" type="text" style="width: 150px; text-align:right;" onkeypress="return isNumberDecimal(event)"
+                            <input id="idPolizaSeguro" name="poliza" type="text" style="width: 150px; text-align:right;"
+                                   onkeypress="return isNumberDecimal(event)"
                                    class="inputCliente"/>
                         </td>
                     </tr>
                     <tr class="headt">
-                        <td colspan="6" class="table-info border border-dark"  align="center">Costo GPS Mensual:</td>
+                        <td colspan="6" class="table-info border border-dark" align="center">Costo GPS Mensual:</td>
                         <td colspan="6" class="border border-dark" align="center">
-                            <input id="idGPS" name="gps" type="text" style="width: 150px; text-align:right;" onkeypress="return isNumberDecimal(event)"
+                            <input id="idGPS" name="gps" type="text" style="width: 150px; text-align:right;"
+                                   onkeypress="return isNumberDecimal(event)"
                                    class="inputCliente"/>
                         </td>
+                    </tr>
+                    <tr class="headt">
+                        <td colspan="6" class="border border-dark">&nbsp;Días Almoneda</td>
+                        <td colspan="6" class="border border-dark" align="center">
+                            <select id="idDiasAlmoneda" name="diasAlmName" class="selectpicker" disabled
+                                    onchange="calcularDias()"
+                                    style="width: 80px">
+                                <option value="0">0</option>
+                                <?php
+                                $data = array();
+                                $sql = new sqlInteresesDAO();
+                                $data = $sql->diasAlmoneda();
+                                for ($i = 0; $i < count($data); $i++) {
+                                    echo "<option value=" . $data[$i]['id_fechaAlm'] . ">" . $data[$i]['dias'] . "</option>";
+                                }
+                                ?>
+                            </select></td>
                     </tr>
                     </tbody>
                 </table>
@@ -546,6 +560,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                         </td>
                         <td colspan="2">
                             <input type="text" id="idFechaVencAuto" name="fechaVencAuto" size="13"
+                                   onkeypress="return isDateValidate(event)"
                                    style="text-align:left" placeholder="AAAA-MM-DD"/>
                         </td>
                         <td colspan="6">
@@ -561,8 +576,8 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                     </tr>
                     <tr>
                         <td colspan="10" name="observacionesAuto">
-                                    <textarea rows="2" cols="60" id="idObservacionesAuto" class="textArea">
-                                    </textarea>
+                            <p><textarea name="detalle" id="idObservacionesAuto"
+                                         class="textArea" rows="2" cols="60"></textarea></p>
                         </td>
                     </tr>
 
@@ -576,15 +591,13 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
                 <br>
             </div>
             <div class="col col-lg-5">
-                <input type="button" class="btn btn-success" value="prueba" onclick="pruebasAuto()">
-                <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
-                <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
                 <input type="button" class="btn btn-primary" value="Contrato" onclick="generarContratoAuto()">&nbsp;
+                <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
+                <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
                 <input type="button" class="btn btn-danger" value="Salir" onclick="location.href='vInicio.php'">&nbsp;
+                <input type="button" class="btn btn-success" value="prueba" onclick="pruebasAuto()">
             </div>
         </div>
-    </div>
-    </div>
     </div>
 </form>
 

@@ -153,7 +153,21 @@ function prueba2() {
 //Contrato
 function generarContratoAuto() {
     var clienteEmpeno = $("#idClienteEmpeno").val();
-    if (clienteEmpeno != 0) {
+    var tipoInteres = $("#tipoInteresEmpeno").val();
+    var diasAlmoneda = $("#idDiasAlmoneda").val();
+
+    var validate = true;
+    if (clienteEmpeno == '' || clienteEmpeno == null) {
+        alert("Por Favor. Selecciona un cliente.");
+        validate = false;
+    } else if (tipoInteres == 0) {
+        alert("Por Favor. Selecciona tipo de interes.");
+        validate = false;
+    } else if (diasAlmoneda == 0) {
+        alert("Por Favor. Selecciona los días de almoneda.");
+        validate = false;
+    }
+    if (validate) {
         var chkTarjeta = 0;
         var chkFActura = 0;
         var chkIne = 0;
@@ -182,6 +196,7 @@ function generarContratoAuto() {
         if ($('#idCheckLicencia').is(":checked")) {
             chkLicencia = 1;
         }
+        var diasAlmonedaValue = $('select[name="diasAlmName"] option:selected').text();
 
         var prestamoAuto = $("#idTotalPrestamoAuto").val();
         var interesAuto = calcularInteresAuto(prestamoAuto);
@@ -195,7 +210,6 @@ function generarContratoAuto() {
             "polizaSeguro": $("#idPolizaSeguro").val(),
             "gps": $("#idGPS").val(),
             "pension": $("#idPension").val(),
-            "fecha_Alm": $("#idFechaAlm").val(),
             "estatus": 1,
             "beneficiario": $("#idNombreBen").val(),
             "cotitular": $("#nombreCotitular").val(),
@@ -231,7 +245,10 @@ function generarContratoAuto() {
             "idCheckImportacion": chkImportacion,
             "idCheckTenecia": chkTenencia,
             "idCheckPoliza": chkPoliza,
-            "idCheckLicencia": chkLicencia
+            "idCheckLicencia": chkLicencia,
+            "diasAlmoneda": diasAlmonedaValue,
+            "fecha_Alm": $("#idFechaAlm").val()
+
         };
         $.ajax({
             data: dataEnviar,
@@ -247,9 +264,11 @@ function generarContratoAuto() {
 
             },
         })
-    } else {
-        alert("Por Favor. Selecciona un cliente.")
     }
+
+
+
+
 
 }
 

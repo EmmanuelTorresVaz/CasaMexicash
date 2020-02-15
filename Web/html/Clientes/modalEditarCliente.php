@@ -9,8 +9,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registro Clientes</title>
     <script src="../../JavaScript/funcionesCatalogos.js"></script>
-<!--    <script src="../../JavaScript/funcionesCliente.js"></script>
--->
+
 </head>
 <body>
 <div class="modal fade " id="modalEditarNuevo" tabindex="-1" role="dialog"
@@ -107,7 +106,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                                        required placeholder="AAAA-MM-DD" />
                                             </td>
                                             <td>
-                                                <input type="text" name="correo" id="idCorreoEdit" style="width: 200px"
+                                                <input type="text" name="correo" id="idCorreoEdit" class="inputMinus" style="width: 200px"
                                                        placeholder=""/>
                                             </td>
                                         </tr>
@@ -182,7 +181,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                                        style="width: 200px" required/>
                                             </td>
                                             <td>
-                                                <input type="text" class="localidadName" name="municipioName" placeholder=""
+                                                <input type="text" class="inputCliente" name="municipioName" placeholder=""
                                                        id="idLocalidadEdit" onkeypress="return soloLetras(event)"
                                                        style="width: 200px" required/>
                                             </td>

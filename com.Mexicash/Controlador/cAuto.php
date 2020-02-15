@@ -13,7 +13,6 @@ $sumaInteresPrestamo = $_POST['sumaInteresPrestamo'];
 $polizaSeguroCost = $_POST['polizaSeguro'];
 $gps = $_POST['gps'];
 $pension = $_POST['pension'];
-$fecha_Alm = $_POST['fecha_Alm'];
 $estatus = $_POST['estatus'];
 $beneficiario = $_POST['beneficiario'];
 $cotitular = $_POST['cotitular'];
@@ -51,6 +50,10 @@ $idCheckImportacion = $_POST['idCheckImportacion'];
 $idCheckTenecia = $_POST['idCheckTenecia'];
 $idCheckPoliza = $_POST['idCheckPoliza'];
 $idCheckLicencia = $_POST['idCheckLicencia'];
+$diasAlmoneda = $_POST['diasAlmoneda'];
+$fecha_Alm = $_POST['fecha_Alm'];
+
+
 
 
 $auto = new Auto(
@@ -64,7 +67,6 @@ $auto = new Auto(
     $polizaSeguroCost,
     $gps,
     $pension,
-    $fecha_Alm,
     $estatus,
     $beneficiario,
     $cotitular,
@@ -101,7 +103,9 @@ $auto = new Auto(
     $idCheckImportacion,
     $idCheckTenecia,
     $idCheckPoliza,
-    $idCheckLicencia
+    $idCheckLicencia,
+    $diasAlmoneda,
+    $fecha_Alm
 );
 
 $sqlAuto = new sqlAutoDAO();

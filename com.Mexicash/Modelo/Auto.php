@@ -13,7 +13,6 @@ class Auto
     private $polizaSeguroCost;
     private $gps;
     private $pension;
-    private $fecha_Alm;
     private $estatus;
     private $beneficiario;
     private $cotitular;
@@ -51,6 +50,8 @@ class Auto
     private $idCheckTenecia;
     private $idCheckPoliza;
     private $idCheckLicencia;
+    private $diasAlmoneda;
+    private $fecha_Alm;
 
     /**
      * Auto constructor.
@@ -63,7 +64,6 @@ class Auto
      * @param $polizaSeguroCost
      * @param $gps
      * @param $pension
-     * @param $fecha_Alm
      * @param $estatus
      * @param $beneficiario
      * @param $cotitular
@@ -100,8 +100,17 @@ class Auto
      * @param $idCheckTenecia
      * @param $idCheckPoliza
      * @param $idCheckLicencia
+     * @param $diasAlmoneda
+     * @param $fecha_Alm
      */
-    public function __construct($idClienteAuto, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $total_Interes, $sumaInteresPrestamo, $polizaSeguroCost, $gps, $pension, $fecha_Alm, $estatus, $beneficiario, $cotitular, $plazo, $tasa, $alm, $seguro, $iva, $dias, $idTipoVehiculo, $idMarca, $idModelo, $idAnio, $idColor, $idPlacas, $idFactura, $idKms, $idAgencia, $idMotor, $idSerie, $idVehiculo, $idRepuve, $idGasolina, $idAseguradora, $idTarjeta, $idPoliza, $idFecVencimientoAuto, $idTipoPoliza, $idObservacionesAuto, $idCheckTarjeta, $idCheckFactura, $idCheckINE, $idCheckImportacion, $idCheckTenecia, $idCheckPoliza, $idCheckLicencia)
+    public function __construct($idClienteAuto, $fechaVencimiento, $totalAvaluo, $totalPrestamo, $total_Interes,
+                                $sumaInteresPrestamo, $polizaSeguroCost, $gps, $pension, $estatus,
+                                $beneficiario, $cotitular, $plazo, $tasa, $alm, $seguro, $iva, $dias, $idTipoVehiculo,
+                                $idMarca, $idModelo, $idAnio, $idColor, $idPlacas, $idFactura, $idKms, $idAgencia,
+                                $idMotor, $idSerie, $idVehiculo, $idRepuve, $idGasolina, $idAseguradora, $idTarjeta,
+                                $idPoliza, $idFecVencimientoAuto, $idTipoPoliza, $idObservacionesAuto, $idCheckTarjeta,
+                                $idCheckFactura, $idCheckINE, $idCheckImportacion, $idCheckTenecia, $idCheckPoliza,
+                                $idCheckLicencia,$diasAlmoneda,$fecha_Alm)
     {
         $this->idClienteAuto = $idClienteAuto;
         $this->fechaVencimiento = $fechaVencimiento;
@@ -112,7 +121,6 @@ class Auto
         $this->polizaSeguroCost = $polizaSeguroCost;
         $this->gps = $gps;
         $this->pension = $pension;
-        $this->fecha_Alm = $fecha_Alm;
         $this->estatus = $estatus;
         $this->beneficiario = $beneficiario;
         $this->cotitular = $cotitular;
@@ -149,7 +157,28 @@ class Auto
         $this->idCheckTenecia = $idCheckTenecia;
         $this->idCheckPoliza = $idCheckPoliza;
         $this->idCheckLicencia = $idCheckLicencia;
+        $this->diasAlmoned = $diasAlmoneda;
+        $this->fecha_Alm = $fecha_Alm;
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function getDiasAlmoneda()
+    {
+        return $this->diasAlmoned;
+    }
+
+    /**
+     * @param mixed $diasAlmoneda
+     */
+    public function setDiasAlmoneda($diasAlmoneda): void
+    {
+        $this->diasAlmoned = $diasAlmoneda;
+    }
+
+
 
     /**
      * @return mixed

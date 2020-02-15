@@ -307,7 +307,7 @@ function eliminarArticulo($idArticulo) {
         },
     })
 
-}e
+}
 function eliminarMetales($idArticulo) {
     var dataEnviar = {
         "$idArticulo": $idArticulo

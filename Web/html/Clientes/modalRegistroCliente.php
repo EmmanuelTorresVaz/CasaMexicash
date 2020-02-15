@@ -107,7 +107,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                                        required placeholder="AAAA-MM-DD"  onkeypress="return isDateValidate(event)"/>
                                             </td>
                                             <td>
-                                                <input type="text" name="correo" id="idCorreo" style="width: 200px"
+                                                <input type="text" name="correo" id="idCorreo" class="inputMinus" style="width: 200px"
                                                        placeholder=""/>
                                             </td>
                                         </tr>
