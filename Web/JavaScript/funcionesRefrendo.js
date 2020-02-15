@@ -1,16 +1,18 @@
 var errorToken = 0;
 //tipo de contrato articulo
-var tipoContrato = 1;
+var tipoContrato = 0;
 //tipo de contrato auto
 // var tipoContrato = 2;
 //Estatus 1 es Empeño
 var estatus = 1;
 // tipe 1 refrendo,tipe 2 refrendo auto,tipe 3 desempeño,tipe 4 desempeño auto,
-var tipeFormulario = 1;
 
 //Consultar contrato
 function estatusContrato() {
     var contrato = $("#idContrato").val();
+    tipoContrato =  $("#idTipoDeContrato").val();
+    tipoContrato = parseInt(tipoContrato);
+
     $("#idFormDesRef")[0].reset();
     $("#idConTDDes").text('')
     $("#idPresTDDes").text('')
@@ -20,6 +22,8 @@ function estatusContrato() {
     $("#btnAbono").prop('disabled', true);
     $("#idAbono").prop('disabled', true);
     $("#idContrato").prop('disabled', true);
+
+
 
 
     if (contrato != '') {
@@ -158,6 +162,9 @@ function buscarDatosContrato() {
                     var Abono = datos[i].Abono;
                     var FechaAbono = datos[i].FechaAbono;
                     var DiasAlmoneda = datos[i].DiasAlmoneda;
+                    var PolizaSeguro = datos[i].PolizaSeguro;
+                    var GPS = datos[i].GPS;
+                    var Pension = datos[i].Pension;
                     var fechaHoy = new Date();
                     var diasForInteres = 0;
                     //SE obtienen los intereses en  porcentajes
@@ -281,26 +288,46 @@ function buscarDatosContrato() {
                     if (FechaAlmFormat < fechaHoy) {
                         $("#trAlmoneda").show();
                     }
-
-
-                    $("#idDatosContratoDes").val("Fecha Empeño : " + FechaEmp + "\n" +
-                        "Fecha Vencimiento : " + FechaVenConvert + "\n" +
-                        "Fecha Comercialización : " + FechaAlm + "\n" +
-                        "Días transcurridos : " + diasForInteres + "\n" +
-                        "Días transcurridos interés : " + diasMoratorios + "\n" +
-                        "Plazo : " + PlazoDesc + "\n" +
-                        "Tasa : " + tasaIvaTotal + "% \n" +
-                        "Interes diario : " + interesDia + "\n" +
-                        "Interes : " + totalVencInteres + "\n" +
-                        "Almacenaje : " + totalVencAlm + "\n" +
-                        "Seguro : " + totalVencSeg + "\n" +
-                        "Moratorios : " + diasInteresMor + "\n" +
-                        "IVA : " + totalVencIVA);
+                    $("#idTblFechaEmpeno").val(FechaEmp);
+                    $("#idTblFechaVenc").val(FechaVenConvert);
+                    $("#idTblFechaComer").val(FechaAlm);
+                    $("#idTblDiasTransc").val(diasForInteres);
+                    $("#idTblDiasTransInt").val(diasMoratorios);
+                    $("#idTblPlazo").val(PlazoDesc);
+                    $("#idTblTasa").val(tasaIvaTotal);
+                    $("#idTblInteresDiario").val(interesDia);
+                    $("#idTblInteres").val(totalVencInteres);
+                    $("#idTblAlmacenaje").val(totalVencAlm);
+                    $("#idTblSeguro").val(totalVencSeg);
+                    $("#idTblMoratorios").val(diasInteresMor);
+                    $("#idTblIva").val(totalVencIVA);
+                    var tipeFormulario = $("#idFormulario").val();
 
                     document.getElementById('idConTDDes').innerHTML = contrato;
                     document.getElementById('idPresTDDes').innerHTML = TotalPrestamo;
                     document.getElementById('idInteresTDDes').innerHTML = interesGenerado;
                     document.getElementById('idAbonoTDDes').innerHTML = Abono;
+                    if(tipeFormulario==2||tipeFormulario==4){
+                        if(PolizaSeguro==''||PolizaSeguro==null){
+                            PolizaSeguro = 0.00;
+                        }
+                        if(GPS==''||GPS==null){
+                            GPS = 0.00;
+                        }
+                        if(Pension==''||Pension==null){
+                            Pension = 0.00;
+                        }
+                        PolizaSeguro = formatoMoneda(PolizaSeguro);
+                        GPS = formatoMoneda(GPS);
+                        Pension = formatoMoneda(Pension);
+                        document.getElementById('idGPSTDDes').innerHTML = PolizaSeguro;
+                        document.getElementById('idPensionTDDes').innerHTML = GPS;
+                        document.getElementById('idPolizaTDDes').innerHTML = Pension;
+                        $("#idGPSNota").val(GPS);
+                        $("#idPolizaNota").val(PolizaSeguro);
+                        $("#idPensionNota").val(Pension);
+                    }
+
                     /*
                                       document.getElementById('totalAPagarTD').innerHTML = TotalFinal;*/
                     //NOTA Entrega
@@ -500,6 +527,7 @@ function generar() {
                 var newFechaVencimiento = null;
                 var newFechaAlm = null;
                 var idEstatusArt = 1;
+                var tipeFormulario = $("#idFormulario").val();
                 //si trae descuento
                 if (token != '') {
                     descuento = $("#idImporte").val();
@@ -942,14 +970,4 @@ function cancelarDesempenoAuto() {
     $("#idPresTDDesAuto").text('');
     $("#idInteresTDDesAuto").text('');
 
-}
-
-
-function prueba() {
-    var abonoAnterior = $("#idAbonoTDDes").text();
-    alert(abonoAnterior);
-    alert(typeof (abonoAnterior))
-    abonoAnterior = parseFloat(abonoAnterior);
-    alert(abonoAnterior)
-    alert(typeof (abonoAnterior))
 }

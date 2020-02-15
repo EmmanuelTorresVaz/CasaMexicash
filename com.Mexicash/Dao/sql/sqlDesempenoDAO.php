@@ -110,7 +110,10 @@ class sqlDesempenoDAO
                         Con.suma_InteresPrestamo AS TotalInteresPrestamo,
                         Con.abono AS Abono,
                         Con.fecha_Abono AS FechaAbono,
-                        Con.diasAlm AS DiasAlmoneda
+                        Con.diasAlm AS DiasAlmoneda,
+                        Con.polizaSeguro AS PolizaSeguro,
+                        Con.gps AS GPS,
+                        Con.pension AS Pension
                         FROM contrato_tbl as Con
                         WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= $tipoContrato and Con.id_Estatus= $estatus";
 
@@ -134,7 +137,10 @@ class sqlDesempenoDAO
                         "TotalInteresPrestamo" => $row["TotalInteresPrestamo"],
                         "Abono" => $row["Abono"],
                         "FechaAbono" => $row["FechaAbono"],
-                        "DiasAlmoneda" => $row["DiasAlmoneda"]
+                        "DiasAlmoneda" => $row["DiasAlmoneda"],
+                        "PolizaSeguro" => $row["PolizaSeguro"],
+                        "GPS" => $row["GPS"],
+                        "Pension" => $row["Pension"]
                     ];
                     array_push($datos, $data);
                 }
