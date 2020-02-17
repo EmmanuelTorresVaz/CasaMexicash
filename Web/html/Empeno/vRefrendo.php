@@ -19,7 +19,7 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
     <title>Refrendo</title>
     <script src="../../JavaScript/funcionesRefrendo.js"></script>
     <script type="application/javascript">
-        var form= 2;
+        var form= 1;
         var nameForm = "Error";
         var tipoArticuloOAuto = 0;
 
@@ -33,7 +33,7 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
 
             if(form==1){
                 //Quitar sigueinte linea
-                $("#idContrato").val(64);
+                //$("#idContrato").val(64);
                 nameForm = "Refrendo";
                 $("#idGPSTH").hide();
                 $("#idPensionTH").hide();
@@ -51,7 +51,7 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
 
             }else if(form==2){
                 //Quitar sigueinte linea
-                $("#idContrato").val(67);
+                //$("#idContrato").val(67);
                 nameForm = "Refrendo Auto";
                 $("#idGPSTH").show();
                 $("#idPensionTH").show();
