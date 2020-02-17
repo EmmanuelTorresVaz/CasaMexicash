@@ -19,7 +19,7 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
     <title>Refrendo</title>
     <script src="../../JavaScript/funcionesRefrendo.js"></script>
     <script type="application/javascript">
-        var form= 1;
+        var form= 2;
         var nameForm = "Error";
         var tipoArticuloOAuto = 0;
 
@@ -28,6 +28,8 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
             $("#trAlmoneda").hide();
             $("#btnGenerar").prop('disabled', true);
             $("#idFormulario").val(form);
+            $("#btnAbonoDelete").hide();
+            $("#btnDescuentoDelete").hide();
 
             if(form==1){
                 //Quitar sigueinte linea
@@ -75,6 +77,11 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
             document.getElementById('nameFormLbl').innerHTML =nameForm;
         });
     </script>
+    <style>
+        .propInvisible {
+            visibility: hidden;
+        }
+    </style>
 </head>
 <body >
 <form id="idFormDesRef" name="formDes">
@@ -96,8 +103,10 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
                                    style="text-align:right"/>
                         </td>
                         <td style="width: 200px" align="left" >
-                            <input type="button" class="btn btn-info " onclick="estatusContrato();"
+                            <input type="button" class="btn btn-info " id="btnBuscar" onclick="estatusContrato();"
                                    value="Buscar">
+                            <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
+
                         </td>
                     </tr>
                     <tr>
@@ -235,11 +244,15 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
                             <label class="form-check-label">Aplicar descuento:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                             <input type="checkbox" class="form-check-input" id="idChekcDescuento"
                                    data-toggle="modal" data-target="#modalDescuento" disabled
-                                   onclick="checkDescuento()">
+                                   >
                         </td>
-                        <td align="center"><input type="button" class="btn btn-info" value="Calcular Descuento" id="btnDescuento" disabled onclick="reCalculaDescuento();">&nbsp;
+                        <td align="center">
+                            <input type="button" class="btn btn-info" value="Calcular Descuento" id="btnDescuento" disabled onclick="reCalculaDescuento();">&nbsp;
+                            <input type="button" class="btn btn-warning" value="Borrar Descuento" id="btnDescuentoDelete"  onclick="borrarDescuento();">&nbsp;
                         </td>
-                        <td align="center"><input type="button" class="btn btn-info" value="Caclular Abono" id="btnAbono" disabled onclick="calcularAbono()">&nbsp;
+                        <td align="center">
+                            <input type="button" class="btn btn-info" value="Caclular Abono" id="btnAbono" disabled onclick="calcularAbono()">&nbsp;
+                            <input type="button" class="btn btn-warning" value="Borrar Abono" id="btnAbonoDelete"  onclick="borrarAbono()">&nbsp;
                         </td>
                     </tr>
                     <tr>
@@ -384,43 +397,47 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
                     <tr id="trAlmoneda" style="color:#FF0000">
                         <td colspan="3"><h3>¡Contrato en almoneda!</h3></td>
                     </tr>
-                    <tr class="invisible">
-                        <td>
+                    <tr class="propInvisible">
+                        <td><label>prestamo</label>
                             <input type="text" id="idPrestamoAbono"  style="width: 100px; text-align: right"/>
                         </td>
                         <td><label>interes abono</label>
                             <input type="text" id="idInteresAbono" style="width: 100px; text-align: right"/>
                         </td>
-                        <td>
+                        <td><label>total</label>
                             <input type="text" id="idTotalInput" style="width: 100px; text-align: right"/>
                         </td>
-                        <td>
+                        <td><label>interes pendiente</label>
                             <input type="text" id="idInteresPendiente" style="width: 100px; text-align: right"/>
                         </td>
                     </tr>
-                    <tr class="invisible">
-                        <td >
+                    <tr class="propInvisible">
+                        <td ><label>total final</label>
                             <input type="text" id="idTotalFinalInput"  style="width: 100px; text-align: right"/>
                         </td>
-                        <td>
+                        <td><label>token</label>
                             <input type="text" id="idToken"  style="width: 100px; text-align: right"/>
                         </td>
-                        <td>
+                        <td><label>saldo pendiente</label>
                             <input type="text" id="idSaldoPendienteInput" value="0.00" style="width: 100px; text-align: right"/>
                         </td>
                         <td>
+                            <label>nueva fecha vencimiento</label>
                             <input type="text" id="idNuevaFechaVenc" value="0" style="width: 100px; text-align: right"/>
                         </td>
                     </tr>
-                    <tr class="invisible">
-                        <td colspan="2">
+                    <tr class="propInvisible">
+                        <td><label>nueva fecha alm</label>
                             <input type="text" id="idNuevaFechaAlm" value="0" style="width: 100px; text-align: right"/>
                         </td>
-                        <td>
+                        <td><label>Abono Anterior</label>
                             <input type="text" id="idAbonoAnteriorInput" value="0" style="width: 100px; text-align: right"/>
                         </td>
-                        <td>
+                        <td><label>Abono a Capital</label>
                             <input type="text" id="idAbonoACapitalInput" value="0" style="width: 100px; text-align: right"/>
+                        </td>
+                        <td><label>Descuento anterior</label>
+                            <input type="text" id="idDescuentoAnterior" value="0" style="width: 100px; text-align: right"/>
                         </td>
                     </tr>
                 </table>
@@ -430,18 +447,20 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
             </div>
         </div>
         <div class="row">
-            <div class="col col-md-6">
-                <input type="text" id="idContratoBusqueda" name="contratoBus"
-                       style="width: 100px;" class="invisible"/>
-                <input type="text" id="idFormulario"
-                       style="width: 100px;" class="invisible"/>
-                <input type="text" id="idTipoDeContrato"
-                       style="width: 100px;" class="invisible"/>
+            <div class="col col-md-6" >
+                <label>contrato de busqueda</label>
+                <input type="text" id="idContratoBusqueda" name="contratoBus" class="propInvisible"
+                       style="width: 100px;" />
+                <label>formulario</label>
+                <input type="text" id="idFormulario" class="propInvisible"
+                       style="width: 100px;"/>
+                <label>tipo contrato</label>
+                <input type="text" id="idTipoDeContrato" class="propInvisible"
+                       style="width: 100px;" />
             </div>
             <div class="col col-md-5" align="right">
                 <input type="button" class="btn btn-primary" value="Refrendo" onclick="generar()">&nbsp;
                 <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
-                <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
                 <input type="button" class="btn btn-danger" value="Salir" onclick="location.href='vInicio.php'">&nbsp;
                 <input type="button" class="btn btn-warning" value="x" onclick="prueba()">&nbsp;
             </div>

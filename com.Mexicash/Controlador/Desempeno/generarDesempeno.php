@@ -6,6 +6,7 @@ $tipeFormulario = $_POST['tipeFormulario'];
 $contrato = $_POST['contrato'];
 $token = $_POST['token'];
 $descuento = $_POST['descuento'];
+$descuentoFinal = $_POST['descuentoFinal'];
 $abonoACapital = $_POST['abonoACapital'];
 $saldoPendiente = $_POST['saldoPendiente'];
 $gps = $_POST['gps'];
@@ -18,7 +19,7 @@ $idEstatusArt = $_POST['idEstatusArt'];
 
 
 $sqlDesempeno = new sqlDesempenoDAO();
-$sqlDesempeno->generar($tipeFormulario,$newFechaVencimiento,$saldoPendiente,$descuento, $newFechaAlm, $abonoACapital,$contrato,$idEstatusArt);
+$sqlDesempeno->generar($tipeFormulario,$newFechaVencimiento,$saldoPendiente,$descuento, $descuentoFinal,$newFechaAlm, $abonoACapital,$contrato,$idEstatusArt,$token);
 
 
 

@@ -113,7 +113,8 @@ class sqlDesempenoDAO
                         Con.diasAlm AS DiasAlmoneda,
                         Con.polizaSeguro AS PolizaSeguro,
                         Con.gps AS GPS,
-                        Con.pension AS Pension
+                        Con.pension AS Pension,
+                        Con.descuento AS Descuento
                         FROM contrato_tbl as Con
                         WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= $tipoContrato and Con.id_Estatus= $estatus";
             $rs = $this->conexion->query($buscar);
@@ -139,7 +140,8 @@ class sqlDesempenoDAO
                         "DiasAlmoneda" => $row["DiasAlmoneda"],
                         "PolizaSeguro" => $row["PolizaSeguro"],
                         "GPS" => $row["GPS"],
-                        "Pension" => $row["Pension"]
+                        "Pension" => $row["Pension"],
+                        "Descuento" => $row["Descuento"]
                     ];
                     array_push($datos, $data);
                 }
@@ -237,16 +239,17 @@ class sqlDesempenoDAO
     }
 
     //Generar Desempeño o Refrendo
-    public function generar($tipeFormulario, $newFechaVencimiento, $saldoPendiente, $descuento, $newFechaAlm, $abonoACapital, $contrato, $idEstatusArt)
+    public function generar($tipeFormulario, $newFechaVencimiento, $saldoPendiente, $descuento, $descuentoFinal,$newFechaAlm, $abonoACapital, $contrato, $idEstatusArt, $token)
     {
         // TODO: Implement guardaCiente() method.
         try {
             $fechaModificacion = date('Y-m-d H:i:s');
             $usuario = $_SESSION["idUsuario"];
+            $sucursal = $_SESSION["sucursal"];
             $updateContrato = "UPDATE contrato_tbl SET
                                     fecha_Vencimiento = '$newFechaVencimiento',
                                     total_Prestamo = $saldoPendiente,
-                                    descuento = $descuento,
+                                    descuento = $descuentoFinal,
                                     fecha_Alm = '$newFechaAlm',
                                     abono = $abonoACapital,
                                     fecha_Abono = '$fechaModificacion',
@@ -257,27 +260,52 @@ class sqlDesempenoDAO
 
             if ($ps = $this->conexion->prepare($updateContrato)) {
                 if ($ps->execute()) {
-                    if($tipeFormulario==1){
+                    if ($tipeFormulario == 1) {
                         $updateArticulos = "UPDATE articulo_tbl SET  fecha_modificacion = '$fechaModificacion',usuario= $usuario, id_Estatus = $idEstatusArt 
+                                WHERE id_Contrato=$contrato";
+                    }
+                    if ($tipeFormulario == 2) {
+                        $updateArticulos = "UPDATE auto_tbl SET  fecha_modificacion = '$fechaModificacion',usuario= $usuario, id_Estatus = $idEstatusArt 
                                 WHERE id_Contrato=$contrato";
                     }
                     if ($ps = $this->conexion->prepare($updateArticulos)) {
                         if ($ps->execute()) {
-                            $verdad = mysqli_stmt_affected_rows($ps);
+                            $insertaBitacora = "INSERT INTO bit_token ( id_Contrato, token, descuento, usuario, sucursal, fecha_Creacion)
+                                        VALUES ($contrato, '$token', $descuento, $usuario, $sucursal,'$fechaModificacion')";
+                            if ($ps = $this->conexion->prepare($insertaBitacora)) {
+                                if ($ps->execute()) {
+                                    $updateToken = "UPDATE cat_token SET
+                                         estatus = 2
+                                        WHERE id_token ='$token'";
+                                    if ($ps = $this->conexion->prepare($updateToken)) {
+                                        if ($ps->execute()) {
+                                            $verdad = mysqli_stmt_affected_rows($ps);
+                                        } else {
+                                            $verdad = -11;
+                                        }
+                                    } else {
+                                        $verdad = -12;
+                                    }
+                                } else {
+                                    $verdad = -13;
+                                }
+                            } else {
+                                $verdad = -15;
+                            }
                         } else {
-                            $verdad = -1;
+                            $verdad = -16;
                         }
                     } else {
-                        $verdad = -1;
+                        $verdad = -17;
                     }
                 } else {
-                    $verdad = -1;
+                    $verdad = -18;
                 }
             } else {
-                $verdad = -1;
+                $verdad = -19;
             }
         } catch (Exception $exc) {
-            $verdad = -1;
+            $verdad = -20;
             echo $exc->getMessage();
         } finally {
             $this->db->closeDB();
@@ -285,16 +313,6 @@ class sqlDesempenoDAO
         //return $verdad;
         echo $verdad;
     }
-
-
-
-
-
-
-
-
-
-
 
 
     public function generarDesempenoAuto($pago, $idImporte, $idContrato)
@@ -492,8 +510,6 @@ class sqlDesempenoDAO
         }
         echo json_encode($datos);
     }
-
-
 
 
     public function buscarContratoRefAuto($idContratoDes)
