@@ -585,7 +585,7 @@ include_once(HTML_PATH . "Empeno/menuEmpeno.php")
             <div class="col col-lg-5">
                 <input type="button" class="btn btn-success" value="pruebaCalc"
                        onclick="location.href='../PDF/pdfPrueba.php'">&nbsp;
-                <input type="button" class="btn btn-warning" value="Cancelar" onclick="prueba2()">&nbsp;
+                <input type="button" class="btn btn-warning" value="Cancelar" onclick="generarPDF()">&nbsp;
                 <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
                 <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
                 <input type="button" class="btn btn-primary" value="Contrato" onclick="generarContrato()">&nbsp;

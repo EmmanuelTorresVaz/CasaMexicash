@@ -1,26 +1,45 @@
 <html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../librerias/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../librerias/bootstrap/css/bootstrapNav.css">
+    <script src="../../librerias/jquery-3.4.1.min.js"></script>
+    <script src="../../librerias/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../librerias/bootstrap/js/bootstrapNav.js"></script>
+    <script src="../../librerias/popper.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../style/General/StyloGeneral.css">
+    <script src="../../JavaScript/funcionesContrato.js"></script>
+    <script type="application/javascript">
+        $(document).ready(function () {
+            generarPDF();
+        })
+    </script>
+</head>
+
+
 <body>
 <form>
     <table width="70%" border="1">
         <tbody>
         <tr>
             <td colspan="12" align="right">
-                <h3>Contrato No.</h3>
+                <h3>Contrato No.<label id="Contrato"></label></h3>
             </td>
         </tr>
         <tr>
             <td colspan="12">
                 <p>
-                    Fecha de celebración del contrato: CIUDAD DE MEXICO NA a 9/ene/2020
+                    Fecha de celebración del contrato: CIUDAD DE MEXICO NA a <label id="FechaCreacion"></label>
                     CONTRATO DE MUTUO CON INTERÉS Y GARANTÍA PRENDARIA (PRESTAMO), que celebran: MIRIAM GAMA VAZQUEZ,
                     "EL PROVEEDOR", con
                     domicilio en: AV. AZTECAS 4380 CIUDAD DE MEXICO NA , R.F.C.: GAVM800428KQ3, Tel.: 5525252125, correo
                     electrónico: na, y el "EL CONSUMIDOR",
-                    GERARDO CRUZ PEREZ que se identifica con: INE número: 0390094720327 con domicilio en: JALTIPA COL.
-                    PGAL DE SANTO DOMINGO COYOACAN,
-                    DISTRITO FEDERAL Tel.: correo electrónico: x quien designa como cotitular a: con domicilio en AV.
-                    AZTECAS y beneficiario a: solo para efectos de este
-                    contrato.
+                    <label id="NombreCompleto"></label>  que se identifica con: <label id="Identificacion"></label> número: <label id="NumIde"></label>  con domicilio en:
+                    <label id="Direccion"></label>
+                     Tel.:   <label id="Telefono"></label> y Cel:  <label id="Celular"></label>  correo electrónico: <label id="Correo"></label> quien designa como cotitular a:<label id="Cotitular"></label>
+                     y beneficiario a: <label id="Beneficiario"></label>
+
                 </p>
             </td>
         </tr>
@@ -36,25 +55,28 @@
                 informativos
                 y de comparación
                 155.70 %
+                <label id="CAT">Preguntar</label>
                 FIJO SIN IVA
             </td>
-            <td colspan="2">36.00 %
-                TASA F IJA
+            <td colspan="2">
+                36.00 %
+                <label id="TasaInteresAnual">Preguntar</label>
+                TASA FIJA
             </td>
-            <td colspan="2">$idPrestamo Moneda
-                Nacional
+            <td colspan="2"><label id="MontoPrestamo"></label>
+                 Moneda Nacional
             </td>
-            <td colspan="2">$idTotalPrestamo Estimado al plazo
-                máximo de desempeño
+            <td colspan="2"><label id="MontoTotal"></label>
+                Estimado al plazo máximo de desempeño
                 o refrendo.
             </td>
             <td colspan="4">
-                Comisión por Almacenaje: 12.94 % (Claus. 11 a)
-                Comisión por Avalúo $ 0.00 (Claus. 11 b)
-                Comisión por Comercialización: 10.00% (Claus. 11 c)
-                Comisión por reposición de contrato $ 0.00 (Claus. 11 d)
-                Desempeño Extemporáneo: 0.00% (Claus. 11 e)
-                Gastos de Administración $ 0.00 (Claus 11 f)
+                Comisión por Almacenaje:<label id="Almacenaje"></label> % (Claus. 11 a)
+                Comisión por Avalúo $ 0.00 <label id="AvaluoComision">Preguntar</label>(Claus. 11 b)
+                Comisión por Comercialización: 10.00% <label id="ComercialuzacionComision">Preguntar</label>(Claus. 11 c)
+                Comisión por reposición de contrato $ 0.00 <label id="ReposicionComision">Preguntar</label>(Claus. 11 d)
+                Desempeño Extemporáneo: 0.00% <label id="DesempeñoExtem">Preguntar</label>(Claus. 11 e)
+                Gastos de Administración $ 0.00 <label id="Administracion">Preguntar</label>(Claus 11 f)
 
             </td>
         </tr>
@@ -67,9 +89,9 @@
         </tr>
         <tr>
             <td colspan="12">
-                PLAZO DEL PRESTAMO (Fecha limite para el refrendo o desempeño): 24/feb/2020. Total de
+                PLAZO DEL PRESTAMO (Fecha limite para el refrendo o desempeño): <label id="FechaAlmoneda"></label>. Total de
                 refrendos aplicables:
-                Su pago sera: 1 MES. Metodos de pago aceptado: efectivo, tarjetas de credito y debito,
+                Su pago sera: <label id="diasLabel"></label>. Metodos de pago aceptado: efectivo, tarjetas de credito y debito,
                 transferencias. En caso de que el vencimiento sea en dia inhabil, se
                 considerara el dia habil siguiente.
             </td>
@@ -94,51 +116,51 @@
         </tr>
         <tr>
             <td>
-                0
+                NÚMERO
             </td>
             <td colspan="2">
-                0
+                IMPORTE MUTUO
             </td>
             <td>
-                0
+                INTERESES
             </td>
             <td>
-                0
+                ALMACENAJE
             </td>
             <td>
-                0
+                IVA
             </td>
             <td>
-                POR 0
+                POR REFRENDO
             </td>
             <td>
-                POR 0
+                POR DESEMPEÑO
             </td>
         </tr>
         <tr>
             <td>
-                0
+                1
             </td>
             <td colspan="2">
-                0 MUTUO
+                <label id="importeMutuo"></label>
             </td>
             <td>
-                0
+                <label id="intereses"></label>
             </td>
             <td>
-                0
+                <label id="almacenaje"></label>
             </td>
             <td>
-                0
+                <label id="iva"></label>
             </td>
             <td>
-                POR 0
+                <label id="porRefrendo"></label>
             </td>
             <td>
-                POR 0
+                <label id="porDesempeño"></label>
             </td>
             <td COLSPAN="2">
-                0
+                <label id="fechaVencimiento"></label>
             </td>
         </tr>
         <tr>
@@ -147,9 +169,9 @@
         </tr>
         <tr>
             <td colspan="6">Para fines informativos y de comparación:
-                12.98 %FIJO SIN IVA</td>
+                <label id="CostoMensualTotal"></label>% FIJO SIN IVA</td>
             <td colspan="6">Para fines informativos y de comparación:
-                0.43 %FIJO SIN IVA</td>
+                <label id="CostoDiarioTotal"></label>% FIJO SIN IVA</td>
         </tr>
         <tr>
             <td colspan="12">
@@ -177,17 +199,16 @@
                 AVALÚO</td>
         </tr>
         <tr>
-            <td colspan="3">ELECTRONICOS</td>
-            <td colspan="5">CELULAR Cantidad: 1.00 0 HUAWEI Y9 PRIME 862375044839093 CELULAR
-                HUAWEI Y9 PRIME CON CARGADOR EN CAJA CON CONDICIONES DE USO</td>
-            <td>3,500.00</td>
-            <td>2,000.00</td>
+            <td colspan="3"><label id="tipoArticulo"></label></td>
+            <td colspan="5"><label id="descripcionArt"></label></td>
+            <td><label id="Avaluo"></label></td>
+            <td><label id="PrestamoArticulo"></label></td>
             <td colspan="2">75.00
             </td>
         </tr>
         <tr>
-            <td colspan="6">MONTO DEL AVALUO: $ 3500.00</td>
-            <td colspan="6">TRES MIL QUINIENTOS PESOS 00/100 M.N.</td>
+            <td colspan="6">MONTO DEL AVALUO: <label id="MontoAvaluo"></label></td>
+            <td colspan="6"><label id="AvaluoLetra"></label>.</td>
         </tr>
         <tr>
             <td colspan="6">PORCENTAJE DEL PRÉSTAMO SOBRE EL AVALÚO:</td>
@@ -195,7 +216,7 @@
         </tr>
         <tr>
             <td colspan="6">FECHA DE INICIO DE COMERCIALIZACIÓN:</td>
-            <td colspan="6">16/feb/2020</td>
+            <td colspan="6"><label id="FechaComer"></label></td>
         </tr>
         <tr>
             <td colspan="6">El monto del prestamo se realizara en::</td>
@@ -246,19 +267,19 @@
                 lo que otorga a MIRIAM GAMA VAZQUEZ el finiquito más amplio que en derecho corresponda,
                 liberándolo de cualquier responsabilidad jurídica que hubiere surgido ó pudiese surgir en relación
                 al contrato y la prenda.
-                24/feb/2020</td>
-            <td colspan="6">FECHA: 09/ene/2020
-                GERARDO CRUZ PEREZ
+                <label id="FechaPieAlmoneda"></label></td>
+            <td colspan="6">FECHA:    <label id="FechaPieContrato"></label>
+                <label id="NombrePieContrato"></label>
                 "EL CONSUMIDOR"
             </td>
         </tr>
         <tr>
-            <td colspan="4">GERARDO CRUZ PEREZ
+            <td colspan="4"> <label id="NombrePieContrato2"></label>
                 EL CONSUMIDOR
             </td>
             <td colspan="4">MIRIAM GAMA VAZQUEZ
                 EL PROVEEDOR</td>
-            <td colspan="4">carmen
+            <td colspan="4"><label id="nombreUsuario"></label>
                 EL VALUADOR</td>
         </tr>
         <tr>
@@ -279,19 +300,19 @@
 
             </td>
             <td colspan="4">
-                No.9387
+                <label id="idContratoPie"></label>
             </td>
             <td colspan="4">
-                No.9387
+                <label id="idContratoPie2"></label>
+
             </td>
         </tr>
         <tr>
             <td colspan="12">
-                NOMBRE: GERARDO CRUZ PEREZ
-                FECHA: 09/ene/2020 PLAZO: 1 MENSUAL
-                PRESTAMO: 2,000.00
-                PRENDA: CELULAR 0.00 ELECTRONICOS HUAWEI Y9 PRIME 862375044839093 VERDE CELULAR HUAWEI Y9 PRIME CON CARGADOR
-                EN CAJA CON CONDICIONES DE USO
+                NOMBRE: <label id="idNombrePie"></label>
+                FECHA: <label id="fechaCreacionPie"></label>PLAZO: 1 MENSUAL
+                PRESTAMO: <label id="prestmoPie"></label>
+                PRENDA:<label id="descripcionPie"></label>
             </td>
         </tr>
         </tbody>

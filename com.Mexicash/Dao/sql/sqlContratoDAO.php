@@ -1,5 +1,5 @@
 <?php
-if(!isset($_SESSION)) {
+if (!isset($_SESSION)) {
     session_start();
 }
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
@@ -18,6 +18,7 @@ class sqlContratoDAO
         $this->db = new Conexion();
         $this->conexion = $this->db->connectDB();
     }
+
     public function guardarContrato(Contrato $contrato)
     {
         // TODO: Implement guardaCiente() method.
@@ -29,13 +30,13 @@ class sqlContratoDAO
             $totalAvaluo = $contrato->getTotalAvaluo();
             $totalPrestamo = $contrato->getTotalPrestamo();
             $totalInteres = $contrato->getTotalInteres();
-            $sumaInteresPrestamo= $contrato->getSumaInteresPrestamo();
+            $sumaInteresPrestamo = $contrato->getSumaInteresPrestamo();
             $fechaAlm = $contrato->getFechaAlm();
             $estatus = $contrato->getEstatus();
             $beneficiario = $contrato->getBeneficiario();
             $cotitular = $contrato->getCotitular();
             $plazo = $contrato->getPlazo();
-            $tasa= $contrato->getTasa();
+            $tasa = $contrato->getTasa();
             $alm = $contrato->getAlm();
             $seguro = $contrato->getSeguro();
             $iva = $contrato->getIva();
@@ -50,14 +51,14 @@ class sqlContratoDAO
 
             $insertaContrato = "INSERT INTO contrato_tbl " .
                 "(id_Cliente,  fecha_Vencimiento, total_Avaluo, total_Prestamo,total_PrestamoInicial, total_Interes,suma_InteresPrestamo,  " .
-                "fecha_Alm, id_Estatus, cotitular,beneficiario,diasAlm, plazo,tasa,alm,seguro,iva,dias, fecha_creacion, fecha_modificacion, usuario,sucursal,tipoContrato) VALUES ".
+                "fecha_Alm, id_Estatus, cotitular,beneficiario,diasAlm, plazo,tasa,alm,seguro,iva,dias, fecha_creacion, fecha_modificacion, usuario,sucursal,tipoContrato) VALUES " .
                 "('" . $id_Cliente . "', '" . $fechaVencimiento . "', '" . $totalAvaluo . "', '" . $totalPrestamo . "', '" . $totalPrestamo .
                 "', '" . $totalInteres . "', '" . $sumaInteresPrestamo . "',  '" . $fechaAlm .
-                "', '" .  $estatus . "', '" . $cotitular . "','" . $beneficiario . "','" . $diasAlm . "','" . $plazo . "','" . $tasa . "','" . $alm . "','" . $seguro . "','" . $iva . "','" . $dias . "','" . $fechaCreacion . "', ". "'" . $fechaModificacion . "', '" . $usuario . "','" . $sucursal . "',1)";
+                "', '" . $estatus . "', '" . $cotitular . "','" . $beneficiario . "','" . $diasAlm . "','" . $plazo . "','" . $tasa . "','" . $alm . "','" . $seguro . "','" . $iva . "','" . $dias . "','" . $fechaCreacion . "', " . "'" . $fechaModificacion . "', '" . $usuario . "','" . $sucursal . "',1)";
 
             if ($ps = $this->conexion->prepare($insertaContrato)) {
                 if ($ps->execute()) {
-                    $verdad =  mysqli_stmt_affected_rows($ps);
+                    $verdad = mysqli_stmt_affected_rows($ps);
                 } else {
                     $verdad = -1;
                 }
@@ -74,7 +75,9 @@ class sqlContratoDAO
         //return $verdad;
         echo $verdad;
     }
-    public function actualizarArticulo(){
+
+    public function actualizarArticulo()
+    {
         // TODO: Implement guardaCiente() method.
         try {
             $usuario = $_SESSION["idUsuario"];
@@ -86,7 +89,7 @@ class sqlContratoDAO
 
             if ($ps = $this->conexion->prepare($updateArticulo)) {
                 if ($ps->execute()) {
-                    $verdad =  mysqli_stmt_affected_rows($ps);
+                    $verdad = mysqli_stmt_affected_rows($ps);
                 } else {
                     $verdad = -1;
                 }
@@ -103,6 +106,92 @@ class sqlContratoDAO
         //return $verdad;
         echo $verdad;
     }
+
+    public function generarPDF()
+    {
+        // TODO: Implement guardaCiente() method.
+        try {
+            $usuario = $_SESSION["idUsuario"];
+            $buscarContrato = "select max(id_Contrato) as idContrato  from contrato_tbl ";
+            $statement = $this->conexion->query($buscarContrato);
+            $fila = $statement->fetch_object();
+            $idContrato = $fila->idContrato;
+            $datos = array();
+            $buscarDatos = "SELECT Con.id_Contrato AS Contrato,Con.fecha_creacion AS FechaCreacion, CONCAT (Cli.apellido_Mat, ' ',Cli.apellido_Pat,' ', Cli.nombre) as NombreCompleto, 
+                            CatCli.descripcion AS Identificacion, Cli.num_Identificacion AS NumIde, CONCAT(Cli.calle, ', ',Cli.num_interior,', ', Cli.num_exterior, ', ',Cli.localidad, ', ', Cli.municipio, ', ', CatEst.descripcion ) AS Direccion,
+                            CLi.telefono AS CliTelefono, Cli.celular AS CliCelular,Cli.correo AS CliCorreo, Con.cotitular AS CliCotitular,Con.beneficiario AS CliBeneficiario,
+                            Con.total_PrestamoInicial AS MontoPrestamo,Con.suma_InteresPrestamo AS MontoTotal,Con.tasa AS Tasa,Con.alm AS Almacenaje, Con.seguro AS Seguro,Con.Iva AS Iva,
+                            Con.fecha_Alm AS FechaAlmoneda, Con.dias AS Dias,Con.fecha_Vencimiento AS FechaVenc,
+                            Con.total_Interes AS Intereses,
+                            ET.descripcion AS TipoElectronico, EM.descripcion AS MarcaElectronico, EMOD.descripcion AS ModeloElectronico,
+                            Ar.detalle AS Detalle, TA.descripcion AS TipoMetal, TK.descripcion as Kilataje,
+                            TC.descripcion as Calidad, Con.Total_Avaluo AS Avaluo,CONCAT (Usu.apellido_Pat, ' ',Usu.apellido_Mat,' ', Usu.nombre) as NombreUsuario
+                            FROM contrato_tbl as Con 
+                            INNER JOIN cliente_tbl as Cli on Con.id_Cliente = Cli.id_Cliente 
+                            INNER JOIN cat_cliente as CatCli on Cli.tipo_Identificacion = CatCli.id_Cat_Cliente
+                            INNER JOIN cat_estado as CatEst on Cli.estado = CatEst.id_Estado
+                            INNER JOIN articulo_tbl as Ar on Con.id_Contrato =  Ar.id_Contrato
+                            LEFT JOIN cat_electronico_tipo as ET on Ar.tipo = ET.id_tipo
+                            LEFT JOIN cat_electronico_marca as EM on Ar.marca = EM.id_marca
+                            LEFT JOIN cat_electronico_modelo as EMOD on Ar.modelo = EMOD.id_modelo
+                            LEFT JOIN cat_tipoarticulo as TA on AR.tipo = TA.id_tipo
+                            LEFT JOIN cat_kilataje as TK on AR.kilataje = TK.id_Kilataje
+                            LEFT JOIN cat_calidad as TC on AR.calidad = TC.id_calidad
+                            INNER JOIN usuarios_tbl as Usu on Con.usuario = Usu.id_User 
+                            WHERE Con.id_Contrato = $idContrato";
+            $rs = $this->conexion->query($buscarDatos);
+            if ($rs->num_rows > 0) {
+
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "Contrato" => $row["Contrato"],
+                        "FechaCreacion" => $row["FechaCreacion"],
+                        "NombreCompleto" => $row["NombreCompleto"],
+                        "Identificacion" => $row["Identificacion"],
+                        "NumIde" => $row["NumIde"],
+                        "Direccion" => $row["Direccion"],
+                        "Telefono" => $row["CliTelefono"],
+                        "Celular" => $row["CliCelular"],
+                        "Correo" => $row["CliCorreo"],
+                        "Cotitular" => $row["CliCotitular"],
+                        "Beneficiario" => $row["CliBeneficiario"],
+                        //Tabla
+                        "MontoPrestamo" => $row["MontoPrestamo"],
+                        "MontoTotal" => $row["MontoTotal"],
+                        "Tasa" => $row["Tasa"],
+                        "Almacenaje" => $row["Almacenaje"],
+                        "Seguro" => $row["Seguro"],
+                        "Iva" => $row["Iva"],
+                        //Tabla 2
+                        "FechaAlmoneda" => $row["FechaAlmoneda"],
+                        "Dias" => $row["Dias"],
+                        "FechaVenc" => $row["FechaVenc"],
+                        "Intereses" => $row["Intereses"],
+                        //Tabla Art
+                        "TipoElectronico" => $row["TipoElectronico"],
+                        "MarcaElectronico" => $row["MarcaElectronico"],
+                        "ModeloElectronico" => $row["ModeloElectronico"],
+                        "Detalle" => $row["Detalle"],
+                        //Tabla MEt
+                        "TipoMetal" => $row["TipoMetal"],
+                        "Kilataje" => $row["Kilataje"],
+                        "Calidad" => $row["Calidad"],
+                        "Avaluo" => $row["Avaluo"],
+                        "NombreUsuario" => $row["NombreUsuario"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            $verdad = -1;
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+        //return $verdad;
+        echo json_encode($datos);
+    }
+
     function buscarContratoTemp()
     {
         try {
@@ -125,6 +214,7 @@ class sqlContratoDAO
 
         return $id;
     }
+
     public function articulosObsoletos()
     {
         // TODO: Implement guardaCiente() method.
@@ -146,6 +236,7 @@ class sqlContratoDAO
         //return $verdad;
         echo $verdad;
     }
+
     public function buscarContrato($contrato, $nombre, $celular)
     {
         $datos = array();

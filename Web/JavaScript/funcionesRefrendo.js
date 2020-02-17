@@ -305,7 +305,6 @@ function buscarDatosContrato() {
                         Pension = formatoMoneda(Pension);
                         PolizaSeguro = formatoMoneda(PolizaSeguro);
                         document.getElementById('idGPSTDDes').innerHTML = GPS;
-                        ;
                         document.getElementById('idPensionTDDes').innerHTML = Pension;
                         document.getElementById('idPolizaTDDes').innerHTML = PolizaSeguro;
                         $("#idGPSNota").val(formatoMoneda(gpsInteresFinal));
