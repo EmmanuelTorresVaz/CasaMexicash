@@ -6,6 +6,7 @@ if (!isset($_SESSION["idUsuario"])) {
     header("Location: ../index.php");
     session_destroy();
 }
+
 include_once($_SERVER['DOCUMENT_ROOT'] . '/dirs.php');
 include_once(HTML_PATH . "Empeno/menuEmpeno.php");
 include_once (HTML_PATH. "Empeno/modalDescuento.php");
@@ -20,8 +21,7 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
     <script type="application/javascript">
         var form= 1;
         var nameForm = "Error";
-        var tipoArticulo = 1;
-        var tipoAuto = 2;
+        var tipoArticuloOAuto = 0;
 
 
         $(document).ready(function () {
@@ -30,6 +30,8 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
             $("#idFormulario").val(form);
 
             if(form==1){
+                //Quitar sigueinte linea
+                $("#idContrato").val(64);
                 nameForm = "Refrendo";
                 $("#idGPSTH").hide();
                 $("#idPensionTH").hide();
@@ -41,10 +43,13 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
                 $("#trPensionNota").hide();
                 $("#trPolizaNota").hide();
                 $("#idFormulario").val(form);
-                $("#idTipoDeContrato").val(tipoArticulo);
+                tipoArticuloOAuto = 1;
+                $("#idTipoDeContrato").val(tipoArticuloOAuto);
 
 
             }else if(form==2){
+                //Quitar sigueinte linea
+                $("#idContrato").val(67);
                 nameForm = "Refrendo Auto";
                 $("#idGPSTH").show();
                 $("#idPensionTH").show();
@@ -55,13 +60,16 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
                 $("#trGPSNota").show();
                 $("#trPensionNota").show();
                 $("#trPolizaNota").show();
+                $("#idFormulario").val(form);
+                tipoArticuloOAuto = 2;
+                $("#idTipoDeContrato").val(tipoArticuloOAuto);
 
             }else if(form==3){
                 nameForm = "Desempeño";
-
+                tipoArticuloOAuto = 1;
             }else if(form==4){
                 nameForm = "Desempeño Auto";
-
+                tipoArticuloOAuto = 2;
             }
 
             document.getElementById('nameFormLbl').innerHTML =nameForm;
@@ -84,7 +92,7 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
                     <tr>
                         <td style="width: 200px" align="left">
                             <label>Contrato:</label>
-                            <input type="text" id="idContrato" name="contrato" size="10" value="53"
+                            <input type="text" id="idContrato" name="contrato" size="10" value=""
                                    style="text-align:right"/>
                         </td>
                         <td style="width: 200px" align="left" >
@@ -188,7 +196,7 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <textarea rows="2" cols="45" id="idDetalleContratoDes" class="textAreaUP" disabled>
+                            <textarea rows="3" cols="45" id="idDetalleContratoDes" class="textAreaUP" disabled>
                             </textarea>
                         </td>
                     </tr>
@@ -251,18 +259,6 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
                                         style="width: 160px; text-align: right" disabled value="$0.00"/></h5>
                         </td>
                     </tr>
-                    <tr>
-                        <td colspan="2">
-                            &nbsp;
-                        </td>
-                        <td align="right">
-                            <h5>Interes:</label></h5>
-                        </td>
-                        <td align="right">
-                            <h5 ><input type="text" id="idInteresNota" name="interesNota"
-                                        style="width: 160px; text-align: right" disabled value="$0.00"/></h5>
-                        </td>
-                    </tr>
                     <tr id="trGPSNota">
                         <td colspan="2">
                             &nbsp;
@@ -298,6 +294,19 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
                                         style="width: 160px; text-align: right" disabled value="$0.00"/></h5>
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="2">
+                            &nbsp;
+                        </td>
+                        <td align="right">
+                            <h5>Interes:</label></h5>
+                        </td>
+                        <td align="right">
+                            <h5 ><input type="text" id="idInteresNota" name="interesNota"
+                                        style="width: 160px; text-align: right" disabled value="$0.00"/></h5>
+                        </td>
+                    </tr>
+
                     <tr>
                         <td colspan="2">
                             &nbsp;
@@ -379,7 +388,7 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
                         <td>
                             <input type="text" id="idPrestamoAbono"  style="width: 100px; text-align: right"/>
                         </td>
-                        <td>
+                        <td><label>interes abono</label>
                             <input type="text" id="idInteresAbono" style="width: 100px; text-align: right"/>
                         </td>
                         <td>
@@ -425,16 +434,16 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
                 <input type="text" id="idContratoBusqueda" name="contratoBus"
                        style="width: 100px;" class="invisible"/>
                 <input type="text" id="idFormulario"
-                       style="width: 100px;" class=""/>
+                       style="width: 100px;" class="invisible"/>
                 <input type="text" id="idTipoDeContrato"
-                       style="width: 100px;" class=""/>
+                       style="width: 100px;" class="invisible"/>
             </div>
             <div class="col col-md-5" align="right">
-                <input type="button" class="btn btn-warning" value="x" onclick="prueba()">&nbsp;
-                <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
-                <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
                 <input type="button" class="btn btn-primary" value="Refrendo" onclick="generar()">&nbsp;
+                <input type="button" class="btn btn-info" value="Reimprimir" onclick="reimprimir()">&nbsp;
+                <input type="button" class="btn btn-warning" value="Cancelar" onclick="cancelar()">&nbsp;
                 <input type="button" class="btn btn-danger" value="Salir" onclick="location.href='vInicio.php'">&nbsp;
+                <input type="button" class="btn btn-warning" value="x" onclick="prueba()">&nbsp;
             </div>
             <div class="col col-md-1" align="right">
             </div>

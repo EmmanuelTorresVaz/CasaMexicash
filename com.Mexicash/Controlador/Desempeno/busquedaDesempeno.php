@@ -18,7 +18,11 @@ if($idtipe==1) {
     //Buscar datos del contrato
     $sqlDesempeno->buscarContrato($idContrato, $tipoContrato,$estatus);
 }else if($idtipe==4){
+    //Buscar detalle articulos
     $sqlDesempeno->buscarDetalle($idContrato,$estatus) ;
+}else if($idtipe==5){
+    //Buscar detalle auto
+    $sqlDesempeno->buscarDetalleAuto($idContrato,$estatus) ;
 }
 
 
@@ -28,10 +32,8 @@ if($idtipe==1) {
     $sqlDesempeno->buscarContratoDes($idContrato) ;
 }else if($idtipe==44){
     $sqlDesempeno->buscarClienteDesAuto($idContrato) ;
-}else if($idtipe==5){
+}else if($idtipe==55){
     $sqlDesempeno->buscarContratoDesAuto($idContrato) ;
-}else if($idtipe==6){
-    $sqlDesempeno->buscarDetalleDesAuto($idContrato) ;
 }else if($idtipe==8){
     $sqlDesempeno->buscarContratoRefAuto($idContrato) ;
 }else if($idtipe==9){

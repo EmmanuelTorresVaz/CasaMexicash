@@ -116,7 +116,6 @@ class sqlDesempenoDAO
                         Con.pension AS Pension
                         FROM contrato_tbl as Con
                         WHERE Con.id_Contrato = '$idContratoDes' and Con.tipoContrato= $tipoContrato and Con.id_Estatus= $estatus";
-
             $rs = $this->conexion->query($buscar);
             if ($rs->num_rows > 0) {
                 while ($row = $rs->fetch_assoc()) {
@@ -167,6 +166,39 @@ class sqlDesempenoDAO
                     $data = [
                         "Detalle" => $row["Detalle"],
                         "Ubicacion" => $row["Ubicacion"]
+                    ];
+                    array_push($datos, $data);
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getMessage();
+        } finally {
+            $this->db->closeDB();
+        }
+        echo json_encode($datos);
+    }
+
+    //Busqueda de detalle del auto
+    public function buscarDetalleAuto($idContratoDes, $estatus)
+    {
+        $datos = array();
+        try {
+            $buscar = "SELECT Auto.marca as Marca,Auto.modelo as Modelo,Auto.año as Anio,
+                        COl.descripcion as ColorAuto, Auto.observaciones as Obs 
+                        FROM auto_tbl as Auto 
+                        INNER JOIN cat_color as COl on Auto.color = COl.id_Color
+                        WHERE Auto.id_Contrato = '$idContratoDes' and Auto.id_Estatus= $estatus";
+
+            $rs = $this->conexion->query($buscar);
+            if ($rs->num_rows > 0) {
+
+                while ($row = $rs->fetch_assoc()) {
+                    $data = [
+                        "Marca" => $row["Marca"],
+                        "Modelo" => $row["Modelo"],
+                        "Anio" => $row["Anio"],
+                        "ColorAuto" => $row["ColorAuto"],
+                        "Obs" => $row["Obs"]
                     ];
                     array_push($datos, $data);
                 }
@@ -253,6 +285,17 @@ class sqlDesempenoDAO
         //return $verdad;
         echo $verdad;
     }
+
+
+
+
+
+
+
+
+
+
+
 
     public function generarDesempenoAuto($pago, $idImporte, $idContrato)
     {
@@ -450,34 +493,7 @@ class sqlDesempenoDAO
         echo json_encode($datos);
     }
 
-    public function buscarDetalleDesAuto($idContratoDes)
-    {
-        $datos = array();
-        try {
-            $buscar = "SELECT Auto.marca as Marca,Auto.modelo as Modelo,Auto.año as Anio,Auto.color as ColorAuto,  Auto.observaciones as Obs FROM auto_tbl as Auto
-                        WHERE Auto.id_Contrato = '$idContratoDes' and Auto.id_Estatus= 1";
 
-            $rs = $this->conexion->query($buscar);
-            if ($rs->num_rows > 0) {
-
-                while ($row = $rs->fetch_assoc()) {
-                    $data = [
-                        "Marca" => $row["Marca"],
-                        "Modelo" => $row["Modelo"],
-                        "Anio" => $row["Anio"],
-                        "ColorAuto" => $row["ColorAuto"],
-                        "Obs" => $row["Obs"]
-                    ];
-                    array_push($datos, $data);
-                }
-            }
-        } catch (Exception $exc) {
-            echo $exc->getMessage();
-        } finally {
-            $this->db->closeDB();
-        }
-        echo json_encode($datos);
-    }
 
 
     public function buscarContratoRefAuto($idContratoDes)

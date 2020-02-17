@@ -1,6 +1,8 @@
 var errorToken = 0;
 //tipo de contrato articulo
 var tipoContrato = 0;
+var contrato = 0;
+var tipeFormulario = 0;
 //tipo de contrato auto
 // var tipoContrato = 2;
 //Estatus 1 es Empeño
@@ -9,10 +11,10 @@ var estatus = 1;
 
 //Consultar contrato
 function estatusContrato() {
-    var contrato = $("#idContrato").val();
+    contrato = $("#idContrato").val();
     tipoContrato =  $("#idTipoDeContrato").val();
     tipoContrato = parseInt(tipoContrato);
-
+    tipeFormulario=  $("#idFormulario").val();
     $("#idFormDesRef")[0].reset();
     $("#idConTDDes").text('')
     $("#idPresTDDes").text('')
@@ -22,9 +24,7 @@ function estatusContrato() {
     $("#btnAbono").prop('disabled', true);
     $("#idAbono").prop('disabled', true);
     $("#idContrato").prop('disabled', true);
-
-
-
+    $("#idContrato").val(contrato);
 
     if (contrato != '') {
         var dataEnviar = {
@@ -51,7 +51,12 @@ function estatusContrato() {
                         if (idEstatus == 1) {
                             buscarCliente();
                             buscarDatosContrato();
-                            buscarDetalle();
+                            if(tipoContrato==1){
+                                buscarDetalle();
+                            }else if(tipoContrato==2){
+                                buscarDetalleAuto();
+                            }
+
                         } else {
                             alert("El contrato No. : " + Contrato + ", creado el " + Fecha + "\n" +
                                 " del cliente:   " + NombreCompleto + "\n" +
@@ -70,7 +75,6 @@ function estatusContrato() {
 
 //Buscar cliente
 function buscarCliente() {
-    var contrato = $("#idContrato").val();
     if (contrato != '') {
         var dataEnviar = {
             "tipe": 2,
@@ -130,7 +134,6 @@ function buscarCliente() {
 
 //Buscar datos del contrato
 function buscarDatosContrato() {
-    var contrato = $("#idContrato").val();
     if (contrato != '') {
         var dataEnviar = {
             "tipe": 3,
@@ -167,6 +170,7 @@ function buscarDatosContrato() {
                     var Pension = datos[i].Pension;
                     var fechaHoy = new Date();
                     var diasForInteres = 0;
+
                     //SE obtienen los intereses en  porcentajes
                     IvaDesc = "0." + IvaDesc;
                     TasaDesc = parseFloat(TasaDesc);
@@ -254,8 +258,56 @@ function buscarDatosContrato() {
                     //IVA
                     var totalVencIVA = diaIva * diasForInteres;
 
+                    var gpsSumarAInteres = 0.00;
+                    var pensionSumarAInteres = 0.00;
+                    var polizaSumarAInteres = 0.00;
+                    //Si es auto
+                    if(tipeFormulario==2||tipeFormulario==4){
+                        if(PolizaSeguro==''||PolizaSeguro==null){
+                            PolizaSeguro = 0.00;
+                        }
+                        if(GPS==''||GPS==null){
+                            GPS = 0.00;
+                        }
+                        if(Pension==''||Pension==null){
+                            Pension = 0.00;
+                        }
+                        var gpsDiario = GPS / DiasContrato;
+                        var pensionDiario = Pension / DiasContrato;
+                        var polizaDiario = PolizaSeguro / DiasContrato;
+
+                        var gpsInteresDiario = gpsDiario * diasForInteres;
+                        var pensionInteresDiario = pensionDiario * diasForInteres;
+                        var polizaInteresDiario = polizaDiario * diasForInteres;
+
+                        var gpsInteresMoratorio = gpsDiario * diasMoratorios;
+                        var pensionInteresMoratorio = pensionDiario * diasMoratorios;
+                        var polizaInteresMoratorio = polizaDiario * diasMoratorios;
+
+                        var gpsInteresFinal = gpsInteresDiario + gpsInteresMoratorio;
+                        var pensionInteresFinal = pensionInteresDiario + pensionInteresMoratorio;
+                        var polizaInteresFinal = polizaInteresDiario + polizaInteresMoratorio;
+
+                         gpsSumarAInteres = gpsInteresFinal;
+                         pensionSumarAInteres = pensionInteresFinal;
+                         polizaSumarAInteres = polizaInteresFinal;
+
+                        GPS = formatoMoneda(GPS);
+                        Pension = formatoMoneda(Pension);
+                        PolizaSeguro = formatoMoneda(PolizaSeguro);
+                        document.getElementById('idGPSTDDes').innerHTML = GPS ;
+                        ;
+                        document.getElementById('idPensionTDDes').innerHTML = Pension;
+                        document.getElementById('idPolizaTDDes').innerHTML = PolizaSeguro;
+                        $("#idGPSNota").val( formatoMoneda(gpsInteresFinal));
+                        $("#idPolizaNota").val(formatoMoneda(pensionInteresFinal));
+                        $("#idPensionNota").val(formatoMoneda(polizaInteresFinal));
+                    }
+
                     //INTERES TABLA
-                    var interesGenerado = totalVencInteres + totalVencAlm + totalVencSeg + diasInteresMor + totalVencIVA;
+                    var interesGenerado = totalVencInteres + totalVencAlm + totalVencSeg + diasInteresMor + totalVencIVA
+                    //Mas auto
+                    + gpsSumarAInteres + pensionSumarAInteres + polizaSumarAInteres;
 
 
                     interesGenerado = Math.round(interesGenerado * 100) / 100;
@@ -301,32 +353,11 @@ function buscarDatosContrato() {
                     $("#idTblSeguro").val(totalVencSeg);
                     $("#idTblMoratorios").val(diasInteresMor);
                     $("#idTblIva").val(totalVencIVA);
-                    var tipeFormulario = $("#idFormulario").val();
 
                     document.getElementById('idConTDDes').innerHTML = contrato;
                     document.getElementById('idPresTDDes').innerHTML = TotalPrestamo;
                     document.getElementById('idInteresTDDes').innerHTML = interesGenerado;
                     document.getElementById('idAbonoTDDes').innerHTML = Abono;
-                    if(tipeFormulario==2||tipeFormulario==4){
-                        if(PolizaSeguro==''||PolizaSeguro==null){
-                            PolizaSeguro = 0.00;
-                        }
-                        if(GPS==''||GPS==null){
-                            GPS = 0.00;
-                        }
-                        if(Pension==''||Pension==null){
-                            Pension = 0.00;
-                        }
-                        PolizaSeguro = formatoMoneda(PolizaSeguro);
-                        GPS = formatoMoneda(GPS);
-                        Pension = formatoMoneda(Pension);
-                        document.getElementById('idGPSTDDes').innerHTML = PolizaSeguro;
-                        document.getElementById('idPensionTDDes').innerHTML = GPS;
-                        document.getElementById('idPolizaTDDes').innerHTML = Pension;
-                        $("#idGPSNota").val(GPS);
-                        $("#idPolizaNota").val(PolizaSeguro);
-                        $("#idPensionNota").val(Pension);
-                    }
 
                     /*
                                       document.getElementById('totalAPagarTD').innerHTML = TotalFinal;*/
@@ -350,7 +381,6 @@ function buscarDatosContrato() {
 
 //Buscar detalle del contrato
 function buscarDetalle() {
-    var contrato = $("#idContrato").val();
     if (contrato != '') {
         var dataEnviar = {
             "tipe": 4,
@@ -377,6 +407,55 @@ function buscarDetalle() {
                     }
 
                     detalleContrato = Detalle + "\n" + "Ubicacion:" + Ubicacion;
+                }
+                $("#idDetalleContratoDes").val(detalleContrato);
+            }
+        });
+    }
+}
+//Buscar detalle del auto
+function buscarDetalleAuto() {
+    if (contrato != '') {
+        var dataEnviar = {
+            "tipe": 5,
+            "contrato": contrato,
+            "tipoContrato": tipoContrato,
+            "estatus": estatus
+        };
+        $.ajax({
+            type: "POST",
+            url: '../../../com.Mexicash/Controlador/Desempeno/busquedaDesempeno.php',
+            data: dataEnviar,
+            dataType: "json",
+            success: function (datos) {
+                var detalleContrato;
+                for (i = 0; i < datos.length; i++) {
+                    var Marca = datos[i].Marca;
+                    var Modelo = datos[i].Modelo;
+                    var Anio = datos[i].Anio;
+                    var ColorAuto = datos[i].ColorAuto;
+                    var Obs = datos[i].Obs;
+
+
+                    if (Marca === null) {
+                        Marca = '';
+                    }
+                    if (Modelo === null) {
+                        Modelo = '';
+                    }
+                    if (Anio === null) {
+                        Anio = '';
+                    }
+                    if (ColorAuto === null) {
+                        ColorAuto = '';
+                    }
+                    if (Obs === null) {
+                        Obs = '';
+                    }
+
+                    detalleContrato = "Marca: "+ Marca + ", Modelo: " + Modelo + "\n" +  "Año: " + Anio +
+                       ColorAuto + "\n" +
+                        Obs + "\n";
                 }
                 $("#idDetalleContratoDes").val(detalleContrato);
             }
@@ -870,53 +949,7 @@ function buscarDatosConDesAutoRef() {
     }
 }
 
-function buscarDetalleDesAutoRef() {
-    var contrato = $("#idContrato").val();
-    if (contrato != '') {
-        var dataEnviar = {
-            "tipe": 6,
-            "contratoDese": contrato
-        };
-        $.ajax({
-            type: "POST",
-            url: '../../../com.Mexicash/Controlador/Desempeno/busquedaDesempeno.php',
-            data: dataEnviar,
-            dataType: "json",
-            success: function (datos) {
-                var detalleContrato;
-                for (i = 0; i < datos.length; i++) {
-                    var Marca = datos[i].Marca;
-                    var Modelo = datos[i].Modelo;
-                    var Anio = datos[i].Anio;
-                    var ColorAuto = datos[i].ColorAuto;
-                    var Obs = datos[i].Obs;
 
-
-                    if (Marca === null) {
-                        Marca = '';
-                    }
-                    if (Modelo === null) {
-                        Modelo = '';
-                    }
-                    if (Anio === null) {
-                        Anio = '';
-                    }
-                    if (ColorAuto === null) {
-                        ColorAuto = '';
-                    }
-                    if (Obs === null) {
-                        Obs = '';
-                    }
-
-                    detalleContrato = Marca + " " + Modelo + "\n" +
-                        Anio + " " + ColorAuto + "\n" +
-                        Obs + "\n";
-                }
-                $("#idDetalleContratoDesAuto").val(detalleContrato);
-            }
-        });
-    }
-}
 
 
 function checkDescuentoAuto() {
