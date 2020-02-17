@@ -497,7 +497,10 @@ function token() {
                 $("#idCodigoAut").val('');
                 $("#btnDescuento").prop('disabled', false);
                 $("#idAbonoCapitalNota").val('$0.00');
-                $("#idSaldoPendiente").val($("#idTotalFinalInput").val());
+                var totaFinalInput = $("#idTotalFinalInput").val();
+                totaFinalInput = parseFloat(totaFinalInput);
+                totaFinalInput = formatoMoneda(totaFinalInput);
+                $("#idSaldoPendiente").val(totaFinalInput);
 
             } else {
                 $("#idChekcDescuento").prop("checked", false);
@@ -651,7 +654,7 @@ function generar() {
     //$tipe == 4 es desempeño auto
     var contratoBusqueda = $("#idContratoBusqueda").val();
     var saldoPendiente = $("#idSaldoPendienteInput").val();
-    var abonoACapital;
+    var abonoACapital=0;
     var validate = 1;
     if (contratoBusqueda == '') {
         alert("Por favor. Realice la busqueda de contrato.");
@@ -663,10 +666,7 @@ function generar() {
     }
     if (tipeFormulario == 1 || tipeFormulario == 2) {
         abonoACapital = $("#idAbonoACapitalInput").val();
-        if (abonoACapital == 0.00) {
-            alert("Por favor. Realice el abono.");
-            validate = 0;
-        }
+
     }
     if (validate == 1) {
         var totalInicial = $("#idTotalInput").val();
@@ -676,6 +676,10 @@ function generar() {
             alert("Por favor realice un pago.");
         } else {
             var token = $("#idToken").val();
+
+
+
+
             var abono = 0.00;
             var descuento;
             var descuentoFinal = 0.00;
@@ -703,7 +707,7 @@ function generar() {
 
             }
             //Refrendo
-            if (tipeFormulario == 1) {
+            if (tipeFormulario == 1||tipeFormulario == 2) {
                 var abonoAnterior = $("#idAbonoAnteriorInput").val();
 
                 var nombreMensaje = "Refrendo";
@@ -741,9 +745,9 @@ function generar() {
                     if (response == -1) {
                         alertify.error("Error al generar " + nombreMensaje);
                     } else {
-                        alerta(nombreMensaje+" generado.")
+                        alert(nombreMensaje+" generado.")
                         cancelar();
-                        alertify.success(nombreMensaje + " generado.");
+
                     }
                 },
             })
@@ -756,6 +760,7 @@ function generar() {
 
 function cancelar() {
     location.reload();
+    alertify.success(nombreMensaje + " generado.");
 }
 
 

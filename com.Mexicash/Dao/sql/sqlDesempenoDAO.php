@@ -257,7 +257,6 @@ class sqlDesempenoDAO
                                     usuario = $usuario
                                     WHERE
                                     id_Contrato = $contrato";
-
             if ($ps = $this->conexion->prepare($updateContrato)) {
                 if ($ps->execute()) {
                     if ($tipeFormulario == 1) {
@@ -276,7 +275,7 @@ class sqlDesempenoDAO
                                 if ($ps->execute()) {
                                     $updateToken = "UPDATE cat_token SET
                                          estatus = 2
-                                        WHERE id_token ='$token'";
+                                        WHERE id_token =$token";
                                     if ($ps = $this->conexion->prepare($updateToken)) {
                                         if ($ps->execute()) {
                                             $verdad = mysqli_stmt_affected_rows($ps);

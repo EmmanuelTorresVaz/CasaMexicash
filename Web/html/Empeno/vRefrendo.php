@@ -79,7 +79,7 @@ include_once (HTML_PATH. "Empeno/modalDescuento.php");
     </script>
     <style>
         .propInvisible {
-            visibility: hidden;
+            visibility: visible;
         }
     </style>
 </head>
