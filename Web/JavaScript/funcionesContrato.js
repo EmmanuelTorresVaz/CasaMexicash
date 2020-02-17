@@ -52,8 +52,8 @@ function generarContrato() {
             success: function (response) {
                 if (response) {
                     actualizarArticulo();
-                    generarPDF();
                     alertify.success("Contrato generado.");
+                    cargarPDF();
 
                 } else {
                     alertify.error("Error al generar contrato.");
@@ -63,6 +63,10 @@ function generarContrato() {
     }
 }
 //Generar PDF
+
+function cargarPDF() {
+    location.href='../PDF/pdfPrueba.php'
+}
 //Agrega articulos a la tabla
 function generarPDF() {
         $.ajax({
@@ -216,9 +220,7 @@ var descripcionArticulo = '';
 
 
 }
-function pruebaPDFMEX() {
-alert("entra");
-}
+
 //consultar contratos
 function consultarContratos() {
     var retorno;
