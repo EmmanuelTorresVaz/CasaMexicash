@@ -163,8 +163,7 @@ include_once(SQL_PATH . "sqlCatalogoDAO.php");
                                         </tr>
                                         <tr>
                                             <td>
-                                                <select id="idEstado" name="estadoName" class="selectpicker"  style="width:155px"
-                                                onchange="llenarComboMunicipio()">
+                                                <select id="idEstado" name="estadoName" class="selectpicker"  style="width:155px">
                                                     <option value="0">Seleccione:</option>
                                                     <?php
                                                     $dataEstado = array();

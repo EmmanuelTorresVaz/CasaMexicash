@@ -65,7 +65,7 @@ function generarContrato() {
 //Generar PDF
 
 function cargarPDF() {
-    location.href='../PDF/pdfPrueba.php'
+    location.href='../PDF/contrato.php'
 }
 //Agrega articulos a la tabla
 function generarPDF() {

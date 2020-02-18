@@ -1,3 +1,9 @@
+<?php
+
+
+
+?>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -320,3 +326,6 @@
 </form>
 </body>
 </html>
+<div>
+    <input type="button" class="btn btn-danger" value="prueba" onclick=" window.open('../PDF/pdfPrueba.php')">&nbsp;
+</div>

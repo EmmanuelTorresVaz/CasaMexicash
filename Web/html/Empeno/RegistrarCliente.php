@@ -176,8 +176,7 @@ include_once(HTML_PATH . "Empeno/menuLibrerias.php")
                     </tr>
                     <tr>
                         <td>
-                            <select id="idEstado" name="estadoName" class="selectpicker"  style="width:155px"
-                                    onchange="llenarComboMunicipio()">
+                            <select id="idEstado" name="estadoName" class="selectpicker"  style="width:155px">
                                 <option value="0">Seleccione:</option>
                                 <?php
                                 $dataEstado = array();
@@ -190,7 +189,7 @@ include_once(HTML_PATH . "Empeno/menuLibrerias.php")
                             </select>
                         </td>
                         <td>
-                            <select id="idMunicipio" name="municipioName" class="selectpicker"  style="width:200px" disabled onchange="llenarComboLocalidad()">
+                            <select id="idMunicipio" name="municipioName" class="selectpicker"  style="width:200px" disabled>
                             </select>
                         </td>
                         <td>
