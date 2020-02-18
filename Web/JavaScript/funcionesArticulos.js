@@ -552,52 +552,62 @@ function calculaAvaluoAuto() {
 }
 
 function calculaPrestamoPeso() {
-    if ($("#idTipoMetal").val() == 0) {
-        alert("Selecciona un tipo de metal")
-    } else {
-        if ($("#idKilataje").val() == 0) {
-            alert("Selecciona un tipo de kilataje")
+    var prestamo = $("#idPrestamo").val();
+    if(prestamo==''){
+        if ($("#idTipoMetal").val() == 0) {
+            alert("Selecciona un tipo de metal")
         } else {
-            if ($("#idCalidad").val() == 0) {
-                alert("Selecciona un tipo de calidad")
+            if ($("#idKilataje").val() == 0) {
+                alert("Selecciona un tipo de kilataje")
             } else {
-                if ($("#idCantidad").val() == "") {
-                    alert("Ingresa el campo de Cantidad")
+                if ($("#idCalidad").val() == 0) {
+                    alert("Selecciona un tipo de calidad")
                 } else {
-                    if ($("#idPeso").val() == "") {
-                        alert("Ingresa el campo de Peso")
+                    if ($("#idCantidad").val() == "") {
+                        alert("Ingresa el campo de Cantidad")
                     } else {
-                        if ($("#idPiedras").val() == "") {
-                            alert("Ingresa el campo de Piedras")
+                        if ($("#idPeso").val() == "") {
+                            alert("Ingresa el campo de Peso")
                         } else {
-                            if ($("#idPesoPiedra").val() == "") {
-                                alert("Ingresa el campo de Peso Piedras")
+                            if ($("#idPiedras").val() == "") {
+                                alert("Ingresa el campo de Piedras")
                             } else {
-                                var cantidad = parseInt($("#idCantidad").val());
-                                var peso = parseFloat($("#idPeso").val());
-                                var pesoPiedra = parseFloat($("#idPesoPiedra").val());
-                                var piedras = parseInt($("#idPiedras").val());
-                                var kilPrecio = parseInt($("#idKilatajePrecio").val());
+                                if ($("#idPesoPiedra").val() == "") {
+                                    alert("Ingresa el campo de Peso Piedras")
+                                } else {
+                                    var cantidad = parseInt($("#idCantidad").val());
+                                    var peso = parseFloat($("#idPeso").val());
+                                    var pesoPiedra = parseFloat($("#idPesoPiedra").val());
+                                    var piedras = parseInt($("#idPiedras").val());
+                                    var kilPrecio = parseInt($("#idKilatajePrecio").val());
 
-                                var pesoTotalMetal = cantidad * peso;
-                                var pesoTotalPiedra = piedras * pesoPiedra;
-                                var pesoTotal = pesoTotalMetal - pesoTotalPiedra;
-                                var prestamo = pesoTotal * kilPrecio;
+                                    var pesoTotalMetal = cantidad * peso;
+                                    var pesoTotalPiedra = piedras * pesoPiedra;
+                                    var pesoTotal = pesoTotalMetal - pesoTotalPiedra;
+                                    var prestamo = pesoTotal * kilPrecio;
 
-                                $("#idAvaluo").val(prestamo);
-                                var avaluoImporte = Math.floor(prestamo * 33) / 100;
-                                var avaluo = prestamo + avaluoImporte;
-                                $("#idPrestamo").val(prestamo);
-                                $("#idAvaluo").val(avaluo);
-                                calculaAvaluo();
+                                    //$("#idAvaluo").val(prestamo);
+                                    var avaluoImporte = Math.floor(prestamo * 33) / 100;
+                                    var avaluo = prestamo + avaluoImporte;
+                                    $("#idPrestamo").val(prestamo);
+                                    $("#idAvaluo").val(avaluo);
+                                    calculaAvaluo();
 
+                                }
                             }
                         }
                     }
                 }
             }
         }
+    }else{
+        var avaluoImporte = Math.floor(prestamo * 33) / 100;
+        var avaluo = prestamo + avaluoImporte;
+        $("#idPrestamo").val(prestamo);
+        $("#idAvaluo").val(avaluo);
+        calculaAvaluo();
     }
+
 
 
 }
