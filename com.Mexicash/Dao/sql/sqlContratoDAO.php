@@ -117,7 +117,7 @@ class sqlContratoDAO
             $fila = $statement->fetch_object();
             $idContrato = $fila->idContrato;
             $datos = array();
-            $buscarDatos = "SELECT Con.id_Contrato AS Contrato,Con.fecha_creacion AS FechaCreacion, CONCAT (Cli.apellido_Mat, ' ',Cli.apellido_Pat,' ', Cli.nombre) as NombreCompleto, 
+            $buscarDatos = "SELECT Con.id_Contrato AS Contrato,Con.fecha_creacion AS FechaCreacion, CONCAT (Cli.apellido_Pat, ' ',Cli.apellido_Mat,' ', Cli.nombre) as NombreCompleto, 
                             CatCli.descripcion AS Identificacion, Cli.num_Identificacion AS NumIde, CONCAT(Cli.calle, ', ',Cli.num_interior,', ', Cli.num_exterior, ', ',Cli.localidad, ', ', Cli.municipio, ', ', CatEst.descripcion ) AS Direccion,
                             CLi.telefono AS CliTelefono, Cli.celular AS CliCelular,Cli.correo AS CliCorreo, Con.cotitular AS CliCotitular,Con.beneficiario AS CliBeneficiario,
                             Con.total_PrestamoInicial AS MontoPrestamo,Con.suma_InteresPrestamo AS MontoTotal,Con.tasa AS Tasa,Con.alm AS Almacenaje, Con.seguro AS Seguro,Con.Iva AS Iva,

@@ -65,7 +65,10 @@ function generarContrato() {
 //Generar PDF
 
 function cargarPDF() {
-    location.href='../PDF/contrato.php'
+ window.open('../PDF/callPdfContrato.php');
+}
+function verPDF() {
+    window.open('../PDF/callPdfContrato.php?pdf=1');
 }
 //Agrega articulos a la tabla
 function generarPDF() {
